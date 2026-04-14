@@ -29,6 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.thingineer.fearindex.presentation.R
+// presentation 모듈의 자체 strings.xml 사용
 import com.thingineer.fearindex.presentation.theme.ExtremeFear
 import com.thingineer.fearindex.presentation.theme.ExtremeGreed
 import com.thingineer.fearindex.presentation.theme.Fear
