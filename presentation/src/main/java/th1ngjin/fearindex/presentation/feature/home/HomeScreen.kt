@@ -56,8 +56,11 @@ import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.ComparisonCard
 import th1ngjin.fearindex.presentation.component.FearGaugeView
 import th1ngjin.fearindex.presentation.component.FearIndexSkeletonView
+import th1ngjin.fearindex.presentation.component.InsightDetailSheet
+import th1ngjin.fearindex.presentation.component.InsightFeedView
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
+import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
 import kotlinx.coroutines.delay
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -65,6 +68,14 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
+    val insightViewModel: InsightViewModel = hiltViewModel()
+    val insightState by insightViewModel.uiState.collectAsState()
+
+    // InsightViewModel이 HomeViewModel을 관찰
+    LaunchedEffect(Unit) {
+        insightViewModel.observeHome(viewModel)
+    }
+
     val selectedIndex = when (uiState.selectedType) {
         FearIndexType.MARKET -> 0
         FearIndexType.CRYPTO -> 1
@@ -79,6 +90,14 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         EntryPointAccessors
             .fromApplication(context.applicationContext, AnalyticsEntryPoint::class.java)
             .analyticsManager()
+    }
+
+    // 인사이트 상세 BottomSheet
+    insightState.selectedInsight?.let { insight ->
+        InsightDetailSheet(
+            insight = insight,
+            onDismiss = insightViewModel::dismissDetail,
+        )
     }
 
     Column(
@@ -131,6 +150,9 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
             is FearIndexState.Loaded -> LoadedContent(
                 fearIndex = currentState.fearIndex,
                 indexType = uiState.selectedType,
+                insights = insightState.insights,
+                onInsightClick = insightViewModel::selectInsight,
+                onCardViewed = insightViewModel::logCardViewed,
             )
             is FearIndexState.Error -> ErrorContent(
                 message = currentState.message,
@@ -303,7 +325,13 @@ private fun ErrorContent(message: String, onRetry: () -> Unit) {
 // ---------------------------------------------------------------------------
 
 @Composable
-private fun LoadedContent(fearIndex: FearIndex, indexType: FearIndexType) {
+private fun LoadedContent(
+    fearIndex: FearIndex,
+    indexType: FearIndexType,
+    insights: List<th1ngjin.fearindex.domain.entity.MarketInsight> = emptyList(),
+    onInsightClick: (th1ngjin.fearindex.domain.entity.MarketInsight) -> Unit = {},
+    onCardViewed: (th1ngjin.fearindex.domain.entity.MarketInsight) -> Unit = {},
+) {
     // 4. Fear Gauge
     FearGaugeView(score = fearIndex.roundedScore)
 
@@ -332,6 +360,17 @@ private fun LoadedContent(fearIndex: FearIndex, indexType: FearIndexType) {
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    // 7. AdMob 배너 광고 (테스트 ID — 프로덕션 시 교체 필요)
+    // 7. AdMob 배너 광고
     AdBanner()
+
+    // 8. 인사이트 피드
+    if (insights.isNotEmpty()) {
+        Spacer(modifier = Modifier.height(16.dp))
+        InsightFeedView(
+            insights = insights,
+            indexType = indexType,
+            onInsightClick = onInsightClick,
+            onCardViewed = onCardViewed,
+        )
+    }
 }
