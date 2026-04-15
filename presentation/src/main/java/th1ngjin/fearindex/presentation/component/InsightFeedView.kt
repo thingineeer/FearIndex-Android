@@ -12,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketInsight
 
@@ -38,8 +39,8 @@ fun InsightFeedView(
         }
         Text(
             text = headerText,
-            style = MaterialTheme.typography.titleSmall,
-            fontWeight = FontWeight.Bold,
+            fontSize = 17.sp,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(vertical = 8.dp),
         )
 

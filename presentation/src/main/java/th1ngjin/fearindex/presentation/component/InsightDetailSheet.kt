@@ -309,12 +309,13 @@ private fun ReturnChip(period: String, value: Double) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = period,
-            style = MaterialTheme.typography.labelSmall,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Medium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Text(
             text = formatPercent(value),
-            style = MaterialTheme.typography.bodySmall,
+            fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold,
             color = color,
         )
@@ -660,8 +661,8 @@ private fun SparklineChart(
 private fun SectionTitle(text: String) {
     Text(
         text = text,
-        style = MaterialTheme.typography.titleSmall,
-        fontWeight = FontWeight.Bold,
+        fontSize = 17.sp,
+        fontWeight = FontWeight.SemiBold,
     )
 }
 

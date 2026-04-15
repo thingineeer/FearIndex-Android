@@ -56,8 +56,8 @@ fun ComparisonCard(
             // Header
             Text(
                 text = "비교",
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold,
+                fontSize = 17.sp,
+                fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurface,
             )
 
@@ -91,10 +91,9 @@ private fun ComparisonColumn(
         // Label
         Text(
             text = label,
-            style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
-            fontSize = 11.sp,
+            fontSize = 12.sp,
         )
 
         Spacer(modifier = Modifier.height(6.dp))
@@ -105,8 +104,8 @@ private fun ComparisonColumn(
             // Score value colored by fear level
             Text(
                 text = "$prevInt",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
                 color = fearScoreColor(prevInt),
             )
 
@@ -115,22 +114,20 @@ private fun ComparisonColumn(
             val (arrow, diffColor) = changeArrowAndColor(diff)
             Text(
                 text = "$arrow${abs(diff)}",
-                style = MaterialTheme.typography.labelSmall,
                 color = diffColor,
-                fontSize = 11.sp,
+                fontSize = 12.sp,
             )
         } else {
             // Placeholder
             Text(
                 text = "--",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Text(
                 text = " ",
-                style = MaterialTheme.typography.labelSmall,
-                fontSize = 11.sp,
+                fontSize = 12.sp,
             )
         }
     }

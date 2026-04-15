@@ -290,13 +290,14 @@ private fun TickerView(
             ) {
                 Text(
                     text = item.name,
-                    style = MaterialTheme.typography.bodySmall,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Medium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Spacer(modifier = Modifier.size(8.dp))
                 Text(
                     text = priceFormatted,
-                    style = MaterialTheme.typography.bodySmall,
+                    fontSize = 15.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
@@ -309,7 +310,7 @@ private fun TickerView(
                 }
                 Text(
                     text = percentFormatted,
-                    style = MaterialTheme.typography.labelSmall,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Medium,
                     color = capsuleColor,
                     modifier = Modifier

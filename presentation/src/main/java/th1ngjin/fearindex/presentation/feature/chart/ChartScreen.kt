@@ -370,12 +370,12 @@ private fun CurrentScoreCard(fearIndex: FearIndex) {
                 ) {
                     Text(
                         text = "$score",
-                        style = MaterialTheme.typography.headlineMedium,
+                        fontSize = 28.sp,
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
                         text = ratingLabel(score),
-                        style = MaterialTheme.typography.titleSmall,
+                        fontSize = 17.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = scoreColor,
                         modifier = Modifier.padding(bottom = 4.dp),
