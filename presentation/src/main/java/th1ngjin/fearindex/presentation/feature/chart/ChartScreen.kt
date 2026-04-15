@@ -58,15 +58,19 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import th1ngjin.fearindex.core.util.ChartDataFilter
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
+import th1ngjin.fearindex.domain.entity.MarketInsight
 import th1ngjin.fearindex.presentation.R
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.ChartSkeletonView
+import th1ngjin.fearindex.presentation.component.InsightDetailSheet
+import th1ngjin.fearindex.presentation.component.InsightFeedView
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
+import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -115,6 +119,13 @@ private val SelectedPeriodBackground = Color(0xFF1976D2)
 @Composable
 fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
+    val insightViewModel: InsightViewModel = hiltViewModel()
+    val insightState by insightViewModel.uiState.collectAsState()
+
+    // InsightViewModel이 HomeViewModel을 관찰
+    LaunchedEffect(Unit) {
+        insightViewModel.observeHome(viewModel)
+    }
 
     val context = LocalContext.current
     val analytics = remember(context) {
@@ -132,6 +143,14 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
     // 탭 재진입 시 로컬 remember가 리셋되어도 ViewModel은 살아있어 UI/데이터 일치 유지
     val currentMarketPeriod = ChartPeriod.fromDays(uiState.marketHistoryDays)
     val currentCryptoPeriod = CryptoChartPeriod.fromDays(uiState.cryptoHistoryDays)
+
+    // 인사이트 상세 BottomSheet
+    insightState.selectedInsight?.let { insight ->
+        InsightDetailSheet(
+            insight = insight,
+            onDismiss = insightViewModel::dismissDetail,
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -197,6 +216,10 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
                         viewModel.loadCryptoHistoryForDays(period.days)
                         analytics.log(AnalyticsEvent.암호화폐차트조회(기간 = period.label))
                     },
+                    indexType = uiState.selectedType,
+                    insights = insightState.insights,
+                    onInsightClick = insightViewModel::selectInsight,
+                    onCardViewed = insightViewModel::logCardViewed,
                 )
             }
             is FearIndexState.Error -> {
@@ -223,6 +246,10 @@ private fun ChartLoadedContent(
     isHistoryLoading: Boolean,
     onMarketPeriodSelected: (ChartPeriod) -> Unit,
     onCryptoPeriodSelected: (CryptoChartPeriod) -> Unit,
+    indexType: FearIndexType = FearIndexType.MARKET,
+    insights: List<MarketInsight> = emptyList(),
+    onInsightClick: (MarketInsight) -> Unit = {},
+    onCardViewed: (MarketInsight) -> Unit = {},
 ) {
     // 3. Current Score Section
     CurrentScoreCard(fearIndex = fearIndex)
@@ -280,6 +307,17 @@ private fun ChartLoadedContent(
         MarketPeriodSelector(
             selected = selectedMarketPeriod,
             onSelect = onMarketPeriodSelected,
+        )
+    }
+
+    // 7. Insight Feed (iOS 차트 탭 순서: 기간 버튼 아래 → 인사이트 피드)
+    if (insights.isNotEmpty()) {
+        Spacer(modifier = Modifier.height(16.dp))
+        InsightFeedView(
+            insights = insights,
+            indexType = indexType,
+            onInsightClick = onInsightClick,
+            onCardViewed = onCardViewed,
         )
     }
 }
