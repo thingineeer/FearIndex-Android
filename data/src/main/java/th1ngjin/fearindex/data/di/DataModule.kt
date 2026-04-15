@@ -10,19 +10,24 @@ import th1ngjin.fearindex.data.repository.CryptoFearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.FearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.MarketIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.StuckCounterRepositoryImpl
+import th1ngjin.fearindex.data.repository.VoteRepositoryImpl
 import th1ngjin.fearindex.data.service.StuckStatusDebouncerImpl
 import th1ngjin.fearindex.domain.repository.CryptoFearIndexRepository
 import th1ngjin.fearindex.domain.repository.FearIndexRepository
 import th1ngjin.fearindex.domain.repository.MarketIndexRepository
 import th1ngjin.fearindex.domain.repository.StuckCounterRepository
+import th1ngjin.fearindex.domain.repository.VoteRepository
 import th1ngjin.fearindex.domain.service.StuckStatusDebouncer
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
+import th1ngjin.fearindex.domain.usecase.GetVoteResultUseCase
 import th1ngjin.fearindex.domain.usecase.ObserveStuckCounterUseCase
+import th1ngjin.fearindex.domain.usecase.ObserveVoteResultUseCase
 import th1ngjin.fearindex.domain.usecase.SubmitStuckStatusUseCase
+import th1ngjin.fearindex.domain.usecase.SubmitVoteUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -54,6 +59,10 @@ abstract class DataBindModule {
     @Binds
     @Singleton
     abstract fun bindMarketIndexRepository(impl: MarketIndexRepositoryImpl): MarketIndexRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindVoteRepository(impl: VoteRepositoryImpl): VoteRepository
 
     @Binds
     @Singleton
@@ -168,4 +177,23 @@ object DataModule {
     @Singleton
     fun provideObserveStuckCounterUseCase(repository: StuckCounterRepository): ObserveStuckCounterUseCase =
         ObserveStuckCounterUseCase(repository)
+
+    // ============================================================
+    // Firebase (Vote — Buy/Hold/Sell)
+    // ============================================================
+
+    @Provides
+    @Singleton
+    fun provideSubmitVoteUseCase(repository: VoteRepository): SubmitVoteUseCase =
+        SubmitVoteUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetVoteResultUseCase(repository: VoteRepository): GetVoteResultUseCase =
+        GetVoteResultUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideObserveVoteResultUseCase(repository: VoteRepository): ObserveVoteResultUseCase =
+        ObserveVoteResultUseCase(repository)
 }
