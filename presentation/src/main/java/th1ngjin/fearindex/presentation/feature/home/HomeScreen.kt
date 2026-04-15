@@ -48,6 +48,7 @@ import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
+import th1ngjin.fearindex.domain.entity.MarketIndex
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.AdBanner
@@ -117,7 +118,9 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         Spacer(modifier = Modifier.height(12.dp))
 
         // 3. Ticker (auto-rotating market index bar)
-        TickerView()
+        if (uiState.marketIndices.isNotEmpty()) {
+            TickerView(indices = uiState.marketIndices)
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -188,30 +191,18 @@ private fun TitleBar(
 // Ticker View (auto-rotating market index bar)
 // ---------------------------------------------------------------------------
 
-private data class TickerItem(
-    val name: String,
-    val price: String,
-    val changePercent: String,
-    val isPositive: Boolean,
-)
-
 @Composable
-private fun TickerView(modifier: Modifier = Modifier) {
-    // TODO: Replace with real market index data when data pipeline is ready
-    val items = remember {
-        listOf(
-            TickerItem("코스피", "2,756.82", "▲0.42%", true),
-            TickerItem("S&P 500", "5,968.82", "▲2.76%", true),
-            TickerItem("나스닥", "18,342.94", "▼0.18%", false),
-            TickerItem("다우존스", "42,840.26", "▲1.56%", true),
-        )
-    }
+private fun TickerView(
+    indices: List<MarketIndex>,
+    modifier: Modifier = Modifier,
+) {
     var currentIndex by remember { mutableIntStateOf(0) }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(indices.size) {
+        if (indices.isEmpty()) return@LaunchedEffect
         while (true) {
             delay(3_000)
-            currentIndex = (currentIndex + 1) % items.size
+            currentIndex = (currentIndex + 1) % indices.size
         }
     }
 
@@ -228,7 +219,12 @@ private fun TickerView(modifier: Modifier = Modifier) {
             transitionSpec = { fadeIn() togetherWith fadeOut() },
             label = "ticker_rotation",
         ) { index ->
-            val item = items[index]
+            val item = indices[index]
+            val priceFormatted = formatPrice(item.price)
+            val arrow = if (item.isPositive) "▲" else "▼"
+            val percentFormatted = "$arrow%.2f%%".format(
+                kotlin.math.abs(item.changePercent),
+            )
             Row(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
@@ -243,7 +239,7 @@ private fun TickerView(modifier: Modifier = Modifier) {
                 )
                 Spacer(modifier = Modifier.size(8.dp))
                 Text(
-                    text = item.price,
+                    text = priceFormatted,
                     style = MaterialTheme.typography.bodySmall,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface,
@@ -256,7 +252,7 @@ private fun TickerView(modifier: Modifier = Modifier) {
                     Color(0xFF1976D2)
                 }
                 Text(
-                    text = item.changePercent,
+                    text = percentFormatted,
                     style = MaterialTheme.typography.labelSmall,
                     fontWeight = FontWeight.Medium,
                     color = capsuleColor,
@@ -268,6 +264,11 @@ private fun TickerView(modifier: Modifier = Modifier) {
             }
         }
     }
+}
+
+private fun formatPrice(price: Double): String {
+    val formatter = java.text.DecimalFormat("#,##0.00")
+    return formatter.format(price)
 }
 
 // ---------------------------------------------------------------------------

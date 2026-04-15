@@ -5,18 +5,22 @@ import com.google.firebase.functions.FirebaseFunctions
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import th1ngjin.fearindex.data.datasource.CNNFearGreedApi
 import th1ngjin.fearindex.data.datasource.CryptoFearIndexApi
+import th1ngjin.fearindex.data.datasource.MarketIndexApi
 import th1ngjin.fearindex.data.repository.CryptoFearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.FearIndexRepositoryImpl
+import th1ngjin.fearindex.data.repository.MarketIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.StuckCounterRepositoryImpl
 import th1ngjin.fearindex.data.service.StuckStatusDebouncerImpl
 import th1ngjin.fearindex.domain.repository.CryptoFearIndexRepository
 import th1ngjin.fearindex.domain.repository.FearIndexRepository
+import th1ngjin.fearindex.domain.repository.MarketIndexRepository
 import th1ngjin.fearindex.domain.repository.StuckCounterRepository
 import th1ngjin.fearindex.domain.service.StuckStatusDebouncer
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
+import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
 import th1ngjin.fearindex.domain.usecase.ObserveStuckCounterUseCase
 import th1ngjin.fearindex.domain.usecase.SubmitStuckStatusUseCase
 import dagger.Binds
@@ -46,6 +50,10 @@ abstract class DataBindModule {
     @Binds
     @Singleton
     abstract fun bindStuckCounterRepository(impl: StuckCounterRepositoryImpl): StuckCounterRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindMarketIndexRepository(impl: MarketIndexRepositoryImpl): MarketIndexRepository
 
     @Binds
     @Singleton
@@ -92,6 +100,17 @@ object DataModule {
 
     @Provides
     @Singleton
+    fun provideMarketIndexApi(client: OkHttpClient): MarketIndexApi {
+        return Retrofit.Builder()
+            .baseUrl("https://query1.finance.yahoo.com/")
+            .client(client)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(MarketIndexApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideCryptoApi(client: OkHttpClient): CryptoFearIndexApi {
         return Retrofit.Builder()
             .baseUrl("https://api.alternative.me/")
@@ -120,6 +139,11 @@ object DataModule {
     @Singleton
     fun provideGetCryptoFearIndexHistoryUseCase(repository: CryptoFearIndexRepository): GetCryptoFearIndexHistoryUseCase =
         GetCryptoFearIndexHistoryUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetMarketIndicesUseCase(repository: MarketIndexRepository): GetMarketIndicesUseCase =
+        GetMarketIndicesUseCase(repository)
 
     // ============================================================
     // Firebase (Stuck Counter)

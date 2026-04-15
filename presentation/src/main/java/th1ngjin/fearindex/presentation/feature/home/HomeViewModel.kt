@@ -12,10 +12,13 @@ import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
+import th1ngjin.fearindex.domain.entity.MarketIndex
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
+import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
+import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 
@@ -29,6 +32,7 @@ data class HomeUiState(
     val cryptoHistoryDays: Int = DEFAULT_CRYPTO_DAYS,
     val isMarketHistoryLoading: Boolean = false,
     val isCryptoHistoryLoading: Boolean = false,
+    val marketIndices: List<MarketIndex> = emptyList(),
 ) {
     companion object {
         const val DEFAULT_MARKET_DAYS = 90
@@ -48,6 +52,7 @@ class HomeViewModel @Inject constructor(
     private val getFearIndexHistory: GetFearIndexHistoryUseCase,
     private val getCryptoFearIndex: GetCryptoFearIndexUseCase,
     private val getCryptoFearIndexHistory: GetCryptoFearIndexHistoryUseCase,
+    private val getMarketIndices: GetMarketIndicesUseCase,
     private val analytics: AnalyticsManager,
 ) : ViewModel() {
 
@@ -62,6 +67,7 @@ class HomeViewModel @Inject constructor(
         loadCryptoCurrent()
         loadMarketHistory(HomeUiState.DEFAULT_MARKET_DAYS)
         loadCryptoHistory(HomeUiState.DEFAULT_CRYPTO_DAYS)
+        loadMarketIndices()
     }
 
     fun selectIndexType(type: FearIndexType) {
@@ -110,6 +116,18 @@ class HomeViewModel @Inject constructor(
             !_uiState.value.isCryptoHistoryLoading
         ) return
         loadCryptoHistory(days)
+    }
+
+    private fun loadMarketIndices() {
+        viewModelScope.launch {
+            try {
+                val indices = getMarketIndices()
+                _uiState.value = _uiState.value.copy(marketIndices = indices)
+            } catch (e: Exception) {
+                // 시장 지수 로딩 실패 시 빈 리스트 유지 (전체 화면 깨트리지 않음)
+                Timber.w(e, "Failed to load market indices")
+            }
+        }
     }
 
     private fun loadMarketCurrent(forceRefresh: Boolean = false) {
