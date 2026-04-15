@@ -32,7 +32,7 @@ data class HomeUiState(
 ) {
     companion object {
         const val DEFAULT_MARKET_DAYS = 90
-        const val DEFAULT_CRYPTO_DAYS = 30
+        const val DEFAULT_CRYPTO_DAYS = 90
     }
 }
 
