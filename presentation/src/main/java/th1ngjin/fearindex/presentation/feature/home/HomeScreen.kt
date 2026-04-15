@@ -22,7 +22,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -54,6 +53,7 @@ import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.ComparisonCard
 import th1ngjin.fearindex.presentation.component.FearGaugeView
+import th1ngjin.fearindex.presentation.component.FearIndexSkeletonView
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import kotlinx.coroutines.delay
@@ -123,7 +123,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
         // 4-6. Content (gauge + comparison + timestamp)
         when (currentState) {
-            is FearIndexState.Loading -> LoadingContent()
+            is FearIndexState.Loading -> FearIndexSkeletonView()
             is FearIndexState.Loaded -> LoadedContent(
                 fearIndex = currentState.fearIndex,
                 indexType = uiState.selectedType,
@@ -273,18 +273,6 @@ private fun TickerView(modifier: Modifier = Modifier) {
 // ---------------------------------------------------------------------------
 // Loading / Error states
 // ---------------------------------------------------------------------------
-
-@Composable
-private fun LoadingContent() {
-    Spacer(modifier = Modifier.height(80.dp))
-    CircularProgressIndicator()
-    Spacer(modifier = Modifier.height(16.dp))
-    Text(
-        text = "불러오는 중...",
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-    )
-}
 
 @Composable
 private fun ErrorContent(message: String, onRetry: () -> Unit) {
