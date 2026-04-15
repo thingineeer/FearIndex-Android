@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
+import th1ngjin.fearindex.core.util.ShareUrlBuilder
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketIndex
@@ -166,9 +167,15 @@ private fun TitleBar(
                 onShareClicked()
                 // Android Intent.ACTION_SEND — 카카오톡/문자/메모 등 공유 가능 대상 전체로 전달.
                 // 모든 문자열은 strings.xml(45 locale)에서 가져오므로 하드코딩 금지.
+                val shareUrl = ShareUrlBuilder.build(
+                    score = currentScore ?: 0,
+                    type = "market",
+                    rating = ratingLabel ?: "",
+                )
+                val shareText = "$shareTemplate\n$shareUrl"
                 val shareIntent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
-                    putExtra(Intent.EXTRA_TEXT, shareTemplate)
+                    putExtra(Intent.EXTRA_TEXT, shareText)
                     putExtra(Intent.EXTRA_SUBJECT, shareTitle)
                 }
                 val chooser = Intent.createChooser(shareIntent, chooserTitle).apply {
