@@ -30,6 +30,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import th1ngjin.fearindex.domain.entity.InsightType
 import th1ngjin.fearindex.domain.entity.MarketInsight
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
@@ -67,14 +68,14 @@ fun InsightTeaserCard(
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = insight.title,
-                style = MaterialTheme.typography.bodyMedium,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
                 text = insight.summary,
-                style = MaterialTheme.typography.bodySmall,
+                fontSize = 12.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,

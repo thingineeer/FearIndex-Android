@@ -165,7 +165,7 @@ fun FearGaugeView(
         ) {
             Text(
                 text = "$score",
-                fontSize = 48.sp,
+                fontSize = 34.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -174,7 +174,7 @@ fun FearGaugeView(
                 text = ratingLabel(score),
                 color = scoreColor,
                 fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.titleMedium,
+                fontSize = 17.sp,
             )
         }
     }
