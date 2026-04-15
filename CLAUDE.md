@@ -205,9 +205,11 @@ feature/v1.x.x-기능C   (worktree 3, n개 커밋)  ──git merge──┘    
 1. **`dev`가 개발 기준선** (`main` 아님). iOS와 동일하게 `dev`로 통일.
 2. 새 버전 시작 시 **`dev` → `feature/v1.x.x` 버전 브랜치 분기**.
 3. **모든 작업은 worktree 단위 피처 브랜치**에서. 한 worktree에 **n개 커밋** 가능 (의미 단위 묶음).
-4. 작업 완료 → 버전 브랜치로 **`git merge`** (`--squash` **절대 금지**).
-5. 모든 피처 머지 → `dev`에 `git merge`.
-6. Play Store 배포 통과 → `release`에 `git merge` + 태그.
+4. 작업 완료 → 버전 브랜치로 **`git merge --no-ff`** (`--squash` **절대 금지**). 반드시 분기/합류 그래프 유지.
+5. 모든 피처 머지 → `dev`에 `git merge --no-ff`.
+6. Play Store 배포 통과 → `release`에 `git merge --no-ff` + 태그.
+7. **테스터 빌드는 `dev`에서** — Closed Testing 12명 14일 opt-in → Production 신청.
+8. **각 worktree = 하나의 기능 단위**. worktree 안에서 n개 커밋 OK. 관련 없는 작업은 별도 worktree 분리.
 
 ### 절대 금지
 
