@@ -72,7 +72,7 @@ fun SettingsScreen(
         SettingsItem(
             icon = Icons.Default.Info,
             title = "앱 정보",
-            subtitle = "Version 1.0.0",
+            subtitle = "Version 1.0.1",
         )
         HorizontalDivider()
 
