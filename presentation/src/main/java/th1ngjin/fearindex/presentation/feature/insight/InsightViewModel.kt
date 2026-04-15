@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
@@ -40,41 +42,64 @@ class InsightViewModel @Inject constructor(
 
     /**
      * HomeViewModel의 uiState를 관찰하여 인사이트를 생성.
+     *
+     * 성능: distinctUntilChanged로 인사이트 생성에 영향 없는 필드(티커/로딩 플래그 등)가
+     * 바뀔 때는 재계산 스킵. 티커가 3초마다 갱신되어도 인사이트 보간/이벤트 매칭은
+     * score/indexType/history 변경 시에만 실행.
      */
     fun observeHome(homeViewModel: HomeViewModel) {
         viewModelScope.launch {
-            homeViewModel.uiState.collectLatest { homeState ->
-                val indexType = homeState.selectedType
+            homeViewModel.uiState
+                .map { homeState -> InsightInputSnapshot.from(homeState) }
+                .distinctUntilChanged()
+                .collectLatest { snapshot ->
+                    val state = snapshot.state
+                    if (state is FearIndexState.Loaded && snapshot.history.isNotEmpty()) {
+                        val score = state.fearIndex.roundedScore
+                        val table = when (snapshot.indexType) {
+                            FearIndexType.MARKET -> DefaultReturnData.market
+                            FearIndexType.CRYPTO -> DefaultReturnData.crypto
+                        }
+                        val insights = InsightGenerator.generateInsights(
+                            score = score,
+                            indexType = snapshot.indexType,
+                            history = snapshot.history,
+                            returnDataTable = table,
+                        )
+                        _uiState.value = _uiState.value.copy(
+                            insights = insights,
+                            isLoading = false,
+                        )
+                    } else {
+                        _uiState.value = _uiState.value.copy(
+                            isLoading = state is FearIndexState.Loading,
+                        )
+                    }
+                }
+        }
+    }
+
+    /**
+     * 인사이트 생성에 영향을 주는 필드만 추린 스냅샷.
+     * equals 비교가 HomeUiState 전체보다 훨씬 저렴 (score int + history size 참조).
+     */
+    private data class InsightInputSnapshot(
+        val indexType: FearIndexType,
+        val state: FearIndexState,
+        val history: List<th1ngjin.fearindex.domain.entity.FearIndex>,
+    ) {
+        companion object {
+            fun from(home: th1ngjin.fearindex.presentation.feature.home.HomeUiState): InsightInputSnapshot {
+                val indexType = home.selectedType
                 val state = when (indexType) {
-                    FearIndexType.MARKET -> homeState.marketState
-                    FearIndexType.CRYPTO -> homeState.cryptoState
+                    FearIndexType.MARKET -> home.marketState
+                    FearIndexType.CRYPTO -> home.cryptoState
                 }
                 val history = when (indexType) {
-                    FearIndexType.MARKET -> homeState.marketHistory
-                    FearIndexType.CRYPTO -> homeState.cryptoHistory
+                    FearIndexType.MARKET -> home.marketHistory
+                    FearIndexType.CRYPTO -> home.cryptoHistory
                 }
-
-                if (state is FearIndexState.Loaded && history.isNotEmpty()) {
-                    val score = state.fearIndex.roundedScore
-                    val table = when (indexType) {
-                        FearIndexType.MARKET -> DefaultReturnData.market
-                        FearIndexType.CRYPTO -> DefaultReturnData.crypto
-                    }
-                    val insights = InsightGenerator.generateInsights(
-                        score = score,
-                        indexType = indexType,
-                        history = history,
-                        returnDataTable = table,
-                    )
-                    _uiState.value = _uiState.value.copy(
-                        insights = insights,
-                        isLoading = false,
-                    )
-                } else {
-                    _uiState.value = _uiState.value.copy(
-                        isLoading = state is FearIndexState.Loading,
-                    )
-                }
+                return InsightInputSnapshot(indexType, state, history)
             }
         }
     }
