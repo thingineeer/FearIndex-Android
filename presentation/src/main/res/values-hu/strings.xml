@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Extrém félelem</string>
+    <string name="rating_fear">Félelem</string>
+    <string name="rating_neutral">Semleges</string>
+    <string name="rating_greed">Mohóság</string>
+    <string name="rating_extreme_greed">Extrém mohóság</string>
+    <string name="tab_home">Főoldal</string>
+    <string name="tab_chart">Diagram</string>
+    <string name="tab_vote">Szavazás</string>
+    <string name="tab_settings">Beállítások</string>
+    <string name="home_title">Félelem és mohóság index</string>
+    <string name="chart_history">Előzmények</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Medo Extremo</string>
+    <string name="rating_fear">Medo</string>
+    <string name="rating_neutral">Neutro</string>
+    <string name="rating_greed">Ganância</string>
+    <string name="rating_extreme_greed">Ganância Extrema</string>
+    <string name="tab_home">Início</string>
+    <string name="tab_chart">Gráfico</string>
+    <string name="tab_vote">Votação</string>
+    <string name="tab_settings">Configurações</string>
+    <string name="home_title">Índice de Medo e Ganância</string>
+    <string name="chart_history">Histórico</string>
+    <string name="share_message_template">Índice de Medo e Ganância de hoje: %1$d (%2$s)\n\nAcompanhe o sentimento do mercado em tempo real com o app Fear &amp; Greed Index.</string>
+    <string name="share_chooser_title">Compartilhar via</string>
+</resources>

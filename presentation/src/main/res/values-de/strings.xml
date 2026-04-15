@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Extreme Angst</string>
+    <string name="rating_fear">Angst</string>
+    <string name="rating_neutral">Neutral</string>
+    <string name="rating_greed">Gier</string>
+    <string name="rating_extreme_greed">Extreme Gier</string>
+    <string name="tab_home">Start</string>
+    <string name="tab_chart">Chart</string>
+    <string name="tab_vote">Abstimmung</string>
+    <string name="tab_settings">Einstellungen</string>
+    <string name="home_title">Angst &amp; Gier Index</string>
+    <string name="chart_history">Verlauf</string>
+    <string name="share_message_template">Aktueller Angst &amp; Gier Index: %1$d (%2$s)\n\nMarktstimmung in Echtzeit verfolgen — mit der Fear &amp; Greed Index App.</string>
+    <string name="share_chooser_title">Teilen über</string>
+</resources>

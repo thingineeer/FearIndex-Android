@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Ekstrem Frykt</string>
+    <string name="rating_fear">Frykt</string>
+    <string name="rating_neutral">Nøytral</string>
+    <string name="rating_greed">Grådighet</string>
+    <string name="rating_extreme_greed">Ekstrem Grådighet</string>
+    <string name="tab_home">Hjem</string>
+    <string name="tab_chart">Diagram</string>
+    <string name="tab_vote">Stem</string>
+    <string name="tab_settings">Innstillinger</string>
+    <string name="home_title">Frykt- og Grådighetindeks</string>
+    <string name="chart_history">Historikk</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
+</resources>
