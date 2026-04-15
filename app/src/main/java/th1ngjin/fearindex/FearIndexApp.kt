@@ -7,6 +7,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.google.android.gms.ads.MobileAds
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,8 @@ import th1ngjin.fearindex.core.analytics.AnalyticsManager
 import th1ngjin.fearindex.core.appcheck.AppCheckInitializer
 import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.remoteconfig.RemoteConfigManager
+import th1ngjin.fearindex.domain.repository.NotificationRepository
+import th1ngjin.fearindex.domain.service.DeviceIdProvider
 import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
@@ -28,6 +31,8 @@ class FearIndexApp : Application() {
     @Inject lateinit var crashReporter: CrashReporter
     @Inject lateinit var remoteConfig: RemoteConfigManager
     @Inject lateinit var appCheck: AppCheckInitializer
+    @Inject lateinit var notificationRepository: NotificationRepository
+    @Inject lateinit var deviceIdProvider: DeviceIdProvider
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
@@ -36,6 +41,7 @@ class FearIndexApp : Application() {
         setupTimber()
         initFirebase()
         setupNotificationChannels()
+        registerFCMToken()
         initAdMob()
         registerLifecycle()
     }
@@ -75,6 +81,21 @@ class FearIndexApp : Application() {
             description = getString(R.string.notification_channel_description)
         }
         manager.createNotificationChannel(channel)
+    }
+
+    private fun registerFCMToken() {
+        FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
+            Timber.d("FCM token obtained: ${token.take(10)}...")
+            val deviceId = deviceIdProvider.loadDeviceId()
+            appScope.launch {
+                try {
+                    notificationRepository.registerFCMToken(deviceId, token)
+                    Timber.d("FCM token registered on startup")
+                } catch (e: Exception) {
+                    Timber.e(e, "FCM token registration failed on startup")
+                }
+            }
+        }
     }
 
     private fun initAdMob() {
