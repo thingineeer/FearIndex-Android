@@ -43,9 +43,14 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    // Firebase Analytics — iOS와 동일 이벤트 이름 공유
+    // Firebase — iOS와 같은 프로젝트 공유. 플랫폼 구분은 UserProperty로.
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.config)
+    implementation(libs.firebase.appcheck.playintegrity)
+    debugImplementation(libs.firebase.appcheck.debug)
+    implementation(libs.kotlinx.coroutines.play.services)
 
     // Logging
     implementation(libs.timber)

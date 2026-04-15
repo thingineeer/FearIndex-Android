@@ -55,12 +55,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlin.math.abs
 import androidx.hilt.navigation.compose.hiltViewModel
+import th1ngjin.fearindex.core.util.ChartDataFilter
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.presentation.R
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.presentation.common.ratingLabel
+import th1ngjin.fearindex.presentation.component.ChartSkeletonView
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
@@ -87,15 +89,16 @@ enum class ChartPeriod(val label: String, val days: Int) {
 }
 
 enum class CryptoChartPeriod(val label: String, val days: Int) {
-    ONE_WEEK("1W", 7),
-    ONE_MONTH("1M", 30),
     THREE_MONTHS("3M", 90),
     SIX_MONTHS("6M", 180),
-    ONE_YEAR("1Y", 365);
+    ONE_YEAR("1Y", 365),
+    TWO_YEARS("2Y", 730),
+    THREE_YEARS("3Y", 1095),
+    FIVE_YEARS("5Y", 1825);
 
     companion object {
         fun fromDays(days: Int): CryptoChartPeriod =
-            entries.firstOrNull { it.days == days } ?: ONE_MONTH
+            entries.firstOrNull { it.days == days } ?: THREE_MONTHS
     }
 }
 
@@ -170,7 +173,7 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
         // 3-6. Content based on state
         when (currentState) {
             is FearIndexState.Loading -> {
-                LoadingPlaceholder()
+                ChartSkeletonView()
             }
             is FearIndexState.Loaded -> {
                 ChartLoadedContent(
@@ -412,7 +415,7 @@ private fun ChartCard(
                     awaitEachGesture {
                         val down = awaitFirstDown(requireUnconsumed = false)
                         // 첫 터치 — 가장 가까운 포인트 찾기
-                        val initialIndex = nearestIndex(down.position.x, size.width.toFloat(), data.size)
+                        val initialIndex = ChartDataFilter.nearestIndex(down.position.x, size.width.toFloat(), data.size)
                         if (initialIndex != selectedIndex) {
                             selectedIndex = initialIndex
                             touchX = down.position.x
@@ -427,7 +430,7 @@ private fun ChartCard(
                             val event = awaitPointerEventOrNull() ?: break
                             val change = event.changes.firstOrNull() ?: break
                             if (!change.pressed) break
-                            val newIndex = nearestIndex(change.position.x, size.width.toFloat(), data.size)
+                            val newIndex = ChartDataFilter.nearestIndex(change.position.x, size.width.toFloat(), data.size)
                             touchX = change.position.x
                             if (newIndex != selectedIndex) {
                                 selectedIndex = newIndex
@@ -465,18 +468,6 @@ private fun ChartCard(
             }
         }
     }
-}
-
-private fun nearestIndex(touchX: Float, width: Float, size: Int): Int {
-    if (size <= 1) return 0
-    val ratio = (touchX / width).coerceIn(0f, 1f)
-    return (ratio * (size - 1)).toInt().coerceIn(0, size - 1)
-        .let { base ->
-            // 더 가까운 이웃 확인
-            val baseX = width * base / (size - 1)
-            val nextX = width * (base + 1).coerceAtMost(size - 1) / (size - 1)
-            if (abs(touchX - nextX) < abs(touchX - baseX)) (base + 1).coerceAtMost(size - 1) else base
-        }
 }
 
 /**
@@ -864,20 +855,6 @@ private fun PeriodSelectorRow(
                 )
             }
         }
-    }
-}
-
-// MARK: - Loading Placeholder
-
-@Composable
-private fun LoadingPlaceholder() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        androidx.compose.material3.CircularProgressIndicator()
     }
 }
 

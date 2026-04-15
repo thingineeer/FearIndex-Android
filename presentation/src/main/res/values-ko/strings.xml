@@ -14,4 +14,19 @@
     <string name="chart_history">히스토리</string>
     <string name="share_message_template">오늘의 공포 탐욕 지수: %1$d (%2$s)\n\n시장 심리를 한눈에 — 공포 탐욕 지수 앱에서 실시간 확인하세요.</string>
     <string name="share_chooser_title">공유하기</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">알림 설정</string>
+    <string name="back">뒤로</string>
+    <string name="notification_push_title">푸시 알림</string>
+    <string name="notification_push_description">공포지수가 설정한 임계값에 도달하면 알림을 받습니다.</string>
+    <string name="notification_tab_market">시장</string>
+    <string name="notification_tab_crypto">암호화폐</string>
+    <string name="notification_market_title">시장 공포지수 알림</string>
+    <string name="notification_crypto_title">암호화폐 공포지수 알림</string>
+    <string name="notification_lower_label">하한 (공포)</string>
+    <string name="notification_upper_label">상한 (탐욕)</string>
+    <string name="notification_lower_description">공포지수가 %1$d 이하일 때 알림을 받습니다.</string>
+    <string name="notification_upper_description">공포지수가 %1$d 이상일 때 알림을 받습니다.</string>
+    <string name="notification_info">알림은 15분 간격으로 체크되며, 하루에 같은 구간 진입 시 최대 1회만 발송됩니다.</string>
 </resources>

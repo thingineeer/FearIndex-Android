@@ -5,20 +5,33 @@ import com.google.firebase.functions.FirebaseFunctions
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import th1ngjin.fearindex.data.datasource.CNNFearGreedApi
 import th1ngjin.fearindex.data.datasource.CryptoFearIndexApi
+import th1ngjin.fearindex.data.datasource.MarketIndexApi
 import th1ngjin.fearindex.data.repository.CryptoFearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.FearIndexRepositoryImpl
+import th1ngjin.fearindex.data.repository.MarketIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.StuckCounterRepositoryImpl
+import th1ngjin.fearindex.data.repository.NotificationRepositoryImpl
+import th1ngjin.fearindex.data.repository.VoteRepositoryImpl
 import th1ngjin.fearindex.data.service.StuckStatusDebouncerImpl
 import th1ngjin.fearindex.domain.repository.CryptoFearIndexRepository
+import th1ngjin.fearindex.data.storage.StuckCounterStorage
 import th1ngjin.fearindex.domain.repository.FearIndexRepository
+import th1ngjin.fearindex.domain.repository.MarketIndexRepository
+import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.repository.StuckCounterRepository
+import th1ngjin.fearindex.domain.repository.VoteRepository
+import th1ngjin.fearindex.domain.service.DeviceIdProvider
 import th1ngjin.fearindex.domain.service.StuckStatusDebouncer
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
+import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
+import th1ngjin.fearindex.domain.usecase.GetVoteResultUseCase
 import th1ngjin.fearindex.domain.usecase.ObserveStuckCounterUseCase
+import th1ngjin.fearindex.domain.usecase.ObserveVoteResultUseCase
 import th1ngjin.fearindex.domain.usecase.SubmitStuckStatusUseCase
+import th1ngjin.fearindex.domain.usecase.SubmitVoteUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -46,6 +59,22 @@ abstract class DataBindModule {
     @Binds
     @Singleton
     abstract fun bindStuckCounterRepository(impl: StuckCounterRepositoryImpl): StuckCounterRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindMarketIndexRepository(impl: MarketIndexRepositoryImpl): MarketIndexRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindVoteRepository(impl: VoteRepositoryImpl): VoteRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindNotificationRepository(impl: NotificationRepositoryImpl): NotificationRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindDeviceIdProvider(impl: StuckCounterStorage): DeviceIdProvider
 
     @Binds
     @Singleton
@@ -92,6 +121,17 @@ object DataModule {
 
     @Provides
     @Singleton
+    fun provideMarketIndexApi(client: OkHttpClient): MarketIndexApi {
+        return Retrofit.Builder()
+            .baseUrl("https://query1.finance.yahoo.com/")
+            .client(client)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(MarketIndexApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideCryptoApi(client: OkHttpClient): CryptoFearIndexApi {
         return Retrofit.Builder()
             .baseUrl("https://api.alternative.me/")
@@ -121,6 +161,11 @@ object DataModule {
     fun provideGetCryptoFearIndexHistoryUseCase(repository: CryptoFearIndexRepository): GetCryptoFearIndexHistoryUseCase =
         GetCryptoFearIndexHistoryUseCase(repository)
 
+    @Provides
+    @Singleton
+    fun provideGetMarketIndicesUseCase(repository: MarketIndexRepository): GetMarketIndicesUseCase =
+        GetMarketIndicesUseCase(repository)
+
     // ============================================================
     // Firebase (Stuck Counter)
     // ============================================================
@@ -144,4 +189,23 @@ object DataModule {
     @Singleton
     fun provideObserveStuckCounterUseCase(repository: StuckCounterRepository): ObserveStuckCounterUseCase =
         ObserveStuckCounterUseCase(repository)
+
+    // ============================================================
+    // Firebase (Vote — Buy/Hold/Sell)
+    // ============================================================
+
+    @Provides
+    @Singleton
+    fun provideSubmitVoteUseCase(repository: VoteRepository): SubmitVoteUseCase =
+        SubmitVoteUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetVoteResultUseCase(repository: VoteRepository): GetVoteResultUseCase =
+        GetVoteResultUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideObserveVoteResultUseCase(repository: VoteRepository): ObserveVoteResultUseCase =
+        ObserveVoteResultUseCase(repository)
 }

@@ -15,12 +15,9 @@ import javax.inject.Singleton
  * 대시보드에서 플랫폼 간 비교가 가능하다. 새로운 이벤트는 반드시 [AnalyticsEvent]에 케이스로
  * 추가하고, iOS 쪽도 동시에 반영해야 한다.
  *
- * 호출 예:
- * ```
- * @Inject lateinit var analytics: AnalyticsManager
- * analytics.log(AnalyticsEvent.탭선택(탭이름 = "홈"))
- * analytics.logScreen(AnalyticsScreen.홈)
- * ```
+ * **플랫폼 구분**: 한 Firebase 프로젝트를 iOS/Android가 공유하므로 앱 시작 시
+ * [setStandardUserProperties]로 `platform`, `app_version`, `build_type`, `language`를
+ * 반드시 설정해야 대시보드에서 플랫폼별 Funnel/Audience 분리가 가능하다.
  */
 @Singleton
 class AnalyticsManager @Inject constructor() {
@@ -29,7 +26,7 @@ class AnalyticsManager @Inject constructor() {
     fun log(event: AnalyticsEvent) {
         val bundle = event.parameters?.toBundle()
         firebase.logEvent(event.name, bundle)
-        Timber.tag("Analytics").d("event=%s params=%s", event.name, event.parameters ?: "{}")
+        Timber.tag(TAG).d("event=%s params=%s", event.name, event.parameters ?: "{}")
     }
 
     fun logScreen(screen: AnalyticsScreen) {
@@ -38,11 +35,42 @@ class AnalyticsManager @Inject constructor() {
             putString(FirebaseAnalytics.Param.SCREEN_CLASS, screen.screenClass)
         }
         firebase.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle)
-        Timber.tag("Analytics").d("screen=%s", screen.screenName)
+        Timber.tag(TAG).d("screen=%s", screen.screenName)
     }
 
     fun setUserProperty(name: String, value: String?) {
         firebase.setUserProperty(name, value)
+        Timber.tag(TAG).d("userProperty %s=%s", name, value)
+    }
+
+    fun setAnalyticsCollectionEnabled(enabled: Boolean) {
+        firebase.setAnalyticsCollectionEnabled(enabled)
+    }
+
+    /**
+     * 앱 시작 시 1회 호출. iOS와 같은 Firebase 프로젝트를 공유하므로 플랫폼 구분을 위한
+     * UserProperty를 반드시 심는다. iOS `AnalyticsManager.swift`의 동명 함수와 쌍이 맞아야 한다.
+     */
+    fun setStandardUserProperties(
+        appVersion: String,
+        buildType: String,
+        language: String,
+    ) {
+        setUserProperty(UserProperty.PLATFORM, "android")
+        setUserProperty(UserProperty.APP_VERSION, appVersion)
+        setUserProperty(UserProperty.BUILD_TYPE, buildType)
+        setUserProperty(UserProperty.LANGUAGE, language)
+    }
+
+    object UserProperty {
+        const val PLATFORM = "platform"
+        const val APP_VERSION = "app_version"
+        const val BUILD_TYPE = "build_type"
+        const val LANGUAGE = "language"
+    }
+
+    private companion object {
+        const val TAG = "Analytics"
     }
 }
 

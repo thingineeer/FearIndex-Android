@@ -14,4 +14,19 @@
     <string name="chart_history">History</string>
     <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
     <string name="share_chooser_title">Share via</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Notification Settings</string>
+    <string name="back">Back</string>
+    <string name="notification_push_title">Push Notifications</string>
+    <string name="notification_push_description">Get notified when the fear index reaches your threshold.</string>
+    <string name="notification_tab_market">Market</string>
+    <string name="notification_tab_crypto">Crypto</string>
+    <string name="notification_market_title">Market Fear Index Alerts</string>
+    <string name="notification_crypto_title">Crypto Fear Index Alerts</string>
+    <string name="notification_lower_label">Lower (Fear)</string>
+    <string name="notification_upper_label">Upper (Greed)</string>
+    <string name="notification_lower_description">You\'ll be notified when the index drops to %1$d or below.</string>
+    <string name="notification_upper_description">You\'ll be notified when the index reaches %1$d or above.</string>
+    <string name="notification_info">Notifications are checked every 15 minutes. You\'ll receive at most 1 notification per threshold zone per day.</string>
 </resources>

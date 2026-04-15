@@ -22,7 +22,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -45,14 +44,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import dagger.hilt.android.EntryPointAccessors
+import th1ngjin.fearindex.core.analytics.AnalyticsEvent
+import th1ngjin.fearindex.core.util.ShareUrlBuilder
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
+import th1ngjin.fearindex.domain.entity.MarketIndex
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.ComparisonCard
 import th1ngjin.fearindex.presentation.component.FearGaugeView
+import th1ngjin.fearindex.presentation.component.FearIndexSkeletonView
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
+import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import kotlinx.coroutines.delay
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -69,6 +74,13 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
 
+    val context = LocalContext.current
+    val analytics = remember(context) {
+        EntryPointAccessors
+            .fromApplication(context.applicationContext, AnalyticsEntryPoint::class.java)
+            .analyticsManager()
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -81,7 +93,16 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         // ratingLabel(score)는 Composable이므로 여기서 호출해 현재 locale의 번역값을 받는다.
         val loadedScore = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore
         val loadedRating = loadedScore?.let { ratingLabel(it) }
-        TitleBar(currentScore = loadedScore, ratingLabel = loadedRating)
+        TitleBar(
+            currentScore = loadedScore,
+            ratingLabel = loadedRating,
+            onShareClicked = {
+                if (loadedScore != null) {
+                    val typeLabel = if (uiState.selectedType == FearIndexType.MARKET) "시장" else "암호화폐"
+                    analytics.log(AnalyticsEvent.공유버튼탭(지수타입 = typeLabel, 현재점수 = loadedScore))
+                }
+            },
+        )
 
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -98,13 +119,15 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         Spacer(modifier = Modifier.height(12.dp))
 
         // 3. Ticker (auto-rotating market index bar)
-        TickerView()
+        if (uiState.marketIndices.isNotEmpty()) {
+            TickerView(indices = uiState.marketIndices)
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // 4-6. Content (gauge + comparison + timestamp)
         when (currentState) {
-            is FearIndexState.Loading -> LoadingContent()
+            is FearIndexState.Loading -> FearIndexSkeletonView()
             is FearIndexState.Loaded -> LoadedContent(
                 fearIndex = currentState.fearIndex,
                 indexType = uiState.selectedType,
@@ -122,7 +145,11 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 // ---------------------------------------------------------------------------
 
 @Composable
-private fun TitleBar(currentScore: Int? = null, ratingLabel: String? = null) {
+private fun TitleBar(
+    currentScore: Int? = null,
+    ratingLabel: String? = null,
+    onShareClicked: () -> Unit = {},
+) {
     // 공유 메시지의 제목/본문도 다국어. 점수와 등급은 호출부에서 ratingLabel(score)로 미리 주입.
     val shareTitle = stringResource(R.string.home_title) // "공포 탐욕 지수" / "Fear & Greed Index" 등
     val shareTemplate = stringResource(R.string.share_message_template, currentScore ?: 0, ratingLabel ?: "")
@@ -137,11 +164,18 @@ private fun TitleBar(currentScore: Int? = null, ratingLabel: String? = null) {
         val chooserTitle = stringResource(R.string.share_chooser_title)
         IconButton(
             onClick = {
+                onShareClicked()
                 // Android Intent.ACTION_SEND — 카카오톡/문자/메모 등 공유 가능 대상 전체로 전달.
                 // 모든 문자열은 strings.xml(45 locale)에서 가져오므로 하드코딩 금지.
+                val shareUrl = ShareUrlBuilder.build(
+                    score = currentScore ?: 0,
+                    type = "market",
+                    rating = ratingLabel ?: "",
+                )
+                val shareText = "$shareTemplate\n$shareUrl"
                 val shareIntent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
-                    putExtra(Intent.EXTRA_TEXT, shareTemplate)
+                    putExtra(Intent.EXTRA_TEXT, shareText)
                     putExtra(Intent.EXTRA_SUBJECT, shareTitle)
                 }
                 val chooser = Intent.createChooser(shareIntent, chooserTitle).apply {
@@ -164,30 +198,18 @@ private fun TitleBar(currentScore: Int? = null, ratingLabel: String? = null) {
 // Ticker View (auto-rotating market index bar)
 // ---------------------------------------------------------------------------
 
-private data class TickerItem(
-    val name: String,
-    val price: String,
-    val changePercent: String,
-    val isPositive: Boolean,
-)
-
 @Composable
-private fun TickerView(modifier: Modifier = Modifier) {
-    // TODO: Replace with real market index data when data pipeline is ready
-    val items = remember {
-        listOf(
-            TickerItem("코스피", "2,756.82", "▲0.42%", true),
-            TickerItem("S&P 500", "5,968.82", "▲2.76%", true),
-            TickerItem("나스닥", "18,342.94", "▼0.18%", false),
-            TickerItem("다우존스", "42,840.26", "▲1.56%", true),
-        )
-    }
+private fun TickerView(
+    indices: List<MarketIndex>,
+    modifier: Modifier = Modifier,
+) {
     var currentIndex by remember { mutableIntStateOf(0) }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(indices.size) {
+        if (indices.isEmpty()) return@LaunchedEffect
         while (true) {
             delay(3_000)
-            currentIndex = (currentIndex + 1) % items.size
+            currentIndex = (currentIndex + 1) % indices.size
         }
     }
 
@@ -204,7 +226,12 @@ private fun TickerView(modifier: Modifier = Modifier) {
             transitionSpec = { fadeIn() togetherWith fadeOut() },
             label = "ticker_rotation",
         ) { index ->
-            val item = items[index]
+            val item = indices[index]
+            val priceFormatted = formatPrice(item.price)
+            val arrow = if (item.isPositive) "▲" else "▼"
+            val percentFormatted = "$arrow%.2f%%".format(
+                kotlin.math.abs(item.changePercent),
+            )
             Row(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
@@ -219,7 +246,7 @@ private fun TickerView(modifier: Modifier = Modifier) {
                 )
                 Spacer(modifier = Modifier.size(8.dp))
                 Text(
-                    text = item.price,
+                    text = priceFormatted,
                     style = MaterialTheme.typography.bodySmall,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface,
@@ -232,7 +259,7 @@ private fun TickerView(modifier: Modifier = Modifier) {
                     Color(0xFF1976D2)
                 }
                 Text(
-                    text = item.changePercent,
+                    text = percentFormatted,
                     style = MaterialTheme.typography.labelSmall,
                     fontWeight = FontWeight.Medium,
                     color = capsuleColor,
@@ -246,21 +273,14 @@ private fun TickerView(modifier: Modifier = Modifier) {
     }
 }
 
+private fun formatPrice(price: Double): String {
+    val formatter = java.text.DecimalFormat("#,##0.00")
+    return formatter.format(price)
+}
+
 // ---------------------------------------------------------------------------
 // Loading / Error states
 // ---------------------------------------------------------------------------
-
-@Composable
-private fun LoadingContent() {
-    Spacer(modifier = Modifier.height(80.dp))
-    CircularProgressIndicator()
-    Spacer(modifier = Modifier.height(16.dp))
-    Text(
-        text = "불러오는 중...",
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-    )
-}
 
 @Composable
 private fun ErrorContent(message: String, onRetry: () -> Unit) {

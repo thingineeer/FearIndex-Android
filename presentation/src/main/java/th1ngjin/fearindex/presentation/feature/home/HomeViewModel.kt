@@ -2,18 +2,24 @@ package th1ngjin.fearindex.presentation.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import th1ngjin.fearindex.domain.entity.FearIndex
-import th1ngjin.fearindex.domain.entity.FearIndexType
-import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
-import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
-import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
-import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import th1ngjin.fearindex.core.analytics.AnalyticsEvent
+import th1ngjin.fearindex.core.analytics.AnalyticsManager
+import th1ngjin.fearindex.domain.entity.FearIndex
+import th1ngjin.fearindex.domain.entity.FearIndexType
+import th1ngjin.fearindex.domain.entity.MarketIndex
+import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
+import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
+import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
+import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
+import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
+import timber.log.Timber
+import java.io.IOException
 import javax.inject.Inject
 
 data class HomeUiState(
@@ -26,10 +32,11 @@ data class HomeUiState(
     val cryptoHistoryDays: Int = DEFAULT_CRYPTO_DAYS,
     val isMarketHistoryLoading: Boolean = false,
     val isCryptoHistoryLoading: Boolean = false,
+    val marketIndices: List<MarketIndex> = emptyList(),
 ) {
     companion object {
         const val DEFAULT_MARKET_DAYS = 90
-        const val DEFAULT_CRYPTO_DAYS = 30
+        const val DEFAULT_CRYPTO_DAYS = 90
     }
 }
 
@@ -45,6 +52,8 @@ class HomeViewModel @Inject constructor(
     private val getFearIndexHistory: GetFearIndexHistoryUseCase,
     private val getCryptoFearIndex: GetCryptoFearIndexUseCase,
     private val getCryptoFearIndexHistory: GetCryptoFearIndexHistoryUseCase,
+    private val getMarketIndices: GetMarketIndicesUseCase,
+    private val analytics: AnalyticsManager,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -58,14 +67,27 @@ class HomeViewModel @Inject constructor(
         loadCryptoCurrent()
         loadMarketHistory(HomeUiState.DEFAULT_MARKET_DAYS)
         loadCryptoHistory(HomeUiState.DEFAULT_CRYPTO_DAYS)
+        loadMarketIndices()
     }
 
     fun selectIndexType(type: FearIndexType) {
+        val previous = _uiState.value.selectedType
         _uiState.value = _uiState.value.copy(selectedType = type)
+        if (previous != type) {
+            analytics.log(
+                AnalyticsEvent.지수타입전환(
+                    타입 = type.toLabel(),
+                    화면 = "홈",
+                    이전타입 = previous.toLabel(),
+                ),
+            )
+        }
     }
 
     fun refresh() {
-        when (_uiState.value.selectedType) {
+        val selectedType = _uiState.value.selectedType
+        analytics.log(AnalyticsEvent.수동새로고침(화면 = selectedType.toLabel()))
+        when (selectedType) {
             FearIndexType.MARKET -> {
                 loadMarketCurrent(forceRefresh = true)
                 loadMarketHistory(_uiState.value.marketHistoryDays, forceRefresh = true)
@@ -96,6 +118,18 @@ class HomeViewModel @Inject constructor(
         loadCryptoHistory(days)
     }
 
+    private fun loadMarketIndices() {
+        viewModelScope.launch {
+            try {
+                val indices = getMarketIndices()
+                _uiState.value = _uiState.value.copy(marketIndices = indices)
+            } catch (e: Exception) {
+                // 시장 지수 로딩 실패 시 빈 리스트 유지 (전체 화면 깨트리지 않음)
+                Timber.w(e, "Failed to load market indices")
+            }
+        }
+    }
+
     private fun loadMarketCurrent(forceRefresh: Boolean = false) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(marketState = FearIndexState.Loading)
@@ -104,9 +138,26 @@ class HomeViewModel @Inject constructor(
                 _uiState.value = _uiState.value.copy(
                     marketState = FearIndexState.Loaded(index),
                 )
+                analytics.log(
+                    AnalyticsEvent.공포지수조회(
+                        현재점수 = index.roundedScore,
+                        등급 = index.rating.name,
+                    ),
+                )
+            } catch (e: IOException) {
+                _uiState.value = _uiState.value.copy(
+                    marketState = FearIndexState.Error(e.message ?: "Network error"),
+                )
+                analytics.log(AnalyticsEvent.네트워크에러(에러메시지 = e.message ?: "Unknown"))
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     marketState = FearIndexState.Error(e.message ?: "Unknown error"),
+                )
+                analytics.log(
+                    AnalyticsEvent.API에러(
+                        에러유형 = "시장공포지수",
+                        에러메시지 = e.message ?: "Unknown",
+                    ),
                 )
             }
         }
@@ -120,9 +171,26 @@ class HomeViewModel @Inject constructor(
                 _uiState.value = _uiState.value.copy(
                     cryptoState = FearIndexState.Loaded(index),
                 )
+                analytics.log(
+                    AnalyticsEvent.암호화폐공포지수조회(
+                        현재점수 = index.roundedScore,
+                        등급 = index.rating.name,
+                    ),
+                )
+            } catch (e: IOException) {
+                _uiState.value = _uiState.value.copy(
+                    cryptoState = FearIndexState.Error(e.message ?: "Network error"),
+                )
+                analytics.log(AnalyticsEvent.네트워크에러(에러메시지 = e.message ?: "Unknown"))
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     cryptoState = FearIndexState.Error(e.message ?: "Unknown error"),
+                )
+                analytics.log(
+                    AnalyticsEvent.API에러(
+                        에러유형 = "암호화폐공포지수",
+                        에러메시지 = e.message ?: "Unknown",
+                    ),
                 )
             }
         }
@@ -169,4 +237,9 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+}
+
+private fun FearIndexType.toLabel(): String = when (this) {
+    FearIndexType.MARKET -> "시장"
+    FearIndexType.CRYPTO -> "암호화폐"
 }
