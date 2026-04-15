@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Extreme Fear</string>
+    <string name="rating_fear">Fear</string>
+    <string name="rating_neutral">Neutral</string>
+    <string name="rating_greed">Greed</string>
+    <string name="rating_extreme_greed">Extreme Greed</string>
     <string name="tab_home">Home</string>
     <string name="tab_chart">Chart</string>
-    <string name="tab_community">Community</string>
+    <string name="tab_vote">Vote</string>
     <string name="tab_settings">Settings</string>
+    <string name="home_title">Fear &amp; Greed Index</string>
+    <string name="chart_history">History</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
 </resources>

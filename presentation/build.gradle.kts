@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.thingineer.fearindex.presentation"
+    namespace = "th1ngjin.fearindex.presentation"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -51,6 +51,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
+
+    // AdMob (Compose 광고 컴포넌트용)
+    implementation(libs.play.services.ads)
 
     // Accompanist
     implementation(libs.accompanist.permissions)

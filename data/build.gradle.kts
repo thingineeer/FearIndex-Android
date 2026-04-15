@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.thingineer.fearindex.data"
+    namespace = "th1ngjin.fearindex.data"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
