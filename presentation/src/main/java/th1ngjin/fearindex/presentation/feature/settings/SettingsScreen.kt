@@ -20,67 +20,76 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import th1ngjin.fearindex.presentation.component.AdBanner
 
 @Composable
 fun SettingsScreen(
     onNotificationSettingsClick: () -> Unit = {},
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-    ) {
-        Text(
-            text = "설정",
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold,
-        )
+    Scaffold(
+        bottomBar = {
+            AdBanner(screenName = "설정")
+        },
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .verticalScroll(rememberScrollState())
+                .padding(innerPadding)
+                .padding(16.dp),
+        ) {
+            Text(
+                text = "설정",
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+            )
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-        // Notifications
-        SettingsItem(
-            icon = Icons.Default.Notifications,
-            title = "알림 설정",
-            onClick = onNotificationSettingsClick,
-        )
-        HorizontalDivider()
+            // Notifications
+            SettingsItem(
+                icon = Icons.Default.Notifications,
+                title = "알림 설정",
+                onClick = onNotificationSettingsClick,
+            )
+            HorizontalDivider()
 
-        // Rate App
-        SettingsItem(
-            icon = Icons.Default.Star,
-            title = "앱 평가하기",
-        )
-        HorizontalDivider()
+            // Rate App
+            SettingsItem(
+                icon = Icons.Default.Star,
+                title = "앱 평가하기",
+            )
+            HorizontalDivider()
 
-        // Share App
-        SettingsItem(
-            icon = Icons.Default.Share,
-            title = "앱 공유하기",
-        )
-        HorizontalDivider()
+            // Share App
+            SettingsItem(
+                icon = Icons.Default.Share,
+                title = "앱 공유하기",
+            )
+            HorizontalDivider()
 
-        // App Info
-        SettingsItem(
-            icon = Icons.Default.Info,
-            title = "앱 정보",
-            subtitle = "Version 1.0.1",
-        )
-        HorizontalDivider()
+            // App Info
+            SettingsItem(
+                icon = Icons.Default.Info,
+                title = "앱 정보",
+                subtitle = "Version 1.0.1",
+            )
+            HorizontalDivider()
 
-        // Privacy Policy
-        SettingsItem(
-            icon = Icons.Default.Description,
-            title = "개인정보 처리방침",
-        )
+            // Privacy Policy
+            SettingsItem(
+                icon = Icons.Default.Description,
+                title = "개인정보 처리방침",
+            )
+        }
     }
 }
 
