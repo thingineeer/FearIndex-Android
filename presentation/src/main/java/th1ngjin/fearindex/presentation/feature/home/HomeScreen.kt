@@ -323,10 +323,11 @@ private fun TickerView(
     }
 }
 
-private fun formatPrice(price: Double): String {
-    val formatter = java.text.DecimalFormat("#,##0.00")
-    return formatter.format(price)
+private val priceFormatter: java.text.DecimalFormat by lazy {
+    java.text.DecimalFormat("#,##0.00")
 }
+
+private fun formatPrice(price: Double): String = priceFormatter.format(price)
 
 // ---------------------------------------------------------------------------
 // Loading / Error states
@@ -407,14 +408,16 @@ private fun LoadedContent(
     Spacer(modifier = Modifier.height(16.dp))
 
     // 6. Timestamp
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-        .withZone(ZoneId.systemDefault())
     Text(
-        text = "Updated: ${formatter.format(fearIndex.timestamp)}",
+        text = "Updated: ${timestampFormatter.format(fearIndex.timestamp)}",
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         fontSize = 12.sp,
     )
+}
+
+private val timestampFormatter: DateTimeFormatter by lazy {
+    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(ZoneId.systemDefault())
 }
 
 // ---------------------------------------------------------------------------
