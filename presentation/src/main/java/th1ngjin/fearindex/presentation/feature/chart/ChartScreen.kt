@@ -88,15 +88,16 @@ enum class ChartPeriod(val label: String, val days: Int) {
 }
 
 enum class CryptoChartPeriod(val label: String, val days: Int) {
-    ONE_WEEK("1W", 7),
-    ONE_MONTH("1M", 30),
     THREE_MONTHS("3M", 90),
     SIX_MONTHS("6M", 180),
-    ONE_YEAR("1Y", 365);
+    ONE_YEAR("1Y", 365),
+    TWO_YEARS("2Y", 730),
+    THREE_YEARS("3Y", 1095),
+    FIVE_YEARS("5Y", 1825);
 
     companion object {
         fun fromDays(days: Int): CryptoChartPeriod =
-            entries.firstOrNull { it.days == days } ?: ONE_MONTH
+            entries.firstOrNull { it.days == days } ?: THREE_MONTHS
     }
 }
 
