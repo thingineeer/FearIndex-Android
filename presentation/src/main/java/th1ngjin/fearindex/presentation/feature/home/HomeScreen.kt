@@ -45,6 +45,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import dagger.hilt.android.EntryPointAccessors
+import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.presentation.R
@@ -53,6 +55,7 @@ import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.ComparisonCard
 import th1ngjin.fearindex.presentation.component.FearGaugeView
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
+import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import kotlinx.coroutines.delay
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -69,6 +72,13 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
 
+    val context = LocalContext.current
+    val analytics = remember(context) {
+        EntryPointAccessors
+            .fromApplication(context.applicationContext, AnalyticsEntryPoint::class.java)
+            .analyticsManager()
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -81,7 +91,16 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         // ratingLabel(score)는 Composable이므로 여기서 호출해 현재 locale의 번역값을 받는다.
         val loadedScore = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore
         val loadedRating = loadedScore?.let { ratingLabel(it) }
-        TitleBar(currentScore = loadedScore, ratingLabel = loadedRating)
+        TitleBar(
+            currentScore = loadedScore,
+            ratingLabel = loadedRating,
+            onShareClicked = {
+                if (loadedScore != null) {
+                    val typeLabel = if (uiState.selectedType == FearIndexType.MARKET) "시장" else "암호화폐"
+                    analytics.log(AnalyticsEvent.공유버튼탭(지수타입 = typeLabel, 현재점수 = loadedScore))
+                }
+            },
+        )
 
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -122,7 +141,11 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 // ---------------------------------------------------------------------------
 
 @Composable
-private fun TitleBar(currentScore: Int? = null, ratingLabel: String? = null) {
+private fun TitleBar(
+    currentScore: Int? = null,
+    ratingLabel: String? = null,
+    onShareClicked: () -> Unit = {},
+) {
     // 공유 메시지의 제목/본문도 다국어. 점수와 등급은 호출부에서 ratingLabel(score)로 미리 주입.
     val shareTitle = stringResource(R.string.home_title) // "공포 탐욕 지수" / "Fear & Greed Index" 등
     val shareTemplate = stringResource(R.string.share_message_template, currentScore ?: 0, ratingLabel ?: "")
@@ -137,6 +160,7 @@ private fun TitleBar(currentScore: Int? = null, ratingLabel: String? = null) {
         val chooserTitle = stringResource(R.string.share_chooser_title)
         IconButton(
             onClick = {
+                onShareClicked()
                 // Android Intent.ACTION_SEND — 카카오톡/문자/메모 등 공유 가능 대상 전체로 전달.
                 // 모든 문자열은 strings.xml(45 locale)에서 가져오므로 하드코딩 금지.
                 val shareIntent = Intent(Intent.ACTION_SEND).apply {

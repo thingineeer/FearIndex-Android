@@ -34,8 +34,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import dagger.hilt.android.EntryPointAccessors
+import th1ngjin.fearindex.core.analytics.AnalyticsEvent
+import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 
 /**
  * 알림 설정 화면 — iOS NotificationSettingsView 경량 포팅.
@@ -52,6 +56,13 @@ import androidx.compose.ui.unit.dp
 fun NotificationSettingsScreen(
     onBackClick: () -> Unit,
 ) {
+    val context = LocalContext.current
+    val analytics = remember(context) {
+        EntryPointAccessors
+            .fromApplication(context.applicationContext, AnalyticsEntryPoint::class.java)
+            .analyticsManager()
+    }
+
     var notificationEnabled by remember { mutableStateOf(false) }
     var marketLower by remember { mutableFloatStateOf(25f) }
     var marketUpper by remember { mutableFloatStateOf(75f) }
@@ -84,7 +95,10 @@ fun NotificationSettingsScreen(
         ) {
             MasterToggleCard(
                 enabled = notificationEnabled,
-                onToggle = { notificationEnabled = it },
+                onToggle = {
+                    notificationEnabled = it
+                    analytics.log(AnalyticsEvent.알림설정변경(활성화 = it))
+                },
             )
 
             if (notificationEnabled) {
@@ -94,6 +108,14 @@ fun NotificationSettingsScreen(
                     upper = marketUpper,
                     onLowerChange = { marketLower = it },
                     onUpperChange = { marketUpper = it },
+                    onValueChangeFinished = {
+                        analytics.log(
+                            AnalyticsEvent.알림임계값변경(
+                                하한값 = marketLower.toInt(),
+                                상한값 = marketUpper.toInt(),
+                            ),
+                        )
+                    },
                 )
 
                 ThresholdCard(
@@ -102,6 +124,14 @@ fun NotificationSettingsScreen(
                     upper = cryptoUpper,
                     onLowerChange = { cryptoLower = it },
                     onUpperChange = { cryptoUpper = it },
+                    onValueChangeFinished = {
+                        analytics.log(
+                            AnalyticsEvent.암호화폐알림임계값변경(
+                                하한값 = cryptoLower.toInt(),
+                                상한값 = cryptoUpper.toInt(),
+                            ),
+                        )
+                    },
                 )
 
                 InfoCard()
@@ -157,6 +187,7 @@ private fun ThresholdCard(
     upper: Float,
     onLowerChange: (Float) -> Unit,
     onUpperChange: (Float) -> Unit,
+    onValueChangeFinished: () -> Unit = {},
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -185,6 +216,7 @@ private fun ThresholdCard(
                 onChange = { v ->
                     onLowerChange(v.coerceAtMost(upper - 1))
                 },
+                onValueChangeFinished = onValueChangeFinished,
             )
             Text(
                 text = "공포지수가 ${lower.toInt()} 이하일 때 알림을 받습니다.",
@@ -202,6 +234,7 @@ private fun ThresholdCard(
                 onChange = { v ->
                     onUpperChange(v.coerceAtLeast(lower + 1))
                 },
+                onValueChangeFinished = onValueChangeFinished,
             )
             Text(
                 text = "공포지수가 ${upper.toInt()} 이상일 때 알림을 받습니다.",
@@ -218,6 +251,7 @@ private fun ThresholdRow(
     value: Float,
     color: androidx.compose.ui.graphics.Color,
     onChange: (Float) -> Unit,
+    onValueChangeFinished: () -> Unit = {},
 ) {
     Column {
         Row(
@@ -239,6 +273,7 @@ private fun ThresholdRow(
         Slider(
             value = value,
             onValueChange = onChange,
+            onValueChangeFinished = onValueChangeFinished,
             valueRange = 0f..100f,
             steps = 99,
         )

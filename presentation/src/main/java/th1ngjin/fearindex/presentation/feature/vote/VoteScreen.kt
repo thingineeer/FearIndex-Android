@@ -92,8 +92,18 @@ fun VoteScreen(
             items = listOf("시장", "암호화폐"),
             selectedIndex = selectedIndex,
             onItemSelected = { index ->
-                val type = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
-                viewModel.selectIndexType(type)
+                val newType = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
+                if (newType != selectedType) {
+                    val previousLabel = if (selectedType == FearIndexType.MARKET) "시장" else "암호화폐"
+                    val newLabel = if (newType == FearIndexType.MARKET) "시장" else "암호화폐"
+                    analytics.log(
+                        AnalyticsEvent.투표세그먼트전환(
+                            지수타입 = newLabel,
+                            이전타입 = previousLabel,
+                        ),
+                    )
+                }
+                viewModel.selectIndexType(newType)
             },
         )
 
