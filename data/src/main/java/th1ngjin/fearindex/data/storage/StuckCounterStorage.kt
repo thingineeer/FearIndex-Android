@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.StuckStatus
+import th1ngjin.fearindex.domain.service.DeviceIdProvider
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.UUID
 import javax.inject.Inject
@@ -19,11 +20,11 @@ import javax.inject.Singleton
 @Singleton
 class StuckCounterStorage @Inject constructor(
     @ApplicationContext context: Context,
-) {
+) : DeviceIdProvider {
     private val prefs: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-    fun loadDeviceId(): String {
+    override fun loadDeviceId(): String {
         prefs.getString(KEY_DEVICE_ID, null)?.let { return it }
         val newId = UUID.randomUUID().toString()
         prefs.edit().putString(KEY_DEVICE_ID, newId).apply()
