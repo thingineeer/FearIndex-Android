@@ -29,9 +29,10 @@ object InsightGenerator {
         buildBuySignal(score, indexType, previousScore, now, returnDataTable)
             ?.let(insights::add)
 
-        // 2. historicalReturn — 항상 표시
-        buildHistoricalReturn(score, indexType, previousScore, now, returnDataTable)
-            ?.let(insights::add)
+        // 2. historicalReturn — iOS parity: 항상 생성 (matched 비어도 카드 렌더)
+        insights.add(
+            buildHistoricalReturn(score, indexType, previousScore, now, returnDataTable),
+        )
 
         // 3. returnChart — score <= 30 또는 >= 70
         buildReturnChart(score, indexType, previousScore, now, returnDataTable)
@@ -59,6 +60,7 @@ object InsightGenerator {
         now: Instant,
         table: ReturnDataTable?,
     ): MarketInsight? {
+        // iOS parity: 극단 구간(≤25 또는 ≥75)에서만 생성.
         if (score in 26..74) return null
 
         val interpolated = table?.let {
@@ -92,16 +94,20 @@ object InsightGenerator {
         )
     }
 
+    /**
+     * iOS parity: 점수와 무관하게 **항상** 생성.
+     * matched 이벤트가 없어도 빈 리스트로 카드 렌더 (Detail Sheet에서 안내 문구 표시).
+     * iOS v1.7.8 문구: "현재 X점과 비슷했던 과거 시점"
+     */
     private fun buildHistoricalReturn(
         score: Int,
         indexType: FearIndexType,
         previousScore: Int?,
         now: Instant,
         table: ReturnDataTable?,
-    ): MarketInsight? {
-        val events = table?.historicalEvents ?: return null
+    ): MarketInsight {
+        val events = table?.historicalEvents.orEmpty()
         val matched = ReturnDataInterpolator.matchingEvents(score, events, limit = 3)
-        if (matched.isEmpty()) return null
 
         val historicalEvents = matched.map { entry ->
             HistoricalEvent(
@@ -115,12 +121,19 @@ object InsightGenerator {
             )
         }
 
+        val basis = indexTypeLabel(indexType)
+        val summary = if (matched.isNotEmpty()) {
+            "$basis 기준 — 현재 $score 점과 비슷했던 과거 ${matched.size}개 시점"
+        } else {
+            "$basis 기준 — 현재 $score 점 구간의 과거 참고 데이터가 제한적입니다"
+        }
+
         return MarketInsight(
             id = "historical_return_${indexType.name.lowercase()}_$score",
             type = InsightType.HISTORICAL_RETURN,
             indexType = indexType,
             title = "그때 매수했다면?",
-            summary = "${indexTypeLabel(indexType)} 기준 — 현재와 비슷했던 과거 ${matched.size}개 시점",
+            summary = summary,
             score = score,
             previousScore = previousScore,
             timestamp = now,
@@ -141,6 +154,7 @@ object InsightGenerator {
         now: Instant,
         table: ReturnDataTable?,
     ): MarketInsight? {
+        // iOS parity: 극단 근처(≤30 또는 ≥70)에서만 생성.
         if (score in 31..69) return null
 
         val interpolated = table?.let {
