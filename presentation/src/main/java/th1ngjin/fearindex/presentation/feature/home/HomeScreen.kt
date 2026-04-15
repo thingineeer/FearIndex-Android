@@ -50,6 +50,9 @@ import th1ngjin.fearindex.core.util.ShareUrlBuilder
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketIndex
+import th1ngjin.fearindex.domain.entity.MarketInsight
+import th1ngjin.fearindex.domain.entity.StuckCounterResult
+import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.AdBanner
@@ -57,10 +60,13 @@ import th1ngjin.fearindex.presentation.component.ComparisonCard
 import th1ngjin.fearindex.presentation.component.FearGaugeView
 import th1ngjin.fearindex.presentation.component.FearIndexSkeletonView
 import th1ngjin.fearindex.presentation.component.InsightDetailSheet
-import th1ngjin.fearindex.presentation.component.InsightFeedView
+import th1ngjin.fearindex.presentation.component.InsightTeaserCard
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
+import th1ngjin.fearindex.presentation.component.StuckCounterCard
+import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
+import th1ngjin.fearindex.presentation.feature.vote.VoteViewModel
 import kotlinx.coroutines.delay
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -70,20 +76,26 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
     val insightViewModel: InsightViewModel = hiltViewModel()
     val insightState by insightViewModel.uiState.collectAsState()
+    val voteViewModel: VoteViewModel = hiltViewModel()
 
     // InsightViewModel이 HomeViewModel을 관찰
     LaunchedEffect(Unit) {
         insightViewModel.observeHome(viewModel)
     }
 
-    val selectedIndex = when (uiState.selectedType) {
+    val selectedType = uiState.selectedType
+    val selectedIndex = when (selectedType) {
         FearIndexType.MARKET -> 0
         FearIndexType.CRYPTO -> 1
     }
-    val currentState = when (uiState.selectedType) {
+    val currentState = when (selectedType) {
         FearIndexType.MARKET -> uiState.marketState
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
+
+    // 물림 카운터 상태
+    val stuckResult by voteViewModel.resultFor(selectedType).collectAsState()
+    val myStuckStatus by voteViewModel.myStatusFor(selectedType).collectAsState()
 
     val context = LocalContext.current
     val analytics = remember(context) {
@@ -109,7 +121,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // 1. Title: "공포 탐욕 지수" (center) + share button (right)
-        // ratingLabel(score)는 Composable이므로 여기서 호출해 현재 locale의 번역값을 받는다.
         val loadedScore = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore
         val loadedRating = loadedScore?.let { ratingLabel(it) }
         TitleBar(
@@ -117,7 +128,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
             ratingLabel = loadedRating,
             onShareClicked = {
                 if (loadedScore != null) {
-                    val typeLabel = if (uiState.selectedType == FearIndexType.MARKET) "시장" else "암호화폐"
+                    val typeLabel = if (selectedType == FearIndexType.MARKET) "시장" else "암호화폐"
                     analytics.log(AnalyticsEvent.공유버튼탭(지수타입 = typeLabel, 현재점수 = loadedScore))
                 }
             },
@@ -144,15 +155,31 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 4-6. Content (gauge + comparison + timestamp)
+        // 4+. Content (gauge → comparison → ad → teaser → stuck → timestamp)
         when (currentState) {
             is FearIndexState.Loading -> FearIndexSkeletonView()
             is FearIndexState.Loaded -> LoadedContent(
                 fearIndex = currentState.fearIndex,
-                indexType = uiState.selectedType,
+                indexType = selectedType,
                 insights = insightState.insights,
                 onInsightClick = insightViewModel::selectInsight,
-                onCardViewed = insightViewModel::logCardViewed,
+                stuckResult = stuckResult,
+                myStuckStatus = myStuckStatus.toUi(),
+                onStuckToggle = { newStatus ->
+                    val score = currentState.fearIndex.roundedScore
+                    analytics.log(
+                        AnalyticsEvent.투표참여(
+                            선택 = when (newStatus) {
+                                UiStuckStatus.STUCK -> "물렸어요"
+                                UiStuckStatus.NOT_STUCK -> "안물렸어요"
+                                UiStuckStatus.NO_RESPONSE -> "취소"
+                            },
+                            지수타입 = if (selectedType == FearIndexType.MARKET) "시장" else "암호화폐",
+                            현재점수 = score,
+                        ),
+                    )
+                    voteViewModel.toggleStuckStatus(selectedType, newStatus.toDomain())
+                },
             )
             is FearIndexState.Error -> ErrorContent(
                 message = currentState.message,
@@ -263,13 +290,14 @@ private fun TickerView(
             ) {
                 Text(
                     text = item.name,
-                    style = MaterialTheme.typography.bodySmall,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Medium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Spacer(modifier = Modifier.size(8.dp))
                 Text(
                     text = priceFormatted,
-                    style = MaterialTheme.typography.bodySmall,
+                    fontSize = 15.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
@@ -282,7 +310,7 @@ private fun TickerView(
                 }
                 Text(
                     text = percentFormatted,
-                    style = MaterialTheme.typography.labelSmall,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Medium,
                     color = capsuleColor,
                     modifier = Modifier
@@ -321,29 +349,61 @@ private fun ErrorContent(message: String, onRetry: () -> Unit) {
 }
 
 // ---------------------------------------------------------------------------
-// Loaded Content: Gauge + Comparison + Timestamp
+// Loaded Content: Gauge → Comparison → Ad → Teaser → Stuck → Timestamp
+// (iOS 홈 화면 순서와 동일)
 // ---------------------------------------------------------------------------
 
 @Composable
 private fun LoadedContent(
     fearIndex: FearIndex,
     indexType: FearIndexType,
-    insights: List<th1ngjin.fearindex.domain.entity.MarketInsight> = emptyList(),
-    onInsightClick: (th1ngjin.fearindex.domain.entity.MarketInsight) -> Unit = {},
-    onCardViewed: (th1ngjin.fearindex.domain.entity.MarketInsight) -> Unit = {},
+    insights: List<MarketInsight> = emptyList(),
+    onInsightClick: (MarketInsight) -> Unit = {},
+    stuckResult: StuckCounterResult = StuckCounterResult.EMPTY,
+    myStuckStatus: UiStuckStatus = UiStuckStatus.NO_RESPONSE,
+    onStuckToggle: (UiStuckStatus) -> Unit = {},
 ) {
-    // 4. Fear Gauge
-    FearGaugeView(score = fearIndex.roundedScore)
+    val score = fearIndex.roundedScore
+
+    // 1. Fear Gauge
+    FearGaugeView(score = score)
 
     Spacer(modifier = Modifier.height(20.dp))
 
-    // 5. Comparison Card
+    // 2. Comparison Card
     ComparisonCard(
-        currentScore = fearIndex.roundedScore,
+        currentScore = score,
         previousClose = fearIndex.previousClose,
         previous1Week = fearIndex.previous1Week,
         previous1Month = fearIndex.previous1Month,
         previous1Year = if (indexType == FearIndexType.CRYPTO) null else fearIndex.previous1Year,
+    )
+
+    Spacer(modifier = Modifier.height(16.dp))
+
+    // 3. AdMob 배너 광고
+    AdBanner()
+
+    // 4. 인사이트 티저 카드 (score ≤25 or ≥75일 때만, 첫 번째 인사이트 1개)
+    if (score <= 25 || score >= 75) {
+        val teaserInsight = insights.firstOrNull()
+        if (teaserInsight != null) {
+            Spacer(modifier = Modifier.height(16.dp))
+            InsightTeaserCard(
+                insight = teaserInsight,
+                onClick = { onInsightClick(teaserInsight) },
+            )
+        }
+    }
+
+    Spacer(modifier = Modifier.height(16.dp))
+
+    // 5. 물림 카운터
+    StuckCounterCard(
+        stuckPercentage = stuckResult.stuckPercentage.toFloat(),
+        myStatus = myStuckStatus,
+        onToggle = onStuckToggle,
+        onInfoClick = { /* TODO: show info sheet */ },
     )
 
     Spacer(modifier = Modifier.height(16.dp))
@@ -357,20 +417,20 @@ private fun LoadedContent(
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         fontSize = 12.sp,
     )
+}
 
-    Spacer(modifier = Modifier.height(16.dp))
+// ---------------------------------------------------------------------------
+// Domain <-> UI 매핑 (VoteScreen과 동일)
+// ---------------------------------------------------------------------------
 
-    // 7. AdMob 배너 광고
-    AdBanner()
+private fun DomainStuckStatus.toUi(): UiStuckStatus = when (this) {
+    DomainStuckStatus.STUCK -> UiStuckStatus.STUCK
+    DomainStuckStatus.SAFE -> UiStuckStatus.NOT_STUCK
+    DomainStuckStatus.NONE -> UiStuckStatus.NO_RESPONSE
+}
 
-    // 8. 인사이트 피드
-    if (insights.isNotEmpty()) {
-        Spacer(modifier = Modifier.height(16.dp))
-        InsightFeedView(
-            insights = insights,
-            indexType = indexType,
-            onInsightClick = onInsightClick,
-            onCardViewed = onCardViewed,
-        )
-    }
+private fun UiStuckStatus.toDomain(): DomainStuckStatus = when (this) {
+    UiStuckStatus.STUCK -> DomainStuckStatus.STUCK
+    UiStuckStatus.NOT_STUCK -> DomainStuckStatus.SAFE
+    UiStuckStatus.NO_RESPONSE -> DomainStuckStatus.NONE
 }

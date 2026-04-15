@@ -30,10 +30,9 @@ import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
+import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.StuckCounterCard
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
-import th1ngjin.fearindex.presentation.component.VoteCardView
-import th1ngjin.fearindex.presentation.component.VoteCountdownView
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
@@ -49,11 +48,6 @@ fun VoteScreen(
 
     val stuckResult by voteViewModel.resultFor(selectedType).collectAsState()
     val myStuckStatus by voteViewModel.myStatusFor(selectedType).collectAsState()
-
-    // Buy/Hold/Sell 투표 상태
-    val voteResult by voteViewModel.voteResultFor(selectedType).collectAsState()
-    val isVoteSubmitting by voteViewModel.isVoteSubmitting.collectAsState()
-    val countdown by voteViewModel.countdown.collectAsState()
 
     val context = LocalContext.current
     val analytics = remember(context) {
@@ -125,39 +119,7 @@ fun VoteScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Buy/Hold/Sell 투표 카드
-        VoteCardView(
-            voteResult = voteResult,
-            isSubmitting = isVoteSubmitting,
-            onVote = { choice ->
-                val score = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore ?: 0
-                analytics.log(
-                    AnalyticsEvent.투표참여(
-                        선택 = when (choice) {
-                            th1ngjin.fearindex.domain.entity.VoteChoice.BUY -> "Buy"
-                            th1ngjin.fearindex.domain.entity.VoteChoice.HOLD -> "Hold"
-                            th1ngjin.fearindex.domain.entity.VoteChoice.SELL -> "Sell"
-                        },
-                        지수타입 = if (selectedType == FearIndexType.MARKET) "\uC2DC\uC7A5" else "\uC554\uD638\uD654\uD3D0",
-                        현재점수 = score,
-                    ),
-                )
-                voteViewModel.submitVote(selectedType, choice, score)
-            },
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // 카운트다운
-        VoteCountdownView(
-            hours = countdown.first,
-            minutes = countdown.second,
-            seconds = countdown.third,
-        )
-
-        Spacer(modifier = Modifier.height(20.dp))
-
-        // Stuck Counter Card (기존 유지)
+        // Stuck Counter Card
         StuckCounterCard(
             stuckPercentage = stuckResult.stuckPercentage.toFloat(),
             myStatus = myStuckStatus.toUi(),
@@ -178,6 +140,11 @@ fun VoteScreen(
             },
             onInfoClick = { /* TODO: show info sheet */ },
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // AdMob 배너 광고
+        AdBanner(screenName = "투표")
 
         Spacer(modifier = Modifier.height(24.dp))
     }

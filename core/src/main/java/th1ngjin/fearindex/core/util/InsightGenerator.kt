@@ -249,8 +249,8 @@ object InsightGenerator {
 
         val inflectionNote = if (velocity.isInflectionPoint) " (변곡점 감지)" else ""
 
-        // 스파크라인용 최근 7일 히스토리
-        val sparklineHistory = history.take(minOf(7, history.size))
+        // 스파크라인용 최근 15일 히스토리
+        val sparklineHistory = history.take(minOf(15, history.size))
 
         return MarketInsight(
             id = "velocity_${indexType.name.lowercase()}_$score",
