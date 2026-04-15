@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Ekstremni Strah</string>
+    <string name="rating_fear">Strah</string>
+    <string name="rating_neutral">Nevtralno</string>
+    <string name="rating_greed">Pohlep</string>
+    <string name="rating_extreme_greed">Ekstremni Pohlep</string>
+    <string name="tab_home">Domov</string>
+    <string name="tab_chart">Grafikon</string>
+    <string name="tab_vote">Glasovanje</string>
+    <string name="tab_settings">Nastavitve</string>
+    <string name="home_title">Indeks Strahu &amp; Pohlepa</string>
+    <string name="chart_history">Zgodovina</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
+</resources>

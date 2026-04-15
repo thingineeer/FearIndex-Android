@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">極度の恐怖</string>
+    <string name="rating_fear">恐怖</string>
+    <string name="rating_neutral">中立</string>
+    <string name="rating_greed">貪欲</string>
+    <string name="rating_extreme_greed">極度の貪欲</string>
+    <string name="tab_home">ホーム</string>
+    <string name="tab_chart">チャート</string>
+    <string name="tab_vote">投票</string>
+    <string name="tab_settings">設定</string>
+    <string name="home_title">恐怖と貪欲指数</string>
+    <string name="chart_history">履歴</string>
+    <string name="share_message_template">今日の恐怖と貪欲指数: %1$d (%2$s)\n\n市場心理をリアルタイムで確認 — 恐怖と貪欲指数アプリ。</string>
+    <string name="share_chooser_title">共有</string>
+</resources>

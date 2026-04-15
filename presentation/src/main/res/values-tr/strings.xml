@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Aşırı Korku</string>
+    <string name="rating_fear">Korku</string>
+    <string name="rating_neutral">Nötr</string>
+    <string name="rating_greed">Açgözlülük</string>
+    <string name="rating_extreme_greed">Aşırı Açgözlülük</string>
+    <string name="tab_home">Ana Sayfa</string>
+    <string name="tab_chart">Grafik</string>
+    <string name="tab_vote">Oylama</string>
+    <string name="tab_settings">Ayarlar</string>
+    <string name="home_title">Korku ve Açgözlülük Endeksi</string>
+    <string name="chart_history">Geçmiş</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
+</resources>

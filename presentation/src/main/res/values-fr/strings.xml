@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Peur extrême</string>
+    <string name="rating_fear">Peur</string>
+    <string name="rating_neutral">Neutre</string>
+    <string name="rating_greed">Avidité</string>
+    <string name="rating_extreme_greed">Avidité extrême</string>
+    <string name="tab_home">Accueil</string>
+    <string name="tab_chart">Graphique</string>
+    <string name="tab_vote">Vote</string>
+    <string name="tab_settings">Paramètres</string>
+    <string name="home_title">Indice Peur &amp; Avidité</string>
+    <string name="chart_history">Historique</string>
+    <string name="share_message_template">Indice Peur et Avidité du jour: %1$d (%2$s)\n\nSuivez le sentiment du marché en temps réel — avec l\'application Fear &amp; Greed Index.</string>
+    <string name="share_chooser_title">Partager via</string>
+</resources>

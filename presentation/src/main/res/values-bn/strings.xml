@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">চরম ভয়</string>
+    <string name="rating_fear">ভয়</string>
+    <string name="rating_neutral">নিরপেক্ষ</string>
+    <string name="rating_greed">লোভ</string>
+    <string name="rating_extreme_greed">চরম লোভ</string>
+    <string name="tab_home">হোম</string>
+    <string name="tab_chart">চার্ট</string>
+    <string name="tab_vote">ভোট</string>
+    <string name="tab_settings">সেটিংস</string>
+    <string name="home_title">ভয় ও লোভ সূচক</string>
+    <string name="chart_history">ইতিহাস</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
+</resources>

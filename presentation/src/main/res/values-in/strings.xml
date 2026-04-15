@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Ketakutan Ekstrem</string>
+    <string name="rating_fear">Ketakutan</string>
+    <string name="rating_neutral">Netral</string>
+    <string name="rating_greed">Keserakahan</string>
+    <string name="rating_extreme_greed">Keserakahan Ekstrem</string>
+    <string name="tab_home">Beranda</string>
+    <string name="tab_chart">Grafik</string>
+    <string name="tab_vote">Suara</string>
+    <string name="tab_settings">Pengaturan</string>
+    <string name="home_title">Indeks Ketakutan &amp; Keserakahan</string>
+    <string name="chart_history">Riwayat</string>
+    <string name="share_message_template">Indeks Ketakutan &amp; Keserakahan hari ini: %1$d (%2$s)\n\nLacak sentimen pasar secara real-time dengan aplikasi Fear &amp; Greed Index.</string>
+    <string name="share_chooser_title">Bagikan melalui</string>
+</resources>

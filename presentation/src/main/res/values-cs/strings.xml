@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Extrémní strach</string>
+    <string name="rating_fear">Strach</string>
+    <string name="rating_neutral">Neutrální</string>
+    <string name="rating_greed">Chamtivost</string>
+    <string name="rating_extreme_greed">Extrémní chamtivost</string>
+    <string name="tab_home">Domů</string>
+    <string name="tab_chart">Graf</string>
+    <string name="tab_vote">Hlasovat</string>
+    <string name="tab_settings">Nastavení</string>
+    <string name="home_title">Index strachu a chamtivosti</string>
+    <string name="chart_history">Historie</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
+</resources>

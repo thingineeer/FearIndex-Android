@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.thingineer.fearindex.core"
+    namespace = "th1ngjin.fearindex.core"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -42,6 +42,10 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    // Firebase Analytics — iOS와 동일 이벤트 이름 공유
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
     // Logging
     implementation(libs.timber)

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Ακραίος Φόβος</string>
+    <string name="rating_fear">Φόβος</string>
+    <string name="rating_neutral">Ουδέτερο</string>
+    <string name="rating_greed">Απληστία</string>
+    <string name="rating_extreme_greed">Ακραία Απληστία</string>
+    <string name="tab_home">Αρχική</string>
+    <string name="tab_chart">Γράφημα</string>
+    <string name="tab_vote">Ψήφος</string>
+    <string name="tab_settings">Ρυθμίσεις</string>
+    <string name="home_title">Δείκτης Φόβου &amp; Απληστίας</string>
+    <string name="chart_history">Ιστορικό</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">தீவிர பயம்</string>
+    <string name="rating_fear">பயம்</string>
+    <string name="rating_neutral">நடுநிலை</string>
+    <string name="rating_greed">பேராசை</string>
+    <string name="rating_extreme_greed">தீவிர பேராசை</string>
+    <string name="tab_home">முகப்பு</string>
+    <string name="tab_chart">விளக்கப்படம்</string>
+    <string name="tab_vote">வாக்கு</string>
+    <string name="tab_settings">அமைப்புகள்</string>
+    <string name="home_title">பயம் &amp; பேராசை குறியீடு</string>
+    <string name="chart_history">வரலாறு</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
+</resources>

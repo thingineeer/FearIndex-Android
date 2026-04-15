@@ -1,0 +1,16 @@
+{
+  "_comment": "FearIndex-Android 프로젝트 로컬 설정. 절대 경로 com/thingineer/* 차단 hook 포함.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.params.file_path // \"\"' | grep -qE 'com/thingineer|com/thingineeer' && { echo '❌ 오류: 구 package 경로입니다. th1ngjin/fearindex/ 를 사용하세요. (@.claude/rules/package-convention.md 참조)' >&2; exit 2; } || exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

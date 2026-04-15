@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Skrajna Panika</string>
+    <string name="rating_fear">Panika</string>
+    <string name="rating_neutral">Neutralny</string>
+    <string name="rating_greed">Chciwość</string>
+    <string name="rating_extreme_greed">Skrajna Chciwość</string>
+    <string name="tab_home">Główna</string>
+    <string name="tab_chart">Wykres</string>
+    <string name="tab_vote">Głosuj</string>
+    <string name="tab_settings">Ustawienia</string>
+    <string name="home_title">Indeks Paniki i Chciwości</string>
+    <string name="chart_history">Historia</string>
+    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
+    <string name="share_chooser_title">Share via</string>
+</resources>

@@ -10,11 +10,15 @@ plugins {
 }
 
 android {
-    namespace = "com.thingineer.fearindex"
+    // namespace는 R 클래스와 BuildConfig 생성 위치 — Kotlin 식별자 규칙을 따라야 함.
+    // th1ngjin은 숫자로 시작하지 않으므로 유효한 식별자.
+    namespace = "th1ngjin.fearindex"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.thingineer.fearindex"
+        // iOS/macOS 컨벤션 `th1ngjin.FearIndex-iOS`와 대칭.
+        // Android package는 소문자 관습을 따름 → th1ngjin.fearindex
+        applicationId = "th1ngjin.fearindex"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
@@ -23,18 +27,24 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
 
-        // AdMob App ID — 테스트 ID (실제 ID로 교체 필요)
-        manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+        // AdMob App ID — 실제 프로덕션 ID (2026-04-14 발급)
+        // debug 빌드도 동일 App ID를 사용하되, 실제 광고 단위는 debug buildType에서 테스트 ID 사용
+        manifestPlaceholders["admobAppId"] = "ca-app-pub-5283496525222246~1308884877"
     }
 
     signingConfigs {
         create("release") {
-            val keystoreFile = file("${rootDir}/keystore/release.keystore")
-            if (keystoreFile.exists()) {
-                storeFile = keystoreFile
-                storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
-                keyAlias = System.getenv("KEY_ALIAS") ?: "fearindex"
-                keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+            // ~/.gradle/gradle.properties의 FEARINDEX_* 속성 사용 (CI/CD에서는 환경변수 fallback)
+            val storePath = (project.findProperty("FEARINDEX_STORE_FILE") as String?)
+                ?: System.getenv("FEARINDEX_STORE_FILE")
+            if (!storePath.isNullOrBlank() && file(storePath).exists()) {
+                storeFile = file(storePath)
+                storePassword = (project.findProperty("FEARINDEX_STORE_PASSWORD") as String?)
+                    ?: System.getenv("FEARINDEX_STORE_PASSWORD") ?: ""
+                keyAlias = (project.findProperty("FEARINDEX_KEY_ALIAS") as String?)
+                    ?: System.getenv("FEARINDEX_KEY_ALIAS") ?: "fearindex"
+                keyPassword = (project.findProperty("FEARINDEX_KEY_PASSWORD") as String?)
+                    ?: System.getenv("FEARINDEX_KEY_PASSWORD") ?: ""
             }
         }
     }
@@ -56,11 +66,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Release: 실제 광고 ID (AdMob 콘솔에서 생성 후 교체 필요)
-            // 현재는 임시로 iOS와 같은 publisher 사용 - 실제 Android 단위 ID로 교체 필수
-            buildConfigField("String", "ADMOB_BANNER_HOME", "\"ca-app-pub-3940256099942544/9214589741\"")
-            buildConfigField("String", "ADMOB_BANNER_CHART", "\"ca-app-pub-3940256099942544/9214589741\"")
-            buildConfigField("String", "ADMOB_BANNER_COMMUNITY", "\"ca-app-pub-3940256099942544/9214589741\"")
+            // Release: 실제 AdMob 배너 ID (2026-04-14 발급, HomeBanner 단위)
+            // TODO: 차트/커뮤니티용 별도 배너 단위는 추후 세분화
+            buildConfigField("String", "ADMOB_BANNER_HOME", "\"ca-app-pub-5283496525222246/3189551565\"")
+            buildConfigField("String", "ADMOB_BANNER_CHART", "\"ca-app-pub-5283496525222246/3189551565\"")
+            buildConfigField("String", "ADMOB_BANNER_COMMUNITY", "\"ca-app-pub-5283496525222246/3189551565\"")
             signingConfig = signingConfigs.getByName("release")
         }
     }

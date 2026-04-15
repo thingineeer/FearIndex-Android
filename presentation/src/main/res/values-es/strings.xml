@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fear &amp; Greed Index</string>
+    <string name="rating_extreme_fear">Miedo extremo</string>
+    <string name="rating_fear">Miedo</string>
+    <string name="rating_neutral">Neutral</string>
+    <string name="rating_greed">Codicia</string>
+    <string name="rating_extreme_greed">Codicia extrema</string>
+    <string name="tab_home">Inicio</string>
+    <string name="tab_chart">Gráfico</string>
+    <string name="tab_vote">Votación</string>
+    <string name="tab_settings">Ajustes</string>
+    <string name="home_title">Índice Miedo y Codicia</string>
+    <string name="chart_history">Historial</string>
+    <string name="share_message_template">Índice de Miedo y Avaricia de hoy: %1$d (%2$s)\n\nRastree el sentimiento del mercado en tiempo real con la app Fear &amp; Greed Index.</string>
+    <string name="share_chooser_title">Compartir con</string>
+</resources>
