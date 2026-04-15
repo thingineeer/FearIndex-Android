@@ -39,6 +39,19 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 /**
+ * Arc segment 정의. 매 프레임 재생성 피하기 위해 파일 레벨 상수.
+ */
+private data class ArcSegment(val fraction: Float, val color: Color)
+
+private val arcSegments: List<ArcSegment> = listOf(
+    ArcSegment(0.25f, ExtremeFear),    // 0~25
+    ArcSegment(0.20f, Fear),           // 25~45
+    ArcSegment(0.10f, Neutral),        // 45~55
+    ArcSegment(0.20f, Greed),          // 55~75
+    ArcSegment(0.25f, ExtremeGreed),   // 75~100
+)
+
+/**
  * iOS FearGaugeView 1:1 포팅.
  *
  * iOS 기준 수치 (scaleFactor=1.0):
@@ -97,19 +110,8 @@ fun FearGaugeView(
             // → 270도에 매핑: sweep = fraction * 270
             // Compose startAngle = 135도 (= 270 - 135, 좌하단)
             val totalSweep = 270f
-            val composeStartAngle = 135f // 좌하단에서 시작
-
-            data class ArcSegment(val fraction: Float, val color: Color)
-            val segments = listOf(
-                ArcSegment(0.25f, ExtremeFear),    // 0~25
-                ArcSegment(0.20f, Fear),           // 25~45
-                ArcSegment(0.10f, Neutral),        // 45~55
-                ArcSegment(0.20f, Greed),          // 55~75
-                ArcSegment(0.25f, ExtremeGreed),   // 75~100
-            )
-
-            var currentAngle = composeStartAngle
-            segments.forEach { seg ->
+            var currentAngle = 135f // 좌하단에서 시작
+            arcSegments.forEach { seg ->
                 val sweep = seg.fraction * totalSweep
                 drawArc(
                     color = seg.color,
