@@ -76,6 +76,20 @@ type: project
 - **iOS Parity**: `AnalyticsEvent.수동새로고침`, `차트기간선택`, `투표참여` 등 모든 케이스 동일 이름. 화면 이름도 `홈/차트/투표/설정/알림설정` iOS와 동일.
 - **남은 작업**: ChartScreen에 `차트기간선택`, VoteScreen에 `투표참여`, 광고 컴포넌트에 `배너광고노출/클릭` 등 화면별 액션 이벤트 박기.
 
+### 9. Git 브랜치 워크플로우 누적 변경 71 파일 — worktree 단위 분할 커밋
+
+- **증상**: package 재정비 + 신규 화면 + Analytics + 다국어 + 문서까지 71개 변경이 단일 워킹 트리에 섞여 있음. 사용자가 squash merge 절대 금지 + worktree 단위 작업 요청.
+- **해결 (2026-04-15)**:
+  1. `dev` 브랜치 신규 (main 베이스).
+  2. `feature/v1.0.0-baseline` 피처 브랜치에서 **의미 단위 4개 커밋**:
+     - feat: package 통일 + Clean Architecture 풀 구현
+     - i18n: 45 locale strings.xml + share 다국어
+     - docs: 프로젝트 문서/메모리/도구
+     - chore: .kotlin/ gitignore
+  3. `dev`에 `--no-ff` merge → 분기/합류 그래프 형성.
+  4. 다음 작업용 worktree 생성: `feature/v1.0.0-share-and-gauge`.
+- **재발 방지**: 이후 모든 작업은 worktree 단위로 시작. 한 worktree = 하나의 의미 단위 (n개 커밋 OK, 관련 없는 작업은 별도 worktree).
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
