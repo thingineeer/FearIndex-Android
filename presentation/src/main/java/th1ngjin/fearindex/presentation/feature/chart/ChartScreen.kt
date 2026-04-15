@@ -61,6 +61,7 @@ import th1ngjin.fearindex.presentation.R
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.presentation.common.ratingLabel
+import th1ngjin.fearindex.presentation.component.ChartSkeletonView
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
@@ -170,7 +171,7 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
         // 3-6. Content based on state
         when (currentState) {
             is FearIndexState.Loading -> {
-                LoadingPlaceholder()
+                ChartSkeletonView()
             }
             is FearIndexState.Loaded -> {
                 ChartLoadedContent(
@@ -864,20 +865,6 @@ private fun PeriodSelectorRow(
                 )
             }
         }
-    }
-}
-
-// MARK: - Loading Placeholder
-
-@Composable
-private fun LoadingPlaceholder() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        androidx.compose.material3.CircularProgressIndicator()
     }
 }
 
