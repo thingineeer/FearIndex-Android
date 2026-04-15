@@ -40,6 +40,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import th1ngjin.fearindex.core.util.indexTypeLabel
+import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.FearVelocity
 import th1ngjin.fearindex.domain.entity.HistoricalEvent
 import th1ngjin.fearindex.domain.entity.HistoricalReturns
@@ -141,6 +143,7 @@ private fun BuySignalContent(insight: MarketInsight) {
     val returns = insight.returns
     val worstCase = insight.worstCase
     val bestCase = insight.bestCase
+    val basis = indexTypeLabel(insight.indexType)
 
     if (returns == null) {
         Text(
@@ -151,7 +154,7 @@ private fun BuySignalContent(insight: MarketInsight) {
         return
     }
 
-    SectionTitle("예상 수익률")
+    SectionTitle("시나리오 비교 ($basis)")
     Spacer(modifier = Modifier.height(8.dp))
 
     // Header row
@@ -164,19 +167,24 @@ private fun BuySignalContent(insight: MarketInsight) {
         isHeader = true,
     )
     returns.let {
-        ReturnGridRow("평균", it.oneMonth, it.threeMonth, it.sixMonth, it.oneYear)
+        ReturnGridRow("평균 수익률 ($basis)", it.oneMonth, it.threeMonth, it.sixMonth, it.oneYear)
     }
     worstCase?.let {
-        ReturnGridRow("최악", it.oneMonth, it.threeMonth, it.sixMonth, it.oneYear)
+        ReturnGridRow("최악의 경우", it.oneMonth, it.threeMonth, it.sixMonth, it.oneYear)
     }
     bestCase?.let {
-        ReturnGridRow("최선", it.oneMonth, it.threeMonth, it.sixMonth, it.oneYear)
+        ReturnGridRow("최선의 경우", it.oneMonth, it.threeMonth, it.sixMonth, it.oneYear)
     }
 
     insight.sampleCount?.let { count ->
         Spacer(modifier = Modifier.height(8.dp))
+        val sampleBasis = if (insight.indexType == FearIndexType.CRYPTO) {
+            "암호화폐 시장 심리 데이터 기준"
+        } else {
+            "${count}번의 극단적 구간 기준 (S&P 500)"
+        }
         Text(
-            text = "표본 수: ${count}건",
+            text = sampleBasis,
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -250,12 +258,41 @@ private fun HistoricalReturnContent(insight: MarketInsight) {
         return
     }
 
-    SectionTitle("과거 유사 시점")
+    HistoricalContextCard(score = insight.score)
+    Spacer(modifier = Modifier.height(12.dp))
+
+    SectionTitle("과거 유사 이벤트 (${indexTypeLabel(insight.indexType)})")
     Spacer(modifier = Modifier.height(8.dp))
 
     insight.historicalEvents.forEach { event ->
         HistoricalEventCard(event)
         Spacer(modifier = Modifier.height(8.dp))
+    }
+}
+
+/**
+ * HistoricalReturn 상단 맥락 카드 — "왜 이 이벤트들이 보이는지" 설명.
+ */
+@Composable
+private fun HistoricalContextCard(score: Int) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+            .padding(12.dp),
+    ) {
+        Text(
+            text = "현재와 비슷했던 과거 시점",
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold,
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = "공포지수 ${score}점 근처였던 과거 시점들입니다. 현재 시장 상황과 가장 유사한 역사적 순간을 참고하세요.",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 
@@ -342,7 +379,7 @@ private fun ReturnChartContent(insight: MarketInsight) {
     val amount = investAmount.toLongOrNull() ?: 0L
     val formatter = NumberFormat.getNumberInstance(Locale.KOREA)
 
-    SectionTitle("투자 시뮬레이션")
+    SectionTitle("투자 시뮬레이션 (${indexTypeLabel(insight.indexType)})")
     Spacer(modifier = Modifier.height(8.dp))
 
     OutlinedTextField(
@@ -362,6 +399,26 @@ private fun ReturnChartContent(insight: MarketInsight) {
         SimulationRow("6개월 후", amount, returns.sixMonth)
         SimulationRow("1년 후", amount, returns.oneYear)
     }
+
+    Spacer(modifier = Modifier.height(12.dp))
+    DisclaimerText(indexType = insight.indexType)
+}
+
+/**
+ * 수익률 관련 카드 하단 공통 면책 조항 — iOS와 동일.
+ */
+@Composable
+private fun DisclaimerText(indexType: FearIndexType) {
+    val text = if (indexType == FearIndexType.CRYPTO) {
+        "⚠️ Bitcoin(BTC) 가격 기준. 암호화폐는 극도로 변동성이 큽니다."
+    } else {
+        "⚠️ S&P 500 과거 데이터 기준. 과거 성과는 미래 수익을 보장하지 않습니다."
+    }
+    Text(
+        text = text,
+        style = MaterialTheme.typography.labelSmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
 }
 
 @Composable
@@ -406,11 +463,16 @@ private fun SimulationRow(
 
 @Composable
 private fun DrawdownContent(insight: MarketInsight) {
-    SectionTitle("최대 낙폭 vs 1년 수익률")
-    Spacer(modifier = Modifier.height(8.dp))
-
     val worstCase = insight.worstCase
     val returns = insight.returns
+    val basis = indexTypeLabel(insight.indexType)
+
+    // 맥락 카드 — "이 수치는 어디서 나왔나요?"
+    DrawdownContextCard(score = insight.score, indexTypeLabel = basis)
+    Spacer(modifier = Modifier.height(12.dp))
+
+    SectionTitle("낙폭 분석 ($basis)")
+    Spacer(modifier = Modifier.height(8.dp))
 
     if (worstCase == null || returns == null) {
         Text(
@@ -421,9 +483,10 @@ private fun DrawdownContent(insight: MarketInsight) {
         return
     }
 
-    DrawdownCompareRow("최대 낙폭 (1M)", worstCase.oneMonth)
-    DrawdownCompareRow("최대 낙폭 (3M)", worstCase.threeMonth)
-    DrawdownCompareRow("최대 낙폭 (6M)", worstCase.sixMonth)
+    DrawdownCompareRow("최대 낙폭 (1개월)", worstCase.oneMonth)
+    DrawdownCompareRow("최대 낙폭 (3개월)", worstCase.threeMonth)
+    DrawdownCompareRow("최대 낙폭 (6개월)", worstCase.sixMonth)
+    DrawdownCompareRow("최대 낙폭 (1년)", worstCase.oneYear)
 
     Spacer(modifier = Modifier.height(8.dp))
     HorizontalDivider()
@@ -443,6 +506,32 @@ private fun DrawdownContent(insight: MarketInsight) {
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
             color = if (returns.oneYear >= 0) Color(0xFF4CAF50) else Color(0xFFE53935),
+        )
+    }
+}
+
+/**
+ * Drawdown 상단 맥락 카드 — 이 수치의 출처와 의미 설명.
+ */
+@Composable
+private fun DrawdownContextCard(score: Int, indexTypeLabel: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+            .padding(12.dp),
+    ) {
+        Text(
+            text = "이 수치는 어디서 나왔나요?",
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold,
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = "현재 공포지수 ${score}점과 비슷했던 과거 시점들을 기반으로 $indexTypeLabel 수익률을 계산한 값입니다.",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }
@@ -471,7 +560,12 @@ private fun DrawdownCompareRow(label: String, value: Double) {
 
 @Composable
 private fun NudgeContent(insight: MarketInsight) {
-    SectionTitle("시장 심리 분석")
+    // 메인 메시지 카드 — 현재 score에 맞춘 제목/본문
+    NudgeMainCard(score = insight.score)
+    Spacer(modifier = Modifier.height(16.dp))
+
+    // 투자 행동 가이드
+    SectionTitle("투자 행동 가이드")
     Spacer(modifier = Modifier.height(8.dp))
 
     val tips = nudgeTips(insight.score)
@@ -495,31 +589,64 @@ private fun NudgeContent(insight: MarketInsight) {
     }
 }
 
+/**
+ * Nudge 상단 메인 메시지 카드 — score 구간별 제목과 본문.
+ */
+@Composable
+private fun NudgeMainCard(score: Int) {
+    val (title, body) = nudgeMainMessage(score)
+    val accent = fearScoreColor(score)
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(accent.copy(alpha = 0.1f))
+            .padding(16.dp),
+    ) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold,
+            color = accent,
+        )
+        Spacer(modifier = Modifier.height(6.dp))
+        Text(
+            text = body,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+    }
+}
+
+private fun nudgeMainMessage(score: Int): Pair<String, String> = when {
+    score <= 25 -> "극도의 공포 구간" to
+        "현재 공포지수 ${score}점은 시장이 매우 극도의 공포 상태임을 나타냅니다. " +
+        "역사적으로 이런 시기가 장기적으로 매수 기회가 된 경우가 많았습니다. " +
+        "단, 단기 추가 하락 가능성도 있습니다."
+    score >= 75 -> "극도의 탐욕 구간" to
+        "현재 공포지수 ${score}점은 시장이 과열된 상태임을 나타냅니다. " +
+        "역사적으로 이런 시기에 무리한 추가 매수보다 리스크 관리가 중요했습니다."
+    else -> "시장이 안정적인 구간" to
+        "현재 공포지수 ${score}점은 극단적 공포나 탐욕 없이 시장이 비교적 안정적인 상태입니다. " +
+        "일관된 장기 투자 전략을 유지하기 좋은 시기입니다."
+}
+
 private fun nudgeTips(score: Int): List<String> = when {
-    score <= 24 -> listOf(
-        "극단적 공포는 종종 시장 바닥과 일치합니다.",
-        "분할 매수 전략을 고려해보세요.",
-        "장기적 관점을 유지하는 것이 중요합니다.",
+    score <= 25 -> listOf(
+        "분할 매수로 진입 타이밍 분산",
+        "현금 비중 확인 후 여유 자금으로 매수",
+        "공포에 즉흥적으로 팔지 말기",
     )
-    score <= 44 -> listOf(
-        "공포가 크지만, 기회가 숨어있을 수 있습니다.",
-        "포트폴리오 리밸런싱을 검토해보세요.",
-        "현금 비중을 조금 줄이는 것도 방법입니다.",
-    )
-    score <= 55 -> listOf(
-        "시장이 방향을 찾고 있는 중립 구간입니다.",
-        "기존 포지션을 유지하며 관망하세요.",
-        "급격한 포지션 변경은 피하는 것이 좋습니다.",
-    )
-    score <= 75 -> listOf(
-        "탐욕 구간에서는 수익 실현을 고려하세요.",
-        "과도한 레버리지를 피하세요.",
-        "방어적 자산 비중을 조금 늘려보세요.",
+    score >= 75 -> listOf(
+        "포트폴리오 비중 점검",
+        "목표 수익 도달 시 일부 이익 실현",
+        "FOMO에 휩쓸리지 말기",
     )
     else -> listOf(
-        "극단적 탐욕은 조정의 신호일 수 있습니다.",
-        "손절 라인을 명확히 설정하세요.",
-        "FOMO(놓칠 것 같은 두려움)에 휘둘리지 마세요.",
+        "장기 투자 목표 확인",
+        "정기 적립 유지",
+        "포트폴리오 리밸런싱 검토",
     )
 }
 
@@ -531,19 +658,37 @@ private fun nudgeTips(score: Int): List<String> = when {
 private fun VelocityContent(insight: MarketInsight) {
     val velocity = insight.velocity ?: return
 
-    SectionTitle("변화 속도")
+    SectionTitle("속도 분석")
     Spacer(modifier = Modifier.height(8.dp))
 
-    // 일일/주간 변화
-    VelocityRow("일일 변화", velocity.daily)
-    VelocityRow("주간 변화", velocity.weekly)
+    // 일간/7일 변화 + 모멘텀
+    VelocityRow("일간 변화", velocity.daily)
+    VelocityRow("7일 변화", velocity.weekly)
+
+    Spacer(modifier = Modifier.height(4.dp))
+
+    // 모멘텀 상태 (빨라지는 중 / 느려지는 중 / 안정적)
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 3.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Text(
+            text = "모멘텀",
+            style = MaterialTheme.typography.bodyMedium,
+        )
+        Text(
+            text = momentumLabel(velocity.trend),
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold,
+            color = momentumColor(velocity.trend),
+        )
+    }
 
     Spacer(modifier = Modifier.height(8.dp))
 
-    // 추세
-    val trendLabel = trendLabel(velocity.trend)
-    val trendColor = trendColor(velocity.trend)
-
+    // 추세 (전체 레이블)
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -554,25 +699,23 @@ private fun VelocityContent(insight: MarketInsight) {
             style = MaterialTheme.typography.bodyMedium,
         )
         Text(
-            text = trendLabel,
+            text = trendLabel(velocity.trend),
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
-            color = trendColor,
+            color = trendColor(velocity.trend),
         )
     }
 
     if (velocity.isInflectionPoint) {
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = "변곡점이 감지되었습니다. 추세 전환 가능성이 있습니다.",
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.primary,
-        )
+        Spacer(modifier = Modifier.height(12.dp))
+        InflectionBanner()
     }
 
     // 스파크라인
     if (insight.velocityHistory.size >= 3) {
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(16.dp))
+        SectionTitle("최근 15일 추세")
+        Spacer(modifier = Modifier.height(8.dp))
         SparklineChart(
             scores = insight.velocityHistory.map { it.score },
             modifier = Modifier
@@ -580,6 +723,47 @@ private fun VelocityContent(insight: MarketInsight) {
                 .height(60.dp),
         )
     }
+}
+
+/**
+ * 변곡점 감지 배너 — iOS와 동일한 문구.
+ */
+@Composable
+private fun InflectionBanner() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(10.dp))
+            .background(Color(0xFFFF9800).copy(alpha = 0.1f))
+            .padding(12.dp),
+    ) {
+        Text(
+            text = "방향이 바뀌고 있어요!",
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold,
+            color = Color(0xFFE65100),
+        )
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(
+            text = "최근 추세가 반전됐습니다 — 주목하세요.",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+}
+
+private fun momentumLabel(trend: VelocityTrend): String = when (trend) {
+    VelocityTrend.CRASH_ACCELERATING, VelocityTrend.RALLY_ACCELERATING -> "빨라지는 중"
+    VelocityTrend.CRASH_DECELERATING, VelocityTrend.RALLY_DECELERATING -> "느려지는 중"
+    VelocityTrend.STABLE -> "안정적"
+}
+
+private fun momentumColor(trend: VelocityTrend): Color = when (trend) {
+    VelocityTrend.CRASH_ACCELERATING -> Color(0xFFE53935)
+    VelocityTrend.RALLY_ACCELERATING -> Color(0xFF4CAF50)
+    VelocityTrend.CRASH_DECELERATING -> Color(0xFF4CAF50)
+    VelocityTrend.RALLY_DECELERATING -> Color(0xFFE53935)
+    VelocityTrend.STABLE -> Color(0xFF757575)
 }
 
 @Composable

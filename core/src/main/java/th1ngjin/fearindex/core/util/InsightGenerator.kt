@@ -65,9 +65,10 @@ object InsightGenerator {
             ReturnDataInterpolator.interpolate(score, it.dataPoints)
         }
 
-        val title = if (score <= 25) "매수 시그널 감지" else "과열 경고"
+        val basis = indexTypeLabel(indexType)
+        val title = if (score <= 25) "매수 기회 시그널" else "과열 경고"
         val summary = if (score <= 25) {
-            "극단적 공포 구간입니다. 역사적으로 이 구간에서 매수 시 평균 수익률이 높았습니다."
+            "$basis 과거 이 구간 매수 시 평균 수익률이 높았습니다"
         } else {
             "극단적 탐욕 구간입니다. 과거 데이터에 따르면 조정 가능성이 높습니다."
         }
@@ -118,8 +119,8 @@ object InsightGenerator {
             id = "historical_return_${indexType.name.lowercase()}_$score",
             type = InsightType.HISTORICAL_RETURN,
             indexType = indexType,
-            title = "과거 유사 시점 분석",
-            summary = "현재와 비슷한 공포지수였던 과거 ${matched.size}개 시점의 이후 수익률입니다.",
+            title = "그때 매수했다면?",
+            summary = "${indexTypeLabel(indexType)} 기준 — 현재와 비슷했던 과거 ${matched.size}개 시점",
             score = score,
             previousScore = previousScore,
             timestamp = now,
@@ -146,11 +147,17 @@ object InsightGenerator {
             ReturnDataInterpolator.interpolate(score, it.dataPoints)
         }
 
+        val returnChartTitle = if (indexType == FearIndexType.CRYPTO) {
+            "Bitcoin에 투자했다면?"
+        } else {
+            "S&P 500에 투자했다면?"
+        }
+
         return MarketInsight(
             id = "return_chart_${indexType.name.lowercase()}_$score",
             type = InsightType.RETURN_CHART,
             indexType = indexType,
-            title = "투자 시뮬레이션",
+            title = returnChartTitle,
             summary = "이 구간에서 투자했다면 예상 수익률은 어떨까요?",
             score = score,
             previousScore = previousScore,
@@ -188,7 +195,7 @@ object InsightGenerator {
             id = "drawdown_${indexType.name.lowercase()}_$score",
             type = InsightType.DRAWDOWN_TOLERANCE,
             indexType = indexType,
-            title = "최대 낙폭 분석",
+            title = "최대 낙폭 분석 (${indexTypeLabel(indexType)})",
             summary = summary,
             score = score,
             previousScore = previousScore,
@@ -283,4 +290,16 @@ object InsightGenerator {
         else -> "심리 조언" to
             "극단적 탐욕 — 과열 신호, 리스크 관리가 중요합니다"
     }
+}
+
+/**
+ * 지수 종류별 기준 종목 라벨 — iOS와 완전 동일.
+ *  - MARKET → "S&P 500"
+ *  - CRYPTO → "Bitcoin"
+ *
+ * InsightGenerator와 InsightDetailSheet 양쪽에서 공유.
+ */
+fun indexTypeLabel(indexType: FearIndexType): String = when (indexType) {
+    FearIndexType.MARKET -> "S&P 500"
+    FearIndexType.CRYPTO -> "Bitcoin"
 }
