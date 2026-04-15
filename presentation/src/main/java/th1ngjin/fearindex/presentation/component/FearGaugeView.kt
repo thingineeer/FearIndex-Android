@@ -69,8 +69,9 @@ fun FearGaugeView(
     val tickColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
 
     // iOS: frame(280, 240) + 텍스트 게이지 아래 여유 충분히 확보 (needle과 겹치지 않게)
+    // score=0 시 바늘 tip이 좌하단 ~213dp까지 내려옴 → 텍스트는 270dp부터 시작해서 충돌 방지
     Box(
-        modifier = modifier.size(width = 280.dp, height = 360.dp),
+        modifier = modifier.size(width = 280.dp, height = 390.dp),
         contentAlignment = Alignment.TopCenter,
     ) {
         Canvas(modifier = Modifier.size(width = 280.dp, height = 260.dp)) {
@@ -156,12 +157,11 @@ fun FearGaugeView(
         }
 
         // --- score + rating 텍스트 ---
-        // iOS: VStack(spacing: 4), offset y=90 from center → needle tip(중심 -75)과 165dp 거리
-        // Android arcCenter = 30 + 130 = 160dp from box top
-        // 텍스트 y = arcCenter(160) + 90 = 250dp → 점수 0~15 (needle 좌측 9시 방향)일 때도 안 가림
+        // arcCenter = 160dp. 바늘 tip 최저점 (score=0) ≈ 213dp.
+        // 텍스트를 270dp에 배치 → 바늘과 최소 57dp 간격 확보 (score=0/100에서도 겹침 없음)
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.offset(y = 250.dp),
+            modifier = Modifier.offset(y = 270.dp),
         ) {
             Text(
                 text = "$score",
