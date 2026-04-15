@@ -55,6 +55,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlin.math.abs
 import androidx.hilt.navigation.compose.hiltViewModel
+import th1ngjin.fearindex.core.util.ChartDataFilter
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.presentation.R
@@ -414,7 +415,7 @@ private fun ChartCard(
                     awaitEachGesture {
                         val down = awaitFirstDown(requireUnconsumed = false)
                         // 첫 터치 — 가장 가까운 포인트 찾기
-                        val initialIndex = nearestIndex(down.position.x, size.width.toFloat(), data.size)
+                        val initialIndex = ChartDataFilter.nearestIndex(down.position.x, size.width.toFloat(), data.size)
                         if (initialIndex != selectedIndex) {
                             selectedIndex = initialIndex
                             touchX = down.position.x
@@ -429,7 +430,7 @@ private fun ChartCard(
                             val event = awaitPointerEventOrNull() ?: break
                             val change = event.changes.firstOrNull() ?: break
                             if (!change.pressed) break
-                            val newIndex = nearestIndex(change.position.x, size.width.toFloat(), data.size)
+                            val newIndex = ChartDataFilter.nearestIndex(change.position.x, size.width.toFloat(), data.size)
                             touchX = change.position.x
                             if (newIndex != selectedIndex) {
                                 selectedIndex = newIndex
@@ -467,18 +468,6 @@ private fun ChartCard(
             }
         }
     }
-}
-
-private fun nearestIndex(touchX: Float, width: Float, size: Int): Int {
-    if (size <= 1) return 0
-    val ratio = (touchX / width).coerceIn(0f, 1f)
-    return (ratio * (size - 1)).toInt().coerceIn(0, size - 1)
-        .let { base ->
-            // 더 가까운 이웃 확인
-            val baseX = width * base / (size - 1)
-            val nextX = width * (base + 1).coerceAtMost(size - 1) / (size - 1)
-            if (abs(touchX - nextX) < abs(touchX - baseX)) (base + 1).coerceAtMost(size - 1) else base
-        }
 }
 
 /**
