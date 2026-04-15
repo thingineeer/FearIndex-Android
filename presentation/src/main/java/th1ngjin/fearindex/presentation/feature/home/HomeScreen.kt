@@ -384,16 +384,14 @@ private fun LoadedContent(
     // 3. AdMob 배너 광고
     AdBanner()
 
-    // 4. 인사이트 티저 카드 (score ≤25 or ≥75일 때만, 첫 번째 인사이트 1개)
-    if (score <= 25 || score >= 75) {
-        val teaserInsight = insights.firstOrNull()
-        if (teaserInsight != null) {
-            Spacer(modifier = Modifier.height(16.dp))
-            InsightTeaserCard(
-                insight = teaserInsight,
-                onClick = { onInsightClick(teaserInsight) },
-            )
-        }
+    // 4. 인사이트 티저 카드 — 현재 점수 기준 통계(전 구간). 첫 번째 인사이트 1개.
+    val teaserInsight = insights.firstOrNull()
+    if (teaserInsight != null) {
+        Spacer(modifier = Modifier.height(16.dp))
+        InsightTeaserCard(
+            insight = teaserInsight,
+            onClick = { onInsightClick(teaserInsight) },
+        )
     }
 
     Spacer(modifier = Modifier.height(16.dp))
