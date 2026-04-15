@@ -1,0 +1,57 @@
+default_platform(:android)
+
+PROJECT_ROOT = File.expand_path("..", __dir__)
+GRADLE_FILE = File.join(PROJECT_ROOT, "app", "build.gradle.kts")
+
+platform :android do
+  desc "versionCode 증가 (app/build.gradle.kts)"
+  lane :bump_build do
+    unless File.exist?(GRADLE_FILE)
+      UI.user_error!("build.gradle.kts not found at #{GRADLE_FILE}")
+    end
+
+    contents = File.read(GRADLE_FILE)
+    match = contents.match(/versionCode\s*=\s*(\d+)/)
+    UI.user_error!("versionCode not found in build.gradle.kts") unless match
+
+    current = match[1].to_i
+    next_code = current + 1
+    new_contents = contents.sub(/versionCode\s*=\s*\d+/, "versionCode = #{next_code}")
+    File.write(GRADLE_FILE, new_contents)
+
+    UI.success("versionCode #{current} -> #{next_code}")
+  end
+
+  desc "AAB 빌드 후 Play Console 내부 테스트 트랙 업로드"
+  lane :internal do
+    gradle(
+      task: "bundle",
+      build_type: "Release",
+      project_dir: PROJECT_ROOT
+    )
+
+    upload_to_play_store(
+      track: "internal",
+      aab: lockstep_aab_path,
+      skip_upload_apk: true,
+      skip_upload_metadata: false,
+      skip_upload_changelogs: false,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      release_status: "draft"
+    )
+  end
+
+  desc "45개 locale 스크린샷 자동 촬영 (adb 기반)"
+  lane :screenshots do
+    script = File.join(PROJECT_ROOT, "scripts", "screenshots", "capture-all-locales.sh")
+    UI.user_error!("script not found: #{script}") unless File.exist?(script)
+    sh("bash #{script}")
+  end
+
+  # 마지막 번들 산출물 경로 (release variant 기본 위치)
+  def lockstep_aab_path
+    candidate = File.join(PROJECT_ROOT, "app", "build", "outputs", "bundle", "release", "app-release.aab")
+    candidate
+  end
+end
