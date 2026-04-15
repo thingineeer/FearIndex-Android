@@ -32,6 +32,8 @@ import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.component.StuckCounterCard
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
+import th1ngjin.fearindex.presentation.component.VoteCardView
+import th1ngjin.fearindex.presentation.component.VoteCountdownView
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
@@ -47,6 +49,11 @@ fun VoteScreen(
 
     val stuckResult by voteViewModel.resultFor(selectedType).collectAsState()
     val myStuckStatus by voteViewModel.myStatusFor(selectedType).collectAsState()
+
+    // Buy/Hold/Sell 투표 상태
+    val voteResult by voteViewModel.voteResultFor(selectedType).collectAsState()
+    val isVoteSubmitting by voteViewModel.isVoteSubmitting.collectAsState()
+    val countdown by voteViewModel.countdown.collectAsState()
 
     val context = LocalContext.current
     val analytics = remember(context) {
@@ -81,7 +88,7 @@ fun VoteScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "투표",
+            text = "\uD22C\uD45C",
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
         )
@@ -89,13 +96,13 @@ fun VoteScreen(
         Spacer(modifier = Modifier.height(12.dp))
 
         SegmentedPicker(
-            items = listOf("시장", "암호화폐"),
+            items = listOf("\uC2DC\uC7A5", "\uC554\uD638\uD654\uD3D0"),
             selectedIndex = selectedIndex,
             onItemSelected = { index ->
                 val newType = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
                 if (newType != selectedType) {
-                    val previousLabel = if (selectedType == FearIndexType.MARKET) "시장" else "암호화폐"
-                    val newLabel = if (newType == FearIndexType.MARKET) "시장" else "암호화폐"
+                    val previousLabel = if (selectedType == FearIndexType.MARKET) "\uC2DC\uC7A5" else "\uC554\uD638\uD654\uD3D0"
+                    val newLabel = if (newType == FearIndexType.MARKET) "\uC2DC\uC7A5" else "\uC554\uD638\uD654\uD3D0"
                     analytics.log(
                         AnalyticsEvent.투표세그먼트전환(
                             지수타입 = newLabel,
@@ -118,7 +125,39 @@ fun VoteScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Stuck Counter Card — 실제 서버 데이터 + Optimistic 토글
+        // Buy/Hold/Sell 투표 카드
+        VoteCardView(
+            voteResult = voteResult,
+            isSubmitting = isVoteSubmitting,
+            onVote = { choice ->
+                val score = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore ?: 0
+                analytics.log(
+                    AnalyticsEvent.투표참여(
+                        선택 = when (choice) {
+                            th1ngjin.fearindex.domain.entity.VoteChoice.BUY -> "Buy"
+                            th1ngjin.fearindex.domain.entity.VoteChoice.HOLD -> "Hold"
+                            th1ngjin.fearindex.domain.entity.VoteChoice.SELL -> "Sell"
+                        },
+                        지수타입 = if (selectedType == FearIndexType.MARKET) "\uC2DC\uC7A5" else "\uC554\uD638\uD654\uD3D0",
+                        현재점수 = score,
+                    ),
+                )
+                voteViewModel.submitVote(selectedType, choice, score)
+            },
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // 카운트다운
+        VoteCountdownView(
+            hours = countdown.first,
+            minutes = countdown.second,
+            seconds = countdown.third,
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // Stuck Counter Card (기존 유지)
         StuckCounterCard(
             stuckPercentage = stuckResult.stuckPercentage.toFloat(),
             myStatus = myStuckStatus.toUi(),
@@ -127,11 +166,11 @@ fun VoteScreen(
                 analytics.log(
                     AnalyticsEvent.투표참여(
                         선택 = when (newStatus) {
-                            UiStuckStatus.STUCK -> "물렸어요"
-                            UiStuckStatus.NOT_STUCK -> "안물렸어요"
-                            UiStuckStatus.NO_RESPONSE -> "취소"
+                            UiStuckStatus.STUCK -> "\uBB3C\uB838\uC5B4\uC694"
+                            UiStuckStatus.NOT_STUCK -> "\uC548\uBB3C\uB838\uC5B4\uC694"
+                            UiStuckStatus.NO_RESPONSE -> "\uCDE8\uC18C"
                         },
-                        지수타입 = if (selectedType == FearIndexType.MARKET) "시장" else "암호화폐",
+                        지수타입 = if (selectedType == FearIndexType.MARKET) "\uC2DC\uC7A5" else "\uC554\uD638\uD654\uD3D0",
                         현재점수 = score,
                     ),
                 )
@@ -159,7 +198,7 @@ private fun CurrentScoreHeader(
             horizontalArrangement = Arrangement.spacedBy(6.dp),
         ) {
             Text(
-                text = "현재 지수",
+                text = "\uD604\uC7AC \uC9C0\uC218",
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -180,7 +219,7 @@ private fun CurrentScoreHeader(
             val diff = score - previousClose.toInt()
             val sign = if (diff >= 0) "+" else ""
             Text(
-                text = "전일 대비 $sign${String.format("%.1f", score - previousClose)}",
+                text = "\uC804\uC77C \uB300\uBE44 $sign${String.format("%.1f", score - previousClose)}",
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -188,7 +227,7 @@ private fun CurrentScoreHeader(
     }
 }
 
-// MARK: - Domain ↔ UI 매핑
+// MARK: - Domain <-> UI 매핑
 
 private fun DomainStuckStatus.toUi(): UiStuckStatus = when (this) {
     DomainStuckStatus.STUCK -> UiStuckStatus.STUCK
