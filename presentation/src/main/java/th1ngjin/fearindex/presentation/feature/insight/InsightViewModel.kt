@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
 import th1ngjin.fearindex.core.util.InsightGenerator
+import th1ngjin.fearindex.domain.defaults.DefaultReturnData
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketInsight
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
@@ -55,11 +56,15 @@ class InsightViewModel @Inject constructor(
 
                 if (state is FearIndexState.Loaded && history.isNotEmpty()) {
                     val score = state.fearIndex.roundedScore
+                    val table = when (indexType) {
+                        FearIndexType.MARKET -> DefaultReturnData.market
+                        FearIndexType.CRYPTO -> DefaultReturnData.crypto
+                    }
                     val insights = InsightGenerator.generateInsights(
                         score = score,
                         indexType = indexType,
                         history = history,
-                        returnDataTable = null, // ReturnDataTable은 별도 API 필요, 현재 null
+                        returnDataTable = table,
                     )
                     _uiState.value = _uiState.value.copy(
                         insights = insights,
