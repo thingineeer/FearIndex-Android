@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -42,13 +44,15 @@ fun SimilarEventsCard(
     val pinned = result.matches.filter { it.isPinned }
     val similar = result.matches.filter { !it.isPinned }
 
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-            .padding(20.dp),
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
     ) {
+        Column(modifier = Modifier.padding(horizontal = 10.dp, vertical = 14.dp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -87,7 +91,7 @@ fun SimilarEventsCard(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(12.dp))
-                        .background(MaterialTheme.colorScheme.surface)
+                        .background(MaterialTheme.colorScheme.surfaceContainerLowest)
                         .padding(12.dp),
                 ) {
                     pinned.forEachIndexed { index, match ->
@@ -102,7 +106,7 @@ fun SimilarEventsCard(
 
             if (similar.isNotEmpty()) {
                 Text(
-                    text = "비슷한 구간",
+                    text = stringResource(R.string.insight_similar_events_similar_section_title),
                     style = MaterialTheme.typography.labelMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -112,7 +116,7 @@ fun SimilarEventsCard(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(12.dp))
-                        .background(MaterialTheme.colorScheme.surface)
+                        .background(MaterialTheme.colorScheme.surfaceContainerLowest)
                         .padding(12.dp),
                 ) {
                     similar.forEachIndexed { index, match ->
@@ -139,6 +143,7 @@ fun SimilarEventsCard(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontStyle = FontStyle.Italic,
         )
+        }
     }
 }
 
