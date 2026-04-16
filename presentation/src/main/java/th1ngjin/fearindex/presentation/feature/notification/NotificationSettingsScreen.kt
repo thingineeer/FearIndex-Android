@@ -9,7 +9,6 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,17 +17,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Scaffold
@@ -48,6 +50,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -58,9 +61,13 @@ import th1ngjin.fearindex.presentation.R
 /**
  * 알림 설정 화면 — iOS NotificationSettingsView 대칭.
  *
- * - PrimaryTabRow로 시장/암호화폐 분리 (iOS와 동일 UX).
- * - ViewModel 기반 서버 동기화 (debounce 0.5초).
- * - Android 13+ POST_NOTIFICATIONS 권한 요청.
+ * Material 3 settings 패턴:
+ * - Master toggle: ListItem (headlineContent + supportingContent + trailingContent)
+ * - Threshold 섹션: PrimaryTabRow + Card(surfaceContainer) + 연속 Slider (steps=0)
+ * - Info footer: 카드 대신 인라인 Icon + Text (시각적 노이즈 감소)
+ *
+ * ViewModel 기반 서버 동기화 (debounce 0.5초).
+ * Android 13+ POST_NOTIFICATIONS 권한 요청.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -72,6 +79,7 @@ fun NotificationSettingsScreen(
     val syncError by viewModel.syncError.collectAsStateWithLifecycle()
     var selectedTab by remember { mutableIntStateOf(0) }
     val snackbarHostState = remember { SnackbarHostState() }
+    val context = LocalContext.current
 
     // POST_NOTIFICATIONS 권한 요청 (Android 13+)
     val permissionLauncher = rememberLauncherForActivityResult(
@@ -82,10 +90,11 @@ fun NotificationSettingsScreen(
         }
     }
 
-    // 서버 동기화 에러 Snackbar
+    // 서버 동기화 에러 Snackbar (다국어 — LaunchedEffect는 non-Composable context이므로 Resources.getString 사용)
     LaunchedEffect(syncError) {
-        syncError?.let {
-            snackbarHostState.showSnackbar("서버 동기화 실패: $it")
+        syncError?.let { err ->
+            val message = context.getString(R.string.notification_sync_error, err)
+            snackbarHostState.showSnackbar(message)
             viewModel.clearError()
         }
     }
@@ -116,10 +125,10 @@ fun NotificationSettingsScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp),
+                .padding(horizontal = 16.dp, vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            MasterToggleCard(
+            MasterToggleItem(
                 enabled = settings.notificationEnabled,
                 onToggle = { enabled ->
                     if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -136,7 +145,6 @@ fun NotificationSettingsScreen(
                 exit = fadeOut() + shrinkVertically(),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    // 시장/암호화폐 탭
                     PrimaryTabRow(selectedTabIndex = selectedTab) {
                         Tab(
                             selected = selectedTab == 0,
@@ -169,15 +177,19 @@ fun NotificationSettingsScreen(
                         )
                     }
 
-                    InfoCard()
+                    InfoFooter()
                 }
             }
         }
     }
 }
 
+/**
+ * Master toggle — Material 3 ListItem 패턴.
+ * surfaceContainer로 라이트 모드에서도 경계 명확.
+ */
 @Composable
-private fun MasterToggleCard(
+private fun MasterToggleItem(
     enabled: Boolean,
     onToggle: (Boolean) -> Unit,
 ) {
@@ -185,37 +197,41 @@ private fun MasterToggleCard(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
         ),
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 12.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Column(modifier = Modifier.weight(1f).padding(end = 12.dp)) {
+        ListItem(
+            headlineContent = {
                 Text(
                     text = stringResource(R.string.notification_push_title),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                 )
-                Spacer(modifier = Modifier.height(2.dp))
+            },
+            supportingContent = {
                 Text(
                     text = stringResource(R.string.notification_push_description),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-            }
-            Switch(
-                checked = enabled,
-                onCheckedChange = onToggle,
-            )
-        }
+            },
+            trailingContent = {
+                Switch(
+                    checked = enabled,
+                    onCheckedChange = onToggle,
+                )
+            },
+            colors = ListItemDefaults.colors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            ),
+        )
     }
 }
 
+/**
+ * Threshold 카드 — 연속 슬라이더 (steps=0).
+ * 99 스텝 점선 노이즈 제거, 값은 상단 텍스트로 표시.
+ */
 @Composable
 private fun ThresholdCard(
     title: String,
@@ -229,12 +245,12 @@ private fun ThresholdCard(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
         ),
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             Text(
                 text = title,
@@ -242,48 +258,45 @@ private fun ThresholdCard(
                 fontWeight = FontWeight.SemiBold,
             )
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
-
             ThresholdRow(
                 label = stringResource(R.string.notification_lower_label),
                 value = lower,
-                color = MaterialTheme.colorScheme.primary,
                 onChange = { v -> onLowerChange(v.coerceAtMost(upper - 1)) },
                 onValueChangeFinished = onValueChangeFinished,
+                supportingText = stringResource(
+                    R.string.notification_lower_description,
+                    lower.toInt(),
+                ),
             )
-            Text(
-                text = stringResource(R.string.notification_lower_description, lower.toInt()),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
 
             ThresholdRow(
                 label = stringResource(R.string.notification_upper_label),
                 value = upper,
-                color = MaterialTheme.colorScheme.primary,
                 onChange = { v -> onUpperChange(v.coerceAtLeast(lower + 1)) },
                 onValueChangeFinished = onValueChangeFinished,
-            )
-            Text(
-                text = stringResource(R.string.notification_upper_description, upper.toInt()),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                supportingText = stringResource(
+                    R.string.notification_upper_description,
+                    upper.toInt(),
+                ),
             )
         }
     }
 }
 
+/**
+ * 슬라이더 + 값 표시 + supporting text.
+ * steps = 0 (연속 슬라이더) — 99개 틱 마크 노이즈 제거.
+ * 값은 상단 라벨 옆 타이틀 텍스트로 명확히 표시.
+ */
 @Composable
 private fun ThresholdRow(
     label: String,
     value: Float,
-    color: androidx.compose.ui.graphics.Color,
     onChange: (Float) -> Unit,
-    onValueChangeFinished: () -> Unit = {},
+    onValueChangeFinished: () -> Unit,
+    supportingText: String,
 ) {
-    Column {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -292,12 +305,13 @@ private fun ThresholdRow(
             Text(
                 text = label,
                 style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
             )
             Text(
                 text = value.toInt().toString(),
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = color,
+                color = MaterialTheme.colorScheme.primary,
             )
         }
         Slider(
@@ -305,27 +319,40 @@ private fun ThresholdRow(
             onValueChange = onChange,
             onValueChangeFinished = onValueChangeFinished,
             valueRange = 0f..100f,
-            steps = 99,
+            steps = 0,
+        )
+        Text(
+            text = supportingText,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }
 
+/**
+ * Info footer — 카드 제거, Icon + Text 인라인.
+ * 시각적 밀도 완화 + Material 3 footer 패턴.
+ */
 @Composable
-private fun InfoCard() {
-    Card(
+private fun InfoFooter() {
+    Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)),
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
-        ),
+            .padding(horizontal = 4.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.Top,
     ) {
+        Icon(
+            imageVector = Icons.Outlined.Info,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(16.dp),
+        )
         Text(
             text = stringResource(R.string.notification_info),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(12.dp),
         )
     }
+    Spacer(modifier = Modifier.height(8.dp))
 }
