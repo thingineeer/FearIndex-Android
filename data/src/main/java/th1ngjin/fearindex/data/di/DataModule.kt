@@ -10,6 +10,7 @@ import th1ngjin.fearindex.data.repository.CryptoFearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.FearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.MarketIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.ReturnDataRepositoryImpl
+import th1ngjin.fearindex.data.repository.SimilarEventsRepositoryImpl
 import th1ngjin.fearindex.data.repository.StuckCounterRepositoryImpl
 import th1ngjin.fearindex.data.repository.NotificationRepositoryImpl
 import th1ngjin.fearindex.data.repository.VoteRepositoryImpl
@@ -20,6 +21,7 @@ import th1ngjin.fearindex.domain.repository.FearIndexRepository
 import th1ngjin.fearindex.domain.repository.MarketIndexRepository
 import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.repository.ReturnDataRepository
+import th1ngjin.fearindex.domain.repository.SimilarEventsRepository
 import th1ngjin.fearindex.domain.repository.StuckCounterRepository
 import th1ngjin.fearindex.domain.repository.VoteRepository
 import th1ngjin.fearindex.domain.service.DeviceIdProvider
@@ -77,6 +79,10 @@ abstract class DataBindModule {
     @Binds
     @Singleton
     abstract fun bindReturnDataRepository(impl: ReturnDataRepositoryImpl): ReturnDataRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindSimilarEventsRepository(impl: SimilarEventsRepositoryImpl): SimilarEventsRepository
 
     @Binds
     @Singleton
