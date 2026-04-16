@@ -35,6 +35,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -77,6 +78,10 @@ fun InsightDetailSheet(
             // 헤더
             SheetHeader(insight = insight)
             Spacer(modifier = Modifier.height(16.dp))
+
+            // 현재 점수 통계 카드 (returns 있을 때만, iOS v1.7.9 v2)
+            CurrentScoreStatsCard(insight = insight)
+
             HorizontalDivider()
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -869,4 +874,89 @@ private fun trendColor(trend: VelocityTrend): Color = when (trend) {
     VelocityTrend.STABLE -> Color(0xFFB59000)
     VelocityTrend.RALLY_ACCELERATING -> Color(0xFF4CAF50)
     VelocityTrend.RALLY_DECELERATING -> Color(0xFF26A69A)
+}
+
+/**
+ * 현재 점수 기반 통계 카드 (iOS v1.7.9 v2 InsightDetailSheet 상단 카드).
+ * returns/worstCase/bestCase가 있을 때만 표시.
+ * 3열: 평균 수익(green) / 최대 낙폭(red) / 최고 수익(green)
+ */
+@Composable
+private fun CurrentScoreStatsCard(insight: MarketInsight) {
+    val returns = insight.returns ?: return
+    val worstCase = insight.worstCase
+    val bestCase = insight.bestCase
+    val sampleCount = insight.sampleCount
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 16.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+            .padding(12.dp),
+    ) {
+        Text(
+            text = stringResource(
+                th1ngjin.fearindex.presentation.R.string.insight_current_score_title,
+                insight.score,
+            ),
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.Bold,
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+        ) {
+            StatItem(
+                label = stringResource(th1ngjin.fearindex.presentation.R.string.insight_current_score_avg_return),
+                value = formatPercent(returns.oneYear),
+                color = if (returns.oneYear >= 0) Color(0xFF4CAF50) else Color(0xFFE53935),
+            )
+            worstCase?.let {
+                StatItem(
+                    label = stringResource(th1ngjin.fearindex.presentation.R.string.insight_current_score_max_drawdown),
+                    value = formatPercent(it.oneYear),
+                    color = Color(0xFFE53935),
+                )
+            }
+            bestCase?.let {
+                StatItem(
+                    label = stringResource(th1ngjin.fearindex.presentation.R.string.insight_current_score_best_return),
+                    value = formatPercent(it.oneYear),
+                    color = Color(0xFF4CAF50),
+                )
+            }
+        }
+        if (sampleCount != null && sampleCount > 0) {
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = stringResource(
+                    th1ngjin.fearindex.presentation.R.string.insight_current_score_sample_count,
+                    sampleCount,
+                ),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+}
+
+@Composable
+private fun StatItem(label: String, value: String, color: Color) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(
+            text = value,
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.Bold,
+            color = color,
+        )
+    }
 }

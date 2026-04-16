@@ -128,6 +128,12 @@ object InsightGenerator {
             "$basis 기준 — 현재 $score 점 구간의 과거 참고 데이터가 제한적입니다"
         }
 
+        // v1.7.9 v2: DetailSheet 상단 "현재 N점에서 매수 시" 통계 카드 표시용으로
+        // returnData 보간값을 returns/worstCase/bestCase에 채움.
+        val interpolated = table?.let {
+            ReturnDataInterpolator.interpolate(score, it.dataPoints)
+        }
+
         return MarketInsight(
             id = "historical_return_${indexType.name.lowercase()}_$score",
             type = InsightType.HISTORICAL_RETURN,
@@ -138,10 +144,10 @@ object InsightGenerator {
             previousScore = previousScore,
             timestamp = now,
             historicalEvents = historicalEvents,
-            returns = null,
-            worstCase = null,
-            bestCase = null,
-            sampleCount = null,
+            returns = interpolated?.returns,
+            worstCase = interpolated?.worstCase,
+            bestCase = interpolated?.bestCase,
+            sampleCount = interpolated?.sampleCount,
             velocity = null,
             velocityHistory = emptyList(),
         )

@@ -14,4 +14,51 @@
     <string name="chart_history">历史</string>
     <string name="share_message_template">今日恐惧与贪婪指数: %1$d (%2$s)\n\n实时跟踪市场情绪 — 恐惧与贪婪指数应用。</string>
     <string name="share_chooser_title">分享方式</string>
+
+    <!-- v1.7.9 new keys -->
+    <string name="insight_similar_events_title">类似的过去时期</string>
+    <string name="insight_similar_events_score_label">当前 %1$d</string>
+    <string name="insight_similar_events_pinned_title">如果在主要低点买入</string>
+    <string name="insight_similar_events_empty">未找到类似的历史时期</string>
+    <string name="insight_similar_events_one_year_return">1年后 S&amp;P %1$s</string>
+    <string name="insight_similar_events_ongoing">进行中</string>
+    <string name="insight_similar_events_sim_very">非常相似</string>
+    <string name="insight_similar_events_sim_close">相似</string>
+    <string name="insight_similar_events_sim_moderate">中等</string>
+    <string name="insight_similar_events_sim_far">略微相似</string>
+    <string name="insight_similar_events_aggregate_title">%1$d 分区间整体平均</string>
+    <string name="insight_similar_events_aggregate_summary">1Y 平均 %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">过去的回报不保证未来的结果</string>
+    <string name="insight_current_score_title">在 %1$d 分时买入</string>
+    <string name="insight_current_score_avg_return">平均回报</string>
+    <string name="insight_current_score_max_drawdown">最大回撤</string>
+    <string name="insight_current_score_best_return">最佳回报</string>
+    <string name="insight_current_score_sample_count">样本 %1$d 次</string>
+    <string name="insight_event_score">%1$d 分</string>
+    <string name="event_covid">新冠疫情低点</string>
+    <string name="event_tariff">2025年关税危机</string>
+    <string name="event_inflation">2022年通胀恐慌</string>
+    <string name="event_delta">德尔塔变异传播</string>
+    <string name="event_trade_war">中美贸易战</string>
+    <string name="event_svb">SVB银行挤兑</string>
+    <string name="event_reopening">2021年经济重启</string>
+    <string name="event_post_election">2024年大选后</string>
+    <string name="event_2021bull">2021年牛市</string>
+    <string name="event_ai_rally">AI热潮</string>
+    <string name="event_pre_covid">新冠前高点</string>
+    <string name="event_dotcom">互联网泡沫顶峰</string>
+    <string name="event_iran_war_2026">伊朗-以色列战争 (2026)</string>
+    <string name="crypto_event_covid">新冠加密货币崩盘</string>
+    <string name="crypto_event_luna">LUNA/UST 崩盘</string>
+    <string name="crypto_event_ftx">FTX 破产</string>
+    <string name="crypto_event_china_ban">中国加密货币禁令</string>
+    <string name="crypto_event_svb">SVB银行挤兑（加密）</string>
+    <string name="crypto_event_sec">SEC 诉讼</string>
+    <string name="crypto_event_halving_2024">2024年比特币减半</string>
+    <string name="crypto_event_etf_approval">比特币现货ETF获批</string>
+    <string name="crypto_event_defi_summer">DeFi 之夏</string>
+    <string name="crypto_event_2021_peak">2021年加密货币顶峰</string>
+    <string name="crypto_event_trump_pump">特朗普行情</string>
+    <string name="crypto_event_2017_peak">2017年加密货币顶峰</string>
+    <string name="crypto_event_iran_war_2026">伊朗-以色列战争 (2026)</string>
 </resources>

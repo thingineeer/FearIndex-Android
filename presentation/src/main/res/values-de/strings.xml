@@ -14,4 +14,51 @@
     <string name="chart_history">Verlauf</string>
     <string name="share_message_template">Aktueller Angst &amp; Gier Index: %1$d (%2$s)\n\nMarktstimmung in Echtzeit verfolgen — mit der Fear &amp; Greed Index App.</string>
     <string name="share_chooser_title">Teilen über</string>
+
+    <!-- v1.7.9 new keys -->
+    <string name="insight_similar_events_title">Ähnliche vergangene Zeiträume</string>
+    <string name="insight_similar_events_score_label">Aktuell %1$d</string>
+    <string name="insight_similar_events_pinned_title">Was wäre, wenn Sie bei wichtigen Tiefs gekauft hätten?</string>
+    <string name="insight_similar_events_empty">Keine ähnlichen historischen Zeiträume gefunden</string>
+    <string name="insight_similar_events_one_year_return">1J S&amp;P %1$s</string>
+    <string name="insight_similar_events_ongoing">Laufend</string>
+    <string name="insight_similar_events_sim_very">Sehr ähnlich</string>
+    <string name="insight_similar_events_sim_close">Ähnlich</string>
+    <string name="insight_similar_events_sim_moderate">Mäßig</string>
+    <string name="insight_similar_events_sim_far">Etwas ähnlich</string>
+    <string name="insight_similar_events_aggregate_title">Durchschnitt für Wertebereich %1$d</string>
+    <string name="insight_similar_events_aggregate_summary">1J Ø %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">Vergangene Renditen sind keine Garantie für zukünftige Ergebnisse</string>
+    <string name="insight_current_score_title">Bei Kauf bei %1$d</string>
+    <string name="insight_current_score_avg_return">Ø Rendite</string>
+    <string name="insight_current_score_max_drawdown">Max. Drawdown</string>
+    <string name="insight_current_score_best_return">Beste Rendite</string>
+    <string name="insight_current_score_sample_count">n=%1$d</string>
+    <string name="insight_event_score">%1$d Pkt</string>
+    <string name="event_covid">COVID-19 Pandemie-Tief</string>
+    <string name="event_tariff">Zollkrise 2025</string>
+    <string name="event_inflation">Inflationsangst 2022</string>
+    <string name="event_delta">Verbreitung der Delta-Variante</string>
+    <string name="event_trade_war">US-China-Handelskrieg</string>
+    <string name="event_svb">SVB Bank-Run</string>
+    <string name="event_reopening">Wiedereröffnung der Wirtschaft 2021</string>
+    <string name="event_post_election">Nach den Wahlen 2024</string>
+    <string name="event_2021bull">Bullenmarkt 2021</string>
+    <string name="event_ai_rally">KI-Rallye</string>
+    <string name="event_pre_covid">Vor-COVID-Hoch</string>
+    <string name="event_dotcom">Dotcom-Blase Höhepunkt</string>
+    <string name="event_iran_war_2026">Iran-Israel-Krieg (2026)</string>
+    <string name="crypto_event_covid">COVID-19 Krypto-Crash</string>
+    <string name="crypto_event_luna">LUNA/UST Zusammenbruch</string>
+    <string name="crypto_event_ftx">FTX-Insolvenz</string>
+    <string name="crypto_event_china_ban">Chinas Krypto-Verbot</string>
+    <string name="crypto_event_svb">SVB Bank-Run (Krypto)</string>
+    <string name="crypto_event_sec">SEC-Klage</string>
+    <string name="crypto_event_halving_2024">Bitcoin-Halving 2024</string>
+    <string name="crypto_event_etf_approval">Bitcoin Spot ETF Genehmigung</string>
+    <string name="crypto_event_defi_summer">DeFi-Sommer</string>
+    <string name="crypto_event_2021_peak">Krypto-Höhepunkt 2021</string>
+    <string name="crypto_event_trump_pump">Trump-Pump</string>
+    <string name="crypto_event_2017_peak">Krypto-Höhepunkt 2017</string>
+    <string name="crypto_event_iran_war_2026">Iran-Israel-Krieg (2026)</string>
 </resources>

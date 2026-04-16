@@ -14,4 +14,51 @@
     <string name="chart_history">履歴</string>
     <string name="share_message_template">今日の恐怖と貪欲指数: %1$d (%2$s)\n\n市場心理をリアルタイムで確認 — 恐怖と貪欲指数アプリ。</string>
     <string name="share_chooser_title">共有</string>
+
+    <!-- v1.7.9 new keys -->
+    <string name="insight_similar_events_title">似た過去の時期</string>
+    <string name="insight_similar_events_score_label">現在 %1$d</string>
+    <string name="insight_similar_events_pinned_title">主要安値で買っていたら</string>
+    <string name="insight_similar_events_empty">類似する過去の時期はありません</string>
+    <string name="insight_similar_events_one_year_return">1年後 S&amp;P %1$s</string>
+    <string name="insight_similar_events_ongoing">進行中</string>
+    <string name="insight_similar_events_sim_very">非常に類似</string>
+    <string name="insight_similar_events_sim_close">類似</string>
+    <string name="insight_similar_events_sim_moderate">普通</string>
+    <string name="insight_similar_events_sim_far">やや類似</string>
+    <string name="insight_similar_events_aggregate_title">%1$d点区間全体の平均</string>
+    <string name="insight_similar_events_aggregate_summary">1Y平均 %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">過去の収益率は将来の結果を保証しません</string>
+    <string name="insight_current_score_title">現在 %1$d 点で購入時</string>
+    <string name="insight_current_score_avg_return">平均収益</string>
+    <string name="insight_current_score_max_drawdown">最大ドローダウン</string>
+    <string name="insight_current_score_best_return">最高収益</string>
+    <string name="insight_current_score_sample_count">サンプル %1$d 回</string>
+    <string name="insight_event_score">%1$d 点</string>
+    <string name="event_covid">COVID-19パンデミックの底値</string>
+    <string name="event_tariff">2025年関税危機</string>
+    <string name="event_inflation">2022年インフレ恐怖</string>
+    <string name="event_delta">デルタ変異株拡大</string>
+    <string name="event_trade_war">米中貿易戦争</string>
+    <string name="event_svb">SVBバンクラン</string>
+    <string name="event_reopening">2021年経済再開</string>
+    <string name="event_post_election">2024年大統領選挙後</string>
+    <string name="event_2021bull">2021年強気相場</string>
+    <string name="event_ai_rally">AIラリー</string>
+    <string name="event_pre_covid">コロナ直前の高値</string>
+    <string name="event_dotcom">ドットコムバブル頂点</string>
+    <string name="event_iran_war_2026">イラン・イスラエル戦争 (2026)</string>
+    <string name="crypto_event_covid">COVID-19クリプトクラッシュ</string>
+    <string name="crypto_event_luna">LUNA/UST崩壊</string>
+    <string name="crypto_event_ftx">FTX破綻</string>
+    <string name="crypto_event_china_ban">中国の暗号通貨禁止</string>
+    <string name="crypto_event_svb">SVBバンクラン (クリプト)</string>
+    <string name="crypto_event_sec">SEC訴訟</string>
+    <string name="crypto_event_halving_2024">2024年ビットコイン半減期</string>
+    <string name="crypto_event_etf_approval">ビットコイン現物ETF承認</string>
+    <string name="crypto_event_defi_summer">DeFiサマー</string>
+    <string name="crypto_event_2021_peak">2021年クリプトピーク</string>
+    <string name="crypto_event_trump_pump">トランプポンプ</string>
+    <string name="crypto_event_2017_peak">2017年クリプトピーク</string>
+    <string name="crypto_event_iran_war_2026">イラン・イスラエル戦争 (2026)</string>
 </resources>
