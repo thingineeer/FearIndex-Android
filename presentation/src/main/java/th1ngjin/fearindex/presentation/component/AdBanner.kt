@@ -31,6 +31,9 @@ fun AdBanner(
     adUnitId: String = TEST_BANNER_AD_UNIT_ID,
     screenName: String = "홈",
 ) {
+    // v1.0.1 내부 테스트 빌드: 광고 전체 비활성화 (다음 버전에서 아래 return 제거)
+    return
+
     // Compose Preview/스크린샷 모드에서는 실제 AdView 생성 시 crash 가능 → 빈 뷰 렌더링
     if (LocalInspectionMode.current) {
         return
