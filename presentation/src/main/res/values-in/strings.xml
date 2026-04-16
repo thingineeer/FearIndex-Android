@@ -14,4 +14,51 @@
     <string name="chart_history">Riwayat</string>
     <string name="share_message_template">Indeks Ketakutan &amp; Keserakahan hari ini: %1$d (%2$s)\n\nLacak sentimen pasar secara real-time dengan aplikasi Fear &amp; Greed Index.</string>
     <string name="share_chooser_title">Bagikan melalui</string>
+
+    <!-- v1.7.9 new keys -->
+    <string name="insight_similar_events_title">Periode masa lalu yang serupa</string>
+    <string name="insight_similar_events_score_label">Saat ini %1$d</string>
+    <string name="insight_similar_events_pinned_title">Bagaimana jika Anda membeli di titik terendah utama</string>
+    <string name="insight_similar_events_empty">Tidak ditemukan periode historis yang serupa</string>
+    <string name="insight_similar_events_one_year_return">1T S&amp;P %1$s</string>
+    <string name="insight_similar_events_ongoing">Berlangsung</string>
+    <string name="insight_similar_events_sim_very">Sangat mirip</string>
+    <string name="insight_similar_events_sim_close">Mirip</string>
+    <string name="insight_similar_events_sim_moderate">Sedang</string>
+    <string name="insight_similar_events_sim_far">Sedikit mirip</string>
+    <string name="insight_similar_events_aggregate_title">Rata-rata untuk rentang skor %1$d</string>
+    <string name="insight_similar_events_aggregate_summary">Rata-rata 1T %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">Hasil masa lalu tidak menjamin hasil masa depan</string>
+    <string name="insight_current_score_title">Jika Anda membeli di %1$d</string>
+    <string name="insight_current_score_avg_return">Hasil rata-rata</string>
+    <string name="insight_current_score_max_drawdown">Penurunan maksimum</string>
+    <string name="insight_current_score_best_return">Hasil terbaik</string>
+    <string name="insight_current_score_sample_count">n=%1$d</string>
+    <string name="insight_event_score">%1$d poin</string>
+    <string name="event_covid">Titik terendah pandemi COVID-19</string>
+    <string name="event_tariff">Krisis tarif 2025</string>
+    <string name="event_inflation">Ketakutan inflasi 2022</string>
+    <string name="event_delta">Penyebaran varian Delta</string>
+    <string name="event_trade_war">Perang dagang AS-China</string>
+    <string name="event_svb">Penarikan dana SVB</string>
+    <string name="event_reopening">Pembukaan kembali ekonomi 2021</string>
+    <string name="event_post_election">Pasca pemilu 2024</string>
+    <string name="event_2021bull">Pasar bullish 2021</string>
+    <string name="event_ai_rally">Reli AI</string>
+    <string name="event_pre_covid">Puncak pra-COVID</string>
+    <string name="event_dotcom">Puncak gelembung dotcom</string>
+    <string name="event_iran_war_2026">Perang Iran-Israel (2026)</string>
+    <string name="crypto_event_covid">Anjlok kripto COVID-19</string>
+    <string name="crypto_event_luna">Runtuhnya LUNA/UST</string>
+    <string name="crypto_event_ftx">Kebangkrutan FTX</string>
+    <string name="crypto_event_china_ban">Larangan kripto Tiongkok</string>
+    <string name="crypto_event_svb">Penarikan SVB (Kripto)</string>
+    <string name="crypto_event_sec">Gugatan SEC</string>
+    <string name="crypto_event_halving_2024">Halving Bitcoin 2024</string>
+    <string name="crypto_event_etf_approval">Persetujuan ETF spot Bitcoin</string>
+    <string name="crypto_event_defi_summer">Musim panas DeFi</string>
+    <string name="crypto_event_2021_peak">Puncak kripto 2021</string>
+    <string name="crypto_event_trump_pump">Trump pump</string>
+    <string name="crypto_event_2017_peak">Puncak kripto 2017</string>
+    <string name="crypto_event_iran_war_2026">Perang Iran-Israel (2026)</string>
 </resources>
