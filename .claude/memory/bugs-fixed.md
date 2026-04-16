@@ -90,6 +90,37 @@ type: project
   4. 다음 작업용 worktree 생성: `feature/v1.0.0-share-and-gauge`.
 - **재발 방지**: 이후 모든 작업은 worktree 단위로 시작. 한 worktree = 하나의 의미 단위 (n개 커밋 OK, 관련 없는 작업은 별도 worktree).
 
+## 2026-04-16 세션
+
+### 10. 알림 설정 서버 동기화 실패 "INTERNAL"
+
+- **증상**: 알림 설정 화면에서 슬라이더 드래그 → Snackbar "서버 동기화 실패: INTERNAL" 노출. FCM 토큰 등록도 language 누락.
+- **원인**: `NotificationDataSource.updateSettings`가 **평탄 payload** (`{ deviceId, lowerThreshold, ... }`) 전송. Functions 서버는 **중첩 payload** (`{ deviceId, settings: { lowerThreshold, ... } }`) 기대. `settings.lowerThreshold`가 `undefined` → `validateThresholds` 내부 에러 → `INTERNAL` 반환.
+- **해결**:
+  1. `NotificationDataSource.kt`를 iOS `FCMService.swift` payload 구조와 동일하게 변경.
+  2. `settings` 중첩 객체 안에 `lowerThreshold`, `upperThreshold`, `cryptoLowerThreshold`, `cryptoUpperThreshold`, `notificationEnabled`, `cryptoNotificationEnabled`, `language` 포함.
+  3. 클라이언트 클램핑 추가: lower 0..50, upper 50..100 (iOS 동일).
+  4. `Locale.getDefault().language` 2자리 ISO 639-1 코드 사용 (iOS `Locale.current.language.languageCode?.identifier`와 매칭).
+- **검증**: 에뮬레이터에서 슬라이더 드래그 → `Notification settings updated` 로그만 출력, 에러 사라짐.
+- **교훈**: Firebase Callable Function 시그니처는 **iOS 클라이언트가 원본**. Android는 payload 구조를 iOS와 1:1 동기화해야 함.
+
+### 11. Vote Firestore 스냅샷 스트림 PERMISSION_DENIED (iOS+Android 공통)
+
+- **증상**: 투표 탭 진입 시 `W Firestore: Listen for Query(target=Query(votes/2026-04-16/results/market) failed: PERMISSION_DENIED`. VoteViewModel에서 vote stream error.
+- **원인**: `firestore.rules`의 `match /{document=**} { allow read, write: if false; }`가 `votes/**`를 차단. iOS `VoteDataSource.swift:72`도 같은 path (`votes/{date}/results/{indexType}`)를 addSnapshotListener로 읽고 있어 **iOS도 같은 에러 발생 중**.
+- **검증**:
+  - `node scripts/admin.js` (admin SDK로 직접 조회) → 오늘 날짜 문서 존재 여부 못 가져옴 (rules와 무관하게 admin SDK는 우회하지만 문서 자체는 `false` 반환).
+  - 배포된 rules (Firebase Rules API 직접 조회)와 로컬 `firestore.rules` 완전 일치.
+- **해결 방향** (미착수 — 사용자 승인 대기):
+  ```
+  match /votes/{date}/results/{indexType} {
+    allow read: if true;
+    allow write: if false;
+  }
+  ```
+  → iOS 프로젝트의 `firebase-functions/firestore.rules` 수정 → `firebase deploy --only firestore:rules`.
+- **관찰**: `stuckStatus/global_*` + `insights/similarEvents_*`은 정상 동작. Callable Functions (`submitStuckStatus`, `getSimilarEvents`, `registerFCMToken`, `updateNotificationSettings`, `submitVote`)도 정상. 오직 **vote snapshot 리스너**만 막혀 있음.
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
