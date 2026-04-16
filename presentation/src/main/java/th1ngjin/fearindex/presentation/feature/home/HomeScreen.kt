@@ -51,6 +51,7 @@ import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketIndex
 import th1ngjin.fearindex.domain.entity.MarketInsight
+import th1ngjin.fearindex.domain.entity.SimilarEventsResult
 import th1ngjin.fearindex.domain.entity.StuckCounterResult
 import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
 import th1ngjin.fearindex.presentation.R
@@ -61,11 +62,13 @@ import th1ngjin.fearindex.presentation.component.FearGaugeView
 import th1ngjin.fearindex.presentation.component.FearIndexSkeletonView
 import th1ngjin.fearindex.presentation.component.InsightDetailSheet
 import th1ngjin.fearindex.presentation.component.InsightTeaserCard
+import th1ngjin.fearindex.presentation.component.SimilarEventsCard
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.component.StuckCounterCard
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
+import th1ngjin.fearindex.presentation.feature.similarevents.SimilarEventsViewModel
 import th1ngjin.fearindex.presentation.feature.vote.VoteViewModel
 import kotlinx.coroutines.delay
 import java.time.ZoneId
@@ -77,6 +80,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val insightViewModel: InsightViewModel = hiltViewModel()
     val insightState by insightViewModel.uiState.collectAsState()
     val voteViewModel: VoteViewModel = hiltViewModel()
+    val similarEventsViewModel: SimilarEventsViewModel = hiltViewModel()
 
     // InsightViewModel이 HomeViewModel을 관찰
     LaunchedEffect(Unit) {
@@ -96,6 +100,9 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     // 물림 카운터 상태
     val stuckResult by voteViewModel.resultFor(selectedType).collectAsState()
     val myStuckStatus by voteViewModel.myStatusFor(selectedType).collectAsState()
+
+    // SimilarEvents 실시간 구독
+    val similarEventsResult by similarEventsViewModel.resultFor(selectedType).collectAsState()
 
     val context = LocalContext.current
     val analytics = remember(context) {
@@ -163,6 +170,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                 indexType = selectedType,
                 insights = insightState.insights,
                 onInsightClick = insightViewModel::selectInsight,
+                similarEventsResult = similarEventsResult,
                 stuckResult = stuckResult,
                 myStuckStatus = myStuckStatus.toUi(),
                 onStuckToggle = { newStatus ->
@@ -360,6 +368,7 @@ private fun LoadedContent(
     indexType: FearIndexType,
     insights: List<MarketInsight> = emptyList(),
     onInsightClick: (MarketInsight) -> Unit = {},
+    similarEventsResult: SimilarEventsResult = SimilarEventsResult.EMPTY,
     stuckResult: StuckCounterResult = StuckCounterResult.EMPTY,
     myStuckStatus: UiStuckStatus = UiStuckStatus.NO_RESPONSE,
     onStuckToggle: (UiStuckStatus) -> Unit = {},
@@ -384,6 +393,12 @@ private fun LoadedContent(
 
     // 3. AdMob 배너 광고
     AdBanner()
+
+    // 3.5. SimilarEvents 카드 — "지금과 비슷했던 시기" (v1.7.9)
+    if (similarEventsResult.matches.isNotEmpty() || similarEventsResult.aggregateStats != null) {
+        Spacer(modifier = Modifier.height(16.dp))
+        SimilarEventsCard(result = similarEventsResult)
+    }
 
     // 4. 인사이트 티저 카드 — 현재 점수 기준 통계(전 구간). 첫 번째 인사이트 1개.
     val teaserInsight = insights.firstOrNull()
