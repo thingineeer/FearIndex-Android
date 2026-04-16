@@ -30,20 +30,26 @@
     <string name="notification_upper_description">You\'ll be notified when the index reaches %1$d or above.</string>
     <string name="notification_info">Notifications are checked every 15 minutes. You\'ll receive at most 1 notification per threshold zone per day.</string>
 
-    <!-- SimilarEvents card (v1.7.9) -->
-    <string name="similar_events_title">Similar Past Periods</string>
-    <string name="similar_events_score_label">Current %1$d</string>
-    <string name="similar_events_score_suffix">pts</string>
-    <string name="similar_events_empty">No similar historical periods found</string>
-    <string name="similar_events_one_year_return">1Y S&amp;P %1$s</string>
-    <string name="similar_events_ongoing">Ongoing</string>
-    <string name="similar_events_sim_very">Very Similar</string>
-    <string name="similar_events_sim_close">Similar</string>
-    <string name="similar_events_sim_moderate">Moderate</string>
-    <string name="similar_events_sim_far">Slightly Similar</string>
-    <string name="similar_events_aggregate_title">Average for score %1$d range</string>
-    <string name="similar_events_aggregate_summary">1Y avg %1$s (n=%2$d)</string>
-    <string name="similar_events_disclaimer">Past returns do not guarantee future results</string>
+    <!-- SimilarEvents card (v1.7.9 v2) -->
+    <string name="insight_similar_events_title">Similar Past Periods</string>
+    <string name="insight_similar_events_score_label">Current %1$d</string>
+    <string name="insight_similar_events_pinned_title">What if you bought at major lows?</string>
+    <string name="insight_similar_events_empty">No similar historical periods found</string>
+    <string name="insight_similar_events_one_year_return">1Y S&amp;P %1$s</string>
+    <string name="insight_similar_events_ongoing">Ongoing</string>
+    <string name="insight_similar_events_sim_very">Very Similar</string>
+    <string name="insight_similar_events_sim_close">Similar</string>
+    <string name="insight_similar_events_sim_moderate">Moderate</string>
+    <string name="insight_similar_events_sim_far">Slightly Similar</string>
+    <string name="insight_similar_events_aggregate_title">Average for score %1$d range</string>
+    <string name="insight_similar_events_aggregate_summary">1Y avg %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">Past returns do not guarantee future results</string>
+    <string name="insight_current_score_title">If you buy at %1$d</string>
+    <string name="insight_current_score_avg_return">Avg Return</string>
+    <string name="insight_current_score_max_drawdown">Max Drawdown</string>
+    <string name="insight_current_score_best_return">Best Return</string>
+    <string name="insight_current_score_sample_count">n=%1$d</string>
+    <string name="insight_event_score">%1$d pts</string>
 
     <!-- Historical events (Market) -->
     <string name="event_covid">COVID-19 Pandemic Low</string>
