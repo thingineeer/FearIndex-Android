@@ -104,6 +104,14 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     // SimilarEvents 실시간 구독
     val similarEventsResult by similarEventsViewModel.resultFor(selectedType).collectAsState()
 
+    // Firestore 문서가 없을 경우 Callable Function으로 캐시 생성 트리거
+    val loadedScoreForTrigger = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore
+    LaunchedEffect(selectedType, loadedScoreForTrigger) {
+        if (loadedScoreForTrigger != null) {
+            similarEventsViewModel.triggerForScore(selectedType, loadedScoreForTrigger)
+        }
+    }
+
     val context = LocalContext.current
     val analytics = remember(context) {
         EntryPointAccessors

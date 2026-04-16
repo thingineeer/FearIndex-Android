@@ -48,4 +48,15 @@ class SimilarEventsViewModel @Inject constructor(
             }
         }
     }
+
+    /**
+     * 현재 점수 기반 Callable Function 트리거.
+     * Firestore 문서가 없을 때 서버에 캐시 생성 요청 → snapshot listener가 자동으로 받음.
+     * 같은 (indexType, score) 조합은 1번만 호출 (Repository 내부 캐시).
+     */
+    fun triggerForScore(indexType: FearIndexType, score: Int) {
+        viewModelScope.launch {
+            repository.triggerCallable(indexType, score)
+        }
+    }
 }
