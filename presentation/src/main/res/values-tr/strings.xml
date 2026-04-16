@@ -151,7 +151,7 @@
     <string name="nudge_tip_fear_3">Korkuyla dürtüsel satış yapmayın</string>
     <string name="nudge_tip_greed_1">Portföy dağılımını gözden geçirin</string>
     <string name="nudge_tip_greed_2">Hedeflerde kısmi kâr alın</string>
-    <string name="nudge_tip_greed_3">FOMO'dan kaçının</string>
+    <string name="nudge_tip_greed_3">FOMO\'dan kaçının</string>
     <string name="nudge_tip_stable_1">Uzun vadeli hedefleri kontrol edin</string>
     <string name="nudge_tip_stable_2">Düzenli katkıları sürdürün</string>
     <string name="nudge_tip_stable_3">Yeniden dengelemeyi değerlendirin</string>
