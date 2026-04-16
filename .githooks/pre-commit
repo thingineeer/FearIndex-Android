@@ -1,0 +1,45 @@
+#!/bin/bash
+# FearIndex pre-commit: 시크릿 커밋 차단
+# 활성화: git config core.hooksPath .githooks
+
+set -e
+
+BLOCKED=0
+
+# 스테이징된 파일에서 시크릿 패턴 감지
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+
+for f in $staged; do
+    case "$f" in
+        *.keystore|*.jks|*fearindex-release*)
+            echo "❌ $f — keystore 파일은 커밋 금지 (~/fearindex-secrets/ 에만 보관)"
+            BLOCKED=1
+            ;;
+        */google-services.json|google-services.json)
+            echo "❌ $f — google-services.json 커밋 금지 (~/fearindex-secrets/ 에만 보관)"
+            BLOCKED=1
+            ;;
+        gradle.properties|*/gradle.properties.local)
+            # 프로젝트 루트 gradle.properties만 허용, FEARINDEX_* 키 포함 여부 체크
+            if grep -qE "FEARINDEX_(STORE|KEY)_PASSWORD" "$f" 2>/dev/null; then
+                echo "❌ $f — 비밀번호가 포함된 gradle.properties는 커밋 금지"
+                BLOCKED=1
+            fi
+            ;;
+    esac
+done
+
+# 스테이지된 diff에서 비밀번호 패턴 검사
+if git diff --cached | grep -qE "FEARINDEX_(STORE|KEY)_PASSWORD=[^$\s]"; then
+    echo "❌ diff 에 FEARINDEX_*_PASSWORD 평문 발견 — 커밋 중단"
+    BLOCKED=1
+fi
+
+if [ $BLOCKED -eq 1 ]; then
+    echo ""
+    echo "커밋이 차단되었습니다. 해당 파일을 unstage 하거나 ~/fearindex-secrets/ 로 옮기세요."
+    echo "상세: .claude/rules/secrets.md"
+    exit 1
+fi
+
+exit 0
