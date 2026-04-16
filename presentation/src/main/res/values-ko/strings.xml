@@ -29,6 +29,7 @@
     <string name="notification_lower_description">공포지수가 %1$d 이하일 때 알림을 받습니다.</string>
     <string name="notification_upper_description">공포지수가 %1$d 이상일 때 알림을 받습니다.</string>
     <string name="notification_info">알림은 15분 간격으로 체크되며, 하루에 같은 구간 진입 시 최대 1회만 발송됩니다.</string>
+    <string name="notification_sync_error">동기화 실패: %1$s</string>
 
     <!-- SimilarEvents 카드 (v1.7.9 v2) -->
     <string name="insight_similar_events_title">지금과 비슷했던 시기</string>
@@ -80,4 +81,110 @@
     <string name="crypto_event_trump_pump">트럼프 펌프</string>
     <string name="crypto_event_2017_peak">2017 크립토 정점</string>
     <string name="crypto_event_iran_war_2026">이란-이스라엘 전쟁 (2026)</string>
+    <string name="insight_similar_events_similar_section_title">비슷한 구간</string>
+
+    <!-- 물림 카운터 카드 -->
+    <string name="stuck_card_title">지금 물린 사람들</string>
+    <string name="stuck_info_content_description">물림 카운터 안내</string>
+    <string name="stuck_percentage_label">물림 비율</string>
+    <string name="stuck_button_im_stuck">"🤙 나도 물렸어요"</string>
+    <string name="stuck_button_im_safe">"✨ 난 안 물렸어요"</string>
+    <string name="stuck_footer_guide">"🤙 버튼을 누르면 지금 몇 명이 물려있는지 실시간으로 볼 수 있어요"</string>
+
+    <!-- 투표 카드 -->
+    <string name="vote_card_title">오늘의 투표</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s 투표</string>
+    <string name="vote_total_participants">총 %1$d명 참여</string>
+    <string name="vote_once_notice">"✅ 일일 투표는 1회만 가능합니다"</string>
+    <string name="vote_next_countdown">다음 투표까지</string>
+
+    <!-- 피처 화면 공통 라벨 -->
+    <string name="tab_market">시장</string>
+    <string name="tab_crypto">암호화폐</string>
+    <string name="current_index_label">현재 지수</string>
+    <string name="vs_previous_close_label">전일 대비</string>
+    <string name="vs_previous_close_value">전일 대비 %1$s</string>
+    <string name="share_content_description">공유</string>
+    <string name="retry_button">재시도</string>
+    <string name="home_updated_at">업데이트: %1$s</string>
+
+    <!-- 인사이트 상세 시트 -->
+    <string name="insight_detail_no_returns_data">수익률 데이터가 부족합니다.</string>
+    <string name="insight_detail_no_data">데이터가 부족합니다.</string>
+    <string name="insight_detail_scenario_compare_title">시나리오 비교 (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">평균 수익률 (%1$s)</string>
+    <string name="insight_detail_worst_case">최악의 경우</string>
+    <string name="insight_detail_best_case">최선의 경우</string>
+    <string name="insight_detail_sample_basis_crypto">암호화폐 시장 심리 데이터 기준</string>
+    <string name="insight_detail_sample_basis_market">%1$d번의 극단적 구간 기준 (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">유사 시점 데이터가 부족합니다.</string>
+    <string name="insight_detail_past_events_title">과거 유사 이벤트 (%1$s)</string>
+    <string name="insight_detail_similar_past_title">현재와 비슷했던 과거 시점</string>
+    <string name="insight_detail_similar_past_body">공포지수 %1$d점 근처였던 과거 시점들입니다. 현재 시장 상황과 가장 유사한 역사적 순간을 참고하세요.</string>
+    <string name="insight_detail_event_score_label">점수 %1$d</string>
+    <string name="insight_detail_simulation_title">투자 시뮬레이션 (%1$s)</string>
+    <string name="insight_detail_investment_label">투자 금액 (원)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Bitcoin(BTC) 가격 기준. 암호화폐는 극도로 변동성이 큽니다.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ S&amp;P 500 과거 데이터 기준. 과거 성과는 미래 수익을 보장하지 않습니다.</string>
+    <string name="insight_detail_amount_won">%1$s원</string>
+    <string name="insight_detail_amount_diff">%1$s원 (%2$s)</string>
+    <string name="insight_detail_drawdown_title">낙폭 분석 (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">평균 1년 수익률</string>
+    <string name="insight_detail_where_from_title">이 수치는 어디서 나왔나요?</string>
+    <string name="insight_detail_where_from_body">현재 공포지수 %1$d점과 비슷했던 과거 시점들을 기반으로 %2$s 수익률을 계산한 값입니다.</string>
+    <string name="insight_detail_action_guide_title">투자 행동 가이드</string>
+
+    <!-- 기간 라벨 -->
+    <string name="period_month_1">1개월</string>
+    <string name="period_month_3">3개월</string>
+    <string name="period_month_6">6개월</string>
+    <string name="period_year_1">1년</string>
+    <string name="period_month_1_after">1개월 후</string>
+    <string name="period_month_3_after">3개월 후</string>
+    <string name="period_month_6_after">6개월 후</string>
+    <string name="period_year_1_after">1년 후</string>
+
+    <!-- 낙폭 기간 -->
+    <string name="drawdown_period_1m">최대 낙폭 (1개월)</string>
+    <string name="drawdown_period_3m">최대 낙폭 (3개월)</string>
+    <string name="drawdown_period_6m">최대 낙폭 (6개월)</string>
+    <string name="drawdown_period_1y">최대 낙폭 (1년)</string>
+
+    <!-- Nudge (점수 구간별 메시지) -->
+    <string name="nudge_title_extreme_fear">극도의 공포 구간</string>
+    <string name="nudge_body_extreme_fear">현재 공포지수 %1$d점은 시장이 매우 극도의 공포 상태임을 나타냅니다. 역사적으로 이런 시기가 장기적으로 매수 기회가 된 경우가 많았습니다. 단, 단기 추가 하락 가능성도 있습니다.</string>
+    <string name="nudge_title_extreme_greed">극도의 탐욕 구간</string>
+    <string name="nudge_body_extreme_greed">현재 공포지수 %1$d점은 시장이 과열된 상태임을 나타냅니다. 역사적으로 이런 시기에 무리한 추가 매수보다 리스크 관리가 중요했습니다.</string>
+    <string name="nudge_title_stable">시장이 안정적인 구간</string>
+    <string name="nudge_body_stable">현재 공포지수 %1$d점은 극단적 공포나 탐욕 없이 시장이 비교적 안정적인 상태입니다. 일관된 장기 투자 전략을 유지하기 좋은 시기입니다.</string>
+    <string name="nudge_tip_fear_1">분할 매수로 진입 타이밍 분산</string>
+    <string name="nudge_tip_fear_2">현금 비중 확인 후 여유 자금으로 매수</string>
+    <string name="nudge_tip_fear_3">공포에 즉흥적으로 팔지 말기</string>
+    <string name="nudge_tip_greed_1">포트폴리오 비중 점검</string>
+    <string name="nudge_tip_greed_2">목표 수익 도달 시 일부 이익 실현</string>
+    <string name="nudge_tip_greed_3">FOMO에 휩쓸리지 말기</string>
+    <string name="nudge_tip_stable_1">장기 투자 목표 확인</string>
+    <string name="nudge_tip_stable_2">정기 적립 유지</string>
+    <string name="nudge_tip_stable_3">포트폴리오 리밸런싱 검토</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">속도 분석</string>
+    <string name="velocity_daily_change">일간 변화</string>
+    <string name="velocity_weekly_change">7일 변화</string>
+    <string name="velocity_momentum_label">모멘텀</string>
+    <string name="velocity_trend_label">추세</string>
+    <string name="velocity_sparkline_title">최근 15일 추세</string>
+    <string name="velocity_inflection_title">방향이 바뀌고 있어요!</string>
+    <string name="velocity_inflection_body">최근 추세가 반전됐습니다 — 주목하세요.</string>
+    <string name="momentum_accelerating">빨라지는 중</string>
+    <string name="momentum_decelerating">느려지는 중</string>
+    <string name="momentum_stable">안정적</string>
+    <string name="trend_crash_accelerating">급락 가속</string>
+    <string name="trend_crash_decelerating">급락 둔화</string>
+    <string name="trend_stable">안정</string>
+    <string name="trend_rally_accelerating">상승 가속</string>
+    <string name="trend_rally_decelerating">상승 둔화</string>
 </resources>

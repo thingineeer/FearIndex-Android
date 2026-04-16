@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
@@ -33,6 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import th1ngjin.fearindex.presentation.R
 
 enum class StuckStatus { STUCK, NOT_STUCK, NO_RESPONSE }
 
@@ -93,11 +95,12 @@ private fun HeaderSection(onInfoClick: () -> Unit) {
         )
         Spacer(modifier = Modifier.width(6.dp))
         Text(
-            text = "\uC9C0\uAE08 \uBB3C\uB9B0 \uC0AC\uB78C\uB4E4",
+            text = stringResource(R.string.stuck_card_title),
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.SemiBold,
         )
         Spacer(modifier = Modifier.width(6.dp))
+        val infoDesc = stringResource(R.string.stuck_info_content_description)
         Text(
             text = "\u24D8",
             style = MaterialTheme.typography.labelSmall,
@@ -106,7 +109,7 @@ private fun HeaderSection(onInfoClick: () -> Unit) {
                 .clickable(onClick = onInfoClick)
                 .semantics {
                     role = Role.Button
-                    contentDescription = "\uBB3C\uB9BC \uCE74\uC6B4\uD130 \uC548\uB0B4"
+                    contentDescription = infoDesc
                 },
         )
     }
@@ -132,7 +135,7 @@ private fun PercentageSection(
                 color = gaugeColor,
             )
             Text(
-                text = "\uBB3C\uB9BC \uBE44\uC728",
+                text = stringResource(R.string.stuck_percentage_label),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 6.dp),
@@ -170,7 +173,7 @@ private fun ToggleButtonsSection(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         StuckToggleButton(
-            label = "\uD83E\uDE78 \uB098\uB3C4 \uBB3C\uB838\uC5B4\uC694",
+            label = stringResource(R.string.stuck_button_im_stuck),
             isActive = myStatus == StuckStatus.STUCK,
             activeColor = StuckRed,
             onClick = {
@@ -180,7 +183,7 @@ private fun ToggleButtonsSection(
             modifier = Modifier.weight(1f),
         )
         StuckToggleButton(
-            label = "\u2728 \uB09C \uC548 \uBB3C\uB838\uC5B4\uC694",
+            label = stringResource(R.string.stuck_button_im_safe),
             isActive = myStatus == StuckStatus.NOT_STUCK,
             activeColor = StuckGreen,
             onClick = {
@@ -247,7 +250,7 @@ private fun FooterGuide() {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = "\uD83E\uDD19 \uBC84\uD2BC\uC744 \uB204\uB974\uBA74 \uC9C0\uAE08 \uBA87 \uBA85\uC774 \uBB3C\uB824\uC788\uB294\uC9C0 \uC2E4\uC2DC\uAC04\uC73C\uB85C \uBCFC \uC218 \uC788\uC5B4\uC694",
+            text = stringResource(R.string.stuck_footer_guide),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.weight(1f),

@@ -106,6 +106,12 @@ enum class CryptoChartPeriod(val label: String, val days: Int) {
     }
 }
 
+// MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
+
+private const val ANALYTICS_TYPE_MARKET = "시장"
+private const val ANALYTICS_TYPE_CRYPTO = "암호화폐"
+private const val ANALYTICS_SCREEN_CHART = "차트"
+
 // MARK: - Chart Colors
 
 private val ChartLineColor = Color(0xFFFF9800)
@@ -162,7 +168,7 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
     ) {
         // 1. Title
         Text(
-            text = "차트",
+            text = stringResource(R.string.tab_chart),
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
         )
@@ -171,15 +177,18 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
         // 2. Segment Picker
         SegmentedPicker(
-            items = listOf("시장", "암호화폐"),
+            items = listOf(
+                stringResource(R.string.tab_market),
+                stringResource(R.string.tab_crypto),
+            ),
             selectedIndex = if (uiState.selectedType == FearIndexType.MARKET) 0 else 1,
             onItemSelected = { index ->
                 val newType = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
-                val previousType = if (uiState.selectedType == FearIndexType.MARKET) "시장" else "암호화폐"
+                val previousType = if (uiState.selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO
                 analytics.log(
                     AnalyticsEvent.지수타입전환(
-                        타입 = if (newType == FearIndexType.MARKET) "시장" else "암호화폐",
-                        화면 = "차트",
+                        타입 = if (newType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO,
+                        화면 = ANALYTICS_SCREEN_CHART,
                         이전타입 = previousType,
                     ),
                 )
@@ -258,7 +267,7 @@ private fun ChartLoadedContent(
 
     // 4. History header
     Text(
-        text = "히스토리",
+        text = stringResource(R.string.chart_history),
         style = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.Bold,
         modifier = Modifier
@@ -359,7 +368,7 @@ private fun CurrentScoreCard(fearIndex: FearIndex) {
             // Left: 현재 지수
             Column {
                 Text(
-                    text = "현재 지수",
+                    text = stringResource(R.string.current_index_label),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -386,7 +395,7 @@ private fun CurrentScoreCard(fearIndex: FearIndex) {
             // Right: 전일 대비
             Column(horizontalAlignment = Alignment.End) {
                 Text(
-                    text = "전일 대비",
+                    text = stringResource(R.string.vs_previous_close_label),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

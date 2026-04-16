@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,6 +29,7 @@ import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
+import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.component.AdBanner
@@ -37,6 +39,15 @@ import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
+
+// MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
+
+private const val ANALYTICS_TYPE_MARKET = "시장"
+private const val ANALYTICS_TYPE_CRYPTO = "암호화폐"
+private const val ANALYTICS_SCREEN_VOTE = "투표"
+private const val ANALYTICS_STUCK = "물렸어요"
+private const val ANALYTICS_NOT_STUCK = "안물렸어요"
+private const val ANALYTICS_CANCEL = "취소"
 
 @Composable
 fun VoteScreen(
@@ -58,7 +69,7 @@ fun VoteScreen(
     LaunchedEffect(selectedType) {
         analytics.log(
             AnalyticsEvent.투표탭진입(
-                지수타입 = if (selectedType == FearIndexType.MARKET) "시장" else "암호화폐",
+                지수타입 = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO,
             ),
         )
     }
@@ -82,7 +93,7 @@ fun VoteScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "\uD22C\uD45C",
+            text = stringResource(R.string.tab_vote),
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
         )
@@ -90,13 +101,16 @@ fun VoteScreen(
         Spacer(modifier = Modifier.height(12.dp))
 
         SegmentedPicker(
-            items = listOf("\uC2DC\uC7A5", "\uC554\uD638\uD654\uD3D0"),
+            items = listOf(
+                stringResource(R.string.tab_market),
+                stringResource(R.string.tab_crypto),
+            ),
             selectedIndex = selectedIndex,
             onItemSelected = { index ->
                 val newType = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
                 if (newType != selectedType) {
-                    val previousLabel = if (selectedType == FearIndexType.MARKET) "\uC2DC\uC7A5" else "\uC554\uD638\uD654\uD3D0"
-                    val newLabel = if (newType == FearIndexType.MARKET) "\uC2DC\uC7A5" else "\uC554\uD638\uD654\uD3D0"
+                    val previousLabel = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO
+                    val newLabel = if (newType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO
                     analytics.log(
                         AnalyticsEvent.투표세그먼트전환(
                             지수타입 = newLabel,
@@ -128,11 +142,11 @@ fun VoteScreen(
                 analytics.log(
                     AnalyticsEvent.투표참여(
                         선택 = when (newStatus) {
-                            UiStuckStatus.STUCK -> "\uBB3C\uB838\uC5B4\uC694"
-                            UiStuckStatus.NOT_STUCK -> "\uC548\uBB3C\uB838\uC5B4\uC694"
-                            UiStuckStatus.NO_RESPONSE -> "\uCDE8\uC18C"
+                            UiStuckStatus.STUCK -> ANALYTICS_STUCK
+                            UiStuckStatus.NOT_STUCK -> ANALYTICS_NOT_STUCK
+                            UiStuckStatus.NO_RESPONSE -> ANALYTICS_CANCEL
                         },
-                        지수타입 = if (selectedType == FearIndexType.MARKET) "\uC2DC\uC7A5" else "\uC554\uD638\uD654\uD3D0",
+                        지수타입 = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO,
                         현재점수 = score,
                     ),
                 )
@@ -144,7 +158,7 @@ fun VoteScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         // AdMob 배너 광고
-        AdBanner(screenName = "투표")
+        AdBanner(screenName = ANALYTICS_SCREEN_VOTE)
 
         Spacer(modifier = Modifier.height(24.dp))
     }
@@ -165,7 +179,7 @@ private fun CurrentScoreHeader(
             horizontalArrangement = Arrangement.spacedBy(6.dp),
         ) {
             Text(
-                text = "\uD604\uC7AC \uC9C0\uC218",
+                text = stringResource(R.string.current_index_label),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -185,8 +199,9 @@ private fun CurrentScoreHeader(
         if (previousClose != null) {
             val diff = score - previousClose.toInt()
             val sign = if (diff >= 0) "+" else ""
+            val delta = "$sign${String.format("%.1f", score - previousClose)}"
             Text(
-                text = "\uC804\uC77C \uB300\uBE44 $sign${String.format("%.1f", score - previousClose)}",
+                text = stringResource(R.string.vs_previous_close_value, delta),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )

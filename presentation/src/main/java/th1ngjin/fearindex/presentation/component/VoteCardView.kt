@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import th1ngjin.fearindex.domain.entity.VoteChoice
 import th1ngjin.fearindex.domain.entity.VoteResult
+import th1ngjin.fearindex.presentation.R
 
 // =============================================================================
 // Colors — iOS와 동일
@@ -114,7 +116,7 @@ private fun VoteHeader() {
         )
         Spacer(modifier = Modifier.width(6.dp))
         Text(
-            text = "\uC624\uB298\uC758 \uD22C\uD45C",
+            text = stringResource(R.string.vote_card_title),
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.SemiBold,
         )
@@ -130,21 +132,21 @@ private fun VoteButtons(onVote: (VoteChoice) -> Unit) {
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         VoteButton(
-            label = "Buy",
+            label = stringResource(R.string.vote_choice_buy),
             emoji = "\uD83D\uDCC8",
             color = BuyGreen,
             onClick = { onVote(VoteChoice.BUY) },
             modifier = Modifier.weight(1f),
         )
         VoteButton(
-            label = "Hold",
+            label = stringResource(R.string.vote_choice_hold),
             emoji = "\u270B",
             color = HoldGray,
             onClick = { onVote(VoteChoice.HOLD) },
             modifier = Modifier.weight(1f),
         )
         VoteButton(
-            label = "Sell",
+            label = stringResource(R.string.vote_choice_sell),
             emoji = "\uD83D\uDCC9",
             color = SellRed,
             onClick = { onVote(VoteChoice.SELL) },
@@ -161,6 +163,7 @@ private fun VoteButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val description = stringResource(R.string.vote_button_content_description, label)
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
@@ -169,7 +172,7 @@ private fun VoteButton(
             .padding(vertical = 16.dp)
             .semantics {
                 role = Role.Button
-                contentDescription = "$label \uD22C\uD45C"
+                contentDescription = description
             },
         contentAlignment = Alignment.Center,
     ) {
@@ -194,21 +197,21 @@ private fun VoteButton(
 private fun VoteResultBars(voteResult: VoteResult) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         VoteResultBar(
-            label = "Buy",
+            label = stringResource(R.string.vote_choice_buy),
             percentage = voteResult.buyPercentage,
             count = voteResult.buyCount,
             color = BuyGreen,
             isMyVote = voteResult.myVote == VoteChoice.BUY,
         )
         VoteResultBar(
-            label = "Hold",
+            label = stringResource(R.string.vote_choice_hold),
             percentage = voteResult.holdPercentage,
             count = voteResult.holdCount,
             color = HoldGray,
             isMyVote = voteResult.myVote == VoteChoice.HOLD,
         )
         VoteResultBar(
-            label = "Sell",
+            label = stringResource(R.string.vote_choice_sell),
             percentage = voteResult.sellPercentage,
             count = voteResult.sellCount,
             color = SellRed,
@@ -217,7 +220,7 @@ private fun VoteResultBars(voteResult: VoteResult) {
 
         // 총 투표 수
         Text(
-            text = "\uCD1D ${voteResult.totalCount}\uBA85 \uCC38\uC5EC",
+            text = stringResource(R.string.vote_total_participants, voteResult.totalCount),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier
@@ -321,7 +324,7 @@ private fun VoteOnceNotice() {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = "\u2705 \uC77C\uC77C \uD22C\uD45C\uB294 1\uD68C\uB9CC \uAC00\uB2A5\uD569\uB2C8\uB2E4",
+            text = stringResource(R.string.vote_once_notice),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

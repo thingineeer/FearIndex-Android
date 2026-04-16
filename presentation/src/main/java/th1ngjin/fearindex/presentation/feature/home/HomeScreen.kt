@@ -74,6 +74,14 @@ import kotlinx.coroutines.delay
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
+// MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
+
+private const val ANALYTICS_TYPE_MARKET = "시장"
+private const val ANALYTICS_TYPE_CRYPTO = "암호화폐"
+private const val ANALYTICS_STUCK = "물렸어요"
+private const val ANALYTICS_NOT_STUCK = "안물렸어요"
+private const val ANALYTICS_CANCEL = "취소"
+
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
@@ -143,7 +151,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
             ratingLabel = loadedRating,
             onShareClicked = {
                 if (loadedScore != null) {
-                    val typeLabel = if (selectedType == FearIndexType.MARKET) "시장" else "암호화폐"
+                    val typeLabel = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO
                     analytics.log(AnalyticsEvent.공유버튼탭(지수타입 = typeLabel, 현재점수 = loadedScore))
                 }
             },
@@ -153,7 +161,10 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
         // 2. Segmented Picker: 시장 / 암호화폐
         SegmentedPicker(
-            items = listOf("시장", "암호화폐"),
+            items = listOf(
+                stringResource(R.string.tab_market),
+                stringResource(R.string.tab_crypto),
+            ),
             selectedIndex = selectedIndex,
             onItemSelected = { index ->
                 val type = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
@@ -186,11 +197,11 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     analytics.log(
                         AnalyticsEvent.투표참여(
                             선택 = when (newStatus) {
-                                UiStuckStatus.STUCK -> "물렸어요"
-                                UiStuckStatus.NOT_STUCK -> "안물렸어요"
-                                UiStuckStatus.NO_RESPONSE -> "취소"
+                                UiStuckStatus.STUCK -> ANALYTICS_STUCK
+                                UiStuckStatus.NOT_STUCK -> ANALYTICS_NOT_STUCK
+                                UiStuckStatus.NO_RESPONSE -> ANALYTICS_CANCEL
                             },
-                            지수타입 = if (selectedType == FearIndexType.MARKET) "시장" else "암호화폐",
+                            지수타입 = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO,
                             현재점수 = score,
                         ),
                     )
@@ -221,7 +232,7 @@ private fun TitleBar(
     val context = LocalContext.current
     Box(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = "공포 탐욕 지수",
+            text = stringResource(R.string.home_title),
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.Center),
@@ -252,7 +263,7 @@ private fun TitleBar(
         ) {
             Icon(
                 imageVector = Icons.Default.Share,
-                contentDescription = "공유",
+                contentDescription = stringResource(R.string.share_content_description),
                 tint = MaterialTheme.colorScheme.onBackground,
             )
         }
@@ -361,7 +372,7 @@ private fun ErrorContent(message: String, onRetry: () -> Unit) {
     )
     Spacer(modifier = Modifier.height(16.dp))
     Button(onClick = onRetry) {
-        Text("재시도")
+        Text(stringResource(R.string.retry_button))
     }
 }
 
@@ -432,7 +443,7 @@ private fun LoadedContent(
 
     // 6. Timestamp
     Text(
-        text = "Updated: ${timestampFormatter.format(fearIndex.timestamp)}",
+        text = stringResource(R.string.home_updated_at, timestampFormatter.format(fearIndex.timestamp)),
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         fontSize = 12.sp,

@@ -49,6 +49,7 @@ import th1ngjin.fearindex.domain.entity.HistoricalReturns
 import th1ngjin.fearindex.domain.entity.InsightType
 import th1ngjin.fearindex.domain.entity.MarketInsight
 import th1ngjin.fearindex.domain.entity.VelocityTrend
+import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
 import java.text.NumberFormat
 import java.util.Locale
@@ -152,41 +153,59 @@ private fun BuySignalContent(insight: MarketInsight) {
 
     if (returns == null) {
         Text(
-            text = "수익률 데이터가 부족합니다.",
+            text = stringResource(R.string.insight_detail_no_returns_data),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         return
     }
 
-    SectionTitle("시나리오 비교 ($basis)")
+    SectionTitle(stringResource(R.string.insight_detail_scenario_compare_title, basis))
     Spacer(modifier = Modifier.height(8.dp))
 
     // Header row
     ReturnGridRow(
         label = "",
-        m1 = "1개월",
-        m3 = "3개월",
-        m6 = "6개월",
-        y1 = "1년",
+        m1 = stringResource(R.string.period_month_1),
+        m3 = stringResource(R.string.period_month_3),
+        m6 = stringResource(R.string.period_month_6),
+        y1 = stringResource(R.string.period_year_1),
         isHeader = true,
     )
     returns.let {
-        ReturnGridRow("평균 수익률 ($basis)", it.oneMonth, it.threeMonth, it.sixMonth, it.oneYear)
+        ReturnGridRow(
+            stringResource(R.string.insight_detail_avg_return_basis, basis),
+            it.oneMonth,
+            it.threeMonth,
+            it.sixMonth,
+            it.oneYear,
+        )
     }
     worstCase?.let {
-        ReturnGridRow("최악의 경우", it.oneMonth, it.threeMonth, it.sixMonth, it.oneYear)
+        ReturnGridRow(
+            stringResource(R.string.insight_detail_worst_case),
+            it.oneMonth,
+            it.threeMonth,
+            it.sixMonth,
+            it.oneYear,
+        )
     }
     bestCase?.let {
-        ReturnGridRow("최선의 경우", it.oneMonth, it.threeMonth, it.sixMonth, it.oneYear)
+        ReturnGridRow(
+            stringResource(R.string.insight_detail_best_case),
+            it.oneMonth,
+            it.threeMonth,
+            it.sixMonth,
+            it.oneYear,
+        )
     }
 
     insight.sampleCount?.let { count ->
         Spacer(modifier = Modifier.height(8.dp))
         val sampleBasis = if (insight.indexType == FearIndexType.CRYPTO) {
-            "암호화폐 시장 심리 데이터 기준"
+            stringResource(R.string.insight_detail_sample_basis_crypto)
         } else {
-            "${count}번의 극단적 구간 기준 (S&P 500)"
+            stringResource(R.string.insight_detail_sample_basis_market, count)
         }
         Text(
             text = sampleBasis,
@@ -256,7 +275,7 @@ private fun ReturnGridRow(
 private fun HistoricalReturnContent(insight: MarketInsight) {
     if (insight.historicalEvents.isEmpty()) {
         Text(
-            text = "유사 시점 데이터가 부족합니다.",
+            text = stringResource(R.string.insight_detail_no_similar_data),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -266,7 +285,12 @@ private fun HistoricalReturnContent(insight: MarketInsight) {
     HistoricalContextCard(score = insight.score)
     Spacer(modifier = Modifier.height(12.dp))
 
-    SectionTitle("과거 유사 이벤트 (${indexTypeLabel(insight.indexType)})")
+    SectionTitle(
+        stringResource(
+            R.string.insight_detail_past_events_title,
+            indexTypeLabel(insight.indexType),
+        ),
+    )
     Spacer(modifier = Modifier.height(8.dp))
 
     insight.historicalEvents.forEach { event ->
@@ -288,13 +312,13 @@ private fun HistoricalContextCard(score: Int) {
             .padding(12.dp),
     ) {
         Text(
-            text = "현재와 비슷했던 과거 시점",
+            text = stringResource(R.string.insight_detail_similar_past_title),
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "공포지수 ${score}점 근처였던 과거 시점들입니다. 현재 시장 상황과 가장 유사한 역사적 순간을 참고하세요.",
+            text = stringResource(R.string.insight_detail_similar_past_body, score),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -320,7 +344,7 @@ private fun HistoricalEventCard(event: HistoricalEvent) {
                 fontWeight = FontWeight.SemiBold,
             )
             Text(
-                text = "점수 ${event.score}",
+                text = stringResource(R.string.insight_detail_event_score_label, event.score),
                 style = MaterialTheme.typography.labelSmall,
                 color = fearScoreColor(event.score),
             )
@@ -373,7 +397,7 @@ private fun ReturnChartContent(insight: MarketInsight) {
     val returns = insight.returns
     if (returns == null) {
         Text(
-            text = "수익률 데이터가 부족합니다.",
+            text = stringResource(R.string.insight_detail_no_returns_data),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -382,15 +406,19 @@ private fun ReturnChartContent(insight: MarketInsight) {
 
     var investAmount by remember { mutableStateOf("1000000") }
     val amount = investAmount.toLongOrNull() ?: 0L
-    val formatter = NumberFormat.getNumberInstance(Locale.KOREA)
 
-    SectionTitle("투자 시뮬레이션 (${indexTypeLabel(insight.indexType)})")
+    SectionTitle(
+        stringResource(
+            R.string.insight_detail_simulation_title,
+            indexTypeLabel(insight.indexType),
+        ),
+    )
     Spacer(modifier = Modifier.height(8.dp))
 
     OutlinedTextField(
         value = investAmount,
         onValueChange = { investAmount = it.filter { c -> c.isDigit() } },
-        label = { Text("투자 금액 (원)") },
+        label = { Text(stringResource(R.string.insight_detail_investment_label)) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         modifier = Modifier.fillMaxWidth(),
         singleLine = true,
@@ -399,10 +427,10 @@ private fun ReturnChartContent(insight: MarketInsight) {
     Spacer(modifier = Modifier.height(12.dp))
 
     if (amount > 0) {
-        SimulationRow("1개월 후", amount, returns.oneMonth)
-        SimulationRow("3개월 후", amount, returns.threeMonth)
-        SimulationRow("6개월 후", amount, returns.sixMonth)
-        SimulationRow("1년 후", amount, returns.oneYear)
+        SimulationRow(stringResource(R.string.period_month_1_after), amount, returns.oneMonth)
+        SimulationRow(stringResource(R.string.period_month_3_after), amount, returns.threeMonth)
+        SimulationRow(stringResource(R.string.period_month_6_after), amount, returns.sixMonth)
+        SimulationRow(stringResource(R.string.period_year_1_after), amount, returns.oneYear)
     }
 
     Spacer(modifier = Modifier.height(12.dp))
@@ -415,9 +443,9 @@ private fun ReturnChartContent(insight: MarketInsight) {
 @Composable
 private fun DisclaimerText(indexType: FearIndexType) {
     val text = if (indexType == FearIndexType.CRYPTO) {
-        "⚠️ Bitcoin(BTC) 가격 기준. 암호화폐는 극도로 변동성이 큽니다."
+        stringResource(R.string.insight_detail_disclaimer_crypto)
     } else {
-        "⚠️ S&P 500 과거 데이터 기준. 과거 성과는 미래 수익을 보장하지 않습니다."
+        stringResource(R.string.insight_detail_disclaimer_market)
     }
     Text(
         text = text,
@@ -449,12 +477,20 @@ private fun SimulationRow(
         )
         Column(horizontalAlignment = Alignment.End) {
             Text(
-                text = "${formatter.format(result)}원",
+                text = stringResource(
+                    R.string.insight_detail_amount_won,
+                    formatter.format(result),
+                ),
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.SemiBold,
             )
+            val signedDiff = "${if (diff >= 0) "+" else ""}${formatter.format(diff)}"
             Text(
-                text = "${if (diff >= 0) "+" else ""}${formatter.format(diff)}원 (${formatPercent(returnRate)})",
+                text = stringResource(
+                    R.string.insight_detail_amount_diff,
+                    signedDiff,
+                    formatPercent(returnRate),
+                ),
                 style = MaterialTheme.typography.labelSmall,
                 color = color,
             )
@@ -476,22 +512,22 @@ private fun DrawdownContent(insight: MarketInsight) {
     DrawdownContextCard(score = insight.score, indexTypeLabel = basis)
     Spacer(modifier = Modifier.height(12.dp))
 
-    SectionTitle("낙폭 분석 ($basis)")
+    SectionTitle(stringResource(R.string.insight_detail_drawdown_title, basis))
     Spacer(modifier = Modifier.height(8.dp))
 
     if (worstCase == null || returns == null) {
         Text(
-            text = "데이터가 부족합니다.",
+            text = stringResource(R.string.insight_detail_no_data),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         return
     }
 
-    DrawdownCompareRow("최대 낙폭 (1개월)", worstCase.oneMonth)
-    DrawdownCompareRow("최대 낙폭 (3개월)", worstCase.threeMonth)
-    DrawdownCompareRow("최대 낙폭 (6개월)", worstCase.sixMonth)
-    DrawdownCompareRow("최대 낙폭 (1년)", worstCase.oneYear)
+    DrawdownCompareRow(stringResource(R.string.drawdown_period_1m), worstCase.oneMonth)
+    DrawdownCompareRow(stringResource(R.string.drawdown_period_3m), worstCase.threeMonth)
+    DrawdownCompareRow(stringResource(R.string.drawdown_period_6m), worstCase.sixMonth)
+    DrawdownCompareRow(stringResource(R.string.drawdown_period_1y), worstCase.oneYear)
 
     Spacer(modifier = Modifier.height(8.dp))
     HorizontalDivider()
@@ -502,7 +538,7 @@ private fun DrawdownContent(insight: MarketInsight) {
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
-            text = "평균 1년 수익률",
+            text = stringResource(R.string.insight_detail_avg_1y_return),
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
         )
@@ -528,13 +564,17 @@ private fun DrawdownContextCard(score: Int, indexTypeLabel: String) {
             .padding(12.dp),
     ) {
         Text(
-            text = "이 수치는 어디서 나왔나요?",
+            text = stringResource(R.string.insight_detail_where_from_title),
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "현재 공포지수 ${score}점과 비슷했던 과거 시점들을 기반으로 $indexTypeLabel 수익률을 계산한 값입니다.",
+            text = stringResource(
+                R.string.insight_detail_where_from_body,
+                score,
+                indexTypeLabel,
+            ),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -570,11 +610,11 @@ private fun NudgeContent(insight: MarketInsight) {
     Spacer(modifier = Modifier.height(16.dp))
 
     // 투자 행동 가이드
-    SectionTitle("투자 행동 가이드")
+    SectionTitle(stringResource(R.string.insight_detail_action_guide_title))
     Spacer(modifier = Modifier.height(8.dp))
 
-    val tips = nudgeTips(insight.score)
-    tips.forEachIndexed { index, tip ->
+    val tipResIds = nudgeTipResIds(insight.score)
+    tipResIds.forEachIndexed { index, tipRes ->
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -587,7 +627,7 @@ private fun NudgeContent(insight: MarketInsight) {
                 modifier = Modifier.width(24.dp),
             )
             Text(
-                text = tip,
+                text = stringResource(tipRes),
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
@@ -599,7 +639,7 @@ private fun NudgeContent(insight: MarketInsight) {
  */
 @Composable
 private fun NudgeMainCard(score: Int) {
-    val (title, body) = nudgeMainMessage(score)
+    val (titleRes, bodyRes) = nudgeMainMessageResIds(score)
     val accent = fearScoreColor(score)
 
     Column(
@@ -610,48 +650,48 @@ private fun NudgeMainCard(score: Int) {
             .padding(16.dp),
     ) {
         Text(
-            text = title,
+            text = stringResource(titleRes),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
             color = accent,
         )
         Spacer(modifier = Modifier.height(6.dp))
         Text(
-            text = body,
+            text = stringResource(bodyRes, score),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface,
         )
     }
 }
 
-private fun nudgeMainMessage(score: Int): Pair<String, String> = when {
-    score <= 25 -> "극도의 공포 구간" to
-        "현재 공포지수 ${score}점은 시장이 매우 극도의 공포 상태임을 나타냅니다. " +
-        "역사적으로 이런 시기가 장기적으로 매수 기회가 된 경우가 많았습니다. " +
-        "단, 단기 추가 하락 가능성도 있습니다."
-    score >= 75 -> "극도의 탐욕 구간" to
-        "현재 공포지수 ${score}점은 시장이 과열된 상태임을 나타냅니다. " +
-        "역사적으로 이런 시기에 무리한 추가 매수보다 리스크 관리가 중요했습니다."
-    else -> "시장이 안정적인 구간" to
-        "현재 공포지수 ${score}점은 극단적 공포나 탐욕 없이 시장이 비교적 안정적인 상태입니다. " +
-        "일관된 장기 투자 전략을 유지하기 좋은 시기입니다."
+/**
+ * Score 구간별 Nudge 메시지 리소스 ID 쌍 (title, body).
+ * body는 `%1$d` 파라미터에 score를 받음.
+ */
+private fun nudgeMainMessageResIds(score: Int): Pair<Int, Int> = when {
+    score <= 25 -> R.string.nudge_title_extreme_fear to R.string.nudge_body_extreme_fear
+    score >= 75 -> R.string.nudge_title_extreme_greed to R.string.nudge_body_extreme_greed
+    else -> R.string.nudge_title_stable to R.string.nudge_body_stable
 }
 
-private fun nudgeTips(score: Int): List<String> = when {
+/**
+ * Score 구간별 Nudge 팁 3개의 리소스 ID 리스트.
+ */
+private fun nudgeTipResIds(score: Int): List<Int> = when {
     score <= 25 -> listOf(
-        "분할 매수로 진입 타이밍 분산",
-        "현금 비중 확인 후 여유 자금으로 매수",
-        "공포에 즉흥적으로 팔지 말기",
+        R.string.nudge_tip_fear_1,
+        R.string.nudge_tip_fear_2,
+        R.string.nudge_tip_fear_3,
     )
     score >= 75 -> listOf(
-        "포트폴리오 비중 점검",
-        "목표 수익 도달 시 일부 이익 실현",
-        "FOMO에 휩쓸리지 말기",
+        R.string.nudge_tip_greed_1,
+        R.string.nudge_tip_greed_2,
+        R.string.nudge_tip_greed_3,
     )
     else -> listOf(
-        "장기 투자 목표 확인",
-        "정기 적립 유지",
-        "포트폴리오 리밸런싱 검토",
+        R.string.nudge_tip_stable_1,
+        R.string.nudge_tip_stable_2,
+        R.string.nudge_tip_stable_3,
     )
 }
 
@@ -663,12 +703,12 @@ private fun nudgeTips(score: Int): List<String> = when {
 private fun VelocityContent(insight: MarketInsight) {
     val velocity = insight.velocity ?: return
 
-    SectionTitle("속도 분석")
+    SectionTitle(stringResource(R.string.velocity_analysis_title))
     Spacer(modifier = Modifier.height(8.dp))
 
     // 일간/7일 변화 + 모멘텀
-    VelocityRow("일간 변화", velocity.daily)
-    VelocityRow("7일 변화", velocity.weekly)
+    VelocityRow(stringResource(R.string.velocity_daily_change), velocity.daily)
+    VelocityRow(stringResource(R.string.velocity_weekly_change), velocity.weekly)
 
     Spacer(modifier = Modifier.height(4.dp))
 
@@ -680,11 +720,11 @@ private fun VelocityContent(insight: MarketInsight) {
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
-            text = "모멘텀",
+            text = stringResource(R.string.velocity_momentum_label),
             style = MaterialTheme.typography.bodyMedium,
         )
         Text(
-            text = momentumLabel(velocity.trend),
+            text = stringResource(momentumLabelResId(velocity.trend)),
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
             color = momentumColor(velocity.trend),
@@ -700,11 +740,11 @@ private fun VelocityContent(insight: MarketInsight) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = "추세",
+            text = stringResource(R.string.velocity_trend_label),
             style = MaterialTheme.typography.bodyMedium,
         )
         Text(
-            text = trendLabel(velocity.trend),
+            text = stringResource(trendLabelResId(velocity.trend)),
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
             color = trendColor(velocity.trend),
@@ -719,7 +759,7 @@ private fun VelocityContent(insight: MarketInsight) {
     // 스파크라인
     if (insight.velocityHistory.size >= 3) {
         Spacer(modifier = Modifier.height(16.dp))
-        SectionTitle("최근 15일 추세")
+        SectionTitle(stringResource(R.string.velocity_sparkline_title))
         Spacer(modifier = Modifier.height(8.dp))
         SparklineChart(
             scores = insight.velocityHistory.map { it.score },
@@ -743,24 +783,24 @@ private fun InflectionBanner() {
             .padding(12.dp),
     ) {
         Text(
-            text = "방향이 바뀌고 있어요!",
+            text = stringResource(R.string.velocity_inflection_title),
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
             color = Color(0xFFE65100),
         )
         Spacer(modifier = Modifier.height(2.dp))
         Text(
-            text = "최근 추세가 반전됐습니다 — 주목하세요.",
+            text = stringResource(R.string.velocity_inflection_body),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }
 
-private fun momentumLabel(trend: VelocityTrend): String = when (trend) {
-    VelocityTrend.CRASH_ACCELERATING, VelocityTrend.RALLY_ACCELERATING -> "빨라지는 중"
-    VelocityTrend.CRASH_DECELERATING, VelocityTrend.RALLY_DECELERATING -> "느려지는 중"
-    VelocityTrend.STABLE -> "안정적"
+private fun momentumLabelResId(trend: VelocityTrend): Int = when (trend) {
+    VelocityTrend.CRASH_ACCELERATING, VelocityTrend.RALLY_ACCELERATING -> R.string.momentum_accelerating
+    VelocityTrend.CRASH_DECELERATING, VelocityTrend.RALLY_DECELERATING -> R.string.momentum_decelerating
+    VelocityTrend.STABLE -> R.string.momentum_stable
 }
 
 private fun momentumColor(trend: VelocityTrend): Color = when (trend) {
@@ -860,12 +900,12 @@ private fun formatPercent(value: Double): String {
     return "$sign${"%.1f".format(value)}%"
 }
 
-private fun trendLabel(trend: VelocityTrend): String = when (trend) {
-    VelocityTrend.CRASH_ACCELERATING -> "급락 가속"
-    VelocityTrend.CRASH_DECELERATING -> "급락 둔화"
-    VelocityTrend.STABLE -> "안정"
-    VelocityTrend.RALLY_ACCELERATING -> "상승 가속"
-    VelocityTrend.RALLY_DECELERATING -> "상승 둔화"
+private fun trendLabelResId(trend: VelocityTrend): Int = when (trend) {
+    VelocityTrend.CRASH_ACCELERATING -> R.string.trend_crash_accelerating
+    VelocityTrend.CRASH_DECELERATING -> R.string.trend_crash_decelerating
+    VelocityTrend.STABLE -> R.string.trend_stable
+    VelocityTrend.RALLY_ACCELERATING -> R.string.trend_rally_accelerating
+    VelocityTrend.RALLY_DECELERATING -> R.string.trend_rally_decelerating
 }
 
 private fun trendColor(trend: VelocityTrend): Color = when (trend) {
