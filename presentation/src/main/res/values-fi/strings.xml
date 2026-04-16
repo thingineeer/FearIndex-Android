@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Ilmoitusasetukset</string>
+    <string name="back">Takaisin</string>
+    <string name="notification_push_title">Push-ilmoitukset</string>
+    <string name="notification_push_description">Saat ilmoituksen, kun pelkoindeksi saavuttaa kynnyksesi.</string>
+    <string name="notification_tab_market">Markkina</string>
+    <string name="notification_tab_crypto">Krypto</string>
+    <string name="notification_market_title">Markkinoiden pelkoindeksi-hälytykset</string>
+    <string name="notification_crypto_title">Krypton pelkoindeksi-hälytykset</string>
+    <string name="notification_lower_label">Alaraja (Pelko)</string>
+    <string name="notification_upper_label">Yläraja (Ahneus)</string>
+    <string name="notification_lower_description">Saat ilmoituksen, kun indeksi laskee %1$d tai alle.</string>
+    <string name="notification_upper_description">Saat ilmoituksen, kun indeksi saavuttaa %1$d tai enemmän.</string>
+    <string name="notification_info">Ilmoituksia tarkistetaan 15 minuutin välein. Saat enintään yhden ilmoituksen per kynnysalue päivässä.</string>
+    <string name="notification_sync_error">Synkronointi epäonnistui: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Samankaltaiset jaksot</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Ihmiset, jotka ovat jumissa juuri nyt</string>
+    <string name="stuck_info_content_description">Jumilaskurin tiedot</string>
+    <string name="stuck_percentage_label">Jumissa-osuus</string>
+    <string name="stuck_button_im_stuck">"🤙 Minäkin olen jumissa"</string>
+    <string name="stuck_button_im_safe">"✨ En ole jumissa"</string>
+    <string name="stuck_footer_guide">"🤙 Paina painiketta nähdäksesi reaaliajassa, kuinka moni on jumissa"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Päivän äänestys</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s ääni</string>
+    <string name="vote_total_participants">%1$d osallistujaa</string>
+    <string name="vote_once_notice">"✅ Vain 1 ääni päivässä"</string>
+    <string name="vote_next_countdown">Seuraavaan äänestykseen</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Tuottodataa ei ole riittävästi.</string>
+    <string name="insight_detail_no_data">Dataa ei ole riittävästi.</string>
+    <string name="insight_detail_scenario_compare_title">Skenaariovertailu (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Keskim. tuotto (%1$s)</string>
+    <string name="insight_detail_worst_case">Pahin tapaus</string>
+    <string name="insight_detail_best_case">Paras tapaus</string>
+    <string name="insight_detail_sample_basis_crypto">Perustuu kryptotunnelmadataan</string>
+    <string name="insight_detail_sample_basis_market">Perustuu %1$d äärimmäiseen jaksoon (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Samankaltaisten jaksojen dataa ei ole riittävästi.</string>
+    <string name="insight_detail_past_events_title">Aiemmat samankaltaiset tapahtumat (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Aiemmat nykyhetkeä muistuttavat jaksot</string>
+    <string name="insight_detail_similar_past_body">Historialliset hetket pelkoindeksin %1$d tienoilla. Katso, mikä muistuttaa eniten nykyistä markkinaa.</string>
+    <string name="insight_detail_event_score_label">Pistemäärä %1$d</string>
+    <string name="insight_detail_simulation_title">Sijoitussimulaatio (%1$s)</string>
+    <string name="insight_detail_investment_label">Sijoitussumma (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Perustuu Bitcoinin (BTC) hintoihin. Krypto on äärimmäisen volatiilia.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Perustuu S&amp;P 500 -historiadataan. Aiempi tuotto ei takaa tulevaa.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Pudotusanalyysi (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Keskim. 1v tuotto</string>
+    <string name="insight_detail_where_from_title">Mistä nämä luvut tulevat?</string>
+    <string name="insight_detail_where_from_body">%2$s tuotot laskettu aiempien pelkoindeksin %1$d lähellä olleiden jaksojen pohjalta.</string>
+    <string name="insight_detail_action_guide_title">Sijoitustoiminnan opas</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1kk</string>
+    <string name="period_month_3">3kk</string>
+    <string name="period_month_6">6kk</string>
+    <string name="period_year_1">1v</string>
+    <string name="period_month_1_after">1kk myöhemmin</string>
+    <string name="period_month_3_after">3kk myöhemmin</string>
+    <string name="period_month_6_after">6kk myöhemmin</string>
+    <string name="period_year_1_after">1v myöhemmin</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Maks. pudotus (1kk)</string>
+    <string name="drawdown_period_3m">Maks. pudotus (3kk)</string>
+    <string name="drawdown_period_6m">Maks. pudotus (6kk)</string>
+    <string name="drawdown_period_1y">Maks. pudotus (1v)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Äärimmäisen pelon alue</string>
+    <string name="nudge_body_extreme_fear">Pelkoindeksi %1$d viestii äärimmäisestä pelosta. Historiallisesti pitkän aikavälin ostomahdollisuus, mutta lyhyen aikavälin laskut ovat yhä mahdollisia.</string>
+    <string name="nudge_title_extreme_greed">Äärimmäisen ahneuden alue</string>
+    <string name="nudge_body_extreme_greed">Pelkoindeksi %1$d viestii ylikuumentuneesta markkinasta. Riskienhallinta on tässä tärkeämpää kuin lisäostot.</string>
+    <string name="nudge_title_stable">Vakaan markkinan alue</string>
+    <string name="nudge_body_stable">Pelkoindeksi %1$d viestii suhteellisen vakaasta markkinasta, jossa ei ole äärimmäistä pelkoa tai ahneutta. Hyvä tasaiselle pitkän aikavälin strategialle.</string>
+    <string name="nudge_tip_fear_1">Hajauta ajoitusta jakamalla ostoja</string>
+    <string name="nudge_tip_fear_2">Tarkista käteisvarat ennen ostoa</string>
+    <string name="nudge_tip_fear_3">Älä myy pelossa impulsiivisesti</string>
+    <string name="nudge_tip_greed_1">Tarkista salkun jakauma</string>
+    <string name="nudge_tip_greed_2">Kotiuta osa voitoista tavoitteissa</string>
+    <string name="nudge_tip_greed_3">Vältä FOMO:a</string>
+    <string name="nudge_tip_stable_1">Tarkista pitkän aikavälin tavoitteet</string>
+    <string name="nudge_tip_stable_2">Jatka säännöllisiä sijoituksia</string>
+    <string name="nudge_tip_stable_3">Harkitse tasapainotusta</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Nopeusanalyysi</string>
+    <string name="velocity_daily_change">Päivittäinen muutos</string>
+    <string name="velocity_weekly_change">7 päivän muutos</string>
+    <string name="velocity_momentum_label">Momentum</string>
+    <string name="velocity_trend_label">Trendi</string>
+    <string name="velocity_sparkline_title">Viimeiset 15 päivää</string>
+    <string name="velocity_inflection_title">Suunta on muuttumassa!</string>
+    <string name="velocity_inflection_body">Viimeaikainen trendi on kääntynyt — kiinnitä huomiota.</string>
+    <string name="momentum_accelerating">Kiihtyvä</string>
+    <string name="momentum_decelerating">Hidastuva</string>
+    <string name="momentum_stable">Vakaa</string>
+    <string name="trend_crash_accelerating">Romahdus kiihtyy</string>
+    <string name="trend_crash_decelerating">Romahdus hidastuu</string>
+    <string name="trend_stable">Vakaa</string>
+    <string name="trend_rally_accelerating">Nousu kiihtyy</string>
+    <string name="trend_rally_decelerating">Nousu hidastuu</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Markkina</string>
+    <string name="tab_crypto">Krypto</string>
+    <string name="current_index_label">Nykyinen indeksi</string>
+    <string name="vs_previous_close_label">vs edellinen päätös</string>
+    <string name="vs_previous_close_value">vs edellinen päätös %1$s</string>
+    <string name="share_content_description">Jaa</string>
+    <string name="retry_button">Yritä uudelleen</string>
+    <string name="home_updated_at">Päivitetty: %1$s</string>
 </resources>

@@ -60,5 +60,128 @@
     <string name="crypto_event_2021_peak">2021 Crypto Peak</string>
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
-    <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="crypto_event_iran_war_2026">Guerra Iran-Israele (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Impostazioni notifiche</string>
+    <string name="back">Indietro</string>
+    <string name="notification_push_title">Notifiche push</string>
+    <string name="notification_push_description">Ricevi una notifica quando l\'indice di paura raggiunge la tua soglia.</string>
+    <string name="notification_tab_market">Mercato</string>
+    <string name="notification_tab_crypto">Cripto</string>
+    <string name="notification_market_title">Avvisi indice di paura (Mercato)</string>
+    <string name="notification_crypto_title">Avvisi indice di paura (Cripto)</string>
+    <string name="notification_lower_label">Soglia bassa (Paura)</string>
+    <string name="notification_upper_label">Soglia alta (Avidità)</string>
+    <string name="notification_lower_description">Riceverai una notifica quando l\'indice scende a %1$d o meno.</string>
+    <string name="notification_upper_description">Riceverai una notifica quando l\'indice raggiunge %1$d o più.</string>
+    <string name="notification_info">Le notifiche vengono controllate ogni 15 minuti. Riceverai al massimo 1 notifica per fascia di soglia al giorno.</string>
+    <string name="notification_sync_error">Sincronizzazione non riuscita: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Periodi simili</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Persone bloccate in questo momento</string>
+    <string name="stuck_info_content_description">Informazioni sul contatore</string>
+    <string name="stuck_percentage_label">Tasso di bloccati</string>
+    <string name="stuck_button_im_stuck">"🤙 Sono bloccato anch\'io"</string>
+    <string name="stuck_button_im_safe">"✨ Non sono bloccato"</string>
+    <string name="stuck_footer_guide">"🤙 Tocca un pulsante per vedere in tempo reale quanti sono bloccati"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Voto di oggi</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Voto %1$s</string>
+    <string name="vote_total_participants">%1$d partecipanti</string>
+    <string name="vote_once_notice">"✅ Solo 1 voto al giorno"</string>
+    <string name="vote_next_countdown">Al prossimo voto</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Dati di rendimento insufficienti.</string>
+    <string name="insight_detail_no_data">Dati insufficienti.</string>
+    <string name="insight_detail_scenario_compare_title">Confronto di scenari (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Rendimento medio (%1$s)</string>
+    <string name="insight_detail_worst_case">Caso peggiore</string>
+    <string name="insight_detail_best_case">Caso migliore</string>
+    <string name="insight_detail_sample_basis_crypto">Basato sui dati di sentiment delle cripto</string>
+    <string name="insight_detail_sample_basis_market">Basato su %1$d periodi estremi (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Dati insufficienti su periodi simili.</string>
+    <string name="insight_detail_past_events_title">Eventi passati simili (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Periodi passati simili a oggi</string>
+    <string name="insight_detail_similar_past_body">Momenti storici vicini all\'indice di paura %1$d. Fai riferimento a quello più simile al mercato attuale.</string>
+    <string name="insight_detail_event_score_label">Punteggio %1$d</string>
+    <string name="insight_detail_simulation_title">Simulazione di investimento (%1$s)</string>
+    <string name="insight_detail_investment_label">Importo investito (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Basato sui prezzi di Bitcoin (BTC). Le cripto sono estremamente volatili.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Basato sui dati storici dell\'S&amp;P 500. I risultati passati non garantiscono i rendimenti futuri.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Analisi del drawdown (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Rendimento medio 1A</string>
+    <string name="insight_detail_where_from_title">Da dove vengono questi numeri?</string>
+    <string name="insight_detail_where_from_body">Rendimenti a %2$s calcolati in base a periodi passati vicini all\'indice di paura %1$d.</string>
+    <string name="insight_detail_action_guide_title">Guida all\'azione di investimento</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1M</string>
+    <string name="period_month_3">3M</string>
+    <string name="period_month_6">6M</string>
+    <string name="period_year_1">1A</string>
+    <string name="period_month_1_after">Tra 1M</string>
+    <string name="period_month_3_after">Tra 3M</string>
+    <string name="period_month_6_after">Tra 6M</string>
+    <string name="period_year_1_after">Tra 1A</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Drawdown max (1M)</string>
+    <string name="drawdown_period_3m">Drawdown max (3M)</string>
+    <string name="drawdown_period_6m">Drawdown max (6M)</string>
+    <string name="drawdown_period_1y">Drawdown max (1A)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">Zona di paura estrema</string>
+    <string name="nudge_body_extreme_fear">L\'indice di paura %1$d segnala paura estrema. Storicamente una opportunità di acquisto a lungo termine, ma sono ancora possibili cali nel breve periodo.</string>
+    <string name="nudge_title_extreme_greed">Zona di avidità estrema</string>
+    <string name="nudge_body_extreme_greed">L\'indice di paura %1$d segnala un mercato surriscaldato. Qui la gestione del rischio conta più di ulteriori acquisti.</string>
+    <string name="nudge_title_stable">Zona di mercato stabile</string>
+    <string name="nudge_body_stable">L\'indice di paura %1$d segnala un mercato relativamente stabile, senza paura o avidità estreme. Ideale per una strategia costante a lungo termine.</string>
+    <string name="nudge_tip_fear_1">Scaglionare gli acquisti per diversificare il timing</string>
+    <string name="nudge_tip_fear_2">Verificare le riserve di liquidità prima di acquistare</string>
+    <string name="nudge_tip_fear_3">Non vendere d\'impulso per paura</string>
+    <string name="nudge_tip_greed_1">Rivedere l\'allocazione del portafoglio</string>
+    <string name="nudge_tip_greed_2">Realizzare profitti parziali agli obiettivi</string>
+    <string name="nudge_tip_greed_3">Evitare la FOMO</string>
+    <string name="nudge_tip_stable_1">Verificare gli obiettivi di lungo termine</string>
+    <string name="nudge_tip_stable_2">Mantenere i versamenti periodici</string>
+    <string name="nudge_tip_stable_3">Valutare un ribilanciamento</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Analisi della velocità</string>
+    <string name="velocity_daily_change">Variazione giornaliera</string>
+    <string name="velocity_weekly_change">Variazione a 7 giorni</string>
+    <string name="velocity_momentum_label">Momentum</string>
+    <string name="velocity_trend_label">Tendenza</string>
+    <string name="velocity_sparkline_title">Ultimi 15 giorni</string>
+    <string name="velocity_inflection_title">La direzione sta cambiando!</string>
+    <string name="velocity_inflection_body">La tendenza recente si è invertita — presta attenzione.</string>
+    <string name="momentum_accelerating">In accelerazione</string>
+    <string name="momentum_decelerating">In decelerazione</string>
+    <string name="momentum_stable">Stabile</string>
+    <string name="trend_crash_accelerating">Crollo in accelerazione</string>
+    <string name="trend_crash_decelerating">Crollo in rallentamento</string>
+    <string name="trend_stable">Stabile</string>
+    <string name="trend_rally_accelerating">Rally in accelerazione</string>
+    <string name="trend_rally_decelerating">Rally in rallentamento</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Mercato</string>
+    <string name="tab_crypto">Cripto</string>
+    <string name="current_index_label">Indice attuale</string>
+    <string name="vs_previous_close_label">vs. chiusura precedente</string>
+    <string name="vs_previous_close_value">vs. chiusura precedente %1$s</string>
+    <string name="share_content_description">Condividi</string>
+    <string name="retry_button">Riprova</string>
+    <string name="home_updated_at">Aggiornato: %1$s</string>
 </resources>

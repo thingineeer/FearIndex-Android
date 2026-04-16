@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Mipangilio ya arifa</string>
+    <string name="back">Rudi</string>
+    <string name="notification_push_title">Arifa za kusukuma</string>
+    <string name="notification_push_description">Pokea arifa wakati kiashiria cha hofu kinapofikia kizingiti chako.</string>
+    <string name="notification_tab_market">Soko</string>
+    <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_market_title">Arifa za kiashiria cha hofu cha soko</string>
+    <string name="notification_crypto_title">Arifa za kiashiria cha hofu cha kripto</string>
+    <string name="notification_lower_label">Chini (Hofu)</string>
+    <string name="notification_upper_label">Juu (Tamaa)</string>
+    <string name="notification_lower_description">Utaarifiwa kiashiria kinaposhuka hadi %1$d au chini.</string>
+    <string name="notification_upper_description">Utaarifiwa kiashiria kinapofikia %1$d au juu.</string>
+    <string name="notification_info">Arifa huangaliwa kila dakika 15. Utapokea arifa 1 pekee kwa kila eneo la kizingiti kwa siku.</string>
+    <string name="notification_sync_error">Usawazishaji umeshindwa: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Vipindi vinavyofanana</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Watu waliokwama sasa hivi</string>
+    <string name="stuck_info_content_description">Maelezo ya kihesabio cha waliokwama</string>
+    <string name="stuck_percentage_label">Kiwango cha waliokwama</string>
+    <string name="stuck_button_im_stuck">"🤙 Mimi pia nimekwama"</string>
+    <string name="stuck_button_im_safe">"✨ Mimi sijakwama"</string>
+    <string name="stuck_footer_guide">"🤙 Bofya kitufe uone watu wangapi wamekwama kwa muda halisi"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Kura ya leo</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Kura ya %1$s</string>
+    <string name="vote_total_participants">Washiriki %1$d</string>
+    <string name="vote_once_notice">"✅ Kura 1 pekee kwa siku"</string>
+    <string name="vote_next_countdown">Hadi kura ijayo</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Data ya faida haitoshi.</string>
+    <string name="insight_detail_no_data">Data haitoshi.</string>
+    <string name="insight_detail_scenario_compare_title">Ulinganishaji wa matukio (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Faida ya wastani (%1$s)</string>
+    <string name="insight_detail_worst_case">Hali mbaya zaidi</string>
+    <string name="insight_detail_best_case">Hali bora zaidi</string>
+    <string name="insight_detail_sample_basis_crypto">Kulingana na data ya hisia za kripto</string>
+    <string name="insight_detail_sample_basis_market">Kulingana na vipindi %1$d vya kupita kiasi (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Data ya vipindi vinavyofanana haitoshi.</string>
+    <string name="insight_detail_past_events_title">Matukio yaliyofanana ya awali (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Vipindi vya awali vinavyofanana na sasa</string>
+    <string name="insight_detail_similar_past_body">Matukio ya kihistoria karibu na kiashiria cha hofu %1$d. Rejelea kile kinachofanana zaidi na soko la sasa.</string>
+    <string name="insight_detail_event_score_label">Alama %1$d</string>
+    <string name="insight_detail_simulation_title">Usimuzi wa uwekezaji (%1$s)</string>
+    <string name="insight_detail_investment_label">Kiasi cha uwekezaji (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Kulingana na bei za Bitcoin (BTC). Kripto ni tete sana.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Kulingana na data ya kihistoria ya S&amp;P 500. Utendaji wa zamani hauhakikishi faida za baadaye.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Uchambuzi wa kushuka (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Faida ya wastani ya mwaka 1</string>
+    <string name="insight_detail_where_from_title">Namba hizi zinatoka wapi?</string>
+    <string name="insight_detail_where_from_body">Faida za %2$s zimehesabiwa kulingana na vipindi vya zamani karibu na kiashiria cha hofu %1$d.</string>
+    <string name="insight_detail_action_guide_title">Mwongozo wa vitendo vya uwekezaji</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">M1</string>
+    <string name="period_month_3">M3</string>
+    <string name="period_month_6">M6</string>
+    <string name="period_year_1">M1K</string>
+    <string name="period_month_1_after">Baada ya mwezi 1</string>
+    <string name="period_month_3_after">Baada ya miezi 3</string>
+    <string name="period_month_6_after">Baada ya miezi 6</string>
+    <string name="period_year_1_after">Baada ya mwaka 1</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Kushuka kwa juu (mwezi 1)</string>
+    <string name="drawdown_period_3m">Kushuka kwa juu (miezi 3)</string>
+    <string name="drawdown_period_6m">Kushuka kwa juu (miezi 6)</string>
+    <string name="drawdown_period_1y">Kushuka kwa juu (mwaka 1)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Eneo la hofu kali</string>
+    <string name="nudge_body_extreme_fear">Kiashiria cha hofu %1$d kinaashiria hofu kali. Kihistoria ni fursa ya ununuzi wa muda mrefu, lakini kushuka kwa muda mfupi bado kunawezekana.</string>
+    <string name="nudge_title_extreme_greed">Eneo la tamaa kali</string>
+    <string name="nudge_body_extreme_greed">Kiashiria cha hofu %1$d kinaashiria soko lililochemka. Udhibiti wa hatari ni muhimu zaidi kuliko ununuzi wa ziada hapa.</string>
+    <string name="nudge_title_stable">Eneo la soko thabiti</string>
+    <string name="nudge_body_stable">Kiashiria cha hofu %1$d kinaashiria soko thabiti bila hofu au tamaa kali. Zuri kwa mkakati wa muda mrefu wa kawaida.</string>
+    <string name="nudge_tip_fear_1">Gawanya ingizo kusambaza muda</string>
+    <string name="nudge_tip_fear_2">Angalia akiba ya fedha kabla ya kununua</string>
+    <string name="nudge_tip_fear_3">Usiuze kwa hasira wakati wa hofu</string>
+    <string name="nudge_tip_greed_1">Kagua mgawanyo wa kwingineko</string>
+    <string name="nudge_tip_greed_2">Chukua faida sehemu unapofika shabaha</string>
+    <string name="nudge_tip_greed_3">Epuka FOMO</string>
+    <string name="nudge_tip_stable_1">Angalia malengo ya muda mrefu</string>
+    <string name="nudge_tip_stable_2">Endelea kuchangia mara kwa mara</string>
+    <string name="nudge_tip_stable_3">Fikiria kusawazisha upya</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Uchambuzi wa kasi</string>
+    <string name="velocity_daily_change">Mabadiliko ya kila siku</string>
+    <string name="velocity_weekly_change">Mabadiliko ya siku 7</string>
+    <string name="velocity_momentum_label">Msukumo</string>
+    <string name="velocity_trend_label">Mwelekeo</string>
+    <string name="velocity_sparkline_title">Siku 15 zilizopita</string>
+    <string name="velocity_inflection_title">Mwelekeo unabadilika!</string>
+    <string name="velocity_inflection_body">Mwelekeo wa hivi karibuni umebadilika — zingatia.</string>
+    <string name="momentum_accelerating">Inaharakisha</string>
+    <string name="momentum_decelerating">Inapunguza kasi</string>
+    <string name="momentum_stable">Thabiti</string>
+    <string name="trend_crash_accelerating">Kuanguka kunaharakisha</string>
+    <string name="trend_crash_decelerating">Kuanguka kunapungua</string>
+    <string name="trend_stable">Thabiti</string>
+    <string name="trend_rally_accelerating">Kupanda kunaharakisha</string>
+    <string name="trend_rally_decelerating">Kupanda kunapungua</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Soko</string>
+    <string name="tab_crypto">Kripto</string>
+    <string name="current_index_label">Kiashiria cha sasa</string>
+    <string name="vs_previous_close_label">dhidi ya kufunga kwa awali</string>
+    <string name="vs_previous_close_value">dhidi ya kufunga kwa awali %1$s</string>
+    <string name="share_content_description">Shiriki</string>
+    <string name="retry_button">Jaribu tena</string>
+    <string name="home_updated_at">Imesasishwa: %1$s</string>
 </resources>

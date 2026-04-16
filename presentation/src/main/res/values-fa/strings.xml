@@ -61,4 +61,126 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="insight_similar_events_similar_section_title">دوره‌های مشابه</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">تنظیمات اعلان‌ها</string>
+    <string name="back">بازگشت</string>
+    <string name="notification_push_title">اعلان‌های فوری</string>
+    <string name="notification_push_description">وقتی شاخص ترس به آستانه تعیین‌شده رسید به شما اطلاع داده می‌شود.</string>
+    <string name="notification_tab_market">بازار</string>
+    <string name="notification_tab_crypto">ارز دیجیتال</string>
+    <string name="notification_market_title">هشدارهای شاخص ترس بازار</string>
+    <string name="notification_crypto_title">هشدارهای شاخص ترس ارز دیجیتال</string>
+    <string name="notification_lower_label">حد پایین (ترس)</string>
+    <string name="notification_upper_label">حد بالا (طمع)</string>
+    <string name="notification_lower_description">زمانی که شاخص به %1$d یا کمتر برسد به شما اطلاع داده می‌شود.</string>
+    <string name="notification_upper_description">زمانی که شاخص به %1$d یا بیشتر برسد به شما اطلاع داده می‌شود.</string>
+    <string name="notification_info">اعلان‌ها هر ۱۵ دقیقه بررسی می‌شوند. در هر ناحیه حداکثر یک اعلان در روز دریافت می‌کنید.</string>
+    <string name="notification_sync_error">همگام‌سازی ناموفق: %1$s</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">افراد گیر افتاده در حال حاضر</string>
+    <string name="stuck_info_content_description">اطلاعات شمارنده گیر افتاده</string>
+    <string name="stuck_percentage_label">درصد گیر افتاده</string>
+    <string name="stuck_button_im_stuck">"🤙 من هم گیر افتادم"</string>
+    <string name="stuck_button_im_safe">"✨ من گیر نیفتادم"</string>
+    <string name="stuck_footer_guide">"🤙 روی یک دکمه بزنید تا ببینید همین الان چند نفر گیر افتاده‌اند"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">رأی‌گیری امروز</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">رأی %1$s</string>
+    <string name="vote_total_participants">%1$d شرکت‌کننده</string>
+    <string name="vote_once_notice">"✅ فقط یک رأی در روز"</string>
+    <string name="vote_next_countdown">تا رأی‌گیری بعدی</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">داده بازده کافی نیست.</string>
+    <string name="insight_detail_no_data">داده کافی نیست.</string>
+    <string name="insight_detail_scenario_compare_title">مقایسه سناریوها (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">بازده میانگین (%1$s)</string>
+    <string name="insight_detail_worst_case">بدترین حالت</string>
+    <string name="insight_detail_best_case">بهترین حالت</string>
+    <string name="insight_detail_sample_basis_crypto">بر اساس داده‌های احساسات بازار ارز دیجیتال</string>
+    <string name="insight_detail_sample_basis_market">بر اساس %1$d دوره شدید (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">داده‌های دوره‌های مشابه کافی نیست.</string>
+    <string name="insight_detail_past_events_title">رویدادهای مشابه گذشته (%1$s)</string>
+    <string name="insight_detail_similar_past_title">دوره‌های گذشته مشابه حال</string>
+    <string name="insight_detail_similar_past_body">لحظات تاریخی نزدیک به شاخص ترس %1$d. به آنچه بیشتر شبیه بازار فعلی است مراجعه کنید.</string>
+    <string name="insight_detail_event_score_label">امتیاز %1$d</string>
+    <string name="insight_detail_simulation_title">شبیه‌سازی سرمایه‌گذاری (%1$s)</string>
+    <string name="insight_detail_investment_label">مبلغ سرمایه‌گذاری (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ بر اساس قیمت بیت‌کوین (BTC). ارز دیجیتال بسیار پرنوسان است.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ بر اساس داده‌های تاریخی S&amp;P 500. عملکرد گذشته بازدهی آینده را تضمین نمی‌کند.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">تحلیل افت (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">میانگین بازده یک‌ساله</string>
+    <string name="insight_detail_where_from_title">این اعداد از کجا می‌آیند؟</string>
+    <string name="insight_detail_where_from_body">محاسبه‌شده از بازده %2$s بر اساس دوره‌های گذشته نزدیک به شاخص ترس %1$d.</string>
+    <string name="insight_detail_action_guide_title">راهنمای اقدام سرمایه‌گذاری</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">۱ ماه</string>
+    <string name="period_month_3">۳ ماه</string>
+    <string name="period_month_6">۶ ماه</string>
+    <string name="period_year_1">۱ سال</string>
+    <string name="period_month_1_after">۱ ماه بعد</string>
+    <string name="period_month_3_after">۳ ماه بعد</string>
+    <string name="period_month_6_after">۶ ماه بعد</string>
+    <string name="period_year_1_after">۱ سال بعد</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">بیشترین افت (۱ ماه)</string>
+    <string name="drawdown_period_3m">بیشترین افت (۳ ماه)</string>
+    <string name="drawdown_period_6m">بیشترین افت (۶ ماه)</string>
+    <string name="drawdown_period_1y">بیشترین افت (۱ سال)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">ناحیه ترس شدید</string>
+    <string name="nudge_body_extreme_fear">شاخص ترس %1$d نشان‌دهنده ترس شدید است. از نظر تاریخی فرصت خرید بلندمدت بوده، اما افت کوتاه‌مدت همچنان ممکن است.</string>
+    <string name="nudge_title_extreme_greed">ناحیه طمع شدید</string>
+    <string name="nudge_body_extreme_greed">شاخص ترس %1$d نشان‌دهنده بازار داغ است. اینجا مدیریت ریسک مهم‌تر از خرید بیشتر است.</string>
+    <string name="nudge_title_stable">ناحیه بازار پایدار</string>
+    <string name="nudge_body_stable">شاخص ترس %1$d نشان‌دهنده بازار نسبتاً پایدار بدون ترس یا طمع شدید است. برای استراتژی بلندمدت پایدار مناسب است.</string>
+    <string name="nudge_tip_fear_1">ورود را برای تنوع زمانی تقسیم کنید</string>
+    <string name="nudge_tip_fear_2">پیش از خرید ذخیره نقدی را بررسی کنید</string>
+    <string name="nudge_tip_fear_3">از روی ترس بدون فکر نفروشید</string>
+    <string name="nudge_tip_greed_1">تخصیص پرتفوی را بررسی کنید</string>
+    <string name="nudge_tip_greed_2">در اهداف، سود جزئی بگیرید</string>
+    <string name="nudge_tip_greed_3">از FOMO بپرهیزید</string>
+    <string name="nudge_tip_stable_1">اهداف بلندمدت را بررسی کنید</string>
+    <string name="nudge_tip_stable_2">مشارکت‌های منظم را حفظ کنید</string>
+    <string name="nudge_tip_stable_3">توازن مجدد را در نظر بگیرید</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">تحلیل سرعت</string>
+    <string name="velocity_daily_change">تغییر روزانه</string>
+    <string name="velocity_weekly_change">تغییر ۷ روزه</string>
+    <string name="velocity_momentum_label">مومنتوم</string>
+    <string name="velocity_trend_label">روند</string>
+    <string name="velocity_sparkline_title">۱۵ روز اخیر</string>
+    <string name="velocity_inflection_title">جهت در حال تغییر است!</string>
+    <string name="velocity_inflection_body">روند اخیر معکوس شده — توجه کنید.</string>
+    <string name="momentum_accelerating">در حال شتاب‌گیری</string>
+    <string name="momentum_decelerating">در حال کند شدن</string>
+    <string name="momentum_stable">پایدار</string>
+    <string name="trend_crash_accelerating">شتاب سقوط</string>
+    <string name="trend_crash_decelerating">کندی سقوط</string>
+    <string name="trend_stable">پایدار</string>
+    <string name="trend_rally_accelerating">شتاب صعود</string>
+    <string name="trend_rally_decelerating">کندی صعود</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">بازار</string>
+    <string name="tab_crypto">ارز دیجیتال</string>
+    <string name="current_index_label">شاخص فعلی</string>
+    <string name="vs_previous_close_label">نسبت به بسته‌شدن قبلی</string>
+    <string name="vs_previous_close_value">نسبت به بسته‌شدن قبلی %1$s</string>
+    <string name="share_content_description">اشتراک‌گذاری</string>
+    <string name="retry_button">تلاش مجدد</string>
+    <string name="home_updated_at">به‌روزرسانی: %1$s</string>
 </resources>

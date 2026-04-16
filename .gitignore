@@ -18,4 +18,9 @@ google-services.json
 *.apk
 *.aab
 *.jks
+# Secrets — ~/fearindex-secrets/ 규약 (상세: .claude/rules/secrets.md)
+/fearindex-secrets/
+gradle.properties.local
+*.keystore
+**/google-services.json
 .kotlin/

@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Értesítési beállítások</string>
+    <string name="back">Vissza</string>
+    <string name="notification_push_title">Push értesítések</string>
+    <string name="notification_push_description">Értesítést kap, amikor a félelemindex eléri a küszöböt.</string>
+    <string name="notification_tab_market">Piac</string>
+    <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_market_title">Piaci félelemindex figyelmeztetések</string>
+    <string name="notification_crypto_title">Kripto félelemindex figyelmeztetések</string>
+    <string name="notification_lower_label">Alsó (Félelem)</string>
+    <string name="notification_upper_label">Felső (Mohóság)</string>
+    <string name="notification_lower_description">Értesítést kap, amikor az index %1$d-re vagy az alá esik.</string>
+    <string name="notification_upper_description">Értesítést kap, amikor az index eléri a %1$d-et vagy afölé emelkedik.</string>
+    <string name="notification_info">Az értesítéseket 15 percenként ellenőrizzük. Naponta legfeljebb 1 értesítést kap küszöbzónánként.</string>
+    <string name="notification_sync_error">Szinkronizálás sikertelen: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Hasonló időszakok</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Most éppen beragadtak</string>
+    <string name="stuck_info_content_description">Beragadt-számláló információ</string>
+    <string name="stuck_percentage_label">Beragadási arány</string>
+    <string name="stuck_button_im_stuck">"🤙 Én is beragadtam"</string>
+    <string name="stuck_button_im_safe">"✨ Nem ragadtam be"</string>
+    <string name="stuck_footer_guide">"🤙 Nyomj meg egy gombot, hogy valós időben lásd, hányan ragadtak be"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Mai szavazás</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s szavazat</string>
+    <string name="vote_total_participants">%1$d résztvevő</string>
+    <string name="vote_once_notice">"✅ Naponta csak 1 szavazat"</string>
+    <string name="vote_next_countdown">A következő szavazásig</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Nincs elég hozamadat.</string>
+    <string name="insight_detail_no_data">Nincs elég adat.</string>
+    <string name="insight_detail_scenario_compare_title">Forgatókönyv-összehasonlítás (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Átl. hozam (%1$s)</string>
+    <string name="insight_detail_worst_case">Legrosszabb eset</string>
+    <string name="insight_detail_best_case">Legjobb eset</string>
+    <string name="insight_detail_sample_basis_crypto">Kriptohangulati adatok alapján</string>
+    <string name="insight_detail_sample_basis_market">%1$d szélsőséges időszak alapján (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Nincs elég adat a hasonló időszakokról.</string>
+    <string name="insight_detail_past_events_title">Korábbi hasonló események (%1$s)</string>
+    <string name="insight_detail_similar_past_title">A mostanihoz hasonló múltbeli időszakok</string>
+    <string name="insight_detail_similar_past_body">Történelmi pillanatok a %1$d félelemindex közelében. Vedd figyelembe, ami leginkább hasonlít a jelenlegi piachoz.</string>
+    <string name="insight_detail_event_score_label">Pontszám %1$d</string>
+    <string name="insight_detail_simulation_title">Befektetési szimuláció (%1$s)</string>
+    <string name="insight_detail_investment_label">Befektetési összeg (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Bitcoin (BTC) árfolyam alapján. A kripto rendkívül volatilis.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ S&amp;P 500 történelmi adatok alapján. A múltbeli teljesítmény nem garantálja a jövőbeli hozamot.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Visszaesés-elemzés (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Átl. 1 éves hozam</string>
+    <string name="insight_detail_where_from_title">Honnan származnak ezek a számok?</string>
+    <string name="insight_detail_where_from_body">%2$s hozam a %1$d félelemindex közelében lévő múltbeli időszakok alapján számolva.</string>
+    <string name="insight_detail_action_guide_title">Befektetési útmutató</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1H</string>
+    <string name="period_month_3">3H</string>
+    <string name="period_month_6">6H</string>
+    <string name="period_year_1">1É</string>
+    <string name="period_month_1_after">1 hónap múlva</string>
+    <string name="period_month_3_after">3 hónap múlva</string>
+    <string name="period_month_6_after">6 hónap múlva</string>
+    <string name="period_year_1_after">1 év múlva</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Max. visszaesés (1 hó)</string>
+    <string name="drawdown_period_3m">Max. visszaesés (3 hó)</string>
+    <string name="drawdown_period_6m">Max. visszaesés (6 hó)</string>
+    <string name="drawdown_period_1y">Max. visszaesés (1 év)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Extrém félelem zóna</string>
+    <string name="nudge_body_extreme_fear">A %1$d félelemindex extrém félelmet jelez. Történelmileg hosszú távú vételi lehetőség, de rövid távú esések még lehetségesek.</string>
+    <string name="nudge_title_extreme_greed">Extrém mohóság zóna</string>
+    <string name="nudge_body_extreme_greed">A %1$d félelemindex túlhevült piacot jelez. Itt a kockázatkezelés fontosabb a további vásárlásnál.</string>
+    <string name="nudge_title_stable">Stabil piac zóna</string>
+    <string name="nudge_body_stable">A %1$d félelemindex viszonylag stabil piacot jelez, szélsőséges félelem vagy mohóság nélkül. Jó az egyenletes hosszú távú stratégiához.</string>
+    <string name="nudge_tip_fear_1">Oszd meg a belépéseket az időzítés diverzifikálásához</string>
+    <string name="nudge_tip_fear_2">Vásárlás előtt ellenőrizd a készpénztartalékokat</string>
+    <string name="nudge_tip_fear_3">Ne adj el impulzívan félelemben</string>
+    <string name="nudge_tip_greed_1">Tekintsd át a portfólió allokációját</string>
+    <string name="nudge_tip_greed_2">A célok elérésénél vedd ki a részprofitot</string>
+    <string name="nudge_tip_greed_3">Kerüld a FOMO-t</string>
+    <string name="nudge_tip_stable_1">Ellenőrizd a hosszú távú célokat</string>
+    <string name="nudge_tip_stable_2">Tartsd fenn a rendszeres befizetéseket</string>
+    <string name="nudge_tip_stable_3">Fontold meg az újrasúlyozást</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Sebességelemzés</string>
+    <string name="velocity_daily_change">Napi változás</string>
+    <string name="velocity_weekly_change">7 napos változás</string>
+    <string name="velocity_momentum_label">Lendület</string>
+    <string name="velocity_trend_label">Trend</string>
+    <string name="velocity_sparkline_title">Utolsó 15 nap</string>
+    <string name="velocity_inflection_title">Változik az irány!</string>
+    <string name="velocity_inflection_body">A legutóbbi trend megfordult — figyelj oda.</string>
+    <string name="momentum_accelerating">Gyorsul</string>
+    <string name="momentum_decelerating">Lassul</string>
+    <string name="momentum_stable">Stabil</string>
+    <string name="trend_crash_accelerating">Zuhanás gyorsul</string>
+    <string name="trend_crash_decelerating">Zuhanás lassul</string>
+    <string name="trend_stable">Stabil</string>
+    <string name="trend_rally_accelerating">Emelkedés gyorsul</string>
+    <string name="trend_rally_decelerating">Emelkedés lassul</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Piac</string>
+    <string name="tab_crypto">Kripto</string>
+    <string name="current_index_label">Jelenlegi index</string>
+    <string name="vs_previous_close_label">az előző záráshoz képest</string>
+    <string name="vs_previous_close_value">az előző záráshoz képest %1$s</string>
+    <string name="share_content_description">Megosztás</string>
+    <string name="retry_button">Újrapróbálkozás</string>
+    <string name="home_updated_at">Frissítve: %1$s</string>
 </resources>

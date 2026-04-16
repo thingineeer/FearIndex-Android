@@ -61,4 +61,126 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="insight_similar_events_similar_section_title">فترات مشابهة</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">إعدادات الإشعارات</string>
+    <string name="back">رجوع</string>
+    <string name="notification_push_title">الإشعارات الفورية</string>
+    <string name="notification_push_description">تلقَّ إشعارًا عند وصول مؤشر الخوف إلى الحد الذي حددته.</string>
+    <string name="notification_tab_market">السوق</string>
+    <string name="notification_tab_crypto">العملات الرقمية</string>
+    <string name="notification_market_title">تنبيهات مؤشر خوف السوق</string>
+    <string name="notification_crypto_title">تنبيهات مؤشر خوف العملات الرقمية</string>
+    <string name="notification_lower_label">الحد الأدنى (خوف)</string>
+    <string name="notification_upper_label">الحد الأعلى (جشع)</string>
+    <string name="notification_lower_description">سيتم إشعارك عندما ينخفض المؤشر إلى %1$d أو أقل.</string>
+    <string name="notification_upper_description">سيتم إشعارك عندما يصل المؤشر إلى %1$d أو أعلى.</string>
+    <string name="notification_info">تُفحص الإشعارات كل 15 دقيقة. ستتلقى إشعارًا واحدًا كحد أقصى لكل نطاق في اليوم.</string>
+    <string name="notification_sync_error">فشل المزامنة: %1$s</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">العالقون الآن</string>
+    <string name="stuck_info_content_description">معلومات عداد العالقين</string>
+    <string name="stuck_percentage_label">نسبة العالقين</string>
+    <string name="stuck_button_im_stuck">"🤙 أنا عالق أيضًا"</string>
+    <string name="stuck_button_im_safe">"✨ أنا لست عالقًا"</string>
+    <string name="stuck_footer_guide">"🤙 اضغط زرًا لترى كم شخصًا عالق الآن في الوقت الفعلي"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">تصويت اليوم</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">تصويت %1$s</string>
+    <string name="vote_total_participants">%1$d مشارك</string>
+    <string name="vote_once_notice">"✅ تصويت واحد فقط في اليوم"</string>
+    <string name="vote_next_countdown">حتى التصويت التالي</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">بيانات العائد غير كافية.</string>
+    <string name="insight_detail_no_data">البيانات غير كافية.</string>
+    <string name="insight_detail_scenario_compare_title">مقارنة السيناريوهات (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">متوسط العائد (%1$s)</string>
+    <string name="insight_detail_worst_case">أسوأ الحالات</string>
+    <string name="insight_detail_best_case">أفضل الحالات</string>
+    <string name="insight_detail_sample_basis_crypto">استنادًا إلى بيانات معنويات العملات الرقمية</string>
+    <string name="insight_detail_sample_basis_market">استنادًا إلى %1$d فترة متطرفة (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">بيانات الفترات المشابهة غير كافية.</string>
+    <string name="insight_detail_past_events_title">أحداث مشابهة سابقة (%1$s)</string>
+    <string name="insight_detail_similar_past_title">فترات سابقة مشابهة للحاضر</string>
+    <string name="insight_detail_similar_past_body">لحظات تاريخية قريبة من مؤشر الخوف %1$d. راجع ما يشبه السوق الحالي أكثر.</string>
+    <string name="insight_detail_event_score_label">النتيجة %1$d</string>
+    <string name="insight_detail_simulation_title">محاكاة الاستثمار (%1$s)</string>
+    <string name="insight_detail_investment_label">مبلغ الاستثمار (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ استنادًا إلى أسعار بيتكوين (BTC). العملات الرقمية شديدة التقلب.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ استنادًا إلى البيانات التاريخية لـ S&amp;P 500. الأداء السابق لا يضمن العوائد المستقبلية.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">تحليل التراجع (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">متوسط عائد سنة</string>
+    <string name="insight_detail_where_from_title">من أين تأتي هذه الأرقام؟</string>
+    <string name="insight_detail_where_from_body">محسوبة من عوائد %2$s استنادًا إلى فترات سابقة قريبة من مؤشر الخوف %1$d.</string>
+    <string name="insight_detail_action_guide_title">دليل إجراءات الاستثمار</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">شهر</string>
+    <string name="period_month_3">3 أشهر</string>
+    <string name="period_month_6">6 أشهر</string>
+    <string name="period_year_1">سنة</string>
+    <string name="period_month_1_after">بعد شهر</string>
+    <string name="period_month_3_after">بعد 3 أشهر</string>
+    <string name="period_month_6_after">بعد 6 أشهر</string>
+    <string name="period_year_1_after">بعد سنة</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">أقصى تراجع (شهر)</string>
+    <string name="drawdown_period_3m">أقصى تراجع (3 أشهر)</string>
+    <string name="drawdown_period_6m">أقصى تراجع (6 أشهر)</string>
+    <string name="drawdown_period_1y">أقصى تراجع (سنة)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">منطقة خوف شديد</string>
+    <string name="nudge_body_extreme_fear">مؤشر الخوف %1$d يشير إلى خوف شديد. تاريخيًا كان فرصة شراء على المدى الطويل، لكن انخفاضات قصيرة الأجل لا تزال محتملة.</string>
+    <string name="nudge_title_extreme_greed">منطقة جشع شديد</string>
+    <string name="nudge_body_extreme_greed">مؤشر الخوف %1$d يشير إلى سوق محموم. إدارة المخاطر أهم من الشراء الإضافي هنا.</string>
+    <string name="nudge_title_stable">منطقة سوق مستقرة</string>
+    <string name="nudge_body_stable">مؤشر الخوف %1$d يشير إلى سوق مستقر نسبيًا دون خوف أو جشع شديد. مناسب لاستراتيجية طويلة الأمد ثابتة.</string>
+    <string name="nudge_tip_fear_1">قسّم عمليات الدخول لتنويع التوقيت</string>
+    <string name="nudge_tip_fear_2">تحقق من احتياطيات السيولة قبل الشراء</string>
+    <string name="nudge_tip_fear_3">لا تبع باندفاع بسبب الخوف</string>
+    <string name="nudge_tip_greed_1">راجع توزيع المحفظة</string>
+    <string name="nudge_tip_greed_2">جنِ أرباحًا جزئية عند الأهداف</string>
+    <string name="nudge_tip_greed_3">تجنب الخوف من تفويت الفرصة</string>
+    <string name="nudge_tip_stable_1">تحقق من أهدافك طويلة الأمد</string>
+    <string name="nudge_tip_stable_2">حافظ على المساهمات المنتظمة</string>
+    <string name="nudge_tip_stable_3">فكر في إعادة التوازن</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">تحليل السرعة</string>
+    <string name="velocity_daily_change">التغير اليومي</string>
+    <string name="velocity_weekly_change">تغير 7 أيام</string>
+    <string name="velocity_momentum_label">الزخم</string>
+    <string name="velocity_trend_label">الاتجاه</string>
+    <string name="velocity_sparkline_title">آخر 15 يومًا</string>
+    <string name="velocity_inflection_title">الاتجاه يتغير!</string>
+    <string name="velocity_inflection_body">انعكس الاتجاه مؤخرًا — انتبه.</string>
+    <string name="momentum_accelerating">يتسارع</string>
+    <string name="momentum_decelerating">يتباطأ</string>
+    <string name="momentum_stable">مستقر</string>
+    <string name="trend_crash_accelerating">تسارع الانهيار</string>
+    <string name="trend_crash_decelerating">تباطؤ الانهيار</string>
+    <string name="trend_stable">مستقر</string>
+    <string name="trend_rally_accelerating">تسارع الصعود</string>
+    <string name="trend_rally_decelerating">تباطؤ الصعود</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">السوق</string>
+    <string name="tab_crypto">العملات الرقمية</string>
+    <string name="current_index_label">المؤشر الحالي</string>
+    <string name="vs_previous_close_label">مقابل الإغلاق السابق</string>
+    <string name="vs_previous_close_value">مقابل الإغلاق السابق %1$s</string>
+    <string name="share_content_description">مشاركة</string>
+    <string name="retry_button">إعادة المحاولة</string>
+    <string name="home_updated_at">تم التحديث: %1$s</string>
 </resources>

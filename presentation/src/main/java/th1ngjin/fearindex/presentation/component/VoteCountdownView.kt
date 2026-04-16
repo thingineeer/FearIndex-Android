@@ -14,10 +14,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import th1ngjin.fearindex.presentation.R
 
 /**
  * "다음 투표까지 HH:MM:SS" 카운트다운 표시.
@@ -48,7 +50,7 @@ fun VoteCountdownView(
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
-            text = "\uB2E4\uC74C \uD22C\uD45C\uAE4C\uC9C0",
+            text = stringResource(R.string.vote_next_countdown),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

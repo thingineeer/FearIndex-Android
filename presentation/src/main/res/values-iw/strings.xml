@@ -61,4 +61,126 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="insight_similar_events_similar_section_title">תקופות דומות</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">הגדרות התראות</string>
+    <string name="back">חזרה</string>
+    <string name="notification_push_title">התראות פוש</string>
+    <string name="notification_push_description">קבל התראה כשמדד הפחד מגיע לסף שהגדרת.</string>
+    <string name="notification_tab_market">שוק</string>
+    <string name="notification_tab_crypto">קריפטו</string>
+    <string name="notification_market_title">התראות מדד פחד השוק</string>
+    <string name="notification_crypto_title">התראות מדד פחד הקריפטו</string>
+    <string name="notification_lower_label">תחתון (פחד)</string>
+    <string name="notification_upper_label">עליון (חמדנות)</string>
+    <string name="notification_lower_description">תקבל התראה כשהמדד יורד ל-%1$d ומטה.</string>
+    <string name="notification_upper_description">תקבל התראה כשהמדד מגיע ל-%1$d ומעלה.</string>
+    <string name="notification_info">ההתראות נבדקות כל 15 דקות. תקבל התראה אחת לכל היותר לכל טווח ביום.</string>
+    <string name="notification_sync_error">הסנכרון נכשל: %1$s</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">תקועים כרגע</string>
+    <string name="stuck_info_content_description">מידע על מונה התקועים</string>
+    <string name="stuck_percentage_label">שיעור תקועים</string>
+    <string name="stuck_button_im_stuck">"🤙 גם אני תקוע"</string>
+    <string name="stuck_button_im_safe">"✨ אני לא תקוע"</string>
+    <string name="stuck_footer_guide">"🤙 הקש על כפתור לראות כמה תקועים עכשיו בזמן אמת"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">ההצבעה של היום</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">הצבעה ל-%1$s</string>
+    <string name="vote_total_participants">%1$d משתתפים</string>
+    <string name="vote_once_notice">"✅ הצבעה אחת בלבד ליום"</string>
+    <string name="vote_next_countdown">עד ההצבעה הבאה</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">אין מספיק נתוני תשואה.</string>
+    <string name="insight_detail_no_data">אין מספיק נתונים.</string>
+    <string name="insight_detail_scenario_compare_title">השוואת תרחישים (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">תשואה ממוצעת (%1$s)</string>
+    <string name="insight_detail_worst_case">התרחיש הגרוע ביותר</string>
+    <string name="insight_detail_best_case">התרחיש הטוב ביותר</string>
+    <string name="insight_detail_sample_basis_crypto">על סמך נתוני סנטימנט קריפטו</string>
+    <string name="insight_detail_sample_basis_market">על סמך %1$d תקופות קיצון (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">אין מספיק נתונים על תקופות דומות.</string>
+    <string name="insight_detail_past_events_title">אירועים דומים בעבר (%1$s)</string>
+    <string name="insight_detail_similar_past_title">תקופות עבר דומות להווה</string>
+    <string name="insight_detail_similar_past_body">רגעים היסטוריים בסביבת מדד פחד %1$d. התייחס למה שדומה ביותר לשוק הנוכחי.</string>
+    <string name="insight_detail_event_score_label">ציון %1$d</string>
+    <string name="insight_detail_simulation_title">סימולציית השקעה (%1$s)</string>
+    <string name="insight_detail_investment_label">סכום השקעה (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ מבוסס על מחירי ביטקוין (BTC). קריפטו תנודתי ביותר.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ מבוסס על נתוני S&amp;P 500 היסטוריים. ביצועי עבר אינם מבטיחים תשואות עתידיות.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">ניתוח ירידה (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">תשואה שנתית ממוצעת</string>
+    <string name="insight_detail_where_from_title">מאיפה המספרים האלה?</string>
+    <string name="insight_detail_where_from_body">חושב מתשואות %2$s על סמך תקופות עבר בסביבת מדד פחד %1$d.</string>
+    <string name="insight_detail_action_guide_title">מדריך פעולות השקעה</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">חודש</string>
+    <string name="period_month_3">3 חודשים</string>
+    <string name="period_month_6">6 חודשים</string>
+    <string name="period_year_1">שנה</string>
+    <string name="period_month_1_after">חודש לאחר</string>
+    <string name="period_month_3_after">3 חודשים לאחר</string>
+    <string name="period_month_6_after">6 חודשים לאחר</string>
+    <string name="period_year_1_after">שנה לאחר</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">ירידה מרבית (חודש)</string>
+    <string name="drawdown_period_3m">ירידה מרבית (3 חודשים)</string>
+    <string name="drawdown_period_6m">ירידה מרבית (6 חודשים)</string>
+    <string name="drawdown_period_1y">ירידה מרבית (שנה)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">אזור פחד קיצוני</string>
+    <string name="nudge_body_extreme_fear">מדד פחד %1$d מאותת על פחד קיצוני. היסטורית הזדמנות קנייה לטווח ארוך, אך ירידות קצרות טווח עדיין אפשריות.</string>
+    <string name="nudge_title_extreme_greed">אזור חמדנות קיצונית</string>
+    <string name="nudge_body_extreme_greed">מדד פחד %1$d מאותת על שוק לוהט. ניהול סיכונים חשוב יותר מקנייה נוספת כאן.</string>
+    <string name="nudge_title_stable">אזור שוק יציב</string>
+    <string name="nudge_body_stable">מדד פחד %1$d מאותת על שוק יציב יחסית ללא פחד או חמדנות קיצוניים. מתאים לאסטרטגיה ארוכת טווח עקבית.</string>
+    <string name="nudge_tip_fear_1">פצל כניסות כדי לגוון תזמון</string>
+    <string name="nudge_tip_fear_2">בדוק רזרבות מזומנים לפני קנייה</string>
+    <string name="nudge_tip_fear_3">אל תמכור בפזיזות מתוך פחד</string>
+    <string name="nudge_tip_greed_1">בחן את הקצאת התיק</string>
+    <string name="nudge_tip_greed_2">קח רווח חלקי ביעדים</string>
+    <string name="nudge_tip_greed_3">הימנע מ-FOMO</string>
+    <string name="nudge_tip_stable_1">בדוק יעדים ארוכי טווח</string>
+    <string name="nudge_tip_stable_2">שמור על הפקדות סדירות</string>
+    <string name="nudge_tip_stable_3">שקול איזון מחדש</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">ניתוח מהירות</string>
+    <string name="velocity_daily_change">שינוי יומי</string>
+    <string name="velocity_weekly_change">שינוי 7 ימים</string>
+    <string name="velocity_momentum_label">מומנטום</string>
+    <string name="velocity_trend_label">מגמה</string>
+    <string name="velocity_sparkline_title">15 הימים האחרונים</string>
+    <string name="velocity_inflection_title">הכיוון משתנה!</string>
+    <string name="velocity_inflection_body">המגמה האחרונה התהפכה — שים לב.</string>
+    <string name="momentum_accelerating">מאיץ</string>
+    <string name="momentum_decelerating">מאט</string>
+    <string name="momentum_stable">יציב</string>
+    <string name="trend_crash_accelerating">התרסקות מואצת</string>
+    <string name="trend_crash_decelerating">התרסקות מואטת</string>
+    <string name="trend_stable">יציב</string>
+    <string name="trend_rally_accelerating">ראלי מואץ</string>
+    <string name="trend_rally_decelerating">ראלי מואט</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">שוק</string>
+    <string name="tab_crypto">קריפטו</string>
+    <string name="current_index_label">מדד נוכחי</string>
+    <string name="vs_previous_close_label">לעומת סגירה קודמת</string>
+    <string name="vs_previous_close_value">לעומת סגירה קודמת %1$s</string>
+    <string name="share_content_description">שיתוף</string>
+    <string name="retry_button">נסה שוב</string>
+    <string name="home_updated_at">עודכן: %1$s</string>
 </resources>

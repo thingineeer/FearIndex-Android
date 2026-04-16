@@ -316,12 +316,19 @@ stuckStatus/user_{deviceId}      # Admin SDK 전용
 - `buildConfigField`로 빌드 타입 분기 (`app/build.gradle.kts`에 선언됨)
 - release AAB 빌드 전 반드시 App ID 확인
 
-## Release Signing
+## Release Signing & Secrets
 
-- **Keystore 위치**: `~/fearindex-release.keystore` (프로젝트 외부, 절대 커밋 금지)
-- **비밀번호**: `~/.gradle/gradle.properties` 내 `FEARINDEX_STORE_PASSWORD` 참조
-- **Key Alias**: `fearindex`
+모든 빌드/배포 비밀 파일은 **`~/fearindex-secrets/` 한 곳**에만 보관. 상세 규칙: `@.claude/rules/secrets.md`
+
+| 파일 | 경로 | 용도 |
+|---|---|---|
+| Keystore | `~/fearindex-secrets/fearindex-release.keystore` | 릴리즈 서명 (alias `fearindex`) |
+| Gradle 비밀번호 | `~/fearindex-secrets/gradle.properties` → `~/.gradle/gradle.properties` (install.sh가 복사) | `FEARINDEX_STORE_PASSWORD` 등 |
+| Firebase 설정 | `~/fearindex-secrets/google-services.json` → `app/google-services.json` (심볼릭 링크) | Firebase BoM 초기화 |
+
 - **SHA-1 / SHA-256**: Firebase Console에 등록 완료
+- **새 맥 셋업**: 다른 맥에서 `~/fearindex-secrets/` 통째로 AirDrop → `bash ~/fearindex-secrets/install.sh` 실행
+- **절대 커밋 금지** (git hook + `.gitignore`로 차단)
 
 자세한 배포 절차는 `@.claude/memory/deployment.md` 및 `@docs/GOOGLE-PLAY-INTERNAL-TEST.md` 참조.
 

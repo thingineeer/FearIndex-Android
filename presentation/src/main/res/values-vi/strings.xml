@@ -15,50 +15,176 @@
     <string name="share_message_template">Chỉ số Sợ hãi và Tham lam hôm nay: %1$d (%2$s)\n\nTheo dõi tâm lý thị trường thời gian thực với ứng dụng Fear &amp; Greed Index.</string>
     <string name="share_chooser_title">Chia sẻ qua</string>
 
-    <!-- v1.7.9 new keys -->
-    <string name="insight_similar_events_title">Similar Past Periods</string>
-    <string name="insight_similar_events_score_label">Current %1$d</string>
-    <string name="insight_similar_events_pinned_title">What if you bought at major lows?</string>
-    <string name="insight_similar_events_empty">No similar historical periods found</string>
-    <string name="insight_similar_events_one_year_return">1Y S&amp;P %1$s</string>
-    <string name="insight_similar_events_ongoing">Ongoing</string>
-    <string name="insight_similar_events_sim_very">Very Similar</string>
-    <string name="insight_similar_events_sim_close">Similar</string>
-    <string name="insight_similar_events_sim_moderate">Moderate</string>
-    <string name="insight_similar_events_sim_far">Slightly Similar</string>
-    <string name="insight_similar_events_aggregate_title">Average for score %1$d range</string>
-    <string name="insight_similar_events_aggregate_summary">1Y avg %1$s (n=%2$d)</string>
-    <string name="insight_similar_events_disclaimer">Past returns do not guarantee future results</string>
-    <string name="insight_current_score_title">If you buy at %1$d</string>
-    <string name="insight_current_score_avg_return">Avg Return</string>
-    <string name="insight_current_score_max_drawdown">Max Drawdown</string>
-    <string name="insight_current_score_best_return">Best Return</string>
+    <!-- SimilarEvents card -->
+    <string name="insight_similar_events_title">Các giai đoạn tương tự trong quá khứ</string>
+    <string name="insight_similar_events_score_label">Hiện tại %1$d</string>
+    <string name="insight_similar_events_pinned_title">Nếu bạn mua ở các đáy lớn?</string>
+    <string name="insight_similar_events_empty">Không tìm thấy giai đoạn lịch sử tương tự</string>
+    <string name="insight_similar_events_one_year_return">1 năm S&amp;P %1$s</string>
+    <string name="insight_similar_events_ongoing">Đang diễn ra</string>
+    <string name="insight_similar_events_sim_very">Rất tương tự</string>
+    <string name="insight_similar_events_sim_close">Tương tự</string>
+    <string name="insight_similar_events_sim_moderate">Trung bình</string>
+    <string name="insight_similar_events_sim_far">Hơi tương tự</string>
+    <string name="insight_similar_events_aggregate_title">Trung bình dải điểm %1$d</string>
+    <string name="insight_similar_events_aggregate_summary">TB 1 năm %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">Lợi nhuận quá khứ không đảm bảo kết quả tương lai</string>
+    <string name="insight_current_score_title">Nếu bạn mua tại %1$d</string>
+    <string name="insight_current_score_avg_return">Lợi nhuận TB</string>
+    <string name="insight_current_score_max_drawdown">Mức sụt giảm tối đa</string>
+    <string name="insight_current_score_best_return">Lợi nhuận cao nhất</string>
     <string name="insight_current_score_sample_count">n=%1$d</string>
-    <string name="insight_event_score">%1$d pts</string>
-    <string name="event_covid">COVID-19 Pandemic Low</string>
-    <string name="event_tariff">2025 Tariff Crisis</string>
-    <string name="event_inflation">2022 Inflation Scare</string>
-    <string name="event_delta">Delta Variant Spread</string>
-    <string name="event_trade_war">US-China Trade War</string>
-    <string name="event_svb">SVB Bank Run</string>
-    <string name="event_reopening">2021 Economic Reopening</string>
-    <string name="event_post_election">Post 2024 Election</string>
-    <string name="event_2021bull">2021 Bull Market</string>
-    <string name="event_ai_rally">AI Rally</string>
-    <string name="event_pre_covid">Pre-COVID High</string>
-    <string name="event_dotcom">Dotcom Bubble Peak</string>
-    <string name="event_iran_war_2026">Iran-Israel War (2026)</string>
-    <string name="crypto_event_covid">COVID-19 Crypto Crash</string>
-    <string name="crypto_event_luna">LUNA/UST Collapse</string>
-    <string name="crypto_event_ftx">FTX Bankruptcy</string>
-    <string name="crypto_event_china_ban">China Crypto Ban</string>
-    <string name="crypto_event_svb">SVB Bank Run (Crypto)</string>
-    <string name="crypto_event_sec">SEC Lawsuit</string>
-    <string name="crypto_event_halving_2024">2024 Bitcoin Halving</string>
-    <string name="crypto_event_etf_approval">Bitcoin Spot ETF Approval</string>
+    <string name="insight_event_score">%1$d điểm</string>
+
+    <!-- Historical events (Market) -->
+    <string name="event_covid">Đáy đại dịch COVID-19</string>
+    <string name="event_tariff">Khủng hoảng thuế quan 2025</string>
+    <string name="event_inflation">Nỗi sợ lạm phát 2022</string>
+    <string name="event_delta">Biến thể Delta lan rộng</string>
+    <string name="event_trade_war">Chiến tranh thương mại Mỹ-Trung</string>
+    <string name="event_svb">SVB bị rút tiền hàng loạt</string>
+    <string name="event_reopening">Tái mở cửa kinh tế 2021</string>
+    <string name="event_post_election">Sau bầu cử 2024</string>
+    <string name="event_2021bull">Thị trường tăng 2021</string>
+    <string name="event_ai_rally">Đợt tăng AI</string>
+    <string name="event_pre_covid">Đỉnh trước COVID</string>
+    <string name="event_dotcom">Đỉnh bong bóng dotcom</string>
+    <string name="event_iran_war_2026">Chiến tranh Iran-Israel (2026)</string>
+
+    <!-- Historical events (Crypto) -->
+    <string name="crypto_event_covid">Crypto lao dốc vì COVID-19</string>
+    <string name="crypto_event_luna">Sụp đổ LUNA/UST</string>
+    <string name="crypto_event_ftx">FTX phá sản</string>
+    <string name="crypto_event_china_ban">Trung Quốc cấm crypto</string>
+    <string name="crypto_event_svb">SVB bị rút tiền (crypto)</string>
+    <string name="crypto_event_sec">Vụ kiện SEC</string>
+    <string name="crypto_event_halving_2024">Bitcoin halving 2024</string>
+    <string name="crypto_event_etf_approval">Phê duyệt Bitcoin spot ETF</string>
     <string name="crypto_event_defi_summer">DeFi Summer</string>
-    <string name="crypto_event_2021_peak">2021 Crypto Peak</string>
+    <string name="crypto_event_2021_peak">Đỉnh crypto 2021</string>
     <string name="crypto_event_trump_pump">Trump Pump</string>
-    <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
-    <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="crypto_event_2017_peak">Đỉnh crypto 2017</string>
+    <string name="crypto_event_iran_war_2026">Chiến tranh Iran-Israel (2026)</string>
+    <string name="insight_similar_events_similar_section_title">Giai đoạn tương tự</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Cài đặt thông báo</string>
+    <string name="back">Quay lại</string>
+    <string name="notification_push_title">Thông báo đẩy</string>
+    <string name="notification_push_description">Nhận thông báo khi chỉ số sợ hãi đạt ngưỡng bạn đặt.</string>
+    <string name="notification_tab_market">Thị trường</string>
+    <string name="notification_tab_crypto">Crypto</string>
+    <string name="notification_market_title">Cảnh báo chỉ số sợ hãi thị trường</string>
+    <string name="notification_crypto_title">Cảnh báo chỉ số sợ hãi crypto</string>
+    <string name="notification_lower_label">Ngưỡng dưới (Sợ hãi)</string>
+    <string name="notification_upper_label">Ngưỡng trên (Tham lam)</string>
+    <string name="notification_lower_description">Bạn sẽ được thông báo khi chỉ số giảm xuống %1$d hoặc thấp hơn.</string>
+    <string name="notification_upper_description">Bạn sẽ được thông báo khi chỉ số đạt %1$d hoặc cao hơn.</string>
+    <string name="notification_info">Thông báo được kiểm tra mỗi 15 phút. Bạn sẽ nhận tối đa 1 thông báo mỗi vùng ngưỡng mỗi ngày.</string>
+    <string name="notification_sync_error">Đồng bộ thất bại: %1$s</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Người đang bị kẹt hàng lúc này</string>
+    <string name="stuck_info_content_description">Thông tin bộ đếm kẹt hàng</string>
+    <string name="stuck_percentage_label">Tỷ lệ kẹt hàng</string>
+    <string name="stuck_button_im_stuck">"🤙 Tôi cũng bị kẹt"</string>
+    <string name="stuck_button_im_safe">"✨ Tôi không bị kẹt"</string>
+    <string name="stuck_footer_guide">"🤙 Nhấn nút để xem có bao nhiêu người đang kẹt hàng theo thời gian thực"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Bình chọn hôm nay</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Bình chọn %1$s</string>
+    <string name="vote_total_participants">%1$d người tham gia</string>
+    <string name="vote_once_notice">"✅ Chỉ được bình chọn 1 lần mỗi ngày"</string>
+    <string name="vote_next_countdown">Đến lượt bình chọn kế tiếp</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Không đủ dữ liệu lợi nhuận.</string>
+    <string name="insight_detail_no_data">Không đủ dữ liệu.</string>
+    <string name="insight_detail_scenario_compare_title">So sánh kịch bản (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Lợi nhuận TB (%1$s)</string>
+    <string name="insight_detail_worst_case">Tình huống xấu nhất</string>
+    <string name="insight_detail_best_case">Tình huống tốt nhất</string>
+    <string name="insight_detail_sample_basis_crypto">Dựa trên dữ liệu tâm lý thị trường crypto</string>
+    <string name="insight_detail_sample_basis_market">Dựa trên %1$d giai đoạn cực đoan (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Không đủ dữ liệu giai đoạn tương tự.</string>
+    <string name="insight_detail_past_events_title">Các sự kiện tương tự trong quá khứ (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Các giai đoạn quá khứ giống hiện tại</string>
+    <string name="insight_detail_similar_past_body">Những thời điểm lịch sử gần chỉ số sợ hãi %1$d. Hãy tham khảo thời điểm giống thị trường hiện tại nhất.</string>
+    <string name="insight_detail_event_score_label">Điểm %1$d</string>
+    <string name="insight_detail_simulation_title">Mô phỏng đầu tư (%1$s)</string>
+    <string name="insight_detail_investment_label">Số tiền đầu tư (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Dựa trên giá Bitcoin (BTC). Crypto biến động cực kỳ lớn.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Dựa trên dữ liệu lịch sử S&amp;P 500. Hiệu suất quá khứ không đảm bảo lợi nhuận tương lai.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Phân tích sụt giảm (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Lợi nhuận TB 1 năm</string>
+    <string name="insight_detail_where_from_title">Những con số này đến từ đâu?</string>
+    <string name="insight_detail_where_from_body">Tính lợi nhuận %2$s dựa trên các giai đoạn quá khứ gần chỉ số sợ hãi %1$d.</string>
+    <string name="insight_detail_action_guide_title">Hướng dẫn hành động đầu tư</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1M</string>
+    <string name="period_month_3">3M</string>
+    <string name="period_month_6">6M</string>
+    <string name="period_year_1">1Y</string>
+    <string name="period_month_1_after">Sau 1 tháng</string>
+    <string name="period_month_3_after">Sau 3 tháng</string>
+    <string name="period_month_6_after">Sau 6 tháng</string>
+    <string name="period_year_1_after">Sau 1 năm</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Sụt giảm tối đa (1M)</string>
+    <string name="drawdown_period_3m">Sụt giảm tối đa (3M)</string>
+    <string name="drawdown_period_6m">Sụt giảm tối đa (6M)</string>
+    <string name="drawdown_period_1y">Sụt giảm tối đa (1Y)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">Vùng sợ hãi cực độ</string>
+    <string name="nudge_body_extreme_fear">Chỉ số sợ hãi %1$d cho thấy sợ hãi cực độ. Trong quá khứ đây thường là cơ hội mua dài hạn, nhưng ngắn hạn vẫn có thể giảm thêm.</string>
+    <string name="nudge_title_extreme_greed">Vùng tham lam cực độ</string>
+    <string name="nudge_body_extreme_greed">Chỉ số sợ hãi %1$d cho thấy thị trường quá nóng. Quản trị rủi ro quan trọng hơn việc mua thêm.</string>
+    <string name="nudge_title_stable">Vùng thị trường ổn định</string>
+    <string name="nudge_body_stable">Chỉ số sợ hãi %1$d cho thấy thị trường tương đối ổn định, không có sợ hãi hay tham lam cực đoan. Thích hợp cho chiến lược dài hạn đều đặn.</string>
+    <string name="nudge_tip_fear_1">Chia nhỏ để phân tán thời điểm mua</string>
+    <string name="nudge_tip_fear_2">Kiểm tra tiền mặt trước khi mua</string>
+    <string name="nudge_tip_fear_3">Đừng bán bốc đồng khi sợ</string>
+    <string name="nudge_tip_greed_1">Xem lại phân bổ danh mục</string>
+    <string name="nudge_tip_greed_2">Chốt lời một phần khi đạt mục tiêu</string>
+    <string name="nudge_tip_greed_3">Tránh FOMO</string>
+    <string name="nudge_tip_stable_1">Kiểm tra mục tiêu dài hạn</string>
+    <string name="nudge_tip_stable_2">Duy trì đóng góp định kỳ</string>
+    <string name="nudge_tip_stable_3">Cân nhắc tái cân bằng danh mục</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Phân tích tốc độ</string>
+    <string name="velocity_daily_change">Thay đổi hằng ngày</string>
+    <string name="velocity_weekly_change">Thay đổi 7 ngày</string>
+    <string name="velocity_momentum_label">Động lượng</string>
+    <string name="velocity_trend_label">Xu hướng</string>
+    <string name="velocity_sparkline_title">15 ngày gần nhất</string>
+    <string name="velocity_inflection_title">Hướng đang thay đổi!</string>
+    <string name="velocity_inflection_body">Xu hướng gần đây đã đảo chiều — hãy chú ý.</string>
+    <string name="momentum_accelerating">Đang tăng tốc</string>
+    <string name="momentum_decelerating">Đang chậm lại</string>
+    <string name="momentum_stable">Ổn định</string>
+    <string name="trend_crash_accelerating">Lao dốc tăng tốc</string>
+    <string name="trend_crash_decelerating">Lao dốc chậm lại</string>
+    <string name="trend_stable">Ổn định</string>
+    <string name="trend_rally_accelerating">Tăng trưởng tăng tốc</string>
+    <string name="trend_rally_decelerating">Tăng trưởng chậm lại</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Thị trường</string>
+    <string name="tab_crypto">Crypto</string>
+    <string name="current_index_label">Chỉ số hiện tại</string>
+    <string name="vs_previous_close_label">so với phiên trước</string>
+    <string name="vs_previous_close_value">so với phiên trước %1$s</string>
+    <string name="share_content_description">Chia sẻ</string>
+    <string name="retry_button">Thử lại</string>
+    <string name="home_updated_at">Cập nhật: %1$s</string>
 </resources>

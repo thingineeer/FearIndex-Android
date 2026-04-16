@@ -60,5 +60,128 @@
     <string name="crypto_event_2021_peak">2021 Crypto Peak</string>
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
-    <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="crypto_event_iran_war_2026">Guerra Iran-Israel (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Configuració de notificacions</string>
+    <string name="back">Enrere</string>
+    <string name="notification_push_title">Notificacions push</string>
+    <string name="notification_push_description">Rebràs una notificació quan l\'índex de por arribi al teu llindar.</string>
+    <string name="notification_tab_market">Mercat</string>
+    <string name="notification_tab_crypto">Cripto</string>
+    <string name="notification_market_title">Alertes d\'índex de por (Mercat)</string>
+    <string name="notification_crypto_title">Alertes d\'índex de por (Cripto)</string>
+    <string name="notification_lower_label">Llindar inferior (Por)</string>
+    <string name="notification_upper_label">Llindar superior (Cobdícia)</string>
+    <string name="notification_lower_description">Rebràs una notificació quan l\'índex baixi a %1$d o menys.</string>
+    <string name="notification_upper_description">Rebràs una notificació quan l\'índex arribi a %1$d o més.</string>
+    <string name="notification_info">Les notificacions es comproven cada 15 minuts. Rebràs com a màxim 1 notificació per zona de llindar al dia.</string>
+    <string name="notification_sync_error">Ha fallat la sincronització: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Períodes similars</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Persones atrapades ara mateix</string>
+    <string name="stuck_info_content_description">Informació del comptador</string>
+    <string name="stuck_percentage_label">Taxa d\'atrapats</string>
+    <string name="stuck_button_im_stuck">"🤙 Jo també estic atrapat"</string>
+    <string name="stuck_button_im_safe">"✨ Jo no estic atrapat"</string>
+    <string name="stuck_footer_guide">"🤙 Prem un botó per veure en temps real quants hi ha atrapats"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Votació d\'avui</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Vot %1$s</string>
+    <string name="vote_total_participants">%1$d participants</string>
+    <string name="vote_once_notice">"✅ Només 1 vot per dia"</string>
+    <string name="vote_next_countdown">Fins a la pròxima votació</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">No hi ha prou dades de rendibilitat.</string>
+    <string name="insight_detail_no_data">No hi ha prou dades.</string>
+    <string name="insight_detail_scenario_compare_title">Comparació d\'escenaris (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Rendibilitat mitjana (%1$s)</string>
+    <string name="insight_detail_worst_case">Pitjor cas</string>
+    <string name="insight_detail_best_case">Millor cas</string>
+    <string name="insight_detail_sample_basis_crypto">Basat en dades de sentiment cripto</string>
+    <string name="insight_detail_sample_basis_market">Basat en %1$d períodes extrems (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">No hi ha prou dades de períodes similars.</string>
+    <string name="insight_detail_past_events_title">Esdeveniments passats similars (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Períodes passats similars a l\'actual</string>
+    <string name="insight_detail_similar_past_body">Moments històrics a prop de l\'índex de por %1$d. Pren com a referència el que s\'assembla més al mercat actual.</string>
+    <string name="insight_detail_event_score_label">Puntuació %1$d</string>
+    <string name="insight_detail_simulation_title">Simulació d\'inversió (%1$s)</string>
+    <string name="insight_detail_investment_label">Import d\'inversió (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Basat en els preus de Bitcoin (BTC). Les criptos són extremadament volàtils.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Basat en dades històriques de l\'S&amp;P 500. El rendiment passat no garanteix rendibilitats futures.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Anàlisi de drawdown (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Rendibilitat mitjana 1A</string>
+    <string name="insight_detail_where_from_title">D\'on vénen aquestes xifres?</string>
+    <string name="insight_detail_where_from_body">Rendibilitats a %2$s calculades a partir de períodes passats a prop de l\'índex de por %1$d.</string>
+    <string name="insight_detail_action_guide_title">Guia d\'acció d\'inversió</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1M</string>
+    <string name="period_month_3">3M</string>
+    <string name="period_month_6">6M</string>
+    <string name="period_year_1">1A</string>
+    <string name="period_month_1_after">En 1M</string>
+    <string name="period_month_3_after">En 3M</string>
+    <string name="period_month_6_after">En 6M</string>
+    <string name="period_year_1_after">En 1A</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Drawdown màx. (1M)</string>
+    <string name="drawdown_period_3m">Drawdown màx. (3M)</string>
+    <string name="drawdown_period_6m">Drawdown màx. (6M)</string>
+    <string name="drawdown_period_1y">Drawdown màx. (1A)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">Zona de por extrema</string>
+    <string name="nudge_body_extreme_fear">L\'índex de por %1$d assenyala por extrema. Històricament una oportunitat de compra a llarg termini, però encara són possibles caigudes a curt termini.</string>
+    <string name="nudge_title_extreme_greed">Zona de cobdícia extrema</string>
+    <string name="nudge_body_extreme_greed">L\'índex de por %1$d assenyala un mercat sobreescalfat. Aquí la gestió del risc és més important que seguir comprant.</string>
+    <string name="nudge_title_stable">Zona de mercat estable</string>
+    <string name="nudge_body_stable">L\'índex de por %1$d assenyala un mercat relativament estable, sense por ni cobdícia extremes. Bo per a una estratègia constant a llarg termini.</string>
+    <string name="nudge_tip_fear_1">Divideix les entrades per diversificar el timing</string>
+    <string name="nudge_tip_fear_2">Revisa les reserves de liquiditat abans de comprar</string>
+    <string name="nudge_tip_fear_3">No venguis impulsivament per por</string>
+    <string name="nudge_tip_greed_1">Revisa l\'assignació de la cartera</string>
+    <string name="nudge_tip_greed_2">Realitza guanys parcials als objectius</string>
+    <string name="nudge_tip_greed_3">Evita el FOMO</string>
+    <string name="nudge_tip_stable_1">Revisa els objectius a llarg termini</string>
+    <string name="nudge_tip_stable_2">Mantén les aportacions periòdiques</string>
+    <string name="nudge_tip_stable_3">Considera reequilibrar</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Anàlisi de velocitat</string>
+    <string name="velocity_daily_change">Variació diària</string>
+    <string name="velocity_weekly_change">Variació a 7 dies</string>
+    <string name="velocity_momentum_label">Momentum</string>
+    <string name="velocity_trend_label">Tendència</string>
+    <string name="velocity_sparkline_title">Últims 15 dies</string>
+    <string name="velocity_inflection_title">La direcció està canviant!</string>
+    <string name="velocity_inflection_body">La tendència recent s\'ha invertit — para atenció.</string>
+    <string name="momentum_accelerating">Accelerant</string>
+    <string name="momentum_decelerating">Desaccelerant</string>
+    <string name="momentum_stable">Estable</string>
+    <string name="trend_crash_accelerating">Caiguda accelerant</string>
+    <string name="trend_crash_decelerating">Caiguda desaccelerant</string>
+    <string name="trend_stable">Estable</string>
+    <string name="trend_rally_accelerating">Rally accelerant</string>
+    <string name="trend_rally_decelerating">Rally desaccelerant</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Mercat</string>
+    <string name="tab_crypto">Cripto</string>
+    <string name="current_index_label">Índex actual</string>
+    <string name="vs_previous_close_label">vs. tancament anterior</string>
+    <string name="vs_previous_close_value">vs. tancament anterior %1$s</string>
+    <string name="share_content_description">Comparteix</string>
+    <string name="retry_button">Torna-ho a provar</string>
+    <string name="home_updated_at">Actualitzat: %1$s</string>
 </resources>

@@ -61,4 +61,126 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="insight_similar_events_similar_section_title">Benzer Dönemler</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Bildirim Ayarları</string>
+    <string name="back">Geri</string>
+    <string name="notification_push_title">Anlık Bildirimler</string>
+    <string name="notification_push_description">Korku endeksi eşiğinize ulaştığında bildirim alın.</string>
+    <string name="notification_tab_market">Piyasa</string>
+    <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_market_title">Piyasa Korku Endeksi Uyarıları</string>
+    <string name="notification_crypto_title">Kripto Korku Endeksi Uyarıları</string>
+    <string name="notification_lower_label">Alt sınır (Korku)</string>
+    <string name="notification_upper_label">Üst sınır (Açgözlülük)</string>
+    <string name="notification_lower_description">Endeks %1$d veya altına düştüğünde bildirim alırsınız.</string>
+    <string name="notification_upper_description">Endeks %1$d veya üstüne çıktığında bildirim alırsınız.</string>
+    <string name="notification_info">Bildirimler 15 dakikada bir kontrol edilir. Her eşik bölgesi için günde en fazla 1 bildirim alırsınız.</string>
+    <string name="notification_sync_error">Senkronizasyon başarısız: %1$s</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Şu an sıkışanlar</string>
+    <string name="stuck_info_content_description">Sıkışma sayacı bilgisi</string>
+    <string name="stuck_percentage_label">Sıkışma oranı</string>
+    <string name="stuck_button_im_stuck">"🤙 Ben de sıkıştım"</string>
+    <string name="stuck_button_im_safe">"✨ Ben sıkışmadım"</string>
+    <string name="stuck_footer_guide">"🤙 Gerçek zamanlı olarak kaç kişinin sıkıştığını görmek için bir düğmeye dokunun"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Bugünün oylaması</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s oyu</string>
+    <string name="vote_total_participants">%1$d katılımcı</string>
+    <string name="vote_once_notice">"✅ Günde yalnızca 1 oy"</string>
+    <string name="vote_next_countdown">Sonraki oylamaya kadar</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Yeterli getiri verisi yok.</string>
+    <string name="insight_detail_no_data">Yeterli veri yok.</string>
+    <string name="insight_detail_scenario_compare_title">Senaryo karşılaştırması (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Ortalama getiri (%1$s)</string>
+    <string name="insight_detail_worst_case">En kötü durum</string>
+    <string name="insight_detail_best_case">En iyi durum</string>
+    <string name="insight_detail_sample_basis_crypto">Kripto duyarlılık verilerine dayalı</string>
+    <string name="insight_detail_sample_basis_market">%1$d aşırı döneme dayalı (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Benzer dönem verisi yetersiz.</string>
+    <string name="insight_detail_past_events_title">Geçmiş benzer olaylar (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Şimdiye benzer geçmiş dönemler</string>
+    <string name="insight_detail_similar_past_body">Korku endeksi %1$d civarındaki tarihsel anlar. Mevcut piyasaya en çok benzeyeni referans alın.</string>
+    <string name="insight_detail_event_score_label">Puan %1$d</string>
+    <string name="insight_detail_simulation_title">Yatırım simülasyonu (%1$s)</string>
+    <string name="insight_detail_investment_label">Yatırım tutarı (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Bitcoin (BTC) fiyatlarına dayalıdır. Kripto oldukça oynaktır.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ S&amp;P 500 tarihsel verilerine dayalıdır. Geçmiş performans gelecekteki getirileri garanti etmez.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Düşüş analizi (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Ortalama 1 yıllık getiri</string>
+    <string name="insight_detail_where_from_title">Bu sayılar nereden geliyor?</string>
+    <string name="insight_detail_where_from_body">Korku endeksi %1$d civarındaki geçmiş dönemlere dayalı olarak hesaplanmış %2$s getirileri.</string>
+    <string name="insight_detail_action_guide_title">Yatırım eylem rehberi</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1A</string>
+    <string name="period_month_3">3A</string>
+    <string name="period_month_6">6A</string>
+    <string name="period_year_1">1Y</string>
+    <string name="period_month_1_after">1 ay sonra</string>
+    <string name="period_month_3_after">3 ay sonra</string>
+    <string name="period_month_6_after">6 ay sonra</string>
+    <string name="period_year_1_after">1 yıl sonra</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Maksimum düşüş (1A)</string>
+    <string name="drawdown_period_3m">Maksimum düşüş (3A)</string>
+    <string name="drawdown_period_6m">Maksimum düşüş (6A)</string>
+    <string name="drawdown_period_1y">Maksimum düşüş (1Y)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">Aşırı korku bölgesi</string>
+    <string name="nudge_body_extreme_fear">Korku endeksi %1$d aşırı korkuya işaret ediyor. Tarihsel olarak uzun vadeli bir alım fırsatı olmuştur, ancak kısa vadeli düşüşler yine de olabilir.</string>
+    <string name="nudge_title_extreme_greed">Aşırı açgözlülük bölgesi</string>
+    <string name="nudge_body_extreme_greed">Korku endeksi %1$d aşırı ısınmış bir piyasaya işaret ediyor. Burada ek alım yerine risk yönetimi daha önemlidir.</string>
+    <string name="nudge_title_stable">Dengeli piyasa bölgesi</string>
+    <string name="nudge_body_stable">Korku endeksi %1$d aşırı korku veya açgözlülük olmadan görece dengeli bir piyasaya işaret ediyor. Tutarlı uzun vadeli strateji için uygundur.</string>
+    <string name="nudge_tip_fear_1">Girişleri bölerek zamanlamayı çeşitlendirin</string>
+    <string name="nudge_tip_fear_2">Alım öncesi nakit rezervinizi kontrol edin</string>
+    <string name="nudge_tip_fear_3">Korkuyla dürtüsel satış yapmayın</string>
+    <string name="nudge_tip_greed_1">Portföy dağılımını gözden geçirin</string>
+    <string name="nudge_tip_greed_2">Hedeflerde kısmi kâr alın</string>
+    <string name="nudge_tip_greed_3">FOMO'dan kaçının</string>
+    <string name="nudge_tip_stable_1">Uzun vadeli hedefleri kontrol edin</string>
+    <string name="nudge_tip_stable_2">Düzenli katkıları sürdürün</string>
+    <string name="nudge_tip_stable_3">Yeniden dengelemeyi değerlendirin</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Hız analizi</string>
+    <string name="velocity_daily_change">Günlük değişim</string>
+    <string name="velocity_weekly_change">7 günlük değişim</string>
+    <string name="velocity_momentum_label">Momentum</string>
+    <string name="velocity_trend_label">Eğilim</string>
+    <string name="velocity_sparkline_title">Son 15 gün</string>
+    <string name="velocity_inflection_title">Yön değişiyor!</string>
+    <string name="velocity_inflection_body">Son eğilim tersine döndü — dikkat edin.</string>
+    <string name="momentum_accelerating">Hızlanıyor</string>
+    <string name="momentum_decelerating">Yavaşlıyor</string>
+    <string name="momentum_stable">Dengeli</string>
+    <string name="trend_crash_accelerating">Çöküş hızlanıyor</string>
+    <string name="trend_crash_decelerating">Çöküş yavaşlıyor</string>
+    <string name="trend_stable">Dengeli</string>
+    <string name="trend_rally_accelerating">Yükseliş hızlanıyor</string>
+    <string name="trend_rally_decelerating">Yükseliş yavaşlıyor</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Piyasa</string>
+    <string name="tab_crypto">Kripto</string>
+    <string name="current_index_label">Mevcut Endeks</string>
+    <string name="vs_previous_close_label">Önceki kapanışa göre</string>
+    <string name="vs_previous_close_value">Önceki kapanışa göre %1$s</string>
+    <string name="share_content_description">Paylaş</string>
+    <string name="retry_button">Tekrar dene</string>
+    <string name="home_updated_at">Güncellendi: %1$s</string>
 </resources>

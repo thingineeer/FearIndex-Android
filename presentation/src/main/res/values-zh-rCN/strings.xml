@@ -61,4 +61,126 @@
     <string name="crypto_event_trump_pump">特朗普行情</string>
     <string name="crypto_event_2017_peak">2017年加密货币顶峰</string>
     <string name="crypto_event_iran_war_2026">伊朗-以色列战争 (2026)</string>
+    <string name="insight_similar_events_similar_section_title">相似区间</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">通知设置</string>
+    <string name="back">返回</string>
+    <string name="notification_push_title">推送通知</string>
+    <string name="notification_push_description">当恐惧指数达到您设置的阈值时接收通知。</string>
+    <string name="notification_tab_market">市场</string>
+    <string name="notification_tab_crypto">加密货币</string>
+    <string name="notification_market_title">市场恐惧指数提醒</string>
+    <string name="notification_crypto_title">加密货币恐惧指数提醒</string>
+    <string name="notification_lower_label">下限 (恐惧)</string>
+    <string name="notification_upper_label">上限 (贪婪)</string>
+    <string name="notification_lower_description">当指数降至 %1$d 或以下时通知您。</string>
+    <string name="notification_upper_description">当指数达到 %1$d 或以上时通知您。</string>
+    <string name="notification_info">每 15 分钟检查一次通知。每个阈值区间每天最多接收 1 条通知。</string>
+    <string name="notification_sync_error">同步失败: %1$s</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">当前被套牢的人</string>
+    <string name="stuck_info_content_description">套牢计数器说明</string>
+    <string name="stuck_percentage_label">套牢比例</string>
+    <string name="stuck_button_im_stuck">"🤙 我也被套了"</string>
+    <string name="stuck_button_im_safe">"✨ 我没被套"</string>
+    <string name="stuck_footer_guide">"🤙 点击按钮实时查看有多少人被套牢"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">今日投票</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s 投票</string>
+    <string name="vote_total_participants">%1$d 人参与</string>
+    <string name="vote_once_notice">"✅ 每天仅可投票 1 次"</string>
+    <string name="vote_next_countdown">距下次投票</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">回报数据不足。</string>
+    <string name="insight_detail_no_data">数据不足。</string>
+    <string name="insight_detail_scenario_compare_title">情景对比 (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">平均回报 (%1$s)</string>
+    <string name="insight_detail_worst_case">最坏情况</string>
+    <string name="insight_detail_best_case">最好情况</string>
+    <string name="insight_detail_sample_basis_crypto">基于加密货币市场情绪数据</string>
+    <string name="insight_detail_sample_basis_market">基于 %1$d 个极端区间 (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">相似时期数据不足。</string>
+    <string name="insight_detail_past_events_title">过去类似事件 (%1$s)</string>
+    <string name="insight_detail_similar_past_title">与当前相似的过去时期</string>
+    <string name="insight_detail_similar_past_body">恐惧指数 %1$d 附近的历史时刻。可参考与当前市场最相似的时期。</string>
+    <string name="insight_detail_event_score_label">分数 %1$d</string>
+    <string name="insight_detail_simulation_title">投资模拟 (%1$s)</string>
+    <string name="insight_detail_investment_label">投资金额 (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ 基于比特币 (BTC) 价格。加密货币波动极大。</string>
+    <string name="insight_detail_disclaimer_market">⚠️ 基于 S&amp;P 500 历史数据。过往表现不代表未来回报。</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">回撤分析 (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">1 年平均回报</string>
+    <string name="insight_detail_where_from_title">这些数据来自哪里?</string>
+    <string name="insight_detail_where_from_body">基于与当前恐惧指数 %1$d 相近的历史时期计算出 %2$s 的回报率。</string>
+    <string name="insight_detail_action_guide_title">投资行动指南</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1个月</string>
+    <string name="period_month_3">3个月</string>
+    <string name="period_month_6">6个月</string>
+    <string name="period_year_1">1年</string>
+    <string name="period_month_1_after">1个月后</string>
+    <string name="period_month_3_after">3个月后</string>
+    <string name="period_month_6_after">6个月后</string>
+    <string name="period_year_1_after">1年后</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">最大回撤 (1个月)</string>
+    <string name="drawdown_period_3m">最大回撤 (3个月)</string>
+    <string name="drawdown_period_6m">最大回撤 (6个月)</string>
+    <string name="drawdown_period_1y">最大回撤 (1年)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">极度恐惧区间</string>
+    <string name="nudge_body_extreme_fear">恐惧指数 %1$d 显示市场处于极度恐惧。历史上此类时期往往是长期买入的好机会,但短期内仍可能继续下跌。</string>
+    <string name="nudge_title_extreme_greed">极度贪婪区间</string>
+    <string name="nudge_body_extreme_greed">恐惧指数 %1$d 显示市场过热。此时风险管理比继续加仓更重要。</string>
+    <string name="nudge_title_stable">市场稳定区间</string>
+    <string name="nudge_body_stable">恐惧指数 %1$d 表明市场相对稳定,没有极端恐惧或贪婪。适合坚持长期稳健策略。</string>
+    <string name="nudge_tip_fear_1">分批买入,分散入场时机</string>
+    <string name="nudge_tip_fear_2">买入前确认现金储备</string>
+    <string name="nudge_tip_fear_3">不要在恐慌中冲动卖出</string>
+    <string name="nudge_tip_greed_1">检查投资组合配置</string>
+    <string name="nudge_tip_greed_2">达到目标时部分获利了结</string>
+    <string name="nudge_tip_greed_3">避免 FOMO 情绪</string>
+    <string name="nudge_tip_stable_1">检查长期投资目标</string>
+    <string name="nudge_tip_stable_2">维持定期定额投资</string>
+    <string name="nudge_tip_stable_3">考虑组合再平衡</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">速度分析</string>
+    <string name="velocity_daily_change">日变化</string>
+    <string name="velocity_weekly_change">7日变化</string>
+    <string name="velocity_momentum_label">动能</string>
+    <string name="velocity_trend_label">趋势</string>
+    <string name="velocity_sparkline_title">最近 15 天</string>
+    <string name="velocity_inflection_title">方向正在改变!</string>
+    <string name="velocity_inflection_body">近期趋势已反转 — 请关注。</string>
+    <string name="momentum_accelerating">加速中</string>
+    <string name="momentum_decelerating">减速中</string>
+    <string name="momentum_stable">稳定</string>
+    <string name="trend_crash_accelerating">暴跌加速</string>
+    <string name="trend_crash_decelerating">暴跌放缓</string>
+    <string name="trend_stable">稳定</string>
+    <string name="trend_rally_accelerating">上涨加速</string>
+    <string name="trend_rally_decelerating">上涨放缓</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">市场</string>
+    <string name="tab_crypto">加密货币</string>
+    <string name="current_index_label">当前指数</string>
+    <string name="vs_previous_close_label">较前收盘</string>
+    <string name="vs_previous_close_value">较前收盘 %1$s</string>
+    <string name="share_content_description">分享</string>
+    <string name="retry_button">重试</string>
+    <string name="home_updated_at">更新于: %1$s</string>
 </resources>

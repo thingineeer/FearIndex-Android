@@ -12,53 +12,179 @@
     <string name="tab_settings">அமைப்புகள்</string>
     <string name="home_title">பயம் &amp; பேராசை குறியீடு</string>
     <string name="chart_history">வரலாறு</string>
-    <string name="share_message_template">Today\'s Fear &amp; Greed Index: %1$d (%2$s)\n\nTrack market sentiment in real-time with the Fear &amp; Greed Index app.</string>
-    <string name="share_chooser_title">Share via</string>
+    <string name="share_message_template">இன்றைய பயம் &amp; பேராசை குறியீடு: %1$d (%2$s)\n\nFear &amp; Greed Index செயலியில் சந்தை மனநிலையை நேரடியாக கண்காணிக்கவும்.</string>
+    <string name="share_chooser_title">பகிர்</string>
 
-    <!-- v1.7.9 new keys -->
-    <string name="insight_similar_events_title">Similar Past Periods</string>
-    <string name="insight_similar_events_score_label">Current %1$d</string>
-    <string name="insight_similar_events_pinned_title">What if you bought at major lows?</string>
-    <string name="insight_similar_events_empty">No similar historical periods found</string>
-    <string name="insight_similar_events_one_year_return">1Y S&amp;P %1$s</string>
-    <string name="insight_similar_events_ongoing">Ongoing</string>
-    <string name="insight_similar_events_sim_very">Very Similar</string>
-    <string name="insight_similar_events_sim_close">Similar</string>
-    <string name="insight_similar_events_sim_moderate">Moderate</string>
-    <string name="insight_similar_events_sim_far">Slightly Similar</string>
-    <string name="insight_similar_events_aggregate_title">Average for score %1$d range</string>
-    <string name="insight_similar_events_aggregate_summary">1Y avg %1$s (n=%2$d)</string>
-    <string name="insight_similar_events_disclaimer">Past returns do not guarantee future results</string>
-    <string name="insight_current_score_title">If you buy at %1$d</string>
-    <string name="insight_current_score_avg_return">Avg Return</string>
-    <string name="insight_current_score_max_drawdown">Max Drawdown</string>
-    <string name="insight_current_score_best_return">Best Return</string>
+    <!-- SimilarEvents card -->
+    <string name="insight_similar_events_title">இதற்கு ஒத்த கடந்த காலங்கள்</string>
+    <string name="insight_similar_events_score_label">தற்போது %1$d</string>
+    <string name="insight_similar_events_pinned_title">முக்கியமான குறைவுகளில் வாங்கியிருந்தால்?</string>
+    <string name="insight_similar_events_empty">ஒத்த வரலாற்றுக் காலங்கள் எதுவும் இல்லை</string>
+    <string name="insight_similar_events_one_year_return">1 ஆண்டு S&amp;P %1$s</string>
+    <string name="insight_similar_events_ongoing">தொடர்கிறது</string>
+    <string name="insight_similar_events_sim_very">மிகவும் ஒத்தது</string>
+    <string name="insight_similar_events_sim_close">ஒத்தது</string>
+    <string name="insight_similar_events_sim_moderate">மிதமானது</string>
+    <string name="insight_similar_events_sim_far">சற்று ஒத்தது</string>
+    <string name="insight_similar_events_aggregate_title">மதிப்பெண் %1$d வரம்பின் சராசரி</string>
+    <string name="insight_similar_events_aggregate_summary">1 ஆண்டு சராசரி %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">கடந்த வருமானம் எதிர்கால முடிவுகளுக்கு உத்தரவாதம் அல்ல</string>
+    <string name="insight_current_score_title">நீங்கள் %1$d-இல் வாங்கினால்</string>
+    <string name="insight_current_score_avg_return">சராசரி வருமானம்</string>
+    <string name="insight_current_score_max_drawdown">அதிகபட்ச வீழ்ச்சி</string>
+    <string name="insight_current_score_best_return">சிறந்த வருமானம்</string>
     <string name="insight_current_score_sample_count">n=%1$d</string>
-    <string name="insight_event_score">%1$d pts</string>
-    <string name="event_covid">COVID-19 Pandemic Low</string>
-    <string name="event_tariff">2025 Tariff Crisis</string>
-    <string name="event_inflation">2022 Inflation Scare</string>
-    <string name="event_delta">Delta Variant Spread</string>
-    <string name="event_trade_war">US-China Trade War</string>
-    <string name="event_svb">SVB Bank Run</string>
-    <string name="event_reopening">2021 Economic Reopening</string>
-    <string name="event_post_election">Post 2024 Election</string>
-    <string name="event_2021bull">2021 Bull Market</string>
-    <string name="event_ai_rally">AI Rally</string>
-    <string name="event_pre_covid">Pre-COVID High</string>
-    <string name="event_dotcom">Dotcom Bubble Peak</string>
-    <string name="event_iran_war_2026">Iran-Israel War (2026)</string>
-    <string name="crypto_event_covid">COVID-19 Crypto Crash</string>
-    <string name="crypto_event_luna">LUNA/UST Collapse</string>
-    <string name="crypto_event_ftx">FTX Bankruptcy</string>
-    <string name="crypto_event_china_ban">China Crypto Ban</string>
-    <string name="crypto_event_svb">SVB Bank Run (Crypto)</string>
-    <string name="crypto_event_sec">SEC Lawsuit</string>
-    <string name="crypto_event_halving_2024">2024 Bitcoin Halving</string>
-    <string name="crypto_event_etf_approval">Bitcoin Spot ETF Approval</string>
-    <string name="crypto_event_defi_summer">DeFi Summer</string>
-    <string name="crypto_event_2021_peak">2021 Crypto Peak</string>
-    <string name="crypto_event_trump_pump">Trump Pump</string>
-    <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
-    <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="insight_event_score">%1$d புள்ளிகள்</string>
+
+    <!-- Historical events (Market) -->
+    <string name="event_covid">கோவிட்-19 பெருந்தொற்று தாழ்வு</string>
+    <string name="event_tariff">2025 வரி நெருக்கடி</string>
+    <string name="event_inflation">2022 பணவீக்க பயம்</string>
+    <string name="event_delta">டெல்டா மாறுபாடு பரவல்</string>
+    <string name="event_trade_war">அமெரிக்கா-சீனா வர்த்தகப் போர்</string>
+    <string name="event_svb">SVB வங்கி அவசர எடுப்பு</string>
+    <string name="event_reopening">2021 பொருளாதார மீட்சி</string>
+    <string name="event_post_election">2024 தேர்தலுக்குப் பிறகு</string>
+    <string name="event_2021bull">2021 எருதுச் சந்தை</string>
+    <string name="event_ai_rally">AI எழுச்சி</string>
+    <string name="event_pre_covid">கோவிட் முந்தைய உச்சம்</string>
+    <string name="event_dotcom">டாட்காம் குமிழி உச்சம்</string>
+    <string name="event_iran_war_2026">ஈரான்-இஸ்ரேல் போர் (2026)</string>
+
+    <!-- Historical events (Crypto) -->
+    <string name="crypto_event_covid">கோவிட்-19 கிரிப்டோ சரிவு</string>
+    <string name="crypto_event_luna">LUNA/UST வீழ்ச்சி</string>
+    <string name="crypto_event_ftx">FTX திவால்</string>
+    <string name="crypto_event_china_ban">சீனா கிரிப்டோ தடை</string>
+    <string name="crypto_event_svb">SVB வங்கி அவசர எடுப்பு (கிரிப்டோ)</string>
+    <string name="crypto_event_sec">SEC வழக்கு</string>
+    <string name="crypto_event_halving_2024">2024 பிட்காயின் ஹால்விங்</string>
+    <string name="crypto_event_etf_approval">பிட்காயின் ஸ்பாட் ETF ஒப்புதல்</string>
+    <string name="crypto_event_defi_summer">DeFi கோடை</string>
+    <string name="crypto_event_2021_peak">2021 கிரிப்டோ உச்சம்</string>
+    <string name="crypto_event_trump_pump">டிரம்ப் பம்ப்</string>
+    <string name="crypto_event_2017_peak">2017 கிரிப்டோ உச்சம்</string>
+    <string name="crypto_event_iran_war_2026">ஈரான்-இஸ்ரேல் போர் (2026)</string>
+    <string name="insight_similar_events_similar_section_title">ஒத்த காலங்கள்</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">அறிவிப்பு அமைப்புகள்</string>
+    <string name="back">பின்செல்</string>
+    <string name="notification_push_title">புஷ் அறிவிப்புகள்</string>
+    <string name="notification_push_description">பயக் குறியீடு உங்கள் வரம்பை அடையும்போது அறிவிப்பு பெறுங்கள்.</string>
+    <string name="notification_tab_market">சந்தை</string>
+    <string name="notification_tab_crypto">கிரிப்டோ</string>
+    <string name="notification_market_title">சந்தை பயக் குறியீடு எச்சரிக்கைகள்</string>
+    <string name="notification_crypto_title">கிரிப்டோ பயக் குறியீடு எச்சரிக்கைகள்</string>
+    <string name="notification_lower_label">கீழ் வரம்பு (பயம்)</string>
+    <string name="notification_upper_label">மேல் வரம்பு (பேராசை)</string>
+    <string name="notification_lower_description">குறியீடு %1$d அல்லது அதற்குக் கீழே குறையும்போது உங்களுக்கு அறிவிக்கப்படும்.</string>
+    <string name="notification_upper_description">குறியீடு %1$d அல்லது அதற்கு மேல் சென்றால் உங்களுக்கு அறிவிக்கப்படும்.</string>
+    <string name="notification_info">அறிவிப்புகள் ஒவ்வொரு 15 நிமிடங்களுக்கும் சரிபார்க்கப்படும். ஒரு வரம்பு மண்டலத்திற்கு ஒரு நாளில் அதிகபட்சம் 1 அறிவிப்பு கிடைக்கும்.</string>
+    <string name="notification_sync_error">ஒத்திசைவு தோல்வி: %1$s</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">இப்போது சிக்கியவர்கள்</string>
+    <string name="stuck_info_content_description">சிக்கல் எண்ணிக்கை தகவல்</string>
+    <string name="stuck_percentage_label">சிக்கல் விகிதம்</string>
+    <string name="stuck_button_im_stuck">"🤙 நானும் சிக்கினேன்"</string>
+    <string name="stuck_button_im_safe">"✨ நான் சிக்கவில்லை"</string>
+    <string name="stuck_footer_guide">"🤙 பொத்தானை அழுத்தி எத்தனை பேர் சிக்கியுள்ளனர் என்பதை நேரலையில் பாருங்கள்"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">இன்றைய வாக்கு</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s வாக்கு</string>
+    <string name="vote_total_participants">%1$d பங்கேற்பாளர்கள்</string>
+    <string name="vote_once_notice">"✅ ஒரு நாளுக்கு 1 வாக்கு மட்டும்"</string>
+    <string name="vote_next_countdown">அடுத்த வாக்கு வரை</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">போதுமான வருமான தரவு இல்லை.</string>
+    <string name="insight_detail_no_data">போதுமான தரவு இல்லை.</string>
+    <string name="insight_detail_scenario_compare_title">காட்சி ஒப்பீடு (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">சராசரி வருமானம் (%1$s)</string>
+    <string name="insight_detail_worst_case">மோசமான நிலை</string>
+    <string name="insight_detail_best_case">சிறந்த நிலை</string>
+    <string name="insight_detail_sample_basis_crypto">கிரிப்டோ சந்தை மனநிலை தரவை அடிப்படையாகக் கொண்டது</string>
+    <string name="insight_detail_sample_basis_market">%1$d தீவிர காலங்களின் அடிப்படையில் (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">போதுமான ஒத்த-கால தரவு இல்லை.</string>
+    <string name="insight_detail_past_events_title">கடந்தகால ஒத்த நிகழ்வுகள் (%1$s)</string>
+    <string name="insight_detail_similar_past_title">இப்போதைக்கு ஒத்த கடந்தகால காலங்கள்</string>
+    <string name="insight_detail_similar_past_body">பயக் குறியீடு %1$d-ஐ ஒட்டிய வரலாற்றுத் தருணங்கள். தற்போதைய சந்தைக்கு மிகவும் ஒத்ததைப் பாருங்கள்.</string>
+    <string name="insight_detail_event_score_label">மதிப்பெண் %1$d</string>
+    <string name="insight_detail_simulation_title">முதலீட்டு சிமுலேஷன் (%1$s)</string>
+    <string name="insight_detail_investment_label">முதலீட்டுத் தொகை (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ பிட்காயின் (BTC) விலைகளை அடிப்படையாகக் கொண்டது. கிரிப்டோ மிகுந்த ஏற்ற இறக்கம் கொண்டது.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ S&amp;P 500 வரலாற்றுத் தரவை அடிப்படையாகக் கொண்டது. கடந்த காலச் செயல்திறன் எதிர்கால வருமானத்திற்கு உத்தரவாதம் அல்ல.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">வீழ்ச்சி பகுப்பாய்வு (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">சராசரி 1 ஆண்டு வருமானம்</string>
+    <string name="insight_detail_where_from_title">இந்த எண்கள் எங்கிருந்து வருகின்றன?</string>
+    <string name="insight_detail_where_from_body">பயக் குறியீடு %1$d-ஐ ஒட்டிய கடந்த காலங்களை அடிப்படையாகக் கொண்டு %2$s வருமானம் கணக்கிடப்பட்டுள்ளது.</string>
+    <string name="insight_detail_action_guide_title">முதலீட்டு நடவடிக்கை வழிகாட்டி</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1M</string>
+    <string name="period_month_3">3M</string>
+    <string name="period_month_6">6M</string>
+    <string name="period_year_1">1Y</string>
+    <string name="period_month_1_after">1 மாதத்திற்குப் பிறகு</string>
+    <string name="period_month_3_after">3 மாதங்களுக்குப் பிறகு</string>
+    <string name="period_month_6_after">6 மாதங்களுக்குப் பிறகு</string>
+    <string name="period_year_1_after">1 ஆண்டுக்குப் பிறகு</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">அதிகபட்ச வீழ்ச்சி (1M)</string>
+    <string name="drawdown_period_3m">அதிகபட்ச வீழ்ச்சி (3M)</string>
+    <string name="drawdown_period_6m">அதிகபட்ச வீழ்ச்சி (6M)</string>
+    <string name="drawdown_period_1y">அதிகபட்ச வீழ்ச்சி (1Y)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">தீவிர பய மண்டலம்</string>
+    <string name="nudge_body_extreme_fear">பயக் குறியீடு %1$d தீவிர பயத்தைக் குறிக்கிறது. வரலாற்று ரீதியாக நீண்டகால வாங்கும் வாய்ப்பு, ஆனால் குறுகியகாலத்தில் மேலும் வீழ்ச்சி வரலாம்.</string>
+    <string name="nudge_title_extreme_greed">தீவிர பேராசை மண்டலம்</string>
+    <string name="nudge_body_extreme_greed">பயக் குறியீடு %1$d சந்தை மிகைச் சூடாக உள்ளதைக் குறிக்கிறது. கூடுதல் வாங்குதலை விட இடர் மேலாண்மை முக்கியம்.</string>
+    <string name="nudge_title_stable">நிலையான சந்தை மண்டலம்</string>
+    <string name="nudge_body_stable">பயக் குறியீடு %1$d தீவிர பயம் அல்லது பேராசை இல்லாமல் ஒப்பீட்டளவில் நிலையான சந்தையைக் குறிக்கிறது. நீண்டகால நிலையான உத்திக்கு பொருத்தமான நேரம்.</string>
+    <string name="nudge_tip_fear_1">நேரத்தைப் பரப்ப கட்டங்களாக வாங்குங்கள்</string>
+    <string name="nudge_tip_fear_2">வாங்குவதற்கு முன் பண இருப்பைச் சரிபார்க்கவும்</string>
+    <string name="nudge_tip_fear_3">பயத்தில் உடனடியாக விற்க வேண்டாம்</string>
+    <string name="nudge_tip_greed_1">பங்குச் சேர்க்கை பகிர்வை மதிப்பாய்வு செய்யவும்</string>
+    <string name="nudge_tip_greed_2">இலக்குகளில் பகுதி லாபம் எடுங்கள்</string>
+    <string name="nudge_tip_greed_3">FOMO-வை தவிர்க்கவும்</string>
+    <string name="nudge_tip_stable_1">நீண்டகால இலக்குகளைச் சரிபார்க்கவும்</string>
+    <string name="nudge_tip_stable_2">வழக்கமான பங்களிப்புகளைத் தொடரவும்</string>
+    <string name="nudge_tip_stable_3">மறுசமநிலையைக் கருத்தில் கொள்ளவும்</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">வேக பகுப்பாய்வு</string>
+    <string name="velocity_daily_change">தினசரி மாற்றம்</string>
+    <string name="velocity_weekly_change">7 நாள் மாற்றம்</string>
+    <string name="velocity_momentum_label">உந்துவிசை</string>
+    <string name="velocity_trend_label">போக்கு</string>
+    <string name="velocity_sparkline_title">கடந்த 15 நாட்கள்</string>
+    <string name="velocity_inflection_title">திசை மாறிக்கொண்டிருக்கிறது!</string>
+    <string name="velocity_inflection_body">சமீபத்திய போக்கு திருப்பப்பட்டுள்ளது — கவனியுங்கள்.</string>
+    <string name="momentum_accelerating">வேகமடைகிறது</string>
+    <string name="momentum_decelerating">மெதுவாகிறது</string>
+    <string name="momentum_stable">நிலையானது</string>
+    <string name="trend_crash_accelerating">சரிவு வேகம்</string>
+    <string name="trend_crash_decelerating">சரிவு மெதுவானது</string>
+    <string name="trend_stable">நிலையானது</string>
+    <string name="trend_rally_accelerating">உயர்வு வேகம்</string>
+    <string name="trend_rally_decelerating">உயர்வு மெதுவானது</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">சந்தை</string>
+    <string name="tab_crypto">கிரிப்டோ</string>
+    <string name="current_index_label">தற்போதைய குறியீடு</string>
+    <string name="vs_previous_close_label">முந்தைய முடிவை ஒப்பிட்டு</string>
+    <string name="vs_previous_close_value">முந்தைய முடிவை ஒப்பிட்டு %1$s</string>
+    <string name="share_content_description">பகிர்</string>
+    <string name="retry_button">மீண்டும் முயற்சி</string>
+    <string name="home_updated_at">புதுப்பிக்கப்பட்டது: %1$s</string>
 </resources>

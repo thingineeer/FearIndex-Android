@@ -8,6 +8,7 @@
 - **iOS 대칭성**: 모든 기능은 iOS/macOS 프로젝트(`th1ngjin.FearIndex-iOS`, `th1ngjin.FearIndex-macOS`)와 **대시보드/Analytics/Crashlytics에서 일관**되어야 함. 상세: @memory/ios-parity.md
 - **메모리 경로**: `.claude/memory/` 안에만. 글로벌 `~/.claude/projects/...` 절대 사용 금지.
 - **Git**: 피처 브랜치 → 버전 브랜치 → main 머지. cherry-pick/force push 금지. 상세: @rules/git-workflow.md
+- **Secrets**: `~/fearindex-secrets/` 폴더에만 (keystore / gradle.properties / google-services.json). 새 맥 셋업은 `bash ~/fearindex-secrets/install.sh`. 상세: @rules/secrets.md
 
 ## 문서 인덱스
 
@@ -23,6 +24,7 @@
 - [Package Convention](../rules/package-convention.md) — `th1ngjin.fearindex` 엄수, 오타 방지 원칙
 - [Git Workflow](../rules/git-workflow.md) — 브랜치/머지/머지 방식
 - [iOS Parity](../rules/ios-parity.md) — 변경 시 iOS 프로젝트와 일관성 유지 규칙
+- [Secrets](../rules/secrets.md) — `~/fearindex-secrets/` 로컬 시크릿 폴더 규약, 새 맥 셋업 install.sh
 
 ### 에이전트 (`.claude/agents/`)
 
@@ -46,8 +48,9 @@
 | macOS | `th1ngjin.FearIndex-macOS` |
 | Functions 리전 | `asia-northeast3` |
 | Functions 엔드포인트 | `submitStuckStatus`, `getStuckCount` |
-| Keystore 위치 | `~/fearindex-release.keystore` |
-| Keystore 비밀번호 저장소 | `~/.gradle/gradle.properties` (FEARINDEX_STORE_PASSWORD) |
+| Keystore 위치 | `~/fearindex-secrets/fearindex-release.keystore` |
+| Keystore 비밀번호 저장소 | `~/fearindex-secrets/gradle.properties` → `~/.gradle/gradle.properties` (install.sh 복사) |
+| google-services.json 원본 | `~/fearindex-secrets/google-services.json` → `app/google-services.json` 심볼릭 링크 |
 | AdMob App ID | `ca-app-pub-5283496525222246~1308884877` |
 | AdMob HomeBanner | `ca-app-pub-5283496525222246/3189551565` |
 

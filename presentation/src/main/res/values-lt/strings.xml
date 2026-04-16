@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Pranešimų nustatymai</string>
+    <string name="back">Atgal</string>
+    <string name="notification_push_title">Stumiamieji pranešimai</string>
+    <string name="notification_push_description">Gaukite pranešimą, kai baimės indeksas pasieks jūsų ribą.</string>
+    <string name="notification_tab_market">Rinka</string>
+    <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_market_title">Rinkos baimės indekso įspėjimai</string>
+    <string name="notification_crypto_title">Kripto baimės indekso įspėjimai</string>
+    <string name="notification_lower_label">Žemesnė riba (Baimė)</string>
+    <string name="notification_upper_label">Aukštesnė riba (Godumas)</string>
+    <string name="notification_lower_description">Gausite pranešimą, kai indeksas nukris iki %1$d arba žemiau.</string>
+    <string name="notification_upper_description">Gausite pranešimą, kai indeksas pasieks %1$d arba aukščiau.</string>
+    <string name="notification_info">Pranešimai tikrinami kas 15 minučių. Per dieną gausite ne daugiau kaip 1 pranešimą vienai ribinei zonai.</string>
+    <string name="notification_sync_error">Sinchronizavimas nepavyko: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Panašūs laikotarpiai</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Žmonės, kurie dabar įstrigę</string>
+    <string name="stuck_info_content_description">Įstrigimo skaitiklio informacija</string>
+    <string name="stuck_percentage_label">Įstrigusiųjų dalis</string>
+    <string name="stuck_button_im_stuck">"🤙 Aš taip pat įstrigęs"</string>
+    <string name="stuck_button_im_safe">"✨ Aš neįstrigęs"</string>
+    <string name="stuck_footer_guide">"🤙 Paspauskite mygtuką, kad realiu laiku pamatytumėte, kiek žmonių yra įstrigę"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Šiandienos balsavimas</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s balsavimas</string>
+    <string name="vote_total_participants">%1$d dalyvių</string>
+    <string name="vote_once_notice">"✅ Tik 1 balsas per dieną"</string>
+    <string name="vote_next_countdown">Iki kito balsavimo</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Nepakanka grąžos duomenų.</string>
+    <string name="insight_detail_no_data">Nepakanka duomenų.</string>
+    <string name="insight_detail_scenario_compare_title">Scenarijų palyginimas (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Vidutinė grąža (%1$s)</string>
+    <string name="insight_detail_worst_case">Blogiausias atvejis</string>
+    <string name="insight_detail_best_case">Geriausias atvejis</string>
+    <string name="insight_detail_sample_basis_crypto">Remiantis kripto sentimento duomenimis</string>
+    <string name="insight_detail_sample_basis_market">Remiantis %1$d kraštutiniais laikotarpiais (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Nepakanka panašių laikotarpių duomenų.</string>
+    <string name="insight_detail_past_events_title">Ankstesni panašūs įvykiai (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Į dabartį panašūs praeities laikotarpiai</string>
+    <string name="insight_detail_similar_past_body">Istoriniai momentai šalia baimės indekso %1$d. Pažiūrėkite, kas panašiausia į dabartinę rinką.</string>
+    <string name="insight_detail_event_score_label">Rezultatas %1$d</string>
+    <string name="insight_detail_simulation_title">Investavimo simuliacija (%1$s)</string>
+    <string name="insight_detail_investment_label">Investicijos suma (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Remiantis Bitcoin (BTC) kainomis. Kripto yra itin svyruojanti.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Remiantis S&amp;P 500 istoriniais duomenimis. Praeities rezultatai negarantuoja būsimos grąžos.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Kritimo analizė (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Vidutinė 1 m. grąža</string>
+    <string name="insight_detail_where_from_title">Iš kur šie skaičiai?</string>
+    <string name="insight_detail_where_from_body">%2$s grąžos apskaičiuotos pagal praeities laikotarpius šalia baimės indekso %1$d.</string>
+    <string name="insight_detail_action_guide_title">Investavimo veiksmų vadovas</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1 mėn.</string>
+    <string name="period_month_3">3 mėn.</string>
+    <string name="period_month_6">6 mėn.</string>
+    <string name="period_year_1">1 m.</string>
+    <string name="period_month_1_after">Po 1 mėn.</string>
+    <string name="period_month_3_after">Po 3 mėn.</string>
+    <string name="period_month_6_after">Po 6 mėn.</string>
+    <string name="period_year_1_after">Po 1 m.</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Maks. kritimas (1 mėn.)</string>
+    <string name="drawdown_period_3m">Maks. kritimas (3 mėn.)</string>
+    <string name="drawdown_period_6m">Maks. kritimas (6 mėn.)</string>
+    <string name="drawdown_period_1y">Maks. kritimas (1 m.)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Kraštutinės baimės zona</string>
+    <string name="nudge_body_extreme_fear">Baimės indeksas %1$d rodo kraštutinę baimę. Istoriškai tai ilgalaikė pirkimo galimybė, tačiau trumpalaikiai kritimai vis dar įmanomi.</string>
+    <string name="nudge_title_extreme_greed">Kraštutinio godumo zona</string>
+    <string name="nudge_body_extreme_greed">Baimės indeksas %1$d rodo perkaitusią rinką. Čia rizikos valdymas svarbesnis nei papildomas pirkimas.</string>
+    <string name="nudge_title_stable">Stabilios rinkos zona</string>
+    <string name="nudge_body_stable">Baimės indeksas %1$d rodo gana stabilią rinką be kraštutinės baimės ar godumo. Gerai tinka pastoviai ilgalaikei strategijai.</string>
+    <string name="nudge_tip_fear_1">Išskaidykite įėjimus, kad diversifikuotumėte laiką</string>
+    <string name="nudge_tip_fear_2">Prieš pirkdami patikrinkite grynųjų pinigų atsargas</string>
+    <string name="nudge_tip_fear_3">Nepardavinėkite impulsyviai iš baimės</string>
+    <string name="nudge_tip_greed_1">Peržiūrėkite portfelio paskirstymą</string>
+    <string name="nudge_tip_greed_2">Pasiekę tikslus fiksuokite dalį pelno</string>
+    <string name="nudge_tip_greed_3">Venkite FOMO</string>
+    <string name="nudge_tip_stable_1">Patikrinkite ilgalaikius tikslus</string>
+    <string name="nudge_tip_stable_2">Išlaikykite reguliarias įmokas</string>
+    <string name="nudge_tip_stable_3">Apsvarstykite balansavimą</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Greičio analizė</string>
+    <string name="velocity_daily_change">Dienos pokytis</string>
+    <string name="velocity_weekly_change">7 dienų pokytis</string>
+    <string name="velocity_momentum_label">Momentumas</string>
+    <string name="velocity_trend_label">Tendencija</string>
+    <string name="velocity_sparkline_title">Paskutinės 15 dienų</string>
+    <string name="velocity_inflection_title">Kryptis keičiasi!</string>
+    <string name="velocity_inflection_body">Pastaroji tendencija apsivertė — atkreipkite dėmesį.</string>
+    <string name="momentum_accelerating">Spartėja</string>
+    <string name="momentum_decelerating">Lėtėja</string>
+    <string name="momentum_stable">Stabilus</string>
+    <string name="trend_crash_accelerating">Kritimas spartėja</string>
+    <string name="trend_crash_decelerating">Kritimas lėtėja</string>
+    <string name="trend_stable">Stabilus</string>
+    <string name="trend_rally_accelerating">Augimas spartėja</string>
+    <string name="trend_rally_decelerating">Augimas lėtėja</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Rinka</string>
+    <string name="tab_crypto">Kripto</string>
+    <string name="current_index_label">Dabartinis indeksas</string>
+    <string name="vs_previous_close_label">palyginti su praėjusiu uždarymu</string>
+    <string name="vs_previous_close_value">palyginti su praėjusiu uždarymu %1$s</string>
+    <string name="share_content_description">Bendrinti</string>
+    <string name="retry_button">Bandyti dar kartą</string>
+    <string name="home_updated_at">Atnaujinta: %1$s</string>
 </resources>
