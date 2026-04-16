@@ -30,20 +30,26 @@
     <string name="notification_upper_description">공포지수가 %1$d 이상일 때 알림을 받습니다.</string>
     <string name="notification_info">알림은 15분 간격으로 체크되며, 하루에 같은 구간 진입 시 최대 1회만 발송됩니다.</string>
 
-    <!-- SimilarEvents 카드 (v1.7.9) -->
-    <string name="similar_events_title">지금과 비슷했던 시기</string>
-    <string name="similar_events_score_label">현재 %1$d점</string>
-    <string name="similar_events_score_suffix">점</string>
-    <string name="similar_events_empty">유사한 과거 시점이 없습니다</string>
-    <string name="similar_events_one_year_return">1년 후 S&amp;P %1$s</string>
-    <string name="similar_events_ongoing">진행 중</string>
-    <string name="similar_events_sim_very">매우 유사</string>
-    <string name="similar_events_sim_close">유사</string>
-    <string name="similar_events_sim_moderate">보통</string>
-    <string name="similar_events_sim_far">약간 유사</string>
-    <string name="similar_events_aggregate_title">%1$d점 구간 전체 평균</string>
-    <string name="similar_events_aggregate_summary">1Y 평균 %1$s (표본 %2$d회)</string>
-    <string name="similar_events_disclaimer">과거 수익률은 미래 수익률을 보장하지 않습니다</string>
+    <!-- SimilarEvents 카드 (v1.7.9 v2) -->
+    <string name="insight_similar_events_title">지금과 비슷했던 시기</string>
+    <string name="insight_similar_events_score_label">현재 %1$d점</string>
+    <string name="insight_similar_events_pinned_title">주요 저점에서 매수했다면</string>
+    <string name="insight_similar_events_empty">유사한 과거 시점이 없습니다</string>
+    <string name="insight_similar_events_one_year_return">1년 후 S&amp;P %1$s</string>
+    <string name="insight_similar_events_ongoing">진행 중</string>
+    <string name="insight_similar_events_sim_very">매우 유사</string>
+    <string name="insight_similar_events_sim_close">유사</string>
+    <string name="insight_similar_events_sim_moderate">보통</string>
+    <string name="insight_similar_events_sim_far">약간 유사</string>
+    <string name="insight_similar_events_aggregate_title">%1$d점 구간 전체 평균</string>
+    <string name="insight_similar_events_aggregate_summary">1Y 평균 %1$s (표본 %2$d회)</string>
+    <string name="insight_similar_events_disclaimer">과거 수익률은 미래 수익률을 보장하지 않습니다</string>
+    <string name="insight_current_score_title">현재 %1$d점에서 매수 시</string>
+    <string name="insight_current_score_avg_return">평균 수익</string>
+    <string name="insight_current_score_max_drawdown">최대 낙폭</string>
+    <string name="insight_current_score_best_return">최고 수익</string>
+    <string name="insight_current_score_sample_count">표본 %1$d회</string>
+    <string name="insight_event_score">%1$d점</string>
 
     <!-- 역사적 이벤트 (Market) -->
     <string name="event_covid">COVID-19 팬데믹 저점</string>

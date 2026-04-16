@@ -34,6 +34,7 @@ data class EventMatch(
     val descriptionKey: String,
     val returnAfter: OptionalReturns,
     val isOngoing: Boolean,
+    val isPinned: Boolean = false,
 )
 
 enum class Similarity(val raw: String) {
@@ -58,4 +59,6 @@ data class AggregateStats(
     val score: Int,
     val sampleCount: Int,
     val avgReturn: HistoricalReturns,
+    val maxDrawdown: HistoricalReturns? = null,
+    val bestReturn: HistoricalReturns? = null,
 )
