@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import th1ngjin.fearindex.domain.entity.AggregateStats
@@ -31,13 +32,16 @@ import th1ngjin.fearindex.presentation.common.localizedEventTitle
 
 /**
  * "지금과 비슷했던 시기" 인사이트 카드.
- * iOS `SimilarEventsCardView` 1:1 대칭.
+ * iOS `SimilarEventsCardView` v2 대칭 — isPinned 기반 섹션 분리.
  */
 @Composable
 fun SimilarEventsCard(
     result: SimilarEventsResult,
     modifier: Modifier = Modifier,
 ) {
+    val pinned = result.matches.filter { it.isPinned }
+    val similar = result.matches.filter { !it.isPinned }
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -45,19 +49,18 @@ fun SimilarEventsCard(
             .background(MaterialTheme.colorScheme.surfaceVariant)
             .padding(20.dp),
     ) {
-        // Header
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom,
         ) {
             Text(
-                text = stringResource(R.string.similar_events_title),
+                text = stringResource(R.string.insight_similar_events_title),
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.Bold,
             )
             Text(
-                text = stringResource(R.string.similar_events_score_label, result.currentScore),
+                text = stringResource(R.string.insight_similar_events_score_label, result.currentScore),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -65,34 +68,73 @@ fun SimilarEventsCard(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Matches or empty
         if (result.matches.isEmpty()) {
             Text(
-                text = stringResource(R.string.similar_events_empty),
+                text = stringResource(R.string.insight_similar_events_empty),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         } else {
-            result.matches.forEachIndexed { index, match ->
-                MatchRow(match)
-                if (index < result.matches.lastIndex) {
-                    Divider(modifier = Modifier.padding(vertical = 7.dp))
+            if (pinned.isNotEmpty()) {
+                Text(
+                    text = stringResource(R.string.insight_similar_events_pinned_title),
+                    style = MaterialTheme.typography.labelMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(MaterialTheme.colorScheme.surface)
+                        .padding(12.dp),
+                ) {
+                    pinned.forEachIndexed { index, match ->
+                        PinnedMatchRow(match)
+                        if (index < pinned.lastIndex) {
+                            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+
+            if (similar.isNotEmpty()) {
+                Text(
+                    text = "비슷한 구간",
+                    style = MaterialTheme.typography.labelMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(MaterialTheme.colorScheme.surface)
+                        .padding(12.dp),
+                ) {
+                    similar.forEachIndexed { index, match ->
+                        SimilarMatchRow(match)
+                        if (index < similar.lastIndex) {
+                            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                        }
+                    }
                 }
             }
         }
 
-        // Aggregate stats
         result.aggregateStats?.let { stats ->
-            Spacer(modifier = Modifier.height(8.dp))
-            Divider()
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(12.dp))
             AggregateSection(stats)
         }
 
-        // Disclaimer
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            text = stringResource(R.string.similar_events_disclaimer),
+            text = stringResource(R.string.insight_similar_events_disclaimer),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontStyle = FontStyle.Italic,
@@ -101,38 +143,44 @@ fun SimilarEventsCard(
 }
 
 @Composable
-private fun MatchRow(match: EventMatch) {
+private fun PinnedMatchRow(match: EventMatch) {
     Column {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
+        Text(
+            text = "${localizedEventTitle(match.titleKey)} — ${stringResource(R.string.insight_event_score, match.score)}",
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold,
+        )
+        val oneYear = match.returnAfter.oneYear
+        if (oneYear != null) {
             Text(
-                text = localizedEventTitle(match.titleKey),
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.SemiBold,
-            )
-            Text(
-                text = "${match.score}${stringResource(R.string.similar_events_score_suffix)}",
+                text = stringResource(R.string.insight_similar_events_one_year_return, formatReturn(oneYear)),
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 4.dp),
             )
         }
-        Spacer(modifier = Modifier.height(6.dp))
+    }
+}
+
+@Composable
+private fun SimilarMatchRow(match: EventMatch) {
+    Column {
+        Text(
+            text = "${localizedEventTitle(match.titleKey)} — ${stringResource(R.string.insight_event_score, match.score)}",
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold,
+        )
+        Spacer(modifier = Modifier.height(4.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             SimilarityBadge(match.similarity)
             val oneYear = match.returnAfter.oneYear
             if (oneYear != null) {
                 Text(
-                    text = stringResource(
-                        R.string.similar_events_one_year_return,
-                        formatReturn(oneYear),
-                    ),
+                    text = stringResource(R.string.insight_similar_events_one_year_return, formatReturn(oneYear)),
                     style = MaterialTheme.typography.labelSmall,
                 )
             } else if (match.isOngoing) {
                 Text(
-                    text = stringResource(R.string.similar_events_ongoing),
+                    text = stringResource(R.string.insight_similar_events_ongoing),
                     style = MaterialTheme.typography.labelSmall,
                     fontStyle = FontStyle.Italic,
                 )
@@ -144,10 +192,10 @@ private fun MatchRow(match: EventMatch) {
 @Composable
 private fun SimilarityBadge(similarity: Similarity) {
     val (label, color) = when (similarity) {
-        Similarity.VERY -> stringResource(R.string.similar_events_sim_very) to Color(0xFFE53935)
-        Similarity.CLOSE -> stringResource(R.string.similar_events_sim_close) to Color(0xFFFF9800)
-        Similarity.MODERATE -> stringResource(R.string.similar_events_sim_moderate) to Color(0xFFFDD835)
-        Similarity.FAR -> stringResource(R.string.similar_events_sim_far) to Color.Gray
+        Similarity.VERY -> stringResource(R.string.insight_similar_events_sim_very) to Color(0xFFE53935)
+        Similarity.CLOSE -> stringResource(R.string.insight_similar_events_sim_close) to Color(0xFFFF9800)
+        Similarity.MODERATE -> stringResource(R.string.insight_similar_events_sim_moderate) to Color(0xFFFDD835)
+        Similarity.FAR -> stringResource(R.string.insight_similar_events_sim_far) to Color.Gray
     }
     Text(
         text = label,
@@ -164,20 +212,60 @@ private fun SimilarityBadge(similarity: Similarity) {
 @Composable
 private fun AggregateSection(stats: AggregateStats) {
     Text(
-        text = stringResource(R.string.similar_events_aggregate_title, stats.score),
-        style = MaterialTheme.typography.labelSmall,
+        text = stringResource(R.string.insight_similar_events_aggregate_title, stats.score),
+        style = MaterialTheme.typography.labelMedium,
         fontWeight = FontWeight.Bold,
     )
+    Spacer(modifier = Modifier.height(8.dp))
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+    ) {
+        StatColumn(
+            label = stringResource(R.string.insight_current_score_avg_return),
+            value = formatReturn(stats.avgReturn.oneYear),
+            color = if (stats.avgReturn.oneYear >= 0) Color(0xFF4CAF50) else Color(0xFFE53935),
+        )
+        stats.maxDrawdown?.let { drawdown ->
+            StatColumn(
+                label = stringResource(R.string.insight_current_score_max_drawdown),
+                value = formatReturn(drawdown.oneYear),
+                color = Color(0xFFE53935),
+            )
+        }
+        stats.bestReturn?.let { best ->
+            StatColumn(
+                label = stringResource(R.string.insight_current_score_best_return),
+                value = formatReturn(best.oneYear),
+                color = Color(0xFF4CAF50),
+            )
+        }
+    }
     Spacer(modifier = Modifier.height(4.dp))
     Text(
-        text = stringResource(
-            R.string.similar_events_aggregate_summary,
-            formatReturn(stats.avgReturn.oneYear),
-            stats.sampleCount,
-        ),
+        text = stringResource(R.string.insight_current_score_sample_count, stats.sampleCount),
         style = MaterialTheme.typography.labelSmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
+}
+
+@Composable
+private fun StatColumn(label: String, value: String, color: Color) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(
+            text = value,
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.Bold,
+            color = color,
+            textAlign = TextAlign.Center,
+        )
+    }
 }
 
 private fun formatReturn(value: Double): String = String.format("%+.1f%%", value)

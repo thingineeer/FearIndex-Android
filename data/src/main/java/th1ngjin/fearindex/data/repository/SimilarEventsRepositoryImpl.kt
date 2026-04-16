@@ -90,6 +90,7 @@ class SimilarEventsRepositoryImpl @Inject constructor(
         val descriptionKey = raw["descriptionKey"] as? String ?: titleKey
         val returnAfterRaw = raw["returnAfter"] as? Map<String, Any?> ?: emptyMap()
         val isOngoing = raw["isOngoing"] as? Boolean ?: false
+        val isPinned = raw["isPinned"] as? Boolean ?: false
 
         return EventMatch(
             eventId = eventId,
@@ -106,6 +107,7 @@ class SimilarEventsRepositoryImpl @Inject constructor(
                 oneYear = (returnAfterRaw["oneYear"] as? Number)?.toDouble(),
             ),
             isOngoing = isOngoing,
+            isPinned = isPinned,
         )
     }
 
@@ -115,15 +117,21 @@ class SimilarEventsRepositoryImpl @Inject constructor(
         val sampleCount = (raw["sampleCount"] as? Number)?.toInt() ?: return null
         if (sampleCount <= 0) return null
         val avgReturnRaw = raw["avgReturn"] as? Map<String, Any?> ?: return null
+        val maxDrawdownRaw = raw["maxDrawdown"] as? Map<String, Any?>
+        val bestReturnRaw = raw["bestReturn"] as? Map<String, Any?>
         return AggregateStats(
             score = score,
             sampleCount = sampleCount,
-            avgReturn = HistoricalReturns(
-                oneMonth = (avgReturnRaw["oneMonth"] as? Number)?.toDouble() ?: 0.0,
-                threeMonth = (avgReturnRaw["threeMonth"] as? Number)?.toDouble() ?: 0.0,
-                sixMonth = (avgReturnRaw["sixMonth"] as? Number)?.toDouble() ?: 0.0,
-                oneYear = (avgReturnRaw["oneYear"] as? Number)?.toDouble() ?: 0.0,
-            ),
+            avgReturn = parseReturns(avgReturnRaw),
+            maxDrawdown = maxDrawdownRaw?.let { parseReturns(it) },
+            bestReturn = bestReturnRaw?.let { parseReturns(it) },
         )
     }
+
+    private fun parseReturns(raw: Map<String, Any?>): HistoricalReturns = HistoricalReturns(
+        oneMonth = (raw["oneMonth"] as? Number)?.toDouble() ?: 0.0,
+        threeMonth = (raw["threeMonth"] as? Number)?.toDouble() ?: 0.0,
+        sixMonth = (raw["sixMonth"] as? Number)?.toDouble() ?: 0.0,
+        oneYear = (raw["oneYear"] as? Number)?.toDouble() ?: 0.0,
+    )
 }
