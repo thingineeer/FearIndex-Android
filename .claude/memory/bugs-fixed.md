@@ -109,17 +109,20 @@ type: project
 - **증상**: 투표 탭 진입 시 `W Firestore: Listen for Query(target=Query(votes/2026-04-16/results/market) failed: PERMISSION_DENIED`. VoteViewModel에서 vote stream error.
 - **원인**: `firestore.rules`의 `match /{document=**} { allow read, write: if false; }`가 `votes/**`를 차단. iOS `VoteDataSource.swift:72`도 같은 path (`votes/{date}/results/{indexType}`)를 addSnapshotListener로 읽고 있어 **iOS도 같은 에러 발생 중**.
 - **검증**:
-  - `node scripts/admin.js` (admin SDK로 직접 조회) → 오늘 날짜 문서 존재 여부 못 가져옴 (rules와 무관하게 admin SDK는 우회하지만 문서 자체는 `false` 반환).
+  - `node scripts/admin.js` (admin SDK로 직접 조회) → 오늘 날짜 문서 존재 여부 못 가져옴.
   - 배포된 rules (Firebase Rules API 직접 조회)와 로컬 `firestore.rules` 완전 일치.
-- **해결 방향** (미착수 — 사용자 승인 대기):
-  ```
-  match /votes/{date}/results/{indexType} {
-    allow read: if true;
-    allow write: if false;
-  }
-  ```
-  → iOS 프로젝트의 `firebase-functions/firestore.rules` 수정 → `firebase deploy --only firestore:rules`.
-- **관찰**: `stuckStatus/global_*` + `insights/similarEvents_*`은 정상 동작. Callable Functions (`submitStuckStatus`, `getSimilarEvents`, `registerFCMToken`, `updateNotificationSettings`, `submitVote`)도 정상. 오직 **vote snapshot 리스너**만 막혀 있음.
+- **해결** (2026-04-16):
+  - iOS `firebase-functions/firestore.rules`에 다음 블록 추가 후 `firebase deploy --only firestore:rules`:
+    ```
+    match /votes/{date}/results/{indexType} {
+      allow read: if true;
+      allow write: if false;
+    }
+    ```
+  - 쓰기는 여전히 차단 → `submitVote` Callable Function 경유 유지.
+  - Android 에뮬레이터에서 투표 탭 재진입 → PERMISSION_DENIED 완전 사라짐.
+- **관찰**: `stuckStatus/global_*` + `insights/similarEvents_*`은 이미 정상. 모든 Callable Functions 정상. 이제 **vote snapshot 리스너**도 복구.
+- **교훈**: 새 Firestore 경로 추가 시 rules도 함께 추가할 것. catch-all `{document=**}`가 우선순위 낮다는 착각 금지.
 
 ## 주의사항
 

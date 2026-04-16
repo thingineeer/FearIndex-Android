@@ -6,8 +6,7 @@
 ## Version
 - `versionCode`: 2
 - `versionName`: 1.0.1
-- AAB 산출물: `~/Downloads/FearIndex-v1.0.1.aab` (9.7MB) — **이전 세션 빌드**
-- 이번 세션 변경사항(알림 설정 fix) 포함한 **v1.0.1 재빌드 필요** 시 `./gradlew clean :app:bundleRelease`
+- AAB 산출물: `~/Downloads/FearIndex-v1.0.1.aab` (9.8MB) — **이번 세션 2026-04-16 재빌드** (알림 설정 fix 포함)
 
 ## Branch
 `dev` (origin/dev 기준 12 commits ahead, push 대기)
@@ -66,22 +65,13 @@
 
 ## Remaining
 
-### ⚠️ v1.0.1 블로커: Vote Firestore rules (iOS+Android 공통)
-- **문제**: `firestore.rules`의 catch-all `{document=**}`가 `votes/**`를 차단.
-- **영향**: iOS `VoteDataSource.swift:72` + Android `VoteDataSource.kt:75` 양쪽 addSnapshotListener 실패 → 투표 실시간 결과 표시 안 됨.
-- **해결 방향** (사용자 승인 대기):
-  ```
-  match /votes/{date}/results/{indexType} {
-    allow read: if true;
-    allow write: if false;
-  }
-  ```
-  iOS 프로젝트(`/Users/imyeongjin/Desktop/side/FearIndex-iOS/firebase-functions/firestore.rules`) 수정 → `firebase deploy --only firestore:rules`.
-- **검증 방법**: Firebase Rules API 직접 조회로 배포된 rules와 로컬 완전 일치 확인.
+### ✅ 이번 세션 해결 완료
+- Vote Firestore rules 수정 + deploy 완료 (iOS `firebase-functions/firestore.rules` + `firebase deploy --only firestore:rules`)
+- 에뮬레이터에서 Vote 탭 재진입 → PERMISSION_DENIED 사라짐 확인
+- v1.0.1 AAB 재빌드 (9.8MB) → `~/Downloads/FearIndex-v1.0.1.aab`
 
-### v1.0.1 재빌드 + 업로드
-- [ ] `./gradlew clean :app:bundleRelease` — 알림 설정 fix 포함한 AAB 재빌드
-- [ ] Play Console 내부 테스트 트랙 업로드
+### v1.0.1 업로드 (사용자 수동)
+- [ ] Play Console 내부 테스트 트랙 업로드 (`~/Downloads/FearIndex-v1.0.1.aab`)
 - [ ] 테스터 초대 진행 (Closed Testing 12명 + 14일 opt-in)
 
 ### v1.0.2+ 후보
