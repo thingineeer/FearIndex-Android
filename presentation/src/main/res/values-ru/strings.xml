@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Настройки уведомлений</string>
+    <string name="back">Назад</string>
+    <string name="notification_push_title">Push-уведомления</string>
+    <string name="notification_push_description">Получайте уведомления, когда индекс страха достигает установленного порога.</string>
+    <string name="notification_tab_market">Рынок</string>
+    <string name="notification_tab_crypto">Криптовалюта</string>
+    <string name="notification_market_title">Уведомления об индексе страха рынка</string>
+    <string name="notification_crypto_title">Уведомления об индексе страха криптовалют</string>
+    <string name="notification_lower_label">Нижний предел (Страх)</string>
+    <string name="notification_upper_label">Верхний предел (Жадность)</string>
+    <string name="notification_lower_description">Вы получите уведомление, когда индекс опустится до %1$d или ниже.</string>
+    <string name="notification_upper_description">Вы получите уведомление, когда индекс достигнет %1$d или выше.</string>
+    <string name="notification_info">Уведомления проверяются каждые 15 минут. Вы получите не более 1 уведомления на каждую пороговую зону в день.</string>
+    <string name="notification_sync_error">Ошибка синхронизации: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Похожие периоды</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Кто в ловушке прямо сейчас</string>
+    <string name="stuck_info_content_description">Информация о счётчике застрявших</string>
+    <string name="stuck_percentage_label">Доля застрявших</string>
+    <string name="stuck_button_im_stuck">"🤙 Я тоже застрял"</string>
+    <string name="stuck_button_im_safe">"✨ Я не застрял"</string>
+    <string name="stuck_footer_guide">"🤙 Нажмите кнопку, чтобы увидеть, сколько людей застряло прямо сейчас"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Сегодняшнее голосование</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Голос за %1$s</string>
+    <string name="vote_total_participants">%1$d участников</string>
+    <string name="vote_once_notice">"✅ Только 1 голос в день"</string>
+    <string name="vote_next_countdown">До следующего голосования</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Недостаточно данных о доходности.</string>
+    <string name="insight_detail_no_data">Недостаточно данных.</string>
+    <string name="insight_detail_scenario_compare_title">Сравнение сценариев (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Средняя доходность (%1$s)</string>
+    <string name="insight_detail_worst_case">Худший случай</string>
+    <string name="insight_detail_best_case">Лучший случай</string>
+    <string name="insight_detail_sample_basis_crypto">На основе данных о настроениях крипторынка</string>
+    <string name="insight_detail_sample_basis_market">На основе %1$d экстремальных периодов (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Недостаточно данных о похожих периодах.</string>
+    <string name="insight_detail_past_events_title">Похожие события в прошлом (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Периоды, похожие на нынешний</string>
+    <string name="insight_detail_similar_past_body">Исторические моменты при индексе страха около %1$d. Обратите внимание на наиболее похожие на текущий рынок.</string>
+    <string name="insight_detail_event_score_label">Балл %1$d</string>
+    <string name="insight_detail_simulation_title">Симуляция инвестиций (%1$s)</string>
+    <string name="insight_detail_investment_label">Сумма инвестиций (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ На основе цен Bitcoin (BTC). Криптовалюты крайне волатильны.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ На основе исторических данных S&amp;P 500. Прошлые результаты не гарантируют будущую доходность.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Анализ просадки (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Средняя доходность за 1Y</string>
+    <string name="insight_detail_where_from_title">Откуда эти цифры?</string>
+    <string name="insight_detail_where_from_body">Рассчитано %2$s доходности на основе прошлых периодов с индексом страха около %1$d.</string>
+    <string name="insight_detail_action_guide_title">Руководство по инвестиционным действиям</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1М</string>
+    <string name="period_month_3">3М</string>
+    <string name="period_month_6">6М</string>
+    <string name="period_year_1">1Г</string>
+    <string name="period_month_1_after">через 1 мес.</string>
+    <string name="period_month_3_after">через 3 мес.</string>
+    <string name="period_month_6_after">через 6 мес.</string>
+    <string name="period_year_1_after">через 1 год</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Макс. просадка (1М)</string>
+    <string name="drawdown_period_3m">Макс. просадка (3М)</string>
+    <string name="drawdown_period_6m">Макс. просадка (6М)</string>
+    <string name="drawdown_period_1y">Макс. просадка (1Г)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">Зона крайнего страха</string>
+    <string name="nudge_body_extreme_fear">Индекс страха %1$d сигнализирует о крайнем страхе. Исторически это долгосрочная возможность для покупки, но краткосрочные снижения всё ещё возможны.</string>
+    <string name="nudge_title_extreme_greed">Зона крайней жадности</string>
+    <string name="nudge_body_extreme_greed">Индекс страха %1$d сигнализирует о перегретом рынке. Управление рисками здесь важнее дополнительных покупок.</string>
+    <string name="nudge_title_stable">Зона стабильного рынка</string>
+    <string name="nudge_body_stable">Индекс страха %1$d сигнализирует об относительно стабильном рынке без крайнего страха или жадности. Подходит для устойчивой долгосрочной стратегии.</string>
+    <string name="nudge_tip_fear_1">Разделите вход для диверсификации сроков</string>
+    <string name="nudge_tip_fear_2">Проверьте резервы наличных перед покупкой</string>
+    <string name="nudge_tip_fear_3">Не продавайте импульсивно из-за страха</string>
+    <string name="nudge_tip_greed_1">Проверьте распределение портфеля</string>
+    <string name="nudge_tip_greed_2">Частично фиксируйте прибыль при достижении целей</string>
+    <string name="nudge_tip_greed_3">Избегайте FOMO</string>
+    <string name="nudge_tip_stable_1">Сверьтесь с долгосрочными целями</string>
+    <string name="nudge_tip_stable_2">Поддерживайте регулярные взносы</string>
+    <string name="nudge_tip_stable_3">Рассмотрите ребалансировку</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Анализ скорости</string>
+    <string name="velocity_daily_change">Дневное изменение</string>
+    <string name="velocity_weekly_change">Изменение за 7 дней</string>
+    <string name="velocity_momentum_label">Моментум</string>
+    <string name="velocity_trend_label">Тренд</string>
+    <string name="velocity_sparkline_title">Последние 15 дней</string>
+    <string name="velocity_inflection_title">Направление меняется!</string>
+    <string name="velocity_inflection_body">Недавний тренд развернулся — обратите внимание.</string>
+    <string name="momentum_accelerating">Ускоряется</string>
+    <string name="momentum_decelerating">Замедляется</string>
+    <string name="momentum_stable">Стабильно</string>
+    <string name="trend_crash_accelerating">Падение ускоряется</string>
+    <string name="trend_crash_decelerating">Падение замедляется</string>
+    <string name="trend_stable">Стабильно</string>
+    <string name="trend_rally_accelerating">Рост ускоряется</string>
+    <string name="trend_rally_decelerating">Рост замедляется</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Рынок</string>
+    <string name="tab_crypto">Криптовалюта</string>
+    <string name="current_index_label">Текущий индекс</string>
+    <string name="vs_previous_close_label">к пред. закрытию</string>
+    <string name="vs_previous_close_value">к пред. закрытию %1$s</string>
+    <string name="share_content_description">Поделиться</string>
+    <string name="retry_button">Повторить</string>
+    <string name="home_updated_at">Обновлено: %1$s</string>
 </resources>

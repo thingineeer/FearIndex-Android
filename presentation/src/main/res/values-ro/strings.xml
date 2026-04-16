@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Setări notificări</string>
+    <string name="back">Înapoi</string>
+    <string name="notification_push_title">Notificări push</string>
+    <string name="notification_push_description">Primești notificare când indicele fricii atinge pragul tău.</string>
+    <string name="notification_tab_market">Piață</string>
+    <string name="notification_tab_crypto">Cripto</string>
+    <string name="notification_market_title">Alerte indice frică piață</string>
+    <string name="notification_crypto_title">Alerte indice frică cripto</string>
+    <string name="notification_lower_label">Inferior (Frică)</string>
+    <string name="notification_upper_label">Superior (Lăcomie)</string>
+    <string name="notification_lower_description">Vei fi notificat când indicele scade la %1$d sau mai jos.</string>
+    <string name="notification_upper_description">Vei fi notificat când indicele atinge %1$d sau mai sus.</string>
+    <string name="notification_info">Notificările sunt verificate la fiecare 15 minute. Vei primi cel mult 1 notificare pe zonă de prag pe zi.</string>
+    <string name="notification_sync_error">Sincronizare eșuată: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Perioade similare</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Persoane blocate chiar acum</string>
+    <string name="stuck_info_content_description">Informații contor blocat</string>
+    <string name="stuck_percentage_label">Rată blocați</string>
+    <string name="stuck_button_im_stuck">"🤙 Și eu sunt blocat"</string>
+    <string name="stuck_button_im_safe">"✨ Nu sunt blocat"</string>
+    <string name="stuck_footer_guide">"🤙 Apasă un buton pentru a vedea în timp real câți sunt blocați"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Votul de azi</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Vot %1$s</string>
+    <string name="vote_total_participants">%1$d participanți</string>
+    <string name="vote_once_notice">"✅ Doar 1 vot pe zi"</string>
+    <string name="vote_next_countdown">Până la următorul vot</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Nu sunt suficiente date despre randamente.</string>
+    <string name="insight_detail_no_data">Nu sunt suficiente date.</string>
+    <string name="insight_detail_scenario_compare_title">Comparație scenarii (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Randament mediu (%1$s)</string>
+    <string name="insight_detail_worst_case">Cel mai rău caz</string>
+    <string name="insight_detail_best_case">Cel mai bun caz</string>
+    <string name="insight_detail_sample_basis_crypto">Bazat pe date de sentiment cripto</string>
+    <string name="insight_detail_sample_basis_market">Bazat pe %1$d perioade extreme (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Nu sunt suficiente date pentru perioade similare.</string>
+    <string name="insight_detail_past_events_title">Evenimente similare din trecut (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Perioade din trecut similare cu prezentul</string>
+    <string name="insight_detail_similar_past_body">Momente istorice apropiate de indicele fricii %1$d. Vezi ce seamănă cel mai mult cu piața actuală.</string>
+    <string name="insight_detail_event_score_label">Scor %1$d</string>
+    <string name="insight_detail_simulation_title">Simulare investiție (%1$s)</string>
+    <string name="insight_detail_investment_label">Sumă investiție (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Bazat pe prețurile Bitcoin (BTC). Cripto este extrem de volatil.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Bazat pe date istorice S&amp;P 500. Performanța trecută nu garantează randamentele viitoare.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Analiză scădere (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Randament mediu 1A</string>
+    <string name="insight_detail_where_from_title">De unde vin aceste cifre?</string>
+    <string name="insight_detail_where_from_body">Randamente %2$s calculate pe baza perioadelor trecute apropiate de indicele fricii %1$d.</string>
+    <string name="insight_detail_action_guide_title">Ghid de acțiune pentru investiții</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1L</string>
+    <string name="period_month_3">3L</string>
+    <string name="period_month_6">6L</string>
+    <string name="period_year_1">1A</string>
+    <string name="period_month_1_after">După 1 lună</string>
+    <string name="period_month_3_after">După 3 luni</string>
+    <string name="period_month_6_after">După 6 luni</string>
+    <string name="period_year_1_after">După 1 an</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Scădere max. (1L)</string>
+    <string name="drawdown_period_3m">Scădere max. (3L)</string>
+    <string name="drawdown_period_6m">Scădere max. (6L)</string>
+    <string name="drawdown_period_1y">Scădere max. (1A)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Zonă de frică extremă</string>
+    <string name="nudge_body_extreme_fear">Indicele fricii %1$d semnalează frică extremă. Istoric o oportunitate de cumpărare pe termen lung, dar scăderile pe termen scurt sunt încă posibile.</string>
+    <string name="nudge_title_extreme_greed">Zonă de lăcomie extremă</string>
+    <string name="nudge_body_extreme_greed">Indicele fricii %1$d semnalează o piață supraîncălzită. Managementul riscului contează mai mult decât cumpărăturile suplimentare aici.</string>
+    <string name="nudge_title_stable">Zonă de piață stabilă</string>
+    <string name="nudge_body_stable">Indicele fricii %1$d semnalează o piață relativ stabilă fără frică sau lăcomie extremă. Bun pentru o strategie constantă pe termen lung.</string>
+    <string name="nudge_tip_fear_1">Împarte intrările pentru a diversifica momentul</string>
+    <string name="nudge_tip_fear_2">Verifică rezervele de numerar înainte de cumpărare</string>
+    <string name="nudge_tip_fear_3">Nu vinde impulsiv de frică</string>
+    <string name="nudge_tip_greed_1">Revizuiește alocarea portofoliului</string>
+    <string name="nudge_tip_greed_2">Realizează profituri parțiale la ținte</string>
+    <string name="nudge_tip_greed_3">Evită FOMO</string>
+    <string name="nudge_tip_stable_1">Verifică obiectivele pe termen lung</string>
+    <string name="nudge_tip_stable_2">Menține contribuțiile regulate</string>
+    <string name="nudge_tip_stable_3">Ia în considerare reechilibrarea</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Analiză viteză</string>
+    <string name="velocity_daily_change">Variație zilnică</string>
+    <string name="velocity_weekly_change">Variație 7 zile</string>
+    <string name="velocity_momentum_label">Moment</string>
+    <string name="velocity_trend_label">Tendință</string>
+    <string name="velocity_sparkline_title">Ultimele 15 zile</string>
+    <string name="velocity_inflection_title">Direcția se schimbă!</string>
+    <string name="velocity_inflection_body">Tendința recentă s-a inversat — fii atent.</string>
+    <string name="momentum_accelerating">Accelerează</string>
+    <string name="momentum_decelerating">Decelerează</string>
+    <string name="momentum_stable">Stabil</string>
+    <string name="trend_crash_accelerating">Prăbușire accelerată</string>
+    <string name="trend_crash_decelerating">Prăbușire încetinită</string>
+    <string name="trend_stable">Stabil</string>
+    <string name="trend_rally_accelerating">Creștere accelerată</string>
+    <string name="trend_rally_decelerating">Creștere încetinită</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Piață</string>
+    <string name="tab_crypto">Cripto</string>
+    <string name="current_index_label">Indice curent</string>
+    <string name="vs_previous_close_label">față de închiderea anterioară</string>
+    <string name="vs_previous_close_value">față de închiderea anterioară %1$s</string>
+    <string name="share_content_description">Partajează</string>
+    <string name="retry_button">Reîncearcă</string>
+    <string name="home_updated_at">Actualizat: %1$s</string>
 </resources>

@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Ρυθμίσεις ειδοποιήσεων</string>
+    <string name="back">Πίσω</string>
+    <string name="notification_push_title">Ειδοποιήσεις push</string>
+    <string name="notification_push_description">Λάβετε ειδοποίηση όταν ο δείκτης φόβου φτάσει στο όριό σας.</string>
+    <string name="notification_tab_market">Αγορά</string>
+    <string name="notification_tab_crypto">Κρύπτο</string>
+    <string name="notification_market_title">Ειδοποιήσεις δείκτη φόβου αγοράς</string>
+    <string name="notification_crypto_title">Ειδοποιήσεις δείκτη φόβου κρύπτο</string>
+    <string name="notification_lower_label">Κάτω όριο (Φόβος)</string>
+    <string name="notification_upper_label">Άνω όριο (Απληστία)</string>
+    <string name="notification_lower_description">Θα ειδοποιηθείτε όταν ο δείκτης πέσει στο %1$d ή χαμηλότερα.</string>
+    <string name="notification_upper_description">Θα ειδοποιηθείτε όταν ο δείκτης φτάσει στο %1$d ή υψηλότερα.</string>
+    <string name="notification_info">Οι ειδοποιήσεις ελέγχονται κάθε 15 λεπτά. Θα λαμβάνετε το πολύ 1 ειδοποίηση ανά ζώνη ορίου την ημέρα.</string>
+    <string name="notification_sync_error">Ο συγχρονισμός απέτυχε: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Παρόμοιες περίοδοι</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Άτομα εγκλωβισμένα αυτή τη στιγμή</string>
+    <string name="stuck_info_content_description">Πληροφορίες μετρητή εγκλωβισμού</string>
+    <string name="stuck_percentage_label">Ποσοστό εγκλωβισμένων</string>
+    <string name="stuck_button_im_stuck">"🤙 Είμαι κι εγώ εγκλωβισμένος"</string>
+    <string name="stuck_button_im_safe">"✨ Δεν είμαι εγκλωβισμένος"</string>
+    <string name="stuck_footer_guide">"🤙 Πατήστε ένα κουμπί για να δείτε σε πραγματικό χρόνο πόσοι είναι εγκλωβισμένοι"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Η ψηφοφορία της ημέρας</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Ψήφος %1$s</string>
+    <string name="vote_total_participants">%1$d συμμετέχοντες</string>
+    <string name="vote_once_notice">"✅ Μόνο 1 ψήφος την ημέρα"</string>
+    <string name="vote_next_countdown">Μέχρι την επόμενη ψηφοφορία</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Δεν υπάρχουν αρκετά δεδομένα αποδόσεων.</string>
+    <string name="insight_detail_no_data">Δεν υπάρχουν αρκετά δεδομένα.</string>
+    <string name="insight_detail_scenario_compare_title">Σύγκριση σεναρίων (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Μέση απόδοση (%1$s)</string>
+    <string name="insight_detail_worst_case">Χειρότερη περίπτωση</string>
+    <string name="insight_detail_best_case">Καλύτερη περίπτωση</string>
+    <string name="insight_detail_sample_basis_crypto">Βάσει δεδομένων συναισθήματος κρύπτο</string>
+    <string name="insight_detail_sample_basis_market">Βάσει %1$d ακραίων περιόδων (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Δεν υπάρχουν αρκετά δεδομένα για παρόμοιες περιόδους.</string>
+    <string name="insight_detail_past_events_title">Παλαιότερα παρόμοια γεγονότα (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Παρελθοντικές περίοδοι παρόμοιες με σήμερα</string>
+    <string name="insight_detail_similar_past_body">Ιστορικές στιγμές κοντά στον δείκτη φόβου %1$d. Δείτε τι μοιάζει περισσότερο με την τρέχουσα αγορά.</string>
+    <string name="insight_detail_event_score_label">Βαθμός %1$d</string>
+    <string name="insight_detail_simulation_title">Προσομοίωση επένδυσης (%1$s)</string>
+    <string name="insight_detail_investment_label">Ποσό επένδυσης (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Βάσει τιμών Bitcoin (BTC). Το κρύπτο είναι εξαιρετικά ευμετάβλητο.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Βάσει ιστορικών δεδομένων S&amp;P 500. Οι παλιές αποδόσεις δεν εγγυώνται μελλοντικά κέρδη.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Ανάλυση πτώσης (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Μέση απόδοση 1 έτους</string>
+    <string name="insight_detail_where_from_title">Από πού προέρχονται αυτοί οι αριθμοί;</string>
+    <string name="insight_detail_where_from_body">Οι αποδόσεις %2$s υπολογίστηκαν βάσει παρελθοντικών περιόδων κοντά στον δείκτη φόβου %1$d.</string>
+    <string name="insight_detail_action_guide_title">Οδηγός επενδυτικής δράσης</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1Μ</string>
+    <string name="period_month_3">3Μ</string>
+    <string name="period_month_6">6Μ</string>
+    <string name="period_year_1">1Ε</string>
+    <string name="period_month_1_after">Μετά από 1 μήνα</string>
+    <string name="period_month_3_after">Μετά από 3 μήνες</string>
+    <string name="period_month_6_after">Μετά από 6 μήνες</string>
+    <string name="period_year_1_after">Μετά από 1 έτος</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Μέγ. πτώση (1Μ)</string>
+    <string name="drawdown_period_3m">Μέγ. πτώση (3Μ)</string>
+    <string name="drawdown_period_6m">Μέγ. πτώση (6Μ)</string>
+    <string name="drawdown_period_1y">Μέγ. πτώση (1Ε)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Ζώνη ακραίου φόβου</string>
+    <string name="nudge_body_extreme_fear">Ο δείκτης φόβου %1$d σηματοδοτεί ακραίο φόβο. Ιστορικά μια μακροπρόθεσμη ευκαιρία αγοράς, αλλά βραχυπρόθεσμες πτώσεις είναι ακόμα πιθανές.</string>
+    <string name="nudge_title_extreme_greed">Ζώνη ακραίας απληστίας</string>
+    <string name="nudge_body_extreme_greed">Ο δείκτης φόβου %1$d σηματοδοτεί υπερθερμασμένη αγορά. Η διαχείριση κινδύνου είναι πιο σημαντική από πρόσθετες αγορές εδώ.</string>
+    <string name="nudge_title_stable">Ζώνη σταθερής αγοράς</string>
+    <string name="nudge_body_stable">Ο δείκτης φόβου %1$d σηματοδοτεί μια σχετικά σταθερή αγορά χωρίς ακραίο φόβο ή απληστία. Καλό για σταθερή μακροπρόθεσμη στρατηγική.</string>
+    <string name="nudge_tip_fear_1">Χωρίστε τις εισόδους για διαφοροποίηση χρονισμού</string>
+    <string name="nudge_tip_fear_2">Ελέγξτε τα μετρητά αποθέματα πριν αγοράσετε</string>
+    <string name="nudge_tip_fear_3">Μην πουλάτε παρορμητικά από φόβο</string>
+    <string name="nudge_tip_greed_1">Επανεξετάστε την κατανομή χαρτοφυλακίου</string>
+    <string name="nudge_tip_greed_2">Κλειδώστε μερικά κέρδη στους στόχους</string>
+    <string name="nudge_tip_greed_3">Αποφύγετε το FOMO</string>
+    <string name="nudge_tip_stable_1">Ελέγξτε μακροπρόθεσμους στόχους</string>
+    <string name="nudge_tip_stable_2">Διατηρήστε τακτικές συνεισφορές</string>
+    <string name="nudge_tip_stable_3">Σκεφτείτε εξισορρόπηση</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Ανάλυση ταχύτητας</string>
+    <string name="velocity_daily_change">Ημερήσια μεταβολή</string>
+    <string name="velocity_weekly_change">Μεταβολή 7 ημερών</string>
+    <string name="velocity_momentum_label">Ορμή</string>
+    <string name="velocity_trend_label">Τάση</string>
+    <string name="velocity_sparkline_title">Τελευταίες 15 ημέρες</string>
+    <string name="velocity_inflection_title">Η κατεύθυνση αλλάζει!</string>
+    <string name="velocity_inflection_body">Η πρόσφατη τάση αντιστράφηκε — προσέξτε.</string>
+    <string name="momentum_accelerating">Επιταχύνει</string>
+    <string name="momentum_decelerating">Επιβραδύνει</string>
+    <string name="momentum_stable">Σταθερό</string>
+    <string name="trend_crash_accelerating">Η κατάρρευση επιταχύνει</string>
+    <string name="trend_crash_decelerating">Η κατάρρευση επιβραδύνει</string>
+    <string name="trend_stable">Σταθερό</string>
+    <string name="trend_rally_accelerating">Η άνοδος επιταχύνει</string>
+    <string name="trend_rally_decelerating">Η άνοδος επιβραδύνει</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Αγορά</string>
+    <string name="tab_crypto">Κρύπτο</string>
+    <string name="current_index_label">Τρέχων δείκτης</string>
+    <string name="vs_previous_close_label">έναντι προηγούμενου κλεισίματος</string>
+    <string name="vs_previous_close_value">έναντι προηγούμενου κλεισίματος %1$s</string>
+    <string name="share_content_description">Κοινοποίηση</string>
+    <string name="retry_button">Επανάληψη</string>
+    <string name="home_updated_at">Ενημερώθηκε: %1$s</string>
 </resources>

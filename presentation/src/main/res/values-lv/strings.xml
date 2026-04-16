@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Paziņojumu iestatījumi</string>
+    <string name="back">Atpakaļ</string>
+    <string name="notification_push_title">Tūlītējie paziņojumi</string>
+    <string name="notification_push_description">Saņemiet paziņojumu, kad baiļu indekss sasniedz jūsu slieksni.</string>
+    <string name="notification_tab_market">Tirgus</string>
+    <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_market_title">Tirgus baiļu indeksa brīdinājumi</string>
+    <string name="notification_crypto_title">Kripto baiļu indeksa brīdinājumi</string>
+    <string name="notification_lower_label">Apakšējais (Bailes)</string>
+    <string name="notification_upper_label">Augšējais (Alkatība)</string>
+    <string name="notification_lower_description">Jūs saņemsiet paziņojumu, kad indekss noslīd līdz %1$d vai zemāk.</string>
+    <string name="notification_upper_description">Jūs saņemsiet paziņojumu, kad indekss sasniedz %1$d vai augstāk.</string>
+    <string name="notification_info">Paziņojumi tiek pārbaudīti ik pēc 15 minūtēm. Jūs saņemsiet ne vairāk kā 1 paziņojumu par sliekšņa zonu dienā.</string>
+    <string name="notification_sync_error">Sinhronizācija neizdevās: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Līdzīgi periodi</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Cilvēki, kas tagad ir iestrēguši</string>
+    <string name="stuck_info_content_description">Iestrēgšanas skaitītāja informācija</string>
+    <string name="stuck_percentage_label">Iestrēgušo īpatsvars</string>
+    <string name="stuck_button_im_stuck">"🤙 Arī es esmu iestrēdzis"</string>
+    <string name="stuck_button_im_safe">"✨ Es neesmu iestrēdzis"</string>
+    <string name="stuck_footer_guide">"🤙 Nospiediet pogu, lai reāllaikā redzētu, cik daudz cilvēku ir iestrēguši"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Šodienas balsojums</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s balsojums</string>
+    <string name="vote_total_participants">%1$d dalībnieki</string>
+    <string name="vote_once_notice">"✅ Tikai 1 balss dienā"</string>
+    <string name="vote_next_countdown">Līdz nākamajam balsojumam</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Nepietiek ienesīguma datu.</string>
+    <string name="insight_detail_no_data">Nepietiek datu.</string>
+    <string name="insight_detail_scenario_compare_title">Scenāriju salīdzinājums (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Vidējais ienesīgums (%1$s)</string>
+    <string name="insight_detail_worst_case">Sliktākais gadījums</string>
+    <string name="insight_detail_best_case">Labākais gadījums</string>
+    <string name="insight_detail_sample_basis_crypto">Pamatojoties uz kriptovalūtu noskaņojuma datiem</string>
+    <string name="insight_detail_sample_basis_market">Pamatojoties uz %1$d ekstrēmiem periodiem (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Nepietiek līdzīgu periodu datu.</string>
+    <string name="insight_detail_past_events_title">Iepriekšējie līdzīgie notikumi (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Iepriekšējie pašreizējam laikam līdzīgie periodi</string>
+    <string name="insight_detail_similar_past_body">Vēsturiski brīži baiļu indeksa %1$d tuvumā. Izpētiet, kas visvairāk līdzinās pašreizējam tirgum.</string>
+    <string name="insight_detail_event_score_label">Rezultāts %1$d</string>
+    <string name="insight_detail_simulation_title">Ieguldījumu simulācija (%1$s)</string>
+    <string name="insight_detail_investment_label">Ieguldījuma summa (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Pamatojoties uz Bitcoin (BTC) cenām. Kripto ir ārkārtīgi nepastāvīga.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Pamatojoties uz S&amp;P 500 vēsturiskajiem datiem. Iepriekšējie rezultāti negarantē nākotnes ienesīgumu.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Krituma analīze (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Vidējais 1 g. ienesīgums</string>
+    <string name="insight_detail_where_from_title">No kurienes šie skaitļi?</string>
+    <string name="insight_detail_where_from_body">%2$s ienesīgums aprēķināts pēc iepriekšējiem periodiem baiļu indeksa %1$d tuvumā.</string>
+    <string name="insight_detail_action_guide_title">Ieguldījumu rīcības ceļvedis</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1 mēn.</string>
+    <string name="period_month_3">3 mēn.</string>
+    <string name="period_month_6">6 mēn.</string>
+    <string name="period_year_1">1 g.</string>
+    <string name="period_month_1_after">Pēc 1 mēn.</string>
+    <string name="period_month_3_after">Pēc 3 mēn.</string>
+    <string name="period_month_6_after">Pēc 6 mēn.</string>
+    <string name="period_year_1_after">Pēc 1 g.</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Maks. kritums (1 mēn.)</string>
+    <string name="drawdown_period_3m">Maks. kritums (3 mēn.)</string>
+    <string name="drawdown_period_6m">Maks. kritums (6 mēn.)</string>
+    <string name="drawdown_period_1y">Maks. kritums (1 g.)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Ārkārtēju baiļu zona</string>
+    <string name="nudge_body_extreme_fear">Baiļu indekss %1$d liecina par ārkārtējām bailēm. Vēsturiski tā ir ilgtermiņa pirkšanas iespēja, taču īstermiņa kritumi joprojām ir iespējami.</string>
+    <string name="nudge_title_extreme_greed">Ārkārtējas alkatības zona</string>
+    <string name="nudge_body_extreme_greed">Baiļu indekss %1$d liecina par pārkarsētu tirgu. Šeit riska pārvaldība ir svarīgāka par papildu pirkumiem.</string>
+    <string name="nudge_title_stable">Stabila tirgus zona</string>
+    <string name="nudge_body_stable">Baiļu indekss %1$d liecina par salīdzinoši stabilu tirgu bez ārkārtējām bailēm vai alkatības. Piemērots vienmērīgai ilgtermiņa stratēģijai.</string>
+    <string name="nudge_tip_fear_1">Sadaliet ieejas, lai diversificētu laiku</string>
+    <string name="nudge_tip_fear_2">Pirms pirkšanas pārbaudiet naudas rezerves</string>
+    <string name="nudge_tip_fear_3">Nepārdodiet impulsīvi aiz bailēm</string>
+    <string name="nudge_tip_greed_1">Pārskatiet portfeļa sadalījumu</string>
+    <string name="nudge_tip_greed_2">Sasniedzot mērķus, fiksējiet daļu peļņas</string>
+    <string name="nudge_tip_greed_3">Izvairieties no FOMO</string>
+    <string name="nudge_tip_stable_1">Pārbaudiet ilgtermiņa mērķus</string>
+    <string name="nudge_tip_stable_2">Uzturiet regulāras iemaksas</string>
+    <string name="nudge_tip_stable_3">Apsveriet pārsvērumu</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Ātruma analīze</string>
+    <string name="velocity_daily_change">Dienas izmaiņas</string>
+    <string name="velocity_weekly_change">7 dienu izmaiņas</string>
+    <string name="velocity_momentum_label">Impulss</string>
+    <string name="velocity_trend_label">Tendence</string>
+    <string name="velocity_sparkline_title">Pēdējās 15 dienas</string>
+    <string name="velocity_inflection_title">Virziens mainās!</string>
+    <string name="velocity_inflection_body">Nesenā tendence ir mainījusies — pievērsiet uzmanību.</string>
+    <string name="momentum_accelerating">Paātrinās</string>
+    <string name="momentum_decelerating">Palēninās</string>
+    <string name="momentum_stable">Stabils</string>
+    <string name="trend_crash_accelerating">Kritums paātrinās</string>
+    <string name="trend_crash_decelerating">Kritums palēninās</string>
+    <string name="trend_stable">Stabils</string>
+    <string name="trend_rally_accelerating">Kāpums paātrinās</string>
+    <string name="trend_rally_decelerating">Kāpums palēninās</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Tirgus</string>
+    <string name="tab_crypto">Kripto</string>
+    <string name="current_index_label">Pašreizējais indekss</string>
+    <string name="vs_previous_close_label">pret iepriekšējo slēgumu</string>
+    <string name="vs_previous_close_value">pret iepriekšējo slēgumu %1$s</string>
+    <string name="share_content_description">Kopīgot</string>
+    <string name="retry_button">Mēģināt vēlreiz</string>
+    <string name="home_updated_at">Atjaunināts: %1$s</string>
 </resources>

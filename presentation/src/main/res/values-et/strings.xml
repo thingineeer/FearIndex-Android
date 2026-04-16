@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Teavituste seaded</string>
+    <string name="back">Tagasi</string>
+    <string name="notification_push_title">Tõuketeavitused</string>
+    <string name="notification_push_description">Saad teavituse, kui hirmuindeks jõuab sinu läveni.</string>
+    <string name="notification_tab_market">Turg</string>
+    <string name="notification_tab_crypto">Krüpto</string>
+    <string name="notification_market_title">Turu hirmuindeksi hoiatused</string>
+    <string name="notification_crypto_title">Krüpto hirmuindeksi hoiatused</string>
+    <string name="notification_lower_label">Alumine (Hirm)</string>
+    <string name="notification_upper_label">Ülemine (Ahnus)</string>
+    <string name="notification_lower_description">Saad teavituse, kui indeks langeb %1$d või madalamale.</string>
+    <string name="notification_upper_description">Saad teavituse, kui indeks jõuab %1$d või kõrgemale.</string>
+    <string name="notification_info">Teavitusi kontrollitakse iga 15 minuti järel. Saad ühe lävitsooni kohta kuni ühe teavituse päevas.</string>
+    <string name="notification_sync_error">Sünkroonimine ebaõnnestus: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Sarnased perioodid</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Inimesed, kes on praegu kinni</string>
+    <string name="stuck_info_content_description">Kinniolemise loenduri info</string>
+    <string name="stuck_percentage_label">Kinniolemise määr</string>
+    <string name="stuck_button_im_stuck">"🤙 Mina olen ka kinni"</string>
+    <string name="stuck_button_im_safe">"✨ Mina ei ole kinni"</string>
+    <string name="stuck_footer_guide">"🤙 Vajuta nuppu, et näha reaalajas, kui paljud on kinni"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Tänane hääletus</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s hääl</string>
+    <string name="vote_total_participants">%1$d osalejat</string>
+    <string name="vote_once_notice">"✅ Ainult 1 hääl päevas"</string>
+    <string name="vote_next_countdown">Järgmise hääletuseni</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Tootlusandmeid pole piisavalt.</string>
+    <string name="insight_detail_no_data">Andmeid pole piisavalt.</string>
+    <string name="insight_detail_scenario_compare_title">Stsenaariumide võrdlus (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Keskmine tootlus (%1$s)</string>
+    <string name="insight_detail_worst_case">Halvim juhtum</string>
+    <string name="insight_detail_best_case">Parim juhtum</string>
+    <string name="insight_detail_sample_basis_crypto">Põhineb krüpto meeleoluandmetel</string>
+    <string name="insight_detail_sample_basis_market">Põhineb %1$d äärmuslikul perioodil (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Sarnaste perioodide andmeid pole piisavalt.</string>
+    <string name="insight_detail_past_events_title">Varasemad sarnased sündmused (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Praegusega sarnased möödunud perioodid</string>
+    <string name="insight_detail_similar_past_body">Ajaloolised hetked hirmuindeksi %1$d lähedal. Vaata seda, mis on praegusele turule kõige sarnasem.</string>
+    <string name="insight_detail_event_score_label">Skoor %1$d</string>
+    <string name="insight_detail_simulation_title">Investeerimise simulatsioon (%1$s)</string>
+    <string name="insight_detail_investment_label">Investeeringu summa (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Põhineb Bitcoini (BTC) hindadel. Krüpto on ülimalt volatiilne.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Põhineb S&amp;P 500 ajaloolistel andmetel. Varasem tulemus ei garanteeri tulevast tootlust.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Languse analüüs (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Keskmine 1A tootlus</string>
+    <string name="insight_detail_where_from_title">Kust need arvud tulevad?</string>
+    <string name="insight_detail_where_from_body">%2$s tootlused arvutatud möödunud perioodide põhjal hirmuindeksi %1$d lähedal.</string>
+    <string name="insight_detail_action_guide_title">Investeerimistegevuse juhend</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1K</string>
+    <string name="period_month_3">3K</string>
+    <string name="period_month_6">6K</string>
+    <string name="period_year_1">1A</string>
+    <string name="period_month_1_after">1K hiljem</string>
+    <string name="period_month_3_after">3K hiljem</string>
+    <string name="period_month_6_after">6K hiljem</string>
+    <string name="period_year_1_after">1A hiljem</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Maks langus (1K)</string>
+    <string name="drawdown_period_3m">Maks langus (3K)</string>
+    <string name="drawdown_period_6m">Maks langus (6K)</string>
+    <string name="drawdown_period_1y">Maks langus (1A)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Äärmusliku hirmu tsoon</string>
+    <string name="nudge_body_extreme_fear">Hirmuindeks %1$d näitab äärmuslikku hirmu. Ajalooliselt on see olnud pikaajaline ostuvõimalus, kuid lühiajalised langused on siiski võimalikud.</string>
+    <string name="nudge_title_extreme_greed">Äärmusliku ahnuse tsoon</string>
+    <string name="nudge_body_extreme_greed">Hirmuindeks %1$d näitab ülekuumenenud turgu. Riskijuhtimine on siin olulisem kui lisaostud.</string>
+    <string name="nudge_title_stable">Stabiilse turu tsoon</string>
+    <string name="nudge_body_stable">Hirmuindeks %1$d näitab suhteliselt stabiilset turgu ilma äärmusliku hirmu või ahnuseta. Hea ühtlase pikaajalise strateegia jaoks.</string>
+    <string name="nudge_tip_fear_1">Jaga sisenemised, et hajutada ajastust</string>
+    <string name="nudge_tip_fear_2">Kontrolli sularahareserve enne ostmist</string>
+    <string name="nudge_tip_fear_3">Ära müü hirmus impulsiivselt</string>
+    <string name="nudge_tip_greed_1">Vaata üle portfelli jaotus</string>
+    <string name="nudge_tip_greed_2">Võta sihtmärkide juures osaline kasum</string>
+    <string name="nudge_tip_greed_3">Väldi FOMO-t</string>
+    <string name="nudge_tip_stable_1">Kontrolli pikaajalisi eesmärke</string>
+    <string name="nudge_tip_stable_2">Jätka regulaarseid sissemakseid</string>
+    <string name="nudge_tip_stable_3">Kaalu tasakaalustamist</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Kiiruseanalüüs</string>
+    <string name="velocity_daily_change">Päevane muutus</string>
+    <string name="velocity_weekly_change">7 päeva muutus</string>
+    <string name="velocity_momentum_label">Impulss</string>
+    <string name="velocity_trend_label">Trend</string>
+    <string name="velocity_sparkline_title">Viimased 15 päeva</string>
+    <string name="velocity_inflection_title">Suund muutub!</string>
+    <string name="velocity_inflection_body">Hiljutine trend on pöördunud — pööra tähelepanu.</string>
+    <string name="momentum_accelerating">Kiireneb</string>
+    <string name="momentum_decelerating">Aeglustub</string>
+    <string name="momentum_stable">Stabiilne</string>
+    <string name="trend_crash_accelerating">Kukkumine kiireneb</string>
+    <string name="trend_crash_decelerating">Kukkumine aeglustub</string>
+    <string name="trend_stable">Stabiilne</string>
+    <string name="trend_rally_accelerating">Tõus kiireneb</string>
+    <string name="trend_rally_decelerating">Tõus aeglustub</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Turg</string>
+    <string name="tab_crypto">Krüpto</string>
+    <string name="current_index_label">Praegune indeks</string>
+    <string name="vs_previous_close_label">vs eelmine sulgemine</string>
+    <string name="vs_previous_close_value">vs eelmine sulgemine %1$s</string>
+    <string name="share_content_description">Jaga</string>
+    <string name="retry_button">Proovi uuesti</string>
+    <string name="home_updated_at">Uuendatud: %1$s</string>
 </resources>

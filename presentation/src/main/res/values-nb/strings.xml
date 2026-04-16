@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Varslingsinnstillinger</string>
+    <string name="back">Tilbake</string>
+    <string name="notification_push_title">Push-varsler</string>
+    <string name="notification_push_description">Få varsel når fryktindeksen når terskelen din.</string>
+    <string name="notification_tab_market">Marked</string>
+    <string name="notification_tab_crypto">Krypto</string>
+    <string name="notification_market_title">Markedsfryktindeks-varsler</string>
+    <string name="notification_crypto_title">Kryptofryktindeks-varsler</string>
+    <string name="notification_lower_label">Nedre (Frykt)</string>
+    <string name="notification_upper_label">Øvre (Grådighet)</string>
+    <string name="notification_lower_description">Du blir varslet når indeksen faller til %1$d eller lavere.</string>
+    <string name="notification_upper_description">Du blir varslet når indeksen når %1$d eller høyere.</string>
+    <string name="notification_info">Varsler sjekkes hvert 15. minutt. Du får maks 1 varsel per terskelsone per dag.</string>
+    <string name="notification_sync_error">Synkronisering mislyktes: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Lignende perioder</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Folk som er fastlåst akkurat nå</string>
+    <string name="stuck_info_content_description">Info om fastlåst-teller</string>
+    <string name="stuck_percentage_label">Fastlåst-andel</string>
+    <string name="stuck_button_im_stuck">"🤙 Jeg er også fastlåst"</string>
+    <string name="stuck_button_im_safe">"✨ Jeg er ikke fastlåst"</string>
+    <string name="stuck_footer_guide">"🤙 Trykk en knapp for å se i sanntid hvor mange som er fastlåst"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Dagens avstemning</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s stem</string>
+    <string name="vote_total_participants">%1$d deltakere</string>
+    <string name="vote_once_notice">"✅ Bare 1 stemme per dag"</string>
+    <string name="vote_next_countdown">Til neste avstemning</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Ikke nok avkastningsdata.</string>
+    <string name="insight_detail_no_data">Ikke nok data.</string>
+    <string name="insight_detail_scenario_compare_title">Scenariosammenligning (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Gj.sn. avkastning (%1$s)</string>
+    <string name="insight_detail_worst_case">Verste tilfelle</string>
+    <string name="insight_detail_best_case">Beste tilfelle</string>
+    <string name="insight_detail_sample_basis_crypto">Basert på kryptosentimentsdata</string>
+    <string name="insight_detail_sample_basis_market">Basert på %1$d ekstreme perioder (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Ikke nok data om lignende perioder.</string>
+    <string name="insight_detail_past_events_title">Tidligere lignende hendelser (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Tidligere perioder som ligner nå</string>
+    <string name="insight_detail_similar_past_body">Historiske øyeblikk nær fryktindeks %1$d. Se hva som ligner mest på dagens marked.</string>
+    <string name="insight_detail_event_score_label">Skår %1$d</string>
+    <string name="insight_detail_simulation_title">Investeringssimulering (%1$s)</string>
+    <string name="insight_detail_investment_label">Investeringsbeløp (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Basert på Bitcoin (BTC)-priser. Krypto er svært volatilt.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Basert på S&amp;P 500 historiske data. Historisk avkastning garanterer ikke fremtidig avkastning.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Tilbakefall-analyse (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Gj.sn. 1Å avkastning</string>
+    <string name="insight_detail_where_from_title">Hvor kommer disse tallene fra?</string>
+    <string name="insight_detail_where_from_body">%2$s-avkastning beregnet fra tidligere perioder nær fryktindeks %1$d.</string>
+    <string name="insight_detail_action_guide_title">Investeringsveiledning</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1M</string>
+    <string name="period_month_3">3M</string>
+    <string name="period_month_6">6M</string>
+    <string name="period_year_1">1Å</string>
+    <string name="period_month_1_after">1M senere</string>
+    <string name="period_month_3_after">3M senere</string>
+    <string name="period_month_6_after">6M senere</string>
+    <string name="period_year_1_after">1Å senere</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Maks. tilbakefall (1M)</string>
+    <string name="drawdown_period_3m">Maks. tilbakefall (3M)</string>
+    <string name="drawdown_period_6m">Maks. tilbakefall (6M)</string>
+    <string name="drawdown_period_1y">Maks. tilbakefall (1Å)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Sone med ekstrem frykt</string>
+    <string name="nudge_body_extreme_fear">Fryktindeks %1$d signaliserer ekstrem frykt. Historisk en langsiktig kjøpsmulighet, men kortsiktige fall er fortsatt mulig.</string>
+    <string name="nudge_title_extreme_greed">Sone med ekstrem grådighet</string>
+    <string name="nudge_body_extreme_greed">Fryktindeks %1$d signaliserer et overopphetet marked. Risikostyring er viktigere enn ytterligere kjøp her.</string>
+    <string name="nudge_title_stable">Sone med stabilt marked</string>
+    <string name="nudge_body_stable">Fryktindeks %1$d signaliserer et relativt stabilt marked uten ekstrem frykt eller grådighet. Bra for en jevn langsiktig strategi.</string>
+    <string name="nudge_tip_fear_1">Del opp kjøp for å spre timing</string>
+    <string name="nudge_tip_fear_2">Sjekk kontantreserver før kjøp</string>
+    <string name="nudge_tip_fear_3">Ikke selg impulsivt i frykt</string>
+    <string name="nudge_tip_greed_1">Gjennomgå porteføljefordeling</string>
+    <string name="nudge_tip_greed_2">Realiser delvis gevinst ved mål</string>
+    <string name="nudge_tip_greed_3">Unngå FOMO</string>
+    <string name="nudge_tip_stable_1">Sjekk langsiktige mål</string>
+    <string name="nudge_tip_stable_2">Oppretthold regelmessige innskudd</string>
+    <string name="nudge_tip_stable_3">Vurder rebalansering</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Hastighetsanalyse</string>
+    <string name="velocity_daily_change">Daglig endring</string>
+    <string name="velocity_weekly_change">7-dagers endring</string>
+    <string name="velocity_momentum_label">Momentum</string>
+    <string name="velocity_trend_label">Trend</string>
+    <string name="velocity_sparkline_title">Siste 15 dager</string>
+    <string name="velocity_inflection_title">Retningen endrer seg!</string>
+    <string name="velocity_inflection_body">Nylig trend har snudd — følg med.</string>
+    <string name="momentum_accelerating">Akselererer</string>
+    <string name="momentum_decelerating">Avtar</string>
+    <string name="momentum_stable">Stabil</string>
+    <string name="trend_crash_accelerating">Krakk akselererer</string>
+    <string name="trend_crash_decelerating">Krakk avtar</string>
+    <string name="trend_stable">Stabil</string>
+    <string name="trend_rally_accelerating">Oppgang akselererer</string>
+    <string name="trend_rally_decelerating">Oppgang avtar</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Marked</string>
+    <string name="tab_crypto">Krypto</string>
+    <string name="current_index_label">Nåværende indeks</string>
+    <string name="vs_previous_close_label">vs. forrige slutt</string>
+    <string name="vs_previous_close_value">vs. forrige slutt %1$s</string>
+    <string name="share_content_description">Del</string>
+    <string name="retry_button">Prøv igjen</string>
+    <string name="home_updated_at">Oppdatert: %1$s</string>
 </resources>

@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Kennisgewinginstellings</string>
+    <string name="back">Terug</string>
+    <string name="notification_push_title">Duwkennisgewings</string>
+    <string name="notification_push_description">Kry kennisgewing wanneer die vreesindeks jou drempel bereik.</string>
+    <string name="notification_tab_market">Mark</string>
+    <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_market_title">Mark Vreesindeks-waarskuwings</string>
+    <string name="notification_crypto_title">Kripto Vreesindeks-waarskuwings</string>
+    <string name="notification_lower_label">Onderste (Vrees)</string>
+    <string name="notification_upper_label">Boonste (Gierigheid)</string>
+    <string name="notification_lower_description">Jy sal in kennis gestel word wanneer die indeks tot %1$d of laer daal.</string>
+    <string name="notification_upper_description">Jy sal in kennis gestel word wanneer die indeks %1$d of hoër bereik.</string>
+    <string name="notification_info">Kennisgewings word elke 15 minute nagegaan. Jy sal hoogstens 1 kennisgewing per drempelgebied per dag ontvang.</string>
+    <string name="notification_sync_error">Sinchronisasie het misluk: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Soortgelyke tydperke</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Mense wat nou vasgevang is</string>
+    <string name="stuck_info_content_description">Vasgevang-teller-inligting</string>
+    <string name="stuck_percentage_label">Vasgevang-koers</string>
+    <string name="stuck_button_im_stuck">"🤙 Ek is ook vasgevang"</string>
+    <string name="stuck_button_im_safe">"✨ Ek is nie vasgevang nie"</string>
+    <string name="stuck_footer_guide">"🤙 Tik \'n knoppie om te sien hoeveel mense intyds vasgevang is"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Vandag se stemming</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">%1$s stem</string>
+    <string name="vote_total_participants">%1$d deelnemers</string>
+    <string name="vote_once_notice">"✅ Slegs 1 stem per dag"</string>
+    <string name="vote_next_countdown">Tot volgende stemming</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Nie genoeg opbrengsdata nie.</string>
+    <string name="insight_detail_no_data">Nie genoeg data nie.</string>
+    <string name="insight_detail_scenario_compare_title">Scenariovergelyking (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Gem. opbrengs (%1$s)</string>
+    <string name="insight_detail_worst_case">Ergste geval</string>
+    <string name="insight_detail_best_case">Beste geval</string>
+    <string name="insight_detail_sample_basis_crypto">Gebaseer op kripto-sentimentdata</string>
+    <string name="insight_detail_sample_basis_market">Gebaseer op %1$d uiterste tydperke (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Nie genoeg soortgelyke-tydperk data nie.</string>
+    <string name="insight_detail_past_events_title">Vorige soortgelyke gebeure (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Vorige tydperke soortgelyk aan nou</string>
+    <string name="insight_detail_similar_past_body">Historiese oomblikke naby vreesindeks %1$d. Verwys na wat die naaste aan die huidige mark is.</string>
+    <string name="insight_detail_event_score_label">Telling %1$d</string>
+    <string name="insight_detail_simulation_title">Beleggingsimulasie (%1$s)</string>
+    <string name="insight_detail_investment_label">Beleggingsbedrag (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Gebaseer op Bitcoin (BTC)-pryse. Kripto is uiters wisselvallig.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Gebaseer op S&amp;P 500 historiese data. Vorige prestasie waarborg nie toekomstige opbrengste nie.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Daling-analise (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Gem. 1J opbrengs</string>
+    <string name="insight_detail_where_from_title">Waar kom hierdie syfers vandaan?</string>
+    <string name="insight_detail_where_from_body">%2$s opbrengste bereken op grond van vorige tydperke naby vreesindeks %1$d.</string>
+    <string name="insight_detail_action_guide_title">Belegginsgids</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1M</string>
+    <string name="period_month_3">3M</string>
+    <string name="period_month_6">6M</string>
+    <string name="period_year_1">1J</string>
+    <string name="period_month_1_after">1M later</string>
+    <string name="period_month_3_after">3M later</string>
+    <string name="period_month_6_after">6M later</string>
+    <string name="period_year_1_after">1J later</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Maks. daling (1M)</string>
+    <string name="drawdown_period_3m">Maks. daling (3M)</string>
+    <string name="drawdown_period_6m">Maks. daling (6M)</string>
+    <string name="drawdown_period_1y">Maks. daling (1J)</string>
+
+    <!-- Nudge -->
+    <string name="nudge_title_extreme_fear">Uiterste vreesgebied</string>
+    <string name="nudge_body_extreme_fear">Vreesindeks %1$d dui op uiterste vrees. Histories \'n langtermyn-aankoopgeleentheid, maar korttermyndalings is steeds moontlik.</string>
+    <string name="nudge_title_extreme_greed">Uiterste gierigheidsgebied</string>
+    <string name="nudge_body_extreme_greed">Vreesindeks %1$d dui op \'n oorverhitte mark. Risikobestuur is hier belangriker as verdere aankope.</string>
+    <string name="nudge_title_stable">Stabiele markgebied</string>
+    <string name="nudge_body_stable">Vreesindeks %1$d dui op \'n relatief stabiele mark sonder uiterste vrees of gierigheid. Goed vir \'n vaste langtermynstrategie.</string>
+    <string name="nudge_tip_fear_1">Verdeel toetredings om tydsberekening te diversifiseer</string>
+    <string name="nudge_tip_fear_2">Gaan kontantreserwes na voor aankoop</string>
+    <string name="nudge_tip_fear_3">Moenie impulsief in vrees verkoop nie</string>
+    <string name="nudge_tip_greed_1">Hersien portefeuljetoewysing</string>
+    <string name="nudge_tip_greed_2">Neem gedeeltelike winste by teikens</string>
+    <string name="nudge_tip_greed_3">Vermy FOMO</string>
+    <string name="nudge_tip_stable_1">Gaan langtermyndoelwitte na</string>
+    <string name="nudge_tip_stable_2">Handhaaf gereelde bydraes</string>
+    <string name="nudge_tip_stable_3">Oorweeg herbalansering</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Snelheidsanalise</string>
+    <string name="velocity_daily_change">Daaglikse verandering</string>
+    <string name="velocity_weekly_change">7-dag verandering</string>
+    <string name="velocity_momentum_label">Momentum</string>
+    <string name="velocity_trend_label">Tendens</string>
+    <string name="velocity_sparkline_title">Laaste 15 dae</string>
+    <string name="velocity_inflection_title">Die rigting verander!</string>
+    <string name="velocity_inflection_body">Onlangse tendens het omgekeer — let op.</string>
+    <string name="momentum_accelerating">Versnel</string>
+    <string name="momentum_decelerating">Vertraag</string>
+    <string name="momentum_stable">Stabiel</string>
+    <string name="trend_crash_accelerating">Val versnel</string>
+    <string name="trend_crash_decelerating">Val vertraag</string>
+    <string name="trend_stable">Stabiel</string>
+    <string name="trend_rally_accelerating">Styging versnel</string>
+    <string name="trend_rally_decelerating">Styging vertraag</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Mark</string>
+    <string name="tab_crypto">Kripto</string>
+    <string name="current_index_label">Huidige indeks</string>
+    <string name="vs_previous_close_label">teenoor vorige sluiting</string>
+    <string name="vs_previous_close_value">teenoor vorige sluiting %1$s</string>
+    <string name="share_content_description">Deel</string>
+    <string name="retry_button">Probeer weer</string>
+    <string name="home_updated_at">Bygewerk: %1$s</string>
 </resources>

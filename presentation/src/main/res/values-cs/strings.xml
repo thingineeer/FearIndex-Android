@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Nastavení oznámení</string>
+    <string name="back">Zpět</string>
+    <string name="notification_push_title">Push oznámení</string>
+    <string name="notification_push_description">Získejte upozornění, když index strachu dosáhne nastaveného prahu.</string>
+    <string name="notification_tab_market">Trh</string>
+    <string name="notification_tab_crypto">Kryptoměny</string>
+    <string name="notification_market_title">Upozornění indexu strachu trhu</string>
+    <string name="notification_crypto_title">Upozornění indexu strachu kryptoměn</string>
+    <string name="notification_lower_label">Dolní práh (Strach)</string>
+    <string name="notification_upper_label">Horní práh (Chamtivost)</string>
+    <string name="notification_lower_description">Dostanete oznámení, když index klesne na %1$d nebo níže.</string>
+    <string name="notification_upper_description">Dostanete oznámení, když index dosáhne %1$d nebo výše.</string>
+    <string name="notification_info">Oznámení se kontrolují každých 15 minut. Obdržíte nejvýše 1 oznámení na prahovou zónu denně.</string>
+    <string name="notification_sync_error">Synchronizace selhala: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Podobná období</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Kdo je právě teď v pasti</string>
+    <string name="stuck_info_content_description">Informace o počítadle uvízlých</string>
+    <string name="stuck_percentage_label">Míra uvíznutí</string>
+    <string name="stuck_button_im_stuck">"🤙 Taky jsem v pasti"</string>
+    <string name="stuck_button_im_safe">"✨ Nejsem v pasti"</string>
+    <string name="stuck_footer_guide">"🤙 Klepněte na tlačítko a uvidíte v reálném čase, kolik lidí je v pasti"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Dnešní hlasování</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Hlas %1$s</string>
+    <string name="vote_total_participants">%1$d účastníků</string>
+    <string name="vote_once_notice">"✅ Pouze 1 hlas denně"</string>
+    <string name="vote_next_countdown">Do dalšího hlasování</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Nedostatek dat o výnosech.</string>
+    <string name="insight_detail_no_data">Nedostatek dat.</string>
+    <string name="insight_detail_scenario_compare_title">Srovnání scénářů (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Průměrný výnos (%1$s)</string>
+    <string name="insight_detail_worst_case">Nejhorší případ</string>
+    <string name="insight_detail_best_case">Nejlepší případ</string>
+    <string name="insight_detail_sample_basis_crypto">Na základě dat o sentimentu krypto trhu</string>
+    <string name="insight_detail_sample_basis_market">Na základě %1$d extrémních období (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Nedostatek dat o podobných obdobích.</string>
+    <string name="insight_detail_past_events_title">Minulé podobné události (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Období podobná současnosti</string>
+    <string name="insight_detail_similar_past_body">Historické momenty poblíž indexu strachu %1$d. Všimněte si toho, co je současnému trhu nejpodobnější.</string>
+    <string name="insight_detail_event_score_label">Skóre %1$d</string>
+    <string name="insight_detail_simulation_title">Investiční simulace (%1$s)</string>
+    <string name="insight_detail_investment_label">Výše investice (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Na základě cen Bitcoinu (BTC). Kryptoměny jsou extrémně volatilní.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Na základě historických dat S&amp;P 500. Minulá výkonnost nezaručuje budoucí výnosy.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Analýza poklesu (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Prům. roční výnos</string>
+    <string name="insight_detail_where_from_title">Odkud ta čísla pocházejí?</string>
+    <string name="insight_detail_where_from_body">Vypočítáno %2$s výnosů na základě minulých období poblíž indexu strachu %1$d.</string>
+    <string name="insight_detail_action_guide_title">Investiční průvodce akcemi</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1M</string>
+    <string name="period_month_3">3M</string>
+    <string name="period_month_6">6M</string>
+    <string name="period_year_1">1R</string>
+    <string name="period_month_1_after">za 1 měs.</string>
+    <string name="period_month_3_after">za 3 měs.</string>
+    <string name="period_month_6_after">za 6 měs.</string>
+    <string name="period_year_1_after">za 1 rok</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Max. pokles (1M)</string>
+    <string name="drawdown_period_3m">Max. pokles (3M)</string>
+    <string name="drawdown_period_6m">Max. pokles (6M)</string>
+    <string name="drawdown_period_1y">Max. pokles (1R)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">Zóna extrémního strachu</string>
+    <string name="nudge_body_extreme_fear">Index strachu %1$d signalizuje extrémní strach. Historicky jde o dlouhodobou příležitost k nákupu, krátkodobé poklesy jsou však stále možné.</string>
+    <string name="nudge_title_extreme_greed">Zóna extrémní chamtivosti</string>
+    <string name="nudge_body_extreme_greed">Index strachu %1$d signalizuje přehřátý trh. Řízení rizik je zde důležitější než další nákupy.</string>
+    <string name="nudge_title_stable">Zóna stabilního trhu</string>
+    <string name="nudge_body_stable">Index strachu %1$d signalizuje relativně stabilní trh bez extrémního strachu nebo chamtivosti. Vhodné pro konzistentní dlouhodobou strategii.</string>
+    <string name="nudge_tip_fear_1">Rozdělte vstupy pro diverzifikaci načasování</string>
+    <string name="nudge_tip_fear_2">Před nákupem zkontrolujte hotovostní rezervy</string>
+    <string name="nudge_tip_fear_3">Neprodávejte ze strachu impulzivně</string>
+    <string name="nudge_tip_greed_1">Zkontrolujte alokaci portfolia</string>
+    <string name="nudge_tip_greed_2">Realizujte částečné zisky u cílů</string>
+    <string name="nudge_tip_greed_3">Vyhněte se FOMO</string>
+    <string name="nudge_tip_stable_1">Zkontrolujte dlouhodobé cíle</string>
+    <string name="nudge_tip_stable_2">Udržujte pravidelné příspěvky</string>
+    <string name="nudge_tip_stable_3">Zvažte rebalancování</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Analýza rychlosti</string>
+    <string name="velocity_daily_change">Denní změna</string>
+    <string name="velocity_weekly_change">7denní změna</string>
+    <string name="velocity_momentum_label">Momentum</string>
+    <string name="velocity_trend_label">Trend</string>
+    <string name="velocity_sparkline_title">Posledních 15 dní</string>
+    <string name="velocity_inflection_title">Směr se mění!</string>
+    <string name="velocity_inflection_body">Nedávný trend se obrátil — dávejte pozor.</string>
+    <string name="momentum_accelerating">Zrychluje</string>
+    <string name="momentum_decelerating">Zpomaluje</string>
+    <string name="momentum_stable">Stabilní</string>
+    <string name="trend_crash_accelerating">Pád zrychluje</string>
+    <string name="trend_crash_decelerating">Pád zpomaluje</string>
+    <string name="trend_stable">Stabilní</string>
+    <string name="trend_rally_accelerating">Rally zrychluje</string>
+    <string name="trend_rally_decelerating">Rally zpomaluje</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Trh</string>
+    <string name="tab_crypto">Kryptoměny</string>
+    <string name="current_index_label">Aktuální index</string>
+    <string name="vs_previous_close_label">vs. předchozí uzavření</string>
+    <string name="vs_previous_close_value">vs. předchozí uzavření %1$s</string>
+    <string name="share_content_description">Sdílet</string>
+    <string name="retry_button">Zkusit znovu</string>
+    <string name="home_updated_at">Aktualizováno: %1$s</string>
 </resources>

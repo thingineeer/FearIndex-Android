@@ -61,4 +61,127 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Postavke obavijesti</string>
+    <string name="back">Natrag</string>
+    <string name="notification_push_title">Push obavijesti</string>
+    <string name="notification_push_description">Primite obavijest kad indeks straha dosegne postavljeni prag.</string>
+    <string name="notification_tab_market">Tržište</string>
+    <string name="notification_tab_crypto">Kriptovalute</string>
+    <string name="notification_market_title">Upozorenja indeksa straha tržišta</string>
+    <string name="notification_crypto_title">Upozorenja indeksa straha kriptovaluta</string>
+    <string name="notification_lower_label">Donji prag (Strah)</string>
+    <string name="notification_upper_label">Gornji prag (Pohlepa)</string>
+    <string name="notification_lower_description">Bit ćete obaviješteni kad indeks padne na %1$d ili niže.</string>
+    <string name="notification_upper_description">Bit ćete obaviješteni kad indeks dosegne %1$d ili više.</string>
+    <string name="notification_info">Obavijesti se provjeravaju svakih 15 minuta. Primit ćete najviše 1 obavijest po pragovnoj zoni dnevno.</string>
+    <string name="notification_sync_error">Sinkronizacija nije uspjela: %1$s</string>
+
+    <string name="insight_similar_events_similar_section_title">Slična razdoblja</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Tko je trenutno zaglavljen</string>
+    <string name="stuck_info_content_description">Informacije o brojaču zaglavljenih</string>
+    <string name="stuck_percentage_label">Udio zaglavljenih</string>
+    <string name="stuck_button_im_stuck">"🤙 I ja sam zaglavljen"</string>
+    <string name="stuck_button_im_safe">"✨ Nisam zaglavljen"</string>
+    <string name="stuck_footer_guide">"🤙 Dodirnite gumb da biste u stvarnom vremenu vidjeli koliko ljudi je zaglavljeno"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Današnje glasovanje</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Glas %1$s</string>
+    <string name="vote_total_participants">%1$d sudionika</string>
+    <string name="vote_once_notice">"✅ Samo 1 glas dnevno"</string>
+    <string name="vote_next_countdown">Do sljedećeg glasovanja</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Nema dovoljno podataka o prinosima.</string>
+    <string name="insight_detail_no_data">Nema dovoljno podataka.</string>
+    <string name="insight_detail_scenario_compare_title">Usporedba scenarija (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Prosječni prinos (%1$s)</string>
+    <string name="insight_detail_worst_case">Najgori slučaj</string>
+    <string name="insight_detail_best_case">Najbolji slučaj</string>
+    <string name="insight_detail_sample_basis_crypto">Na temelju podataka o raspoloženju kripto tržišta</string>
+    <string name="insight_detail_sample_basis_market">Na temelju %1$d ekstremnih razdoblja (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Nema dovoljno podataka o sličnim razdobljima.</string>
+    <string name="insight_detail_past_events_title">Prošli slični događaji (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Razdoblja slična sadašnjem</string>
+    <string name="insight_detail_similar_past_body">Povijesni trenuci blizu indeksa straha %1$d. Pogledajte što je najsličnije trenutnom tržištu.</string>
+    <string name="insight_detail_event_score_label">Rezultat %1$d</string>
+    <string name="insight_detail_simulation_title">Simulacija ulaganja (%1$s)</string>
+    <string name="insight_detail_investment_label">Iznos ulaganja (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Na temelju cijena Bitcoina (BTC). Kriptovalute su izrazito volatilne.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Na temelju povijesnih podataka S&amp;P 500. Prošli rezultati ne jamče buduće prinose.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Analiza pada (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Prosj. 1G prinos</string>
+    <string name="insight_detail_where_from_title">Odakle ovi brojevi?</string>
+    <string name="insight_detail_where_from_body">Izračunati %2$s prinosi na temelju prošlih razdoblja blizu indeksa straha %1$d.</string>
+    <string name="insight_detail_action_guide_title">Vodič kroz investicijske radnje</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1M</string>
+    <string name="period_month_3">3M</string>
+    <string name="period_month_6">6M</string>
+    <string name="period_year_1">1G</string>
+    <string name="period_month_1_after">za 1 mj.</string>
+    <string name="period_month_3_after">za 3 mj.</string>
+    <string name="period_month_6_after">za 6 mj.</string>
+    <string name="period_year_1_after">za 1 god.</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Maks. pad (1M)</string>
+    <string name="drawdown_period_3m">Maks. pad (3M)</string>
+    <string name="drawdown_period_6m">Maks. pad (6M)</string>
+    <string name="drawdown_period_1y">Maks. pad (1G)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">Zona ekstremnog straha</string>
+    <string name="nudge_body_extreme_fear">Indeks straha %1$d signalizira ekstremni strah. Povijesno je to dugoročna prilika za kupnju, no kratkoročni padovi su još uvijek mogući.</string>
+    <string name="nudge_title_extreme_greed">Zona ekstremne pohlepe</string>
+    <string name="nudge_body_extreme_greed">Indeks straha %1$d signalizira pregrijano tržište. Ovdje je upravljanje rizikom važnije od dodatnih kupnji.</string>
+    <string name="nudge_title_stable">Zona stabilnog tržišta</string>
+    <string name="nudge_body_stable">Indeks straha %1$d signalizira relativno stabilno tržište bez ekstremnog straha ili pohlepe. Pogodno za dosljednu dugoročnu strategiju.</string>
+    <string name="nudge_tip_fear_1">Razdvojite ulaze radi raspršenja vremena</string>
+    <string name="nudge_tip_fear_2">Prije kupnje provjerite gotovinske rezerve</string>
+    <string name="nudge_tip_fear_3">Ne prodajte impulzivno zbog straha</string>
+    <string name="nudge_tip_greed_1">Preispitajte raspodjelu portfelja</string>
+    <string name="nudge_tip_greed_2">Djelomično realizirajte dobit pri ciljevima</string>
+    <string name="nudge_tip_greed_3">Izbjegavajte FOMO</string>
+    <string name="nudge_tip_stable_1">Provjerite dugoročne ciljeve</string>
+    <string name="nudge_tip_stable_2">Održavajte redovne uplate</string>
+    <string name="nudge_tip_stable_3">Razmotrite rebalansiranje</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Analiza brzine</string>
+    <string name="velocity_daily_change">Dnevna promjena</string>
+    <string name="velocity_weekly_change">7-dnevna promjena</string>
+    <string name="velocity_momentum_label">Momentum</string>
+    <string name="velocity_trend_label">Trend</string>
+    <string name="velocity_sparkline_title">Zadnjih 15 dana</string>
+    <string name="velocity_inflection_title">Smjer se mijenja!</string>
+    <string name="velocity_inflection_body">Nedavni trend se preokrenuo — obratite pozornost.</string>
+    <string name="momentum_accelerating">Ubrzava</string>
+    <string name="momentum_decelerating">Usporava</string>
+    <string name="momentum_stable">Stabilno</string>
+    <string name="trend_crash_accelerating">Pad ubrzava</string>
+    <string name="trend_crash_decelerating">Pad usporava</string>
+    <string name="trend_stable">Stabilno</string>
+    <string name="trend_rally_accelerating">Rast ubrzava</string>
+    <string name="trend_rally_decelerating">Rast usporava</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Tržište</string>
+    <string name="tab_crypto">Kriptovalute</string>
+    <string name="current_index_label">Trenutni indeks</string>
+    <string name="vs_previous_close_label">vs. prethodno zatvaranje</string>
+    <string name="vs_previous_close_value">vs. prethodno zatvaranje %1$s</string>
+    <string name="share_content_description">Podijeli</string>
+    <string name="retry_button">Pokušaj ponovno</string>
+    <string name="home_updated_at">Ažurirano: %1$s</string>
 </resources>

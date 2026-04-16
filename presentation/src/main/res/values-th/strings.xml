@@ -15,50 +15,176 @@
     <string name="share_message_template">ดัชนีความกลัวและความโลภวันนี้: %1$d (%2$s)\n\nติดตามอารมณ์ตลาดแบบเรียลไทม์ด้วยแอป Fear &amp; Greed Index.</string>
     <string name="share_chooser_title">แชร์ผ่าน</string>
 
-    <!-- v1.7.9 new keys -->
-    <string name="insight_similar_events_title">Similar Past Periods</string>
-    <string name="insight_similar_events_score_label">Current %1$d</string>
-    <string name="insight_similar_events_pinned_title">What if you bought at major lows?</string>
-    <string name="insight_similar_events_empty">No similar historical periods found</string>
-    <string name="insight_similar_events_one_year_return">1Y S&amp;P %1$s</string>
-    <string name="insight_similar_events_ongoing">Ongoing</string>
-    <string name="insight_similar_events_sim_very">Very Similar</string>
-    <string name="insight_similar_events_sim_close">Similar</string>
-    <string name="insight_similar_events_sim_moderate">Moderate</string>
-    <string name="insight_similar_events_sim_far">Slightly Similar</string>
-    <string name="insight_similar_events_aggregate_title">Average for score %1$d range</string>
-    <string name="insight_similar_events_aggregate_summary">1Y avg %1$s (n=%2$d)</string>
-    <string name="insight_similar_events_disclaimer">Past returns do not guarantee future results</string>
-    <string name="insight_current_score_title">If you buy at %1$d</string>
-    <string name="insight_current_score_avg_return">Avg Return</string>
-    <string name="insight_current_score_max_drawdown">Max Drawdown</string>
-    <string name="insight_current_score_best_return">Best Return</string>
+    <!-- SimilarEvents card -->
+    <string name="insight_similar_events_title">ช่วงเวลาในอดีตที่คล้ายกัน</string>
+    <string name="insight_similar_events_score_label">ปัจจุบัน %1$d</string>
+    <string name="insight_similar_events_pinned_title">ถ้าคุณซื้อที่จุดต่ำสุดสำคัญ?</string>
+    <string name="insight_similar_events_empty">ไม่พบช่วงเวลาในอดีตที่คล้ายกัน</string>
+    <string name="insight_similar_events_one_year_return">1 ปี S&amp;P %1$s</string>
+    <string name="insight_similar_events_ongoing">กำลังดำเนินอยู่</string>
+    <string name="insight_similar_events_sim_very">คล้ายกันมาก</string>
+    <string name="insight_similar_events_sim_close">คล้ายกัน</string>
+    <string name="insight_similar_events_sim_moderate">ปานกลาง</string>
+    <string name="insight_similar_events_sim_far">คล้ายเล็กน้อย</string>
+    <string name="insight_similar_events_aggregate_title">ค่าเฉลี่ยของช่วงคะแนน %1$d</string>
+    <string name="insight_similar_events_aggregate_summary">เฉลี่ย 1 ปี %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">ผลตอบแทนในอดีตไม่รับประกันผลในอนาคต</string>
+    <string name="insight_current_score_title">ถ้าคุณซื้อที่ %1$d</string>
+    <string name="insight_current_score_avg_return">ผลตอบแทนเฉลี่ย</string>
+    <string name="insight_current_score_max_drawdown">การปรับลดสูงสุด</string>
+    <string name="insight_current_score_best_return">ผลตอบแทนดีที่สุด</string>
     <string name="insight_current_score_sample_count">n=%1$d</string>
-    <string name="insight_event_score">%1$d pts</string>
-    <string name="event_covid">COVID-19 Pandemic Low</string>
-    <string name="event_tariff">2025 Tariff Crisis</string>
-    <string name="event_inflation">2022 Inflation Scare</string>
-    <string name="event_delta">Delta Variant Spread</string>
-    <string name="event_trade_war">US-China Trade War</string>
-    <string name="event_svb">SVB Bank Run</string>
-    <string name="event_reopening">2021 Economic Reopening</string>
-    <string name="event_post_election">Post 2024 Election</string>
-    <string name="event_2021bull">2021 Bull Market</string>
-    <string name="event_ai_rally">AI Rally</string>
-    <string name="event_pre_covid">Pre-COVID High</string>
-    <string name="event_dotcom">Dotcom Bubble Peak</string>
-    <string name="event_iran_war_2026">Iran-Israel War (2026)</string>
-    <string name="crypto_event_covid">COVID-19 Crypto Crash</string>
-    <string name="crypto_event_luna">LUNA/UST Collapse</string>
-    <string name="crypto_event_ftx">FTX Bankruptcy</string>
-    <string name="crypto_event_china_ban">China Crypto Ban</string>
-    <string name="crypto_event_svb">SVB Bank Run (Crypto)</string>
-    <string name="crypto_event_sec">SEC Lawsuit</string>
-    <string name="crypto_event_halving_2024">2024 Bitcoin Halving</string>
-    <string name="crypto_event_etf_approval">Bitcoin Spot ETF Approval</string>
+    <string name="insight_event_score">%1$d คะแนน</string>
+
+    <!-- Historical events (Market) -->
+    <string name="event_covid">จุดต่ำโควิด-19</string>
+    <string name="event_tariff">วิกฤตภาษี 2025</string>
+    <string name="event_inflation">ความกลัวเงินเฟ้อ 2022</string>
+    <string name="event_delta">การแพร่ระบาดของเดลตา</string>
+    <string name="event_trade_war">สงครามการค้าสหรัฐ-จีน</string>
+    <string name="event_svb">ธนาคาร SVB ถูกแห่ถอน</string>
+    <string name="event_reopening">การเปิดเศรษฐกิจ 2021</string>
+    <string name="event_post_election">หลังการเลือกตั้ง 2024</string>
+    <string name="event_2021bull">ตลาดกระทิง 2021</string>
+    <string name="event_ai_rally">การพุ่งของ AI</string>
+    <string name="event_pre_covid">จุดสูงก่อนโควิด</string>
+    <string name="event_dotcom">ยอดฟองสบู่ดอตคอม</string>
+    <string name="event_iran_war_2026">สงครามอิหร่าน-อิสราเอล (2026)</string>
+
+    <!-- Historical events (Crypto) -->
+    <string name="crypto_event_covid">คริปโตร่วงช่วงโควิด-19</string>
+    <string name="crypto_event_luna">การล่มของ LUNA/UST</string>
+    <string name="crypto_event_ftx">FTX ล้มละลาย</string>
+    <string name="crypto_event_china_ban">จีนห้ามคริปโต</string>
+    <string name="crypto_event_svb">ธนาคาร SVB ถูกแห่ถอน (คริปโต)</string>
+    <string name="crypto_event_sec">คดี SEC</string>
+    <string name="crypto_event_halving_2024">บิตคอยน์ฮาล์ฟวิง 2024</string>
+    <string name="crypto_event_etf_approval">อนุมัติ Spot ETF บิตคอยน์</string>
     <string name="crypto_event_defi_summer">DeFi Summer</string>
-    <string name="crypto_event_2021_peak">2021 Crypto Peak</string>
+    <string name="crypto_event_2021_peak">จุดสูงสุดคริปโต 2021</string>
     <string name="crypto_event_trump_pump">Trump Pump</string>
-    <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
-    <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="crypto_event_2017_peak">จุดสูงสุดคริปโต 2017</string>
+    <string name="crypto_event_iran_war_2026">สงครามอิหร่าน-อิสราเอล (2026)</string>
+    <string name="insight_similar_events_similar_section_title">ช่วงเวลาที่คล้ายกัน</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">การตั้งค่าการแจ้งเตือน</string>
+    <string name="back">กลับ</string>
+    <string name="notification_push_title">การแจ้งเตือนแบบพุช</string>
+    <string name="notification_push_description">รับการแจ้งเตือนเมื่อดัชนีความกลัวถึงค่าที่คุณตั้งไว้</string>
+    <string name="notification_tab_market">ตลาด</string>
+    <string name="notification_tab_crypto">คริปโต</string>
+    <string name="notification_market_title">การแจ้งเตือนดัชนีความกลัวของตลาด</string>
+    <string name="notification_crypto_title">การแจ้งเตือนดัชนีความกลัวของคริปโต</string>
+    <string name="notification_lower_label">ค่าต่ำสุด (ความกลัว)</string>
+    <string name="notification_upper_label">ค่าสูงสุด (ความโลภ)</string>
+    <string name="notification_lower_description">คุณจะได้รับแจ้งเตือนเมื่อดัชนีลดลงถึง %1$d หรือต่ำกว่า</string>
+    <string name="notification_upper_description">คุณจะได้รับแจ้งเตือนเมื่อดัชนีถึง %1$d หรือสูงกว่า</string>
+    <string name="notification_info">ตรวจสอบการแจ้งเตือนทุก 15 นาที คุณจะได้รับการแจ้งเตือนสูงสุด 1 ครั้งต่อโซนต่อวัน</string>
+    <string name="notification_sync_error">ซิงค์ล้มเหลว: %1$s</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">คนที่ติดดอยตอนนี้</string>
+    <string name="stuck_info_content_description">ข้อมูลตัวนับการติดดอย</string>
+    <string name="stuck_percentage_label">อัตราการติดดอย</string>
+    <string name="stuck_button_im_stuck">"🤙 ฉันก็ติดดอย"</string>
+    <string name="stuck_button_im_safe">"✨ ฉันไม่ติดดอย"</string>
+    <string name="stuck_footer_guide">"🤙 กดปุ่มเพื่อดูว่ามีกี่คนติดดอยแบบเรียลไทม์"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">โหวตประจำวัน</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">โหวต %1$s</string>
+    <string name="vote_total_participants">%1$d คนเข้าร่วม</string>
+    <string name="vote_once_notice">"✅ โหวตได้เพียง 1 ครั้งต่อวัน"</string>
+    <string name="vote_next_countdown">จนถึงโหวตครั้งถัดไป</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">ข้อมูลผลตอบแทนไม่เพียงพอ</string>
+    <string name="insight_detail_no_data">ข้อมูลไม่เพียงพอ</string>
+    <string name="insight_detail_scenario_compare_title">เปรียบเทียบสถานการณ์ (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">ผลตอบแทนเฉลี่ย (%1$s)</string>
+    <string name="insight_detail_worst_case">กรณีแย่ที่สุด</string>
+    <string name="insight_detail_best_case">กรณีดีที่สุด</string>
+    <string name="insight_detail_sample_basis_crypto">อ้างอิงข้อมูลอารมณ์ตลาดคริปโต</string>
+    <string name="insight_detail_sample_basis_market">อ้างอิงจาก %1$d ช่วงเวลาสุดโต่ง (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">ข้อมูลช่วงเวลาที่คล้ายกันไม่เพียงพอ</string>
+    <string name="insight_detail_past_events_title">เหตุการณ์คล้ายในอดีต (%1$s)</string>
+    <string name="insight_detail_similar_past_title">ช่วงเวลาในอดีตที่คล้ายกับตอนนี้</string>
+    <string name="insight_detail_similar_past_body">ช่วงเวลาในอดีตที่ดัชนีความกลัวใกล้ %1$d อ้างอิงช่วงที่ใกล้เคียงกับตลาดปัจจุบันที่สุด</string>
+    <string name="insight_detail_event_score_label">คะแนน %1$d</string>
+    <string name="insight_detail_simulation_title">จำลองการลงทุน (%1$s)</string>
+    <string name="insight_detail_investment_label">จำนวนเงินลงทุน (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ อ้างอิงราคาบิตคอยน์ (BTC) คริปโตมีความผันผวนสูงมาก</string>
+    <string name="insight_detail_disclaimer_market">⚠️ อ้างอิงข้อมูลในอดีตของ S&amp;P 500 ผลในอดีตไม่รับประกันผลในอนาคต</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">การวิเคราะห์การปรับลด (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">ผลตอบแทนเฉลี่ย 1 ปี</string>
+    <string name="insight_detail_where_from_title">ตัวเลขเหล่านี้มาจากไหน?</string>
+    <string name="insight_detail_where_from_body">คำนวณผลตอบแทน %2$s จากช่วงเวลาในอดีตที่ดัชนีความกลัวใกล้ %1$d</string>
+    <string name="insight_detail_action_guide_title">แนวทางการลงทุน</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1M</string>
+    <string name="period_month_3">3M</string>
+    <string name="period_month_6">6M</string>
+    <string name="period_year_1">1Y</string>
+    <string name="period_month_1_after">หลัง 1 เดือน</string>
+    <string name="period_month_3_after">หลัง 3 เดือน</string>
+    <string name="period_month_6_after">หลัง 6 เดือน</string>
+    <string name="period_year_1_after">หลัง 1 ปี</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">การปรับลดสูงสุด (1M)</string>
+    <string name="drawdown_period_3m">การปรับลดสูงสุด (3M)</string>
+    <string name="drawdown_period_6m">การปรับลดสูงสุด (6M)</string>
+    <string name="drawdown_period_1y">การปรับลดสูงสุด (1Y)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">โซนกลัวสุดขีด</string>
+    <string name="nudge_body_extreme_fear">ดัชนีความกลัว %1$d บ่งชี้ความกลัวสุดขีด ในอดีตมักเป็นโอกาสซื้อระยะยาว แต่ระยะสั้นยังอาจปรับลงต่อได้</string>
+    <string name="nudge_title_extreme_greed">โซนโลภสุดขีด</string>
+    <string name="nudge_body_extreme_greed">ดัชนีความกลัว %1$d บ่งชี้ตลาดร้อนแรงเกินไป การบริหารความเสี่ยงสำคัญกว่าการซื้อเพิ่ม</string>
+    <string name="nudge_title_stable">โซนตลาดมีเสถียรภาพ</string>
+    <string name="nudge_body_stable">ดัชนีความกลัว %1$d บ่งชี้ตลาดมีเสถียรภาพ ไม่มีความกลัวหรือความโลภสุดโต่ง เหมาะกับกลยุทธ์ระยะยาวที่สม่ำเสมอ</string>
+    <string name="nudge_tip_fear_1">ทยอยซื้อเพื่อกระจายจังหวะ</string>
+    <string name="nudge_tip_fear_2">ตรวจสอบเงินสดสำรองก่อนซื้อ</string>
+    <string name="nudge_tip_fear_3">อย่าขายด้วยความกลัวชั่ววูบ</string>
+    <string name="nudge_tip_greed_1">ทบทวนการจัดพอร์ต</string>
+    <string name="nudge_tip_greed_2">ทำกำไรบางส่วนเมื่อถึงเป้า</string>
+    <string name="nudge_tip_greed_3">หลีกเลี่ยง FOMO</string>
+    <string name="nudge_tip_stable_1">ตรวจสอบเป้าหมายระยะยาว</string>
+    <string name="nudge_tip_stable_2">ลงทุนประจำอย่างสม่ำเสมอ</string>
+    <string name="nudge_tip_stable_3">พิจารณาปรับสมดุลพอร์ต</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">วิเคราะห์ความเร็ว</string>
+    <string name="velocity_daily_change">เปลี่ยนแปลงรายวัน</string>
+    <string name="velocity_weekly_change">เปลี่ยนแปลง 7 วัน</string>
+    <string name="velocity_momentum_label">โมเมนตัม</string>
+    <string name="velocity_trend_label">แนวโน้ม</string>
+    <string name="velocity_sparkline_title">15 วันล่าสุด</string>
+    <string name="velocity_inflection_title">ทิศทางกำลังเปลี่ยน!</string>
+    <string name="velocity_inflection_body">แนวโน้มล่าสุดกลับทิศ — โปรดติดตาม</string>
+    <string name="momentum_accelerating">กำลังเร่ง</string>
+    <string name="momentum_decelerating">กำลังชะลอ</string>
+    <string name="momentum_stable">เสถียร</string>
+    <string name="trend_crash_accelerating">ร่วงเร่งตัว</string>
+    <string name="trend_crash_decelerating">ร่วงชะลอตัว</string>
+    <string name="trend_stable">เสถียร</string>
+    <string name="trend_rally_accelerating">พุ่งเร่งตัว</string>
+    <string name="trend_rally_decelerating">พุ่งชะลอตัว</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">ตลาด</string>
+    <string name="tab_crypto">คริปโต</string>
+    <string name="current_index_label">ดัชนีปัจจุบัน</string>
+    <string name="vs_previous_close_label">เทียบกับราคาปิดก่อนหน้า</string>
+    <string name="vs_previous_close_value">เทียบกับราคาปิดก่อนหน้า %1$s</string>
+    <string name="share_content_description">แชร์</string>
+    <string name="retry_button">ลองใหม่</string>
+    <string name="home_updated_at">อัปเดต: %1$s</string>
 </resources>

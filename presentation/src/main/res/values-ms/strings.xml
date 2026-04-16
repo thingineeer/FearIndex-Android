@@ -61,4 +61,126 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="insight_similar_events_similar_section_title">Tempoh serupa</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings_title">Tetapan Pemberitahuan</string>
+    <string name="back">Kembali</string>
+    <string name="notification_push_title">Pemberitahuan Tolak</string>
+    <string name="notification_push_description">Dapatkan pemberitahuan apabila indeks ketakutan mencapai ambang anda.</string>
+    <string name="notification_tab_market">Pasaran</string>
+    <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_market_title">Makluman Indeks Ketakutan Pasaran</string>
+    <string name="notification_crypto_title">Makluman Indeks Ketakutan Kripto</string>
+    <string name="notification_lower_label">Bawah (Ketakutan)</string>
+    <string name="notification_upper_label">Atas (Ketamakan)</string>
+    <string name="notification_lower_description">Anda akan dimaklumkan apabila indeks jatuh ke %1$d atau ke bawah.</string>
+    <string name="notification_upper_description">Anda akan dimaklumkan apabila indeks mencapai %1$d atau ke atas.</string>
+    <string name="notification_info">Pemberitahuan disemak setiap 15 minit. Anda akan menerima paling banyak 1 pemberitahuan setiap zon ambang setiap hari.</string>
+    <string name="notification_sync_error">Penyegerakan gagal: %1$s</string>
+
+    <!-- Stuck Counter Card -->
+    <string name="stuck_card_title">Yang tersekat sekarang</string>
+    <string name="stuck_info_content_description">Maklumat pembilang tersekat</string>
+    <string name="stuck_percentage_label">Kadar tersekat</string>
+    <string name="stuck_button_im_stuck">"🤙 Saya juga tersekat"</string>
+    <string name="stuck_button_im_safe">"✨ Saya tidak tersekat"</string>
+    <string name="stuck_footer_guide">"🤙 Ketik butang untuk lihat berapa ramai tersekat secara masa nyata"</string>
+
+    <!-- Vote Card -->
+    <string name="vote_card_title">Undian hari ini</string>
+    <string name="vote_choice_buy">Buy</string>
+    <string name="vote_choice_hold">Hold</string>
+    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_button_content_description">Undian %1$s</string>
+    <string name="vote_total_participants">%1$d peserta</string>
+    <string name="vote_once_notice">"✅ Hanya 1 undian sehari"</string>
+    <string name="vote_next_countdown">Hingga undian seterusnya</string>
+
+    <!-- Insight Detail Sheet -->
+    <string name="insight_detail_no_returns_data">Data pulangan tidak mencukupi.</string>
+    <string name="insight_detail_no_data">Data tidak mencukupi.</string>
+    <string name="insight_detail_scenario_compare_title">Perbandingan senario (%1$s)</string>
+    <string name="insight_detail_avg_return_basis">Pulangan purata (%1$s)</string>
+    <string name="insight_detail_worst_case">Kes terburuk</string>
+    <string name="insight_detail_best_case">Kes terbaik</string>
+    <string name="insight_detail_sample_basis_crypto">Berdasarkan data sentimen kripto</string>
+    <string name="insight_detail_sample_basis_market">Berdasarkan %1$d tempoh melampau (S&amp;P 500)</string>
+    <string name="insight_detail_no_similar_data">Data tempoh serupa tidak mencukupi.</string>
+    <string name="insight_detail_past_events_title">Peristiwa serupa lepas (%1$s)</string>
+    <string name="insight_detail_similar_past_title">Tempoh lepas yang serupa kini</string>
+    <string name="insight_detail_similar_past_body">Detik sejarah sekitar indeks ketakutan %1$d. Rujuk yang paling menyerupai pasaran semasa.</string>
+    <string name="insight_detail_event_score_label">Skor %1$d</string>
+    <string name="insight_detail_simulation_title">Simulasi pelaburan (%1$s)</string>
+    <string name="insight_detail_investment_label">Jumlah pelaburan (KRW)</string>
+    <string name="insight_detail_disclaimer_crypto">⚠️ Berdasarkan harga Bitcoin (BTC). Kripto amat tidak menentu.</string>
+    <string name="insight_detail_disclaimer_market">⚠️ Berdasarkan data sejarah S&amp;P 500. Prestasi lepas tidak menjamin pulangan masa depan.</string>
+    <string name="insight_detail_amount_won">%1$s KRW</string>
+    <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
+    <string name="insight_detail_drawdown_title">Analisis penurunan (%1$s)</string>
+    <string name="insight_detail_avg_1y_return">Pulangan purata 1 tahun</string>
+    <string name="insight_detail_where_from_title">Dari mana angka-angka ini datang?</string>
+    <string name="insight_detail_where_from_body">Dikira daripada pulangan %2$s berdasarkan tempoh lepas sekitar indeks ketakutan %1$d.</string>
+    <string name="insight_detail_action_guide_title">Panduan tindakan pelaburan</string>
+
+    <!-- Period labels -->
+    <string name="period_month_1">1B</string>
+    <string name="period_month_3">3B</string>
+    <string name="period_month_6">6B</string>
+    <string name="period_year_1">1T</string>
+    <string name="period_month_1_after">1 bulan kemudian</string>
+    <string name="period_month_3_after">3 bulan kemudian</string>
+    <string name="period_month_6_after">6 bulan kemudian</string>
+    <string name="period_year_1_after">1 tahun kemudian</string>
+
+    <!-- Drawdown periods -->
+    <string name="drawdown_period_1m">Penurunan maksimum (1B)</string>
+    <string name="drawdown_period_3m">Penurunan maksimum (3B)</string>
+    <string name="drawdown_period_6m">Penurunan maksimum (6B)</string>
+    <string name="drawdown_period_1y">Penurunan maksimum (1T)</string>
+
+    <!-- Nudge (score band messages) -->
+    <string name="nudge_title_extreme_fear">Zon ketakutan melampau</string>
+    <string name="nudge_body_extreme_fear">Indeks ketakutan %1$d menunjukkan ketakutan melampau. Dari segi sejarah peluang belian jangka panjang, tetapi penurunan jangka pendek masih mungkin.</string>
+    <string name="nudge_title_extreme_greed">Zon ketamakan melampau</string>
+    <string name="nudge_body_extreme_greed">Indeks ketakutan %1$d menunjukkan pasaran terlalu panas. Pengurusan risiko lebih penting daripada belian tambahan di sini.</string>
+    <string name="nudge_title_stable">Zon pasaran stabil</string>
+    <string name="nudge_body_stable">Indeks ketakutan %1$d menunjukkan pasaran agak stabil tanpa ketakutan atau ketamakan melampau. Baik untuk strategi jangka panjang yang tetap.</string>
+    <string name="nudge_tip_fear_1">Bahagi kemasukan untuk mempelbagaikan masa</string>
+    <string name="nudge_tip_fear_2">Semak rizab tunai sebelum membeli</string>
+    <string name="nudge_tip_fear_3">Jangan jual secara terburu-buru kerana takut</string>
+    <string name="nudge_tip_greed_1">Semak peruntukan portfolio</string>
+    <string name="nudge_tip_greed_2">Ambil keuntungan separa pada sasaran</string>
+    <string name="nudge_tip_greed_3">Elakkan FOMO</string>
+    <string name="nudge_tip_stable_1">Semak matlamat jangka panjang</string>
+    <string name="nudge_tip_stable_2">Kekalkan sumbangan berkala</string>
+    <string name="nudge_tip_stable_3">Pertimbangkan pengimbangan semula</string>
+
+    <!-- Velocity / Momentum / Trend -->
+    <string name="velocity_analysis_title">Analisis kelajuan</string>
+    <string name="velocity_daily_change">Perubahan harian</string>
+    <string name="velocity_weekly_change">Perubahan 7 hari</string>
+    <string name="velocity_momentum_label">Momentum</string>
+    <string name="velocity_trend_label">Aliran</string>
+    <string name="velocity_sparkline_title">15 hari terakhir</string>
+    <string name="velocity_inflection_title">Arah sedang berubah!</string>
+    <string name="velocity_inflection_body">Aliran terkini telah berbalik — beri perhatian.</string>
+    <string name="momentum_accelerating">Memecut</string>
+    <string name="momentum_decelerating">Perlahan</string>
+    <string name="momentum_stable">Stabil</string>
+    <string name="trend_crash_accelerating">Kejatuhan memecut</string>
+    <string name="trend_crash_decelerating">Kejatuhan melambat</string>
+    <string name="trend_stable">Stabil</string>
+    <string name="trend_rally_accelerating">Kenaikan memecut</string>
+    <string name="trend_rally_decelerating">Kenaikan melambat</string>
+
+    <!-- Feature screen common labels -->
+    <string name="tab_market">Pasaran</string>
+    <string name="tab_crypto">Kripto</string>
+    <string name="current_index_label">Indeks semasa</string>
+    <string name="vs_previous_close_label">berbanding tutupan sebelum</string>
+    <string name="vs_previous_close_value">berbanding tutupan sebelum %1$s</string>
+    <string name="share_content_description">Kongsi</string>
+    <string name="retry_button">Cuba semula</string>
+    <string name="home_updated_at">Dikemas kini: %1$s</string>
 </resources>
