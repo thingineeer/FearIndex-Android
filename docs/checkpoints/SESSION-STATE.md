@@ -1,174 +1,169 @@
 # Session State — FearIndex-Android
 
 ## Date
-2026-04-16
+2026-04-17
 
 ## Version
 - `versionCode`: 2
 - `versionName`: 1.0.1
-- AAB 산출물: `~/Downloads/FearIndex-v1.0.1.aab` (9.8MB) — **이번 세션 2026-04-16 재빌드** (알림 설정 fix 포함)
+- AAB 산출물: `~/Downloads/FearIndex-v1.0.1.aab` (9.9MB) — 2026-04-16 빌드 (새 keystore, 광고 비활성화, 45 locale i18n)
 
 ## Branch
-`dev` (origin/dev 기준 12 commits ahead, push 대기)
+`dev` (origin/dev와 동기화됨)
 
 ## Active Worktrees
+본진 `/Users/imyeongjin/Desktop/FearIndex-Android [dev]` 1개만.
 
-| 경로 | 브랜치 | 상태 |
-|---|---|---|
-| `/Users/imyeongjin/Desktop/side/FearIndex-Android` | `dev` | 본진, clean |
-| `/Users/imyeongjin/Desktop/side/FearIndex-Android-share-and-gauge` | `feature/v1.0.0-share-and-gauge` | 레거시 미완 (보류, 정리 필요하면 확인 후 제거) |
+## Completed (이번 세션 2026-04-16~17)
 
-## Completed (이번 세션)
+### 1. 이 노트북 개발환경 전체 셋업
+- Android Studio + SDK brew 설치
+- Pixel_3a_API_34 AVD 에뮬레이터 구성
+- `local.properties` 생성 (SDK 경로)
+- Firebase CLI로 `google-services.json` 재생성 → 심볼릭 링크 연결
 
-### 1. iOS v1.7.9 포팅 완료
-- SimilarEvents v2 (isPinned 섹션 분리 + aggregateStats 3열 maxDrawdown/bestReturn)
-- Callable Function `getSimilarEvents` fallback 패턴 (Firestore doc 미존재 대응)
-- InsightDetailSheet 상단 "현재 N점에서 매수 시" 통계 카드 (3열)
-- DefaultReturnData 101포인트 실측 교체
-- fearVelocity weekly 체크 버그 수정
-- 45개 locale strings.xml v1.7.9 키 추가 (SimilarEvents + 이벤트 26개)
-- Appium E2E 검증 스크립트 (`scripts/e2e/appium_v179_check.py`)
+### 2. `~/fearindex-secrets/` 표준 시크릿 폴더 규약
+- 폴더 생성 + `README.md` + `install.sh` (idempotent)
+- 새 릴리즈 keystore 생성 (`fearindex-release.keystore`, PKCS12, alias `fearindex`)
+- `gradle.properties` (FEARINDEX_STORE_* 비밀번호)
+- `google-services.json` (Firebase CLI 다운로드)
+- `.claude/rules/secrets.md` 절대 규칙
+- `.githooks/pre-commit` 시크릿 커밋 차단 훅
+- `.gitignore` 보강
+- `CLAUDE.md` / `MEMORY.md` 업데이트
 
-### 2. 알림 설정 서버 동기화 버그 수정 (이번 세션 핵심)
-- **증상**: 알림 설정 화면 슬라이더 드래그 시 "서버 동기화 실패: INTERNAL" Snackbar
-- **원인**: `NotificationDataSource`가 flat payload 전송 — 서버는 `{ deviceId, settings: { ... } }` 중첩 기대. `settings.lowerThreshold=undefined` → INTERNAL.
-- **수정**: `data/.../NotificationDataSource.kt` iOS `FCMService.swift`와 동일 payload 구조로 통일
-  - `settings` 중첩 객체 + `cryptoNotificationEnabled` + ISO 639-1 `language`
-  - 클라이언트 클램핑 (lower 0–50, upper 50–100)
-- **검증**: 에뮬레이터에서 드래그 → "Notification settings updated" 로그 확인, Snackbar 사라짐
-- **브랜치**: `feature/v1.0.1-notification-fix` → `dev`로 `--no-ff` merge 완료, worktree 제거
+### 3. v1.0.1 광고 비활성화
+- `AdBanner.kt` early-return (다음 버전에서 한 줄 제거로 복원)
 
-### 3. 전체 Callable/Firestore 서버 통신 점검
-| 엔드포인트 | 상태 |
-|---|---|
-| `registerFCMToken` Callable | ✅ 정상 |
-| `updateNotificationSettings` Callable | ✅ 수정 후 정상 |
-| `submitStuckStatus` / `getStuckCount` Callable | ✅ 정상 |
-| `getSimilarEvents` Callable + `insights/*` snapshot | ✅ 정상 |
-| `stuckStatus/global_*` snapshot | ✅ 정상 |
-| **`votes/{date}/results/{indexType}` snapshot** | ❌ **PERMISSION_DENIED** |
+### 4. 완전한 로컬라이제이션 (하드코딩 제거 + 45 locale 163-key parity)
+- 전체 Compose UI 하드코딩 문자열 32개 → `stringResource` 추출 (8개 파일)
+- ~90개 신규 키 × 45 locale = 4,050개 번역 엔트리 생성
+- 함수 시그니처 개선: `nudgeMainMessage`/`nudgeTips`/`momentumLabel`/`trendLabel` → `@StringRes Int` 반환
+- Analytics 이벤트 파라미터 14개 `private const val` 분리
+- 5개 병렬 로컬라이제이션 전문가: CJK+SA / 서유럽 / 슬라브 / 북유럽+발트 / MENA+SEA
+- xmllint + placeholder 검증 통과
+- values-tr `FOMO'dan` apostrophe escape 수정 (AAPT2 컴파일 에러)
 
-### 4. iOS Info.plist ↔ Android 초기화 설정 대칭성 검증
-- `google-services.json` 배치 (app/) + gitignore ✅
-- package_name 2개 (`th1ngjin.fearindex` / `.debug`) ✅
-- `FirebaseFunctions.getInstance("asia-northeast3")` 리전 고정 ✅
-- FirebaseApp 초기화 (FearIndexApp onCreate) ✅
-- App Check: Debug Provider (debug) / Play Integrity (release) ✅
-- Crashlytics + Analytics 플러그인 ✅
-- AdMob App ID meta-data ✅
-- POST_NOTIFICATIONS 권한 ✅
-- FCM MessagingService + default_notification_channel_id ✅
-- Firebase BoM 사용 ✅
+### 5. UI 리디자인
+- SimilarEventsCard: Material 3 Card (`surfaceContainerHighest`), 좌우 패딩 20→10dp, 내부 `surfaceContainerLowest`
+- NotificationSettings: `ListItem` 기반 토글, `Slider steps=0` (점선 노이즈 제거), `surfaceContainer` 카드, InfoFooter 인라인
+
+### 6. FCM 알림 end-to-end 검증
+- 에뮬레이터에서 FCM 토큰 발급 → 서버 등록 성공
+- FCM HTTP v1 API 테스트 푸시 발송 → 알림 트레이 수신 확인 (`importance=4 HIGH`)
+- App Check debug token: `f7fe2893-4eec-4b98-8d7e-301cfa31651d`
+
+### 7. 릴리즈 AAB 빌드 성공
+- 새 keystore (`~/fearindex-secrets/fearindex-release.keystore`) 로 서명
+- SHA-1: `81:AD:9D:5D:9A:E1:50:EB:F1:AE:9D:AF:86:CB:03:3D:67:6B:2A:75`
+- SHA-256: `15:8F:BB:0F:B6:BD:B4:30:09:D1:B5:83:A7:42:93:A4:C6:9E:6B:25:1C:34:44:07:84:D2:41:54:05:58:88:CD`
+- PEM 인증서: `~/fearindex-secrets/upload_cert.pem`
 
 ## In Progress
-없음 — 이번 세션 목표 완료.
+없음
 
 ## Remaining
 
-### ✅ 이번 세션 해결 완료
-- Vote Firestore rules 수정 + deploy 완료 (iOS `firebase-functions/firestore.rules` + `firebase deploy --only firestore:rules`)
-- 에뮬레이터에서 Vote 탭 재진입 → PERMISSION_DENIED 사라짐 확인
-- v1.0.1 AAB 재빌드 (9.8MB) → `~/Downloads/FearIndex-v1.0.1.aab`
+### Play Console AAB 업로드 (사용자 수동)
+- [ ] Play Console 내부 테스트 → "내부 테스트 버전 만들기" → AAB 드래그앤드롭 (`~/Downloads/FearIndex-v1.0.1.aab`)
+- [ ] **업로드 키 리셋 필요**: 새 keystore SHA가 기존 v1.0.0과 다름 → 앱 무결성 → 업로드 키 재설정 → `~/fearindex-secrets/upload_cert.pem` 업로드
+- [ ] 출시명: `2 (1.0.1)`, 출시 노트 입력, 검토 시작
+- [ ] 테스터 그룹 "내부테스터" 이메일 목록 갱신 + 초대 링크 공유
+- [ ] Closed Testing 12명 + 14일(3주) opt-in → Production 신청
 
-### v1.0.1 업로드 (사용자 수동)
-- [ ] Play Console 내부 테스트 트랙 업로드 (`~/Downloads/FearIndex-v1.0.1.aab`)
-- [ ] 테스터 초대 진행 (Closed Testing 12명 + 14일 opt-in)
+### Firebase Console
+- [ ] App Check debug token `f7fe2893-4eec-4b98-8d7e-301cfa31651d` 등록
+- [ ] 새 keystore SHA-1 `81:AD:...` Firebase Console에 등록
 
 ### v1.0.2+ 후보
 - [ ] SkeletonView 재검토
 - [ ] 시장/암호화폐 알림 설정 분리 (통합 1개 → 2개)
-- [ ] iOS hosting URL (`https://fear-index-a4f4b.web.app/...`) 공유 링크 반영
-- [ ] InsightGenerator 단위 테스트 (46점/0점/100점 경계)
-- [ ] 차트 Analytics 이벤트 세부화 (드래그/툴팁)
+- [ ] iOS hosting URL 공유 링크 반영
+- [ ] InsightGenerator 단위 테스트 (경계값)
+- [ ] 차트 Analytics 이벤트 세부화
 
 ### 사용자 결정 대기
 - "투표" 탭 이름 → "심리" 변경 여부
-- AdMob 테스트 디바이스 등록
-- 기존 오타 앱 `com.thingineeer.fearindex` (e3) Play Console 삭제 결정
-- App Check debug token `f2469c34-13e4-4f7b-8067-e2009ff448b5` Firebase Console 등록 여부
-- `git push origin dev` (현재 12 commits ahead)
-- Vote rules 수정 + iOS firestore.rules deploy 진행 여부
+- 기존 오타 앱 `com.thingineeer.fearindex` Play Console 삭제 결정
+- `com.thingineer.fearindex` ("FearIndex") 삭제 결정
 
 ## Key Files
 
-### 이번 세션 수정
-- `data/src/main/java/th1ngjin/fearindex/data/datasource/NotificationDataSource.kt` — 서버 동기화 payload 중첩 구조 수정 (iOS parity)
-- `.claude/memory/bugs-fixed.md` — 10, 11번 버그 기록 추가
+### 이번 세션 수정 (핵심)
+- `presentation/.../component/AdBanner.kt` — v1.0.1 광고 비활성화 (early-return)
+- `presentation/.../component/SimilarEventsCard.kt` — Material 3 Card + 패딩 축소
+- `presentation/.../feature/notification/NotificationSettingsScreen.kt` — Material 3 리디자인
+- `presentation/.../component/InsightDetailSheet.kt` — 66키 i18n + @StringRes 함수 변환
+- `presentation/.../component/StuckCounterCard.kt` — i18n 6키
+- `presentation/.../component/VoteCardView.kt` — i18n 8키
+- `presentation/.../component/VoteCountdownView.kt` — i18n 1키
+- `presentation/.../feature/chart/ChartScreen.kt` — i18n 5키 + analytics 상수 분리
+- `presentation/.../feature/vote/VoteScreen.kt` — i18n 4키 + analytics 상수 분리
+- `presentation/.../feature/home/HomeScreen.kt` — i18n 4키 + analytics 상수 분리
+- `presentation/src/main/res/values/strings.xml` — English 163키 (source of truth)
+- `presentation/src/main/res/values-ko/strings.xml` — Korean 163키
+- `presentation/src/main/res/values-*/strings.xml` — 43 locale 각 163키
 
-### 프로젝트 문서
-- `CLAUDE.md` — Git Workflow / Package / Firebase / AdMob 규칙
-- `.claude/memory/MEMORY.md` — 인덱스 + 상수표
-- `.claude/memory/bugs-fixed.md` — 버그 이력 (현재 11개)
-- `.claude/memory/ios-parity.md` — iOS 대칭성 체크리스트
-- `.claude/memory/firebase-setup.md` — Functions/Firestore/App Check
-
-### 핵심 코드 (iOS parity 영향 큰 순서)
-- `core/.../util/InsightGenerator.kt` — 인사이트 6종 생성 엔진
-- `core/.../util/ReturnDataInterpolator.kt` — 선형 보간
-- `domain/.../defaults/DefaultReturnData.kt` — 101점 anchor + 이벤트 12개
-- `presentation/.../feature/insight/InsightViewModel.kt` — distinctUntilChanged 적용
-- `presentation/.../component/InsightDetailSheet.kt` — 6종 BottomSheet (+ 이번 세션 3열 통계 카드)
-- `presentation/.../feature/home/HomeScreen.kt` — 홈 레이아웃
-- `presentation/.../feature/notification/NotificationSettingsScreen.kt` — 알림 설정 UI
-- `presentation/.../feature/notification/NotificationSettingsViewModel.kt` — debounce 0.5초 + 로컬 캐시 SSOT
-- `data/.../datasource/NotificationDataSource.kt` — **이번 세션 수정** (iOS parity payload)
-- `data/.../datasource/VoteDataSource.kt` — **Firestore snapshot PERMISSION_DENIED 남음**
+### 인프라
+- `.claude/rules/secrets.md` — `~/fearindex-secrets/` 규약
+- `.githooks/pre-commit` — 시크릿 커밋 차단
+- `~/fearindex-secrets/` — keystore + gradle.properties + google-services.json + install.sh + upload_cert.pem
 
 ### 빌드/설정
 - `app/build.gradle.kts` — versionCode=2 / versionName=1.0.1
-- `app/google-services.json` — Firebase prod+debug
-- `~/fearindex-release.keystore` (gitignore)
-- `~/.gradle/gradle.properties` — `FEARINDEX_STORE_PASSWORD` 등 secrets
+- `app/google-services.json` → `~/fearindex-secrets/google-services.json` 심볼릭 링크
+- `~/fearindex-secrets/fearindex-release.keystore` — 새 릴리즈 키
+- `~/.gradle/gradle.properties` — FEARINDEX_* secrets (install.sh가 복사)
+- `local.properties` — SDK 경로 (gitignored)
 
 ## Notes
 
 ### Git 상태
-- 브랜치 `dev`: origin/dev 기준 **12 commits ahead** (push 대기)
-- 최근 merge 그래프 (이번 세션):
-  - `ae8e9cf docs(memory): 서버 통신 점검 기록 추가 (10, 11번 버그)`
-  - `9696ea5 merge: 알림 설정 서버 동기화 fix → dev`
-  - `37842c1 fix: 알림 설정 서버 동기화 payload 중첩 구조로 수정`
-- 모든 머지 `--no-ff` (squash 없음)
-
-### Firebase 공유 프로젝트
-- Project ID: `fear-index-a4f4b` (iOS/macOS/Android 공유)
-- Functions 리전: `asia-northeast3`
-- **Firebase Rules API로 배포된 rules 직접 조회 가능**:
+- 브랜치 `dev`: origin/dev와 동기화 (push 완료)
+- 최근 merge 그래프:
   ```
-  https://firebaserules.googleapis.com/v1/projects/fear-index-a4f4b/releases/cloud.firestore
+  *   50313b6 merge: v1.0.1 i18n + secrets + UX 리디자인 → dev
+  |\
+  | * 6938455 i18n: 43 locale 163-key parity
+  | * 412431e refactor(i18n): 하드코딩 32개 → stringResource
+  | * 3783150 feat(ui): NotificationSettings Material 3 리디자인
+  | * cc1db4f feat(ui): SimilarEventsCard 라이트 카드 + 패딩 10dp
+  | * 8d2233b fix(ads): v1.0.1 광고 비활성화
+  | * 7507bca chore(secrets): ~/fearindex-secrets/ 규약
+  |/
+  * 07c6f9d (이전 세션 head)
   ```
-- **iOS/macOS 앱 삭제 절대 금지**
 
-### 검증 절차 확립
-- 에뮬레이터 ADB + `uiautomator dump` 좌표 추출 → Python 파서로 clickable 영역 추출
-- `adb logcat -d --pid=$(adb shell pidof th1ngjin.fearindex.debug)` — 앱 로그만 필터
-- Firebase Admin SDK + Rules API로 서버 상태 직접 검증
+### 새 Keystore 정보
+- 위치: `~/fearindex-secrets/fearindex-release.keystore` (PKCS12)
+- Alias: `fearindex`
+- SHA-1: `81:AD:9D:5D:9A:E1:50:EB:F1:AE:9D:AF:86:CB:03:3D:67:6B:2A:75`
+- SHA-256: `15:8F:BB:0F:B6:BD:B4:30:09:D1:B5:83:A7:42:93:A4:C6:9E:6B:25:1C:34:44:07:84:D2:41:54:05:58:88:CD`
+- PEM: `~/fearindex-secrets/upload_cert.pem`
+- **기존 v1.0.0과 다른 keystore** → Play Console 업로드 키 리셋 필요
 
-### Release Signing
-- Keystore: `~/fearindex-release.keystore`
-- 비밀번호: `~/.gradle/gradle.properties`의 `FEARINDEX_STORE_PASSWORD`
-- Key alias: `fearindex`
-- SHA-1: `A1:54:8A:92:C3:AF:A5:0E:BD:31:F6:6B:47:1B:9E:BB:51:5D:23:51`
-- SHA-256: `AD:48:68:DA:81:3C:9D:39:65:D0:C8:F9:59:62:61:6F:0A:6D:3A:BF:4E:21:DA:12:C0:DF:D8:2C:11:6A:14:0D`
+### Play Console 업로드 키 리셋 절차
+1. Play Console → 앱 무결성 → 업로드 키 탭
+2. "업로드 키 재설정 요청"
+3. `~/fearindex-secrets/upload_cert.pem` 업로드
+4. Google 승인 (즉시~수 시간)
+5. 승인 후 `~/Downloads/FearIndex-v1.0.1.aab` 업로드 가능
 
-### Play Console
-- 개발자 계정 ID: `5351376807423705889`
-- 앱 ID: `4973920645070208584`
-- 내부 테스트 트랙 ID: `4701735377174107144`
+### 에뮬레이터
+- AVD: `Pixel_3a_API_34_extension_level_7_arm64-v8a`
+- adb: `~/Library/Android/sdk/platform-tools/adb`
+- 한국어 locale 설정: `adb shell cmd locale set-app-locales th1ngjin.fearindex.debug --user 0 --locales "ko-KR"`
 
-### AdMob
-- App ID: `ca-app-pub-5283496525222246~1308884877`
-- HomeBanner Unit ID: `ca-app-pub-5283496525222246/3189551565`
-
-### iOS 프로젝트 위치
-- `/Users/imyeongjin/Desktop/side/FearIndex-iOS` — Bundle ID `th1ngjin.FearIndex-iOS`
-- Firebase Functions source: `firebase-functions/src/index.ts` (Android에는 없음, iOS가 원본)
+### Chrome MCP 파일 업로드 한계
+- Play Console file input (`<input type="file">`)은 Chrome extension으로 프로그래밍 업로드 불가 — macOS 네이티브 파일 다이얼로그 제어 불가
+- Google Play Developer API는 `androidpublisher` OAuth 스코프 필요 — gcloud 기본 스코프에 미포함
+- AAB 업로드는 사용자 수동 드래그앤드롭 또는 Fastlane/Service Account 설정 필요
 
 ## 다음 세션 시작 시
 1. `/resume-FearIndex-Android` 실행
 2. 브리핑 확인 후 "Ready to continue?" 응답
 3. 우선순위:
-   1. **Vote Firestore rules 수정** (iOS firestore.rules + deploy) — 사용자 승인 대기
-   2. `git push origin dev` 여부 결정 (12 commits ahead)
-   3. v1.0.1 AAB 재빌드 (알림 설정 fix 포함) + Play Console 업로드
-   4. 테스터 초대 진행
+   1. Play Console AAB 업로드 (사용자 수동 드래그앤드롭 또는 Fastlane 세팅)
+   2. 업로드 키 리셋 (새 keystore SHA)
+   3. Firebase Console 새 SHA-1 등록 + App Check debug token 등록
+   4. 테스터 12명 이메일 초대 + 3주 opt-in 시작
