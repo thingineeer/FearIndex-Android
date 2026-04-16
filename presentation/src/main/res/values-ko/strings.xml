@@ -29,4 +29,49 @@
     <string name="notification_lower_description">공포지수가 %1$d 이하일 때 알림을 받습니다.</string>
     <string name="notification_upper_description">공포지수가 %1$d 이상일 때 알림을 받습니다.</string>
     <string name="notification_info">알림은 15분 간격으로 체크되며, 하루에 같은 구간 진입 시 최대 1회만 발송됩니다.</string>
+
+    <!-- SimilarEvents 카드 (v1.7.9) -->
+    <string name="similar_events_title">지금과 비슷했던 시기</string>
+    <string name="similar_events_score_label">현재 %1$d점</string>
+    <string name="similar_events_score_suffix">점</string>
+    <string name="similar_events_empty">유사한 과거 시점이 없습니다</string>
+    <string name="similar_events_one_year_return">1년 후 S&amp;P %1$s</string>
+    <string name="similar_events_ongoing">진행 중</string>
+    <string name="similar_events_sim_very">매우 유사</string>
+    <string name="similar_events_sim_close">유사</string>
+    <string name="similar_events_sim_moderate">보통</string>
+    <string name="similar_events_sim_far">약간 유사</string>
+    <string name="similar_events_aggregate_title">%1$d점 구간 전체 평균</string>
+    <string name="similar_events_aggregate_summary">1Y 평균 %1$s (표본 %2$d회)</string>
+    <string name="similar_events_disclaimer">과거 수익률은 미래 수익률을 보장하지 않습니다</string>
+
+    <!-- 역사적 이벤트 (Market) -->
+    <string name="event_covid">COVID-19 팬데믹 저점</string>
+    <string name="event_tariff">2025 관세 위기</string>
+    <string name="event_inflation">2022 인플레이션 공포</string>
+    <string name="event_delta">델타 변이 확산</string>
+    <string name="event_trade_war">미중 무역전쟁</string>
+    <string name="event_svb">SVB 뱅크런</string>
+    <string name="event_reopening">2021 경제 재개</string>
+    <string name="event_post_election">2024 대선 이후</string>
+    <string name="event_2021bull">2021 강세장</string>
+    <string name="event_ai_rally">AI 랠리</string>
+    <string name="event_pre_covid">코로나 직전 고점</string>
+    <string name="event_dotcom">닷컴 버블 정점</string>
+    <string name="event_iran_war_2026">이란-이스라엘 전쟁 (2026)</string>
+
+    <!-- 역사적 이벤트 (Crypto) -->
+    <string name="crypto_event_covid">COVID-19 크립토 폭락</string>
+    <string name="crypto_event_luna">LUNA/UST 붕괴</string>
+    <string name="crypto_event_ftx">FTX 파산</string>
+    <string name="crypto_event_china_ban">중국 암호화폐 금지</string>
+    <string name="crypto_event_svb">SVB 뱅크런 (크립토)</string>
+    <string name="crypto_event_sec">SEC 소송</string>
+    <string name="crypto_event_halving_2024">2024 비트코인 반감기</string>
+    <string name="crypto_event_etf_approval">비트코인 현물 ETF 승인</string>
+    <string name="crypto_event_defi_summer">DeFi 서머</string>
+    <string name="crypto_event_2021_peak">2021 크립토 정점</string>
+    <string name="crypto_event_trump_pump">트럼프 펌프</string>
+    <string name="crypto_event_2017_peak">2017 크립토 정점</string>
+    <string name="crypto_event_iran_war_2026">이란-이스라엘 전쟁 (2026)</string>
 </resources>
