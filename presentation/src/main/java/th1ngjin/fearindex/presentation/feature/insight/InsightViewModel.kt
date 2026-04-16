@@ -13,9 +13,10 @@ import kotlinx.coroutines.launch
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
 import th1ngjin.fearindex.core.util.InsightGenerator
-import th1ngjin.fearindex.domain.defaults.DefaultReturnData
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketInsight
+import th1ngjin.fearindex.domain.entity.ReturnDataTable
+import th1ngjin.fearindex.domain.repository.ReturnDataRepository
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
 import javax.inject.Inject
@@ -31,10 +32,14 @@ data class InsightUiState(
  *
  * HomeViewModel의 uiState를 관찰하여 인사이트 리스트를 생성.
  * HomeViewModel과 별도로 생성되며, observeHome()으로 연결.
+ *
+ * returnData는 `ReturnDataRepository`를 통해 Firestore → Default 순으로 로드.
+ * (iOS `FetchReturnDataUseCase`와 동일 패턴.)
  */
 @HiltViewModel
 class InsightViewModel @Inject constructor(
     private val analytics: AnalyticsManager,
+    private val returnDataRepository: ReturnDataRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(InsightUiState())
@@ -56,10 +61,7 @@ class InsightViewModel @Inject constructor(
                     val state = snapshot.state
                     if (state is FearIndexState.Loaded && snapshot.history.isNotEmpty()) {
                         val score = state.fearIndex.roundedScore
-                        val table = when (snapshot.indexType) {
-                            FearIndexType.MARKET -> DefaultReturnData.market
-                            FearIndexType.CRYPTO -> DefaultReturnData.crypto
-                        }
+                        val table = fetchReturnData(snapshot.indexType)
                         val insights = InsightGenerator.generateInsights(
                             score = score,
                             indexType = snapshot.indexType,
@@ -78,6 +80,13 @@ class InsightViewModel @Inject constructor(
                 }
         }
     }
+
+    /**
+     * Repository를 경유해 returnData를 가져온다. Repository 내부에서 Firestore 실패 시
+     * `DefaultReturnData`로 fallback 하므로 여기서는 추가 try-catch 불필요.
+     */
+    private suspend fun fetchReturnData(indexType: FearIndexType): ReturnDataTable =
+        returnDataRepository.fetch(indexType)
 
     /**
      * 인사이트 생성에 영향을 주는 필드만 추린 스냅샷.
