@@ -10,4 +10,10 @@ import th1ngjin.fearindex.domain.entity.SimilarEventsResult
  */
 interface SimilarEventsRepository {
     fun observe(indexType: FearIndexType): Flow<SimilarEventsResult>
+
+    /**
+     * Firestore 문서가 아직 없는 경우 Callable Function 호출로 서버 캐시 생성을 트리거.
+     * snapshot listener가 자동으로 결과를 받음.
+     */
+    suspend fun triggerCallable(indexType: FearIndexType, currentScore: Int)
 }

@@ -1,9 +1,11 @@
 package th1ngjin.fearindex.data.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.tasks.await
 import th1ngjin.fearindex.domain.entity.AggregateStats
 import th1ngjin.fearindex.domain.entity.EventMatch
 import th1ngjin.fearindex.domain.entity.FearIndexType
@@ -26,30 +28,79 @@ import javax.inject.Singleton
 @Singleton
 class SimilarEventsRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore,
+    private val functions: FirebaseFunctions,
 ) : SimilarEventsRepository {
+
+    private val triggeredScores = mutableSetOf<String>()
 
     override fun observe(indexType: FearIndexType): Flow<SimilarEventsResult> = callbackFlow {
         val docId = "similarEvents_${indexType.name.lowercase()}"
+        Timber.i("SimilarEventsRepository: observe START ($docId)")
         val registration = firestore
             .collection("insights")
             .document(docId)
             .addSnapshotListener { snapshot, error ->
                 if (error != null) {
-                    Timber.w(error, "SimilarEventsRepository: observe error ($docId)")
+                    Timber.e(error, "SimilarEventsRepository: observe error ($docId)")
                     return@addSnapshotListener
                 }
-                if (snapshot == null || !snapshot.exists()) return@addSnapshotListener
+                if (snapshot == null) {
+                    Timber.w("SimilarEventsRepository: snapshot null ($docId)")
+                    return@addSnapshotListener
+                }
+                if (!snapshot.exists()) {
+                    Timber.w("SimilarEventsRepository: doc does not exist ($docId), will trigger Callable fallback")
+                    return@addSnapshotListener
+                }
 
-                val data = snapshot.data ?: return@addSnapshotListener
+                val data = snapshot.data
+                if (data == null) {
+                    Timber.w("SimilarEventsRepository: data null ($docId)")
+                    return@addSnapshotListener
+                }
+                Timber.i("SimilarEventsRepository: snapshot received ($docId, fields=${data.keys})")
                 val result = parseResult(data, indexType)
                 if (result != null) {
+                    Timber.i("SimilarEventsRepository: parsed OK ($docId, matches=${result.matches.size}, hasStats=${result.aggregateStats != null})")
                     trySend(result)
                 } else {
                     Timber.w("SimilarEventsRepository: parse failed ($docId)")
                 }
             }
 
-        awaitClose { registration.remove() }
+        awaitClose {
+            Timber.i("SimilarEventsRepository: observe END ($docId)")
+            registration.remove()
+        }
+    }
+
+    /**
+     * Firestore 문서가 존재하지 않을 때 Callable Function `getSimilarEvents`를 호출해
+     * 서버에 문서를 즉시 생성/캐시한다. 이후 snapshot listener가 자동으로 받음.
+     *
+     * iOS는 Firestore Trigger(`fearIndex/latest` 변경)에 의존하지만,
+     * Android는 첫 진입 시 fearIndex가 아직 변경되지 않았을 수 있으므로 명시적으로 트리거.
+     */
+    override suspend fun triggerCallable(indexType: FearIndexType, currentScore: Int) {
+        val key = "${indexType.name.lowercase()}_$currentScore"
+        if (key in triggeredScores) return
+        triggeredScores.add(key)
+
+        try {
+            Timber.i("SimilarEventsRepository: Callable trigger ($key)")
+            val payload = mapOf(
+                "indexType" to indexType.name.lowercase(),
+                "currentScore" to currentScore,
+            )
+            functions
+                .getHttpsCallable("getSimilarEvents")
+                .call(payload)
+                .await()
+            Timber.i("SimilarEventsRepository: Callable success ($key)")
+        } catch (t: Throwable) {
+            Timber.w(t, "SimilarEventsRepository: Callable failed ($key)")
+            triggeredScores.remove(key)
+        }
     }
 
     @Suppress("UNCHECKED_CAST")
