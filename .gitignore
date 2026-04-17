@@ -30,3 +30,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/*.html
 fastlane/test_output/
+
+.claude/scheduled_tasks.lock

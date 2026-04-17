@@ -40,6 +40,42 @@
 
 - [CLAUDE.md](../../CLAUDE.md) — 프로젝트 지침 (세션 시작 규칙 포함)
 - [docs/GOOGLE-PLAY-INTERNAL-TEST.md](../../docs/GOOGLE-PLAY-INTERNAL-TEST.md) — Play Console 내부 테스트 배포 절차
+- [docs/checkpoints/SESSION-STATE.md](../../docs/checkpoints/SESSION-STATE.md) — 최신 세션 상태 (resume 진입점)
+
+## Fastlane Supply Locale 규격 (절대 규칙)
+
+**Android `values-XX` (리소스 규격) ≠ Supply `XX_YY` (Play Console 메타 규격)**
+
+| 용도 | 규격 | 예시 |
+|---|---|---|
+| Android strings.xml | `values-<lang>[-r<REGION>]` 하이픈 + `r` prefix | `values-ko`, `values-pt-rBR`, `values-zh-rCN`, `values-nb`, `values-iw`, `values-in` |
+| fastlane metadata | `<lang>_<REGION>` 언더바 | `ko_KR`, `pt_BR`, `zh_CN`, `no_NO`, `iw_IL`, `id` |
+
+**주요 매핑**:
+- `values-nb` (Norwegian Bokmål) ↔ `no_NO`
+- `values-iw` (Hebrew legacy) ↔ `iw_IL`
+- `values-in` (Indonesian legacy) ↔ `id`
+- `values-pt-rBR` ↔ `pt_BR`
+- `values-zh-rCN` ↔ `zh_CN`
+- `values-zh-rTW` ↔ `zh_TW`
+
+**경로**:
+- Play Store 메타: `fastlane/metadata/android/<supply_locale>/{title,short_description,full_description}.txt`
+- 스크린샷: `fastlane/metadata/android/<supply_locale>/images/phoneScreenshots/{1_home,2_chart,3_vote,4_notification_settings}.png`
+- 출시 노트: `fastlane/metadata/android/<supply_locale>/changelogs/<versionCode>.txt`
+
+**글자수 제한 (Play Console 절대)**:
+- title: 30자
+- short_description: 80자
+- full_description: 4000자
+- changelog: 500자
+
+## 45 Locale 자동 촬영
+
+- **스크립트**: `scripts/screenshots/capture-all-locales.sh`
+- **ANR 방지 필수**: `adb shell settings put global hide_error_dialogs 1` 먼저 실행 (연속 locale 전환 시 ANR dialog 자동 차단)
+- **로직**: `adb shell cmd locale set-app-locales <PKG> --locales <BCP-47>` → 재시작 → `input tap` → `screencap`
+- **소요**: 45 locale × ~30초 = 약 22분
 
 ## 간단 상수표
 

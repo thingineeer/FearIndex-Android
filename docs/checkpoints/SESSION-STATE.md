@@ -1,169 +1,173 @@
 # Session State — FearIndex-Android
 
 ## Date
-2026-04-17
+2026-04-17 (16:40 KST)
 
 ## Version
 - `versionCode`: 2
 - `versionName`: 1.0.1
-- AAB 산출물: `~/Downloads/FearIndex-v1.0.1.aab` (9.9MB) — 2026-04-16 빌드 (새 keystore, 광고 비활성화, 45 locale i18n)
+- AAB 산출물: `app/build/outputs/bundle/release/app-release.aab` (10.1MB) — 2026-04-17 빌드 (keystore `~/fearindex-secrets/fearindex-release.keystore`, alias `upload`)
 
 ## Branch
-`dev` (origin/dev와 동기화됨)
+`dev` — origin/dev보다 **16 커밋 앞선 상태** (아직 push 안 함)
 
 ## Active Worktrees
-본진 `/Users/imyeongjin/Desktop/FearIndex-Android [dev]` 1개만.
+- 본진 `/Users/imyeongjin/Desktop/side/FearIndex-Android [dev]`
+- `FearIndex-Android-share-and-gauge [feature/v1.0.0-share-and-gauge]` — **미머지, 미검토**
 
-## Completed (이번 세션 2026-04-16~17)
+## Completed (2026-04-17 세션)
 
-### 1. 이 노트북 개발환경 전체 셋업
-- Android Studio + SDK brew 설치
-- Pixel_3a_API_34 AVD 에뮬레이터 구성
-- `local.properties` 생성 (SDK 경로)
-- Firebase CLI로 `google-services.json` 재생성 → 심볼릭 링크 연결
+### 1. 이전 세션 잔재 정리
+- `FearIndex-Android-i18n` worktree의 미커밋 변경 (splash/icons/StuckDetailSheet/fastlane 등)을 6개 논리 커밋으로 쪼개고 `feature/v1.0.0-i18n-insights` → `dev` 머지 후 worktree 제거
 
-### 2. `~/fearindex-secrets/` 표준 시크릿 폴더 규약
-- 폴더 생성 + `README.md` + `install.sh` (idempotent)
-- 새 릴리즈 keystore 생성 (`fearindex-release.keystore`, PKCS12, alias `fearindex`)
-- `gradle.properties` (FEARINDEX_STORE_* 비밀번호)
-- `google-services.json` (Firebase CLI 다운로드)
-- `.claude/rules/secrets.md` 절대 규칙
-- `.githooks/pre-commit` 시크릿 커밋 차단 훅
-- `.gitignore` 보강
-- `CLAUDE.md` / `MEMORY.md` 업데이트
+### 2. S&P 하드코딩 + Settings 메뉴 i18n 버그 수정 (`feature/v1.0.1-similar-events-asset-label`)
+- `insight_similar_events_one_year_return` 키: "1년 후 S&P %1$s" 형태 → iOS 패턴 "1년 후 %1$s" (자산명 placeholder)
+- `SimilarEventsCard` 에 `indexType` 파라미터 추가, CRYPTO면 "BTC", 아니면 "S&P" 런타임 주입
+- 설정 메뉴 키 (`settings_menu_notification/rate/share/about/privacy` + `settings_about_version`) — ko 외 **43 locale 전부 누락**이었던 것을 iOS Localizable.strings 에서 일괄 동기화
 
-### 3. v1.0.1 광고 비활성화
-- `AdBanner.kt` early-return (다음 버전에서 한 줄 제거로 복원)
+### 3. Supply fastlane 규격 폴더명 통일 (`feature/v1.0.1-screenshots-and-i18n`)
+- `values-XX` (Android resource 규격) ≠ Supply locale 규격 (`ko_KR`, `en_US`, `pt_BR`, `zh_CN`)
+- `en-US` → `en_US`, `pt-rBR` → `pt_BR`, `zh-rCN` → `zh_CN`, `iw` → `iw_IL`, `nb` → `no_NO`, `in` → `id` 등 rename
+- 중복 `ko/` + `ko-KR/` → `ko_KR/` 로 통합
 
-### 4. 완전한 로컬라이제이션 (하드코딩 제거 + 45 locale 163-key parity)
-- 전체 Compose UI 하드코딩 문자열 32개 → `stringResource` 추출 (8개 파일)
-- ~90개 신규 키 × 45 locale = 4,050개 번역 엔트리 생성
-- 함수 시그니처 개선: `nudgeMainMessage`/`nudgeTips`/`momentumLabel`/`trendLabel` → `@StringRes Int` 반환
-- Analytics 이벤트 파라미터 14개 `private const val` 분리
-- 5개 병렬 로컬라이제이션 전문가: CJK+SA / 서유럽 / 슬라브 / 북유럽+발트 / MENA+SEA
-- xmllint + placeholder 검증 통과
-- values-tr `FOMO'dan` apostrophe escape 수정 (AAPT2 컴파일 에러)
+### 4. Android 스크린샷 자동 순회 (45 locale × 4장 = 180장)
+- `scripts/screenshots/capture-all-locales.sh` — adb `cmd locale set-app-locales` + `input tap` 시퀀스
+- ANR dialog 방지: `settings put global hide_error_dialogs 1` 설정
+- 각 locale: 홈 / 차트 / 투표 / 알림설정 — 1080×2400 PNG
+- 저장: `fastlane/metadata/android/<supply_locale>/images/phoneScreenshots/{1_home,2_chart,3_vote,4_notification_settings}.png`
+- Fastfile `screenshots` lane 추가
 
-### 5. UI 리디자인
-- SimilarEventsCard: Material 3 Card (`surfaceContainerHighest`), 좌우 패딩 20→10dp, 내부 `surfaceContainerLowest`
-- NotificationSettings: `ListItem` 기반 토글, `Slider steps=0` (점선 노이즈 제거), `surfaceContainer` 카드, InfoFooter 인라인
+### 5. `comparison_*` + `comparison_card_title` 키 번역 (44 locale)
+- `comparison_card_title`, `comparison_previous_close`, `_1w_ago`, `_1m_ago`, `_1y_ago` 키 — 이전엔 ko만 있고 43 locale 누락이던 것을 locale별 적절한 번역으로 추가
 
-### 6. FCM 알림 end-to-end 검증
-- 에뮬레이터에서 FCM 토큰 발급 → 서버 등록 성공
-- FCM HTTP v1 API 테스트 푸시 발송 → 알림 트레이 수신 확인 (`importance=4 HIGH`)
-- App Check debug token: `f7fe2893-4eec-4b98-8d7e-301cfa31651d`
+### 6. Play Store 텍스트 메타 45 locale (`feature/v1.0.1-store-listing-metadata`)
+- 4개 병렬 에이전트로 작성 (Agent 1~4)
+- title.txt (≤30자) / short_description.txt (≤80자) / full_description.txt (≤4000자)
+- iOS `fastlane/metadata/<iOS_locale>/{name,subtitle,description}.txt` 참고 (33 locale) + 영어 기반 번역 (11 locale)
+- Apple Watch / macOS / iPadOS 섹션 제거, "12개 언어" → "45개 언어"
+- 중복 nl/ → nl_NL/ 통합 (placeholder 제거)
+- 45 × 3 = 135 파일, 규격 전부 준수
 
-### 7. 릴리즈 AAB 빌드 성공
-- 새 keystore (`~/fearindex-secrets/fearindex-release.keystore`) 로 서명
-- SHA-1: `81:AD:9D:5D:9A:E1:50:EB:F1:AE:9D:AF:86:CB:03:3D:67:6B:2A:75`
-- SHA-256: `15:8F:BB:0F:B6:BD:B4:30:09:D1:B5:83:A7:42:93:A4:C6:9E:6B:25:1C:34:44:07:84:D2:41:54:05:58:88:CD`
-- PEM 인증서: `~/fearindex-secrets/upload_cert.pem`
+### 7. 출시 노트 45 locale (`feature/v1.0.1-release-notes`)
+- `fastlane/metadata/android/<locale>/changelogs/2.txt` (versionCode 2)
+- 각 locale별 간결한 v1.0.1 release note (500자 제한 내)
+
+### 8. Fastfile lane 추가
+- `upload_screenshots` — 스크린샷만 Play Console 업로드
+- `upload_metadata` — 스크린샷 + 메타 + changelog 업로드 (AAB 제외)
+
+### 9. Android FCM 푸시 테스트
+- FCM 토큰 캡처 (debug 빌드에 임시 로깅 후 revert)
+- Firebase Admin SDK 로 4건 발송 (시장/암호화폐 × lower/upper), ja 로케일 번역 재발송 검증
+- 에뮬레이터 알림 수신 확인 (`fear_index_alerts` 채널, importance=4)
+
+### 10. Chrome MCP로 Play Console 진입 시도
+- `dlaudwls1203@gmail.com` 계정 로그인 + 내부 테스트 트랙 진입 성공
+- AAB 업로드 시도 → **업로드 키 재설정 대기** 에러 (`2026-04-19 04:33 UTC` 이후 유효)
 
 ## In Progress
-없음
+없음 — 대기 중 (업로드 키 재설정 승인 대기)
 
 ## Remaining
 
-### Play Console AAB 업로드 (사용자 수동)
-- [ ] Play Console 내부 테스트 → "내부 테스트 버전 만들기" → AAB 드래그앤드롭 (`~/Downloads/FearIndex-v1.0.1.aab`)
-- [ ] **업로드 키 리셋 필요**: 새 keystore SHA가 기존 v1.0.0과 다름 → 앱 무결성 → 업로드 키 재설정 → `~/fearindex-secrets/upload_cert.pem` 업로드
-- [ ] 출시명: `2 (1.0.1)`, 출시 노트 입력, 검토 시작
-- [ ] 테스터 그룹 "내부테스터" 이메일 목록 갱신 + 초대 링크 공유
-- [ ] Closed Testing 12명 + 14일(3주) opt-in → Production 신청
+### Play Console 업로드 키 재설정 대기
+- [ ] **2026-04-19 04:33 UTC (한국 4/19 13:33)** 이후 AAB 재업로드 시도
+- [ ] 업로드 파일: `app/build/outputs/bundle/release/app-release.aab` (재빌드 불필요, 이미 올바른 keystore로 서명됨)
+
+### Play Console 후속 작업 (AAB 업로드 성공 후)
+- [ ] 출시명 `2 (1.0.1)` 입력
+- [ ] 출시 노트 — changelogs/2.txt 45 locale 사용
+- [ ] 스토어 등록정보 — 45 locale 스크린샷 + title/short/full 업로드
+- [ ] 필수 선언: 콘텐츠 등급 설문, 데이터 보안, 앱 액세스, 광고, 타겟층, 개인정보처리방침 URL
+- [ ] 테스터 이메일 목록 "Internal Testers" 생성 + 등록
+- [ ] "내부 테스트로 출시" → 테스터 초대 링크 공유
+
+### Fastlane 자동화 (선택)
+- [ ] Play Console → 설정 → API 액세스 → 서비스 계정 JSON 발급
+- [ ] `~/fearindex-secrets/play-store-service-account.json` 저장
+- [ ] `bundle exec fastlane upload_metadata` → 메타 + 스크린샷 + changelog 자동 업로드
 
 ### Firebase Console
-- [ ] App Check debug token `f7fe2893-4eec-4b98-8d7e-301cfa31651d` 등록
-- [ ] 새 keystore SHA-1 `81:AD:...` Firebase Console에 등록
+- [ ] App Check debug token 등록 (이전 세션의 `f7fe2893-...` 또는 최신)
+- [ ] 새 keystore SHA-1 등록 (기등록 상태 확인 필요)
 
-### v1.0.2+ 후보
-- [ ] SkeletonView 재검토
-- [ ] 시장/암호화폐 알림 설정 분리 (통합 1개 → 2개)
-- [ ] iOS hosting URL 공유 링크 반영
-- [ ] InsightGenerator 단위 테스트 (경계값)
-- [ ] 차트 Analytics 이벤트 세부화
+### Git
+- [ ] `git push origin dev` (dev가 origin/dev보다 16 커밋 앞선 상태)
 
-### 사용자 결정 대기
-- "투표" 탭 이름 → "심리" 변경 여부
-- 기존 오타 앱 `com.thingineeer.fearindex` Play Console 삭제 결정
-- `com.thingineer.fearindex` ("FearIndex") 삭제 결정
+### 별도 worktree 정리
+- [ ] `FearIndex-Android-share-and-gauge [feature/v1.0.0-share-and-gauge]` 상태 점검 후 머지 or 삭제
 
 ## Key Files
 
-### 이번 세션 수정 (핵심)
-- `presentation/.../component/AdBanner.kt` — v1.0.1 광고 비활성화 (early-return)
-- `presentation/.../component/SimilarEventsCard.kt` — Material 3 Card + 패딩 축소
-- `presentation/.../feature/notification/NotificationSettingsScreen.kt` — Material 3 리디자인
-- `presentation/.../component/InsightDetailSheet.kt` — 66키 i18n + @StringRes 함수 변환
-- `presentation/.../component/StuckCounterCard.kt` — i18n 6키
-- `presentation/.../component/VoteCardView.kt` — i18n 8키
-- `presentation/.../component/VoteCountdownView.kt` — i18n 1키
-- `presentation/.../feature/chart/ChartScreen.kt` — i18n 5키 + analytics 상수 분리
-- `presentation/.../feature/vote/VoteScreen.kt` — i18n 4키 + analytics 상수 분리
-- `presentation/.../feature/home/HomeScreen.kt` — i18n 4키 + analytics 상수 분리
-- `presentation/src/main/res/values/strings.xml` — English 163키 (source of truth)
-- `presentation/src/main/res/values-ko/strings.xml` — Korean 163키
-- `presentation/src/main/res/values-*/strings.xml` — 43 locale 각 163키
+### 이번 세션 핵심
+- `fastlane/metadata/android/<locale>/title.txt|short_description.txt|full_description.txt` — 45 × 3 = 135 파일
+- `fastlane/metadata/android/<locale>/changelogs/2.txt` — 45 locale 출시 노트
+- `fastlane/metadata/android/<locale>/images/phoneScreenshots/{1_home,2_chart,3_vote,4_notification_settings}.png` — 45 × 4 = 180장
+- `scripts/screenshots/capture-all-locales.sh` — 45 locale adb 순회 촬영
+- `fastlane/Fastfile` — screenshots / upload_screenshots / upload_metadata / internal / promote_to_closed / promote_to_production lane
+- `presentation/src/main/java/th1ngjin/fearindex/presentation/component/SimilarEventsCard.kt` — indexType 파라미터, asset label 분기
+- `presentation/src/main/java/th1ngjin/fearindex/presentation/feature/home/HomeScreen.kt` — SimilarEventsCard 호출부
+- `presentation/src/main/res/values-*/strings.xml` — comparison_*, settings_menu_*, insight_similar_events_one_year_return 동기화
 
-### 인프라
-- `.claude/rules/secrets.md` — `~/fearindex-secrets/` 규약
-- `.githooks/pre-commit` — 시크릿 커밋 차단
-- `~/fearindex-secrets/` — keystore + gradle.properties + google-services.json + install.sh + upload_cert.pem
-
-### 빌드/설정
-- `app/build.gradle.kts` — versionCode=2 / versionName=1.0.1
-- `app/google-services.json` → `~/fearindex-secrets/google-services.json` 심볼릭 링크
-- `~/fearindex-secrets/fearindex-release.keystore` — 새 릴리즈 키
-- `~/.gradle/gradle.properties` — FEARINDEX_* secrets (install.sh가 복사)
-- `local.properties` — SDK 경로 (gitignored)
+### AAB 산출물
+- `app/build/outputs/bundle/release/app-release.aab` (10.1MB)
 
 ## Notes
 
-### Git 상태
-- 브랜치 `dev`: origin/dev와 동기화 (push 완료)
-- 최근 merge 그래프:
-  ```
-  *   50313b6 merge: v1.0.1 i18n + secrets + UX 리디자인 → dev
-  |\
-  | * 6938455 i18n: 43 locale 163-key parity
-  | * 412431e refactor(i18n): 하드코딩 32개 → stringResource
-  | * 3783150 feat(ui): NotificationSettings Material 3 리디자인
-  | * cc1db4f feat(ui): SimilarEventsCard 라이트 카드 + 패딩 10dp
-  | * 8d2233b fix(ads): v1.0.1 광고 비활성화
-  | * 7507bca chore(secrets): ~/fearindex-secrets/ 규약
-  |/
-  * 07c6f9d (이전 세션 head)
-  ```
+### Git 그래프 (2026-04-17 오늘 추가)
+```
+* 89c6572 merge: v1.0.1 release notes (45 locale) → dev
+* 199738d feat(metadata): 45 locale changelogs/2.txt (v1.0.1 release notes)
+* d664c4e merge: 45 locale Play Store 텍스트 메타 → dev
+* 8bc6aa4 i18n: 45 locale Google Play 텍스트 메타 일괄 작성 (iOS 매핑 + 영어 기반 번역)
+* b66161c merge: screenshots + i18n comparison + supply rename → dev
+* fc364d1 chore(session): 2026-04-17 스크린샷 + i18n 세션 기록
+* 802d2d2 i18n: comparison_* 키 43 locale 번역 추가
+* 71fe25e fix(fastlane): Supply 공식 locale 폴더명 통일 + 45 locale 스크린샷 자동화
+* bdd91ba merge: asset-label + settings menu i18n → dev
+* 323dc9d fix(i18n): similar-events 자산 레이블 분기 + settings 메뉴 키 43 locale 추가
+* 76186f9 merge: i18n + icons + splash + stuck-detail → dev
+* 5941d2e chore: fastlane + build 설정 + misc
+* af2be83 feat(presentation): 컴포넌트 연결 + i18n 키 연결
+* b0592cf i18n: 44 locale strings 신규 키 일괄 반영
+* 4543630 feat(ui): StuckDetailSheet + InsightText + PrivacyScreen 신규
+* 3809f36 feat(splash): iOS 스타일 Compose SplashView 추가
+* 7402496 feat(icons): iOS AppIcon 기반 런처/스플래시 아이콘 교체
+* 376fa5f chore(session): 2026-04-17 세션 저장 (이전 세션)
+```
 
-### 새 Keystore 정보
+### Play Console 업로드 키 재설정 상태
+- Google에 재설정 요청 접수됨 (이전 세션)
+- **유효 시작 시각**: `2026-04-19 04:33:09 UTC` = 한국 `2026-04-19 (금) 13:33`
+- 현재는 업로드 시 "최근에 재설정되어 아직 유효하지 않은 업로드 인증서" 에러 발생
+- 4/19 이후에는 현재 빌드된 AAB 그대로 업로드 통과 예정
+
+### Keystore 정보 (변경 없음)
 - 위치: `~/fearindex-secrets/fearindex-release.keystore` (PKCS12)
-- Alias: `fearindex`
-- SHA-1: `81:AD:9D:5D:9A:E1:50:EB:F1:AE:9D:AF:86:CB:03:3D:67:6B:2A:75`
-- SHA-256: `15:8F:BB:0F:B6:BD:B4:30:09:D1:B5:83:A7:42:93:A4:C6:9E:6B:25:1C:34:44:07:84:D2:41:54:05:58:88:CD`
-- PEM: `~/fearindex-secrets/upload_cert.pem`
-- **기존 v1.0.0과 다른 keystore** → Play Console 업로드 키 리셋 필요
+- Alias: `upload`
+- 비밀번호 (store/key 동일): `~/.gradle/gradle.properties` 의 `FEARINDEX_STORE_PASSWORD`
+- Upload PEM: `~/fearindex-secrets/upload_certificate.pem`
 
-### Play Console 업로드 키 리셋 절차
-1. Play Console → 앱 무결성 → 업로드 키 탭
-2. "업로드 키 재설정 요청"
-3. `~/fearindex-secrets/upload_cert.pem` 업로드
-4. Google 승인 (즉시~수 시간)
-5. 승인 후 `~/Downloads/FearIndex-v1.0.1.aab` 업로드 가능
+### Chrome MCP 제약
+- 파일 input (`<input type="file">`) 은 macOS 네이티브 다이얼로그 통제 불가 → AAB 업로드는 사용자 수동
+- Play Console 세션은 Chrome 브라우저 그대로 유지 (로그인 상태 유지)
 
-### 에뮬레이터
-- AVD: `Pixel_3a_API_34_extension_level_7_arm64-v8a`
-- adb: `~/Library/Android/sdk/platform-tools/adb`
-- 한국어 locale 설정: `adb shell cmd locale set-app-locales th1ngjin.fearindex.debug --user 0 --locales "ko-KR"`
-
-### Chrome MCP 파일 업로드 한계
-- Play Console file input (`<input type="file">`)은 Chrome extension으로 프로그래밍 업로드 불가 — macOS 네이티브 파일 다이얼로그 제어 불가
-- Google Play Developer API는 `androidpublisher` OAuth 스코프 필요 — gcloud 기본 스코프에 미포함
-- AAB 업로드는 사용자 수동 드래그앤드롭 또는 Fastlane/Service Account 설정 필요
+### Supply Locale 정규화 (주의)
+- Android `values-XX` (리소스) ≠ Supply `XX_YY` (Play Console 메타)
+- `values-pt-rBR` (리소스) ↔ `fastlane/metadata/android/pt_BR` (메타)
+- `values-zh-rCN` ↔ `zh_CN`
+- `values-nb` ↔ `no_NO`
+- `values-iw` ↔ `iw_IL`
+- `values-in` ↔ `id`
 
 ## 다음 세션 시작 시
 1. `/resume-FearIndex-Android` 실행
-2. 브리핑 확인 후 "Ready to continue?" 응답
-3. 우선순위:
-   1. Play Console AAB 업로드 (사용자 수동 드래그앤드롭 또는 Fastlane 세팅)
-   2. 업로드 키 리셋 (새 keystore SHA)
-   3. Firebase Console 새 SHA-1 등록 + App Check debug token 등록
-   4. 테스터 12명 이메일 초대 + 3주 opt-in 시작
+2. 4/19 13:33 KST 지났는지 확인
+3. 지났으면: Chrome 열고 Play Console → 내부 테스트 → 버전 수정 → AAB 업로드 재시도
+4. 안 지났으면: 대기하거나 service account JSON 발급으로 시간 활용
+
+## 이번 세션 주요 교훈
+- `ANR: Application Not Responding` dialog는 `hide_error_dialogs=1` 설정으로 시스템 차단 가능 (연속 locale 전환 시 필수)
+- `values-XX` 와 Supply locale은 완전히 다른 체계 — 처음부터 Supply 규격 지켜야 fastlane과 호환
+- iOS `Localizable.strings` 는 Android `strings.xml` 의 상위 SSOT — 키 동기화는 항상 iOS → Android 방향
+- Chrome MCP로 Play Console 작업 시 `u/0`/`u/1` 등 계정 index 주의 — 본인 개인 Gmail (`dlaudwls1203`) 사용 확인 필수
