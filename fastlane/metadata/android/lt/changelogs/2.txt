@@ -1,0 +1,6 @@
+Baimės ir godumo indeksas v1.0.1 vidinis bandymas.
+- 45 kalbų palaikymas
+- Rinkos ir kripto indeksas realiuoju laiku
+- Panašių laikotarpių kortelė
+- Pranešimų slenksčiai
+- Įstrigusių skaitiklio balsavimas

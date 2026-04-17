@@ -1,0 +1,6 @@
+Frykt og grådighet indeks v1.0.1 intern test.
+- Støtte for 45 språk
+- Sanntids marked og krypto indeks
+- Lignende periode innsiktskort
+- Varselsterskler
+- Fastlåst teller avstemming

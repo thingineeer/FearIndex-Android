@@ -1,0 +1,6 @@
+Indice Paura e Avidità v1.0.1 test interno.
+- Supporto 45 lingue
+- Indice mercato e crypto in tempo reale
+- Scheda periodi simili
+- Soglie di notifica
+- Votazione contatore bloccati

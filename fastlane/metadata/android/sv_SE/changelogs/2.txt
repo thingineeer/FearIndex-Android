@@ -1,0 +1,6 @@
+Rädsla och girighetsindex v1.0.1 intern test.
+- Stöd för 45 språk
+- Realtids marknads och kryptoindex
+- Liknande periods insiktskort
+- Aviseringströsklar
+- Fastnad räknare omröstning

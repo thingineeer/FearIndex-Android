@@ -1,0 +1,6 @@
+Index strachu a chamtivosti v1.0.1 interný test.
+- Podpora 45 jazykov
+- Index trhu a kryptomien v reálnom čase
+- Karta podobných období
+- Prahy oznámení
+- Hlasovanie počítadla uviaznutých

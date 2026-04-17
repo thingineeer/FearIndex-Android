@@ -1,0 +1,6 @@
+Angst en hebzucht-index v1.0.1 interne test.
+- Ondersteuning voor 45 talen
+- Realtime markt- en crypto-index
+- Kaart met soortgelijke perioden
+- Meldingsdrempels (onder/boven)
+- Stemfunctie voor vast-zit-teller

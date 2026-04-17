@@ -1,0 +1,6 @@
+Indice frică și lăcomie v1.0.1 test intern.
+- Suport pentru 45 de limbi
+- Indice piață și cripto în timp real
+- Card perioade similare
+- Praguri notificări
+- Vot contor blocați

@@ -1,0 +1,6 @@
+Pelko ja ahneus -indeksi v1.0.1 sisäinen testi.
+- Tuki 45 kielelle
+- Reaaliaikainen markkina- ja kryptoindeksi
+- Samankaltaiset jaksot -kortti
+- Ilmoitusten kynnysarvot
+- Jumittunut laskuri -äänestys

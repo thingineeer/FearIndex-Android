@@ -1,0 +1,6 @@
+Chỉ số Sợ hãi và Tham lam v1.0.1 kiểm thử nội bộ.
+- Hỗ trợ 45 ngôn ngữ
+- Chỉ số thị trường và tiền mã hóa thời gian thực
+- Thẻ thông tin giai đoạn tương tự
+- Ngưỡng thông báo
+- Bỏ phiếu bộ đếm kẹt

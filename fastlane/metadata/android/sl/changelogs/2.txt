@@ -1,0 +1,6 @@
+Indeks strahu in pohlepa v1.0.1 notranji preizkus.
+- Podpora za 45 jezikov
+- Indeks trga in kripto v realnem času
+- Kartica podobnih obdobij
+- Pragovi obvestil
+- Glasovanje števca ujetih

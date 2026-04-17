@@ -1,0 +1,6 @@
+Frygt og grådighed indeks v1.0.1 intern test.
+- Understøttelse af 45 sprog
+- Realtids marked & krypto indeks
+- Lignende periode indsigtkort
+- Notifikationstærskler
+- Fanget tæller afstemning
