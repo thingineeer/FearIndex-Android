@@ -26,7 +26,7 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="insight_similar_events_score_label">Hiện tại %1$d</string>
     <string name="insight_similar_events_pinned_title">Nếu bạn mua ở các đáy lớn?</string>
     <string name="insight_similar_events_empty">Không tìm thấy giai đoạn lịch sử tương tự</string>
-    <string name="insight_similar_events_one_year_return">1 năm S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
     <string name="insight_similar_events_ongoing">Đang diễn ra</string>
     <string name="insight_similar_events_sim_very">Rất tương tự</string>
     <string name="insight_similar_events_sim_close">Tương tự</string>
@@ -213,4 +213,11 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="insight_drawdown_summary_extreme_greed">Vùng tham lam cực độ có thể đối mặt với điều chỉnh lớn.</string>
     <string name="insight_velocity_title">Vận tốc chỉ số sợ hãi</string>
     <string name="insight_velocity_inflection_suffix"> (đã phát hiện điểm uốn)</string>
+    <!-- Settings menu -->
+    <string name="settings_menu_notification">Thông báo</string>
+    <string name="settings_menu_privacy">Chính sách quyền riêng tư</string>
+    <string name="settings_menu_about">Thông tin ứng dụng</string>
+    <string name="settings_menu_rate">Viết đánh giá</string>
+    <string name="settings_menu_share">Chia sẻ ứng dụng</string>
+    <string name="settings_about_version">Version %1$s</string>
 </resources>

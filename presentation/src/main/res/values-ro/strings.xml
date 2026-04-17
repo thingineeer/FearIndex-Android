@@ -26,7 +26,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="insight_similar_events_score_label">Current %1$d</string>
     <string name="insight_similar_events_pinned_title">What if you bought at major lows?</string>
     <string name="insight_similar_events_empty">No similar historical periods found</string>
-    <string name="insight_similar_events_one_year_return">1Y S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
     <string name="insight_similar_events_ongoing">Ongoing</string>
     <string name="insight_similar_events_sim_very">Very Similar</string>
     <string name="insight_similar_events_sim_close">Similar</string>
@@ -210,4 +210,11 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="insight_drawdown_summary_extreme_greed">Zonele de lăcomie extremă pot înfrunta corecții majore.</string>
     <string name="insight_velocity_title">Viteza indicelui de frică</string>
     <string name="insight_velocity_inflection_suffix"> (punct de inflexiune detectat)</string>
+    <!-- Settings menu -->
+    <string name="settings_menu_notification">Notificări</string>
+    <string name="settings_menu_privacy">Politica de Confidențialitate</string>
+    <string name="settings_menu_about">Informații Aplicație</string>
+    <string name="settings_menu_rate">Scrie o recenzie</string>
+    <string name="settings_menu_share">Distribuie aplicația</string>
+    <string name="settings_about_version">Version %1$s</string>
 </resources>

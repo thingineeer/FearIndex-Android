@@ -42,7 +42,7 @@
     <string name="insight_similar_events_score_label">현재 %1$d점</string>
     <string name="insight_similar_events_pinned_title">주요 저점에서 매수했다면</string>
     <string name="insight_similar_events_empty">유사한 과거 시점이 없습니다</string>
-    <string name="insight_similar_events_one_year_return">1년 후 S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">1년 후 %1$s</string>
     <string name="insight_similar_events_ongoing">진행 중</string>
     <string name="insight_similar_events_sim_very">매우 유사</string>
     <string name="insight_similar_events_sim_close">유사</string>

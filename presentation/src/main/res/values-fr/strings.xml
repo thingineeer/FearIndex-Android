@@ -26,7 +26,7 @@
     <string name="insight_similar_events_score_label">Actuel %1$d</string>
     <string name="insight_similar_events_pinned_title">Si vous aviez acheté aux principaux creux</string>
     <string name="insight_similar_events_empty">Aucune période historique similaire trouvée</string>
-    <string name="insight_similar_events_one_year_return">1A S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">Rendement 1A %1$s</string>
     <string name="insight_similar_events_ongoing">En cours</string>
     <string name="insight_similar_events_sim_very">Très similaire</string>
     <string name="insight_similar_events_sim_close">Similaire</string>
@@ -210,4 +210,11 @@
     <string name="insight_drawdown_summary_extreme_greed">Les zones d\'extrême cupidité peuvent subir des corrections majeures.</string>
     <string name="insight_velocity_title">Vitesse de l\'indice de peur</string>
     <string name="insight_velocity_inflection_suffix"> (inflexion détectée)</string>
+    <!-- Settings menu -->
+    <string name="settings_menu_notification">Notifications</string>
+    <string name="settings_menu_privacy">Politique de confidentialité</string>
+    <string name="settings_menu_about">Infos App</string>
+    <string name="settings_menu_rate">Laisser un avis</string>
+    <string name="settings_menu_share">Partager l\'app</string>
+    <string name="settings_about_version">Version %1$s</string>
 </resources>

@@ -26,7 +26,7 @@
     <string name="insight_similar_events_score_label">ปัจจุบัน %1$d</string>
     <string name="insight_similar_events_pinned_title">ถ้าคุณซื้อที่จุดต่ำสุดสำคัญ?</string>
     <string name="insight_similar_events_empty">ไม่พบช่วงเวลาในอดีตที่คล้ายกัน</string>
-    <string name="insight_similar_events_one_year_return">1 ปี S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
     <string name="insight_similar_events_ongoing">กำลังดำเนินอยู่</string>
     <string name="insight_similar_events_sim_very">คล้ายกันมาก</string>
     <string name="insight_similar_events_sim_close">คล้ายกัน</string>
@@ -213,4 +213,11 @@
     <string name="insight_drawdown_summary_extreme_greed">เขตความโลภสุดขั้วอาจเผชิญการปรับฐานครั้งใหญ่</string>
     <string name="insight_velocity_title">ความเร็วของดัชนีความกลัว</string>
     <string name="insight_velocity_inflection_suffix"> (ตรวจพบจุดเปลี่ยน)</string>
+    <!-- Settings menu -->
+    <string name="settings_menu_notification">การแจ้งเตือน</string>
+    <string name="settings_menu_privacy">นโยบายความเป็นส่วนตัว</string>
+    <string name="settings_menu_about">ข้อมูลแอป</string>
+    <string name="settings_menu_rate">เขียนรีวิว</string>
+    <string name="settings_menu_share">แชร์แอป</string>
+    <string name="settings_about_version">Version %1$s</string>
 </resources>

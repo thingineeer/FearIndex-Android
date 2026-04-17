@@ -430,7 +430,7 @@ private fun LoadedContent(
     // 3.5. SimilarEvents 카드 — "지금과 비슷했던 시기" (v1.7.9)
     if (similarEventsResult.matches.isNotEmpty() || similarEventsResult.aggregateStats != null) {
         Spacer(modifier = Modifier.height(16.dp))
-        SimilarEventsCard(result = similarEventsResult)
+        SimilarEventsCard(result = similarEventsResult, indexType = indexType)
     }
 
     // 4. 인사이트 티저 카드 — 현재 점수 기준 통계(전 구간). 첫 번째 인사이트 1개.

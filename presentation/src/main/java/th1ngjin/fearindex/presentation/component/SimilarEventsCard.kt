@@ -27,10 +27,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import th1ngjin.fearindex.domain.entity.AggregateStats
 import th1ngjin.fearindex.domain.entity.EventMatch
+import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.Similarity
 import th1ngjin.fearindex.domain.entity.SimilarEventsResult
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.common.localizedEventTitle
+
+private fun assetLabel(indexType: FearIndexType): String = when (indexType) {
+    FearIndexType.MARKET -> "S&P"
+    FearIndexType.CRYPTO -> "BTC"
+}
 
 /**
  * "지금과 비슷했던 시기" 인사이트 카드.
@@ -39,10 +45,12 @@ import th1ngjin.fearindex.presentation.common.localizedEventTitle
 @Composable
 fun SimilarEventsCard(
     result: SimilarEventsResult,
+    indexType: FearIndexType,
     modifier: Modifier = Modifier,
 ) {
     val pinned = result.matches.filter { it.isPinned }
     val similar = result.matches.filter { !it.isPinned }
+    val asset = assetLabel(indexType)
 
     Card(
         modifier = modifier.fillMaxWidth(),
@@ -95,7 +103,7 @@ fun SimilarEventsCard(
                         .padding(12.dp),
                 ) {
                     pinned.forEachIndexed { index, match ->
-                        PinnedMatchRow(match)
+                        PinnedMatchRow(match, asset)
                         if (index < pinned.lastIndex) {
                             HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                         }
@@ -120,7 +128,7 @@ fun SimilarEventsCard(
                         .padding(12.dp),
                 ) {
                     similar.forEachIndexed { index, match ->
-                        SimilarMatchRow(match)
+                        SimilarMatchRow(match, asset)
                         if (index < similar.lastIndex) {
                             HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                         }
@@ -148,7 +156,7 @@ fun SimilarEventsCard(
 }
 
 @Composable
-private fun PinnedMatchRow(match: EventMatch) {
+private fun PinnedMatchRow(match: EventMatch, asset: String) {
     Column {
         Text(
             text = "${localizedEventTitle(match.titleKey)} — ${stringResource(R.string.insight_event_score, match.score)}",
@@ -158,7 +166,7 @@ private fun PinnedMatchRow(match: EventMatch) {
         val oneYear = match.returnAfter.oneYear
         if (oneYear != null) {
             Text(
-                text = stringResource(R.string.insight_similar_events_one_year_return, formatReturn(oneYear)),
+                text = stringResource(R.string.insight_similar_events_one_year_return, "$asset ${formatReturn(oneYear)}"),
                 style = MaterialTheme.typography.labelSmall,
                 modifier = Modifier.padding(top = 4.dp),
             )
@@ -167,7 +175,7 @@ private fun PinnedMatchRow(match: EventMatch) {
 }
 
 @Composable
-private fun SimilarMatchRow(match: EventMatch) {
+private fun SimilarMatchRow(match: EventMatch, asset: String) {
     Column {
         Text(
             text = "${localizedEventTitle(match.titleKey)} — ${stringResource(R.string.insight_event_score, match.score)}",
@@ -180,7 +188,7 @@ private fun SimilarMatchRow(match: EventMatch) {
             val oneYear = match.returnAfter.oneYear
             if (oneYear != null) {
                 Text(
-                    text = stringResource(R.string.insight_similar_events_one_year_return, formatReturn(oneYear)),
+                    text = stringResource(R.string.insight_similar_events_one_year_return, "$asset ${formatReturn(oneYear)}"),
                     style = MaterialTheme.typography.labelSmall,
                 )
             } else if (match.isOngoing) {

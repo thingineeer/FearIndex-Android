@@ -26,7 +26,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="insight_similar_events_score_label">Current %1$d</string>
     <string name="insight_similar_events_pinned_title">What if you bought at major lows?</string>
     <string name="insight_similar_events_empty">No similar historical periods found</string>
-    <string name="insight_similar_events_one_year_return">1Y S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
     <string name="insight_similar_events_ongoing">Ongoing</string>
     <string name="insight_similar_events_sim_very">Very Similar</string>
     <string name="insight_similar_events_sim_close">Similar</string>
@@ -210,4 +210,11 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="share_content_description">Kopīgot</string>
     <string name="retry_button">Mēģināt vēlreiz</string>
     <string name="home_updated_at">Atjaunināts: %1$s</string>
+    <!-- Settings menu -->
+    <string name="settings_menu_notification">Paziņojumi</string>
+    <string name="settings_menu_privacy">Privātuma politika</string>
+    <string name="settings_menu_about">Lietotnes informācija</string>
+    <string name="settings_menu_rate">Uzrakstīt atsauksmi</string>
+    <string name="settings_menu_share">Kopīgot lietotni</string>
+    <string name="settings_about_version">Version %1$s</string>
 </resources>
