@@ -1,0 +1,44 @@
+Fear & Greed Index is een app voor analyse van beleggingssentiment waarmee u zowel de Markt Fear & Greed Index als de Crypto Fear & Greed Index in één oogopslag kunt volgen. Volg twee verschillende angstindices naast de belangrijkste marktindices om de massa-psychologie te begrijpen en weloverwogen beleggingsbeslissingen te nemen.
+
+[Twee angst- en hebzuchtindices]
+- Markt angstindex: Sentiment-indicator voor traditionele financiële markten
+- Crypto angstindex: Sentiment-indicator voor de cryptocurrency-markt
+- Vergelijk beide indices naast elkaar om de algehele marktdynamiek te begrijpen
+
+[Kernfuncties]
+- Realtime weergave van markt- en crypto Fear & Greed Index
+- Intuïtieve visualisatie van marktsentiment met meterschema
+- Vergelijking van historische gegevens (vorige sluiting, 1 week, 1 maand, 1 jaar)
+- Trendanalyse met historische grafieken (1M / 3M / 6M / 1J)
+- Belangrijkste marktindices in realtime (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Één-tik schakelaar tussen markt- en crypto-indices
+
+[Widgets]
+- Startscherm-widgets: Small / Medium / Large formaten
+- Vergrendelscherm-widgets: aparte schermen voor markt- en crypto-angstindices
+- Markt/crypto-schakelaar in widgets
+
+[Push-meldingen]
+- Directe waarschuwingen wanneer de markt-angstindex uw drempelwaarde bereikt
+- Directe waarschuwingen wanneer de crypto-angstindex uw drempelwaarde bereikt
+- Aanpasbare instellingen voor bovenste en onderste drempelwaarde
+
+[Wat is de Fear & Greed Index?]
+Een marktsentiment-indicator die de psychologie van beleggers weergeeft op een schaal van 0 (Extreme angst) tot 100 (Extreme hebzucht).
+- 0-24: Extreme angst (Extreme Fear)
+- 25-44: Angst (Fear)
+- 45-55: Neutraal (Neutral)
+- 56-75: Hebzucht (Greed)
+- 76-100: Extreme hebzucht (Extreme Greed)
+
+[45 talen]
+Beschikbaar in 45 talen, waaronder Nederlands, English, 한국어, 日本語, Deutsch, 中文 en meer.
+
+[Beleggingsvoorbehoud]
+Alle informatie in deze app is uitsluitend ter referentie en vormt geen koop-/verkoopadvies of beleggingsadvies voor specifieke effecten.
+- Indexdata kan afwijken van werkelijke marktindicatoren afhankelijk van de omstandigheden van de gegevensleverancier.
+- Alle beleggingsbeslissingen moeten worden genomen op basis van het eigen oordeel en de verantwoordelijkheid van de belegger.
+- Deze service aanvaardt geen juridische aansprakelijkheid voor beleggingsresultaten.
+
+[Contact]
+Email: dlaudwls1203@gmail.com

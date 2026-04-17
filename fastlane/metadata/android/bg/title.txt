@@ -1,2 +1,1 @@
-# TODO: translate
-Fear & Greed Index
+Индекс на страх и алчност

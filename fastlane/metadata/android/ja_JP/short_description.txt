@@ -1,2 +1,1 @@
-# TODO: translate
-실시간 시장 공포탐욕 지수 (CNN + 암호화폐 지수)
+市場・暗号資産の Fear & Greed Index をリアルタイム表示。閾値通知にも対応。

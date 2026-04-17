@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index is 'n beleggingsstemming-ontledingstoepassing waarmee jy die Mark Vrees en Hebsug Indeks sowel as die Kripto Vrees en Hebsug Indeks in een oogopslag kan monitor. Volg twee afsonderlike vreesindekse saam met die hoofmarkindekse om die skare-sielkunde te verstaan en ingeligte beleggingsbesluite te neem.
+
+[Twee Vrees en Hebsug Indekse]
+- Mark Vrees en Hebsug Indeks: stemmingsaanwyser vir tradisionele finansiële markte
+- Kripto Vrees en Hebsug Indeks: stemmingsaanwyser vir die kriptovalutamark
+- Vergelyk beide indekse langs mekaar om die algehele markdinamika te verstaan
+
+[Hoofkenmerke]
+- Intydse vertoning van die Mark- en Kripto Fear & Greed Index
+- Intuïtiewe visualisering van markstemming met 'n metertabel
+- Vergelyking van historiese data (vorige sluiting, 1 week, 1 maand, 1 jaar gelede)
+- Tendensontleding met geskiedeniskaarte (1M / 3M / 6M / 1J)
+- Intydse hoofmarkindekse (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Een-tik skakel tussen mark- en kripto-indekse
+
+[Legstukke]
+- Tuisskerm-legstukke: Klein / Medium / Groot groottes
+- Sluitskerm-legstukke: afsonderlike vertonings vir mark- en kripto-vreesindekse
+- Mark/kripto-skakel binne legstukke
+
+[Stootkennisgewings]
+- Onmiddellike waarskuwings wanneer die mark-vreesindeks jou drempel bereik
+- Onmiddellike waarskuwings wanneer die kripto-vreesindeks jou drempel bereik
+- Aanpasbare boonste en onderste drempelinstellings
+
+[Wat is die Fear & Greed Index?]
+'n Markstemming-aanwyser wat belegger-sielkunde op 'n skaal van 0 (Uiterste Vrees) tot 100 (Uiterste Hebsug) voorstel.
+- 0-24: Uiterste Vrees
+- 25-44: Vrees
+- 45-55: Neutraal
+- 56-75: Hebsug
+- 76-100: Uiterste Hebsug
+
+[Ondersteuning vir 45 Tale]
+Engels, Koreaans, Japannees, Duits, Chinees, Frans, Spaans, Arabies, Italiaans, Portugees, Russies, Turks en nog 33 tale.
+
+[Beleggingsverklaring]
+Alle inligting in hierdie toepassing is slegs vir verwysing en vorm nie koop-/verkoopaanbevelings of beleggingsadvies vir enige spesifieke sekuriteite nie.
+- Indeksdata kan verskil van werklike markaanwysers, afhangende van die omstandighede van die dataverskaffer.
+- Alle beleggingsbesluite moet gebaseer wees op die eie oordeel en verantwoordelikheid van die belegger.
+- Hierdie diens neem geen regsverantwoordelikheid vir beleggingsresultate nie.
+
+[Kontak]
+Email: dlaudwls1203@gmail.com

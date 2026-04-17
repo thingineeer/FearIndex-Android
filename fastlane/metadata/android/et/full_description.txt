@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index on investeerimismeeleolu analüüsi rakendus, mis võimaldab jälgida korraga nii turu hirmu ja ahnuse indeksit kui ka krüptovaluuta hirmu ja ahnuse indeksit. Jälgige kahte eraldi hirmuindeksit koos peamiste turuindeksitega, et mõista massipsühholoogiat ja teha teadlikke investeerimisotsuseid.
+
+[Kaks hirmu ja ahnuse indeksit]
+- Turu hirmu ja ahnuse indeks: traditsiooniliste finantsturgude meeleolunäitaja
+- Krüpto hirmu ja ahnuse indeks: krüptovaluutaturu meeleolunäitaja
+- Võrrelge mõlemat indeksit kõrvuti, et mõista turu üldist dünaamikat
+
+[Põhifunktsioonid]
+- Turu- ja krüpto Fear & Greed Indexi kuva reaalajas
+- Intuitiivne turumeeleolu visualiseerimine mõõdikugraafikul
+- Ajaloolise andmete võrdlus (eelmine sulgemine, 1 nädal, 1 kuu, 1 aasta tagasi)
+- Trendianalüüs ajaloograafikutega (1M / 3M / 6M / 1A)
+- Peamised turuindeksid reaalajas (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Ühe puudutusega lülitamine turu- ja krüptoindeksite vahel
+
+[Vidinad]
+- Avakuva vidinad: suurused Väike / Keskmine / Suur
+- Lukustusekraani vidinad: eraldi kuvad turu- ja krüptohirmuindeksitele
+- Turu/krüpto lülitamine vidinas
+
+[Tõuketeatised]
+- Koheselt teade, kui turu hirmuindeks jõuab teie seatud lävendini
+- Koheselt teade, kui krüpto hirmuindeks jõuab teie seatud lävendini
+- Kohandatavad ülemise ja alumise lävendi seaded
+
+[Mis on Fear & Greed Index?]
+Turumeeleolu näitaja, mis esitab investorite psühholoogiat skaalal 0 (Äärmuslik hirm) kuni 100 (Äärmuslik ahnus).
+- 0-24: Äärmuslik hirm
+- 25-44: Hirm
+- 45-55: Neutraalne
+- 56-75: Ahnus
+- 76-100: Äärmuslik ahnus
+
+[Toetatud 45 keelt]
+Inglise, korea, jaapani, saksa, hiina, prantsuse, hispaania, araabia, itaalia, portugali, vene, türgi ja veel 33 keelt.
+
+[Investeerimishoiatus]
+Kogu selles rakenduses esitatud teave on ainult viitamiseks ega kujuta endast ostu-/müügisoovitusi ega investeerimisnõuannet ühegi konkreetse väärtpaberi kohta.
+- Indeksiandmed võivad andmepakkuja olukorrast olenevalt erineda tegelikest turunäitajatest.
+- Kõik investeerimisotsused tuleb teha investori enda otsustuse ja vastutuse alusel.
+- See teenus ei võta investeerimistulemuste eest mingit juriidilist vastutust.
+
+[Kontakt]
+Email: dlaudwls1203@gmail.com

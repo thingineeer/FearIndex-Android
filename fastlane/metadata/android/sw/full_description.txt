@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index ni programu ya uchambuzi wa hisia za uwekezaji inayokuwezesha kufuatilia Kiashiria cha Hofu na Tamaa cha Soko na Kiashiria cha Hofu na Tamaa cha Cripto kwa mtazamo mmoja. Fuatilia viashiria viwili tofauti vya hofu pamoja na viashiria vikuu vya soko ili kuelewa saikolojia ya umati na kufanya maamuzi sahihi ya uwekezaji.
+
+[Viashiria Viwili vya Hofu na Tamaa]
+- Kiashiria cha Hofu na Tamaa cha Soko: kiashiria cha hisia za masoko ya kawaida ya fedha
+- Kiashiria cha Hofu na Tamaa cha Cripto: kiashiria cha hisia za soko la sarafu za kidijitali
+- Linganisha viashiria vyote viwili sambamba ili kuelewa mwelekeo wa jumla wa soko
+
+[Vipengele Muhimu]
+- Onyesho la wakati halisi la Fear & Greed Index ya Soko na Cripto
+- Taswira angavu ya hisia za soko kwa chati ya kipimo
+- Ulinganishaji wa data ya kihistoria (kufunga kwa awali, wiki 1, mwezi 1, mwaka 1 uliopita)
+- Uchambuzi wa mwelekeo kwa chati za historia (1M / 3M / 6M / 1Y)
+- Viashiria vikuu vya soko vya wakati halisi (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Badilisha kati ya soko na cripto kwa mgusa mmoja
+
+[Vijisehemu (Widgets)]
+- Vijisehemu vya skrini ya nyumbani: saizi Ndogo / Kati / Kubwa
+- Vijisehemu vya skrini ya kufunga: maonyesho tofauti ya kiashiria cha soko na cripto
+- Badilisha soko/cripto ndani ya kijisehemu
+
+[Arifa za Push]
+- Arifa za papo hapo wakati kiashiria cha hofu cha soko kinafikia kizingiti chako
+- Arifa za papo hapo wakati kiashiria cha hofu cha cripto kinafikia kizingiti chako
+- Mipangilio ya kizingiti cha juu na chini inayoweza kubinafsishwa
+
+[Fear & Greed Index ni Nini?]
+Kiashiria cha hisia za soko kinachowakilisha saikolojia ya mwekezaji kwa kipimo cha 0 (Hofu Kubwa) hadi 100 (Tamaa Kubwa).
+- 0-24: Hofu Kubwa
+- 25-44: Hofu
+- 45-55: Upande Wowote
+- 56-75: Tamaa
+- 76-100: Tamaa Kubwa
+
+[Msaada wa Lugha 45]
+Kiingereza, Kikorea, Kijapani, Kijerumani, Kichina, Kifaransa, Kihispania, Kiarabu, Kiitaliano, Kireno, Kirusi, Kituruki na lugha nyingine 33.
+
+[Onyo la Uwekezaji]
+Taarifa zote zinazotolewa katika programu hii ni kwa marejeleo tu na hazina maana ya mapendekezo ya kununua/kuuza au ushauri wa uwekezaji kwa dhamana yoyote mahususi.
+- Data ya kiashiria inaweza kutofautiana na viashiria halisi vya soko kulingana na hali za mtoa data.
+- Maamuzi yote ya uwekezaji lazima yafanywe kulingana na uamuzi na wajibu wa mwekezaji mwenyewe.
+- Huduma hii haichukui dhamana yoyote ya kisheria kuhusu matokeo ya uwekezaji.
+
+[Mawasiliano]
+Email: dlaudwls1203@gmail.com

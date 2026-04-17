@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index là ứng dụng phân tích tâm lý đầu tư cho phép bạn theo dõi Chỉ số Sợ hãi và Tham lam Thị trường (Market Fear & Greed Index) và Chỉ số Sợ hãi và Tham lam Crypto (Crypto Fear & Greed Index) trong một cái nhìn. Theo dõi hai chỉ số sợ hãi khác nhau cùng với các chỉ số thị trường chính để hiểu tâm lý đám đông và đưa ra quyết định đầu tư sáng suốt.
+
+[Hai Chỉ số Sợ hãi và Tham lam]
+- Chỉ số Sợ hãi Thị trường: Chỉ báo tâm lý cho các thị trường tài chính truyền thống
+- Chỉ số Sợ hãi Crypto: Chỉ báo tâm lý cho thị trường tiền điện tử
+- So sánh cả hai chỉ số để hiểu động lực tổng thể của thị trường
+
+[Tính năng Chính]
+- Hiển thị Chỉ số Fear & Greed thị trường và crypto theo thời gian thực
+- Hiển thị tâm lý thị trường trực quan với biểu đồ đồng hồ đo
+- So sánh dữ liệu lịch sử (đóng cửa trước đó, 1 tuần, 1 tháng, 1 năm)
+- Phân tích xu hướng với biểu đồ lịch sử (1T / 3T / 6T / 1N)
+- Các chỉ số thị trường chính theo thời gian thực (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Chuyển đổi một chạm giữa chỉ số thị trường và crypto
+
+[Widget]
+- Widget màn hình chính: kích thước Small / Medium / Large
+- Widget màn hình khóa: màn hình riêng biệt cho chỉ số sợ hãi thị trường và crypto
+- Chuyển đổi thị trường/crypto trong widget
+
+[Thông báo Push]
+- Cảnh báo tức thì khi chỉ số sợ hãi thị trường đạt ngưỡng của bạn
+- Cảnh báo tức thì khi chỉ số sợ hãi crypto đạt ngưỡng của bạn
+- Cài đặt ngưỡng trên và dưới có thể tùy chỉnh
+
+[Fear & Greed Index là gì?]
+Chỉ báo tâm lý thị trường thể hiện tâm lý nhà đầu tư trên thang điểm từ 0 (Cực kỳ Sợ hãi) đến 100 (Cực kỳ Tham lam).
+- 0-24: Cực kỳ Sợ hãi (Extreme Fear)
+- 25-44: Sợ hãi (Fear)
+- 45-55: Trung lập (Neutral)
+- 56-75: Tham lam (Greed)
+- 76-100: Cực kỳ Tham lam (Extreme Greed)
+
+[Hỗ trợ 45 Ngôn ngữ]
+Có sẵn bằng 45 ngôn ngữ bao gồm Tiếng Việt, English, 한국어, 日本語, Deutsch, 中文 và nhiều hơn nữa.
+
+[Tuyên bố Miễn trách nhiệm Đầu tư]
+Tất cả thông tin trong ứng dụng này chỉ để tham khảo và không cấu thành khuyến nghị mua/bán hay tư vấn đầu tư cho bất kỳ chứng khoán cụ thể nào.
+- Dữ liệu chỉ số có thể khác với các chỉ báo thị trường thực tế tùy thuộc vào hoàn cảnh của nhà cung cấp dữ liệu.
+- Tất cả quyết định đầu tư phải được thực hiện dựa trên phán đoán và trách nhiệm của chính nhà đầu tư.
+- Dịch vụ này không chịu bất kỳ trách nhiệm pháp lý nào về kết quả đầu tư.
+
+[Liên hệ]
+Email: dlaudwls1203@gmail.com

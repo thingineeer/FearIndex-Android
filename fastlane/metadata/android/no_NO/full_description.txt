@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index er en app for analyse av investeringssentiment som lar deg overvåke både markedets frykt- og grådighetsindeks (Market Fear & Greed Index) og kryptovalutaens frykt- og grådighetsindeks (Crypto Fear & Greed Index) med ett blikk. Følg to ulike fryktindekser sammen med viktige markedsindekser for å forstå massenes psykologi og ta velbegrunnede investeringsbeslutninger.
+
+[To frykt- og grådighetsindekser]
+- Markedsfryktindeks: Sentimentindikator for tradisjonelle finansmarkeder
+- Kryptofryktindeks: Sentimentindikator for kryptovalutamarkedet
+- Sammenlign begge indeksene side om side for å forstå den overordnede markedsdynamikken
+
+[Nøkkelfunksjoner]
+- Sanntidsvisning av markeds- og krypto Fear & Greed Index
+- Intuitiv visualisering av markedssentiment med målerdiagram
+- Sammenligning av historiske data (forrige stenging, 1 uke, 1 måned, 1 år)
+- Trendanalyse med historikkdiagram (1M / 3M / 6M / 1Å)
+- Viktige markedsindekser i sanntid (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Ett-trykk veksling mellom markeds- og kryptoindekser
+
+[Widgets]
+- Startskjerm-widgets: Small / Medium / Large størrelser
+- Låseskjerm-widgets: separate visninger for markeds- og kryptofryktindekser
+- Marked/krypto-veksling i widgets
+
+[Push-varsler]
+- Umiddelbare varsler når markedsfryktindeksen når terskelen din
+- Umiddelbare varsler når kryptofryktindeksen når terskelen din
+- Tilpassbare øvre og nedre terskelinnstillinger
+
+[Hva er Fear & Greed Index?]
+En markedssentimentindikator som representerer investorpsykologi på en skala fra 0 (Ekstrem frykt) til 100 (Ekstrem grådighet).
+- 0-24: Ekstrem frykt (Extreme Fear)
+- 25-44: Frykt (Fear)
+- 45-55: Nøytral (Neutral)
+- 56-75: Grådighet (Greed)
+- 76-100: Ekstrem grådighet (Extreme Greed)
+
+[45 språk]
+Tilgjengelig på 45 språk, inkludert norsk, English, 한국어, 日本語, Deutsch, 中文 og flere.
+
+[Investeringsansvarsfraskrivelse]
+All informasjon i denne appen er kun til referanse og utgjør ikke kjøps-/salgsanbefalinger eller investeringsrådgivning for bestemte verdipapirer.
+- Indeksdata kan avvike fra faktiske markedsindikatorer avhengig av dataleverandørens forhold.
+- Alle investeringsbeslutninger må tas basert på investorens eget skjønn og ansvar.
+- Denne tjenesten påtar seg ikke noe juridisk ansvar for investeringsresultater.
+
+[Kontakt]
+Email: dlaudwls1203@gmail.com

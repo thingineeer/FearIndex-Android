@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index on sijoittajakäyttäytymisen analyysisovellus, jonka avulla voit seurata sekä markkinoiden pelko- ja ahneusindeksiä (Market Fear & Greed Index) että kryptovaluuttojen pelko- ja ahneusindeksiä (Crypto Fear & Greed Index) yhdellä silmäyksellä. Seuraa kahta erillistä pelkoindeksiä tärkeimpien markkinaindeksien rinnalla ymmärtääksesi joukkopsykologiaa ja tehdäksesi perusteltuja sijoituspäätöksiä.
+
+[Kaksi pelko- ja ahneusindeksiä]
+- Markkinoiden pelkoindeksi: Perinteisten rahoitusmarkkinoiden mielialaindikaattori
+- Krypton pelkoindeksi: Kryptovaluuttamarkkinoiden mielialaindikaattori
+- Vertaile molempia indeksejä rinnakkain markkinoiden kokonaisvaltaisen dynamiikan ymmärtämiseksi
+
+[Pääominaisuudet]
+- Reaaliaikainen markkinoiden ja krypton Fear & Greed Indexin näyttö
+- Intuitiivinen markkinamielialan visualisointi mittarikaaviolla
+- Historiallisten tietojen vertailu (edellinen sulkeminen, 1 viikko, 1 kuukausi, 1 vuosi)
+- Trendianalyysi historiakaavioiden avulla (1K / 3K / 6K / 1V)
+- Tärkeimmät markkinaindeksit reaaliajassa (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Yhden napin vaihto markkina- ja kryptoindeksien välillä
+
+[Widgetit]
+- Aloitusnäytön widgetit: Small / Medium / Large -koot
+- Lukitusnäytön widgetit: erilliset näytöt markkina- ja krypton pelkoindekseille
+- Markkina/krypto-vaihto widgeteissä
+
+[Push-ilmoitukset]
+- Välittömät hälytykset, kun markkinoiden pelkoindeksi saavuttaa kynnysarvosi
+- Välittömät hälytykset, kun krypton pelkoindeksi saavuttaa kynnysarvosi
+- Mukautettavat ylä- ja alakynnysarvoasetukset
+
+[Mikä on Fear & Greed Index?]
+Markkinamielialan indikaattori, joka kuvaa sijoittajien psykologiaa asteikolla 0 (Äärimmäinen pelko) – 100 (Äärimmäinen ahneus).
+- 0-24: Äärimmäinen pelko (Extreme Fear)
+- 25-44: Pelko (Fear)
+- 45-55: Neutraali (Neutral)
+- 56-75: Ahneus (Greed)
+- 76-100: Äärimmäinen ahneus (Extreme Greed)
+
+[45 kieltä]
+Saatavilla 45 kielellä, mukaan lukien suomi, English, 한국어, 日本語, Deutsch, 中文 ja muut.
+
+[Sijoitusvastuuvapauslauseke]
+Kaikki sovelluksessa tarjotut tiedot ovat vain viitteellisiä, eivätkä ne muodosta osto-/myyntisuosituksia tai sijoitusneuvontaa minkään tietyn arvopaperin osalta.
+- Indeksidata saattaa poiketa todellisista markkinaindikaattoreista tietojen toimittajan olosuhteiden mukaan.
+- Kaikki sijoituspäätökset on tehtävä sijoittajan oman harkinnan ja vastuun perusteella.
+- Tämä palvelu ei ota juridista vastuuta sijoitustuloksista.
+
+[Yhteystiedot]
+Email: dlaudwls1203@gmail.com

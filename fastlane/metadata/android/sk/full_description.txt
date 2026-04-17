@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index je aplikácia na analýzu investičných nálad, ktorá vám umožňuje sledovať trhový index strachu a chamtivosti (Market Fear & Greed Index) a kryptoindex strachu a chamtivosti (Crypto Fear & Greed Index) na jednom mieste. Sledujte oba indexy strachu spolu s hlavnými trhovými indexmi, aby ste pochopili psychológiu davu a prijímali informované investičné rozhodnutia.
+
+[Dva indexy strachu a chamtivosti]
+- Trhový index strachu: Ukazovateľ nálad pre tradičné finančné trhy
+- Kryptoindex strachu: Ukazovateľ nálad pre trh s kryptomenami
+- Porovnávajte oba indexy, aby ste pochopili celkovú dynamiku trhu
+
+[Hlavné funkcie]
+- Zobrazenie trhového a krypto Fear & Greed Indexu v reálnom čase
+- Intuitívna vizualizácia trhových nálad pomocou grafu
+- Porovnanie historických údajov (predchádzajúce uzavretie, 1 týždeň, 1 mesiac, 1 rok)
+- Analýza trendov s historickými grafmi (1M / 3M / 6M / 1R)
+- Hlavné trhové indexy v reálnom čase (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Prepínanie jedným dotykom medzi trhovými a kryptoindexami
+
+[Widgety]
+- Widgety domovskej obrazovky: veľkosti Small / Medium / Large
+- Widgety uzamknutej obrazovky: oddelené displeje pre trhový a kryptoindex strachu
+- Prepínanie trh/krypto vo widgetoch
+
+[Push oznámenia]
+- Okamžité upozornenia, keď trhový index strachu dosiahne váš prah
+- Okamžité upozornenia, keď kryptoindex strachu dosiahne váš prah
+- Prispôsobiteľné nastavenia horného a dolného prahu
+
+[Čo je Fear & Greed Index?]
+Ukazovateľ trhových nálad predstavujúci psychológiu investorov na stupnici od 0 (Extrémny strach) do 100 (Extrémna chamtivosť).
+- 0-24: Extrémny strach (Extreme Fear)
+- 25-44: Strach (Fear)
+- 45-55: Neutrálny (Neutral)
+- 56-75: Chamtivosť (Greed)
+- 76-100: Extrémna chamtivosť (Extreme Greed)
+
+[45 jazykov]
+Dostupné v 45 jazykoch vrátane slovenčiny, English, 한국어, 日本語, Deutsch, 中文 a ďalších.
+
+[Investičné vyhlásenie o odmietnutí zodpovednosti]
+Všetky informácie v tejto aplikácii sú len informatívne a nepredstavujú odporúčania na nákup/predaj ani investičné poradenstvo pre akékoľvek konkrétne cenné papiere.
+- Údaje indexu sa môžu líšiť od skutočných trhových ukazovateľov v závislosti od okolností poskytovateľa údajov.
+- Všetky investičné rozhodnutia musia byť prijaté na základe vlastného úsudku a zodpovednosti investora.
+- Táto služba nepreberá žiadnu právnu zodpovednosť za výsledky investícií.
+
+[Kontakt]
+Email: dlaudwls1203@gmail.com

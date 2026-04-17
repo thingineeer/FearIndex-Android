@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index est une application d'analyse du sentiment d'investissement qui vous permet de suivre a la fois l'Indice de Peur et Cupidite du Marche (Market Fear & Greed Index) et l'Indice de Peur et Cupidite Crypto (Crypto Fear & Greed Index) en un coup d'oeil. Comparez deux indices de peur distincts avec les principaux indices boursiers pour comprendre la psychologie collective et prendre des decisions d'investissement eclairees.
+
+[Deux indices de Peur et Cupidite]
+- Market Fear & Greed Index : indicateur de sentiment pour les marches financiers traditionnels
+- Crypto Fear & Greed Index : indicateur de sentiment pour le marche des cryptomonnaies
+- Comparez les deux indices cote a cote pour saisir la dynamique globale du marche
+
+[Fonctionnalites principales]
+- Affichage en temps reel des indices Marche et Crypto Fear & Greed
+- Sentiment du marche intuitif avec graphique a jauge
+- Comparaison des donnees historiques (Cloture precedente, 1 semaine, 1 mois, 1 an)
+- Analyse des tendances avec graphique historique (1M / 3M / 6M / 1A)
+- Indices boursiers principaux en temps reel (KOSPI, KOSDAQ, NASDAQ, S&P500, Dow Jones)
+- Basculement en un tap entre indices Marche et Crypto
+
+[Widgets]
+- Widgets ecran d'accueil : tailles Small / Medium / Large
+- Widgets ecran de verrouillage : affichage separe pour les indices Marche et Crypto
+- Basculement Marche/Crypto au sein des widgets
+
+[Notifications push]
+- Alerte instantanee quand l'indice Marche atteint votre seuil
+- Alerte instantanee quand l'indice Crypto atteint votre seuil
+- Seuils superieur et inferieur personnalisables
+
+[Qu'est-ce que le Fear & Greed Index ?]
+Un indicateur de sentiment du marche representant la psychologie des investisseurs sur une echelle de 0 (Peur Extreme) a 100 (Cupidite Extreme).
+- 0-24 : Peur Extreme
+- 25-44 : Peur
+- 45-55 : Neutre
+- 56-75 : Cupidite
+- 76-100 : Cupidite Extreme
+
+[45 langues]
+Francais, English, Korean, Japanese, Deutsch, Chinois (simplifie/traditionnel), Espanol, Portugais, Italien, Russe, Turc, Arabe et 45 langues au total.
+
+[Avertissement d'investissement]
+Toutes les informations fournies dans cette application sont uniquement a titre de reference et ne constituent pas des recommandations d'achat/vente ni des conseils en investissement pour des titres specifiques.
+- Les donnees de l'indice peuvent differer des indicateurs reels du marche selon les circonstances du fournisseur de donnees.
+- Toutes les decisions d'investissement doivent etre prises selon le jugement et la responsabilite propres de l'investisseur.
+- Ce service n'assume aucune responsabilite legale pour les resultats d'investissement.
+
+[Contact]
+Email: dlaudwls1203@gmail.com

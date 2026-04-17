@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index to aplikacja do analizy nastrojów inwestycyjnych, która pozwala śledzić zarówno rynkowy indeks strachu i chciwości (Market Fear & Greed Index), jak i kryptowalutowy indeks strachu i chciwości (Crypto Fear & Greed Index) na jednym ekranie. Śledź dwa różne indeksy strachu razem z głównymi indeksami rynkowymi, aby zrozumieć psychologię tłumu i podejmować świadome decyzje inwestycyjne.
+
+[Dwa indeksy strachu i chciwości]
+- Rynkowy indeks strachu: Wskaźnik nastrojów dla tradycyjnych rynków finansowych
+- Kryptoindeks strachu: Wskaźnik nastrojów dla rynku kryptowalut
+- Porównuj oba indeksy, aby rozumieć ogólną dynamikę rynku
+
+[Główne funkcje]
+- Wyświetlanie rynkowego i krypto Fear & Greed Index w czasie rzeczywistym
+- Intuicyjna wizualizacja nastrojów rynkowych z wykresem wskazówkowym
+- Porównanie danych historycznych (poprzednie zamknięcie, 1 tydzień, 1 miesiąc, 1 rok)
+- Analiza trendów z wykresami historycznymi (1M / 3M / 6M / 1R)
+- Główne indeksy rynkowe w czasie rzeczywistym (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Przełączanie jednym dotknięciem między indeksami rynkowymi i kryptowalutowymi
+
+[Widgety]
+- Widgety ekranu głównego: rozmiary Small / Medium / Large
+- Widgety ekranu blokady: oddzielne wyświetlacze dla rynkowych i krypto indeksów strachu
+- Przełącznik rynek/krypto wewnątrz widgetów
+
+[Powiadomienia Push]
+- Natychmiastowe alerty, gdy rynkowy indeks strachu osiągnie Twój próg
+- Natychmiastowe alerty, gdy kryptoindeks strachu osiągnie Twój próg
+- Konfigurowalne ustawienia progu górnego i dolnego
+
+[Co to jest Fear & Greed Index?]
+Wskaźnik nastrojów rynkowych przedstawiający psychologię inwestorów w skali od 0 (Ekstremalna panika) do 100 (Ekstremalna chciwość).
+- 0-24: Ekstremalna panika (Extreme Fear)
+- 25-44: Panika (Fear)
+- 45-55: Neutralny (Neutral)
+- 56-75: Chciwość (Greed)
+- 76-100: Ekstremalna chciwość (Extreme Greed)
+
+[45 języków]
+Dostępne w 45 językach, w tym po polsku, English, 한국어, 日本語, Deutsch, 中文 i inne.
+
+[Zastrzeżenie inwestycyjne]
+Wszelkie informacje w tej aplikacji służą wyłącznie celom referencyjnym i nie stanowią rekomendacji kupna/sprzedaży ani doradztwa inwestycyjnego dla żadnych konkretnych papierów wartościowych.
+- Dane indeksów mogą różnić się od rzeczywistych wskaźników rynkowych w zależności od okoliczności dostawcy danych.
+- Wszelkie decyzje inwestycyjne muszą być podejmowane na podstawie własnej oceny i odpowiedzialności inwestora.
+- Ta usługa nie ponosi żadnej odpowiedzialności prawnej za wyniki inwestycji.
+
+[Kontakt]
+Email: dlaudwls1203@gmail.com

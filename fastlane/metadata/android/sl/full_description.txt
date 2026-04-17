@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index je aplikacija za analizo naložbenega razpoloženja, ki vam omogoča hkratno spremljanje Tržnega indeksa strahu in pohlepa ter Kriptovalutnega indeksa strahu in pohlepa. Sledite dvema ločenima indeksoma strahu skupaj z glavnimi tržnimi indeksi, da razumete množično psihologijo in sprejemate informirane naložbene odločitve.
+
+[Dva indeksa strahu in pohlepa]
+- Tržni indeks strahu in pohlepa: kazalnik razpoloženja tradicionalnih finančnih trgov
+- Kriptovalutni indeks strahu in pohlepa: kazalnik razpoloženja trga kriptovalut
+- Primerjajte oba indeksa vzporedno, da razumete splošno tržno dinamiko
+
+[Ključne funkcije]
+- Prikaz Tržnega in Kriptovalutnega Fear & Greed Indexa v realnem času
+- Intuitivna vizualizacija tržnega razpoloženja z merilnim grafom
+- Primerjava zgodovinskih podatkov (prejšnje zaprtje, 1 teden, 1 mesec, 1 leto nazaj)
+- Analiza trendov z zgodovinskimi grafi (1M / 3M / 6M / 1L)
+- Glavni tržni indeksi v realnem času (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Preklop med tržnim in kriptovalutnim indeksom z enim dotikom
+
+[Gradniki]
+- Gradniki začetnega zaslona: velikosti Majhna / Srednja / Velika
+- Gradniki zaklenjenega zaslona: ločeni prikazi za tržni in kriptovalutni indeks strahu
+- Preklop trg/kriptovalute znotraj gradnika
+
+[Potisna obvestila]
+- Takojšnja opozorila, ko tržni indeks strahu doseže vaš prag
+- Takojšnja opozorila, ko kriptovalutni indeks strahu doseže vaš prag
+- Prilagodljive nastavitve zgornjega in spodnjega praga
+
+[Kaj je Fear & Greed Index?]
+Kazalnik tržnega razpoloženja, ki predstavlja psihologijo vlagateljev na lestvici od 0 (Ekstremni strah) do 100 (Ekstremni pohlep).
+- 0-24: Ekstremni strah
+- 25-44: Strah
+- 45-55: Nevtralno
+- 56-75: Pohlep
+- 76-100: Ekstremni pohlep
+
+[Podpora za 45 jezikov]
+Angleščina, korejščina, japonščina, nemščina, kitajščina, francoščina, španščina, arabščina, italijanščina, portugalščina, ruščina, turščina in še 33 drugih jezikov.
+
+[Naložbeno opozorilo]
+Vse informacije, navedene v tej aplikaciji, so zgolj informativne narave in ne pomenijo priporočil za nakup/prodajo ali naložbenih nasvetov za posamezne vrednostne papirje.
+- Podatki o indeksih se lahko razlikujejo od dejanskih tržnih kazalnikov glede na okoliščine ponudnika podatkov.
+- Vse naložbene odločitve morajo biti sprejete na podlagi lastne presoje in odgovornosti vlagatelja.
+- Ta storitev ne prevzema pravne odgovornosti za rezultate naložb.
+
+[Kontakt]
+Email: dlaudwls1203@gmail.com

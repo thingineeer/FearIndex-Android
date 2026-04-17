@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index és una aplicació d'anàlisi del sentiment d'inversió que us permet supervisar l'índex de por i avaricia del mercat (Market Fear & Greed Index) i l'índex de por i avaricia de les criptomonedes (Crypto Fear & Greed Index) d'un sol cop d'ull. Seguiu dos índexs de por diferent juntament amb els principals índexs de mercat per comprendre la psicologia de masses i prendre decisions d'inversió informades.
+
+[Dos índexs de por i avaricia]
+- Índex de por del mercat: Indicador de sentiment per als mercats financers tradicionals
+- Índex de por cripto: Indicador de sentiment per al mercat de criptomonedes
+- Compareu ambdós índexs per comprendre la dinàmica global del mercat
+
+[Funcions principals]
+- Visualització en temps real de l'índex de por i avaricia del mercat i cripto
+- Visualització intuïtiva del sentiment del mercat amb gràfic de manòmetre
+- Comparació de dades històriques (tancament anterior, 1 setmana, 1 mes, 1 any)
+- Anàlisi de tendències amb gràfics d'historial (1M / 3M / 6M / 1A)
+- Principals índexs de mercat en temps real (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Commutació d'un toc entre índexs de mercat i cripto
+
+[Widgets]
+- Widgets de pantalla d'inici: mides Small / Medium / Large
+- Widgets de pantalla de bloqueig: pantalles separades per als índexs de por del mercat i cripto
+- Commutació mercat/cripto dins dels widgets
+
+[Notificacions push]
+- Alertes instantànies quan l'índex de por del mercat arriba al vostre llindar
+- Alertes instantànies quan l'índex de por cripto arriba al vostre llindar
+- Configuració personalitzable del llindar superior i inferior
+
+[Què és el Fear & Greed Index?]
+Un indicador de sentiment del mercat que representa la psicologia dels inversors en una escala de 0 (Por extrema) a 100 (Avarícia extrema).
+- 0-24: Por extrema (Extreme Fear)
+- 25-44: Por (Fear)
+- 45-55: Neutral
+- 56-75: Avarícia (Greed)
+- 76-100: Avarícia extrema (Extreme Greed)
+
+[45 idiomes]
+Disponible en 45 idiomes incloent Català, English, 한국어, 日本語, Deutsch, 中文 i més.
+
+[Avís d'inversió]
+Tota la informació proporcionada en aquesta aplicació és només de referència i no constitueix recomanacions de compra/venda ni assessorament d'inversió per a cap valor específic.
+- Les dades de l'índex poden diferir dels indicadors reals del mercat depenent de les circumstàncies del proveïdor de dades.
+- Totes les decisions d'inversió s'han de prendre basant-se en el propi judici i responsabilitat de l'inversor.
+- Aquest servei no assumeix cap responsabilitat legal pels resultats d'inversió.
+
+[Contacte]
+Email: dlaudwls1203@gmail.com

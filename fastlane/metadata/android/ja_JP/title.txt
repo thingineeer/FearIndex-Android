@@ -1,2 +1,1 @@
-# TODO: translate
-Fear & Greed Index
+恐怖指数 - Fear & Greed

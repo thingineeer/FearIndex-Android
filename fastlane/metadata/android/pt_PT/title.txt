@@ -1,2 +1,1 @@
-# TODO: translate
-Fear & Greed Index
+Fear & Greed Index - VIX

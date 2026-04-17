@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index e um aplicativo de analise de sentimento de investimento que permite acompanhar tanto o Indice de Medo e Ganancia do Mercado (Market Fear & Greed Index) quanto o Indice de Medo e Ganancia Crypto (Crypto Fear & Greed Index) de relance. Compare dois indices de medo distintos junto com os principais indices de mercado para entender a psicologia coletiva e tomar decisoes de investimento informadas.
+
+[Dois Indices de Medo e Ganancia]
+- Market Fear & Greed Index: indicador de sentimento para mercados financeiros tradicionais
+- Crypto Fear & Greed Index: indicador de sentimento para o mercado de criptomoedas
+- Compare ambos os indices lado a lado para captar a dinamica geral do mercado
+
+[Principais Recursos]
+- Exibicao em tempo real dos indices Mercado e Crypto Fear & Greed
+- Sentimento de mercado intuitivo com grafico de medidor
+- Comparacao de dados historicos (Fechamento anterior, 1 semana, 1 mes, 1 ano atras)
+- Analise de tendencias com grafico historico (1M / 3M / 6M / 1A)
+- Principais indices de mercado em tempo real (KOSPI, KOSDAQ, NASDAQ, S&P500, Dow Jones)
+- Alternancia com um toque entre indices Mercado e Crypto
+
+[Widgets]
+- Widgets da tela inicial: tamanhos Small / Medium / Large
+- Widgets da tela de bloqueio: exibicao separada para indices Mercado e Crypto
+- Alternancia Mercado/Crypto dentro dos widgets
+
+[Notificacoes push]
+- Alerta instantaneo quando o indice do Mercado atinge seu limite
+- Alerta instantaneo quando o indice Crypto atinge seu limite
+- Limites superior e inferior personalizaveis
+
+[O que e o Fear & Greed Index?]
+Um indicador de sentimento de mercado que representa a psicologia dos investidores em uma escala de 0 (Medo Extremo) a 100 (Ganancia Extrema).
+- 0-24: Medo Extremo
+- 25-44: Medo
+- 45-55: Neutro
+- 56-75: Ganancia
+- 76-100: Ganancia Extrema
+
+[45 idiomas]
+Portugues, English, Korean, Japanese, Deutsch, Chines (simplificado/tradicional), Francais, Espanol, Italiano, Russo, Turco, Arabe e 45 idiomas no total.
+
+[Aviso de Investimento]
+Todas as informacoes fornecidas neste app sao apenas para referencia e nao constituem recomendacoes de compra/venda ou consultoria de investimento para quaisquer valores mobiliarios especificos.
+- Os dados do indice podem diferir dos indicadores reais de mercado dependendo das circunstancias do provedor de dados.
+- Todas as decisoes de investimento devem ser feitas com base no julgamento e responsabilidade do proprio investidor.
+- Este servico nao assume nenhuma responsabilidade legal pelos resultados de investimento.
+
+[Contato]
+Email: dlaudwls1203@gmail.com
