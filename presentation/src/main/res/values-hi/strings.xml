@@ -26,7 +26,7 @@
     <string name="insight_similar_events_score_label">वर्तमान %1$d</string>
     <string name="insight_similar_events_pinned_title">अगर आपने बड़े निम्न स्तरों पर खरीदा होता?</string>
     <string name="insight_similar_events_empty">कोई समान ऐतिहासिक दौर नहीं मिला</string>
-    <string name="insight_similar_events_one_year_return">1 वर्ष S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
     <string name="insight_similar_events_ongoing">जारी</string>
     <string name="insight_similar_events_sim_very">बहुत समान</string>
     <string name="insight_similar_events_sim_close">समान</string>
@@ -213,4 +213,11 @@
     <string name="share_content_description">साझा करें</string>
     <string name="retry_button">पुनः प्रयास</string>
     <string name="home_updated_at">अपडेट: %1$s</string>
+    <!-- Settings menu -->
+    <string name="settings_menu_notification">सूचनाएं</string>
+    <string name="settings_menu_privacy">गोपनीयता नीति</string>
+    <string name="settings_menu_about">ऐप जानकारी</string>
+    <string name="settings_menu_rate">समीक्षा लिखें</string>
+    <string name="settings_menu_share">ऐप शेयर करें</string>
+    <string name="settings_about_version">Version %1$s</string>
 </resources>

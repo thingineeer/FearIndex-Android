@@ -26,7 +26,7 @@
     <string name="insight_similar_events_score_label">বর্তমান %1$d</string>
     <string name="insight_similar_events_pinned_title">বড় নিম্নে কিনলে কী হতো?</string>
     <string name="insight_similar_events_empty">কোনো অনুরূপ ঐতিহাসিক সময় পাওয়া যায়নি</string>
-    <string name="insight_similar_events_one_year_return">১ বছর পর S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
     <string name="insight_similar_events_ongoing">চলমান</string>
     <string name="insight_similar_events_sim_very">খুব অনুরূপ</string>
     <string name="insight_similar_events_sim_close">অনুরূপ</string>
@@ -213,4 +213,11 @@
     <string name="share_content_description">শেয়ার</string>
     <string name="retry_button">পুনরায় চেষ্টা</string>
     <string name="home_updated_at">আপডেট: %1$s</string>
+    <!-- Settings menu -->
+    <string name="settings_menu_notification">বিজ্ঞপ্তি</string>
+    <string name="settings_menu_privacy">গোপনীয়তা নীতি</string>
+    <string name="settings_menu_about">অ্যাপ তথ্য</string>
+    <string name="settings_menu_rate">রিভিউ লিখুন</string>
+    <string name="settings_menu_share">অ্যাপ শেয়ার করুন</string>
+    <string name="settings_about_version">Version %1$s</string>
 </resources>

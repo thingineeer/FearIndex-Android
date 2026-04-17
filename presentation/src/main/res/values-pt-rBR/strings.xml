@@ -26,7 +26,7 @@ Considere junto com fundamentos, fluxo e macro.</string>
     <string name="insight_similar_events_score_label">Current %1$d</string>
     <string name="insight_similar_events_pinned_title">What if you bought at major lows?</string>
     <string name="insight_similar_events_empty">No similar historical periods found</string>
-    <string name="insight_similar_events_one_year_return">1Y S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">Retorno 1A %1$s</string>
     <string name="insight_similar_events_ongoing">Ongoing</string>
     <string name="insight_similar_events_sim_very">Very Similar</string>
     <string name="insight_similar_events_sim_close">Similar</string>
@@ -210,4 +210,11 @@ Considere junto com fundamentos, fluxo e macro.</string>
     <string name="insight_drawdown_summary_extreme_greed">Zonas de ganância extrema podem enfrentar correções importantes.</string>
     <string name="insight_velocity_title">Velocidade do índice de medo</string>
     <string name="insight_velocity_inflection_suffix"> (inflexão detectada)</string>
+    <!-- Settings menu -->
+    <string name="settings_menu_notification">Notificações</string>
+    <string name="settings_menu_privacy">Política de Privacidade</string>
+    <string name="settings_menu_about">Informações do App</string>
+    <string name="settings_menu_rate">Deixar avaliação</string>
+    <string name="settings_menu_share">Compartilhar app</string>
+    <string name="settings_about_version">Version %1$s</string>
 </resources>

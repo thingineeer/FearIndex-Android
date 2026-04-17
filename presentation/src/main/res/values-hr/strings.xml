@@ -26,7 +26,7 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="insight_similar_events_score_label">Current %1$d</string>
     <string name="insight_similar_events_pinned_title">What if you bought at major lows?</string>
     <string name="insight_similar_events_empty">No similar historical periods found</string>
-    <string name="insight_similar_events_one_year_return">1Y S&amp;P %1$s</string>
+    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
     <string name="insight_similar_events_ongoing">Ongoing</string>
     <string name="insight_similar_events_sim_very">Very Similar</string>
     <string name="insight_similar_events_sim_close">Similar</string>
@@ -210,4 +210,11 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="insight_drawdown_summary_extreme_greed">Zone ekstremne pohlepe mogu se suočiti s velikim korekcijama.</string>
     <string name="insight_velocity_title">Brzina indeksa straha</string>
     <string name="insight_velocity_inflection_suffix"> (otkrivena prekretnica)</string>
+    <!-- Settings menu -->
+    <string name="settings_menu_notification">Obavijesti</string>
+    <string name="settings_menu_privacy">Pravila privatnosti</string>
+    <string name="settings_menu_about">Informacije o aplikaciji</string>
+    <string name="settings_menu_rate">Napišite recenziju</string>
+    <string name="settings_menu_share">Podijeli aplikaciju</string>
+    <string name="settings_about_version">Version %1$s</string>
 </resources>
