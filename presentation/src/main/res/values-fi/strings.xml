@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Pelko &amp; Ahneus Indeksi</string>
+    <string name="splash_subtitle">Pelko &amp; Ahneus Indeksi</string>
+    <string name="splash_disclaimer">Äärimmäiset alueet (0-24, 76-100) voivat viitata vastavirranmahdollisuuksiin.
+Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Äärimmäinen pelko</string>
     <string name="rating_fear">Pelko</string>
@@ -123,6 +129,26 @@
     <string name="insight_detail_where_from_title">Mistä nämä luvut tulevat?</string>
     <string name="insight_detail_where_from_body">%2$s tuotot laskettu aiempien pelkoindeksin %1$d lähellä olleiden jaksojen pohjalta.</string>
     <string name="insight_detail_action_guide_title">Sijoitustoiminnan opas</string>
+
+    <!-- Insight cards -->
+    <string name="insight_buy_signal_title">Ostosignaali</string>
+    <string name="insight_buy_signal_summary">%1$s aiempaa ostoa tällä alueella tuotti vahvan keskimääräisen tuoton</string>
+    <string name="insight_overheat_title">Ylikuumenemisvaroitus</string>
+    <string name="insight_overheat_summary">Äärimmäisen ahneuden alue. Historiallinen data viittaa korjauksen todennäköisyyteen.</string>
+    <string name="insight_historical_return_title">Entä jos olisit ostanut silloin?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d aiempaa jaksoa lähellä nykyistä %2$d pistettä</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Rajallinen historiallinen data lähellä nykyistä %2$d pistettä</string>
+    <string name="insight_return_chart_title_market">Entä jos olisit sijoittanut S&amp;P 500:aan?</string>
+    <string name="insight_return_chart_title_crypto">Entä jos olisit sijoittanut Bitcoiniin?</string>
+    <string name="insight_return_chart_summary">Miltä tuotot näyttäisivät, jos olisit sijoittanut tälle alueelle?</string>
+    <string name="insight_drawdown_title">Maksimipudotuksen analyysi (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Tarkista maksimipudotus ja 1v-tuotto äärimmäisen pelon alueilla.</string>
+    <string name="insight_drawdown_summary_fear">Vertaile riskiä ja odotettua tuottoa pelon alueilla.</string>
+    <string name="insight_drawdown_summary_neutral">Volatiliteetti ja odotettu tuotto neutraalilla alueella.</string>
+    <string name="insight_drawdown_summary_greed">Tarkista laskuriski ahneuden alueilla.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Äärimmäisen ahneuden alueet voivat kohdata suuria korjauksia.</string>
+    <string name="insight_velocity_title">Pelkoindeksin nopeus</string>
+    <string name="insight_velocity_inflection_suffix"> (käännepiste havaittu)</string>
 
     <!-- Period labels -->
     <string name="period_month_1">1kk</string>

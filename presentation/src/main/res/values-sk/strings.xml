@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Index Strachu &amp; Chamtivosti</string>
+    <string name="splash_subtitle">Index Strachu &amp; Chamtivosti</string>
+    <string name="splash_disclaimer">Extrémne rozsahy (0-24, 76-100) môžu signalizovať kontrariánske príležitosti.
+Zvážte spolu so základmi, tokom a makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Extrémny Strach</string>
     <string name="rating_fear">Strach</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Zdieľať</string>
     <string name="retry_button">Skúsiť znova</string>
     <string name="home_updated_at">Aktualizované: %1$s</string>
+
+    <!-- New Insight Cards -->
+    <string name="insight_buy_signal_title">Signál na nákup</string>
+    <string name="insight_buy_signal_summary">%1$s historických nákupov v tomto rozsahu malo vysokú priemernú návratnosť</string>
+    <string name="insight_overheat_title">Varovanie pred prehriatím</string>
+    <string name="insight_overheat_summary">Zóna extrémnej chamtivosti. Historické údaje naznačujú pravdepodobnú korekciu.</string>
+    <string name="insight_historical_return_title">Čo keby ste vtedy kúpili?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d minulých období podobných súčasným %2$d bodom</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Obmedzené historické údaje v blízkosti súčasných %2$d bodov</string>
+    <string name="insight_return_chart_title_market">Čo keby ste investovali do S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Čo keby ste investovali do Bitcoinu?</string>
+    <string name="insight_return_chart_summary">Ako by vyzerali výnosy pri investovaní v tomto rozsahu?</string>
+    <string name="insight_drawdown_title">Analýza maximálneho poklesu (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Skontrolujte maximálny pokles a ročnú návratnosť v zónach extrémneho strachu.</string>
+    <string name="insight_drawdown_summary_fear">Porovnajte riziko a očakávaný výnos v zónach strachu.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilita a očakávaná návratnosť v neutrálnej zóne.</string>
+    <string name="insight_drawdown_summary_greed">Skontrolujte riziko poklesu v zónach chamtivosti.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Zóny extrémnej chamtivosti môžu čeliť veľkým korekciám.</string>
+    <string name="insight_velocity_title">Rýchlosť indexu strachu</string>
+    <string name="insight_velocity_inflection_suffix"> (zistený zlom)</string>
 </resources>

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Índice de Medo e Ganância</string>
+    <string name="splash_subtitle">Índice de Medo e Ganância</string>
+    <string name="splash_disclaimer">Intervalos extremos (0-24, 76-100) podem sinalizar oportunidades contrárias.
+Considere juntamente com fundamentais, fluxo e macro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Medo Extremo</string>
     <string name="rating_fear">Medo</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Partilhar</string>
     <string name="retry_button">Tentar novamente</string>
     <string name="home_updated_at">Atualizado: %1$s</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">Sinal de compra</string>
+    <string name="insight_buy_signal_summary">%1$s compras históricas neste intervalo obtiveram fortes retornos médios</string>
+    <string name="insight_overheat_title">Alerta de sobreaquecimento</string>
+    <string name="insight_overheat_summary">Zona de ganância extrema. Os dados históricos sugerem que uma correção é provável.</string>
+    <string name="insight_historical_return_title">E se tivesse comprado nessa altura?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d períodos passados semelhantes aos %2$d pontos atuais</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Dados históricos limitados perto dos %2$d pontos atuais</string>
+    <string name="insight_return_chart_title_market">E se tivesse investido no S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">E se tivesse investido em Bitcoin?</string>
+    <string name="insight_return_chart_summary">Como seriam os retornos se tivesse investido neste intervalo?</string>
+    <string name="insight_drawdown_title">Análise de drawdown máximo (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Verifique o drawdown máximo e o retorno de 1A em zonas de medo extremo.</string>
+    <string name="insight_drawdown_summary_fear">Compare o risco e o retorno esperado em zonas de medo.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilidade e retorno esperado na zona neutra.</string>
+    <string name="insight_drawdown_summary_greed">Verifique o risco de queda em zonas de ganância.</string>
+    <string name="insight_drawdown_summary_extreme_greed">As zonas de ganância extrema podem sofrer correções importantes.</string>
+    <string name="insight_velocity_title">Velocidade do índice de medo</string>
+    <string name="insight_velocity_inflection_suffix"> (inflexão detetada)</string>
 </resources>

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Félelem és mohóság index</string>
+    <string name="splash_subtitle">Félelem és mohóság index</string>
+    <string name="splash_disclaimer">A szélső tartományok (0–24, 76–100) kontrariánus lehetőségeket jelezhetnek.
+Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezőket is.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Extrém félelem</string>
     <string name="rating_fear">Félelem</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Megosztás</string>
     <string name="retry_button">Újrapróbálkozás</string>
     <string name="home_updated_at">Frissítve: %1$s</string>
+
+    <!-- New Insight Cards -->
+    <string name="insight_buy_signal_title">Vételi jelzés</string>
+    <string name="insight_buy_signal_summary">%1$s történelmi vásárlás ebben a tartományban magas átlagos hozamot mutatott</string>
+    <string name="insight_overheat_title">Túlfűtöttség figyelmeztetés</string>
+    <string name="insight_overheat_summary">Extrém kapzsiság zóna. A történelmi adatok szerint korrekció valószínű.</string>
+    <string name="insight_historical_return_title">Mi lett volna, ha akkor vettél volna?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d korábbi időszak, hasonlóan a jelenlegi %2$d ponthoz</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Korlátozott történelmi adatok a jelenlegi %2$d pont közelében</string>
+    <string name="insight_return_chart_title_market">Mi lett volna, ha az S&amp;P 500-ba fektettél volna?</string>
+    <string name="insight_return_chart_title_crypto">Mi lett volna, ha Bitcoinba fektettél volna?</string>
+    <string name="insight_return_chart_summary">Milyenek lennének a hozamok, ha ebben a tartományban fektettél volna be?</string>
+    <string name="insight_drawdown_title">Maximális visszaesés elemzés (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Ellenőrizd a maximális visszaesést és az 1 éves hozamot extrém félelem zónákban.</string>
+    <string name="insight_drawdown_summary_fear">Hasonlítsd össze a kockázatot és az elvárt hozamot a félelem zónákban.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilitás és elvárt hozam a semleges zónában.</string>
+    <string name="insight_drawdown_summary_greed">Ellenőrizd a csökkenési kockázatot a kapzsiság zónákban.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Az extrém kapzsiság zónák nagy korrekciókkal szembesülhetnek.</string>
+    <string name="insight_velocity_title">Félelemindex sebessége</string>
+    <string name="insight_velocity_inflection_suffix"> (fordulópont észlelve)</string>
 </resources>

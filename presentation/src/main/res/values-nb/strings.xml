@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Frykt- og Grådighetindeks</string>
+    <string name="splash_subtitle">Frykt- og Grådighetindeks</string>
+    <string name="splash_disclaimer">Ekstreme områder (0-24, 76-100) kan signalisere kontrære muligheter.
+Vurder i sammenheng med fundamentale, flyt og makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Ekstrem Frykt</string>
     <string name="rating_fear">Frykt</string>
@@ -123,6 +129,26 @@
     <string name="insight_detail_where_from_title">Hvor kommer disse tallene fra?</string>
     <string name="insight_detail_where_from_body">%2$s-avkastning beregnet fra tidligere perioder nær fryktindeks %1$d.</string>
     <string name="insight_detail_action_guide_title">Investeringsveiledning</string>
+
+    <!-- Insight cards -->
+    <string name="insight_buy_signal_title">Kjøpssignal</string>
+    <string name="insight_buy_signal_summary">%1$s historiske kjøp i dette intervallet hadde sterk gjennomsnittlig avkastning</string>
+    <string name="insight_overheat_title">Overopphetingsvarsel</string>
+    <string name="insight_overheat_summary">Sone for ekstrem grådighet. Historiske data tyder på at en korreksjon er sannsynlig.</string>
+    <string name="insight_historical_return_title">Hva om du hadde kjøpt da?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d tidligere perioder som ligner nåværende %2$d poeng</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Begrensede historiske data nær nåværende %2$d poeng</string>
+    <string name="insight_return_chart_title_market">Hva om du hadde investert i S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Hva om du hadde investert i Bitcoin?</string>
+    <string name="insight_return_chart_summary">Hvordan ville avkastningen sett ut hvis du hadde investert i dette intervallet?</string>
+    <string name="insight_drawdown_title">Analyse av maks nedgang (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Sjekk maks nedgang og 1Å-avkastning i soner med ekstrem frykt.</string>
+    <string name="insight_drawdown_summary_fear">Sammenlign risiko og forventet avkastning i fryktsoner.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilitet og forventet avkastning i den nøytrale sonen.</string>
+    <string name="insight_drawdown_summary_greed">Sjekk nedsiderisiko i grådighetssoner.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Soner med ekstrem grådighet kan møte store korreksjoner.</string>
+    <string name="insight_velocity_title">Fryktindeksens hastighet</string>
+    <string name="insight_velocity_inflection_suffix"> (vendepunkt oppdaget)</string>
 
     <!-- Period labels -->
     <string name="period_month_1">1M</string>

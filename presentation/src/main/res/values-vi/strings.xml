@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Chỉ số sợ hãi &amp; tham lam</string>
+    <string name="splash_subtitle">Chỉ số sợ hãi &amp; tham lam</string>
+    <string name="splash_disclaimer">Các phạm vi cực đoan (0-24, 76-100) có thể báo hiệu cơ hội tương phản.
+Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Cực kỳ sợ hãi</string>
     <string name="rating_fear">Sợ hãi</string>
@@ -187,4 +193,24 @@
     <string name="share_content_description">Chia sẻ</string>
     <string name="retry_button">Thử lại</string>
     <string name="home_updated_at">Cập nhật: %1$s</string>
+
+    <!-- Insight Cards (new) -->
+    <string name="insight_buy_signal_title">Tín hiệu mua</string>
+    <string name="insight_buy_signal_summary">%1$s lần mua trong lịch sử ở khoảng này đã có lợi nhuận trung bình mạnh</string>
+    <string name="insight_overheat_title">Cảnh báo quá nóng</string>
+    <string name="insight_overheat_summary">Vùng tham lam cực độ. Dữ liệu lịch sử cho thấy khả năng điều chỉnh.</string>
+    <string name="insight_historical_return_title">Nếu bạn đã mua khi đó thì sao?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d giai đoạn quá khứ tương tự với %2$d điểm hiện tại</string>
+    <string name="insight_historical_return_summary_empty">%1$s — dữ liệu lịch sử hạn chế gần %2$d điểm hiện tại</string>
+    <string name="insight_return_chart_title_market">Nếu bạn đầu tư vào S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Nếu bạn đầu tư vào Bitcoin?</string>
+    <string name="insight_return_chart_summary">Lợi nhuận sẽ trông như thế nào nếu bạn đầu tư trong khoảng này?</string>
+    <string name="insight_drawdown_title">Phân tích mức giảm tối đa (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Kiểm tra mức giảm tối đa và lợi nhuận 1 năm ở vùng sợ hãi cực độ.</string>
+    <string name="insight_drawdown_summary_fear">So sánh rủi ro và lợi nhuận kỳ vọng ở vùng sợ hãi.</string>
+    <string name="insight_drawdown_summary_neutral">Biến động và lợi nhuận kỳ vọng ở vùng trung lập.</string>
+    <string name="insight_drawdown_summary_greed">Kiểm tra rủi ro giảm ở vùng tham lam.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Vùng tham lam cực độ có thể đối mặt với điều chỉnh lớn.</string>
+    <string name="insight_velocity_title">Vận tốc chỉ số sợ hãi</string>
+    <string name="insight_velocity_inflection_suffix"> (đã phát hiện điểm uốn)</string>
 </resources>

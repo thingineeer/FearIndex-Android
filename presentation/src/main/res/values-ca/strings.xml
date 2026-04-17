@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Índex de Por i Cobdícia</string>
+    <string name="splash_subtitle">Índex de Por i Cobdícia</string>
+    <string name="splash_disclaimer">Els rangs extrems (0-24, 76-100) poden indicar oportunitats contràries.
+Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Por Extrema</string>
     <string name="rating_fear">Por</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Comparteix</string>
     <string name="retry_button">Torna-ho a provar</string>
     <string name="home_updated_at">Actualitzat: %1$s</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">Senyal de compra</string>
+    <string name="insight_buy_signal_summary">%1$s compres històriques en aquest rang van obtenir rendiments mitjans sòlids</string>
+    <string name="insight_overheat_title">Avís de sobreescalfament</string>
+    <string name="insight_overheat_summary">Zona de cobdícia extrema. Les dades històriques suggereixen que una correcció és probable.</string>
+    <string name="insight_historical_return_title">I si haguessis comprat aleshores?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d períodes passats similars als %2$d punts actuals</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Dades històriques limitades prop dels %2$d punts actuals</string>
+    <string name="insight_return_chart_title_market">I si haguessis invertit al S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">I si haguessis invertit en Bitcoin?</string>
+    <string name="insight_return_chart_summary">Com serien els rendiments si haguessis invertit en aquest rang?</string>
+    <string name="insight_drawdown_title">Anàlisi de drawdown màxim (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Revisa el drawdown màxim i el rendiment a 1A en zones de por extrema.</string>
+    <string name="insight_drawdown_summary_fear">Compara el risc i el rendiment esperat en zones de por.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilitat i rendiment esperat a la zona neutra.</string>
+    <string name="insight_drawdown_summary_greed">Revisa el risc a la baixa en zones de cobdícia.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Les zones de cobdícia extrema poden patir correccions importants.</string>
+    <string name="insight_velocity_title">Velocitat de l\'índex de por</string>
+    <string name="insight_velocity_inflection_suffix"> (inflexió detectada)</string>
 </resources>

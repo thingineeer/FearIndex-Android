@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Индекс на страха и алчността</string>
+    <string name="splash_subtitle">Индекс на страха и алчността</string>
+    <string name="splash_disclaimer">Екстремните диапазони (0-24, 76-100) могат да сигнализират за контрарни възможности.
+Вземете предвид заедно с фундаменти, потоци и макро.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Екстремен страх</string>
     <string name="rating_fear">Страх</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Споделяне</string>
     <string name="retry_button">Опитайте отново</string>
     <string name="home_updated_at">Обновено: %1$s</string>
+
+    <!-- New Insight Cards -->
+    <string name="insight_buy_signal_title">Сигнал за покупка</string>
+    <string name="insight_buy_signal_summary">%1$s исторически покупки в този диапазон имаха висока средна доходност</string>
+    <string name="insight_overheat_title">Предупреждение за прегряване</string>
+    <string name="insight_overheat_summary">Зона на крайна алчност. Историческите данни предполагат вероятна корекция.</string>
+    <string name="insight_historical_return_title">Ами ако бяхте купили тогава?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d минали периоди, подобни на текущите %2$d точки</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Ограничени исторически данни близо до текущите %2$d точки</string>
+    <string name="insight_return_chart_title_market">Ами ако бяхте инвестирали в S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Ами ако бяхте инвестирали в Bitcoin?</string>
+    <string name="insight_return_chart_summary">Как биха изглеждали доходите при инвестиране в този диапазон?</string>
+    <string name="insight_drawdown_title">Анализ на максималния спад (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Проверете максималния спад и 1-годишната доходност в зоните на краен страх.</string>
+    <string name="insight_drawdown_summary_fear">Сравнете риска и очакваната доходност в зоните на страх.</string>
+    <string name="insight_drawdown_summary_neutral">Волатилност и очаквана доходност в неутралната зона.</string>
+    <string name="insight_drawdown_summary_greed">Проверете риска от спад в зоните на алчност.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Зоните на крайна алчност могат да се сблъскат с големи корекции.</string>
+    <string name="insight_velocity_title">Скорост на индекса на страх</string>
+    <string name="insight_velocity_inflection_suffix"> (открита повратна точка)</string>
 </resources>

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">भय और लालच सूचकांक</string>
+    <string name="splash_subtitle">भय और लालच सूचकांक</string>
+    <string name="splash_disclaimer">चरम श्रेणियां (0-24, 76-100) विपरीत निवेश अवसरों का संकेत दे सकती हैं।
+मूल तत्वों, प्रवाह और व्यापक आर्थिक के साथ विचार करें।</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">अत्यधिक भय</string>
     <string name="rating_fear">भय</string>
@@ -177,6 +183,26 @@
     <string name="trend_stable">स्थिर</string>
     <string name="trend_rally_accelerating">तेज़ी में वृद्धि</string>
     <string name="trend_rally_decelerating">तेज़ी धीमी</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">खरीद संकेत</string>
+    <string name="insight_buy_signal_summary">इस रेंज में अतीत की %1$s खरीदों का औसत रिटर्न मज़बूत रहा है</string>
+    <string name="insight_overheat_title">अति-उत्साह चेतावनी</string>
+    <string name="insight_overheat_summary">अत्यधिक लालच क्षेत्र। ऐतिहासिक आँकड़े करेक्शन की संभावना दर्शाते हैं।</string>
+    <string name="insight_historical_return_title">अगर उस समय खरीदा होता?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — वर्तमान %2$d अंकों के समान %3$d पिछले दौर</string>
+    <string name="insight_historical_return_summary_empty">%1$s — वर्तमान %2$d अंकों के पास सीमित ऐतिहासिक डेटा</string>
+    <string name="insight_return_chart_title_market">अगर आपने S&amp;P 500 में निवेश किया होता?</string>
+    <string name="insight_return_chart_title_crypto">अगर आपने बिटकॉइन में निवेश किया होता?</string>
+    <string name="insight_return_chart_summary">इस रेंज में निवेश करने पर रिटर्न कैसा होता?</string>
+    <string name="insight_drawdown_title">अधिकतम गिरावट विश्लेषण (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">अत्यधिक भय क्षेत्रों में अधिकतम गिरावट और 1 वर्ष रिटर्न देखें।</string>
+    <string name="insight_drawdown_summary_fear">भय क्षेत्रों में जोखिम और अपेक्षित रिटर्न की तुलना करें।</string>
+    <string name="insight_drawdown_summary_neutral">तटस्थ क्षेत्र में अस्थिरता और अपेक्षित रिटर्न।</string>
+    <string name="insight_drawdown_summary_greed">लालच क्षेत्रों में गिरावट का जोखिम देखें।</string>
+    <string name="insight_drawdown_summary_extreme_greed">अत्यधिक लालच क्षेत्रों में बड़ी गिरावट आ सकती है।</string>
+    <string name="insight_velocity_title">भय सूचकांक की गति</string>
+    <string name="insight_velocity_inflection_suffix"> (मोड़ बिंदु पाया)</string>
 
     <!-- Feature screen common labels -->
     <string name="tab_market">बाज़ार</string>

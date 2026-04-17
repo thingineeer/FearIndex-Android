@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">ভয় ও লোভ সূচক</string>
+    <string name="splash_subtitle">ভয় ও লোভ সূচক</string>
+    <string name="splash_disclaimer">চরম পরিসর (০-২৪, ৭৬-১০০) বিপরীত বিনিয়োগের সুযোগ নির্দেশ করতে পারে।
+মৌলিক বিশ্লেষণ, প্রবাহ এবং সামষ্টিক অর্থনীতির সাথে বিবেচনা করুন।</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">চরম ভয়</string>
     <string name="rating_fear">ভয়</string>
@@ -177,6 +183,26 @@
     <string name="trend_stable">স্থিতিশীল</string>
     <string name="trend_rally_accelerating">উত্থানের বেগ বাড়ছে</string>
     <string name="trend_rally_decelerating">উত্থান ধীর হচ্ছে</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">ক্রয় সংকেত</string>
+    <string name="insight_buy_signal_summary">এই পরিসরে অতীতের %1$s বার ক্রয়ের গড় রিটার্ন শক্তিশালী ছিল</string>
+    <string name="insight_overheat_title">অতিরিক্ত উত্তপ্ত সতর্কতা</string>
+    <string name="insight_overheat_summary">চরম লোভ অঞ্চল। ঐতিহাসিক তথ্য সংশোধনের সম্ভাবনা নির্দেশ করে।</string>
+    <string name="insight_historical_return_title">তখন কিনলে কেমন হতো?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — বর্তমান %2$d পয়েন্টের অনুরূপ %3$d অতীত সময়কাল</string>
+    <string name="insight_historical_return_summary_empty">%1$s — বর্তমান %2$d পয়েন্টের কাছে সীমিত ঐতিহাসিক তথ্য</string>
+    <string name="insight_return_chart_title_market">আপনি S&amp;P 500-এ বিনিয়োগ করলে?</string>
+    <string name="insight_return_chart_title_crypto">আপনি বিটকয়েনে বিনিয়োগ করলে?</string>
+    <string name="insight_return_chart_summary">এই পরিসরে বিনিয়োগ করলে রিটার্ন কেমন হতো?</string>
+    <string name="insight_drawdown_title">সর্বোচ্চ পতন বিশ্লেষণ (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">চরম ভয় অঞ্চলে সর্বোচ্চ পতন এবং ১ বছরের রিটার্ন দেখুন।</string>
+    <string name="insight_drawdown_summary_fear">ভয় অঞ্চলে ঝুঁকি এবং প্রত্যাশিত রিটার্ন তুলনা করুন।</string>
+    <string name="insight_drawdown_summary_neutral">নিরপেক্ষ অঞ্চলে অস্থিরতা এবং প্রত্যাশিত রিটার্ন।</string>
+    <string name="insight_drawdown_summary_greed">লোভ অঞ্চলে নিম্নমুখী ঝুঁকি দেখুন।</string>
+    <string name="insight_drawdown_summary_extreme_greed">চরম লোভ অঞ্চলে বড় সংশোধন হতে পারে।</string>
+    <string name="insight_velocity_title">ভয় সূচকের গতি</string>
+    <string name="insight_velocity_inflection_suffix"> (মোড় বিন্দু শনাক্ত)</string>
 
     <!-- Feature screen common labels -->
     <string name="tab_market">বাজার</string>

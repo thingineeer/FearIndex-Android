@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Baimės ir godumo indeksas</string>
+    <string name="splash_subtitle">Baimės ir godumo indeksas</string>
+    <string name="splash_disclaimer">Ekstremalūs diapazonai (0–24, 76–100) gali signalizuoti kontrarines galimybes.
+Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Ekstremalus baimė</string>
     <string name="rating_fear">Baimė</string>
@@ -123,6 +129,26 @@
     <string name="insight_detail_where_from_title">Iš kur šie skaičiai?</string>
     <string name="insight_detail_where_from_body">%2$s grąžos apskaičiuotos pagal praeities laikotarpius šalia baimės indekso %1$d.</string>
     <string name="insight_detail_action_guide_title">Investavimo veiksmų vadovas</string>
+
+    <!-- Insight cards -->
+    <string name="insight_buy_signal_title">Pirkimo signalas</string>
+    <string name="insight_buy_signal_summary">%1$s istoriniai pirkimai šiame diapazone turėjo stiprią vidutinę grąžą</string>
+    <string name="insight_overheat_title">Perkaitimo įspėjimas</string>
+    <string name="insight_overheat_summary">Ekstremalaus godumo zona. Istoriniai duomenys rodo, kad korekcija tikėtina.</string>
+    <string name="insight_historical_return_title">O kas, jei būtum tada pirkęs?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d praeities laikotarpiai, panašūs į dabartinius %2$d taškus</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Riboti istoriniai duomenys šalia dabartinių %2$d taškų</string>
+    <string name="insight_return_chart_title_market">Jei būtum investavęs į S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Jei būtum investavęs į Bitcoin?</string>
+    <string name="insight_return_chart_summary">Kaip atrodytų grąža, jei būtum investavęs šiame diapazone?</string>
+    <string name="insight_drawdown_title">Maksimalaus kritimo analizė (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Patikrink maksimalų kritimą ir 1M grąžą ekstremalios baimės zonose.</string>
+    <string name="insight_drawdown_summary_fear">Palygink riziką ir tikėtiną grąžą baimės zonose.</string>
+    <string name="insight_drawdown_summary_neutral">Kintamumas ir tikėtina grąža neutralioje zonoje.</string>
+    <string name="insight_drawdown_summary_greed">Patikrink kritimo riziką godumo zonose.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Ekstremalaus godumo zonos gali patirti dideles korekcijas.</string>
+    <string name="insight_velocity_title">Baimės indekso greitis</string>
+    <string name="insight_velocity_inflection_suffix"> (aptiktas lūžio taškas)</string>
 
     <!-- Period labels -->
     <string name="period_month_1">1 mėn.</string>

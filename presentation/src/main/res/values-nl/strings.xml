@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Angst- en Hebzuchtindex</string>
+    <string name="splash_subtitle">Angst- en Hebzuchtindex</string>
+    <string name="splash_disclaimer">Extreme bereiken (0-24, 76-100) kunnen contraire kansen signaleren.
+Overweeg samen met fundamentals, stroom en macro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Extreme Angst</string>
     <string name="rating_fear">Angst</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Delen</string>
     <string name="retry_button">Opnieuw proberen</string>
     <string name="home_updated_at">Bijgewerkt: %1$s</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">Koopsignaal</string>
+    <string name="insight_buy_signal_summary">%1$s historische aankopen in deze range behaalden sterke gemiddelde rendementen</string>
+    <string name="insight_overheat_title">Oververhittingswaarschuwing</string>
+    <string name="insight_overheat_summary">Zone van extreme hebzucht. Historische gegevens suggereren dat een correctie waarschijnlijk is.</string>
+    <string name="insight_historical_return_title">Wat als je toen had gekocht?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d eerdere periodes vergelijkbaar met de huidige %2$d punten</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Beperkte historische gegevens rond de huidige %2$d punten</string>
+    <string name="insight_return_chart_title_market">Wat als je in de S&amp;P 500 had geïnvesteerd?</string>
+    <string name="insight_return_chart_title_crypto">Wat als je in Bitcoin had geïnvesteerd?</string>
+    <string name="insight_return_chart_summary">Hoe zouden de rendementen eruitzien als je in deze range had geïnvesteerd?</string>
+    <string name="insight_drawdown_title">Maximale drawdown-analyse (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Bekijk maximale drawdown en 1J-rendement in zones van extreme angst.</string>
+    <string name="insight_drawdown_summary_fear">Vergelijk risico en verwacht rendement in angstzones.</string>
+    <string name="insight_drawdown_summary_neutral">Volatiliteit en verwacht rendement in de neutrale zone.</string>
+    <string name="insight_drawdown_summary_greed">Bekijk het neerwaartse risico in zones van hebzucht.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Zones van extreme hebzucht kunnen grote correcties ondergaan.</string>
+    <string name="insight_velocity_title">Snelheid van de angstindex</string>
+    <string name="insight_velocity_inflection_suffix"> (keerpunt gedetecteerd)</string>
 </resources>

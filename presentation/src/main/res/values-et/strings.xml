@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Hirmu &amp; Ahnuse Indeks</string>
+    <string name="splash_subtitle">Hirmu &amp; Ahnuse Indeks</string>
+    <string name="splash_disclaimer">Äärmuslikud vahemikud (0-24, 76-100) võivad viidata kontraarsetele võimalustele.
+Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Äärmuslik hirm</string>
     <string name="rating_fear">Hirm</string>
@@ -123,6 +129,26 @@
     <string name="insight_detail_where_from_title">Kust need arvud tulevad?</string>
     <string name="insight_detail_where_from_body">%2$s tootlused arvutatud möödunud perioodide põhjal hirmuindeksi %1$d lähedal.</string>
     <string name="insight_detail_action_guide_title">Investeerimistegevuse juhend</string>
+
+    <!-- Insight cards -->
+    <string name="insight_buy_signal_title">Ostusignaal</string>
+    <string name="insight_buy_signal_summary">%1$s varasemat ostu selles vahemikus tõid tugeva keskmise tootluse</string>
+    <string name="insight_overheat_title">Ülekuumenemise hoiatus</string>
+    <string name="insight_overheat_summary">Äärmise ahnuse tsoon. Ajaloolised andmed viitavad korrektsiooni tõenäosusele.</string>
+    <string name="insight_historical_return_title">Mis siis, kui oleksid tookord ostnud?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d varasemat perioodi, mis sarnanevad praeguse %2$d punktiga</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Piiratud ajaloolised andmed praeguse %2$d punkti lähedal</string>
+    <string name="insight_return_chart_title_market">Mis siis, kui oleksid investeerinud S&amp;P 500-i?</string>
+    <string name="insight_return_chart_title_crypto">Mis siis, kui oleksid investeerinud Bitcoini?</string>
+    <string name="insight_return_chart_summary">Kuidas näeksid välja tootlused, kui oleksid investeerinud sellesse vahemikku?</string>
+    <string name="insight_drawdown_title">Maksimaalse languse analüüs (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Kontrolli maksimaalset langust ja 1a tootlust äärmise hirmu tsoonides.</string>
+    <string name="insight_drawdown_summary_fear">Võrdle riski ja oodatavat tootlust hirmutsoonides.</string>
+    <string name="insight_drawdown_summary_neutral">Volatiilsus ja oodatav tootlus neutraalses tsoonis.</string>
+    <string name="insight_drawdown_summary_greed">Kontrolli langusriski ahnuse tsoonides.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Äärmise ahnuse tsoonid võivad kogeda suuri korrektsioone.</string>
+    <string name="insight_velocity_title">Hirmuindeksi kiirus</string>
+    <string name="insight_velocity_inflection_suffix"> (pöördepunkt tuvastatud)</string>
 
     <!-- Period labels -->
     <string name="period_month_1">1K</string>

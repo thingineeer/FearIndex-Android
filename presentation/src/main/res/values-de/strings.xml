@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Fear &amp; Greed Index</string>
+    <string name="splash_subtitle">Angst-Gier-Index</string>
+    <string name="splash_disclaimer">Extrembereiche (0-24, 76-100) als Kontraindikator nutzbar.
+Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Extreme Angst</string>
     <string name="rating_fear">Angst</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Teilen</string>
     <string name="retry_button">Erneut versuchen</string>
     <string name="home_updated_at">Aktualisiert: %1$s</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">Kaufsignal</string>
+    <string name="insight_buy_signal_summary">%1$s historische Käufe in diesem Bereich erzielten starke durchschnittliche Renditen</string>
+    <string name="insight_overheat_title">Überhitzungswarnung</string>
+    <string name="insight_overheat_summary">Zone extremer Gier. Historische Daten deuten auf eine wahrscheinliche Korrektur hin.</string>
+    <string name="insight_historical_return_title">Was wäre, wenn Sie damals gekauft hätten?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d vergangene Zeiträume ähnlich den aktuellen %2$d Punkten</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Begrenzte historische Daten nahe den aktuellen %2$d Punkten</string>
+    <string name="insight_return_chart_title_market">Was wäre, wenn Sie in den S&amp;P 500 investiert hätten?</string>
+    <string name="insight_return_chart_title_crypto">Was wäre, wenn Sie in Bitcoin investiert hätten?</string>
+    <string name="insight_return_chart_summary">Wie würden die Renditen aussehen, wenn Sie in diesem Bereich investiert hätten?</string>
+    <string name="insight_drawdown_title">Maximale Drawdown-Analyse (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Prüfen Sie maximalen Drawdown und 1J-Rendite in Zonen extremer Angst.</string>
+    <string name="insight_drawdown_summary_fear">Vergleichen Sie Risiko und erwartete Rendite in Angstzonen.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilität und erwartete Rendite in der neutralen Zone.</string>
+    <string name="insight_drawdown_summary_greed">Prüfen Sie das Abwärtsrisiko in Gierzonen.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Zonen extremer Gier können erhebliche Korrekturen erleiden.</string>
+    <string name="insight_velocity_title">Geschwindigkeit des Angstindex</string>
+    <string name="insight_velocity_inflection_suffix"> (Wendepunkt erkannt)</string>
 </resources>

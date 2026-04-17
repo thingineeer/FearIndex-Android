@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">恐懼與貪婪指數</string>
+    <string name="splash_subtitle">恐懼與貪婪指數</string>
+    <string name="splash_disclaimer">極端區間 (0-24, 76-100) 可能預示逆向投資機會。
+請結合基本面、資金流向及總體經濟一併考量。</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">極度恐懼</string>
     <string name="rating_fear">恐懼</string>
@@ -173,6 +179,26 @@
     <string name="trend_stable">穩定</string>
     <string name="trend_rally_accelerating">上漲加速</string>
     <string name="trend_rally_decelerating">上漲趨緩</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">買進訊號</string>
+    <string name="insight_buy_signal_summary">此區間歷史上 %1$s 次買進的平均報酬率較高</string>
+    <string name="insight_overheat_title">過熱警告</string>
+    <string name="insight_overheat_summary">極度貪婪區間。歷史資料顯示可能出現修正。</string>
+    <string name="insight_historical_return_title">當時買進會如何?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — 與目前 %2$d 分相似的過去區間 %3$d 個</string>
+    <string name="insight_historical_return_summary_empty">%1$s — 目前 %2$d 分附近的歷史資料有限</string>
+    <string name="insight_return_chart_title_market">若投資 S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">若投資比特幣?</string>
+    <string name="insight_return_chart_summary">在此區間投資會有怎樣的報酬?</string>
+    <string name="insight_drawdown_title">最大回撤分析 (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">查看極度恐懼區間的最大回撤與 1 年報酬率。</string>
+    <string name="insight_drawdown_summary_fear">比較恐懼區間的風險與預期報酬。</string>
+    <string name="insight_drawdown_summary_neutral">中性區間的波動度與預期報酬。</string>
+    <string name="insight_drawdown_summary_greed">查看貪婪區間的下行風險。</string>
+    <string name="insight_drawdown_summary_extreme_greed">極度貪婪區間可能面臨重大修正。</string>
+    <string name="insight_velocity_title">恐懼指數速度</string>
+    <string name="insight_velocity_inflection_suffix"> (偵測到拐點)</string>
 
     <!-- Feature screen common labels -->
     <string name="tab_market">市場</string>

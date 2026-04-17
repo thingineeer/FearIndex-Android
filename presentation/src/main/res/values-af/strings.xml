@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Vrees &amp; Gierigheid Indeks</string>
+    <string name="splash_subtitle">Vrees &amp; Gierigheid Indeks</string>
+    <string name="splash_disclaimer">Uiterste reekse (0-24, 76-100) kan kontrariste geleenthede aandui.
+Oorweeg saam met grondbeginsels, vloei en makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Uiterste Vrees</string>
     <string name="rating_fear">Vrees</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Deel</string>
     <string name="retry_button">Probeer weer</string>
     <string name="home_updated_at">Bygewerk: %1$s</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">Kopersein</string>
+    <string name="insight_buy_signal_summary">%1$s historiese aankope in hierdie reeks het sterk gemiddelde opbrengste gelewer</string>
+    <string name="insight_overheat_title">Oorverhittingswaarskuwing</string>
+    <string name="insight_overheat_summary">Sone van uiterste gierigheid. Historiese data dui daarop dat \'n regstelling waarskynlik is.</string>
+    <string name="insight_historical_return_title">Wat as jy destyds gekoop het?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d vorige tydperke soortgelyk aan die huidige %2$d punte</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Beperkte historiese data naby die huidige %2$d punte</string>
+    <string name="insight_return_chart_title_market">Wat as jy in die S&amp;P 500 belê het?</string>
+    <string name="insight_return_chart_title_crypto">Wat as jy in Bitcoin belê het?</string>
+    <string name="insight_return_chart_summary">Hoe sou opbrengste gelyk het as jy in hierdie reeks belê het?</string>
+    <string name="insight_drawdown_title">Maksimum drawdown-analise (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Kyk na maksimum drawdown en 1J-opbrengs in sones van uiterste vrees.</string>
+    <string name="insight_drawdown_summary_fear">Vergelyk risiko en verwagte opbrengs in vreessones.</string>
+    <string name="insight_drawdown_summary_neutral">Volatiliteit en verwagte opbrengs in die neutrale sone.</string>
+    <string name="insight_drawdown_summary_greed">Kyk na afwaartse risiko in gierigheidssones.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Sones van uiterste gierigheid kan groot regstellings in die gesig staar.</string>
+    <string name="insight_velocity_title">Snelheid van die vreesindeks</string>
+    <string name="insight_velocity_inflection_suffix"> (buigpunt bespeur)</string>
 </resources>

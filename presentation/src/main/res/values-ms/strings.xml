@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Indeks Ketakutan &amp; Ketamakan</string>
+    <string name="splash_subtitle">Indeks Ketakutan &amp; Ketamakan</string>
+    <string name="splash_disclaimer">Julat melampau (0-24, 76-100) mungkin menandakan peluang berlawanan.
+Pertimbangkan bersama asas, aliran, dan makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Ketakutan Melampau</string>
     <string name="rating_fear">Ketakutan</string>
@@ -183,4 +189,24 @@
     <string name="share_content_description">Kongsi</string>
     <string name="retry_button">Cuba semula</string>
     <string name="home_updated_at">Dikemas kini: %1$s</string>
+
+    <!-- Insight Cards (new) -->
+    <string name="insight_buy_signal_title">Isyarat Beli</string>
+    <string name="insight_buy_signal_summary">%1$s pembelian sejarah dalam julat ini mempunyai purata pulangan yang kukuh</string>
+    <string name="insight_overheat_title">Amaran Terlalu Panas</string>
+    <string name="insight_overheat_summary">Zon ketamakan melampau. Data sejarah mencadangkan pembetulan berkemungkinan berlaku.</string>
+    <string name="insight_historical_return_title">Bagaimana jika anda membeli ketika itu?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d tempoh lalu serupa dengan %2$d mata semasa</string>
+    <string name="insight_historical_return_summary_empty">%1$s — data sejarah terhad berdekatan %2$d mata semasa</string>
+    <string name="insight_return_chart_title_market">Jika anda melabur dalam S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Jika anda melabur dalam Bitcoin?</string>
+    <string name="insight_return_chart_summary">Bagaimana pulangan kelihatan jika anda melabur dalam julat ini?</string>
+    <string name="insight_drawdown_title">Analisis Penurunan Maksimum (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Semak penurunan maksimum dan pulangan 1 tahun di zon ketakutan melampau.</string>
+    <string name="insight_drawdown_summary_fear">Bandingkan risiko dan pulangan yang dijangka di zon ketakutan.</string>
+    <string name="insight_drawdown_summary_neutral">Kemeruapan dan pulangan yang dijangka di zon neutral.</string>
+    <string name="insight_drawdown_summary_greed">Semak risiko penurunan di zon ketamakan.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Zon ketamakan melampau boleh menghadapi pembetulan besar.</string>
+    <string name="insight_velocity_title">Halaju Indeks Ketakutan</string>
+    <string name="insight_velocity_inflection_suffix"> (titik perubahan dikesan)</string>
 </resources>

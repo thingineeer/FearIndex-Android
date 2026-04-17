@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Fear &amp; Greed Index</string>
+    <string name="splash_subtitle">恐惧-贪婪指数</string>
+    <string name="splash_disclaimer">极端区间(0-24, 76-100)可作为反向交易信号参考。
+建议结合基本面、资金流和宏观因素综合分析。</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">极度恐惧</string>
     <string name="rating_fear">恐惧</string>
@@ -173,6 +179,26 @@
     <string name="trend_stable">稳定</string>
     <string name="trend_rally_accelerating">上涨加速</string>
     <string name="trend_rally_decelerating">上涨放缓</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">买入信号</string>
+    <string name="insight_buy_signal_summary">该区间历史上 %1$s 次买入的平均回报率较高</string>
+    <string name="insight_overheat_title">过热警告</string>
+    <string name="insight_overheat_summary">极度贪婪区间。历史数据表明可能出现回调。</string>
+    <string name="insight_historical_return_title">那时买入会怎样?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — 与当前 %2$d 分相似的过去区间 %3$d 个</string>
+    <string name="insight_historical_return_summary_empty">%1$s — 当前 %2$d 分附近的历史数据有限</string>
+    <string name="insight_return_chart_title_market">如果你投资 S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">如果你投资比特币?</string>
+    <string name="insight_return_chart_summary">在该区间投资会有怎样的回报?</string>
+    <string name="insight_drawdown_title">最大回撤分析 (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">查看极度恐惧区间的最大回撤和 1 年回报。</string>
+    <string name="insight_drawdown_summary_fear">比较恐惧区间的风险与预期回报。</string>
+    <string name="insight_drawdown_summary_neutral">中性区间的波动率与预期回报。</string>
+    <string name="insight_drawdown_summary_greed">查看贪婪区间的下行风险。</string>
+    <string name="insight_drawdown_summary_extreme_greed">极度贪婪区间可能面临重大回调。</string>
+    <string name="insight_velocity_title">恐惧指数速度</string>
+    <string name="insight_velocity_inflection_suffix"> (检测到拐点)</string>
 
     <!-- Feature screen common labels -->
     <string name="tab_market">市场</string>

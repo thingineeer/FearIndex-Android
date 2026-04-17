@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">ดัชนีความกลัวและความโลภ</string>
+    <string name="splash_subtitle">ดัชนีความกลัวและความโลภ</string>
+    <string name="splash_disclaimer">ช่วงสุดขีด (0-24, 76-100) อาจเป็นสัญญาณของโอกาสที่ตรงกันข้าม
+พิจารณาร่วมกับปัจจัยพื้นฐาน กระแส และมหภาค</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">กลัวสุดขีด</string>
     <string name="rating_fear">กลัว</string>
@@ -187,4 +193,24 @@
     <string name="share_content_description">แชร์</string>
     <string name="retry_button">ลองใหม่</string>
     <string name="home_updated_at">อัปเดต: %1$s</string>
+
+    <!-- Insight Cards (new) -->
+    <string name="insight_buy_signal_title">สัญญาณซื้อ</string>
+    <string name="insight_buy_signal_summary">การซื้อในอดีต %1$s ครั้งในช่วงนี้มีผลตอบแทนเฉลี่ยที่แข็งแกร่ง</string>
+    <string name="insight_overheat_title">คำเตือนร้อนเกินไป</string>
+    <string name="insight_overheat_summary">เขตความโลภสุดขั้ว ข้อมูลในอดีตบ่งชี้ว่ามีแนวโน้มปรับฐาน</string>
+    <string name="insight_historical_return_title">ถ้าซื้อตอนนั้นจะเป็นอย่างไร?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — ช่วงเวลาในอดีต %3$d ครั้งที่คล้ายกับ %2$d คะแนนปัจจุบัน</string>
+    <string name="insight_historical_return_summary_empty">%1$s — ข้อมูลในอดีตจำกัดใกล้ %2$d คะแนนปัจจุบัน</string>
+    <string name="insight_return_chart_title_market">ถ้าลงทุนใน S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">ถ้าลงทุนใน Bitcoin?</string>
+    <string name="insight_return_chart_summary">ผลตอบแทนจะเป็นอย่างไรถ้าคุณลงทุนในช่วงนี้?</string>
+    <string name="insight_drawdown_title">การวิเคราะห์การลดลงสูงสุด (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">ตรวจสอบการลดลงสูงสุดและผลตอบแทน 1 ปีในเขตความกลัวสุดขั้ว</string>
+    <string name="insight_drawdown_summary_fear">เปรียบเทียบความเสี่ยงและผลตอบแทนที่คาดหวังในเขตความกลัว</string>
+    <string name="insight_drawdown_summary_neutral">ความผันผวนและผลตอบแทนที่คาดหวังในเขตเป็นกลาง</string>
+    <string name="insight_drawdown_summary_greed">ตรวจสอบความเสี่ยงขาลงในเขตความโลภ</string>
+    <string name="insight_drawdown_summary_extreme_greed">เขตความโลภสุดขั้วอาจเผชิญการปรับฐานครั้งใหญ่</string>
+    <string name="insight_velocity_title">ความเร็วของดัชนีความกลัว</string>
+    <string name="insight_velocity_inflection_suffix"> (ตรวจพบจุดเปลี่ยน)</string>
 </resources>

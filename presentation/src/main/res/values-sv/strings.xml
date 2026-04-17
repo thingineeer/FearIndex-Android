@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Rädsla &amp; Girighet Index</string>
+    <string name="splash_subtitle">Rädsla &amp; Girighet Index</string>
+    <string name="splash_disclaimer">Extrema intervall (0-24, 76-100) kan signalera kontrarian möjligheter.
+Överväg tillsammans med grundläggande faktorer, flöde och makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Extrem Rädsla</string>
     <string name="rating_fear">Rädsla</string>
@@ -123,6 +129,26 @@
     <string name="insight_detail_where_from_title">Var kommer dessa siffror ifrån?</string>
     <string name="insight_detail_where_from_body">%2$s-avkastning beräknad utifrån tidigare perioder nära rädslaindex %1$d.</string>
     <string name="insight_detail_action_guide_title">Investeringsguide</string>
+
+    <!-- Insight cards -->
+    <string name="insight_buy_signal_title">Köpsignal</string>
+    <string name="insight_buy_signal_summary">%1$s tidigare köp i detta intervall hade stark genomsnittlig avkastning</string>
+    <string name="insight_overheat_title">Överhettningsvarning</string>
+    <string name="insight_overheat_summary">Zon för extrem girighet. Historisk data tyder på att en korrigering är sannolik.</string>
+    <string name="insight_historical_return_title">Tänk om du hade köpt då?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d tidigare perioder som liknar nuvarande %2$d poäng</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Begränsad historisk data nära nuvarande %2$d poäng</string>
+    <string name="insight_return_chart_title_market">Tänk om du investerat i S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Tänk om du investerat i Bitcoin?</string>
+    <string name="insight_return_chart_summary">Hur hade avkastningen sett ut om du investerat i detta intervall?</string>
+    <string name="insight_drawdown_title">Analys av max nedgång (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Kontrollera max nedgång och 1Å-avkastning i zoner med extrem rädsla.</string>
+    <string name="insight_drawdown_summary_fear">Jämför risk och förväntad avkastning i rädslazoner.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilitet och förväntad avkastning i den neutrala zonen.</string>
+    <string name="insight_drawdown_summary_greed">Kontrollera nedåtrisk i girighetszoner.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Zoner med extrem girighet kan möta stora korrigeringar.</string>
+    <string name="insight_velocity_title">Rädslaindexets hastighet</string>
+    <string name="insight_velocity_inflection_suffix"> (vändpunkt upptäckt)</string>
 
     <!-- Period labels -->
     <string name="period_month_1">1M</string>

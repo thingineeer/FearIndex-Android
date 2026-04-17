@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Kiashiria cha Hofu na Tamaa</string>
+    <string name="splash_subtitle">Kiashiria cha Hofu na Tamaa</string>
+    <string name="splash_disclaimer">Masafa makali (0-24, 76-100) yanaweza kuashiria fursa za kupinga mkondo.
+Zingatia pamoja na misingi, mtiririko, na makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Hofu Kali Sana</string>
     <string name="rating_fear">Hofu</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Shiriki</string>
     <string name="retry_button">Jaribu tena</string>
     <string name="home_updated_at">Imesasishwa: %1$s</string>
+
+    <!-- Insight Cards (new) -->
+    <string name="insight_buy_signal_title">Ishara ya Ununuzi</string>
+    <string name="insight_buy_signal_summary">Ununuzi wa kihistoria %1$s katika kipimo hiki ulikuwa na wastani wa mapato thabiti</string>
+    <string name="insight_overheat_title">Onyo la Kuzidiwa Joto</string>
+    <string name="insight_overheat_summary">Eneo la tamaa kubwa. Data ya kihistoria inaonyesha marekebisho yanayowezekana.</string>
+    <string name="insight_historical_return_title">Ungekuwa ungenunua wakati huo?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — vipindi %3$d vya zamani vinavyofanana na pointi %2$d za sasa</string>
+    <string name="insight_historical_return_summary_empty">%1$s — data ya kihistoria ndogo karibu na pointi %2$d za sasa</string>
+    <string name="insight_return_chart_title_market">Je, ungewekeza katika S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Je, ungewekeza katika Bitcoin?</string>
+    <string name="insight_return_chart_summary">Mapato yangeonekanaje ukiwekeza katika kipimo hiki?</string>
+    <string name="insight_drawdown_title">Uchambuzi wa Kushuka Kiwango cha Juu (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Angalia kushuka kwa kiwango cha juu na mapato ya mwaka mmoja katika maeneo ya woga mkubwa.</string>
+    <string name="insight_drawdown_summary_fear">Linganisha hatari na mapato yanayotarajiwa katika maeneo ya woga.</string>
+    <string name="insight_drawdown_summary_neutral">Mabadiliko na mapato yanayotarajiwa katika eneo la kati.</string>
+    <string name="insight_drawdown_summary_greed">Angalia hatari ya kushuka katika maeneo ya tamaa.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Maeneo ya tamaa kubwa yanaweza kukabiliwa na marekebisho makubwa.</string>
+    <string name="insight_velocity_title">Kasi ya Kiashiria cha Woga</string>
+    <string name="insight_velocity_inflection_suffix"> (mabadiliko yamegunduliwa)</string>
 </resources>

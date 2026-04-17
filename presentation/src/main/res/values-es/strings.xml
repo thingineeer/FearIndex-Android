@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Fear &amp; Greed Index</string>
+    <string name="splash_subtitle">Índice Miedo y Codicia</string>
+    <string name="splash_disclaimer">Los rangos extremos (0-24, 76-100) pueden indicar señales contrarias.
+Interprete junto con fundamentales, flujos y macro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Miedo extremo</string>
     <string name="rating_fear">Miedo</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Compartir</string>
     <string name="retry_button">Reintentar</string>
     <string name="home_updated_at">Actualizado: %1$s</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">Señal de compra</string>
+    <string name="insight_buy_signal_summary">%1$s compras históricas en este rango obtuvieron rendimientos medios sólidos</string>
+    <string name="insight_overheat_title">Aviso de sobrecalentamiento</string>
+    <string name="insight_overheat_summary">Zona de codicia extrema. Los datos históricos sugieren que es probable una corrección.</string>
+    <string name="insight_historical_return_title">¿Y si hubieras comprado entonces?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d períodos pasados similares a los %2$d puntos actuales</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Datos históricos limitados cerca de los %2$d puntos actuales</string>
+    <string name="insight_return_chart_title_market">¿Y si hubieras invertido en el S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">¿Y si hubieras invertido en Bitcoin?</string>
+    <string name="insight_return_chart_summary">¿Cómo serían los rendimientos si hubieras invertido en este rango?</string>
+    <string name="insight_drawdown_title">Análisis de drawdown máximo (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Revisa el drawdown máximo y el rendimiento a 1A en zonas de miedo extremo.</string>
+    <string name="insight_drawdown_summary_fear">Compara el riesgo y el rendimiento esperado en zonas de miedo.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilidad y rendimiento esperado en la zona neutral.</string>
+    <string name="insight_drawdown_summary_greed">Revisa el riesgo a la baja en zonas de codicia.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Las zonas de codicia extrema pueden enfrentar correcciones importantes.</string>
+    <string name="insight_velocity_title">Velocidad del índice de miedo</string>
+    <string name="insight_velocity_inflection_suffix"> (inflexión detectada)</string>
 </resources>
