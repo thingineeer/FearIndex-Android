@@ -1,0 +1,6 @@
+Félelem és kapzsiság index v1.0.1 belső teszt.
+- 45 nyelv támogatása
+- Valós idejű piaci és kripto index
+- Hasonló időszakok kártya
+- Értesítési küszöbök
+- Bennragadt számláló szavazás

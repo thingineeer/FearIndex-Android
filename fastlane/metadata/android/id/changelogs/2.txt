@@ -1,0 +1,6 @@
+Indeks Ketakutan & Keserakahan v1.0.1 uji internal.
+- Dukungan 45 bahasa
+- Indeks pasar & kripto realtime
+- Kartu periode serupa
+- Ambang notifikasi
+- Voting penghitung terjebak

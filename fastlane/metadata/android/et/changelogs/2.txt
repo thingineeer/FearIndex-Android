@@ -1,0 +1,6 @@
+Hirmu ja ahnuse indeks v1.0.1 sisetest.
+- 45 keele tugi
+- Reaalaja turu ja krüpto indeks
+- Sarnaste perioodide kaart
+- Teatise lävendid
+- Kinnijäämise loenduri hääletus

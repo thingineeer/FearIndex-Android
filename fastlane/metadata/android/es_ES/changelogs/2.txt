@@ -1,0 +1,6 @@
+Índice Miedo y Codicia v1.0.1 prueba interna.
+- Soporte para 45 idiomas
+- Índice de mercado y cripto en tiempo real
+- Tarjeta de períodos similares
+- Umbrales de notificación
+- Votación del contador de atrapados

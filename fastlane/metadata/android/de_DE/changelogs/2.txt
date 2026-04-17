@@ -1,0 +1,6 @@
+Angst & Gier Index v1.0.1 interne Testversion.
+- Unterstützung für 45 Sprachen
+- Echtzeit Markt & Krypto Index
+- Ähnliche Zeiträume Erkenntniskarte
+- Benachrichtigungsschwellen
+- Festgefahren Zähler Abstimmung

@@ -1,0 +1,6 @@
+Indeks strachu i chciwości v1.0.1 test wewnętrzny.
+- Obsługa 45 języków
+- Indeks rynku i krypto w czasie rzeczywistym
+- Karta podobnych okresów
+- Progi powiadomień
+- Głosowanie licznika uwięzionych

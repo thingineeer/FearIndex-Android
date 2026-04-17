@@ -1,0 +1,6 @@
+Indice Peur et Cupidité v1.0.1 test interne.
+- Support de 45 langues
+- Indice marché et crypto en temps réel
+- Carte périodes similaires
+- Seuils de notification
+- Vote compteur bloqués

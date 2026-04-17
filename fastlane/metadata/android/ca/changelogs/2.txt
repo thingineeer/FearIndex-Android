@@ -1,0 +1,6 @@
+Índex por i cobdícia v1.0.1 prova interna.
+- Suport per a 45 idiomes
+- Índex de mercat i criptomonedes en temps real
+- Targeta d'informació de períodes similars
+- Llindars de notificació
+- Votació del comptador d'atrapats

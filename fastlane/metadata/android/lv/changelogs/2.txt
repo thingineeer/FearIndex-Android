@@ -1,0 +1,6 @@
+Bailes un alkatības indekss v1.0.1 iekšējā pārbaude.
+- Atbalsts 45 valodām
+- Tirgus un kriptovalūtu indekss reāllaikā
+- Līdzīgu periodu kartīte
+- Paziņojumu sliekšņi
+- Iestrēgušo skaitītāja balsojums
