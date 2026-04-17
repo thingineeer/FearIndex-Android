@@ -220,4 +220,10 @@
     <string name="settings_menu_rate">மதிப்புரை எழுதுங்கள்</string>
     <string name="settings_menu_share">பகிரவும்</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">ஒப்பீடு</string>
+    <string name="comparison_previous_close">முந்தைய</string>
+    <string name="comparison_1w_ago">1 வாரம் முன்</string>
+    <string name="comparison_1m_ago">1 மாதம் முன்</string>
+    <string name="comparison_1y_ago">1 ஆண்டு முன்</string>
 </resources>

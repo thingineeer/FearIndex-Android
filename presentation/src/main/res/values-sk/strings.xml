@@ -217,4 +217,10 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="settings_menu_rate">Napísať recenziu</string>
     <string name="settings_menu_share">Zdieľať aplikáciu</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Porovnanie</string>
+    <string name="comparison_previous_close">Predchádzajúci</string>
+    <string name="comparison_1w_ago">Pred týždňom</string>
+    <string name="comparison_1m_ago">Pred mesiacom</string>
+    <string name="comparison_1y_ago">Pred rokom</string>
 </resources>

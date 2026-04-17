@@ -217,4 +217,10 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="settings_menu_rate">Napišite recenziju</string>
     <string name="settings_menu_share">Podijeli aplikaciju</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Usporedba</string>
+    <string name="comparison_previous_close">Prethodni</string>
+    <string name="comparison_1w_ago">Prije 1 tj.</string>
+    <string name="comparison_1m_ago">Prije 1 mj.</string>
+    <string name="comparison_1y_ago">Prije 1 god.</string>
 </resources>

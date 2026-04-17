@@ -217,4 +217,10 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="settings_menu_rate">Dejar una reseña</string>
     <string name="settings_menu_share">Compartir app</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Comparación</string>
+    <string name="comparison_previous_close">Día ant.</string>
+    <string name="comparison_1w_ago">Hace 1 sem.</string>
+    <string name="comparison_1m_ago">Hace 1 mes</string>
+    <string name="comparison_1y_ago">Hace 1 año</string>
 </resources>

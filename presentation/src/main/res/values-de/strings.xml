@@ -217,4 +217,10 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="settings_menu_rate">Bewertung schreiben</string>
     <string name="settings_menu_share">App teilen</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Vergleich</string>
+    <string name="comparison_previous_close">Vortag</string>
+    <string name="comparison_1w_ago">1W zuvor</string>
+    <string name="comparison_1m_ago">1M zuvor</string>
+    <string name="comparison_1y_ago">1J zuvor</string>
 </resources>

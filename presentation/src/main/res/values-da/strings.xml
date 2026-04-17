@@ -217,4 +217,10 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="settings_menu_rate">Skriv en anmeldelse</string>
     <string name="settings_menu_share">Del app</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Sammenligning</string>
+    <string name="comparison_previous_close">Forrige</string>
+    <string name="comparison_1w_ago">1 uge siden</string>
+    <string name="comparison_1m_ago">1 md. siden</string>
+    <string name="comparison_1y_ago">1 år siden</string>
 </resources>

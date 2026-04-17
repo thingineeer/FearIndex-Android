@@ -217,4 +217,10 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="settings_menu_rate">Scrie o recenzie</string>
     <string name="settings_menu_share">Distribuie aplicația</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Comparație</string>
+    <string name="comparison_previous_close">Ziua ant.</string>
+    <string name="comparison_1w_ago">Acum 1 săpt.</string>
+    <string name="comparison_1m_ago">Acum 1 lună</string>
+    <string name="comparison_1y_ago">Acum 1 an</string>
 </resources>

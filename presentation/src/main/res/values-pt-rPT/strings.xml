@@ -217,4 +217,10 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="settings_menu_rate">Deixar avaliação</string>
     <string name="settings_menu_share">Partilhar app</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Comparação</string>
+    <string name="comparison_previous_close">Dia ant.</string>
+    <string name="comparison_1w_ago">Há 1 sem.</string>
+    <string name="comparison_1m_ago">Há 1 mês</string>
+    <string name="comparison_1y_ago">Há 1 ano</string>
 </resources>

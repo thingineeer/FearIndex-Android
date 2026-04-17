@@ -217,4 +217,10 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="settings_menu_rate">Parašyti atsiliepimą</string>
     <string name="settings_menu_share">Dalintis programa</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Palyginimas</string>
+    <string name="comparison_previous_close">Ankstesnė</string>
+    <string name="comparison_1w_ago">Prieš 1 sav.</string>
+    <string name="comparison_1m_ago">Prieš 1 mėn.</string>
+    <string name="comparison_1y_ago">Prieš 1 m.</string>
 </resources>
