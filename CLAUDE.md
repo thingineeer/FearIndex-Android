@@ -318,7 +318,11 @@ stuckStatus/user_{deviceId}      # Admin SDK 전용
 
 ## Release Signing & Secrets
 
-모든 빌드/배포 비밀 파일은 **`~/fearindex-secrets/` 한 곳**에만 보관. 상세 규칙: `@.claude/rules/secrets.md`
+비밀 정보는 **두 저장소**에 나눠 보관:
+
+### 1. 파일 기반 비밀 — `~/fearindex-secrets/`
+
+빌드/서명용 바이너리 파일. 상세 규칙: `@.claude/rules/secrets.md`
 
 | 파일 | 경로 | 용도 |
 |---|---|---|
@@ -326,9 +330,43 @@ stuckStatus/user_{deviceId}      # Admin SDK 전용
 | Gradle 비밀번호 | `~/fearindex-secrets/gradle.properties` → `~/.gradle/gradle.properties` (install.sh가 복사) | `FEARINDEX_STORE_PASSWORD` 등 |
 | Firebase 설정 | `~/fearindex-secrets/google-services.json` → `app/google-services.json` (심볼릭 링크) | Firebase BoM 초기화 |
 
-- **SHA-1 / SHA-256**: Firebase Console에 등록 완료
 - **새 맥 셋업**: 다른 맥에서 `~/fearindex-secrets/` 통째로 AirDrop → `bash ~/fearindex-secrets/install.sh` 실행
 - **절대 커밋 금지** (git hook + `.gitignore`로 차단)
+
+### 2. 텍스트 토큰 — `~/thingineeer-env/projects/fearindex-android/.env`
+
+GitHub private repo `thingineeer/thingineeer-env` 에 저장. **다른 머신에서도 즉시 사용 가능**.
+
+| 항목 | 값 (키 이름) |
+|---|---|
+| Firebase Project ID | `FIREBASE_PROJECT_ID` (`fear-index-a4f4b`) |
+| Firebase Project Number | `FIREBASE_PROJECT_NUMBER` (`8243517543`) |
+| Android 패키지명 (prod/debug) | `ANDROID_PACKAGE_PROD` / `ANDROID_PACKAGE_DEBUG` |
+| AdMob App/Banner ID | `ADMOB_APP_ID` / `ADMOB_HOME_BANNER` |
+| App Check Debug Tokens (머신별) | `APPCHECK_DEBUG_TOKEN_MACBOOK{1,2}_EMULATOR` |
+| Keystore SHA-1 / SHA-256 | `KEYSTORE_SHA1` / `KEYSTORE_SHA256` |
+| Google Play / Firebase Console 계정 | `PLAY_CONSOLE_ACCOUNT` / `FIREBASE_CONSOLE_ACCOUNT` |
+| Cloud Functions 이름들 | `FN_SUBMIT_STUCK_STATUS` 등 |
+
+**빠른 조회**:
+```bash
+cat ~/thingineeer-env/projects/fearindex-android/.env
+grep APPCHECK ~/thingineeer-env/projects/fearindex-android/.env
+```
+
+**새 맥 셋업** (한 번만):
+```bash
+gh auth login
+gh repo clone thingineeer/thingineeer-env ~/thingineeer-env
+```
+
+**값 갱신 (예: 새 App Check debug token 추가)**:
+```bash
+vi ~/thingineeer-env/projects/fearindex-android/.env
+cd ~/thingineeer-env && git add -A && git commit -m "update: fearindex-android <변경내용>" && git push
+```
+
+- **SHA-1 / SHA-256**: Firebase Console에 등록 완료
 
 자세한 배포 절차는 `@.claude/memory/deployment.md` 및 `@docs/GOOGLE-PLAY-INTERNAL-TEST.md` 참조.
 

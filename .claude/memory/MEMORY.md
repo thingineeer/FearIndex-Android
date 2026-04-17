@@ -8,7 +8,10 @@
 - **iOS 대칭성**: 모든 기능은 iOS/macOS 프로젝트(`th1ngjin.FearIndex-iOS`, `th1ngjin.FearIndex-macOS`)와 **대시보드/Analytics/Crashlytics에서 일관**되어야 함. 상세: @memory/ios-parity.md
 - **메모리 경로**: `.claude/memory/` 안에만. 글로벌 `~/.claude/projects/...` 절대 사용 금지.
 - **Git**: 피처 브랜치 → 버전 브랜치 → main 머지. cherry-pick/force push 금지. 상세: @rules/git-workflow.md
-- **Secrets**: `~/fearindex-secrets/` 폴더에만 (keystore / gradle.properties / google-services.json). 새 맥 셋업은 `bash ~/fearindex-secrets/install.sh`. 상세: @rules/secrets.md
+- **Secrets**: 두 저장소 분리 보관
+  - 파일(keystore/gradle/google-services): `~/fearindex-secrets/` + install.sh
+  - 텍스트 토큰(Firebase/AdMob/AppCheck): `~/thingineeer-env/projects/fearindex-android/.env` (GitHub private repo, 다른 머신 공유)
+  - 상세: @rules/secrets.md + @memory/secrets-env.md
 
 ## 문서 인덱스
 
@@ -18,6 +21,7 @@
 - [Deployment](deployment.md) — Keystore/AAB/Play Console/AdMob 상수와 절차
 - [iOS Parity](ios-parity.md) — iOS와 동기화해야 할 항목 체크리스트
 - [Firebase Setup](firebase-setup.md) — Firebase 프로젝트 구조, Functions, Firestore, App Check
+- [Secrets Env](secrets-env.md) — `~/thingineeer-env/projects/fearindex-android/.env` 토큰/ID 저장 위치 및 키 목록
 
 ### 규칙 (`.claude/rules/`)
 
