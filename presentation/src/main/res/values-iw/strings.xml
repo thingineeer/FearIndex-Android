@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">מדד פחד וחמדנות</string>
+    <string name="splash_subtitle">מדד פחד וחמדנות</string>
+    <string name="splash_disclaimer">טווחים קיצוניים (0-24, 76-100) עשויים לאותת על הזדמנויות קונטריאריות.
+שקול יחד עם פנדמנטלס, תזרים ומאקרו.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">פחד קיצוני</string>
     <string name="rating_fear">פחד</string>
@@ -183,4 +189,24 @@
     <string name="share_content_description">שיתוף</string>
     <string name="retry_button">נסה שוב</string>
     <string name="home_updated_at">עודכן: %1$s</string>
+
+    <!-- Insight Cards (new) -->
+    <string name="insight_buy_signal_title">אות קנייה</string>
+    <string name="insight_buy_signal_summary">%1$s קניות היסטוריות בטווח זה הניבו תשואות ממוצעות חזקות</string>
+    <string name="insight_overheat_title">אזהרת התחממות יתר</string>
+    <string name="insight_overheat_summary">אזור תאוות בצע קיצונית. נתונים היסטוריים מצביעים על סבירות לתיקון.</string>
+    <string name="insight_historical_return_title">מה אם היית קונה אז?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d תקופות עבר דומות ל־%2$d נקודות הנוכחיות</string>
+    <string name="insight_historical_return_summary_empty">%1$s — נתונים היסטוריים מוגבלים בקרבת %2$d הנקודות הנוכחיות</string>
+    <string name="insight_return_chart_title_market">מה אם היית משקיע ב-S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">מה אם היית משקיע ב-Bitcoin?</string>
+    <string name="insight_return_chart_summary">כיצד היו נראות התשואות אם היית משקיע בטווח זה?</string>
+    <string name="insight_drawdown_title">ניתוח ירידה מקסימלית (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">בדוק ירידה מקסימלית ותשואה שנתית באזורי פחד קיצוני.</string>
+    <string name="insight_drawdown_summary_fear">השווה סיכון ותשואה צפויה באזורי פחד.</string>
+    <string name="insight_drawdown_summary_neutral">תנודתיות ותשואה צפויה באזור הנייטרלי.</string>
+    <string name="insight_drawdown_summary_greed">בדוק סיכוני ירידה באזורי תאוות בצע.</string>
+    <string name="insight_drawdown_summary_extreme_greed">אזורי תאוות בצע קיצונית עלולים להיתקל בתיקונים משמעותיים.</string>
+    <string name="insight_velocity_title">מהירות מדד הפחד</string>
+    <string name="insight_velocity_inflection_suffix"> (זוהתה נקודת מפנה)</string>
 </resources>

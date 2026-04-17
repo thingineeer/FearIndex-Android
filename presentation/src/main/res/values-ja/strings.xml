@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Fear &amp; Greed Index</string>
+    <string name="splash_subtitle">恐怖・貪欲指数</string>
+    <string name="splash_disclaimer">極端な範囲(0-24, 76-100)は逆張りシグナルとして参考に。
+ファンダメンタルズ・需給・マクロと併せて解釈推奨。</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">極度の恐怖</string>
     <string name="rating_fear">恐怖</string>
@@ -173,6 +179,26 @@
     <string name="trend_stable">安定</string>
     <string name="trend_rally_accelerating">上昇加速</string>
     <string name="trend_rally_decelerating">上昇鈍化</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">買いシグナル</string>
+    <string name="insight_buy_signal_summary">このレンジでの過去 %1$s 回の買いは平均収益率が高かったです</string>
+    <string name="insight_overheat_title">過熱警告</string>
+    <string name="insight_overheat_summary">極度の貪欲ゾーンです。過去データは調整の可能性を示唆しています。</string>
+    <string name="insight_historical_return_title">その時に買っていたら?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — 現在の %2$d 点に類似した過去の期間 %3$d 件</string>
+    <string name="insight_historical_return_summary_empty">%1$s — 現在の %2$d 点近辺の過去データが限定的です</string>
+    <string name="insight_return_chart_title_market">S&amp;P 500 に投資していたら?</string>
+    <string name="insight_return_chart_title_crypto">ビットコインに投資していたら?</string>
+    <string name="insight_return_chart_summary">このレンジに投資した場合の収益はどうなっていたか?</string>
+    <string name="insight_drawdown_title">最大ドローダウン分析 (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">極度の恐怖ゾーンでの最大ドローダウンと1年収益率を確認してください。</string>
+    <string name="insight_drawdown_summary_fear">恐怖ゾーンでのリスクと期待収益を比較します。</string>
+    <string name="insight_drawdown_summary_neutral">中立ゾーンでのボラティリティと期待収益です。</string>
+    <string name="insight_drawdown_summary_greed">貪欲ゾーンでの下落リスクを確認してください。</string>
+    <string name="insight_drawdown_summary_extreme_greed">極度の貪欲ゾーンでは大きな調整が起こる可能性があります。</string>
+    <string name="insight_velocity_title">恐怖指数のスピード</string>
+    <string name="insight_velocity_inflection_suffix"> (変曲点検出)</string>
 
     <!-- Feature screen common labels -->
     <string name="tab_market">市場</string>

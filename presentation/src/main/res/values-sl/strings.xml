@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Indeks Strahu &amp; Pohlepa</string>
+    <string name="splash_subtitle">Indeks Strahu &amp; Pohlepa</string>
+    <string name="splash_disclaimer">Ekstremni razponi (0-24, 76-100) lahko signalizirajo kontrarianske priložnosti.
+Upoštevajte skupaj z osnove, tokom in makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Ekstremni Strah</string>
     <string name="rating_fear">Strah</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Deli</string>
     <string name="retry_button">Poskusi znova</string>
     <string name="home_updated_at">Posodobljeno: %1$s</string>
+
+    <!-- New Insight Cards -->
+    <string name="insight_buy_signal_title">Signal za nakup</string>
+    <string name="insight_buy_signal_summary">%1$s zgodovinskih nakupov v tem območju je imelo visoko povprečno donosnost</string>
+    <string name="insight_overheat_title">Opozorilo o pregrevanju</string>
+    <string name="insight_overheat_summary">Območje ekstremne pohlepnosti. Zgodovinski podatki nakazujejo verjetnost korekcije.</string>
+    <string name="insight_historical_return_title">Kaj pa, če bi kupili takrat?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d preteklih obdobij, podobnih trenutnim %2$d točkam</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Omejeni zgodovinski podatki v bližini trenutnih %2$d točk</string>
+    <string name="insight_return_chart_title_market">Kaj pa, če bi investirali v S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Kaj pa, če bi investirali v Bitcoin?</string>
+    <string name="insight_return_chart_summary">Kakšna bi bila donosnost, če bi investirali v tem območju?</string>
+    <string name="insight_drawdown_title">Analiza največjega padca (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Preverite največji padec in 1-letno donosnost v območjih ekstremnega strahu.</string>
+    <string name="insight_drawdown_summary_fear">Primerjajte tveganje in pričakovani donos v območjih strahu.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilnost in pričakovana donosnost v nevtralnem območju.</string>
+    <string name="insight_drawdown_summary_greed">Preverite tveganje padca v območjih pohlepa.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Območja ekstremne pohlepnosti se lahko soočijo z večjimi korekcijami.</string>
+    <string name="insight_velocity_title">Hitrost indeksa strahu</string>
+    <string name="insight_velocity_inflection_suffix"> (zaznan prelom)</string>
 </resources>

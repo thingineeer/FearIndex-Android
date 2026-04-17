@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Fear &amp; Greed Index</string>
+    <string name="splash_subtitle">Korku ve Açgözlülük Endeksi</string>
+    <string name="splash_disclaimer">Aşırı aralıklar (0-24, 76-100) ters yönlü fırsatlara işaret edebilir.
+Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Aşırı Korku</string>
     <string name="rating_fear">Korku</string>
@@ -183,4 +189,24 @@
     <string name="share_content_description">Paylaş</string>
     <string name="retry_button">Tekrar dene</string>
     <string name="home_updated_at">Güncellendi: %1$s</string>
+
+    <!-- Insight Cards (new) -->
+    <string name="insight_buy_signal_title">Al Sinyali</string>
+    <string name="insight_buy_signal_summary">Bu aralıktaki %1$s geçmiş alım, güçlü ortalama getiriler sağladı</string>
+    <string name="insight_overheat_title">Aşırı Isınma Uyarısı</string>
+    <string name="insight_overheat_summary">Aşırı açgözlülük bölgesi. Tarihsel veriler düzeltme olasılığını gösteriyor.</string>
+    <string name="insight_historical_return_title">O zaman alsaydın ne olurdu?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — mevcut %2$d puana benzer %3$d geçmiş dönem</string>
+    <string name="insight_historical_return_summary_empty">%1$s — mevcut %2$d puan civarında sınırlı tarihsel veri</string>
+    <string name="insight_return_chart_title_market">S&amp;P 500\'e yatırım yapsaydın?</string>
+    <string name="insight_return_chart_title_crypto">Bitcoin\'e yatırım yapsaydın?</string>
+    <string name="insight_return_chart_summary">Bu aralıkta yatırım yapsaydın getiriler nasıl olurdu?</string>
+    <string name="insight_drawdown_title">Maksimum Düşüş Analizi (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Aşırı korku bölgelerinde maksimum düşüşü ve 1 yıllık getiriyi kontrol edin.</string>
+    <string name="insight_drawdown_summary_fear">Korku bölgelerinde risk ve beklenen getiriyi karşılaştırın.</string>
+    <string name="insight_drawdown_summary_neutral">Nötr bölgede oynaklık ve beklenen getiri.</string>
+    <string name="insight_drawdown_summary_greed">Açgözlülük bölgelerinde aşağı yönlü riski kontrol edin.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Aşırı açgözlülük bölgeleri büyük düzeltmelerle karşılaşabilir.</string>
+    <string name="insight_velocity_title">Korku Endeksi Hızı</string>
+    <string name="insight_velocity_inflection_suffix"> (dönüm noktası tespit edildi)</string>
 </resources>

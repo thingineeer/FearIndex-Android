@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Indeks Ketakutan &amp; Keserakahan</string>
+    <string name="splash_subtitle">Indeks Ketakutan &amp; Keserakahan</string>
+    <string name="splash_disclaimer">Rentang ekstrem (0–24, 76–100) dapat menandakan peluang kontrarian.
+Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Ketakutan Ekstrem</string>
     <string name="rating_fear">Ketakutan</string>
@@ -183,4 +189,24 @@
     <string name="share_content_description">Bagikan</string>
     <string name="retry_button">Coba lagi</string>
     <string name="home_updated_at">Diperbarui: %1$s</string>
+
+    <!-- Insight Cards (new) -->
+    <string name="insight_buy_signal_title">Sinyal Beli</string>
+    <string name="insight_buy_signal_summary">%1$s pembelian historis di rentang ini memiliki rata-rata imbal hasil yang kuat</string>
+    <string name="insight_overheat_title">Peringatan Terlalu Panas</string>
+    <string name="insight_overheat_summary">Zona keserakahan ekstrem. Data historis menunjukkan koreksi mungkin terjadi.</string>
+    <string name="insight_historical_return_title">Bagaimana jika Anda membeli saat itu?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d periode masa lalu serupa dengan %2$d poin saat ini</string>
+    <string name="insight_historical_return_summary_empty">%1$s — data historis terbatas di sekitar %2$d poin saat ini</string>
+    <string name="insight_return_chart_title_market">Jika Anda berinvestasi di S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Jika Anda berinvestasi di Bitcoin?</string>
+    <string name="insight_return_chart_summary">Seperti apa imbal hasilnya jika Anda berinvestasi di rentang ini?</string>
+    <string name="insight_drawdown_title">Analisis Drawdown Maksimal (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Periksa drawdown maksimal dan imbal hasil 1 tahun di zona ketakutan ekstrem.</string>
+    <string name="insight_drawdown_summary_fear">Bandingkan risiko dan imbal hasil yang diharapkan di zona ketakutan.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilitas dan imbal hasil yang diharapkan di zona netral.</string>
+    <string name="insight_drawdown_summary_greed">Periksa risiko penurunan di zona keserakahan.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Zona keserakahan ekstrem dapat menghadapi koreksi besar.</string>
+    <string name="insight_velocity_title">Kecepatan Indeks Ketakutan</string>
+    <string name="insight_velocity_inflection_suffix"> (titik belok terdeteksi)</string>
 </resources>

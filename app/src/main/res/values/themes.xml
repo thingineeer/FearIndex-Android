@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- iOS 스타일 Splash: 흰 배경 + 런처 아이콘 foreground만 보여줌 (iOS UILaunchScreen_Generation=YES와 대칭) -->
+    <style name="Theme.FearIndex.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/ic_launcher_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
+        <item name="postSplashScreenTheme">@style/Theme.FearIndex</item>
+    </style>
+
     <style name="Theme.FearIndex" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/ic_launcher_background</item>
     </style>
 </resources>

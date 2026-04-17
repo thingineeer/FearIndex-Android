@@ -133,11 +133,19 @@ fun FearIndexNavHost() {
                     onNotificationSettingsClick = {
                         navController.navigate("notification_settings")
                     },
+                    onPrivacyPolicyClick = {
+                        navController.navigate("privacy_policy")
+                    },
                 )
             }
             composable("notification_settings") {
                 NotificationSettingsScreen(
                     onBackClick = { navController.popBackStack() },
+                )
+            }
+            composable("privacy_policy") {
+                th1ngjin.fearindex.presentation.feature.privacy.PrivacyPolicyScreen(
+                    onBack = { navController.popBackStack() },
                 )
             }
         }

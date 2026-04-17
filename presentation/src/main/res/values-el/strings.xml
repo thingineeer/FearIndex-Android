@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Δείκτης Φόβου &amp; Απληστίας</string>
+    <string name="splash_subtitle">Δείκτης Φόβου &amp; Απληστίας</string>
+    <string name="splash_disclaimer">Τα ακραία εύρη (0-24, 76-100) μπορούν να υποδηλώνουν αντίθετες ευκαιρίες.
+Λάβετε υπόψη μαζί με θεμελιώδη στοιχεία, ροές και μακροοικονομία.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Ακραίος Φόβος</string>
     <string name="rating_fear">Φόβος</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Κοινοποίηση</string>
     <string name="retry_button">Επανάληψη</string>
     <string name="home_updated_at">Ενημερώθηκε: %1$s</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">Σήμα αγοράς</string>
+    <string name="insight_buy_signal_summary">%1$s ιστορικές αγορές σε αυτό το εύρος είχαν ισχυρές μέσες αποδόσεις</string>
+    <string name="insight_overheat_title">Προειδοποίηση υπερθέρμανσης</string>
+    <string name="insight_overheat_summary">Ζώνη ακραίας απληστίας. Τα ιστορικά δεδομένα δείχνουν ότι είναι πιθανή διόρθωση.</string>
+    <string name="insight_historical_return_title">Κι αν είχατε αγοράσει τότε;</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d προηγούμενες περίοδοι παρόμοιες με τους τρέχοντες %2$d πόντους</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Περιορισμένα ιστορικά δεδομένα κοντά στους τρέχοντες %2$d πόντους</string>
+    <string name="insight_return_chart_title_market">Κι αν είχατε επενδύσει στον S&amp;P 500;</string>
+    <string name="insight_return_chart_title_crypto">Κι αν είχατε επενδύσει σε Bitcoin;</string>
+    <string name="insight_return_chart_summary">Πώς θα ήταν οι αποδόσεις αν είχατε επενδύσει σε αυτό το εύρος;</string>
+    <string name="insight_drawdown_title">Ανάλυση μέγιστης πτώσης (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Ελέγξτε τη μέγιστη πτώση και την απόδοση 1Ε σε ζώνες ακραίου φόβου.</string>
+    <string name="insight_drawdown_summary_fear">Συγκρίνετε τον κίνδυνο και την αναμενόμενη απόδοση σε ζώνες φόβου.</string>
+    <string name="insight_drawdown_summary_neutral">Μεταβλητότητα και αναμενόμενη απόδοση στην ουδέτερη ζώνη.</string>
+    <string name="insight_drawdown_summary_greed">Ελέγξτε τον κίνδυνο πτώσης σε ζώνες απληστίας.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Οι ζώνες ακραίας απληστίας μπορεί να αντιμετωπίσουν σημαντικές διορθώσεις.</string>
+    <string name="insight_velocity_title">Ταχύτητα δείκτη φόβου</string>
+    <string name="insight_velocity_inflection_suffix"> (εντοπίστηκε σημείο καμπής)</string>
 </resources>

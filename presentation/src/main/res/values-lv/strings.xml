@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Baiļu un alkatības indekss</string>
+    <string name="splash_subtitle">Baiļu un alkatības indekss</string>
+    <string name="splash_disclaimer">Galējie diapazoni (0–24, 76–100) var signalizēt par kontrar iespējām.
+Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Ārkārtējas bailes</string>
     <string name="rating_fear">Bailes</string>
@@ -123,6 +129,26 @@
     <string name="insight_detail_where_from_title">No kurienes šie skaitļi?</string>
     <string name="insight_detail_where_from_body">%2$s ienesīgums aprēķināts pēc iepriekšējiem periodiem baiļu indeksa %1$d tuvumā.</string>
     <string name="insight_detail_action_guide_title">Ieguldījumu rīcības ceļvedis</string>
+
+    <!-- Insight cards -->
+    <string name="insight_buy_signal_title">Pirkšanas signāls</string>
+    <string name="insight_buy_signal_summary">%1$s vēsturiskie pirkumi šajā diapazonā deva spēcīgu vidējo ienesīgumu</string>
+    <string name="insight_overheat_title">Pārkaršanas brīdinājums</string>
+    <string name="insight_overheat_summary">Ekstrēmas alkatības zona. Vēsturiskie dati liecina, ka iespējama korekcija.</string>
+    <string name="insight_historical_return_title">Ko darītu, ja būtu pircis tad?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d iepriekšēji periodi, līdzīgi pašreizējiem %2$d punktiem</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Ierobežoti vēsturiskie dati pašreizējo %2$d punktu tuvumā</string>
+    <string name="insight_return_chart_title_market">Ja būtu ieguldījis S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Ja būtu ieguldījis Bitcoin?</string>
+    <string name="insight_return_chart_summary">Kā izskatītos ienesīgums, ja būtu ieguldījis šajā diapazonā?</string>
+    <string name="insight_drawdown_title">Maksimālā krituma analīze (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Pārbaudi maksimālo kritumu un 1G ienesīgumu ekstrēmas baiļu zonās.</string>
+    <string name="insight_drawdown_summary_fear">Salīdzini risku un gaidāmo ienesīgumu baiļu zonās.</string>
+    <string name="insight_drawdown_summary_neutral">Svārstīgums un gaidāmais ienesīgums neitrālajā zonā.</string>
+    <string name="insight_drawdown_summary_greed">Pārbaudi krituma risku alkatības zonās.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Ekstrēmas alkatības zonas var piedzīvot lielas korekcijas.</string>
+    <string name="insight_velocity_title">Baiļu indeksa ātrums</string>
+    <string name="insight_velocity_inflection_suffix"> (konstatēts pagrieziena punkts)</string>
 
     <!-- Period labels -->
     <string name="period_month_1">1 mēn.</string>

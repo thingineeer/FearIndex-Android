@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Frygt &amp; Grådighed Indeks</string>
+    <string name="splash_subtitle">Frygt &amp; Grådighed Indeks</string>
+    <string name="splash_disclaimer">Ekstreme intervaller (0-24, 76-100) kan signalere kontrare muligheder.
+Overvej sammen med fundamentals, flow og makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Ekstrem frygt</string>
     <string name="rating_fear">Frygt</string>
@@ -123,6 +129,26 @@
     <string name="insight_detail_where_from_title">Hvor kommer disse tal fra?</string>
     <string name="insight_detail_where_from_body">%2$s-afkast beregnet ud fra tidligere perioder nær frygtindeks %1$d.</string>
     <string name="insight_detail_action_guide_title">Investeringsvejledning</string>
+
+    <!-- Insight cards -->
+    <string name="insight_buy_signal_title">Købssignal</string>
+    <string name="insight_buy_signal_summary">%1$s historiske køb i dette interval havde stærkt gennemsnitligt afkast</string>
+    <string name="insight_overheat_title">Overophedningsadvarsel</string>
+    <string name="insight_overheat_summary">Zone med ekstrem grådighed. Historiske data antyder, at en korrektion er sandsynlig.</string>
+    <string name="insight_historical_return_title">Hvad hvis du havde købt dengang?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d tidligere perioder, der ligner nuværende %2$d point</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Begrænsede historiske data nær nuværende %2$d point</string>
+    <string name="insight_return_chart_title_market">Hvad hvis du havde investeret i S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Hvad hvis du havde investeret i Bitcoin?</string>
+    <string name="insight_return_chart_summary">Hvordan ville afkastet se ud, hvis du havde investeret i dette interval?</string>
+    <string name="insight_drawdown_title">Analyse af maks. nedgang (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Tjek maks. nedgang og 1Å-afkast i zoner med ekstrem frygt.</string>
+    <string name="insight_drawdown_summary_fear">Sammenlign risiko og forventet afkast i frygtzoner.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilitet og forventet afkast i den neutrale zone.</string>
+    <string name="insight_drawdown_summary_greed">Tjek nedadgående risiko i grådighedszoner.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Zoner med ekstrem grådighed kan stå over for store korrektioner.</string>
+    <string name="insight_velocity_title">Frygtindeksets hastighed</string>
+    <string name="insight_velocity_inflection_suffix"> (vendepunkt registreret)</string>
 
     <!-- Period labels -->
     <string name="period_month_1">1M</string>

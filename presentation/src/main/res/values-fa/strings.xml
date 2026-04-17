@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">شاخص ترس و طمع</string>
+    <string name="splash_subtitle">شاخص ترس و طمع</string>
+    <string name="splash_disclaimer">محدوده‌های افراطی (۰-۲۴، ۷۶-۱۰۰) ممکن است نشان‌دهنده فرصت‌های معکوس باشند.
+به همراه اصول، جریان و اقتصاد کلان در نظر بگیرید.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">ترس شدید</string>
     <string name="rating_fear">ترس</string>
@@ -183,4 +189,24 @@
     <string name="share_content_description">اشتراک‌گذاری</string>
     <string name="retry_button">تلاش مجدد</string>
     <string name="home_updated_at">به‌روزرسانی: %1$s</string>
+
+    <!-- Insight Cards (new) -->
+    <string name="insight_buy_signal_title">سیگنال خرید</string>
+    <string name="insight_buy_signal_summary">%1$s خرید تاریخی در این محدوده میانگین بازده قوی داشت</string>
+    <string name="insight_overheat_title">هشدار داغ‌شدگی</string>
+    <string name="insight_overheat_summary">منطقه طمع شدید. داده‌های تاریخی احتمال اصلاح را نشان می‌دهد.</string>
+    <string name="insight_historical_return_title">اگر آن موقع می‌خریدید چه می‌شد؟</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d دوره گذشته مشابه %2$d امتیاز فعلی</string>
+    <string name="insight_historical_return_summary_empty">%1$s — داده‌های تاریخی محدود نزدیک %2$d امتیاز فعلی</string>
+    <string name="insight_return_chart_title_market">اگر در S&amp;P 500 سرمایه‌گذاری می‌کردید؟</string>
+    <string name="insight_return_chart_title_crypto">اگر در Bitcoin سرمایه‌گذاری می‌کردید؟</string>
+    <string name="insight_return_chart_summary">اگر در این محدوده سرمایه‌گذاری می‌کردید، بازده چگونه بود؟</string>
+    <string name="insight_drawdown_title">تحلیل حداکثر افت (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">حداکثر افت و بازده یک‌ساله را در مناطق ترس شدید بررسی کنید.</string>
+    <string name="insight_drawdown_summary_fear">ریسک و بازده مورد انتظار را در مناطق ترس مقایسه کنید.</string>
+    <string name="insight_drawdown_summary_neutral">نوسان و بازده مورد انتظار در منطقه خنثی.</string>
+    <string name="insight_drawdown_summary_greed">ریسک نزولی را در مناطق طمع بررسی کنید.</string>
+    <string name="insight_drawdown_summary_extreme_greed">مناطق طمع شدید می‌توانند با اصلاحات بزرگ مواجه شوند.</string>
+    <string name="insight_velocity_title">سرعت شاخص ترس</string>
+    <string name="insight_velocity_inflection_suffix"> (نقطه عطف شناسایی شد)</string>
 </resources>

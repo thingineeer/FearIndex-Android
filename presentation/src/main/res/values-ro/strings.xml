@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Indicele Frică &amp; Lăcomie</string>
+    <string name="splash_subtitle">Indicele Frică &amp; Lăcomie</string>
+    <string name="splash_disclaimer">Intervalele extreme (0-24, 76-100) pot semnala oportunități contrarian.
+Luați în considerare și fundamentele, fluxul și macro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Frică Extremă</string>
     <string name="rating_fear">Frică</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Partajează</string>
     <string name="retry_button">Reîncearcă</string>
     <string name="home_updated_at">Actualizat: %1$s</string>
+
+    <!-- New Insight Cards -->
+    <string name="insight_buy_signal_title">Semnal de cumpărare</string>
+    <string name="insight_buy_signal_summary">%1$s achiziții istorice în acest interval au avut randamente medii ridicate</string>
+    <string name="insight_overheat_title">Avertisment de supraîncălzire</string>
+    <string name="insight_overheat_summary">Zonă de lăcomie extremă. Datele istorice sugerează o corecție probabilă.</string>
+    <string name="insight_historical_return_title">Dacă ai fi cumpărat atunci?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d perioade trecute similare cu cele %2$d puncte actuale</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Date istorice limitate în jurul celor %2$d puncte actuale</string>
+    <string name="insight_return_chart_title_market">Dacă ai fi investit în S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Dacă ai fi investit în Bitcoin?</string>
+    <string name="insight_return_chart_summary">Cum ar arăta randamentele dacă ai fi investit în acest interval?</string>
+    <string name="insight_drawdown_title">Analiza scăderii maxime (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Verifică scăderea maximă și randamentul pe 1 an în zonele de frică extremă.</string>
+    <string name="insight_drawdown_summary_fear">Compară riscul și randamentul așteptat în zonele de frică.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilitatea și randamentul așteptat în zona neutră.</string>
+    <string name="insight_drawdown_summary_greed">Verifică riscul de scădere în zonele de lăcomie.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Zonele de lăcomie extremă pot înfrunta corecții majore.</string>
+    <string name="insight_velocity_title">Viteza indicelui de frică</string>
+    <string name="insight_velocity_inflection_suffix"> (punct de inflexiune detectat)</string>
 </resources>

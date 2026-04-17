@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Fear &amp; Greed Index</string>
+    <string name="splash_subtitle">Indice Paura e Avidità</string>
+    <string name="splash_disclaimer">I range estremi (0-24, 76-100) possono segnalare opportunità contrarian.
+Considera insieme ai fondamentali, flussi e macro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Paura Estrema</string>
     <string name="rating_fear">Paura</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Condividi</string>
     <string name="retry_button">Riprova</string>
     <string name="home_updated_at">Aggiornato: %1$s</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">Segnale di acquisto</string>
+    <string name="insight_buy_signal_summary">%1$s acquisti storici in questo intervallo hanno ottenuto forti rendimenti medi</string>
+    <string name="insight_overheat_title">Avviso di surriscaldamento</string>
+    <string name="insight_overheat_summary">Zona di avidità estrema. I dati storici suggeriscono che una correzione è probabile.</string>
+    <string name="insight_historical_return_title">E se avessi comprato allora?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d periodi passati simili ai %2$d punti attuali</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Dati storici limitati vicino ai %2$d punti attuali</string>
+    <string name="insight_return_chart_title_market">E se avessi investito nell\'S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">E se avessi investito in Bitcoin?</string>
+    <string name="insight_return_chart_summary">Come sarebbero i rendimenti se avessi investito in questo intervallo?</string>
+    <string name="insight_drawdown_title">Analisi del drawdown massimo (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Controlla il drawdown massimo e il rendimento a 1A nelle zone di paura estrema.</string>
+    <string name="insight_drawdown_summary_fear">Confronta il rischio e il rendimento atteso nelle zone di paura.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilità e rendimento atteso nella zona neutra.</string>
+    <string name="insight_drawdown_summary_greed">Controlla il rischio al ribasso nelle zone di avidità.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Le zone di avidità estrema possono affrontare correzioni importanti.</string>
+    <string name="insight_velocity_title">Velocità dell\'indice di paura</string>
+    <string name="insight_velocity_inflection_suffix"> (inflessione rilevata)</string>
 </resources>

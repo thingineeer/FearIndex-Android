@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Fear &amp; Greed Index</string>
+    <string name="splash_subtitle">مؤشر الخوف والجشع</string>
+    <string name="splash_disclaimer">النطاقات المتطرفة (0-24، 76-100) قد تشير إلى فرص معاكسة للاتجاه.
+قم بتقييمها مع التحليل الأساسي وتدفقات الأموال والبيانات الكلية.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">خوف شديد</string>
     <string name="rating_fear">خوف</string>
@@ -183,4 +189,24 @@
     <string name="share_content_description">مشاركة</string>
     <string name="retry_button">إعادة المحاولة</string>
     <string name="home_updated_at">تم التحديث: %1$s</string>
+
+    <!-- Insight Cards (new) -->
+    <string name="insight_buy_signal_title">إشارة شراء</string>
+    <string name="insight_buy_signal_summary">%1$s عملية شراء تاريخية في هذا النطاق حققت متوسط عوائد قوي</string>
+    <string name="insight_overheat_title">تحذير من الإفراط</string>
+    <string name="insight_overheat_summary">منطقة جشع شديد. تشير البيانات التاريخية إلى احتمال حدوث تصحيح.</string>
+    <string name="insight_historical_return_title">ماذا لو اشتريت حينها؟</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d فترة سابقة مشابهة للحالية %2$d نقطة</string>
+    <string name="insight_historical_return_summary_empty">%1$s — بيانات تاريخية محدودة قرب %2$d نقطة الحالية</string>
+    <string name="insight_return_chart_title_market">ماذا لو استثمرت في S&amp;P 500؟</string>
+    <string name="insight_return_chart_title_crypto">ماذا لو استثمرت في Bitcoin؟</string>
+    <string name="insight_return_chart_summary">كيف ستبدو العوائد إذا استثمرت في هذا النطاق؟</string>
+    <string name="insight_drawdown_title">تحليل الحد الأقصى للتراجع (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">تحقق من أقصى تراجع وعائد سنة واحدة في مناطق الخوف الشديد.</string>
+    <string name="insight_drawdown_summary_fear">قارن المخاطر والعائد المتوقع في مناطق الخوف.</string>
+    <string name="insight_drawdown_summary_neutral">التقلب والعائد المتوقع في المنطقة المحايدة.</string>
+    <string name="insight_drawdown_summary_greed">تحقق من مخاطر الهبوط في مناطق الجشع.</string>
+    <string name="insight_drawdown_summary_extreme_greed">يمكن أن تواجه مناطق الجشع الشديد تصحيحات كبيرة.</string>
+    <string name="insight_velocity_title">سرعة مؤشر الخوف</string>
+    <string name="insight_velocity_inflection_suffix"> (تم اكتشاف نقطة تحول)</string>
 </resources>

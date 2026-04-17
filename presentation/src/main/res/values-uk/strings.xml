@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Індекс страху і жадібності</string>
+    <string name="splash_subtitle">Індекс страху і жадібності</string>
+    <string name="splash_disclaimer">Крайні діапазони (0-24, 76-100) можуть вказувати на протилежні можливості.
+Враховуйте разом з фундаментальними показниками, потоками та макроекономікою.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Крайній страх</string>
     <string name="rating_fear">Страх</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Поділитися</string>
     <string name="retry_button">Повторити</string>
     <string name="home_updated_at">Оновлено: %1$s</string>
+
+    <!-- New Insight Cards -->
+    <string name="insight_buy_signal_title">Сигнал до покупки</string>
+    <string name="insight_buy_signal_summary">%1$s історичних покупок у цьому діапазоні показали високу середню прибутковість</string>
+    <string name="insight_overheat_title">Попередження про перегрів</string>
+    <string name="insight_overheat_summary">Зона екстремальної жадібності. Історичні дані свідчать про ймовірність корекції.</string>
+    <string name="insight_historical_return_title">А якби ви купили тоді?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d минулих періодів, схожих на поточні %2$d пунктів</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Обмежені історичні дані біля поточних %2$d пунктів</string>
+    <string name="insight_return_chart_title_market">Якби ви інвестували в S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Якби ви інвестували в Bitcoin?</string>
+    <string name="insight_return_chart_summary">Якою була б прибутковість при інвестуванні в цьому діапазоні?</string>
+    <string name="insight_drawdown_title">Аналіз максимальної просадки (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Перевірте максимальну просадку та прибутковість за 1 рік у зонах екстремального страху.</string>
+    <string name="insight_drawdown_summary_fear">Порівняйте ризик і очікувану прибутковість у зонах страху.</string>
+    <string name="insight_drawdown_summary_neutral">Волатильність і очікувана прибутковість у нейтральній зоні.</string>
+    <string name="insight_drawdown_summary_greed">Перевірте ризик зниження в зонах жадібності.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Зони екстремальної жадібності можуть зіткнутися з великими корекціями.</string>
+    <string name="insight_velocity_title">Швидкість індексу страху</string>
+    <string name="insight_velocity_inflection_suffix"> (виявлено перелом)</string>
 </resources>

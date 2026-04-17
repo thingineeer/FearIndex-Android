@@ -1,5 +1,10 @@
 package th1ngjin.fearindex.presentation.feature.settings
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -25,14 +30,23 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.component.AdBanner
 
 @Composable
 fun SettingsScreen(
     onNotificationSettingsClick: () -> Unit = {},
+    onPrivacyPolicyClick: () -> Unit = {},
 ) {
+    val context = LocalContext.current
+    val versionName = rememberAppVersion(context)
+    val shareMessage = stringResource(R.string.settings_share_app_message)
+    val shareChooser = stringResource(R.string.settings_share_app_chooser)
+
     Scaffold(
         bottomBar = {
             AdBanner(screenName = "설정")
@@ -47,47 +61,45 @@ fun SettingsScreen(
                 .padding(16.dp),
         ) {
             Text(
-                text = "설정",
+                text = stringResource(R.string.tab_settings),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Notifications
             SettingsItem(
                 icon = Icons.Default.Notifications,
-                title = "알림 설정",
+                title = stringResource(R.string.settings_menu_notification),
                 onClick = onNotificationSettingsClick,
             )
             HorizontalDivider()
 
-            // Rate App
             SettingsItem(
                 icon = Icons.Default.Star,
-                title = "앱 평가하기",
+                title = stringResource(R.string.settings_menu_rate),
+                onClick = { openPlayStoreForReview(context) },
             )
             HorizontalDivider()
 
-            // Share App
             SettingsItem(
                 icon = Icons.Default.Share,
-                title = "앱 공유하기",
+                title = stringResource(R.string.settings_menu_share),
+                onClick = { shareApp(context, shareMessage, shareChooser) },
             )
             HorizontalDivider()
 
-            // App Info
             SettingsItem(
                 icon = Icons.Default.Info,
-                title = "앱 정보",
-                subtitle = "Version 1.0.1",
+                title = stringResource(R.string.settings_menu_about),
+                subtitle = stringResource(R.string.settings_about_version, versionName),
             )
             HorizontalDivider()
 
-            // Privacy Policy
             SettingsItem(
                 icon = Icons.Default.Description,
-                title = "개인정보 처리방침",
+                title = stringResource(R.string.settings_menu_privacy),
+                onClick = onPrivacyPolicyClick,
             )
         }
     }
@@ -114,4 +126,42 @@ private fun SettingsItem(
             .fillMaxWidth()
             .clickable(onClick = onClick),
     )
+}
+
+@Composable
+private fun rememberAppVersion(context: Context): String = try {
+    context.packageManager.getPackageInfo(context.packageName, 0).versionName
+        ?.removeSuffix("-debug")
+        ?: "1.0"
+} catch (e: PackageManager.NameNotFoundException) {
+    "1.0"
+}
+
+/**
+ * Play Store 앱 상세 페이지 → 리뷰 작성 시트를 여는 표준 Android 방식.
+ * market:// URI를 Play Store 앱이 받으면 바로 열고, 없으면 웹 URL로 fallback.
+ */
+private fun openPlayStoreForReview(context: Context) {
+    val packageName = context.packageName.removeSuffix(".debug")
+    val marketIntent = Intent(
+        Intent.ACTION_VIEW,
+        Uri.parse("market://details?id=$packageName"),
+    ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    try {
+        context.startActivity(marketIntent)
+    } catch (e: ActivityNotFoundException) {
+        val webIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://play.google.com/store/apps/details?id=$packageName"),
+        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(webIntent)
+    }
+}
+
+private fun shareApp(context: Context, message: String, chooserTitle: String) {
+    val sendIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, message)
+    }
+    context.startActivity(Intent.createChooser(sendIntent, chooserTitle))
 }

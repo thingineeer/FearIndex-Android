@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Indeks straha i pohlepe</string>
+    <string name="splash_subtitle">Indeks straha i pohlepe</string>
+    <string name="splash_disclaimer">Ekstremni rasponi (0-24, 76-100) mogu signalizirati kontrarijske prilike.
+Razmatraje zajedno s fundamentalima, tokom i makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Ekstremni strah</string>
     <string name="rating_fear">Strah</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Podijeli</string>
     <string name="retry_button">Pokušaj ponovno</string>
     <string name="home_updated_at">Ažurirano: %1$s</string>
+
+    <!-- New Insight Cards -->
+    <string name="insight_buy_signal_title">Signal za kupnju</string>
+    <string name="insight_buy_signal_summary">%1$s povijesnih kupnji u ovom rasponu imalo je visoku prosječnu stopu povrata</string>
+    <string name="insight_overheat_title">Upozorenje o pregrijavanju</string>
+    <string name="insight_overheat_summary">Zona ekstremne pohlepe. Povijesni podaci sugeriraju vjerojatnu korekciju.</string>
+    <string name="insight_historical_return_title">Što da ste tada kupili?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d prošlih razdoblja sličnih trenutnim %2$d bodova</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Ograničeni povijesni podaci u blizini trenutnih %2$d bodova</string>
+    <string name="insight_return_chart_title_market">Što da ste investirali u S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Što da ste investirali u Bitcoin?</string>
+    <string name="insight_return_chart_summary">Kako bi izgledali povrati ako biste investirali u ovom rasponu?</string>
+    <string name="insight_drawdown_title">Analiza najvećeg pada (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Provjerite najveći pad i godišnji povrat u zonama ekstremnog straha.</string>
+    <string name="insight_drawdown_summary_fear">Usporedite rizik i očekivani povrat u zonama straha.</string>
+    <string name="insight_drawdown_summary_neutral">Volatilnost i očekivani povrat u neutralnoj zoni.</string>
+    <string name="insight_drawdown_summary_greed">Provjerite rizik pada u zonama pohlepe.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Zone ekstremne pohlepe mogu se suočiti s velikim korekcijama.</string>
+    <string name="insight_velocity_title">Brzina indeksa straha</string>
+    <string name="insight_velocity_inflection_suffix"> (otkrivena prekretnica)</string>
 </resources>

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">பயம் &amp; பேராசை குறியீடு</string>
+    <string name="splash_subtitle">பயம் &amp; பேராசை குறியீடு</string>
+    <string name="splash_disclaimer">தீவிர வரம்புகள் (0-24, 76-100) எதிர்நிலை வாய்ப்புகளை சுட்டிக்காட்டலாம்.
+மூலதனம், நடை மற்றும் மேக்ரோவுடன் சேர்த்து கருதுங்கள்.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">தீவிர பயம்</string>
     <string name="rating_fear">பயம்</string>
@@ -177,6 +183,26 @@
     <string name="trend_stable">நிலையானது</string>
     <string name="trend_rally_accelerating">உயர்வு வேகம்</string>
     <string name="trend_rally_decelerating">உயர்வு மெதுவானது</string>
+
+    <!-- Insight card titles/summaries -->
+    <string name="insight_buy_signal_title">வாங்கும் சமிக்ஞை</string>
+    <string name="insight_buy_signal_summary">இந்த வரம்பில் கடந்த %1$s வாங்கல்களில் சராசரி வருமானம் வலுவாக இருந்தது</string>
+    <string name="insight_overheat_title">மிகை வெப்ப எச்சரிக்கை</string>
+    <string name="insight_overheat_summary">தீவிர பேராசை மண்டலம். வரலாற்றுத் தரவு திருத்தம் சாத்தியம் என்கிறது.</string>
+    <string name="insight_historical_return_title">அப்போது வாங்கினால் என்ன ஆகும்?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — தற்போதைய %2$d புள்ளிகளுக்கு ஒத்த %3$d கடந்தகால காலங்கள்</string>
+    <string name="insight_historical_return_summary_empty">%1$s — தற்போதைய %2$d புள்ளிகளைச் சுற்றிய வரலாற்றுத் தரவு வரம்புக்குட்பட்டது</string>
+    <string name="insight_return_chart_title_market">S&amp;P 500-இல் முதலீடு செய்திருந்தால்?</string>
+    <string name="insight_return_chart_title_crypto">பிட்காயினில் முதலீடு செய்திருந்தால்?</string>
+    <string name="insight_return_chart_summary">இந்த வரம்பில் முதலீடு செய்திருந்தால் வருமானம் எப்படியிருக்கும்?</string>
+    <string name="insight_drawdown_title">அதிகபட்ச வீழ்ச்சி பகுப்பாய்வு (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">தீவிர பய மண்டலங்களில் அதிகபட்ச வீழ்ச்சியையும் 1 ஆண்டு வருமானத்தையும் பாருங்கள்.</string>
+    <string name="insight_drawdown_summary_fear">பய மண்டலங்களில் இடரையும் எதிர்பார்க்கப்படும் வருமானத்தையும் ஒப்பிடுங்கள்.</string>
+    <string name="insight_drawdown_summary_neutral">நடுநிலை மண்டலத்தில் ஏற்ற இறக்கமும் எதிர்பார்க்கப்படும் வருமானமும்.</string>
+    <string name="insight_drawdown_summary_greed">பேராசை மண்டலங்களில் கீழ்நோக்கு இடரைப் பாருங்கள்.</string>
+    <string name="insight_drawdown_summary_extreme_greed">தீவிர பேராசை மண்டலங்களில் பெரிய திருத்தங்கள் ஏற்படலாம்.</string>
+    <string name="insight_velocity_title">பய குறியீட்டின் வேகம்</string>
+    <string name="insight_velocity_inflection_suffix"> (திருப்பு கண்டறியப்பட்டது)</string>
 
     <!-- Feature screen common labels -->
     <string name="tab_market">சந்தை</string>

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Fear &amp; Greed Index</string>
+
+    <!-- 스플래시 화면 -->
+    <string name="splash_title">Fear &amp; Greed Index</string>
+    <string name="splash_subtitle">공포-탐욕 지수</string>
+    <string name="splash_disclaimer">극단 구간(0-24, 76-100)은 반대매매 신호로 참고.\n펀더멘털/수급/매크로와 함께 해석 권장.</string>
+
     <string name="rating_extreme_fear">극단적 공포</string>
     <string name="rating_fear">공포</string>
     <string name="rating_neutral">중립</string>
@@ -91,6 +97,19 @@
     <string name="stuck_button_im_safe">"✨ 난 안 물렸어요"</string>
     <string name="stuck_footer_guide">"🤙 버튼을 누르면 지금 몇 명이 물려있는지 실시간으로 볼 수 있어요"</string>
 
+    <!-- 물림 응답 상세 시트 -->
+    <string name="common_done">완료</string>
+    <string name="stuck_detail_title">응답 상세</string>
+    <string name="stuck_detail_participants">%1$d명이 응답했어요</string>
+    <string name="stuck_detail_stuck">물렸어요 · %1$d명 · %2$d%%</string>
+    <string name="stuck_detail_safe">안 물렸어요 · %1$d명 · %2$d%%</string>
+    <string name="stuck_detail_my_status">내 응답: %1$s</string>
+    <string name="stuck_detail_my_status_stuck">물렸어요</string>
+    <string name="stuck_detail_my_status_safe">안 물렸어요</string>
+    <string name="stuck_detail_low_sample_note">표본이 적을 때는 분포 대신 집계 중 표시</string>
+    <string name="insight_stuck_aggregating">응답 집계 중 (20명부터 공개)</string>
+    <string name="insight_stuck_not_return_guide">이 수치는 시장 수익률과 무관합니다</string>
+
     <!-- 투표 카드 -->
     <string name="vote_card_title">오늘의 투표</string>
     <string name="vote_choice_buy">Buy</string>
@@ -100,6 +119,86 @@
     <string name="vote_total_participants">총 %1$d명 참여</string>
     <string name="vote_once_notice">"✅ 일일 투표는 1회만 가능합니다"</string>
     <string name="vote_next_countdown">다음 투표까지</string>
+
+    <!-- 인사이트 카드 타이틀/요약 (InsightGenerator 생성, InsightText helper 렌더) -->
+    <string name="insight_buy_signal_title">매수 기회 시그널</string>
+    <string name="insight_buy_signal_summary">%1$s 과거 이 구간 매수 시 평균 수익률이 높았습니다</string>
+    <string name="insight_overheat_title">과열 경고</string>
+    <string name="insight_overheat_summary">극단적 탐욕 구간입니다. 과거 데이터에 따르면 조정 가능성이 높습니다.</string>
+    <string name="insight_historical_return_title">그때 매수했다면?</string>
+    <string name="insight_historical_return_summary_matched">%1$s 기준 — 현재 %2$d점과 비슷했던 과거 %3$d개 시점</string>
+    <string name="insight_historical_return_summary_empty">%1$s 기준 — 현재 %2$d점 구간의 과거 참고 데이터가 제한적입니다</string>
+    <string name="insight_return_chart_title_market">S&amp;P 500에 투자했다면?</string>
+    <string name="insight_return_chart_title_crypto">Bitcoin에 투자했다면?</string>
+    <string name="insight_return_chart_summary">이 구간에서 투자했다면 예상 수익률은 어떨까요?</string>
+    <string name="insight_drawdown_title">최대 낙폭 분석 (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">극단적 공포 구간의 최대 낙폭과 1년 수익률을 확인하세요.</string>
+    <string name="insight_drawdown_summary_fear">공포 구간에서의 리스크와 기대 수익을 비교합니다.</string>
+    <string name="insight_drawdown_summary_neutral">중립 구간의 변동성과 예상 수익률입니다.</string>
+    <string name="insight_drawdown_summary_greed">탐욕 구간에서의 하락 리스크를 점검하세요.</string>
+    <string name="insight_drawdown_summary_extreme_greed">극단적 탐욕 구간은 큰 조정이 올 수 있습니다.</string>
+    <string name="insight_velocity_title">공포지수 변화 속도</string>
+    <string name="insight_velocity_inflection_suffix"> (변곡점 감지)</string>
+
+    <!-- 설정 메뉴 공유 -->
+    <string name="settings_share_app_message">공포 탐욕 지수 — 시장 심리를 한눈에 실시간으로 확인하세요.\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="settings_share_app_chooser">공포 탐욕 지수 공유하기</string>
+
+    <!-- 개인정보 처리방침 (iOS PrivacyPolicyView 포팅) -->
+    <string name="privacy_title">개인정보 처리방침</string>
+    <string name="privacy_contact">문의</string>
+    <string name="privacy_last_updated">최종 업데이트: 2026년 3월 4일</string>
+    <string name="privacy_common_close">닫기</string>
+
+    <string name="privacy_section_overview">개요</string>
+    <string name="privacy_section_collected">수집하는 정보</string>
+    <string name="privacy_section_not_collected">수집하지 않는 정보</string>
+    <string name="privacy_section_purpose">정보 사용 목적</string>
+    <string name="privacy_section_third_party">제3자 서비스</string>
+    <string name="privacy_section_retention">데이터 보관</string>
+    <string name="privacy_section_rights">사용자 권리</string>
+    <string name="privacy_section_children">아동 개인정보</string>
+    <string name="privacy_section_changes">정책 변경</string>
+
+    <string name="privacy_content_overview">공포지수는 사용자의 개인정보를 소중히 여기며, 관련 법령에 따라 개인정보를 보호합니다.</string>
+    <string name="privacy_content_collected">앱은 서비스 개선을 위해 다음 정보를 자동으로 수집합니다:</string>
+    <string name="privacy_content_not_collected">앱은 다음 정보를 수집하지 않습니다:</string>
+    <string name="privacy_content_purpose">수집된 정보는 다음 목적으로만 사용됩니다:</string>
+    <string name="privacy_content_third_party">앱은 다음 제3자 서비스를 사용합니다:</string>
+    <string name="privacy_content_retention">수집된 데이터는 Firebase 서버에 저장되며, 앱 삭제 시 기기에 저장된 모든 데이터가 삭제됩니다.</string>
+    <string name="privacy_content_rights">사용자는 다음 권리를 가집니다:</string>
+    <string name="privacy_content_children">앱은 13세 미만 아동의 개인정보를 의도적으로 수집하지 않습니다.</string>
+    <string name="privacy_content_changes">본 방침이 변경될 경우 앱 내 공지 또는 앱스토어 업데이트를 통해 안내합니다.</string>
+
+    <string name="privacy_item_app_usage">앱 사용 통계: 앱 실행, 화면 조회, 기능 사용 빈도</string>
+    <string name="privacy_item_device_info">기기 정보: 기기 모델, 운영체제 버전, 앱 버전</string>
+    <string name="privacy_item_error_info">오류 정보: 앱 충돌 및 오류 로그</string>
+    <string name="privacy_item_personal_info">이름, 이메일, 전화번호 등 개인 식별 정보</string>
+    <string name="privacy_item_location">위치 정보</string>
+    <string name="privacy_item_device_data">연락처, 사진, 파일 등 기기 데이터</string>
+    <string name="privacy_item_financial">금융 정보</string>
+    <string name="privacy_item_health">건강 정보</string>
+    <string name="privacy_item_improve">앱 기능 개선 및 버그 수정</string>
+    <string name="privacy_item_optimize">사용자 경험 최적화</string>
+    <string name="privacy_item_monitor">앱 성능 모니터링</string>
+    <string name="privacy_item_ads">광고 표시 (Google AdMob)</string>
+    <string name="privacy_item_limit_tracking">광고 추적 설정: 설정 → Google → 광고 → 광고 ID 재설정</string>
+    <string name="privacy_item_opt_out">분석 데이터 수집 거부: 설정 → 개인정보 보호 → 분석 및 개선</string>
+    <string name="privacy_item_delete_data">앱 데이터 삭제: 앱 삭제를 통해 모든 로컬 데이터 삭제</string>
+
+    <string name="privacy_firebase_purpose">용도: 앱 사용 통계 분석</string>
+    <string name="privacy_firebase_data">수집 데이터: 익명화된 사용 데이터</string>
+    <string name="privacy_admob_purpose">용도: 광고 표시</string>
+    <string name="privacy_admob_data">수집 데이터: 기기 정보</string>
+    <string name="privacy_remote_config_purpose">용도: 앱 기능 설정</string>
+    <string name="privacy_remote_config_data">수집 데이터: 기기 정보</string>
+
+    <!-- 비교 카드 (전일/1주/1개월/1년) -->
+    <string name="comparison_card_title">비교</string>
+    <string name="comparison_previous_close">전일</string>
+    <string name="comparison_1w_ago">1주전</string>
+    <string name="comparison_1m_ago">1개월전</string>
+    <string name="comparison_1y_ago">1년전</string>
 
     <!-- 피처 화면 공통 라벨 -->
     <string name="tab_market">시장</string>
@@ -187,4 +286,17 @@
     <string name="trend_stable">안정</string>
     <string name="trend_rally_accelerating">상승 가속</string>
     <string name="trend_rally_decelerating">상승 둔화</string>
+
+    <!-- Settings screen -->
+    <string name="settings_menu_notification">알림 설정</string>
+    <string name="settings_menu_rate">앱 평가하기</string>
+    <string name="settings_menu_share">앱 공유하기</string>
+    <string name="settings_menu_about">앱 정보</string>
+    <string name="settings_menu_privacy">개인정보 처리방침</string>
+    <string name="settings_about_version">Version %1$s</string>
+
+    <!-- Insight feed section headers -->
+    <string name="insight_feed_header_market">시장 인사이트</string>
+    <string name="insight_feed_header_crypto">암호화폐 인사이트</string>
+    <string name="insight_teaser_detail_content_description">상세 보기</string>
 </resources>

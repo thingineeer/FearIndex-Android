@@ -4,6 +4,10 @@ PROJECT_ROOT = File.expand_path("..", __dir__)
 GRADLE_FILE = File.join(PROJECT_ROOT, "app", "build.gradle.kts")
 
 platform :android do
+  before_all do
+    ensure_env_file_hint
+  end
+
   desc "versionCode 증가 (app/build.gradle.kts)"
   lane :bump_build do
     unless File.exist?(GRADLE_FILE)
@@ -22,7 +26,17 @@ platform :android do
     UI.success("versionCode #{current} -> #{next_code}")
   end
 
-  desc "AAB 빌드 후 Play Console 내부 테스트 트랙 업로드"
+  desc "AAB 빌드만 수행 (Release)"
+  lane :build_release do
+    gradle(
+      task: "bundle",
+      build_type: "Release",
+      project_dir: PROJECT_ROOT
+    )
+    UI.success("AAB 생성: #{lockstep_aab_path}")
+  end
+
+  desc "AAB 빌드 후 Play Console 내부 테스트 트랙 업로드 (draft)"
   lane :internal do
     gradle(
       task: "bundle",
@@ -42,6 +56,35 @@ platform :android do
     )
   end
 
+  desc "내부 테스트 → 비공개 테스트 (closed) 트랙 승격"
+  lane :promote_to_closed do
+    upload_to_play_store(
+      track: "internal",
+      track_promote_to: "alpha",
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+
+  desc "비공개 테스트 → 프로덕션 트랙 승격 (staged rollout 10%)"
+  lane :promote_to_production do
+    upload_to_play_store(
+      track: "alpha",
+      track_promote_to: "production",
+      rollout: "0.1",
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+
   desc "45개 locale 스크린샷 자동 촬영 (adb 기반)"
   lane :screenshots do
     script = File.join(PROJECT_ROOT, "scripts", "screenshots", "capture-all-locales.sh")
@@ -51,7 +94,15 @@ platform :android do
 
   # 마지막 번들 산출물 경로 (release variant 기본 위치)
   def lockstep_aab_path
-    candidate = File.join(PROJECT_ROOT, "app", "build", "outputs", "bundle", "release", "app-release.aab")
-    candidate
+    File.join(PROJECT_ROOT, "app", "build", "outputs", "bundle", "release", "app-release.aab")
+  end
+
+  def ensure_env_file_hint
+    sa = ENV["FEARINDEX_PLAY_SA_JSON"] || File.expand_path("~/fearindex-secrets/play-store-service-account.json")
+    unless File.exist?(sa)
+      UI.important("Play service account JSON 미발견: #{sa}")
+      UI.important("발급: Play Console → API 액세스 → 새 서비스 계정 → JSON 키")
+      UI.important("~/fearindex-secrets/play-store-service-account.json 위치 권장 (git 제외)")
+    end
   end
 end

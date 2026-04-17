@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Splash Screen -->
+    <string name="splash_title">Indeks Paniki i Chciwości</string>
+    <string name="splash_subtitle">Indeks Paniki i Chciwości</string>
+    <string name="splash_disclaimer">Skrajne zakresy (0-24, 76-100) mogą sygnalizować kontrariańskie możliwości.
+Rozważ razem z fundamentami, przepływem i makro.</string>
+
     <string name="app_name">Fear &amp; Greed Index</string>
     <string name="rating_extreme_fear">Skrajna Panika</string>
     <string name="rating_fear">Panika</string>
@@ -184,4 +190,24 @@
     <string name="share_content_description">Udostępnij</string>
     <string name="retry_button">Ponów</string>
     <string name="home_updated_at">Zaktualizowano: %1$s</string>
+
+    <!-- New Insight Cards -->
+    <string name="insight_buy_signal_title">Sygnał kupna</string>
+    <string name="insight_buy_signal_summary">%1$s historycznych zakupów w tym zakresie miało wysoką średnią stopę zwrotu</string>
+    <string name="insight_overheat_title">Ostrzeżenie o przegrzaniu</string>
+    <string name="insight_overheat_summary">Strefa skrajnej chciwości. Dane historyczne sugerują prawdopodobną korektę.</string>
+    <string name="insight_historical_return_title">A gdybyś wtedy kupił?</string>
+    <string name="insight_historical_return_summary_matched">%1$s — %3$d przeszłych okresów podobnych do obecnych %2$d punktów</string>
+    <string name="insight_historical_return_summary_empty">%1$s — Ograniczone dane historyczne w pobliżu obecnych %2$d punktów</string>
+    <string name="insight_return_chart_title_market">Gdybyś zainwestował w S&amp;P 500?</string>
+    <string name="insight_return_chart_title_crypto">Gdybyś zainwestował w Bitcoin?</string>
+    <string name="insight_return_chart_summary">Jak wyglądałyby zyski przy inwestowaniu w tym zakresie?</string>
+    <string name="insight_drawdown_title">Analiza maksymalnego spadku (%1$s)</string>
+    <string name="insight_drawdown_summary_extreme_fear">Sprawdź maksymalny spadek i zwrot za 1 rok w strefach skrajnej paniki.</string>
+    <string name="insight_drawdown_summary_fear">Porównaj ryzyko i oczekiwany zwrot w strefach paniki.</string>
+    <string name="insight_drawdown_summary_neutral">Zmienność i oczekiwany zwrot w strefie neutralnej.</string>
+    <string name="insight_drawdown_summary_greed">Sprawdź ryzyko spadku w strefach chciwości.</string>
+    <string name="insight_drawdown_summary_extreme_greed">Strefy skrajnej chciwości mogą doświadczyć dużych korekt.</string>
+    <string name="insight_velocity_title">Prędkość indeksu strachu</string>
+    <string name="insight_velocity_inflection_suffix"> (wykryto punkt zwrotny)</string>
 </resources>
