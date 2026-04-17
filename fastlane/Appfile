@@ -1,6 +1,7 @@
 # Google Play service account JSON key (사용자가 별도 발급 필요)
 # 발급 가이드: https://docs.fastlane.tools/getting-started/android/setup/#collect-your-google-credentials
-# json_key_file("/absolute/path/to/play-store-service-account.json")
-json_key_file("./play-store-service-account.json")
+# 경로는 fastlane 디렉토리 기준 상대경로 또는 절대경로 모두 허용.
+# ~/fearindex-secrets/play-store-service-account.json 에 두고 아래 경로 수정 추천.
+json_key_file(ENV["FEARINDEX_PLAY_SA_JSON"] || File.expand_path("~/fearindex-secrets/play-store-service-account.json"))
 
-package_name("com.thingineer.fearindex")
+package_name("th1ngjin.fearindex")

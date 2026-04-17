@@ -86,7 +86,8 @@ class StuckStatusDebouncerImpl @Inject constructor(
     private suspend fun flushOne(indexType: FearIndexType) {
         val status = mutex.withLock {
             val s = pending.remove(indexType) ?: return
-            tasks.remove(indexType)?.cancel()
+            // 현재 실행 중인 flush job은 remove만. cancel하면 자기 자신 취소로 JobCancellationException.
+            tasks.remove(indexType)
             s
         }
         try {
@@ -94,6 +95,8 @@ class StuckStatusDebouncerImpl @Inject constructor(
             storage.clearPendingRetry(indexType)
             outcomeListener?.invoke(StuckStatusDebouncerProtocol.Outcome.Success(indexType))
         } catch (e: Exception) {
+            // 자기-취소로 인한 CancellationException은 정상 종료이므로 예외 처리 제외.
+            if (e is kotlinx.coroutines.CancellationException) throw e
             Timber.e(e, "[StuckStatusDebouncer] flush 실패 — 재시도 큐 저장")
             storage.savePendingRetry(indexType, status)
             outcomeListener?.invoke(StuckStatusDebouncerProtocol.Outcome.Failure(indexType, e))

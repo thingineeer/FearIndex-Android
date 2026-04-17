@@ -67,12 +67,14 @@ object InsightGenerator {
             ReturnDataInterpolator.interpolate(score, it.dataPoints)
         }
 
+        // Structural fields only — UI reads via InsightText helper (i18n).
+        // These strings are fallback/debug only and never reach production UI.
         val basis = indexTypeLabel(indexType)
-        val title = if (score <= 25) "매수 기회 시그널" else "과열 경고"
+        val title = if (score <= 25) "BuySignal" else "OverheatWarning"
         val summary = if (score <= 25) {
-            "$basis 과거 이 구간 매수 시 평균 수익률이 높았습니다"
+            "$basis historical buys in this range had strong average returns"
         } else {
-            "극단적 탐욕 구간입니다. 과거 데이터에 따르면 조정 가능성이 높습니다."
+            "Extreme greed zone — correction likely per historical data"
         }
 
         return MarketInsight(
@@ -121,11 +123,12 @@ object InsightGenerator {
             )
         }
 
+        // Structural fields only — UI uses InsightText helper for i18n.
         val basis = indexTypeLabel(indexType)
         val summary = if (matched.isNotEmpty()) {
-            "$basis 기준 — 현재 $score 점과 비슷했던 과거 ${matched.size}개 시점"
+            "$basis — ${matched.size} past periods similar to $score"
         } else {
-            "$basis 기준 — 현재 $score 점 구간의 과거 참고 데이터가 제한적입니다"
+            "$basis — limited data near $score"
         }
 
         // v1.7.9 v2: DetailSheet 상단 "현재 N점에서 매수 시" 통계 카드 표시용으로
@@ -168,9 +171,9 @@ object InsightGenerator {
         }
 
         val returnChartTitle = if (indexType == FearIndexType.CRYPTO) {
-            "Bitcoin에 투자했다면?"
+            "If you invested in Bitcoin?"
         } else {
-            "S&P 500에 투자했다면?"
+            "If you invested in S&P 500?"
         }
 
         return MarketInsight(
@@ -178,7 +181,7 @@ object InsightGenerator {
             type = InsightType.RETURN_CHART,
             indexType = indexType,
             title = returnChartTitle,
-            summary = "이 구간에서 투자했다면 예상 수익률은 어떨까요?",
+            summary = "What if you invested in this range?",
             score = score,
             previousScore = previousScore,
             timestamp = now,
@@ -203,19 +206,20 @@ object InsightGenerator {
             ReturnDataInterpolator.interpolate(score, it.dataPoints)
         }
 
+        // Fallback summary — UI uses InsightText helper for i18n.
         val summary = when {
-            score <= 24 -> "극단적 공포 구간의 최대 낙폭과 1년 수익률을 확인하세요."
-            score <= 44 -> "공포 구간에서의 리스크와 기대 수익을 비교합니다."
-            score <= 55 -> "중립 구간의 변동성과 예상 수익률입니다."
-            score <= 75 -> "탐욕 구간에서의 하락 리스크를 점검하세요."
-            else -> "극단적 탐욕 구간은 큰 조정이 올 수 있습니다."
+            score <= 24 -> "Extreme fear drawdown"
+            score <= 44 -> "Fear drawdown"
+            score <= 55 -> "Neutral drawdown"
+            score <= 75 -> "Greed drawdown"
+            else -> "Extreme greed drawdown"
         }
 
         return MarketInsight(
             id = "drawdown_${indexType.name.lowercase()}_$score",
             type = InsightType.DRAWDOWN_TOLERANCE,
             indexType = indexType,
-            title = "최대 낙폭 분석 (${indexTypeLabel(indexType)})",
+            title = "Max Drawdown (${indexTypeLabel(indexType)})",
             summary = summary,
             score = score,
             previousScore = previousScore,
@@ -266,24 +270,24 @@ object InsightGenerator {
     ): MarketInsight? {
         val velocity = FearVelocityCalculator.calculate(history) ?: return null
 
+        // Fallback trend text — UI uses InsightText helper for i18n.
         val trendText = when (velocity.trend) {
-            th1ngjin.fearindex.domain.entity.VelocityTrend.CRASH_ACCELERATING -> "공포가 가속되고 있습니다"
-            th1ngjin.fearindex.domain.entity.VelocityTrend.CRASH_DECELERATING -> "공포 속도가 둔화되고 있습니다"
-            th1ngjin.fearindex.domain.entity.VelocityTrend.STABLE -> "시장이 안정적입니다"
-            th1ngjin.fearindex.domain.entity.VelocityTrend.RALLY_ACCELERATING -> "탐욕이 가속되고 있습니다"
-            th1ngjin.fearindex.domain.entity.VelocityTrend.RALLY_DECELERATING -> "탐욕 속도가 둔화되고 있습니다"
+            th1ngjin.fearindex.domain.entity.VelocityTrend.CRASH_ACCELERATING -> "Crash accelerating"
+            th1ngjin.fearindex.domain.entity.VelocityTrend.CRASH_DECELERATING -> "Crash slowing"
+            th1ngjin.fearindex.domain.entity.VelocityTrend.STABLE -> "Stable"
+            th1ngjin.fearindex.domain.entity.VelocityTrend.RALLY_ACCELERATING -> "Rally accelerating"
+            th1ngjin.fearindex.domain.entity.VelocityTrend.RALLY_DECELERATING -> "Rally slowing"
         }
 
-        val inflectionNote = if (velocity.isInflectionPoint) " (변곡점 감지)" else ""
+        val inflectionNote = if (velocity.isInflectionPoint) " (inflection detected)" else ""
 
-        // 스파크라인용 최근 15일 히스토리
         val sparklineHistory = history.take(minOf(15, history.size))
 
         return MarketInsight(
             id = "velocity_${indexType.name.lowercase()}_$score",
             type = InsightType.FEAR_VELOCITY,
             indexType = indexType,
-            title = "공포지수 변화 속도",
+            title = "Fear Index Velocity",
             summary = "$trendText$inflectionNote",
             score = score,
             previousScore = previousScore,
@@ -298,17 +302,13 @@ object InsightGenerator {
         )
     }
 
+    // Fallback nudge — UI uses InsightText helper for i18n.
     private fun nudgeMessage(score: Int): Pair<String, String> = when {
-        score <= 24 -> "심리 조언" to
-            "극단적 공포 구간 — 역사적으로 좋은 매수 기회가 많았습니다"
-        score <= 44 -> "심리 조언" to
-            "공포 구간 — 신중하되 기회를 놓치지 마세요"
-        score <= 55 -> "심리 조언" to
-            "중립 구간 — 시장이 방향을 찾고 있습니다"
-        score <= 75 -> "심리 조언" to
-            "탐욕 구간 — 수익 실현을 고려해보세요"
-        else -> "심리 조언" to
-            "극단적 탐욕 — 과열 신호, 리스크 관리가 중요합니다"
+        score <= 24 -> "Nudge" to "Extreme fear — historically a good buying opportunity"
+        score <= 44 -> "Nudge" to "Fear — be cautious but stay alert"
+        score <= 55 -> "Nudge" to "Neutral — market is searching for direction"
+        score <= 75 -> "Nudge" to "Greed — consider taking profits"
+        else -> "Nudge" to "Extreme greed — manage risk"
     }
 }
 
