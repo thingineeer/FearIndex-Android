@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index, Piyasa Korku ve Açgözlülük Endeksi (Market Fear & Greed Index) ile Kripto Korku ve Açgözlülük Endeksi'ni (Crypto Fear & Greed Index) tek bakışta takip etmenizi sağlayan bir yatırım duyarlılık analiz uygulamasıdır. İki farklı korku endeksini başlıca piyasa endeksleriyle birlikte karşılaştırarak kitle psikolojisini anlayın ve bilinçli yatırım kararları alın.
+
+[İki Korku ve Açgözlülük Endeksi]
+- Market Fear & Greed Index: Geleneksel finansal piyasalar için duyarlılık göstergesi
+- Crypto Fear & Greed Index: Kripto para piyasası için duyarlılık göstergesi
+- Her iki endeksi yan yana karşılaştırarak genel piyasa dinamiklerini kavrayın
+
+[Temel Özellikler]
+- Gerçek zamanlı Piyasa ve Kripto Fear & Greed Index gösterimi
+- Gösterge grafiği ile sezgisel piyasa duyarlılığı
+- Geçmiş veri karşılaştırması (Önceki kapanış, 1 hafta, 1 ay, 1 yıl önce)
+- Geçmiş grafiği ile trend analizi (1A / 3A / 6A / 1Y)
+- Gerçek zamanlı başlıca piyasa endeksleri (KOSPI, KOSDAQ, NASDAQ, S&P500, Dow Jones)
+- Piyasa ve Kripto endeksleri arasında tek dokunuşla geçiş
+
+[Widget'lar]
+- Ana ekran widget'ları: Small / Medium / Large boyutlar
+- Kilit ekranı widget'ları: Piyasa ve Kripto endeksleri için ayrı gösterim
+- Widget içinde Piyasa/Kripto geçişi
+
+[Push Bildirimleri]
+- Piyasa endeksi eşik değerine ulaştığında anlık bildirim
+- Kripto endeksi eşik değerine ulaştığında anlık bildirim
+- Özelleştirilebilir üst ve alt eşik değerleri
+
+[Fear & Greed Index Nedir?]
+Yatırımcı psikolojisini 0 (Aşırı Korku) ile 100 (Aşırı Açgözlülük) arasında bir ölçekte temsil eden bir piyasa duyarlılık göstergesidir.
+- 0-24: Aşırı Korku
+- 25-44: Korku
+- 45-55: Nötr
+- 56-75: Açgözlülük
+- 76-100: Aşırı Açgözlülük
+
+[45 Dil Desteği]
+45 dilde mevcuttur: Türkçe, English, 한국어, 日本語, Deutsch, 中文 ve daha fazlası.
+
+[Yatırım Uyarısı]
+Bu uygulamada sağlanan tüm bilgiler yalnızca referans amaçlıdır ve belirli menkul kıymetler için alım/satım tavsiyesi veya yatırım danışmanlığı niteliği taşımaz.
+- Endeks verileri, veri sağlayıcının koşullarına bağlı olarak gerçek piyasa göstergelerinden farklılık gösterebilir.
+- Tüm yatırım kararları yatırımcının kendi değerlendirmesi ve sorumluluğu altında alınmalıdır.
+- Bu hizmet yatırım sonuçları için herhangi bir yasal sorumluluk kabul etmez.
+
+[İletişim]
+Email: dlaudwls1203@gmail.com

@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index ialah aplikasi analisis sentimen pelaburan yang membolehkan anda memantau Indeks Ketakutan & Ketamakan Pasaran (Market Fear & Greed Index) dan Indeks Ketakutan & Ketamakan Kripto (Crypto Fear & Greed Index) sekaligus. Jejaki dua indeks ketakutan yang berbeza bersama indeks pasaran utama untuk memahami psikologi orang ramai dan membuat keputusan pelaburan yang bijak.
+
+[Dua Indeks Ketakutan & Ketamakan]
+- Indeks Ketakutan Pasaran: Penunjuk sentimen untuk pasaran kewangan tradisional
+- Indeks Ketakutan Kripto: Penunjuk sentimen untuk pasaran mata wang kripto
+- Bandingkan kedua-dua indeks untuk memahami dinamik pasaran keseluruhan
+
+[Ciri-ciri Utama]
+- Paparan masa nyata Indeks Fear & Greed pasaran dan kripto
+- Visualisasi sentimen pasaran yang intuitif dengan carta pengukur
+- Perbandingan data sejarah (penutupan sebelumnya, 1 minggu, 1 bulan, 1 tahun)
+- Analisis trend dengan carta sejarah (1B / 3B / 6B / 1T)
+- Indeks pasaran utama masa nyata (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Tukar antara indeks pasaran dan kripto dengan satu sentuhan
+
+[Widget]
+- Widget skrin utama: saiz Small / Medium / Large
+- Widget skrin kunci: paparan berasingan untuk indeks ketakutan pasaran dan kripto
+- Togol pasaran/kripto dalam widget
+
+[Pemberitahuan Push]
+- Amaran serta-merta apabila indeks ketakutan pasaran mencapai ambang anda
+- Amaran serta-merta apabila indeks ketakutan kripto mencapai ambang anda
+- Tetapan ambang atas dan bawah yang boleh disesuaikan
+
+[Apa itu Fear & Greed Index?]
+Penunjuk sentimen pasaran yang mewakili psikologi pelabur pada skala 0 (Ketakutan Melampau) hingga 100 (Ketamakan Melampau).
+- 0-24: Ketakutan Melampau (Extreme Fear)
+- 25-44: Ketakutan (Fear)
+- 45-55: Neutral
+- 56-75: Ketamakan (Greed)
+- 76-100: Ketamakan Melampau (Extreme Greed)
+
+[45 Bahasa]
+Tersedia dalam 45 bahasa termasuk Bahasa Melayu, English, 한국어, 日本語, Deutsch, 中文 dan lain-lain.
+
+[Penafian Pelaburan]
+Semua maklumat dalam aplikasi ini hanya untuk rujukan dan bukan merupakan cadangan beli/jual atau nasihat pelaburan untuk mana-mana sekuriti tertentu.
+- Data indeks mungkin berbeza daripada penunjuk pasaran sebenar bergantung pada keadaan pembekal data.
+- Semua keputusan pelaburan mesti dibuat berdasarkan pertimbangan dan tanggungjawab pelabur sendiri.
+- Perkhidmatan ini tidak menanggung sebarang tanggungjawab undang-undang terhadap hasil pelaburan.
+
+[Hubungi]
+Email: dlaudwls1203@gmail.com

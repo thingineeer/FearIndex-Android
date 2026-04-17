@@ -1,2 +1,1 @@
-# TODO: translate
-Fear & Greed Index
+شاخص ترس و طمع

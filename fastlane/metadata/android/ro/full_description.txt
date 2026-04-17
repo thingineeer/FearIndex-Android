@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index este o aplicație de analiză a sentimentului de investiții care vă permite să monitorizați atât Indicele de Frică și Lăcomie al Pieței (Market Fear & Greed Index), cât și Indicele de Frică și Lăcomie Crypto (Crypto Fear & Greed Index) dintr-o privire. Urmăriți două indici de frică diferiți alături de principalii indici de piață pentru a înțelege psihologia mulțimii și a lua decizii de investiții informate.
+
+[Doi Indici de Frică și Lăcomie]
+- Indicele de Frică al Pieței: Indicator de sentiment pentru piețele financiare tradiționale
+- Indicele de Frică Crypto: Indicator de sentiment pentru piața criptomonedelor
+- Comparați ambii indici pentru a înțelege dinamica generală a pieței
+
+[Caracteristici Principale]
+- Afișare în timp real a indicelui de frică și lăcomie al pieței și crypto
+- Vizualizare intuitivă a sentimentului de piață cu grafic indicator
+- Compararea datelor istorice (închidere anterioară, 1 săptămână, 1 lună, 1 an)
+- Analiza tendințelor cu grafice istorice (1L / 3L / 6L / 1A)
+- Principalii indici de piață în timp real (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Comutare cu o singură atingere între indicii de piață și crypto
+
+[Widgeturi]
+- Widgeturi ecran principal: dimensiuni Small / Medium / Large
+- Widgeturi ecran de blocare: afișaje separate pentru indicii de frică ai pieței și crypto
+- Comutator piață/crypto în interiorul widgeturilor
+
+[Notificări Push]
+- Alerte instantanee când indicele de frică al pieței atinge pragul dvs.
+- Alerte instantanee când indicele de frică crypto atinge pragul dvs.
+- Setări personalizabile pentru pragul superior și inferior
+
+[Ce este Fear & Greed Index?]
+Un indicator de sentiment de piață care reprezintă psihologia investitorilor pe o scară de la 0 (Frică extremă) la 100 (Lăcomie extremă).
+- 0-24: Frică extremă (Extreme Fear)
+- 25-44: Frică (Fear)
+- 45-55: Neutru (Neutral)
+- 56-75: Lăcomie (Greed)
+- 76-100: Lăcomie extremă (Extreme Greed)
+
+[45 limbi]
+Disponibil în 45 de limbi inclusiv Română, English, 한국어, 日本語, Deutsch, 中文 și altele.
+
+[Declinare a responsabilității pentru investiții]
+Toate informațiile furnizate în această aplicație sunt doar pentru referință și nu constituie recomandări de cumpărare/vânzare sau consultanță de investiții pentru orice titluri specifice.
+- Datele indicelui pot diferi de indicatorii reali ai pieței în funcție de circumstanțele furnizorului de date.
+- Toate deciziile de investiții trebuie luate pe baza propriei judecăți și responsabilități ale investitorului.
+- Acest serviciu nu își asumă nicio responsabilitate legală pentru rezultatele investițiilor.
+
+[Contact]
+Email: dlaudwls1203@gmail.com

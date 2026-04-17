@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index e un'app di analisi del sentiment di investimento che ti permette di monitorare sia l'Indice di Paura e Avidita del Mercato (Market Fear & Greed Index) sia l'Indice di Paura e Avidita Crypto (Crypto Fear & Greed Index) a colpo d'occhio. Confronta due indici di paura distinti insieme ai principali indici di mercato per comprendere la psicologia collettiva e prendere decisioni di investimento informate.
+
+[Due Indici di Paura e Avidita]
+- Market Fear & Greed Index: indicatore di sentiment per i mercati finanziari tradizionali
+- Crypto Fear & Greed Index: indicatore di sentiment per il mercato delle criptovalute
+- Confronta entrambi gli indici fianco a fianco per cogliere la dinamica complessiva del mercato
+
+[Funzionalita Principali]
+- Visualizzazione in tempo reale degli indici Mercato e Crypto Fear & Greed
+- Sentimento di mercato intuitivo con grafico a indicatore
+- Confronto dati storici (Chiusura precedente, 1 settimana, 1 mese, 1 anno fa)
+- Analisi delle tendenze con grafico storico (1M / 3M / 6M / 1A)
+- Principali indici di mercato in tempo reale (KOSPI, KOSDAQ, NASDAQ, S&P500, Dow Jones)
+- Passaggio con un tocco tra indici Mercato e Crypto
+
+[Widget]
+- Widget schermata iniziale: dimensioni Small / Medium / Large
+- Widget schermata di blocco: visualizzazione separata per indici Mercato e Crypto
+- Toggle Mercato/Crypto all'interno dei widget
+
+[Notifiche push]
+- Avviso istantaneo quando l'indice del Mercato raggiunge la tua soglia
+- Avviso istantaneo quando l'indice Crypto raggiunge la tua soglia
+- Soglie superiore e inferiore personalizzabili
+
+[Cos'e il Fear & Greed Index?]
+Un indicatore del sentimento di mercato che rappresenta la psicologia degli investitori su una scala da 0 (Paura Estrema) a 100 (Avidita Estrema).
+- 0-24: Paura Estrema
+- 25-44: Paura
+- 45-55: Neutrale
+- 56-75: Avidita
+- 76-100: Avidita Estrema
+
+[45 lingue]
+Italiano, English, Korean, Japanese, Deutsch, Cinese (semplificato/tradizionale), Francais, Espanol, Portugues, Russo, Turco, Arabo e 45 lingue in totale.
+
+[Avvertenza sugli Investimenti]
+Tutte le informazioni fornite in questa app sono solo a scopo informativo e non costituiscono raccomandazioni di acquisto/vendita o consulenza di investimento per titoli specifici.
+- I dati dell'indice possono differire dagli indicatori di mercato reali a seconda delle circostanze del fornitore di dati.
+- Tutte le decisioni di investimento devono essere prese sulla base del giudizio e della responsabilita dell'investitore stesso.
+- Questo servizio non assume alcuna responsabilita legale per i risultati degli investimenti.
+
+[Contatti]
+Email: dlaudwls1203@gmail.com

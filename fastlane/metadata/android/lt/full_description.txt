@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index – tai investicijų nuotaikos analizės programėlė, leidžianti vienu metu stebėti rinkos baimės ir godumo indeksą bei kriptovaliutų baimės ir godumo indeksą. Stebėkite du skirtingus baimės indeksus kartu su pagrindiniais rinkos indeksais, kad suprastumėte minios psichologiją ir priimtumėte pagrįstus investavimo sprendimus.
+
+[Du baimės ir godumo indeksai]
+- Rinkos baimės ir godumo indeksas: tradicinių finansų rinkų nuotaikos rodiklis
+- Kriptovaliutų baimės ir godumo indeksas: kriptovaliutų rinkos nuotaikos rodiklis
+- Palyginkite abu indeksus vienas šalia kito, kad suprastumėte bendrą rinkos dinamiką
+
+[Pagrindinės funkcijos]
+- Realaus laiko rinkos ir kriptovaliutų Fear & Greed Index rodymas
+- Intuityvus rinkos nuotaikos vizualizavimas matuoklio diagrama
+- Istorinių duomenų palyginimas (ankstesnis uždarymas, prieš 1 savaitę, 1 mėnesį, 1 metus)
+- Tendencijų analizė su istorijos diagramomis (1M / 3M / 6M / 1M)
+- Pagrindiniai rinkos indeksai realiu laiku (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Vienu bakstelėjimu perjungiama tarp rinkos ir kriptovaliutų indeksų
+
+[Valdikliai]
+- Pagrindinio ekrano valdikliai: mažo / vidutinio / didelio dydžio
+- Užrakto ekrano valdikliai: atskiri rinkos ir kriptovaliutų baimės indeksų rodikliai
+- Rinkos/kriptovaliutų perjungimas valdiklyje
+
+[Tiesioginiai pranešimai]
+- Momentiniai įspėjimai, kai rinkos baimės indeksas pasiekia jūsų nustatytą ribą
+- Momentiniai įspėjimai, kai kriptovaliutų baimės indeksas pasiekia jūsų nustatytą ribą
+- Pritaikomi viršutinės ir apatinės ribos nustatymai
+
+[Kas yra Fear & Greed Index?]
+Rinkos nuotaikos rodiklis, atspindintis investuotojų psichologiją skalėje nuo 0 (Ekstremali baimė) iki 100 (Ekstremalus godumas).
+- 0-24: Ekstremali baimė
+- 25-44: Baimė
+- 45-55: Neutralus
+- 56-75: Godumas
+- 76-100: Ekstremalus godumas
+
+[45 kalbų palaikymas]
+Anglų, korėjiečių, japonų, vokiečių, kinų, prancūzų, ispanų, arabų, italų, portugalų, rusų, turkų ir dar 33 kalbos.
+
+[Įspėjimas dėl investavimo]
+Visa šioje programėlėje pateikta informacija yra tik informacinio pobūdžio ir nėra pirkimo/pardavimo rekomendacija ar investavimo patarimas dėl jokių konkrečių vertybinių popierių.
+- Indekso duomenys gali skirtis nuo faktinių rinkos rodiklių, priklausomai nuo duomenų tiekėjo aplinkybių.
+- Visi investavimo sprendimai turi būti priimami remiantis paties investuotojo sprendimu ir atsakomybe.
+- Ši paslauga neprisiima jokios teisinės atsakomybės už investavimo rezultatus.
+
+[Kontaktai]
+Email: dlaudwls1203@gmail.com

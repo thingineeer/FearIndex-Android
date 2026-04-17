@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+A Fear & Greed Index egy befektetési hangulatelemző alkalmazás, amely lehetővé teszi, hogy egy pillantással kövesse a piaci félelem- és mohóság-indexet (Market Fear & Greed Index) és a kriptó félelem- és mohóság-indexet (Crypto Fear & Greed Index). Kövesse nyomon mindkét félelem-indexet a főbb piaci indexekkel együtt, hogy megértse a tömegpszichológiát és megalapozott befektetési döntéseket hozzon.
+
+[Két félelem és mohóság index]
+- Piaci félelem-index: Hangulat-indikátor a hagyományos pénzügyi piacokhoz
+- Kriptó félelem-index: Hangulat-indikátor a kriptovaluta piachoz
+- Hasonlítsa össze mindkét indexet egymás mellett a piac átfogó dinamikájának megértéséhez
+
+[Főbb funkciók]
+- Valós idejű piaci és kriptó Fear & Greed Index megjelenítés
+- Intuitív piaci hangulat vizualizáció mérőszám diagrammal
+- Historikus adatok összehasonlítása (előző zárás, 1 hét, 1 hónap, 1 év)
+- Trendelemzés előzmény diagramokkal (1H / 3H / 6H / 1É)
+- Főbb piaci indexek valós időben (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Egyérintéses váltás a piaci és kriptó indexek között
+
+[Widgetek]
+- Kezdőképernyő widgetek: Small / Medium / Large méretek
+- Zárolási képernyő widgetek: különálló kijelzők piaci és kriptó félelem-indexekhez
+- Piac/kriptó váltás a widgeteken belül
+
+[Push értesítések]
+- Azonnali riasztások, amikor a piaci félelem-index eléri a küszöbértékét
+- Azonnali riasztások, amikor a kriptó félelem-index eléri a küszöbértékét
+- Testreszabható felső és alsó küszöbérték beállítások
+
+[Mi a Fear & Greed Index?]
+Egy piaci hangulat-indikátor, amely a befektetők pszichológiáját 0-tól (Extrém félelem) 100-ig (Extrém mohóság) terjedő skálán ábrázolja.
+- 0-24: Extrém félelem (Extreme Fear)
+- 25-44: Félelem (Fear)
+- 45-55: Semleges (Neutral)
+- 56-75: Mohóság (Greed)
+- 76-100: Extrém mohóság (Extreme Greed)
+
+[45 nyelv]
+Elérhető 45 nyelven, beleértve a magyart, English, 한국어, 日本語, Deutsch, 中文 és még sok más nyelvet.
+
+[Befektetési felelősségkizárás]
+Az alkalmazásban megadott összes információ csak tájékoztató jellegű, és nem minősül vételi/eladási ajánlásnak vagy befektetési tanácsadásnak semmilyen konkrét értékpapírra.
+- Az index adatok eltérhetnek a tényleges piaci mutatóktól az adatszolgáltató körülményeitől függően.
+- Minden befektetési döntést a befektető saját megítélése és felelőssége alapján kell meghozni.
+- Ez a szolgáltatás nem vállal jogi felelősséget a befektetési eredményekért.
+
+[Kapcsolat]
+Email: dlaudwls1203@gmail.com

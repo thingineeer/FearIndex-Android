@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index je aplikacija za analizu investicijskog raspoloženja koja vam omogućuje praćenje tržišnog indeksa straha i pohlepe (Market Fear & Greed Index) i kripto indeksa straha i pohlepe (Crypto Fear & Greed Index) na jedan pogled. Pratite dva različita indeksa straha zajedno s glavnim tržišnim indeksima kako biste razumjeli psihologiju mase i donosili informirane investicijske odluke.
+
+[Dva indeksa straha i pohlepe]
+- Tržišni indeks straha: Indikator raspoloženja za tradicionale financijske tržišta
+- Kripto indeks straha: Indikator raspoloženja za tržište kriptovaluta
+- Usporedite oba indeksa za razumijevanje cjelokupne tržišne dinamike
+
+[Ključne značajke]
+- Prikaz tržišnog i kripto Fear & Greed Indexa u stvarnom vremenu
+- Intuitivna vizualizacija tržišnog raspoloženja s grafikonom mjerača
+- Usporedba povijesnih podataka (prethodno zatvaranje, 1 tjedan, 1 mjesec, 1 godina)
+- Analiza trendova s povijesnim grafikonima (1M / 3M / 6M / 1G)
+- Glavni tržišni indeksi u stvarnom vremenu (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Prebacivanje jednim dodirom između tržišnih i kripto indeksa
+
+[Widgeti]
+- Widgeti početnog zaslona: veličine Small / Medium / Large
+- Widgeti zaključanog zaslona: odvojeni prikazi za tržišne i kripto indekse straha
+- Prebacivanje tržište/kripto unutar widgeta
+
+[Push obavijesti]
+- Trenutna upozorenja kada tržišni indeks straha dosegne vaš prag
+- Trenutna upozorenja kada kripto indeks straha dosegne vaš prag
+- Prilagodljive postavke gornjeg i donjeg praga
+
+[Što je Fear & Greed Index?]
+Indikator tržišnog raspoloženja koji predstavlja psihologiju ulagača na skali od 0 (Ekstremni strah) do 100 (Ekstremna pohlepa).
+- 0-24: Ekstremni strah (Extreme Fear)
+- 25-44: Strah (Fear)
+- 45-55: Neutralno (Neutral)
+- 56-75: Pohlepa (Greed)
+- 76-100: Ekstremna pohlepa (Extreme Greed)
+
+[45 jezika]
+Dostupno na 45 jezika uključujući Hrvatski, English, 한국어, 日本語, Deutsch, 中文 i dr.
+
+[Izjava o odricanju od odgovornosti za ulaganja]
+Sve informacije u ovoj aplikaciji su samo za referencu i ne predstavljaju preporuke za kupnju/prodaju niti savjetovanje o ulaganjima za bilo koji specifičan vrijednosni papir.
+- Podaci indeksa mogu se razlikovati od stvarnih tržišnih pokazatelja ovisno o okolnostima pružatelja podataka.
+- Sve investicijske odluke moraju se donositi na temelju vlastite prosudbe i odgovornosti ulagača.
+- Ova usluga ne preuzima nikakvu pravnu odgovornost za rezultate ulaganja.
+
+[Kontakt]
+Email: dlaudwls1203@gmail.com

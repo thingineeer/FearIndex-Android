@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index ist eine App zur Analyse der Anlegerstimmung, mit der Sie sowohl den Markt-Angst-und-Gier-Index (Market Fear & Greed Index) als auch den Krypto-Angst-und-Gier-Index (Crypto Fear & Greed Index) auf einen Blick verfolgen koennen. Vergleichen Sie zwei verschiedene Angstindizes zusammen mit wichtigen Marktindizes, um die Massenpsychologie zu verstehen und fundierte Anlageentscheidungen zu treffen.
+
+[Zwei Angst- und Gier-Indizes]
+- Markt Fear & Greed Index: Stimmungsindikator fuer traditionelle Finanzmaerkte
+- Krypto Fear & Greed Index: Stimmungsindikator fuer den Kryptowaehrungsmarkt
+- Vergleichen Sie beide Indizes nebeneinander, um die gesamte Marktdynamik zu erfassen
+
+[Hauptfunktionen]
+- Echtzeit-Anzeige von Markt- und Krypto-Fear & Greed Index
+- Intuitive Marktstimmung mit Messanzeige
+- Historischer Datenvergleich (Vortagesschluss, 1 Woche, 1 Monat, 1 Jahr zuvor)
+- Trendanalyse mit Verlaufsdiagramm (1M / 3M / 6M / 1J)
+- Echtzeit-Hauptmarktindizes (KOSPI, KOSDAQ, NASDAQ, S&P500, Dow Jones)
+- Umschalten zwischen Markt und Krypto mit einem Tipp
+
+[Widgets]
+- Startbildschirm-Widgets: Small / Medium / Large Groessen
+- Sperrbildschirm-Widgets: separate Anzeige fuer Markt- und Krypto-Angstindex
+- Markt/Krypto-Umschalter innerhalb der Widgets
+
+[Push-Benachrichtigungen]
+- Sofortige Benachrichtigung bei Erreichen des Markt-Angstindex-Schwellenwerts
+- Sofortige Benachrichtigung bei Erreichen des Krypto-Angstindex-Schwellenwerts
+- Individuell einstellbare obere und untere Schwellenwerte
+
+[Was ist der Fear & Greed Index?]
+Ein Marktstimmungsindikator, der die Anlegerpsychologie auf einer Skala von 0 (Extreme Angst) bis 100 (Extreme Gier) darstellt.
+- 0-24: Extreme Angst
+- 25-44: Angst
+- 45-55: Neutral
+- 56-75: Gier
+- 76-100: Extreme Gier
+
+[45 Sprachen]
+Deutsch, English, Korean, Japanese, Chinese (vereinfacht/traditionell), French, Spanish, Portuguese, Italian, Russian, Turkish, Arabic und 45 Sprachen weltweit.
+
+[Anlagehinweis]
+Alle in dieser App bereitgestellten Informationen dienen nur als Referenz und stellen keine Kauf-/Verkaufsempfehlungen oder Anlageberatung fuer bestimmte Wertpapiere dar.
+- Indexdaten koennen je nach Umstaenden des Datenanbieters von den tatsaechlichen Marktindikatoren abweichen.
+- Alle Anlageentscheidungen muessen auf dem eigenen Urteil und der Verantwortung des Anlegers basieren.
+- Dieser Service uebernimmt keine rechtliche Verantwortung fuer Anlageergebnisse.
+
+[Kontakt]
+Email: dlaudwls1203@gmail.com

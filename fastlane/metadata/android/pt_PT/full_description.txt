@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index é uma aplicação de análise do sentimento de investimento que lhe permite monitorizar tanto o Índice de Medo e Ganância do Mercado (Market Fear & Greed Index) como o Índice de Medo e Ganância Cripto (Crypto Fear & Greed Index) de uma só vez. Acompanhe dois índices de medo distintos juntamente com os principais índices de mercado para compreender a psicologia das massas e tomar decisões de investimento informadas.
+
+[Dois Índices de Medo e Ganância]
+- Índice de Medo do Mercado: Indicador de sentimento para os mercados financeiros tradicionais
+- Índice de Medo Cripto: Indicador de sentimento para o mercado de criptomoedas
+- Compare ambos os índices para compreender a dinâmica global do mercado
+
+[Funcionalidades Principais]
+- Exibição em tempo real do índice de medo e ganância do mercado e cripto
+- Visualização intuitiva do sentimento de mercado com gráfico de manómetro
+- Comparação de dados históricos (fecho anterior, 1 semana, 1 mês, 1 ano)
+- Análise de tendências com gráficos de histórico (1M / 3M / 6M / 1A)
+- Principais índices de mercado em tempo real (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Alternância com um toque entre índices de mercado e cripto
+
+[Widgets]
+- Widgets do ecrã inicial: tamanhos Small / Medium / Large
+- Widgets do ecrã de bloqueio: ecrãs separados para índices de medo do mercado e cripto
+- Alternância mercado/cripto dentro dos widgets
+
+[Notificações Push]
+- Alertas instantâneos quando o índice de medo do mercado atinge o seu limiar
+- Alertas instantâneos quando o índice de medo cripto atinge o seu limiar
+- Definições de limiar superior e inferior personalizáveis
+
+[O que é o Fear & Greed Index?]
+Um indicador de sentimento de mercado que representa a psicologia dos investidores numa escala de 0 (Medo extremo) a 100 (Ganância extrema).
+- 0-24: Medo extremo (Extreme Fear)
+- 25-44: Medo (Fear)
+- 45-55: Neutro (Neutral)
+- 56-75: Ganância (Greed)
+- 76-100: Ganância extrema (Extreme Greed)
+
+[45 Idiomas]
+Disponível em 45 idiomas incluindo Português, English, 한국어, 日本語, Deutsch, 中文 (simplificado/tradicional), Français, Español, Italiano, Русский, Türkçe e العربية.
+
+[Aviso de Investimento]
+Toda a informação fornecida nesta aplicação é apenas para referência e não constitui recomendações de compra/venda nem aconselhamento de investimento para quaisquer valores mobiliários específicos.
+- Os dados do índice podem diferir dos indicadores reais do mercado dependendo das circunstâncias do fornecedor de dados.
+- Todas as decisões de investimento devem ser tomadas com base no julgamento e responsabilidade do próprio investidor.
+- Este serviço não assume qualquer responsabilidade legal pelos resultados de investimento.
+
+[Contacto]
+Email: dlaudwls1203@gmail.com

@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index adalah aplikasi analisis sentimen investasi yang memungkinkan Anda memantau Indeks Ketakutan & Keserakahan Pasar (Market Fear & Greed Index) dan Indeks Ketakutan & Keserakahan Kripto (Crypto Fear & Greed Index) sekaligus. Lacak dua indeks ketakutan yang berbeda bersama indeks pasar utama untuk memahami psikologi massa dan membuat keputusan investasi yang tepat.
+
+[Dua Indeks Ketakutan & Keserakahan]
+- Indeks Ketakutan Pasar: Indikator sentimen untuk pasar keuangan tradisional
+- Indeks Ketakutan Kripto: Indikator sentimen untuk pasar cryptocurrency
+- Bandingkan kedua indeks untuk memahami dinamika pasar secara keseluruhan
+
+[Fitur Utama]
+- Tampilan real-time Indeks Fear & Greed pasar dan kripto
+- Visualisasi sentimen pasar yang intuitif dengan grafik pengukur
+- Perbandingan data historis (penutupan sebelumnya, 1 minggu, 1 bulan, 1 tahun)
+- Analisis tren dengan grafik riwayat (1B / 3B / 6B / 1T)
+- Indeks pasar utama real-time (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Beralih antara indeks pasar dan kripto dengan satu sentuhan
+
+[Widget]
+- Widget layar beranda: ukuran Small / Medium / Large
+- Widget layar kunci: tampilan terpisah untuk indeks ketakutan pasar dan kripto
+- Toggle pasar/kripto di dalam widget
+
+[Notifikasi Push]
+- Peringatan instan saat indeks ketakutan pasar mencapai ambang batas Anda
+- Peringatan instan saat indeks ketakutan kripto mencapai ambang batas Anda
+- Pengaturan ambang batas atas dan bawah yang dapat dikustomisasi
+
+[Apa itu Fear & Greed Index?]
+Indikator sentimen pasar yang mewakili psikologi investor pada skala 0 (Ketakutan Ekstrem) hingga 100 (Keserakahan Ekstrem).
+- 0-24: Ketakutan Ekstrem (Extreme Fear)
+- 25-44: Ketakutan (Fear)
+- 45-55: Netral (Neutral)
+- 56-75: Keserakahan (Greed)
+- 76-100: Keserakahan Ekstrem (Extreme Greed)
+
+[45 Bahasa]
+Tersedia dalam 45 bahasa termasuk Bahasa Indonesia, English, 한국어, 日本語, Deutsch, 中文 dan lainnya.
+
+[Penafian Investasi]
+Semua informasi dalam aplikasi ini hanya untuk referensi dan bukan merupakan rekomendasi beli/jual atau saran investasi untuk sekuritas tertentu.
+- Data indeks mungkin berbeda dari indikator pasar aktual tergantung pada kondisi penyedia data.
+- Semua keputusan investasi harus dibuat berdasarkan penilaian dan tanggung jawab investor sendiri.
+- Layanan ini tidak menanggung tanggung jawab hukum atas hasil investasi.
+
+[Kontak]
+Email: dlaudwls1203@gmail.com

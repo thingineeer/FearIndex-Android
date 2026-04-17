@@ -1,2 +1,44 @@
-# TODO: translate (see en-US/full_description.txt)
-Fear & Greed Index — placeholder full description.
+Fear & Greed Index ir ieguldījumu noskaņojuma analīzes lietotne, kas ļauj vienlaikus uzraudzīt gan tirgus baiļu un alkatības indeksu, gan kriptovalūtu baiļu un alkatības indeksu. Sekojiet diviem atšķirīgiem baiļu indeksiem kopā ar galvenajiem tirgus indeksiem, lai saprastu pūļa psiholoģiju un pieņemtu informētus ieguldījumu lēmumus.
+
+[Divi baiļu un alkatības indeksi]
+- Tirgus baiļu un alkatības indekss: tradicionālo finanšu tirgu noskaņojuma rādītājs
+- Kripto baiļu un alkatības indekss: kriptovalūtu tirgus noskaņojuma rādītājs
+- Salīdziniet abus indeksus blakus, lai saprastu kopējo tirgus dinamiku
+
+[Galvenās funkcijas]
+- Tirgus un kripto Fear & Greed Index attēlošana reāllaikā
+- Intuitīva tirgus noskaņojuma vizualizācija ar mērītāja diagrammu
+- Vēsturisko datu salīdzināšana (iepriekšējā slēgšana, pirms 1 nedēļas, 1 mēneša, 1 gada)
+- Tendenču analīze ar vēstures diagrammām (1M / 3M / 6M / 1G)
+- Galvenie tirgus indeksi reāllaikā (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
+- Viena pieskāriena pārslēgšana starp tirgus un kripto indeksiem
+
+[Logrīki]
+- Sākuma ekrāna logrīki: Mazi / Vidēji / Lieli izmēri
+- Bloķēšanas ekrāna logrīki: atsevišķi tirgus un kripto baiļu indeksu rādījumi
+- Tirgus/kripto pārslēgšana logrīkā
+
+[Push paziņojumi]
+- Tūlītēji brīdinājumi, kad tirgus baiļu indekss sasniedz jūsu noteikto slieksni
+- Tūlītēji brīdinājumi, kad kripto baiļu indekss sasniedz jūsu noteikto slieksni
+- Pielāgojami augšējā un apakšējā sliekšņa iestatījumi
+
+[Kas ir Fear & Greed Index?]
+Tirgus noskaņojuma rādītājs, kas atspoguļo investoru psiholoģiju skalā no 0 (Ekstrēmas bailes) līdz 100 (Ekstrēma alkatība).
+- 0-24: Ekstrēmas bailes
+- 25-44: Bailes
+- 45-55: Neitrāli
+- 56-75: Alkatība
+- 76-100: Ekstrēma alkatība
+
+[45 valodu atbalsts]
+Angļu, korejiešu, japāņu, vācu, ķīniešu, franču, spāņu, arābu, itāļu, portugāļu, krievu, turku un vēl 33 valodas.
+
+[Ieguldījumu brīdinājums]
+Visa šajā lietotnē sniegtā informācija ir tikai atsauces nolūkos un nav pirkšanas/pārdošanas rekomendācija vai ieguldījumu padoms par konkrētiem vērtspapīriem.
+- Indeksa dati var atšķirties no faktiskajiem tirgus rādītājiem atkarībā no datu sniedzēja apstākļiem.
+- Visi ieguldījumu lēmumi jāpieņem, pamatojoties uz paša investora spriedumu un atbildību.
+- Šis pakalpojums neuzņemas juridisku atbildību par ieguldījumu rezultātiem.
+
+[Kontakti]
+Email: dlaudwls1203@gmail.com

@@ -13,6 +13,11 @@ Fear & Greed Index is an investment sentiment analysis app that lets you monitor
 - Real-time major market indices (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - One-tap toggle between Market and Crypto indices
 
+[Widgets]
+- Home screen widgets: Small / Medium / Large sizes
+- Lock screen widgets: separate displays for Market and Crypto fear indices
+- Market/Crypto toggle within widgets
+
 [Push Notifications]
 - Instant alerts when Market fear index reaches your threshold
 - Instant alerts when Crypto fear index reaches your threshold
@@ -25,6 +30,9 @@ A market sentiment indicator representing investor psychology on a scale from 0 
 - 45-55: Neutral
 - 56-75: Greed
 - 76-100: Extreme Greed
+
+[45 Language Support]
+English, Korean, Japanese, German, Chinese (Simplified/Traditional), French, Spanish, Portuguese, Italian, Russian, Turkish, Arabic and 45 languages worldwide.
 
 [Investment Disclaimer]
 All information provided in this app is for reference only and does not constitute buy/sell recommendations or investment advice for any specific securities.
