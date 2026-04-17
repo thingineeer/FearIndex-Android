@@ -16,11 +16,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
 import kotlin.math.abs
 
@@ -55,7 +57,7 @@ fun ComparisonCard(
         ) {
             // Header
             Text(
-                text = "비교",
+                text = stringResource(R.string.comparison_card_title),
                 fontSize = 17.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurface,
@@ -68,10 +70,10 @@ fun ComparisonCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
             ) {
-                ComparisonColumn("전일", previousClose, currentScore, Modifier.weight(1f))
-                ComparisonColumn("1주전", previous1Week, currentScore, Modifier.weight(1f))
-                ComparisonColumn("1개월전", previous1Month, currentScore, Modifier.weight(1f))
-                ComparisonColumn("1년전", previous1Year, currentScore, Modifier.weight(1f))
+                ComparisonColumn(stringResource(R.string.comparison_previous_close), previousClose, currentScore, Modifier.weight(1f))
+                ComparisonColumn(stringResource(R.string.comparison_1w_ago), previous1Week, currentScore, Modifier.weight(1f))
+                ComparisonColumn(stringResource(R.string.comparison_1m_ago), previous1Month, currentScore, Modifier.weight(1f))
+                ComparisonColumn(stringResource(R.string.comparison_1y_ago), previous1Year, currentScore, Modifier.weight(1f))
             }
         }
     }

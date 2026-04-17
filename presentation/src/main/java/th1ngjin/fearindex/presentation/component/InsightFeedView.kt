@@ -10,11 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketInsight
+import th1ngjin.fearindex.presentation.R
 
 /**
  * 인사이트 카드 리스트. HomeScreen 하단에 표시.
@@ -34,8 +36,8 @@ fun InsightFeedView(
     Column(modifier = modifier.fillMaxWidth()) {
         // 섹션 헤더
         val headerText = when (indexType) {
-            FearIndexType.MARKET -> "시장 인사이트"
-            FearIndexType.CRYPTO -> "암호화폐 인사이트"
+            FearIndexType.MARKET -> stringResource(R.string.insight_feed_header_market)
+            FearIndexType.CRYPTO -> stringResource(R.string.insight_feed_header_crypto)
         }
         Text(
             text = headerText,

@@ -127,12 +127,12 @@ private fun SheetHeader(insight: MarketInsight) {
         Spacer(modifier = Modifier.width(12.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = insight.title,
+                text = insightTitle(insight),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
             )
             Text(
-                text = insight.summary,
+                text = insightSummary(insight),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -339,7 +339,7 @@ private fun HistoricalEventCard(event: HistoricalEvent) {
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                text = event.description,
+                text = th1ngjin.fearindex.presentation.common.localizedEventTitle(event.description),
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.SemiBold,
             )
@@ -870,10 +870,11 @@ private fun SparklineChart(
             style = Stroke(width = 2.dp.toPx()),
         )
 
-        // 마지막 포인트 (현재)
+        // Current point = reversed 경로의 마지막 (= scores.first(), 최신값)
+        val currentScore = scores.first()
         val lastX = (scores.size - 1) * stepX
         val lastY = padding + (size.height - 2 * padding) *
-            (1.0 - (scores.last() - minScore) / range).toFloat()
+            (1.0 - (currentScore - minScore) / range).toFloat()
         drawCircle(
             color = lineColor,
             radius = 4.dp.toPx(),
@@ -970,7 +971,7 @@ private fun CurrentScoreStatsCard(insight: MarketInsight) {
             }
         }
         if (sampleCount != null && sampleCount > 0) {
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = stringResource(
                     th1ngjin.fearindex.presentation.R.string.insight_current_score_sample_count,
@@ -978,6 +979,8 @@ private fun CurrentScoreStatsCard(insight: MarketInsight) {
                 ),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = androidx.compose.ui.text.style.TextAlign.End,
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }

@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -33,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import th1ngjin.fearindex.domain.entity.InsightType
 import th1ngjin.fearindex.domain.entity.MarketInsight
+import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
 
 /**
@@ -67,14 +69,14 @@ fun InsightTeaserCard(
         // 제목 + 요약
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = insight.title,
+                text = insightTitle(insight),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = insight.summary,
+                text = insightSummary(insight),
                 fontSize = 12.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
@@ -87,7 +89,7 @@ fun InsightTeaserCard(
         // Chevron
         Icon(
             imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-            contentDescription = "상세 보기",
+            contentDescription = stringResource(R.string.insight_teaser_detail_content_description),
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.size(20.dp),
         )

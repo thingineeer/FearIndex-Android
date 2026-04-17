@@ -17,7 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -34,6 +37,7 @@ import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.StuckCounterCard
+import th1ngjin.fearindex.presentation.component.StuckDetailSheet
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
@@ -59,6 +63,8 @@ fun VoteScreen(
 
     val stuckResult by voteViewModel.resultFor(selectedType).collectAsState()
     val myStuckStatus by voteViewModel.myStatusFor(selectedType).collectAsState()
+
+    var showStuckDetail by rememberSaveable { mutableStateOf(false) }
 
     val context = LocalContext.current
     val analytics = remember(context) {
@@ -152,7 +158,7 @@ fun VoteScreen(
                 )
                 voteViewModel.toggleStuckStatus(selectedType, newStatus.toDomain())
             },
-            onInfoClick = { /* TODO: show info sheet */ },
+            onInfoClick = { showStuckDetail = true },
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -161,6 +167,13 @@ fun VoteScreen(
         AdBanner(screenName = ANALYTICS_SCREEN_VOTE)
 
         Spacer(modifier = Modifier.height(24.dp))
+    }
+
+    if (showStuckDetail) {
+        StuckDetailSheet(
+            result = stuckResult,
+            onDismiss = { showStuckDetail = false },
+        )
     }
 }
 

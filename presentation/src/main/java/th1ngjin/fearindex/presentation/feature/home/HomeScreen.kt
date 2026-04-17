@@ -31,7 +31,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -65,6 +67,7 @@ import th1ngjin.fearindex.presentation.component.InsightTeaserCard
 import th1ngjin.fearindex.presentation.component.SimilarEventsCard
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.component.StuckCounterCard
+import th1ngjin.fearindex.presentation.component.StuckDetailSheet
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
@@ -109,6 +112,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val stuckResult by voteViewModel.resultFor(selectedType).collectAsState()
     val myStuckStatus by voteViewModel.myStatusFor(selectedType).collectAsState()
 
+    var showStuckDetail by rememberSaveable { mutableStateOf(false) }
+
     // SimilarEvents 실시간 구독
     val similarEventsResult by similarEventsViewModel.resultFor(selectedType).collectAsState()
 
@@ -132,6 +137,13 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         InsightDetailSheet(
             insight = insight,
             onDismiss = insightViewModel::dismissDetail,
+        )
+    }
+
+    if (showStuckDetail) {
+        StuckDetailSheet(
+            result = stuckResult,
+            onDismiss = { showStuckDetail = false },
         )
     }
 
@@ -207,6 +219,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     )
                     voteViewModel.toggleStuckStatus(selectedType, newStatus.toDomain())
                 },
+                onStuckInfoClick = { showStuckDetail = true },
             )
             is FearIndexState.Error -> ErrorContent(
                 message = currentState.message,
@@ -391,6 +404,7 @@ private fun LoadedContent(
     stuckResult: StuckCounterResult = StuckCounterResult.EMPTY,
     myStuckStatus: UiStuckStatus = UiStuckStatus.NO_RESPONSE,
     onStuckToggle: (UiStuckStatus) -> Unit = {},
+    onStuckInfoClick: () -> Unit = {},
 ) {
     val score = fearIndex.roundedScore
 
@@ -436,7 +450,7 @@ private fun LoadedContent(
         stuckPercentage = stuckResult.stuckPercentage.toFloat(),
         myStatus = myStuckStatus,
         onToggle = onStuckToggle,
-        onInfoClick = { /* TODO: show info sheet */ },
+        onInfoClick = onStuckInfoClick,
     )
 
     Spacer(modifier = Modifier.height(16.dp))
