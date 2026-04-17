@@ -92,6 +92,31 @@ platform :android do
     sh("bash #{script}")
   end
 
+  desc "스크린샷만 Play Console 업로드 (AAB/메타 제외)"
+  lane :upload_screenshots do
+    upload_to_play_store(
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: false,
+      validate_only: false
+    )
+  end
+
+  desc "스크린샷 + 메타 업로드 (AAB 제외)"
+  lane :upload_metadata do
+    upload_to_play_store(
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_metadata: false,
+      skip_upload_changelogs: false,
+      skip_upload_images: false,
+      skip_upload_screenshots: false
+    )
+  end
+
   # 마지막 번들 산출물 경로 (release variant 기본 위치)
   def lockstep_aab_path
     File.join(PROJECT_ROOT, "app", "build", "outputs", "bundle", "release", "app-release.aab")

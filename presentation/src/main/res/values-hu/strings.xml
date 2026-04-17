@@ -217,4 +217,10 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="settings_menu_rate">Vélemény írása</string>
     <string name="settings_menu_share">App megosztása</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Összehasonlítás</string>
+    <string name="comparison_previous_close">Előző</string>
+    <string name="comparison_1w_ago">1 hete</string>
+    <string name="comparison_1m_ago">1 hónapja</string>
+    <string name="comparison_1y_ago">1 éve</string>
 </resources>

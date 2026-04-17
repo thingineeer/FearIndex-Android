@@ -220,4 +220,10 @@
     <string name="settings_menu_rate">समीक्षा लिखें</string>
     <string name="settings_menu_share">ऐप शेयर करें</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">तुलना</string>
+    <string name="comparison_previous_close">पिछला बंद</string>
+    <string name="comparison_1w_ago">1 सप्ताह पहले</string>
+    <string name="comparison_1m_ago">1 माह पहले</string>
+    <string name="comparison_1y_ago">1 वर्ष पहले</string>
 </resources>

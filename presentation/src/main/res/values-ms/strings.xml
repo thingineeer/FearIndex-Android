@@ -216,4 +216,10 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="settings_menu_rate">Tulis Ulasan</string>
     <string name="settings_menu_share">Kongsi Apl</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Perbandingan</string>
+    <string name="comparison_previous_close">Hari sblm</string>
+    <string name="comparison_1w_ago">1 minggu lepas</string>
+    <string name="comparison_1m_ago">1 bulan lepas</string>
+    <string name="comparison_1y_ago">1 tahun lepas</string>
 </resources>

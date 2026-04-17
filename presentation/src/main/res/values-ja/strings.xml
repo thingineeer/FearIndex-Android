@@ -216,4 +216,10 @@
     <string name="settings_menu_rate">レビューを書く</string>
     <string name="settings_menu_share">アプリを共有</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">比較</string>
+    <string name="comparison_previous_close">前日終値</string>
+    <string name="comparison_1w_ago">1週間前</string>
+    <string name="comparison_1m_ago">1ヶ月前</string>
+    <string name="comparison_1y_ago">1年前</string>
 </resources>

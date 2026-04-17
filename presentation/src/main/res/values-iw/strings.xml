@@ -216,4 +216,10 @@
     <string name="settings_menu_rate">כתוב ביקורת</string>
     <string name="settings_menu_share">שתף אפליקציה</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">השוואה</string>
+    <string name="comparison_previous_close">סגירה קודמת</string>
+    <string name="comparison_1w_ago">לפני שבוע</string>
+    <string name="comparison_1m_ago">לפני חודש</string>
+    <string name="comparison_1y_ago">לפני שנה</string>
 </resources>

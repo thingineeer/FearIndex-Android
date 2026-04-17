@@ -217,4 +217,10 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="settings_menu_rate">Napišite oceno</string>
     <string name="settings_menu_share">Deli aplikacijo</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Primerjava</string>
+    <string name="comparison_previous_close">Prejšnji</string>
+    <string name="comparison_1w_ago">Pred 1 tedn.</string>
+    <string name="comparison_1m_ago">Pred 1 mesec.</string>
+    <string name="comparison_1y_ago">Pred 1 letom</string>
 </resources>

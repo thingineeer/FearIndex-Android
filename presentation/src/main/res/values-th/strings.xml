@@ -220,4 +220,10 @@
     <string name="settings_menu_rate">เขียนรีวิว</string>
     <string name="settings_menu_share">แชร์แอป</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">เปรียบเทียบ</string>
+    <string name="comparison_previous_close">ปิดก่อนหน้า</string>
+    <string name="comparison_1w_ago">1 สัปดาห์ก่อน</string>
+    <string name="comparison_1m_ago">1 เดือนก่อน</string>
+    <string name="comparison_1y_ago">1 ปีก่อน</string>
 </resources>

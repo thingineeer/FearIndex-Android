@@ -217,4 +217,10 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="settings_menu_rate">Kirjuta arvustus</string>
     <string name="settings_menu_share">Jaga rakendust</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Võrdlus</string>
+    <string name="comparison_previous_close">Eelmine</string>
+    <string name="comparison_1w_ago">1 näd tagasi</string>
+    <string name="comparison_1m_ago">1 kuu tagasi</string>
+    <string name="comparison_1y_ago">1 aasta tagasi</string>
 </resources>

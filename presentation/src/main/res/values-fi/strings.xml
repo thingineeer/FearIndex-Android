@@ -217,4 +217,10 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="settings_menu_rate">Kirjoita arvostelu</string>
     <string name="settings_menu_share">Jaa sovellus</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Vertailu</string>
+    <string name="comparison_previous_close">Edellinen</string>
+    <string name="comparison_1w_ago">1 vk sitten</string>
+    <string name="comparison_1m_ago">1 kk sitten</string>
+    <string name="comparison_1y_ago">1 v sitten</string>
 </resources>

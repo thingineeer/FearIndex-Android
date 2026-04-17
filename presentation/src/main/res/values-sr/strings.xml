@@ -217,4 +217,10 @@
     <string name="settings_menu_rate">Напишите рецензију</string>
     <string name="settings_menu_share">Podeli aplikaciju</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Поређење</string>
+    <string name="comparison_previous_close">Претходни</string>
+    <string name="comparison_1w_ago">Пре 1 недеље</string>
+    <string name="comparison_1m_ago">Пре 1 месеца</string>
+    <string name="comparison_1y_ago">Пре 1 године</string>
 </resources>

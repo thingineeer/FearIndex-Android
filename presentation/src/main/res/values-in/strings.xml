@@ -216,4 +216,10 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="settings_menu_rate">Tulis Ulasan</string>
     <string name="settings_menu_share">Bagikan Aplikasi</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Perbandingan</string>
+    <string name="comparison_previous_close">Hari sblm</string>
+    <string name="comparison_1w_ago">1 minggu lalu</string>
+    <string name="comparison_1m_ago">1 bulan lalu</string>
+    <string name="comparison_1y_ago">1 tahun lalu</string>
 </resources>

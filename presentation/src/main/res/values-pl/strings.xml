@@ -217,4 +217,10 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="settings_menu_rate">Napisz recenzję</string>
     <string name="settings_menu_share">Udostępnij aplikację</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Porównanie</string>
+    <string name="comparison_previous_close">Poprzedni</string>
+    <string name="comparison_1w_ago">Tydzień temu</string>
+    <string name="comparison_1m_ago">Miesiąc temu</string>
+    <string name="comparison_1y_ago">Rok temu</string>
 </resources>

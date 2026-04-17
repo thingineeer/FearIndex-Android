@@ -217,4 +217,10 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="settings_menu_rate">Beoordeling schrijven</string>
     <string name="settings_menu_share">App delen</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Vergelijking</string>
+    <string name="comparison_previous_close">Vorige</string>
+    <string name="comparison_1w_ago">1 wk geleden</string>
+    <string name="comparison_1m_ago">1 mnd geleden</string>
+    <string name="comparison_1y_ago">1 jaar geleden</string>
 </resources>

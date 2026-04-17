@@ -217,4 +217,10 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="settings_menu_rate">Napsat recenzi</string>
     <string name="settings_menu_share">Sdílet aplikaci</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Srovnání</string>
+    <string name="comparison_previous_close">Předchozí</string>
+    <string name="comparison_1w_ago">Před týdnem</string>
+    <string name="comparison_1m_ago">Před měsícem</string>
+    <string name="comparison_1y_ago">Před rokem</string>
 </resources>

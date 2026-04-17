@@ -217,4 +217,10 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="settings_menu_rate">Skriv en anmeldelse</string>
     <string name="settings_menu_share">Del appen</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Sammenligning</string>
+    <string name="comparison_previous_close">Forrige</string>
+    <string name="comparison_1w_ago">1 uke siden</string>
+    <string name="comparison_1m_ago">1 mnd siden</string>
+    <string name="comparison_1y_ago">1 år siden</string>
 </resources>

@@ -217,4 +217,10 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="settings_menu_rate">Lascia una recensione</string>
     <string name="settings_menu_share">Condividi app</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Confronto</string>
+    <string name="comparison_previous_close">Giorno prec.</string>
+    <string name="comparison_1w_ago">1 sett. fa</string>
+    <string name="comparison_1m_ago">1 mese fa</string>
+    <string name="comparison_1y_ago">1 anno fa</string>
 </resources>

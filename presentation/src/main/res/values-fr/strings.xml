@@ -217,4 +217,10 @@
     <string name="settings_menu_rate">Laisser un avis</string>
     <string name="settings_menu_share">Partager l\'app</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Comparaison</string>
+    <string name="comparison_previous_close">Jour préc.</string>
+    <string name="comparison_1w_ago">Il y a 1 sem.</string>
+    <string name="comparison_1m_ago">Il y a 1 mois</string>
+    <string name="comparison_1y_ago">Il y a 1 an</string>
 </resources>

@@ -217,4 +217,10 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="settings_menu_rate">Skryf resensie</string>
     <string name="settings_menu_share">Deel app</string>
     <string name="settings_about_version">Version %1$s</string>
+    <!-- Comparison Card -->
+    <string name="comparison_card_title">Vergelyking</string>
+    <string name="comparison_previous_close">Vorige</string>
+    <string name="comparison_1w_ago">1 wk gelede</string>
+    <string name="comparison_1m_ago">1 md gelede</string>
+    <string name="comparison_1y_ago">1 jr gelede</string>
 </resources>
