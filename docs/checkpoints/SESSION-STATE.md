@@ -1,173 +1,152 @@
 # Session State — FearIndex-Android
 
 ## Date
-2026-04-17 (16:40 KST)
+2026-04-19 (12:40 KST 진행 중)
 
 ## Version
 - `versionCode`: 2
 - `versionName`: 1.0.1
-- AAB 산출물: `app/build/outputs/bundle/release/app-release.aab` (10.1MB) — 2026-04-17 빌드 (keystore `~/fearindex-secrets/fearindex-release.keystore`, alias `upload`)
+- AAB 산출물: `app/build/outputs/bundle/release/app-release.aab` (10.3MB, 2026-04-16 빌드)
+- AAB 서명 SHA-1: `81:AD:9D:5D:9A:E1:50:EB:F1:AE:9D:AF:86:CB:03:3D:67:6B:2A:75` — **upload_cert.pem 과 완전 매칭 검증됨**
 
 ## Branch
-`dev` — origin/dev보다 **16 커밋 앞선 상태** (아직 push 안 함)
+`dev` — origin/dev 동기화, working tree clean
 
 ## Active Worktrees
-- 본진 `/Users/imyeongjin/Desktop/side/FearIndex-Android [dev]`
-- `FearIndex-Android-share-and-gauge [feature/v1.0.0-share-and-gauge]` — **미머지, 미검토**
+본진 `/Users/imyeongjin/Desktop/FearIndex-Android [dev]` 1개만
 
-## Completed (2026-04-17 세션)
+## Completed (이번 세션 2026-04-19)
 
-### 1. 이전 세션 잔재 정리
-- `FearIndex-Android-i18n` worktree의 미커밋 변경 (splash/icons/StuckDetailSheet/fastlane 등)을 6개 논리 커밋으로 쪼개고 `feature/v1.0.0-i18n-insights` → `dev` 머지 후 worktree 제거
+### 1. 빌드 검증
+- AAB 파일 존재 확인 (`app/build/outputs/bundle/release/app-release.aab`, 10.3MB)
+- `jarsigner -verify` → 서명자 `CN=LeeMyeongJin, OU=Mobile, O=th1ngjin, L=Seoul, ST=Seoul, C=KR`
+- AAB 서명 SHA-1/256 와 `~/fearindex-secrets/upload_cert.pem` SHA 완전 일치 확인 ✅
+- 13:33 KST (업로드 키 유효 시각) 이후 재빌드 없이 그대로 업로드 가능
+- `./gradlew :app:assembleDebug` BUILD SUCCESSFUL
 
-### 2. S&P 하드코딩 + Settings 메뉴 i18n 버그 수정 (`feature/v1.0.1-similar-events-asset-label`)
-- `insight_similar_events_one_year_return` 키: "1년 후 S&P %1$s" 형태 → iOS 패턴 "1년 후 %1$s" (자산명 placeholder)
-- `SimilarEventsCard` 에 `indexType` 파라미터 추가, CRYPTO면 "BTC", 아니면 "S&P" 런타임 주입
-- 설정 메뉴 키 (`settings_menu_notification/rate/share/about/privacy` + `settings_about_version`) — ko 외 **43 locale 전부 누락**이었던 것을 iOS Localizable.strings 에서 일괄 동기화
+### 2. Play Console Closed Testing (비공개 테스트 - Alpha) 세팅
+Chrome MCP로 `dlaudwls1203@gmail.com` Play Console 접근 (u/1).
+앱 ID `4973920645070208584` (공포지수, `th1ngjin.fearindex`).
 
-### 3. Supply fastlane 규격 폴더명 통일 (`feature/v1.0.1-screenshots-and-i18n`)
-- `values-XX` (Android resource 규격) ≠ Supply locale 규격 (`ko_KR`, `en_US`, `pt_BR`, `zh_CN`)
-- `en-US` → `en_US`, `pt-rBR` → `pt_BR`, `zh-rCN` → `zh_CN`, `iw` → `iw_IL`, `nb` → `no_NO`, `in` → `id` 등 rename
-- 중복 `ko/` + `ko-KR/` → `ko_KR/` 로 통합
+트랙 진행 상황 **2/4 완료**:
+- ✅ **국가 선택**: 대한민국만 (추후 Production 승급 시 전세계 확장 예정)
+- ✅ **테스터 선택**: 기존 "내부테스터" 이메일 목록 이 트랙에 연결
+- 🟡 **버전 생성 및 출시**: 대기 (AAB 업로드 키 유효시각 13:33 KST 이후)
+- 🔒 **버전 미리보기 및 확인** → **검토를 위해 Google에 버전 전송**: 위 단계 완료 후
 
-### 4. Android 스크린샷 자동 순회 (45 locale × 4장 = 180장)
-- `scripts/screenshots/capture-all-locales.sh` — adb `cmd locale set-app-locales` + `input tap` 시퀀스
-- ANR dialog 방지: `settings put global hide_error_dialogs 1` 설정
-- 각 locale: 홈 / 차트 / 투표 / 알림설정 — 1080×2400 PNG
-- 저장: `fastlane/metadata/android/<supply_locale>/images/phoneScreenshots/{1_home,2_chart,3_vote,4_notification_settings}.png`
-- Fastfile `screenshots` lane 추가
-
-### 5. `comparison_*` + `comparison_card_title` 키 번역 (44 locale)
-- `comparison_card_title`, `comparison_previous_close`, `_1w_ago`, `_1m_ago`, `_1y_ago` 키 — 이전엔 ko만 있고 43 locale 누락이던 것을 locale별 적절한 번역으로 추가
-
-### 6. Play Store 텍스트 메타 45 locale (`feature/v1.0.1-store-listing-metadata`)
-- 4개 병렬 에이전트로 작성 (Agent 1~4)
-- title.txt (≤30자) / short_description.txt (≤80자) / full_description.txt (≤4000자)
-- iOS `fastlane/metadata/<iOS_locale>/{name,subtitle,description}.txt` 참고 (33 locale) + 영어 기반 번역 (11 locale)
-- Apple Watch / macOS / iPadOS 섹션 제거, "12개 언어" → "45개 언어"
-- 중복 nl/ → nl_NL/ 통합 (placeholder 제거)
-- 45 × 3 = 135 파일, 규격 전부 준수
-
-### 7. 출시 노트 45 locale (`feature/v1.0.1-release-notes`)
-- `fastlane/metadata/android/<locale>/changelogs/2.txt` (versionCode 2)
-- 각 locale별 간결한 v1.0.1 release note (500자 제한 내)
-
-### 8. Fastfile lane 추가
-- `upload_screenshots` — 스크린샷만 Play Console 업로드
-- `upload_metadata` — 스크린샷 + 메타 + changelog 업로드 (AAB 제외)
-
-### 9. Android FCM 푸시 테스트
-- FCM 토큰 캡처 (debug 빌드에 임시 로깅 후 revert)
-- Firebase Admin SDK 로 4건 발송 (시장/암호화폐 × lower/upper), ja 로케일 번역 재발송 검증
-- 에뮬레이터 알림 수신 확인 (`fear_index_alerts` 채널, importance=4)
-
-### 10. Chrome MCP로 Play Console 진입 시도
-- `dlaudwls1203@gmail.com` 계정 로그인 + 내부 테스트 트랙 진입 성공
-- AAB 업로드 시도 → **업로드 키 재설정 대기** 에러 (`2026-04-19 04:33 UTC` 이후 유효)
+### 3. 14일 × 12명 정책 정리 (Google 신규 개인 개발자 요건)
+- Internal Testing은 14일 카운트 **안 쌓임** (100명 제한만)
+- **Closed Testing에서 12명 전원이 동시에 14일 연속 opt-in** 유지해야 Production 자격
+- 12명이 모인 가장 늦은 시점 이후부터 14일 타이머
+- 중도 이탈 시 타이머 흔들림 → 실제론 14~16명 여유있게 권장
 
 ## In Progress
-없음 — 대기 중 (업로드 키 재설정 승인 대기)
+- **이메일 목록 "내부테스터" 편집** (Chrome MCP로 모달 열린 상태로 세션 종료되었을 수 있음)
+- 현재 등록: `dlaudwls1203@gmail.com` 본인 1명만
+- 사용자가 8명 이메일 모은 상태, 본인이 직접 전달 대기
+- 목표: 12명+ (넉넉히 14~16명)
 
 ## Remaining
 
-### Play Console 업로드 키 재설정 대기
-- [ ] **2026-04-19 04:33 UTC (한국 4/19 13:33)** 이후 AAB 재업로드 시도
-- [ ] 업로드 파일: `app/build/outputs/bundle/release/app-release.aab` (재빌드 불필요, 이미 올바른 keystore로 서명됨)
+### 1. 이메일 목록 채우기 (사용자 액션 필요)
+- [ ] Closed Testing "내부테스터" 목록에 **최소 11명 Google 계정 이메일** 추가 (본인 제외)
+- 쉼표 구분으로 일괄 입력 가능 (모달의 "이메일 주소 추가" 필드)
+- 또는 CSV 파일 업로드 옵션 존재
+- 현재 보유: 8명 / 필요: 11명+ (본인 제외)
 
-### Play Console 후속 작업 (AAB 업로드 성공 후)
-- [ ] 출시명 `2 (1.0.1)` 입력
-- [ ] 출시 노트 — changelogs/2.txt 45 locale 사용
-- [ ] 스토어 등록정보 — 45 locale 스크린샷 + title/short/full 업로드
-- [ ] 필수 선언: 콘텐츠 등급 설문, 데이터 보안, 앱 액세스, 광고, 타겟층, 개인정보처리방침 URL
-- [ ] 테스터 이메일 목록 "Internal Testers" 생성 + 등록
-- [ ] "내부 테스트로 출시" → 테스터 초대 링크 공유
+### 2. AAB 업로드 (13:33 KST 이후)
+- [ ] Chrome Play Console → 비공개 테스트 - Alpha → "새 버전 만들기"
+- [ ] 업로드 파일: `/Users/imyeongjin/Desktop/FearIndex-Android/app/build/outputs/bundle/release/app-release.aab`
+- [ ] 출시명 `2 (1.0.1)` / 출시 노트 (45 locale — `fastlane/metadata/android/<locale>/changelogs/2.txt` 자동)
+- **Chrome MCP 제약**: `<input type="file">` macOS 네이티브 다이얼로그 제어 불가 → **사용자 수동 드래그앤드롭**
 
-### Fastlane 자동화 (선택)
-- [ ] Play Console → 설정 → API 액세스 → 서비스 계정 JSON 발급
-- [ ] `~/fearindex-secrets/play-store-service-account.json` 저장
-- [ ] `bundle exec fastlane upload_metadata` → 메타 + 스크린샷 + changelog 자동 업로드
+### 3. Google 심사 전송
+- [ ] "검토를 위해 Google에 버전 전송" 버튼 클릭
+- [ ] 심사 대기 (신규 앱 첫 심사 보통 수 시간~며칠)
+- [ ] 심사 통과 → `(unreviewed)` 임시 이름 정식 이름으로 전환
 
-### Firebase Console
-- [ ] App Check debug token 등록 (이전 세션의 `f7fe2893-...` 또는 최신)
-- [ ] 새 keystore SHA-1 등록 (기등록 상태 확인 필요)
+### 4. 테스터 opt-in → 14일 타이머 시작
+- [ ] 심사 통과 후 테스터 초대 링크 공유 (Web + Android)
+- [ ] 12명 전원 "테스터 되기" 클릭 + Play Store에서 앱 설치 확인
+- [ ] 마지막 opt-in 시점부터 14일 카운트다운 시작
+- [ ] 14일 후 Production 트랙 신청 자격 획득
 
-### Git
-- [ ] `git push origin dev` (dev가 origin/dev보다 16 커밋 앞선 상태)
+### 5. Play Console 필수 선언 (심사 전 완료 필수)
+- [ ] 콘텐츠 등급 설문
+- [ ] 데이터 보안 양식
+- [ ] 앱 액세스 / 광고 / 타겟층 선언
+- [ ] 개인정보처리방침 URL
 
-### 별도 worktree 정리
-- [ ] `FearIndex-Android-share-and-gauge [feature/v1.0.0-share-and-gauge]` 상태 점검 후 머지 or 삭제
+### 6. Firebase Console
+- [ ] App Check debug token 등록
+- [ ] 새 keystore SHA-1 `81:AD:9D:5D:9A:E1:50:EB:F1:AE:9D:AF:86:CB:03:3D:67:6B:2A:75` 등록 확인
+
+### 7. 추후 (v1.0.2+)
+- [ ] SkeletonView 검토
+- [ ] 시장/암호화폐 알림 설정 분리
+- [ ] iOS hosting URL 공유 링크 반영
+- [ ] InsightGenerator 단위 테스트
 
 ## Key Files
 
-### 이번 세션 핵심
-- `fastlane/metadata/android/<locale>/title.txt|short_description.txt|full_description.txt` — 45 × 3 = 135 파일
-- `fastlane/metadata/android/<locale>/changelogs/2.txt` — 45 locale 출시 노트
-- `fastlane/metadata/android/<locale>/images/phoneScreenshots/{1_home,2_chart,3_vote,4_notification_settings}.png` — 45 × 4 = 180장
-- `scripts/screenshots/capture-all-locales.sh` — 45 locale adb 순회 촬영
-- `fastlane/Fastfile` — screenshots / upload_screenshots / upload_metadata / internal / promote_to_closed / promote_to_production lane
-- `presentation/src/main/java/th1ngjin/fearindex/presentation/component/SimilarEventsCard.kt` — indexType 파라미터, asset label 분기
-- `presentation/src/main/java/th1ngjin/fearindex/presentation/feature/home/HomeScreen.kt` — SimilarEventsCard 호출부
-- `presentation/src/main/res/values-*/strings.xml` — comparison_*, settings_menu_*, insight_similar_events_one_year_return 동기화
+### 현재 관여 파일 (세션 재개 시 먼저 읽을 곳)
+- `docs/checkpoints/SESSION-STATE.md` — 이 파일 (save point)
+- `app/build/outputs/bundle/release/app-release.aab` — Play Console 업로드 대상 (10.3MB, 서명 검증 완료)
+- `~/fearindex-secrets/upload_cert.pem` — 업로드 인증서 (Play Console 키 재설정 매칭 대상)
+- `fastlane/metadata/android/*/changelogs/2.txt` — v1.0.1 출시 노트 45 locale
+- `fastlane/metadata/android/*/{title,short_description,full_description}.txt` — Store listing 45 locale
+- `fastlane/metadata/android/*/images/phoneScreenshots/{1_home,2_chart,3_vote,4_notification_settings}.png` — 45 × 4 = 180장
 
-### AAB 산출물
-- `app/build/outputs/bundle/release/app-release.aab` (10.1MB)
+### Play Console 상수
+- 개발자 계정 ID: `5351376807423705889`
+- 앱 ID: `4973920645070208584` (공포지수, `th1ngjin.fearindex`)
+- Closed Testing 트랙 ID: `4699045907541260404`
+- Chrome URL: `https://play.google.com/console/u/1/developers/5351376807423705889/app/4973920645070208584/closed-testing`
 
 ## Notes
 
-### Git 그래프 (2026-04-17 오늘 추가)
-```
-* 89c6572 merge: v1.0.1 release notes (45 locale) → dev
-* 199738d feat(metadata): 45 locale changelogs/2.txt (v1.0.1 release notes)
-* d664c4e merge: 45 locale Play Store 텍스트 메타 → dev
-* 8bc6aa4 i18n: 45 locale Google Play 텍스트 메타 일괄 작성 (iOS 매핑 + 영어 기반 번역)
-* b66161c merge: screenshots + i18n comparison + supply rename → dev
-* fc364d1 chore(session): 2026-04-17 스크린샷 + i18n 세션 기록
-* 802d2d2 i18n: comparison_* 키 43 locale 번역 추가
-* 71fe25e fix(fastlane): Supply 공식 locale 폴더명 통일 + 45 locale 스크린샷 자동화
-* bdd91ba merge: asset-label + settings menu i18n → dev
-* 323dc9d fix(i18n): similar-events 자산 레이블 분기 + settings 메뉴 키 43 locale 추가
-* 76186f9 merge: i18n + icons + splash + stuck-detail → dev
-* 5941d2e chore: fastlane + build 설정 + misc
-* af2be83 feat(presentation): 컴포넌트 연결 + i18n 키 연결
-* b0592cf i18n: 44 locale strings 신규 키 일괄 반영
-* 4543630 feat(ui): StuckDetailSheet + InsightText + PrivacyScreen 신규
-* 3809f36 feat(splash): iOS 스타일 Compose SplashView 추가
-* 7402496 feat(icons): iOS AppIcon 기반 런처/스플래시 아이콘 교체
-* 376fa5f chore(session): 2026-04-17 세션 저장 (이전 세션)
-```
+### Chrome MCP 계정 주의
+- 이 세션 시작 시 `/swap-server`로 Chrome Profile 18 (cgmsw 회사AI계정) 열림 → Play Console 접근 불가 (개인 Gmail 없음)
+- **다음 세션**: 개인 Gmail `dlaudwls1203@gmail.com` 로그인된 Chrome Profile 사용 필수
+- Chrome MCP `u/0`, `u/1`, `u/2` 인덱스 주의 — 계정별 다른 결과
 
-### Play Console 업로드 키 재설정 상태
-- Google에 재설정 요청 접수됨 (이전 세션)
-- **유효 시작 시각**: `2026-04-19 04:33:09 UTC` = 한국 `2026-04-19 (금) 13:33`
-- 현재는 업로드 시 "최근에 재설정되어 아직 유효하지 않은 업로드 인증서" 에러 발생
-- 4/19 이후에는 현재 빌드된 AAB 그대로 업로드 통과 예정
+### 업로드 키 재설정 상태
+- Google 재설정 승인 완료 (이전 세션에 요청)
+- 유효 시작 시각: `2026-04-19 04:33:09 UTC` = `2026-04-19 (일) 13:33 KST`
+- 현재 AAB는 새 keystore (`~/fearindex-secrets/fearindex-release.keystore`, alias `upload`) 서명됨
+- **검증 완료**: AAB SHA-1 = PEM SHA-1 완전 일치 → 13:33 이후 바로 업로드 통과 예정
+
+### Google 14일 × 12명 정책 (중요)
+- Internal Testing ≠ Closed Testing
+- Closed Testing에서만 14일 타이머 유효
+- 12명이 한꺼번에 opt-in하는 게 가장 빠름 — 늦게 들어온 사람이 있으면 그 시점부터 타이머 재시작
+- 본인 포함 현재 계획: 9명 (사용자 8명 + 본인) → 최소 3명 더 필요
+- 안전 권장 14~16명
+
+### Chrome MCP 파일 업로드 제약
+- `<input type="file">` macOS 네이티브 다이얼로그 제어 불가
+- AAB 업로드는 사용자 수동 드래그앤드롭 필수
+- 또는 Fastlane + Play Store service account JSON 발급하여 자동화 가능
 
 ### Keystore 정보 (변경 없음)
 - 위치: `~/fearindex-secrets/fearindex-release.keystore` (PKCS12)
 - Alias: `upload`
-- 비밀번호 (store/key 동일): `~/.gradle/gradle.properties` 의 `FEARINDEX_STORE_PASSWORD`
-- Upload PEM: `~/fearindex-secrets/upload_certificate.pem`
-
-### Chrome MCP 제약
-- 파일 input (`<input type="file">`) 은 macOS 네이티브 다이얼로그 통제 불가 → AAB 업로드는 사용자 수동
-- Play Console 세션은 Chrome 브라우저 그대로 유지 (로그인 상태 유지)
-
-### Supply Locale 정규화 (주의)
-- Android `values-XX` (리소스) ≠ Supply `XX_YY` (Play Console 메타)
-- `values-pt-rBR` (리소스) ↔ `fastlane/metadata/android/pt_BR` (메타)
-- `values-zh-rCN` ↔ `zh_CN`
-- `values-nb` ↔ `no_NO`
-- `values-iw` ↔ `iw_IL`
-- `values-in` ↔ `id`
+- 비밀번호: `~/.gradle/gradle.properties` 의 `FEARINDEX_STORE_PASSWORD`
+- PEM: `~/fearindex-secrets/upload_cert.pem`
 
 ## 다음 세션 시작 시
 1. `/resume-FearIndex-Android` 실행
-2. 4/19 13:33 KST 지났는지 확인
-3. 지났으면: Chrome 열고 Play Console → 내부 테스트 → 버전 수정 → AAB 업로드 재시도
-4. 안 지났으면: 대기하거나 service account JSON 발급으로 시간 활용
+2. 현재 시각이 13:33 KST 지났는지 확인
+3. 사용자에게 12명 이메일 모집 진행률 확인
+4. 준비되면 Chrome에서 개인 Gmail 프로필로 Play Console 재진입
+5. 우선순위:
+   1. 이메일 목록에 11명+ 추가 (쉼표 구분 일괄 입력)
+   2. AAB 업로드 (사용자 수동 드래그앤드롭)
+   3. 출시 노트 + 검토 전송
+   4. 심사 통과 대기 → 테스터 초대 링크 공유 → 14일 타이머 시작
 
 ## 이번 세션 주요 교훈
-- `ANR: Application Not Responding` dialog는 `hide_error_dialogs=1` 설정으로 시스템 차단 가능 (연속 locale 전환 시 필수)
-- `values-XX` 와 Supply locale은 완전히 다른 체계 — 처음부터 Supply 규격 지켜야 fastlane과 호환
-- iOS `Localizable.strings` 는 Android `strings.xml` 의 상위 SSOT — 키 동기화는 항상 iOS → Android 방향
-- Chrome MCP로 Play Console 작업 시 `u/0`/`u/1` 등 계정 index 주의 — 본인 개인 Gmail (`dlaudwls1203`) 사용 확인 필수
+- Closed Testing과 Internal Testing을 처음엔 혼동하기 쉬움 — 14일 정책은 **Closed Testing** 에서만 쌓임
+- Chrome Profile 계정 index(`u/0`, `u/1`...) 매번 확인 필수. `/swap-server` 후에는 Play Console 계정이 다를 수 있음
+- AAB 서명 검증은 `jarsigner -verify -verbose -certs <aab>` + PEM과 SHA-1 직접 비교로 정확 확인 가능
+- 업로드 키 재설정은 Google 승인 후 즉시 적용되지 않고 지정된 유효 시각 이후 활성
