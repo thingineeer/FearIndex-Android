@@ -1,6 +1,7 @@
-Chỉ số Sợ hãi và Tham lam v1.0.1 kiểm thử nội bộ.
+Fear & Greed Index v1.0.1 cập nhật.
+- Tổng hợp bỏ phiếu thời gian thực (1,5s debounce)
+- Số người tham gia trực tiếp
+- So sánh crypto 1 năm đã sửa
+- Cải thiện trợ năng cài đặt thông báo
+- Nút chia sẻ/đánh giá/bảo mật
 - Hỗ trợ 45 ngôn ngữ
-- Chỉ số thị trường và tiền mã hóa thời gian thực
-- Thẻ thông tin giai đoạn tương tự
-- Ngưỡng thông báo
-- Bỏ phiếu bộ đếm kẹt

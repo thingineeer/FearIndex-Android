@@ -1,6 +1,7 @@
-Fahirisi ya hofu na tamaa v1.0.1 jaribio la ndani.
-- Msaada wa lugha 45
-- Fahirisi ya soko na crypto kwa wakati halisi
-- Kadi ya vipindi kama hivyo
-- Vizingiti vya arifa
-- Kura ya kaunta iliyokwama
+Fear & Greed Index v1.0.1 sasisho.
+- Mkusanyiko wa kura wa wakati halisi (1.5s)
+- Hesabu ya washiriki moja kwa moja
+- Ulinganishi wa sarafu 1 mwaka umerekebishwa
+- Uboreshaji wa ufikivu wa arifa
+- Vitufe vya shiriki/thamini/faragha
+- Inasaidia lugha 45

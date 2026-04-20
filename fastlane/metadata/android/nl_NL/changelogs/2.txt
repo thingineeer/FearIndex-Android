@@ -1,6 +1,7 @@
-Angst en hebzucht-index v1.0.1 interne test.
+Fear & Greed Index v1.0.1 update.
+- Realtime stemtelling (1,5s debounce)
+- Live deelnemersteller
+- Crypto 1-jaar vergelijking gerepareerd
+- Toegankelijkheid meldingsinstellingen
+- Delen/beoordelen/privacy-knoppen
 - Ondersteuning voor 45 talen
-- Realtime markt- en crypto-index
-- Kaart met soortgelijke perioden
-- Meldingsdrempels (onder/boven)
-- Stemfunctie voor vast-zit-teller

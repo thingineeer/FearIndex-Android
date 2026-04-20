@@ -223,4 +223,5 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="comparison_1w_ago">Prieš 1 sav.</string>
     <string name="comparison_1m_ago">Prieš 1 mėn.</string>
     <string name="comparison_1y_ago">Prieš 1 m.</string>
+    <string name="stuck_total_responded">%1$d dalyvių</string>
 </resources>

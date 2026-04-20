@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- iOS 스타일 Splash: 흰 배경 + 런처 아이콘 foreground만 보여줌 (iOS UILaunchScreen_Generation=YES와 대칭) -->
+    <!-- OS SplashScreen 은 Android 12+에서 강제 노출되므로 투명 아이콘 + 흰 배경으로 "보이지 않게" 처리.
+         실제 사용자에게 보이는 splash 는 MainActivity 의 Compose SplashView (iOS 디자인 그대로 이식).
+         결과: 시각적으로 splash 는 Compose 1개만 인식됨 (OS splash 는 흰 화면으로 잠시 뜨고 교체). -->
     <style name="Theme.FearIndex.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/ic_launcher_background</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_icon_invisible</item>
         <item name="postSplashScreenTheme">@style/Theme.FearIndex</item>
     </style>
 

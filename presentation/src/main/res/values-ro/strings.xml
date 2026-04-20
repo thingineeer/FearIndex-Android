@@ -223,4 +223,5 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="comparison_1w_ago">Acum 1 săpt.</string>
     <string name="comparison_1m_ago">Acum 1 lună</string>
     <string name="comparison_1y_ago">Acum 1 an</string>
+    <string name="stuck_total_responded">%1$d participanți</string>
 </resources>

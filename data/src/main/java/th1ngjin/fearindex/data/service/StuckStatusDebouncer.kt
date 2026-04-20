@@ -38,7 +38,7 @@ class StuckStatusDebouncerImpl @Inject constructor(
     private val pending = mutableMapOf<FearIndexType, StuckStatus>()
     private var outcomeListener: ((StuckStatusDebouncerProtocol.Outcome) -> Unit)? = null
 
-    var debounceMillis: Long = 5_000L
+    var debounceMillis: Long = 1_500L
 
     override fun setOutcomeListener(listener: ((StuckStatusDebouncerProtocol.Outcome) -> Unit)?) {
         outcomeListener = listener

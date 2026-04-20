@@ -223,4 +223,5 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="comparison_1w_ago">Prije 1 tj.</string>
     <string name="comparison_1m_ago">Prije 1 mj.</string>
     <string name="comparison_1y_ago">Prije 1 god.</string>
+    <string name="stuck_total_responded">%1$d sudionika</string>
 </resources>

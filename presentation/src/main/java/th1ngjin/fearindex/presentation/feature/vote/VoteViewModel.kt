@@ -92,6 +92,7 @@ class VoteViewModel @Inject constructor(
         _myCryptoStatus.value = observeStuckCounter.loadLocalStatus(FearIndexType.CRYPTO)
         startStream(FearIndexType.MARKET)
         startStream(FearIndexType.CRYPTO)
+        loadInitialStuckResults()
         viewModelScope.launch { debouncer.retryPendingIfNeeded() }
 
         // 투표 초기화
@@ -99,6 +100,25 @@ class VoteViewModel @Inject constructor(
         startVoteStream(FearIndexType.CRYPTO)
         loadInitialVoteResults()
         startCountdown()
+    }
+
+    private fun loadInitialStuckResults() {
+        viewModelScope.launch {
+            try {
+                val result = observeStuckCounter.fetchOnce(FearIndexType.MARKET)
+                _marketResult.value = result
+            } catch (e: Exception) {
+                Timber.e(e, "[VoteViewModel] 시장 물림 카운터 초기 로딩 실패")
+            }
+        }
+        viewModelScope.launch {
+            try {
+                val result = observeStuckCounter.fetchOnce(FearIndexType.CRYPTO)
+                _cryptoResult.value = result
+            } catch (e: Exception) {
+                Timber.e(e, "[VoteViewModel] 암호화폐 물림 카운터 초기 로딩 실패")
+            }
+        }
     }
 
     // ============================================================

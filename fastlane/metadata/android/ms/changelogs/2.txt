@@ -1,6 +1,7 @@
-Indeks Ketakutan & Tamak v1.0.1 ujian dalaman.
+Fear & Greed Index v1.0.1 kemas kini.
+- Pengagregatan undian masa nyata (1.5s debounce)
+- Pembilang peserta langsung
+- Perbandingan kripto 1 tahun dibaiki
+- Peningkatan kebolehcapaian pemberitahuan
+- Butang kongsi/nilai/privasi
 - Sokongan 45 bahasa
-- Indeks pasaran & kripto masa nyata
-- Kad tempoh serupa
-- Ambang pemberitahuan
-- Undian kaunter terperangkap

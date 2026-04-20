@@ -30,7 +30,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -112,6 +114,7 @@ private fun SettingsItem(
     subtitle: String? = null,
     onClick: () -> Unit = {},
 ) {
+    val haptic = LocalHapticFeedback.current
     ListItem(
         headlineContent = { Text(title) },
         supportingContent = subtitle?.let { { Text(it) } },
@@ -124,7 +127,10 @@ private fun SettingsItem(
         },
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick),
+            .clickable {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                onClick()
+            },
     )
 }
 
@@ -163,5 +169,8 @@ private fun shareApp(context: Context, message: String, chooserTitle: String) {
         type = "text/plain"
         putExtra(Intent.EXTRA_TEXT, message)
     }
-    context.startActivity(Intent.createChooser(sendIntent, chooserTitle))
+    val chooser = Intent.createChooser(sendIntent, chooserTitle).apply {
+        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+    context.startActivity(chooser)
 }

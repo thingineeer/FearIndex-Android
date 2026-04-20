@@ -1,6 +1,7 @@
-Índex por i cobdícia v1.0.1 prova interna.
-- Suport per a 45 idiomes
-- Índex de mercat i criptomonedes en temps real
-- Targeta d'informació de períodes similars
-- Llindars de notificació
-- Votació del comptador d'atrapats
+Fear & Greed Index v1.0.1 actualització.
+- Agregació de vots en temps real (1,5s)
+- Comptador de participants en viu
+- Comparació cripto 1 any corregida
+- Millora d'accessibilitat de notificacions
+- Botons compartir/valorar/privacitat
+- Compatible amb 45 idiomes

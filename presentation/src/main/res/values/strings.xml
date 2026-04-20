@@ -304,4 +304,5 @@
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
+    <string name="stuck_total_responded">%1$d participants</string>
 </resources>

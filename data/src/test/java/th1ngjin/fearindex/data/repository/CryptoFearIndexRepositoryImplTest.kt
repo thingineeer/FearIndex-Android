@@ -26,6 +26,7 @@ class CryptoFearIndexRepositoryImplTest {
             ),
         )
         coEvery { dataSource.fetchCurrent(days = 31, forceRefresh = false) } returns response
+        coEvery { dataSource.fetchCurrent(days = 365, forceRefresh = false) } returns createResponse(emptyList())
 
         val result = repository.fetchCurrent()
 
@@ -35,12 +36,48 @@ class CryptoFearIndexRepositoryImplTest {
     }
 
     @Test
+    fun `fetchCurrent - previous1Year는 365일치 응답의 마지막 원소`() = runTest {
+        // 31일 응답 (current 용)
+        val short = (0..30).map {
+            CryptoFearIndexDTO(value = "50", valueClassification = "Neutral", timestamp = "${1713168000 - it * 86400}")
+        }
+        // 365일 응답 — 마지막 원소가 "1년 전"
+        val yearly = (0..364).map { i ->
+            val value = if (i == 364) "22" else "55"
+            CryptoFearIndexDTO(value = value, valueClassification = "Fear", timestamp = "${1713168000 - i * 86400}")
+        }
+        coEvery { dataSource.fetchCurrent(days = 31, forceRefresh = false) } returns createResponse(short)
+        coEvery { dataSource.fetchCurrent(days = 365, forceRefresh = false) } returns createResponse(yearly)
+
+        val result = repository.fetchCurrent()
+
+        assertEquals(22.0, result.previous1Year!!, 0.01)
+    }
+
+    @Test
+    fun `fetchCurrent - 365일치 fetch 실패 시 previous1Year는 null`() = runTest {
+        val short = listOf(
+            CryptoFearIndexDTO(value = "50", valueClassification = "Neutral", timestamp = "1713168000"),
+            CryptoFearIndexDTO(value = "45", valueClassification = "Fear", timestamp = "1713081600"),
+        )
+        coEvery { dataSource.fetchCurrent(days = 31, forceRefresh = false) } returns createResponse(short)
+        coEvery { dataSource.fetchCurrent(days = 365, forceRefresh = false) } throws RuntimeException("Network failure")
+
+        val result = repository.fetchCurrent()
+
+        // 예외가 발생해도 fetchCurrent 전체는 실패하지 않고 previous1Year만 null
+        assertEquals(50.0, result.score, 0.01)
+        assertNull(result.previous1Year)
+    }
+
+    @Test
     fun `fetchCurrent - previousClose는 data 1번 인덱스`() = runTest {
         val data = listOf(
             CryptoFearIndexDTO(value = "50", valueClassification = "Neutral", timestamp = "1713168000"),
             CryptoFearIndexDTO(value = "45", valueClassification = "Fear", timestamp = "1713081600"),
         )
         coEvery { dataSource.fetchCurrent(days = 31, forceRefresh = false) } returns createResponse(data)
+        coEvery { dataSource.fetchCurrent(days = 365, forceRefresh = false) } returns createResponse(emptyList())
 
         val result = repository.fetchCurrent()
 
@@ -53,6 +90,7 @@ class CryptoFearIndexRepositoryImplTest {
             CryptoFearIndexDTO(value = "${50 + it}", valueClassification = "Neutral", timestamp = "${1713168000 - it * 86400}")
         }
         coEvery { dataSource.fetchCurrent(days = 31, forceRefresh = false) } returns createResponse(data)
+        coEvery { dataSource.fetchCurrent(days = 365, forceRefresh = false) } returns createResponse(emptyList())
 
         val result = repository.fetchCurrent()
 
@@ -65,12 +103,14 @@ class CryptoFearIndexRepositoryImplTest {
             CryptoFearIndexDTO(value = "50", valueClassification = "Neutral", timestamp = "1713168000"),
         )
         coEvery { dataSource.fetchCurrent(days = 31, forceRefresh = false) } returns createResponse(data)
+        coEvery { dataSource.fetchCurrent(days = 365, forceRefresh = false) } returns createResponse(emptyList())
 
         val result = repository.fetchCurrent()
 
         assertNull(result.previousClose)
         assertNull(result.previous1Week)
         assertNull(result.previous1Month)
+        assertNull(result.previous1Year)
     }
 
     @Test

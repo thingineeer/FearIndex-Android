@@ -223,4 +223,5 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="comparison_1w_ago">Pirms 1 ned.</string>
     <string name="comparison_1m_ago">Pirms 1 mēn.</string>
     <string name="comparison_1y_ago">Pirms 1 gada</string>
+    <string name="stuck_total_responded">%1$d dalībnieku</string>
 </resources>

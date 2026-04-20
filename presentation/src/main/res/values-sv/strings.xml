@@ -223,4 +223,5 @@
     <string name="comparison_1w_ago">1 v sedan</string>
     <string name="comparison_1m_ago">1 mån sedan</string>
     <string name="comparison_1y_ago">1 år sedan</string>
+    <string name="stuck_total_responded">%1$d deltagare</string>
 </resources>

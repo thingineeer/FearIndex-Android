@@ -223,4 +223,5 @@
     <string name="comparison_1w_ago">1 тиж тому</string>
     <string name="comparison_1m_ago">1 міс тому</string>
     <string name="comparison_1y_ago">1 рік тому</string>
+    <string name="stuck_total_responded">%1$d учасників</string>
 </resources>

@@ -223,4 +223,5 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="comparison_1w_ago">Fa 1 setm.</string>
     <string name="comparison_1m_ago">Fa 1 mes</string>
     <string name="comparison_1y_ago">Fa 1 any</string>
+    <string name="stuck_total_responded">%1$d participants</string>
 </resources>

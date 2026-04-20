@@ -222,4 +222,5 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="comparison_1w_ago">1 hafta önce</string>
     <string name="comparison_1m_ago">1 ay önce</string>
     <string name="comparison_1y_ago">1 yıl önce</string>
+    <string name="stuck_total_responded">%1$d katılımcı</string>
 </resources>

@@ -222,4 +222,5 @@
     <string name="comparison_1w_ago">منذ أسبوع</string>
     <string name="comparison_1m_ago">منذ شهر</string>
     <string name="comparison_1y_ago">منذ سنة</string>
+    <string name="stuck_total_responded">%1$d مشارك</string>
 </resources>

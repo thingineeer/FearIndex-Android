@@ -1,6 +1,7 @@
-Rädsla och girighetsindex v1.0.1 intern test.
-- Stöd för 45 språk
-- Realtids marknads och kryptoindex
-- Liknande periods insiktskort
-- Aviseringströsklar
-- Fastnad räknare omröstning
+Fear & Greed Index v1.0.1 uppdatering.
+- Realtids-röstsummering (1,5s debounce)
+- Live deltagarräknare
+- Krypto 1-års jämförelse fixad
+- Förbättrad tillgänglighet för aviseringar
+- Dela/betygsätt/integritet-knappar
+- 45 språk stöds

@@ -223,4 +223,5 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="comparison_1w_ago">Há 1 sem.</string>
     <string name="comparison_1m_ago">Há 1 mês</string>
     <string name="comparison_1y_ago">Há 1 ano</string>
+    <string name="stuck_total_responded">%1$d participantes</string>
 </resources>

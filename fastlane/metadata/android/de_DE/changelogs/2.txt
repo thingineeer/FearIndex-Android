@@ -1,6 +1,7 @@
-Angst & Gier Index v1.0.1 interne Testversion.
-- Unterstützung für 45 Sprachen
-- Echtzeit Markt & Krypto Index
-- Ähnliche Zeiträume Erkenntniskarte
-- Benachrichtigungsschwellen
-- Festgefahren Zähler Abstimmung
+Fear & Greed Index v1.0.1 Update.
+- Echtzeit-Stimmenauszählung (1,5s Debounce)
+- Stuck-Counter Teilnehmeranzahl live
+- Kryptowährung 1-Jahres-Vergleich behoben
+- Benachrichtigungseinstellungen Barrierefreiheit
+- Einstellungen Teilen/Bewerten/Datenschutz
+- 45 Sprachen unterstützt

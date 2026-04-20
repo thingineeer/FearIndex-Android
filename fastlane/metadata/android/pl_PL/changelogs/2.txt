@@ -1,6 +1,7 @@
-Indeks strachu i chciwości v1.0.1 test wewnętrzny.
+Fear & Greed Index v1.0.1 aktualizacja.
+- Agregacja głosów w czasie rzeczywistym (1,5s)
+- Licznik uczestników na żywo
+- Naprawiono porównanie krypto 1 rok
+- Ulepszona dostępność powiadomień
+- Przyciski udostępnij/oceń/prywatność
 - Obsługa 45 języków
-- Indeks rynku i krypto w czasie rzeczywistym
-- Karta podobnych okresów
-- Progi powiadomień
-- Głosowanie licznika uwięzionych

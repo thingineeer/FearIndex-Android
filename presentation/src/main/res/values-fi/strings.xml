@@ -223,4 +223,5 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="comparison_1w_ago">1 vk sitten</string>
     <string name="comparison_1m_ago">1 kk sitten</string>
     <string name="comparison_1y_ago">1 v sitten</string>
+    <string name="stuck_total_responded">%1$d osallistujaa</string>
 </resources>

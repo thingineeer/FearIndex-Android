@@ -1,6 +1,7 @@
-Bailes un alkatības indekss v1.0.1 iekšējā pārbaude.
-- Atbalsts 45 valodām
-- Tirgus un kriptovalūtu indekss reāllaikā
-- Līdzīgu periodu kartīte
-- Paziņojumu sliekšņi
-- Iestrēgušo skaitītāja balsojums
+Fear & Greed Index v1.0.1 atjauninājums.
+- Reāllaika balsu apkopošana (1,5s)
+- Tiešais dalībnieku skaitītājs
+- Kripto 1 gada salīdzinājums labots
+- Paziņojumu pieejamības uzlabojumi
+- Kopīgot/vērtēt/privātums pogas
+- 45 valodu atbalsts

@@ -222,4 +222,5 @@
     <string name="comparison_1w_ago">۱ هفته پیش</string>
     <string name="comparison_1m_ago">۱ ماه پیش</string>
     <string name="comparison_1y_ago">۱ سال پیش</string>
+    <string name="stuck_total_responded">%1$d شرکت‌کننده</string>
 </resources>

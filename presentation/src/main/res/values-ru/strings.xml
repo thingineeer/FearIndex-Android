@@ -223,4 +223,5 @@
     <string name="comparison_1w_ago">1 нед. назад</string>
     <string name="comparison_1m_ago">1 мес. назад</string>
     <string name="comparison_1y_ago">1 год назад</string>
+    <string name="stuck_total_responded">Участников: %1$d</string>
 </resources>

@@ -1,6 +1,7 @@
-Indeks straha i pohlepe v1.0.1 interno testiranje.
+Fear & Greed Index v1.0.1 ažuriranje.
+- Agregacija glasova u stvarnom vremenu (1,5s)
+- Brojač sudionika uživo
+- Ispravljena kripto usporedba 1 god.
+- Poboljšana pristupačnost obavijesti
+- Gumbi dijeli/ocijeni/privatnost
 - Podrška za 45 jezika
-- Indeks tržišta i kripto u stvarnom vremenu
-- Kartica sličnih razdoblja
-- Pragovi obavijesti
-- Glasovanje brojača zaglavljenih

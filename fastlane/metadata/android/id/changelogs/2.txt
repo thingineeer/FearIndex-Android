@@ -1,6 +1,7 @@
-Indeks Ketakutan & Keserakahan v1.0.1 uji internal.
+Fear & Greed Index v1.0.1 pembaruan.
+- Agregasi suara real-time (1,5s debounce)
+- Penghitung peserta langsung
+- Perbandingan kripto 1 tahun diperbaiki
+- Peningkatan aksesibilitas notifikasi
+- Tombol bagikan/nilai/privasi
 - Dukungan 45 bahasa
-- Indeks pasar & kripto realtime
-- Kartu periode serupa
-- Ambang notifikasi
-- Voting penghitung terjebak

@@ -45,6 +45,7 @@ fun StuckCounterCard(
     onToggle: (StuckStatus) -> Unit,
     onInfoClick: () -> Unit,
     modifier: Modifier = Modifier,
+    totalResponded: Int = 0,
 ) {
     val animatedPercentage by animateFloatAsState(
         targetValue = stuckPercentage,
@@ -66,7 +67,7 @@ fun StuckCounterCard(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
-            HeaderSection(onInfoClick = onInfoClick)
+            HeaderSection(onInfoClick = onInfoClick, totalResponded = totalResponded)
             PercentageSection(
                 percentage = roundedPct,
                 fillFraction = animatedPercentage / 100f,
@@ -76,7 +77,8 @@ fun StuckCounterCard(
                 myStatus = myStatus,
                 onToggle = onToggle,
             )
-            FooterGuide()
+            // Footer 탭 → 상세 시트 오픈 (i 아이콘과 동일 액션). UX: "자세히 보기" 유도 지점 넓힘.
+            FooterGuide(onClick = onInfoClick)
         }
     }
 }
@@ -84,7 +86,7 @@ fun StuckCounterCard(
 // MARK: - Header
 
 @Composable
-private fun HeaderSection(onInfoClick: () -> Unit) {
+private fun HeaderSection(onInfoClick: () -> Unit, totalResponded: Int = 0) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -112,6 +114,14 @@ private fun HeaderSection(onInfoClick: () -> Unit) {
                     contentDescription = infoDesc
                 },
         )
+        if (totalResponded > 0) {
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = stringResource(R.string.stuck_total_responded, totalResponded),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
     }
 }
 
@@ -240,17 +250,23 @@ private fun StuckToggleButton(
 // MARK: - Footer Guide
 
 @Composable
-private fun FooterGuide() {
+private fun FooterGuide(onClick: () -> Unit) {
+    val footerDesc = stringResource(R.string.stuck_footer_guide)
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(10.dp))
+            .clickable(onClick = onClick)
             .background(Color(0xFF2A2A2A).copy(alpha = 0.06f))
-            .padding(horizontal = 10.dp, vertical = 8.dp),
+            .padding(horizontal = 10.dp, vertical = 8.dp)
+            .semantics {
+                role = Role.Button
+                contentDescription = footerDesc
+            },
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = stringResource(R.string.stuck_footer_guide),
+            text = footerDesc,
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.weight(1f),

@@ -299,4 +299,5 @@
     <string name="insight_feed_header_market">시장 인사이트</string>
     <string name="insight_feed_header_crypto">암호화폐 인사이트</string>
     <string name="insight_teaser_detail_content_description">상세 보기</string>
+    <string name="stuck_total_responded">%1$d명 참여</string>
 </resources>

@@ -1,6 +1,7 @@
-Indice frică și lăcomie v1.0.1 test intern.
-- Suport pentru 45 de limbi
-- Indice piață și cripto în timp real
-- Card perioade similare
-- Praguri notificări
-- Vot contor blocați
+Fear & Greed Index v1.0.1 actualizare.
+- Agregare voturi în timp real (1,5s)
+- Contor participanți live
+- Comparație cripto 1 an reparată
+- Accesibilitate notificări îmbunătățită
+- Butoane partajare/evaluare/confidențialitate
+- Suport 45 limbi

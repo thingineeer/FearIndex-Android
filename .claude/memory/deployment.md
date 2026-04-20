@@ -55,6 +55,16 @@ bundle exec fastlane internal
 
 선행 조건: Play Console에서 **service account JSON 발급** → `fastlane/Appfile`의 `json_key_file` 경로 설정.
 
+## 광고 정책 (배포 전 체크)
+
+**내부 테스트 트랙**: 광고 제외 가능 (디버그 빌드는 테스트 광고 ID만). QA 편의상 일부 배너 숨김 허용.
+
+**Production 배포 전 필수**:
+- `app/build.gradle.kts`의 release 빌드 `buildConfigField` ADMOB_BANNER_HOME/CHART/COMMUNITY가 프로덕션 광고 단위 ID (`ca-app-pub-5283496525222246/3189551565`) 로 세팅되어 있는지 재확인.
+- 차트 탭에 전면(interstitial) 광고 추가 금지 (사용자 UX 저해 — bugs-fixed.md 1번 참고).
+- 광고 사이에 Insight/SimilarEvents 카드가 자연스럽게 배치되는지 확인.
+- 광고 로딩 실패 시 크래시 없이 빈 공간으로 처리되는지 확인.
+
 ## 프로모션 / Staged Rollout
 
 - **Alpha → Beta → Production**: Play Console에서 "프로모션" 버튼.

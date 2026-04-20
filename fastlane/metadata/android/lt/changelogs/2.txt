@@ -1,6 +1,7 @@
-Baimės ir godumo indeksas v1.0.1 vidinis bandymas.
+Fear & Greed Index v1.0.1 atnaujinimas.
+- Realiu laiku balsų suvestinė (1,5s)
+- Tiesioginis dalyvių skaitiklis
+- Kripto 1 metų palyginimas pataisytas
+- Pranešimų pritaikymo neįgaliesiems
+- Dalinti/įvertinti/privatumo mygtukai
 - 45 kalbų palaikymas
-- Rinkos ir kripto indeksas realiuoju laiku
-- Panašių laikotarpių kortelė
-- Pranešimų slenksčiai
-- Įstrigusių skaitiklio balsavimas

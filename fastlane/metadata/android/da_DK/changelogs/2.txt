@@ -1,6 +1,7 @@
-Frygt og grådighed indeks v1.0.1 intern test.
-- Understøttelse af 45 sprog
-- Realtids marked & krypto indeks
-- Lignende periode indsigtkort
-- Notifikationstærskler
-- Fanget tæller afstemning
+Fear & Greed Index v1.0.1 opdatering.
+- Realtids stemmeaggregering (1,5s)
+- Live deltagertæller
+- Krypto 1-års sammenligning rettet
+- Forbedret tilgængelighed af notifikationer
+- Del/vurder/privatliv-knapper
+- 45 sprog understøttet

@@ -223,4 +223,5 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="comparison_1w_ago">Pred 1 tedn.</string>
     <string name="comparison_1m_ago">Pred 1 mesec.</string>
     <string name="comparison_1y_ago">Pred 1 letom</string>
+    <string name="stuck_total_responded">%1$d udeležencev</string>
 </resources>

@@ -1,6 +1,7 @@
-Index strachu a chamtivosti v1.0.1 interný test.
+Fear & Greed Index v1.0.1 aktualizácia.
+- Agregácia hlasov v reálnom čase (1,5s)
+- Živý počítadlo účastníkov
+- Oprava krypto porovnania 1 rok
+- Zlepšená prístupnosť upozornení
+- Tlačidlá zdieľať/hodnotiť/súkromie
 - Podpora 45 jazykov
-- Index trhu a kryptomien v reálnom čase
-- Karta podobných období
-- Prahy oznámení
-- Hlasovanie počítadla uviaznutých

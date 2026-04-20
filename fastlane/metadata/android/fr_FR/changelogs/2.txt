@@ -1,6 +1,7 @@
-Indice Peur et Cupidité v1.0.1 test interne.
-- Support de 45 langues
-- Indice marché et crypto en temps réel
-- Carte périodes similaires
-- Seuils de notification
-- Vote compteur bloqués
+Fear & Greed Index v1.0.1.
+- Agrégation de vote en temps réel (rebond 1,5s)
+- Compteur de participants en direct
+- Comparaison crypto 1 an corrigée
+- Accessibilité des paramètres de notification
+- Boutons partage/évaluation/confidentialité réparés
+- 45 langues prises en charge

@@ -419,7 +419,7 @@ private fun LoadedContent(
         previousClose = fearIndex.previousClose,
         previous1Week = fearIndex.previous1Week,
         previous1Month = fearIndex.previous1Month,
-        previous1Year = if (indexType == FearIndexType.CRYPTO) null else fearIndex.previous1Year,
+        previous1Year = fearIndex.previous1Year,
     )
 
     Spacer(modifier = Modifier.height(16.dp))
@@ -451,6 +451,7 @@ private fun LoadedContent(
         myStatus = myStuckStatus,
         onToggle = onStuckToggle,
         onInfoClick = onStuckInfoClick,
+        totalResponded = stuckResult.totalResponded,
     )
 
     Spacer(modifier = Modifier.height(16.dp))

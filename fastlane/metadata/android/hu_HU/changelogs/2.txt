@@ -1,6 +1,7 @@
-Félelem és kapzsiság index v1.0.1 belső teszt.
+Fear & Greed Index v1.0.1 frissítés.
+- Valós idejű szavazatösszesítés (1,5s)
+- Élő résztvevőszámláló
+- Kripto 1 éves összehasonlítás javítva
+- Értesítési beállítások akadálymentesítése
+- Megosztás/értékelés/adatvédelem gombok
 - 45 nyelv támogatása
-- Valós idejű piaci és kripto index
-- Hasonló időszakok kártya
-- Értesítési küszöbök
-- Bennragadt számláló szavazás

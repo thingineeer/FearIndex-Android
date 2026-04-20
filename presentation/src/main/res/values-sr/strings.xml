@@ -223,4 +223,5 @@
     <string name="comparison_1w_ago">Пре 1 недеље</string>
     <string name="comparison_1m_ago">Пре 1 месеца</string>
     <string name="comparison_1y_ago">Пре 1 године</string>
+    <string name="stuck_total_responded">%1$d учесника</string>
 </resources>

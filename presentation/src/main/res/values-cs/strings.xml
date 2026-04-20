@@ -223,4 +223,5 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="comparison_1w_ago">Před týdnem</string>
     <string name="comparison_1m_ago">Před měsícem</string>
     <string name="comparison_1y_ago">Před rokem</string>
+    <string name="stuck_total_responded">%1$d účastníků</string>
 </resources>

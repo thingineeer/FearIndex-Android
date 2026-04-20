@@ -223,4 +223,5 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="comparison_1w_ago">Tydzień temu</string>
     <string name="comparison_1m_ago">Miesiąc temu</string>
     <string name="comparison_1y_ago">Rok temu</string>
+    <string name="stuck_total_responded">%1$d uczestników</string>
 </resources>

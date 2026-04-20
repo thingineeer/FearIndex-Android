@@ -223,4 +223,5 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="comparison_1w_ago">Pred týždňom</string>
     <string name="comparison_1m_ago">Pred mesiacom</string>
     <string name="comparison_1y_ago">Pred rokom</string>
+    <string name="stuck_total_responded">%1$d účastníkov</string>
 </resources>

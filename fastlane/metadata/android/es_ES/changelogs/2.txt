@@ -1,6 +1,7 @@
-Índice Miedo y Codicia v1.0.1 prueba interna.
-- Soporte para 45 idiomas
-- Índice de mercado y cripto en tiempo real
-- Tarjeta de períodos similares
-- Umbrales de notificación
-- Votación del contador de atrapados
+Fear & Greed Index v1.0.1 actualización.
+- Conteo de votos en tiempo real (rebote 1.5s)
+- Contador de participantes en vivo
+- Comparación cripto 1 año corregida
+- Accesibilidad de notificaciones mejorada
+- Botones de compartir/calificar/privacidad
+- 45 idiomas compatibles

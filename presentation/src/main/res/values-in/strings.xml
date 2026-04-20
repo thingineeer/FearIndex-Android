@@ -222,4 +222,5 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="comparison_1w_ago">1 minggu lalu</string>
     <string name="comparison_1m_ago">1 bulan lalu</string>
     <string name="comparison_1y_ago">1 tahun lalu</string>
+    <string name="stuck_total_responded">%1$d peserta</string>
 </resources>

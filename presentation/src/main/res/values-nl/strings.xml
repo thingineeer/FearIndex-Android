@@ -223,4 +223,5 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="comparison_1w_ago">1 wk geleden</string>
     <string name="comparison_1m_ago">1 mnd geleden</string>
     <string name="comparison_1y_ago">1 jaar geleden</string>
+    <string name="stuck_total_responded">%1$d deelnemers</string>
 </resources>

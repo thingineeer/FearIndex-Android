@@ -223,4 +223,5 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="comparison_1w_ago">1 näd tagasi</string>
     <string name="comparison_1m_ago">1 kuu tagasi</string>
     <string name="comparison_1y_ago">1 aasta tagasi</string>
+    <string name="stuck_total_responded">%1$d osalejat</string>
 </resources>

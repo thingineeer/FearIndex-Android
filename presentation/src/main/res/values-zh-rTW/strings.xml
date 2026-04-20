@@ -222,4 +222,5 @@
     <string name="comparison_1w_ago">1週前</string>
     <string name="comparison_1m_ago">1個月前</string>
     <string name="comparison_1y_ago">1年前</string>
+    <string name="stuck_total_responded">%1$d 人參與</string>
 </resources>

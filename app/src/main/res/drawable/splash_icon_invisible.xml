@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- OS splash가 강제로 아이콘 슬롯을 요구하므로 완전 투명 vector 제공.
+     실제 splash UI는 Compose SplashView 에서 처리 (2번 뜨는 이슈 방지). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="1dp"
+    android:height="1dp"
+    android:viewportWidth="1"
+    android:viewportHeight="1">
+    <path
+        android:fillColor="#00FFFFFF"
+        android:pathData="M0,0L1,0L1,1L0,1Z" />
+</vector>

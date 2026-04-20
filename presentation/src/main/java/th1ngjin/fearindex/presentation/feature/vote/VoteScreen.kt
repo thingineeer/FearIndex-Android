@@ -159,6 +159,7 @@ fun VoteScreen(
                 voteViewModel.toggleStuckStatus(selectedType, newStatus.toDomain())
             },
             onInfoClick = { showStuckDetail = true },
+            totalResponded = stuckResult.totalResponded,
         )
 
         Spacer(modifier = Modifier.height(16.dp))

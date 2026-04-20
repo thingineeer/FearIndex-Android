@@ -1,6 +1,7 @@
-Vrees & Gierigheid Indeks v1.0.1 interne toets.
+Fear & Greed Index v1.0.1 opdatering.
+- Intydse stemtelling (1,5s debounce)
+- Lewende deelnemertelling
+- Kripto 1-jaar vergelyking reggemaak
+- Kennisgewinginstellings toeganklikheid
+- Deel/gradeer/privaatheid-knoppies
 - 45 tale ondersteun
-- Real-tyd Mark en Krypto indeks
-- Keniskentings van soortgelyke tydperke
-- Kennisgewing drempels
-- Vasgehewe teller stem

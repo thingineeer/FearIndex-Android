@@ -222,4 +222,5 @@
     <string name="comparison_1w_ago">לפני שבוע</string>
     <string name="comparison_1m_ago">לפני חודש</string>
     <string name="comparison_1y_ago">לפני שנה</string>
+    <string name="stuck_total_responded">%1$d משתתפים</string>
 </resources>

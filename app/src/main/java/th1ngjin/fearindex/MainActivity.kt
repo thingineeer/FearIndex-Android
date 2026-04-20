@@ -22,12 +22,14 @@ import th1ngjin.fearindex.presentation.feature.splash.SplashView
 import th1ngjin.fearindex.presentation.navigation.FearIndexNavHost
 import th1ngjin.fearindex.presentation.theme.FearIndexTheme
 
-private const val SPLASH_MIN_DURATION_MS = 1_800L
+private const val SPLASH_MIN_DURATION_MS = 1_500L
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // OS splash는 Android 12+ 강제 노출이지만 테마에서 아이콘을 투명 처리하여 흰 화면만 잠깐 깜빡.
+        // 실제 splash UI 는 아래 Compose SplashView (iOS 와 동일한 레이아웃).
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

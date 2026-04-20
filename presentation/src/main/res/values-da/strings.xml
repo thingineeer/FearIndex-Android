@@ -223,4 +223,5 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="comparison_1w_ago">1 uge siden</string>
     <string name="comparison_1m_ago">1 md. siden</string>
     <string name="comparison_1y_ago">1 år siden</string>
+    <string name="stuck_total_responded">%1$d deltagere</string>
 </resources>

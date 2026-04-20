@@ -223,4 +223,5 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="comparison_1w_ago">1 uke siden</string>
     <string name="comparison_1m_ago">1 mnd siden</string>
     <string name="comparison_1y_ago">1 år siden</string>
+    <string name="stuck_total_responded">%1$d deltakere</string>
 </resources>

@@ -1,6 +1,7 @@
-Fear & Greed Index v1.0.1 internal test release.
-- Full support for 45 languages
-- Real-time Market & Crypto Fear & Greed Index
-- Similar Past Periods insight card
-- Notification threshold sliders (lower/upper)
-- Stuck counter voting feature
+Fear & Greed Index v1.0.1 update.
+- Real-time vote aggregation (1.5s debounce)
+- Stuck counter live participant count
+- Crypto 1-year-ago comparison fixed
+- Notification settings accessibility improved
+- Settings share/rate/privacy buttons fixed
+- Full 45 language support

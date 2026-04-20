@@ -1,6 +1,7 @@
-Pelko ja ahneus -indeksi v1.0.1 sisäinen testi.
-- Tuki 45 kielelle
-- Reaaliaikainen markkina- ja kryptoindeksi
-- Samankaltaiset jaksot -kortti
-- Ilmoitusten kynnysarvot
-- Jumittunut laskuri -äänestys
+Fear & Greed Index v1.0.1 päivitys.
+- Reaaliaikainen äänien koonti (1,5s)
+- Osallistujalaskuri livenä
+- Krypto 1 vuoden vertailu korjattu
+- Ilmoitusasetusten esteettömyys
+- Jaa/arvioi/yksityisyys-painikkeet
+- 45 kieltä tuettu

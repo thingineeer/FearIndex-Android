@@ -223,4 +223,5 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="comparison_1w_ago">1 hete</string>
     <string name="comparison_1m_ago">1 hónapja</string>
     <string name="comparison_1y_ago">1 éve</string>
+    <string name="stuck_total_responded">%1$d résztvevő</string>
 </resources>

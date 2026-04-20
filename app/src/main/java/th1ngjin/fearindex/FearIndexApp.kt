@@ -99,10 +99,14 @@ class FearIndexApp : Application() {
     }
 
     private fun initAdMob() {
-        try {
-            MobileAds.initialize(this)
-        } catch (e: Exception) {
-            Timber.w(e, "AdMob init failed — placeholder config")
+        // AdMob 초기화는 background dispatcher 에서 — main thread 차단으로 cold start 1-2초 추가되어
+        // splash 체감 시간이 길어지던 이슈(QA#10 연결) 해결.
+        appScope.launch {
+            try {
+                MobileAds.initialize(this@FearIndexApp)
+            } catch (e: Exception) {
+                Timber.w(e, "AdMob init failed — placeholder config")
+            }
         }
     }
 

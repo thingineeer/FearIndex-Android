@@ -1,6 +1,7 @@
-Indice Paura e Avidità v1.0.1 test interno.
-- Supporto 45 lingue
-- Indice mercato e crypto in tempo reale
-- Scheda periodi simili
-- Soglie di notifica
-- Votazione contatore bloccati
+Fear & Greed Index v1.0.1 aggiornamento.
+- Aggregazione voti in tempo reale (debounce 1,5s)
+- Contatore partecipanti live
+- Confronto crypto 1 anno corretto
+- Accessibilità impostazioni notifiche
+- Pulsanti condividi/valuta/privacy
+- 45 lingue supportate

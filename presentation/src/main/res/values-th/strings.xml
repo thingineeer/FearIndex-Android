@@ -226,4 +226,5 @@
     <string name="comparison_1w_ago">1 สัปดาห์ก่อน</string>
     <string name="comparison_1m_ago">1 เดือนก่อน</string>
     <string name="comparison_1y_ago">1 ปีก่อน</string>
+    <string name="stuck_total_responded">ผู้เข้าร่วม %1$d คน</string>
 </resources>

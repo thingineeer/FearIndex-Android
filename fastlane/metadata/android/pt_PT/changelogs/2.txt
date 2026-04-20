@@ -1,6 +1,7 @@
-Índice de Medo e Ganância v1.0.1 teste interno.
-- Suporte para 45 idiomas
-- Índice de mercado e cripto em tempo real
-- Cartão de períodos similares
-- Limiares de notificação
-- Votação do contador de presos
+Fear & Greed Index v1.0.1.
+- Agregação de votos em tempo real (debounce 1,5s)
+- Contador de participantes ao vivo
+- Comparação cripto 1 ano corrigida
+- Acessibilidade das notificações melhorada
+- Botões partilhar/avaliar/privacidade
+- 45 idiomas suportados

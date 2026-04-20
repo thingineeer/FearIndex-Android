@@ -1,6 +1,7 @@
-Hirmu ja ahnuse indeks v1.0.1 sisetest.
+Fear & Greed Index v1.0.1 värskendus.
+- Reaalajas hääletuste koondamine (1,5s)
+- Elav osalejate loendur
+- Krüpto 1-aastase võrdluse parandus
+- Teavituste juurdepääsetavuse parandus
+- Jaga/hinda/privaatsus nupud
 - 45 keele tugi
-- Reaalaja turu ja krüpto indeks
-- Sarnaste perioodide kaart
-- Teatise lävendid
-- Kinnijäämise loenduri hääletus

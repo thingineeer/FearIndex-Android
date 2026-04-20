@@ -1,6 +1,7 @@
-Korku ve Açgözlülük Endeksi v1.0.1 dahili test.
+Fear & Greed Index v1.0.1 güncelleme.
+- Gerçek zamanlı oy toplama (1,5s debounce)
+- Katılımcı sayacı canlı
+- Kripto 1 yıl öncesi karşılaştırması düzeltildi
+- Bildirim erişilebilirliği iyileştirildi
+- Paylaş/oyla/gizlilik butonları
 - 45 dil desteği
-- Gerçek zamanlı piyasa ve kripto endeksi
-- Benzer dönemler kartı
-- Bildirim eşikleri
-- Sıkışmış sayaç oylaması

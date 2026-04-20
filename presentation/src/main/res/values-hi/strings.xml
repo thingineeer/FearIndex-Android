@@ -226,4 +226,5 @@
     <string name="comparison_1w_ago">1 सप्ताह पहले</string>
     <string name="comparison_1m_ago">1 माह पहले</string>
     <string name="comparison_1y_ago">1 वर्ष पहले</string>
+    <string name="stuck_total_responded">%1$d प्रतिभागी</string>
 </resources>

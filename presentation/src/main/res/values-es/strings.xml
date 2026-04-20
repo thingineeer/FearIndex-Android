@@ -223,4 +223,5 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="comparison_1w_ago">Hace 1 sem.</string>
     <string name="comparison_1m_ago">Hace 1 mes</string>
     <string name="comparison_1y_ago">Hace 1 año</string>
+    <string name="stuck_total_responded">%1$d participantes</string>
 </resources>

@@ -223,4 +223,5 @@
     <string name="comparison_1w_ago">Πριν 1 εβδ.</string>
     <string name="comparison_1m_ago">Πριν 1 μήνα</string>
     <string name="comparison_1y_ago">Πριν 1 έτος</string>
+    <string name="stuck_total_responded">%1$d συμμετέχοντες</string>
 </resources>

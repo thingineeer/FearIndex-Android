@@ -223,4 +223,5 @@
     <string name="comparison_1w_ago">Il y a 1 sem.</string>
     <string name="comparison_1m_ago">Il y a 1 mois</string>
     <string name="comparison_1y_ago">Il y a 1 an</string>
+    <string name="stuck_total_responded">%1$d participants</string>
 </resources>

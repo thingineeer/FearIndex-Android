@@ -223,4 +223,5 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="comparison_1w_ago">1 sett. fa</string>
     <string name="comparison_1m_ago">1 mese fa</string>
     <string name="comparison_1y_ago">1 anno fa</string>
+    <string name="stuck_total_responded">%1$d partecipanti</string>
 </resources>

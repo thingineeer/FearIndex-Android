@@ -223,4 +223,5 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="comparison_1w_ago">1W zuvor</string>
     <string name="comparison_1m_ago">1M zuvor</string>
     <string name="comparison_1y_ago">1J zuvor</string>
+    <string name="stuck_total_responded">%1$d Teilnehmer</string>
 </resources>
