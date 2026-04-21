@@ -62,9 +62,11 @@ fun SplashView() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                // Google Play Store 에 표시되는 실제 런처 아이콘과 동일하게 adaptive launcher icon 사용.
+                // `R.mipmap.ic_launcher`는 API 26+에서 adaptive-icon XML로 해석돼
+                // `painterResource`가 IllegalArgumentException을 던진다. 같은 아이콘의
+                // 래스터 PNG 버전(`ic_splash_icon`)을 사용해 모든 디바이스에서 안전하게 로드.
                 Image(
-                    painter = painterResource(id = R.mipmap.ic_launcher),
+                    painter = painterResource(id = R.drawable.ic_splash_icon),
                     contentDescription = null,
                     modifier = Modifier.size(112.dp),
                 )
