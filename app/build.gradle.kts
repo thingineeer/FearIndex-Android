@@ -21,8 +21,8 @@ android {
         applicationId = "th1ngjin.fearindex"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 3
-        versionName = "1.0.2"
+        versionCode = 4
+        versionName = "1.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
@@ -54,10 +54,13 @@ android {
             isMinifyEnabled = false
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
-            // Debug: 테스트 광고 (자동 세이프)
+            // Debug: AdMob 공식 Adaptive Banner 테스트 ID — 정책 위반 방지
+            // https://developers.google.com/admob/android/test-ads
             buildConfigField("String", "ADMOB_BANNER_HOME", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "ADMOB_BANNER_INSIGHT", "\"ca-app-pub-3940256099942544/9214589741\"")
             buildConfigField("String", "ADMOB_BANNER_CHART", "\"ca-app-pub-3940256099942544/9214589741\"")
-            buildConfigField("String", "ADMOB_BANNER_COMMUNITY", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "ADMOB_BANNER_VOTE", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "ADMOB_BANNER_SETTINGS", "\"ca-app-pub-3940256099942544/9214589741\"")
         }
         release {
             isMinifyEnabled = true
@@ -66,11 +69,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Release: 실제 AdMob 배너 ID (2026-04-14 발급, HomeBanner 단위)
-            // TODO: 차트/커뮤니티용 별도 배너 단위는 추후 세분화
+            // Release: 화면별 AdMob 단위 (Adaptive Banner)
             buildConfigField("String", "ADMOB_BANNER_HOME", "\"ca-app-pub-5283496525222246/3189551565\"")
-            buildConfigField("String", "ADMOB_BANNER_CHART", "\"ca-app-pub-5283496525222246/3189551565\"")
-            buildConfigField("String", "ADMOB_BANNER_COMMUNITY", "\"ca-app-pub-5283496525222246/3189551565\"")
+            buildConfigField("String", "ADMOB_BANNER_INSIGHT", "\"ca-app-pub-5283496525222246/1779867597\"")
+            buildConfigField("String", "ADMOB_BANNER_CHART", "\"ca-app-pub-5283496525222246/1616216062\"")
+            buildConfigField("String", "ADMOB_BANNER_VOTE", "\"ca-app-pub-5283496525222246/2417949811\"")
+            buildConfigField("String", "ADMOB_BANNER_SETTINGS", "\"ca-app-pub-5283496525222246/4627498578\"")
             signingConfig = signingConfigs.getByName("release")
         }
     }

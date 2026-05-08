@@ -32,3 +32,7 @@ fastlane/screenshots/*.html
 fastlane/test_output/
 
 .claude/scheduled_tasks.lock
+
+# Python
+__pycache__/
+*.pyc

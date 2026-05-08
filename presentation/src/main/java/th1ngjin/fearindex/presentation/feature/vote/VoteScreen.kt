@@ -32,6 +32,7 @@ import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
+import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
@@ -164,8 +165,11 @@ fun VoteScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // AdMob 배너 광고
-        AdBanner(screenName = ANALYTICS_SCREEN_VOTE)
+        // AdMob 배너 광고 (VoteBanner 단위)
+        AdBanner(
+            adUnitId = BuildConfig.ADMOB_BANNER_VOTE,
+            screenName = ANALYTICS_SCREEN_VOTE,
+        )
 
         Spacer(modifier = Modifier.height(24.dp))
     }

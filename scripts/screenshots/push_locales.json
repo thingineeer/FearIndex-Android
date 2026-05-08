@@ -1,0 +1,182 @@
+{
+  "ko": {
+    "title": "시장 알림",
+    "body": "공포지수 25 · 극단적 공포"
+  },
+  "en": {
+    "title": "Market Alert",
+    "body": "Fear & Greed Index 25 · Extreme Fear"
+  },
+  "ja": {
+    "title": "市場アラート",
+    "body": "恐怖指数 25 · 極度の恐怖"
+  },
+  "zh-Hans": {
+    "title": "市场提醒",
+    "body": "恐惧指数 25 · 极度恐惧"
+  },
+  "de": {
+    "title": "Markt-Alarm",
+    "body": "Angstindex 25 · Extreme Angst"
+  },
+  "es": {
+    "title": "Alerta de mercado",
+    "body": "Índice de miedo 25 · Miedo extremo"
+  },
+  "fr": {
+    "title": "Alerte marché",
+    "body": "Indice de peur 25 · Peur extrême"
+  },
+  "pt-BR": {
+    "title": "Alerta de mercado",
+    "body": "Índice de medo 25 · Medo extremo"
+  },
+  "it": {
+    "title": "Avviso mercato",
+    "body": "Indice di paura 25 · Paura estrema"
+  },
+  "ru": {
+    "title": "Рынок",
+    "body": "Индекс страха 25 · Крайний страх"
+  },
+  "tr": {
+    "title": "Piyasa uyarısı",
+    "body": "Korku endeksi 25 · Aşırı korku"
+  },
+  "ar": {
+    "title": "تنبيه السوق",
+    "body": "مؤشر الخوف 25 · خوف شديد"
+  },
+  "zh-Hant": {
+    "title": "市場提醒",
+    "body": "恐懼指數 25 · 極度恐懼"
+  },
+  "pt-PT": {
+    "title": "Alerta de mercado",
+    "body": "Índice de medo 25 · Medo extremo"
+  },
+  "af": {
+    "title": "Markwaarskuwing",
+    "body": "Vreesindeks 25 · Uiterste vrees"
+  },
+  "bg": {
+    "title": "Пазарно известие",
+    "body": "Индекс на страха 25 · Краен страх"
+  },
+  "bn": {
+    "title": "বাজার সতর্কতা",
+    "body": "ভয় সূচক 25 · চরম ভয়"
+  },
+  "ca": {
+    "title": "Alerta de mercat",
+    "body": "Índex de por 25 · Por extrema"
+  },
+  "cs": {
+    "title": "Upozornění trhu",
+    "body": "Index strachu 25 · Extrémní strach"
+  },
+  "da": {
+    "title": "Markedsadvarsel",
+    "body": "Frygtindeks 25 · Ekstrem frygt"
+  },
+  "el": {
+    "title": "Ειδοποίηση αγοράς",
+    "body": "Δείκτης φόβου 25 · Ακραίος φόβος"
+  },
+  "et": {
+    "title": "Turuhäire",
+    "body": "Hirmuindeks 25 · Äärmuslik hirm"
+  },
+  "fa": {
+    "title": "هشدار بازار",
+    "body": "شاخص ترس 25 · ترس شدید"
+  },
+  "fi": {
+    "title": "Markkinahälytys",
+    "body": "Pelkoindeksi 25 · Äärimmäinen pelko"
+  },
+  "he": {
+    "title": "התראת שוק",
+    "body": "מדד פחד 25 · פחד קיצוני"
+  },
+  "hi": {
+    "title": "बाजार अलर्ट",
+    "body": "भय सूचकांक 25 · अत्यधिक भय"
+  },
+  "hr": {
+    "title": "Tržišno upozorenje",
+    "body": "Indeks straha 25 · Ekstreman strah"
+  },
+  "hu": {
+    "title": "Piaci figyelmeztetés",
+    "body": "Félelemindex 25 · Szélsőséges félelem"
+  },
+  "id": {
+    "title": "Peringatan pasar",
+    "body": "Indeks ketakutan 25 · Ketakutan ekstrem"
+  },
+  "lt": {
+    "title": "Rinkos įspėjimas",
+    "body": "Baimės indeksas 25 · Kraštutinė baimė"
+  },
+  "lv": {
+    "title": "Tirgus brīdinājums",
+    "body": "Baiļu indekss 25 · Ekstrēmas bailes"
+  },
+  "ms": {
+    "title": "Amaran pasaran",
+    "body": "Indeks ketakutan 25 · Ketakutan melampau"
+  },
+  "nb": {
+    "title": "Markedsvarsel",
+    "body": "Fryktindeks 25 · Ekstrem frykt"
+  },
+  "nl": {
+    "title": "Marktwaarschuwing",
+    "body": "Angstindex 25 · Extreme angst"
+  },
+  "pl": {
+    "title": "Alert rynkowy",
+    "body": "Indeks strachu 25 · Ekstremalny strach"
+  },
+  "ro": {
+    "title": "Alertă de piață",
+    "body": "Indicele fricii 25 · Frică extremă"
+  },
+  "sk": {
+    "title": "Upozornenie trhu",
+    "body": "Index strachu 25 · Extrémny strach"
+  },
+  "sl": {
+    "title": "Tržno opozorilo",
+    "body": "Indeks strahu 25 · Skrajni strah"
+  },
+  "sr": {
+    "title": "Тржишно упозорење",
+    "body": "Индекс страха 25 · Екстремни страх"
+  },
+  "sv": {
+    "title": "Marknadsvarning",
+    "body": "Rädsleindex 25 · Extrem rädsla"
+  },
+  "sw": {
+    "title": "Tahadhari ya soko",
+    "body": "Kielelezo cha hofu 25 · Hofu kali"
+  },
+  "ta": {
+    "title": "சந்தை எச்சரிக்கை",
+    "body": "பய குறியீடு 25 · தீவிர பயம்"
+  },
+  "th": {
+    "title": "แจ้งเตือนตลาด",
+    "body": "ดัชนีความกลัว 25 · กลัวสุดขีด"
+  },
+  "uk": {
+    "title": "Ринкове сповіщення",
+    "body": "Індекс страху 25 · Крайній страх"
+  },
+  "vi": {
+    "title": "Cảnh báo thị trường",
+    "body": "Chỉ số sợ hãi 25 · Sợ hãi cực độ"
+  }
+}

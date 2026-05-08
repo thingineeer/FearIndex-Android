@@ -59,10 +59,12 @@ import th1ngjin.fearindex.core.util.ChartDataFilter
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketInsight
+import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.presentation.common.ratingLabel
+import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.ChartSkeletonView
 import th1ngjin.fearindex.presentation.component.InsightDetailSheet
 import th1ngjin.fearindex.presentation.component.InsightFeedView
@@ -318,6 +320,14 @@ private fun ChartLoadedContent(
             onSelect = onMarketPeriodSelected,
         )
     }
+
+    Spacer(modifier = Modifier.height(16.dp))
+
+    // 6.5. AdMob 배너 광고 (ChartBanner 단위) — 기간 버튼 아래
+    AdBanner(
+        adUnitId = BuildConfig.ADMOB_BANNER_CHART,
+        screenName = "차트",
+    )
 
     // 7. Insight Feed (iOS 차트 탭 순서: 기간 버튼 아래 → 인사이트 피드)
     if (insights.isNotEmpty()) {

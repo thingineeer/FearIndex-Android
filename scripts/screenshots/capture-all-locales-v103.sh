@@ -1,0 +1,201 @@
+#!/bin/bash
+# v1.0.3 — 45 locale × 5 화면 = 225 장 Play Store promo 스크린샷 자동 촬영
+#
+# 산출:
+#   fastlane/metadata/android/<supply_locale>/images/phoneScreenshots/
+#     ├── 1_notification.png        (Android Launcher 위에 푸시 banner)
+#     ├── 2_home.png                (앱 홈 탭)
+#     ├── 3_chart.png               (앱 차트 탭)
+#     ├── 4_vote.png                (앱 투표 탭)
+#     └── 5_notification_settings.png  (앱 알림 설정)
+#
+# 선행 조건:
+#   - debug APK 설치 + POST_NOTIFICATIONS 권한 grant
+#   - debug.screenshot_mode=1 (스크립트가 자동 설정)
+
+set -e
+
+ROOT=$(cd "$(dirname "$0")/../.." && pwd)
+META=$ROOT/fastlane/metadata/android
+PUSH_JSON=$ROOT/scripts/screenshots/push_locales.json
+PKG=th1ngjin.fearindex.debug
+ACTIVITY=th1ngjin.fearindex.MainActivity
+RECEIVER=th1ngjin.fearindex.screenshot.ScreenshotPushReceiver
+ACTION=th1ngjin.fearindex.SCREENSHOT_PUSH
+
+adb shell settings put global hide_error_dialogs 1 < /dev/null > /dev/null
+adb shell setprop debug.screenshot_mode 1 < /dev/null > /dev/null
+
+trap 'adb shell setprop debug.screenshot_mode 0 < /dev/null > /dev/null 2>&1 || true' EXIT
+
+# locale 매핑: <supply_locale> <bcp47_for_app> <push_lang_key>
+LOCALES=(
+  "af af af"
+  "ar ar ar"
+  "bg bg bg"
+  "bn_BD bn-BD bn"
+  "ca ca ca"
+  "cs_CZ cs-CZ cs"
+  "da_DK da-DK da"
+  "de_DE de-DE de"
+  "el_GR el-GR el"
+  "en_US en-US en"
+  "es_ES es-ES es"
+  "et et et"
+  "fa fa fa"
+  "fi_FI fi-FI fi"
+  "fr_FR fr-FR fr"
+  "hi_IN hi-IN hi"
+  "hr hr hr"
+  "hu_HU hu-HU hu"
+  "id id id"
+  "it_IT it-IT it"
+  "iw_IL iw-IL he"
+  "ja_JP ja-JP ja"
+  "ko_KR ko-KR ko"
+  "lt lt lt"
+  "lv lv lv"
+  "ms ms ms"
+  "nl_NL nl-NL nl"
+  "no_NO nb-NO nb"
+  "pl_PL pl-PL pl"
+  "pt_BR pt-BR pt-BR"
+  "pt_PT pt-PT pt-PT"
+  "ro ro ro"
+  "ru_RU ru-RU ru"
+  "sk sk sk"
+  "sl sl sl"
+  "sr sr sr"
+  "sv_SE sv-SE sv"
+  "sw sw sw"
+  "ta_IN ta-IN ta"
+  "th th th"
+  "tr_TR tr-TR tr"
+  "uk uk uk"
+  "vi vi vi"
+  "zh_CN zh-CN zh-Hans"
+  "zh_TW zh-TW zh-Hant"
+)
+
+dismiss_anr() {
+  local tries=0
+  while [ $tries -lt 3 ]; do
+    if ! adb shell dumpsys window windows 2>/dev/null | grep -q "Application Not Responding"; then
+      return 0
+    fi
+    adb shell input tap 300 1555 < /dev/null
+    sleep 2
+    tries=$((tries+1))
+  done
+}
+
+clear_notifications() {
+  # API 28+ 의 cmd notification clear 미지원 → 알림 ID 단위 cancel 또는 패널 swipe 활용.
+  # 우리는 매 broadcast 가 같은 ID(20503)을 덮어쓰므로 사실상 1개만 존재.
+  adb shell input keyevent KEYCODE_HOME < /dev/null
+}
+
+# 푸시 banner peek 캡처 (launcher 배경)
+capture_push_banner() {
+  local push_lang=$1
+  local out=$2
+  local title=$(jq -r --arg k "$push_lang" '.[$k].title // .en.title' "$PUSH_JSON")
+  local body=$(jq -r --arg k "$push_lang" '.[$k].body  // .en.body'  "$PUSH_JSON")
+
+  # 앱 백그라운드로
+  adb shell am force-stop $PKG < /dev/null
+  sleep 1
+  adb shell input keyevent KEYCODE_HOME < /dev/null
+  sleep 1
+  # 알림 발사 (single-string 으로 한국어/공백 escape)
+  adb shell "am broadcast -n $PKG/$RECEIVER -a $ACTION --es title '$title' --es body '$body'" \
+    < /dev/null > /dev/null
+  # peek banner 가 떠있는 0.7초 윈도우에 캡처
+  # 실측 (cold-start scenario): 0.4-0.5s = banner 미아직, 0.7s = 깨끗, 1.0s = fade-out 시작
+  python3 -c "import time; time.sleep(0.7)" < /dev/null
+  adb exec-out screencap -p > "$out"
+}
+
+# 화면 진입 후 캡처 (앱 내부)
+capture_app_screen() {
+  local out=$1
+  adb exec-out screencap -p > "$out"
+}
+
+TOTAL=${#LOCALES[@]}
+count=0
+
+for triplet in "${LOCALES[@]}"; do
+  count=$((count+1))
+  supply=$(echo $triplet | awk '{print $1}')
+  bcp=$(echo $triplet | awk '{print $2}')
+  push_lang=$(echo $triplet | awk '{print $3}')
+  dir="$META/$supply/images/phoneScreenshots"
+  mkdir -p "$dir"
+
+  echo "=== ($count/$TOTAL) supply=$supply bcp=$bcp push=$push_lang ==="
+
+  # 0. locale 적용 (다음 cold-start에 반영)
+  adb shell am force-stop $PKG < /dev/null
+  sleep 1
+  adb shell cmd locale set-app-locales $PKG --locales $bcp < /dev/null > /dev/null 2>&1 || true
+  sleep 1
+
+  # ────────────────────────────────────────────────────────────
+  # 1. Launcher + 푸시 banner peek (네이티브 언어)
+  # ────────────────────────────────────────────────────────────
+  capture_push_banner "$push_lang" "$dir/1_notification.png"
+
+  # banner 가 사라지길 기다린 후 home 으로 (5초면 모든 heads-up fade-out 끝남)
+  sleep 5
+  adb shell input keyevent KEYCODE_HOME < /dev/null
+  sleep 1
+
+  # ────────────────────────────────────────────────────────────
+  # 1b. Launcher + 푸시 banner peek (영어 — 글로벌 promo 용)
+  # ────────────────────────────────────────────────────────────
+  capture_push_banner "en" "$dir/1_notification_en.png"
+
+  sleep 5
+  adb shell input keyevent KEYCODE_HOME < /dev/null
+  sleep 1
+
+  # ────────────────────────────────────────────────────────────
+  # 2. 앱 cold start → 홈
+  # ────────────────────────────────────────────────────────────
+  adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
+  sleep 12
+  dismiss_anr
+  capture_app_screen "$dir/2_home.png"
+
+  # ────────────────────────────────────────────────────────────
+  # 3. 차트 탭 (bottom nav 두 번째 = x ≈ 405)
+  # ────────────────────────────────────────────────────────────
+  adb shell input tap 405 2250 < /dev/null
+  sleep 4
+  dismiss_anr
+  capture_app_screen "$dir/3_chart.png"
+
+  # ────────────────────────────────────────────────────────────
+  # 4. 투표 탭 (bottom nav 세 번째 = x ≈ 675)
+  # ────────────────────────────────────────────────────────────
+  adb shell input tap 675 2250 < /dev/null
+  sleep 4
+  dismiss_anr
+  capture_app_screen "$dir/4_vote.png"
+
+  # ────────────────────────────────────────────────────────────
+  # 5. 설정 탭 → 알림 설정 (첫 번째 ListItem)
+  # ────────────────────────────────────────────────────────────
+  adb shell input tap 945 2250 < /dev/null
+  sleep 3
+  dismiss_anr
+  adb shell input tap 540 390 < /dev/null
+  sleep 4
+  dismiss_anr
+  capture_app_screen "$dir/5_notification_settings.png"
+
+  echo "  [$supply] 5 screenshots saved -> $dir"
+done
+
+echo "=== 완료 (locales=$TOTAL, screens=5, total=$((TOTAL*5))) ==="

@@ -137,8 +137,14 @@ class VoteViewModel @Inject constructor(
 
     fun toggleStuckStatus(indexType: FearIndexType, status: StuckStatus) {
         when (indexType) {
-            FearIndexType.MARKET -> _myMarketStatus.value = status
-            FearIndexType.CRYPTO -> _myCryptoStatus.value = status
+            FearIndexType.MARKET -> {
+                _myMarketStatus.value = status
+                _marketResult.value = _marketResult.value.withOptimisticToggle(status)
+            }
+            FearIndexType.CRYPTO -> {
+                _myCryptoStatus.value = status
+                _cryptoResult.value = _cryptoResult.value.withOptimisticToggle(status)
+            }
         }
         debouncer.schedule(indexType, status)
     }

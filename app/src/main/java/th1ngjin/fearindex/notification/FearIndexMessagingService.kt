@@ -66,7 +66,7 @@ class FearIndexMessagingService : FirebaseMessagingService() {
             this, 0, intent, PendingIntent.FLAG_IMMUTABLE,
         )
 
-        val notification = NotificationCompat.Builder(this, "fear_index_alerts")
+        val notification = NotificationCompat.Builder(this, NotificationChannels.FEAR_INDEX_ALERTS)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(title)
             .setContentText(body)

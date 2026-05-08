@@ -56,6 +56,7 @@ import th1ngjin.fearindex.domain.entity.MarketInsight
 import th1ngjin.fearindex.domain.entity.SimilarEventsResult
 import th1ngjin.fearindex.domain.entity.StuckCounterResult
 import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
+import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.AdBanner
@@ -424,8 +425,11 @@ private fun LoadedContent(
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    // 3. AdMob 배너 광고
-    AdBanner()
+    // 3. AdMob 배너 광고 — 비교 카드 다음 (HomeBanner 단위)
+    AdBanner(
+        adUnitId = BuildConfig.ADMOB_BANNER_HOME,
+        screenName = "홈_상단",
+    )
 
     // 3.5. SimilarEvents 카드 — "지금과 비슷했던 시기" (v1.7.9)
     if (similarEventsResult.matches.isNotEmpty() || similarEventsResult.aggregateStats != null) {
@@ -436,6 +440,12 @@ private fun LoadedContent(
     // 4. 인사이트 티저 카드 — 현재 점수 기준 통계(전 구간). 첫 번째 인사이트 1개.
     val teaserInsight = insights.firstOrNull()
     if (teaserInsight != null) {
+        Spacer(modifier = Modifier.height(16.dp))
+        // "그때 매수했다면?" 카드 위에 두 번째 광고 슬롯 (InsightBanner 단위)
+        AdBanner(
+            adUnitId = BuildConfig.ADMOB_BANNER_INSIGHT,
+            screenName = "홈_인사이트",
+        )
         Spacer(modifier = Modifier.height(16.dp))
         InsightTeaserCard(
             insight = teaserInsight,
