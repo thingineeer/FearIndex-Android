@@ -20,6 +20,7 @@ import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.remoteconfig.RemoteConfigManager
 import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.service.DeviceIdProvider
+import th1ngjin.fearindex.notification.NotificationChannels
 import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
@@ -74,7 +75,7 @@ class FearIndexApp : Application() {
     private fun setupNotificationChannels() {
         val manager = getSystemService(NotificationManager::class.java)
         val channel = NotificationChannel(
-            "fear_index_alerts",
+            NotificationChannels.FEAR_INDEX_ALERTS,
             getString(R.string.notification_channel_name),
             NotificationManager.IMPORTANCE_HIGH,
         ).apply {
@@ -86,6 +87,9 @@ class FearIndexApp : Application() {
     private fun registerFCMToken() {
         FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
             Timber.d("FCM token obtained: ${token.take(10)}...")
+            if (BuildConfig.DEBUG) {
+                Timber.d("FCM_FULL_TOKEN_FOR_TESTING: $token")
+            }
             val deviceId = deviceIdProvider.loadDeviceId()
             appScope.launch {
                 try {
