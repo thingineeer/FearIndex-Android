@@ -19,6 +19,46 @@ data class StuckCounterResult(
     /** 절대 수치 노출 여부 (초기 공허함 방지 — 100명 미만이면 숨김) */
     val shouldShowAbsoluteCount: Boolean get() = totalResponded >= 100
 
+    /**
+     * 디바운스(서버 호출 1.5초 지연) 동안 UI 일관성 유지용 낙관적 갱신.
+     * - 이전 myStatus → 새 newStatus 로의 delta만큼 stuck/safe 카운트 ±1
+     * - totalResponded는 NONE↔STUCK/SAFE 변환 시에만 ±1 (STUCK↔SAFE 전환은 유지)
+     * - percentage는 새 카운트로 재계산
+     */
+    fun withOptimisticToggle(newStatus: StuckStatus): StuckCounterResult {
+        val prev = myStatus
+        if (prev == newStatus) return this
+        var newStuck = stuckCount
+        var newSafe = safeCount
+        var newTotal = totalResponded
+
+        when (prev) {
+            StuckStatus.STUCK -> newStuck -= 1
+            StuckStatus.SAFE -> newSafe -= 1
+            StuckStatus.NONE -> newTotal += 1
+        }
+        when (newStatus) {
+            StuckStatus.STUCK -> newStuck += 1
+            StuckStatus.SAFE -> newSafe += 1
+            StuckStatus.NONE -> newTotal -= 1
+        }
+        newStuck = newStuck.coerceAtLeast(0)
+        newSafe = newSafe.coerceAtLeast(0)
+        newTotal = newTotal.coerceAtLeast(0)
+        val totalForPct = (newStuck + newSafe).coerceAtLeast(0)
+        val newStuckPct = if (totalForPct > 0) newStuck * 100.0 / totalForPct else 0.0
+        val newSafePct = if (totalForPct > 0) newSafe * 100.0 / totalForPct else 0.0
+
+        return copy(
+            stuckCount = newStuck,
+            safeCount = newSafe,
+            totalResponded = newTotal,
+            stuckPercentage = newStuckPct.coerceIn(0.0, 100.0),
+            safePercentage = newSafePct.coerceIn(0.0, 100.0),
+            myStatus = newStatus,
+        )
+    }
+
     companion object {
         val EMPTY = StuckCounterResult(
             stuckCount = 0,
