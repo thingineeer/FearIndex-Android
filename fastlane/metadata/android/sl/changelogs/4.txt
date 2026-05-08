@@ -1,0 +1,5 @@
+Posodobitev indeksa strahu in pohlepa v1.0.3.
+- Podpora za tablice (7"/10")
+- Dodanih 43 manjkajočih prevodov (zasebnost, števec zataknjenosti, vpogledi)
+- Izboljšana stabilnost potisnih obvestil
+- Preverjena sinhronizacija podatkov z iOS

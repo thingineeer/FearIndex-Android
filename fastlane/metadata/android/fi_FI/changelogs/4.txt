@@ -1,0 +1,5 @@
+Pelon ja ahneuden indeksin v1.0.3 päivitys.
+- Tablettituki (7"/10")
+- Lisätty 43 puuttuvaa käännöstä (yksityisyys, jumiutumislaskuri, oivallukset)
+- Push-ilmoitusten vakautta parannettu
+- iOS-tietojen synkronointi vahvistettu

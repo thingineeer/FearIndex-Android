@@ -1,0 +1,5 @@
+Actualizare Indice Frică și Lăcomie v1.0.3.
+- Suport pentru tablete (7"/10")
+- Adăugate 43 traduceri lipsă (confidențialitate, contor blocaj, perspective)
+- Stabilitate îmbunătățită a notificărilor push
+- Sincronizare date iOS verificată

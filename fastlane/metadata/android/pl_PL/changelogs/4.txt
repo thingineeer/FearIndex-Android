@@ -1,0 +1,5 @@
+Aktualizacja indeksu strachu i chciwości v1.0.3.
+- Obsługa tabletów (7"/10")
+- Dodano 43 brakujące tłumaczenia (prywatność, licznik utknięcia, spostrzeżenia)
+- Poprawiona stabilność powiadomień push
+- Sprawdzona synchronizacja z iOS

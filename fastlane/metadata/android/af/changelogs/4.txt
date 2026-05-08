@@ -1,0 +1,5 @@
+Vrees & Hebsug Indeks v1.0.3 opdatering.
+- Tablet-ondersteuning (7"/10")
+- 43 ontbrekende vertalings bygevoeg (privaatheid, vasgevangne-teller, insigte)
+- Stabiliteit van stootkennisgewings verbeter
+- iOS-datasinchronisasie geverifieer

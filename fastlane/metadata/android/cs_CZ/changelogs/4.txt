@@ -1,0 +1,5 @@
+Aktualizace Indexu strachu a chamtivosti v1.0.3.
+- Podpora tabletů (7"/10")
+- Přidáno 43 chybějících překladů (soukromí, čítač zaseknutí, postřehy)
+- Zlepšena stabilita push oznámení
+- Synchronizace dat s iOS ověřena

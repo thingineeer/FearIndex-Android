@@ -1,0 +1,5 @@
+Sasisho la Faharasa ya Hofu na Tamaa v1.0.3.
+- Usaidizi wa kompyuta kibao (7"/10")
+- Tafsiri 43 zilizokosekana zimeongezwa (faragha, kihesabu cha kunaswa, ufahamu)
+- Uthabiti wa arifa za push umeboreshwa
+- Usawazishaji wa data wa iOS umethibitishwa

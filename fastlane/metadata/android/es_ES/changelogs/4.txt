@@ -1,0 +1,5 @@
+Actualización del Índice de Miedo y Codicia v1.0.3.
+- Soporte para tabletas (7"/10")
+- Añadidas 43 traducciones faltantes (privacidad, contador atrapado, perspectivas)
+- Mejorada la estabilidad de notificaciones push
+- Sincronización de datos con iOS verificada

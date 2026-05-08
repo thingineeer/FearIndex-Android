@@ -1,0 +1,5 @@
+Fear & Greed Index v1.0.3 update.
+- Tablet-ondersteuning (7"/10")
+- 43 ontbrekende vertalingen toegevoegd (privacy, vastloopteller, inzichten)
+- Stabiliteit van pushmeldingen verbeterd
+- iOS-datasynchronisatie geverifieerd
