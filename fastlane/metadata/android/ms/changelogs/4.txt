@@ -1,0 +1,5 @@
+Kemas kini Indeks Ketakutan & Ketamakan v1.0.3.
+- Sokongan tablet (7"/10")
+- Ditambah 43 terjemahan yang hilang (privasi, pembilang tersangkut, cerapan)
+- Kestabilan pemberitahuan tolak ditingkatkan
+- Penyegerakan data iOS disahkan

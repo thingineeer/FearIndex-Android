@@ -1,0 +1,5 @@
+Mise à jour Fear & Greed Index v1.0.3.
+- Prise en charge tablettes (7"/10")
+- 43 traductions manquantes ajoutées (confidentialité, compteur bloqué, insights)
+- Stabilité des notifications push améliorée
+- Synchronisation des données iOS vérifiée

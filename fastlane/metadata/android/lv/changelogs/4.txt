@@ -1,0 +1,5 @@
+Bailes un alkatības indekss v1.0.3 atjauninājums.
+- Planšetdatoru atbalsts (7"/10")
+- Pievienoti 43 trūkstoši tulkojumi (privātums, iesprūšanas skaitītājs, ieskati)
+- Uzlabota push paziņojumu stabilitāte
+- Pārbaudīta iOS datu sinhronizācija

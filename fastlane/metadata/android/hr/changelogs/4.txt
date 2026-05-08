@@ -1,0 +1,5 @@
+Ažuriranje Indeksa straha i pohlepe v1.0.3.
+- Podrška za tablete (7"/10")
+- Dodano 43 nedostajućih prijevoda (privatnost, brojač zaglavljenosti, uvidi)
+- Poboljšana stabilnost push obavijesti
+- Provjerena iOS sinkronizacija podataka

@@ -1,0 +1,5 @@
+Félelem és Kapzsiság Index v1.0.3 frissítés.
+- Táblagép-támogatás (7"/10")
+- 43 hiányzó fordítás hozzáadva (adatvédelem, beragadásszámláló, betekintések)
+- Push értesítések stabilitása javítva
+- iOS adatszinkron ellenőrizve

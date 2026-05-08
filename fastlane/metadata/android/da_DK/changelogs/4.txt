@@ -1,0 +1,5 @@
+Frygt og Grådighed Indeks v1.0.3 opdatering.
+- Tablet-understøttelse (7"/10")
+- Tilføjet 43 manglende oversættelser (privatliv, fastlåst-tæller, indsigter)
+- Forbedret stabilitet af push-notifikationer
+- iOS-datasynkronisering verificeret

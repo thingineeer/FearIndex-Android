@@ -1,0 +1,5 @@
+Frukt och Girighet Index v1.0.3 uppdatering.
+- Surfplattestöd (7"/10")
+- 43 saknade översättningar tillagda (integritet, fastlåst-räknare, insikter)
+- Förbättrad stabilitet för push-notiser
+- iOS-datasynkronisering verifierad

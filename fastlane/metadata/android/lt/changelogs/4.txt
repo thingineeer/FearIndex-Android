@@ -1,0 +1,5 @@
+Baimės ir godumo indekso v1.0.3 atnaujinimas.
+- Planšečių palaikymas (7"/10")
+- Pridėti 43 trūkstami vertimai (privatumas, įstrigimo skaitiklis, įžvalgos)
+- Pagerintas push pranešimų stabilumas
+- Patvirtinta iOS duomenų sinchronizacija

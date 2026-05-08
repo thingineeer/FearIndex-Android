@@ -1,0 +1,5 @@
+Aggiornamento Indice di Paura e Avidità v1.0.3.
+- Supporto tablet (7"/10")
+- Aggiunte 43 traduzioni mancanti (privacy, contatore bloccato, insight)
+- Stabilità delle notifiche push migliorata
+- Sincronizzazione dati iOS verificata

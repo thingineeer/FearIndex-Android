@@ -1,0 +1,5 @@
+Atualização do Índice de Medo e Ganância v1.0.3.
+- Suporte a tablets (7"/10")
+- 43 traduções faltantes adicionadas (privacidade, contador travado, insights)
+- Estabilidade das notificações push melhorada
+- Sincronização de dados com iOS verificada

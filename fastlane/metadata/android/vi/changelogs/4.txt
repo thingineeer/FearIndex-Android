@@ -1,0 +1,5 @@
+Cập nhật Chỉ số Sợ hãi & Tham lam v1.0.3.
+- Hỗ trợ máy tính bảng (7"/10")
+- Thêm 43 bản dịch còn thiếu (quyền riêng tư, bộ đếm kẹt, thông tin chi tiết)
+- Cải thiện độ ổn định thông báo đẩy
+- Xác minh đồng bộ dữ liệu với iOS

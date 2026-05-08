@@ -1,0 +1,5 @@
+Frykt og Grådighet Indeks v1.0.3 oppdatering.
+- Nettbrettstøtte (7"/10")
+- Lagt til 43 manglende oversettelser (personvern, fastlåst-teller, innsikter)
+- Forbedret stabilitet for push-varsler
+- iOS-datasynkronisering verifisert

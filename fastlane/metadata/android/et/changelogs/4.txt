@@ -1,0 +1,5 @@
+Hirmu ja ahnuse indeksi v1.0.3 uuendus.
+- Tahvelarvuti tugi (7"/10")
+- Lisatud 43 puuduvat tõlget (privaatsus, kinnijäänu loendur, ülevaated)
+- Parandatud tõuketeavituste stabiilsus
+- iOS-i andmesünk kontrollitud

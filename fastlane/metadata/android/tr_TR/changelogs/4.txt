@@ -1,0 +1,5 @@
+Korku ve Açgözlülük Endeksi v1.0.3 güncellemesi.
+- Tablet desteği (7"/10")
+- 43 eksik çeviri eklendi (gizlilik, takılı sayacı, içgörüler)
+- Anlık bildirim kararlılığı geliştirildi
+- iOS veri senkronizasyonu doğrulandı

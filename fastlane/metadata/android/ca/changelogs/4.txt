@@ -1,0 +1,5 @@
+Actualització v1.0.3 de l'Índex de Por i Cobdícia.
+- Compatibilitat amb tauletes (7"/10")
+- Afegides 43 traduccions que faltaven (privadesa, comptador de bloqueig, informació)
+- Millora de l'estabilitat de notificacions push
+- Sincronització de dades amb iOS verificada
