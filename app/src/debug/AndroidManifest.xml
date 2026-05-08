@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <!--
+            Play Store promo 스크린샷 촬영 전용 BroadcastReceiver.
+            debug 소스셋에만 존재 → release AAB 에는 포함되지 않음.
+        -->
+        <receiver
+            android:name="th1ngjin.fearindex.screenshot.ScreenshotPushReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="th1ngjin.fearindex.SCREENSHOT_PUSH" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

@@ -38,6 +38,11 @@ fun AdBanner(
     if (LocalInspectionMode.current) {
         return
     }
+    // Play Store promo 스크린샷 촬영 모드 — `adb shell setprop debug.screenshot_mode 1` 으로 활성화.
+    // 광고가 첨부된 promo 이미지는 AdMob 정책 위반 위험이 있어 명시적으로 숨긴다.
+    if (isScreenshotMode()) {
+        return
+    }
 
     val context = LocalContext.current
     val analytics = remember(context) {
@@ -90,4 +95,12 @@ private tailrec fun Context.findActivity(): Activity? = when (this) {
     is Activity -> this
     is ContextWrapper -> baseContext.findActivity()
     else -> null
+}
+
+private fun isScreenshotMode(): Boolean = try {
+    val systemProperties = Class.forName("android.os.SystemProperties")
+    val get = systemProperties.getMethod("get", String::class.java, String::class.java)
+    (get.invoke(null, "debug.screenshot_mode", "0") as? String) == "1"
+} catch (e: Throwable) {
+    false
 }
