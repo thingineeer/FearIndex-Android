@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketInsight
+import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 
 /**
@@ -61,7 +62,10 @@ fun InsightFeedView(
 
             // historicalReturn 카드 다음에 AdBanner 삽입
             if (insight.type == th1ngjin.fearindex.domain.entity.InsightType.HISTORICAL_RETURN) {
-                AdBanner()
+                AdBanner(
+                    adUnitId = BuildConfig.ADMOB_BANNER_INSIGHT,
+                    screenName = "홈_인사이트피드",
+                )
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }

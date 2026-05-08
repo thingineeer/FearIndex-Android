@@ -1,5 +1,9 @@
 package th1ngjin.fearindex.presentation.component
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+import android.util.DisplayMetrics
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
@@ -18,23 +22,19 @@ import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 
 /**
- * AdMob 배너 광고 컴포넌트.
+ * AdMob Adaptive 배너 광고 컴포넌트.
  *
- * 기본값은 Google 공식 테스트 배너 광고 ID이며, 실제 프로덕션 출시 전에는
- * AdMob 콘솔에서 발급한 단위 ID로 교체해야 한다.
+ * - `getCurrentOrientationAnchoredAdaptiveBannerAdSize`로 디바이스 폭에 맞게 자동 사이즈 결정
+ *   → 320×50 고정보다 수익률 +20~40% (Google 권장)
+ * - 단위 ID는 호출자가 명시 (`BuildConfig.ADMOB_BANNER_HOME` 등) — debug/release 분기는 BuildConfig가 담당
+ * - Preview/스크린샷 모드에서는 빈 뷰 렌더링
  */
-private const val TEST_BANNER_AD_UNIT_ID = "ca-app-pub-3940256099942544/6300978111"
-
 @Composable
 fun AdBanner(
+    adUnitId: String,
     modifier: Modifier = Modifier,
-    adUnitId: String = TEST_BANNER_AD_UNIT_ID,
     screenName: String = "홈",
 ) {
-    // v1.0.1 내부 테스트 빌드: 광고 전체 비활성화 (다음 버전에서 아래 return 제거)
-    return
-
-    // Compose Preview/스크린샷 모드에서는 실제 AdView 생성 시 crash 가능 → 빈 뷰 렌더링
     if (LocalInspectionMode.current) {
         return
     }
@@ -50,7 +50,7 @@ fun AdBanner(
         modifier = modifier.fillMaxWidth(),
         factory = { ctx ->
             AdView(ctx).apply {
-                setAdSize(AdSize.BANNER)
+                setAdSize(adaptiveAdSize(ctx))
                 this.adUnitId = adUnitId
                 layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -73,4 +73,21 @@ fun AdBanner(
             }
         },
     )
+}
+
+private fun adaptiveAdSize(context: Context): AdSize {
+    val activity = context.findActivity()
+    val metrics = if (activity != null) {
+        DisplayMetrics().also { activity.windowManager.defaultDisplay.getMetrics(it) }
+    } else {
+        context.resources.displayMetrics
+    }
+    val dpWidth = (metrics.widthPixels / metrics.density).toInt().coerceAtLeast(320)
+    return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, dpWidth)
+}
+
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
 }

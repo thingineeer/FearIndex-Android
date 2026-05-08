@@ -14,6 +14,25 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
     }
 
+    buildTypes {
+        debug {
+            // AdMob Adaptive Banner 테스트 ID (정책 위반 방지). app 모듈과 동일.
+            buildConfigField("String", "ADMOB_BANNER_HOME", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "ADMOB_BANNER_INSIGHT", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "ADMOB_BANNER_CHART", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "ADMOB_BANNER_VOTE", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "ADMOB_BANNER_SETTINGS", "\"ca-app-pub-3940256099942544/9214589741\"")
+        }
+        release {
+            // 화면별 AdMob 단위 (Adaptive Banner)
+            buildConfigField("String", "ADMOB_BANNER_HOME", "\"ca-app-pub-5283496525222246/3189551565\"")
+            buildConfigField("String", "ADMOB_BANNER_INSIGHT", "\"ca-app-pub-5283496525222246/1779867597\"")
+            buildConfigField("String", "ADMOB_BANNER_CHART", "\"ca-app-pub-5283496525222246/1616216062\"")
+            buildConfigField("String", "ADMOB_BANNER_VOTE", "\"ca-app-pub-5283496525222246/2417949811\"")
+            buildConfigField("String", "ADMOB_BANNER_SETTINGS", "\"ca-app-pub-5283496525222246/4627498578\"")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -25,6 +44,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

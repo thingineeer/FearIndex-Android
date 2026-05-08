@@ -36,6 +36,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.component.AdBanner
 
@@ -51,7 +52,10 @@ fun SettingsScreen(
 
     Scaffold(
         bottomBar = {
-            AdBanner(screenName = "설정")
+            AdBanner(
+                adUnitId = BuildConfig.ADMOB_BANNER_SETTINGS,
+                screenName = "설정",
+            )
         },
     ) { innerPadding ->
         Column(
