@@ -47,15 +47,21 @@ Firebase Console → App Check → 공포지수 Android Debug → 디버그 토�
 5. `cd ~/thingineeer-env && git add -A && git commit -m "add: <머신명> App Check debug token" && git push`
 
 ### Release Keystore
-실제 keystore 파일은 `~/fearindex-secrets/fearindex-release.keystore`에 있음. `.env`에는 공개 가능한 지문만.
+**진짜 활성 keystore 의 SSOT 는 `~/thingineeer-env/android/fearindex/fearindex-release.keystore`**.
+`~/fearindex-secrets/fearindex-release.keystore` 는 install.sh 가 복사한 결과물 (== 동일 파일).
+`.env` 에는 공개 가능한 지문만.
 
 | 키 | 값 |
 |---|---|
-| `KEYSTORE_ALIAS` | `fearindex` |
-| `KEYSTORE_SHA1` | `81:AD:9D:5D:...` (v1.0.1 신규, 현재 사용) |
-| `KEYSTORE_SHA256` | `15:8F:BB:0F:...` |
-| `KEYSTORE_SHA1_V100` | `A1:54:8A:92:...` (v1.0.0 이전, 참고용) |
-| `KEYSTORE_SHA256_V100` | `AD:48:68:DA:...` |
+| `KEYSTORE_ALIAS` | `upload` (v1.0.3+ 활성) |
+| `KEYSTORE_SHA1` | `CE:08:B4:8A:...` (v1.0.3+ 활성, Play Console 등록 키) |
+| `KEYSTORE_SHA256` | `91:47:9A:4E:...` |
+| `KEYSTORE_SHA1_V101` | `81:AD:9D:5D:...` (v1.0.1~v1.0.2, 폐기) |
+| `KEYSTORE_SHA256_V101` | `15:8F:BB:0F:...` (v1.0.1~v1.0.2, 폐기) |
+| `KEYSTORE_SHA1_V100` | `A1:54:8A:92:...` (v1.0.0, 폐기) |
+| `KEYSTORE_SHA256_V100` | `AD:48:68:DA:...` (v1.0.0, 폐기) |
+
+> 2026-05-09 사고 이력: `~/fearindex-secrets/` 옛 keystore 와 thingineeer-env 진짜 활성 키가 평행 존재해 v1.0.3 AAB 업로드 거부. 자세한 내용은 `@bugs-fixed.md` 17번.
 
 ### 콘솔 계정
 | 키 | 값 |
@@ -82,9 +88,27 @@ gh auth login
 # 2. vault clone
 gh repo clone thingineeer/thingineeer-env ~/thingineeer-env
 
-# 3. 확인
+# 3. keystore + gradle.properties + google-services.json 설치 (signing 자산)
+bash ~/thingineeer-env/android/fearindex/install.sh
+
+# 4. 확인
 cat ~/thingineeer-env/projects/fearindex-android/.env
+ls -la ~/fearindex-secrets/
+keytool -list -v -keystore ~/fearindex-secrets/fearindex-release.keystore -alias upload \
+  | grep "SHA1:"
+# → CE:08:B4:8A:FA:1C:29:8B:51:22:AC:82:9F:B7:78:12:CF:DD:0F:16 출력되어야 함
 ```
+
+## 머신 간 keystore sync (절대 규칙)
+
+**SSOT (single source of truth)**: `~/thingineeer-env/android/fearindex/fearindex-release.keystore`
+- 옛 절차 (AirDrop 으로 `~/fearindex-secrets/` 복사) 는 **deprecated** — 머신별로 옛 keystore 가 남아 사고 발생 (2026-05-09)
+- 새 머신/세션 시작 시 항상 `gh repo clone thingineeer/thingineeer-env` + `bash install.sh` 부터
+- keystore 변경/재설정이 발생하면:
+  1. `~/thingineeer-env/android/fearindex/` 안 keystore 교체
+  2. `cd ~/thingineeer-env && git add -A && git commit && git push`
+  3. 다른 머신에서 `git pull && bash ~/thingineeer-env/android/fearindex/install.sh`
+  4. `.env` 의 `KEYSTORE_SHA1` / `KEYSTORE_SHA256` 동시 갱신, 옛 값은 `_V<version>` suffix 로 보존
 
 ## 자주 쓰는 명령어
 

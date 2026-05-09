@@ -1,71 +1,61 @@
 # Session State — FearIndex-Android
 
 ## Date
-2026-05-08
+2026-05-09
 
-## Version (계획)
+## Version (출시 임박)
 - 다음 출시: `versionCode 4` / `versionName 1.0.3`
-- AAB 아직 빌드 안 함 (현재 Play Console에는 v1.0.2 (versionCode 3) 게시됨)
+- AAB 재빌드 완료 (활성 keystore SHA1=`CE:08:B4:...` 서명) → Play Console 업로드 가능 상태
+- Play Console 출시 노트 45 locale 임시저장 완료
 
 ## Branch / Worktrees
 
 | Worktree | 경로 | 브랜치 |
 |---|---|---|
-| 본진 (dev) | `~/Desktop/side/FearIndex-Android` | `dev` |
-| promo 합성본 | `~/Desktop/side/FearIndex-Android-promo` | `feature/v1.0.3-promo-graphics` |
-| v103 raw + 자동화 | `~/Desktop/side/FearIndex-Android-v103` | `feature/v1.0.3-ads-locale-ui` |
+| 본진 (dev) | `~/Desktop/FearIndex-Android` | `dev` |
+| docs/memory | `~/Desktop/FearIndex-Android-docs-memory` | `feature/v1.0.3-docs-memory` |
 
-세 worktree 모두 dev 동기화 완료. origin push 완료.
+이전 promo / v103 worktree 는 dev 머지 완료 상태. 추가 작업 시 새 worktree 필요.
 
-## ✅ Completed (이번 세션 / 2026-05-08)
+## ✅ Completed (이번 세션 / 2026-05-09)
 
-### v1.0.3 promo 자동화 인프라
-- `app/src/debug/` source set: `ScreenshotPushReceiver` (BroadcastReceiver, debug-only, release AAB 미포함)
-- `AdBanner.isScreenshotMode()`: SystemProperties `debug.screenshot_mode=1` 시 빈 뷰 → 광고 차단
-- `scripts/screenshots/capture-all-locales-v103.sh`: 45 locale × 5 화면 자동 촬영
-  - push banner peek 0.7s window (cold-start 측정)
-  - app cold-start 12s, 탭 전환 4s, 설정 nav 3s+4s
-  - debug.screenshot_mode 자동 set/restore (trap)
-- `scripts/screenshots/capture-en-push-only.sh`: 영어 push banner 만 별도 보충
-- `scripts/screenshots/push_locales.json`: iOS Functions getNotificationMessage 와 동기화 (lower 조건, score=25)
+### Keystore 두 키 혼동 사고 → 해결
+- 새 머신에 옛 keystore (SHA1=`81:AD:...`, alias=fearindex) 만 있어 v1.0.3 AAB 업로드 거부
+- 진짜 활성 키 발견: `~/thingineeer-env/android/fearindex/` (SHA1=`CE:08:B4:...`, alias=upload)
+- 옛 secrets 백업: `~/fearindex-secrets.bak.20260509_163426/`
+- `bash ~/thingineeer-env/android/fearindex/install.sh` → keystore + gradle.properties install
+- google-services.json 누락 발견 → 백업에서 복원
+- AAB 재빌드 + `keytool` 로 SHA1 = `CE:08:B4:...` 검증 완료
 
-### 합성 promo 이미지 정착 (claude.ai/design 결과)
-- `~/Desktop/fastlane/metadata/android/<locale>/images/phoneScreenshots/*.png` (외부 합성본)
-  → `fastlane/metadata/android/<locale>/images/phoneScreenshots/` 일괄 복사
-- 45 locale × 5장 = **225장 정착** (모든 파일 정상)
-- 구 v1.0.2 leftover 4파일 × 45 locale = 180개 정리
-- en_US/`1_notification_en.png` raw 백업 제거 (합성본에 영어 banner 이미 포함)
-- featureGraphic 은 이번 라운드 제외
+### Disk Space 16GB 확보
+- 작업 시작 시점 1.9GB 만 남아 에뮬레이터 부팅 실패 위기
+- 정리 대상: Chrome cache (`~/Library/Caches/Google/Chrome`), Homebrew, pip, pnpm
+- 결과: 16GB 확보, 데이터 손실 없음
 
-### Git 정리 / 동기화
-- `feature/v1.0.3-ads-locale-ui` 브랜치: 기존 11 commits + promo 자동화 3 commits + dev sync 머지
-- `feature/v1.0.3-promo-graphics` 브랜치: 합성본 일괄 적용 + settings.local.json 추가
-- `dev` ← `feature/v1.0.3-ads-locale-ui` (`f844092`, no-ff)
-- `dev` ← `feature/v1.0.3-promo-graphics` (`0813ddc`, no-ff)
-- `feature/v1.0.3-ads-locale-ui` ← `dev` (`3d4cbdf`, no-ff, 동기화)
-- 모든 origin push 완료 (`origin/dev`, `origin/feature/v1.0.3-ads-locale-ui`, `origin/feature/v1.0.3-promo-graphics`)
+### 메모리/문서 큐레이션 (이 작업)
+- `.claude/memory/bugs-fixed.md` 17번 항목 추가 (keystore 사고 상세 기록)
+- `.claude/memory/deployment.md` SHA1/SHA256 활성 키로 갱신 + 키 이력 표 추가
+- `.claude/memory/secrets-env.md` 활성 SHA1 갱신 + 머신 간 sync 절차 추가
+- `.claude/rules/secrets.md` SSOT (thingineeer-env) 명시 + 옛 AirDrop 절차 deprecated
+- `CLAUDE.md` Release Signing 섹션 갱신
+- `~/thingineeer-env/projects/fearindex-android/.env` KEYSTORE_SHA1 정정 + V101 보존
+- `~/thingineeer-env/android/fearindex/install.sh` google-services.json 처리 추가
 
-### 기타
-- `.claude/settings.local.json`: Agent Teams 실험 플래그 (`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`) 추가
+### Play Console
+- 출시 노트 45 locale 임시저장 완료 (이전 세션 ko_KR + 이번 세션에서 다른 에이전트가 글자수 초과 fix 진행 중)
 
 ## ⏳ Remaining — v1.0.3 출시 작업
 
-### 1. AAB 빌드
-```bash
-cd ~/Desktop/side/FearIndex-Android-v103
-# versionCode 4, versionName 1.0.3 bump (app/build.gradle.kts)
-./gradlew clean :app:bundleRelease
-# 산출물: app/build/outputs/bundle/release/app-release.aab
-```
+### 1. AAB 업로드 (사용자 직접)
+- Play Console → Closed Testing Alpha → 새 버전 만들기
+- 이미 빌드된 AAB 드래그&드롭: `app/build/outputs/bundle/release/app-release.aab`
+- 출시 노트 검토 → 미리보기 → 출시
 
-### 2. Play Console 업로드
-- Closed Testing Alpha 트랙 → 새 버전 만들기
-- AAB 드래그&드롭
-- `fastlane/metadata/android/<locale>/changelogs/4.txt` (45 locale 출시 노트 — ko_KR `4.txt` 만 작성됨, 나머지 44 locale 작성 필요)
-- 스크린샷 업로드: `fastlane/metadata/android/<locale>/images/phoneScreenshots/*.png` (45 × 5 = 225장 합성본 사용)
+### 2. 14일 카운트다운
+- 12명 테스터 opt-in 유지
+- Production 신청 자격 획득
 
-### 3. dev → release 머지 + 태그
-Production 통과 시:
+### 3. dev → release 머지 + 태그 (Production 통과 시)
 ```bash
 git checkout release
 git merge --no-ff dev
@@ -73,57 +63,41 @@ git tag v1.0.3
 git push origin release v1.0.3
 ```
 
-### 4. 14일 카운트다운
-- 12명 테스터 opt-in 유지
-- Production 신청 자격 획득
-
 ## Key Files (집에서 이어가기 위해 먼저 읽을 것)
 
 | 파일 | 역할 |
 |---|---|
-| `CLAUDE.md` | 프로젝트 절대 규칙 |
+| `CLAUDE.md` | 프로젝트 절대 규칙 (Release Signing 섹션 thingineeer-env SSOT 명시) |
 | `.claude/memory/MEMORY.md` | 메모리 인덱스 |
-| `.claude/memory/deployment.md` | AAB / Play Console 절차 |
-| `.claude/memory/bugs-fixed.md` | 버그 이력 (15번까지) |
-| `app/build.gradle.kts` | versionCode 3 → 4, versionName 1.0.2 → 1.0.3 bump 위치 |
-| `scripts/screenshots/capture-all-locales-v103.sh` | 자동 촬영 스크립트 (필요 시 재실행) |
-| `fastlane/metadata/android/ko_KR/changelogs/4.txt` | v1.0.3 ko 출시 노트 (다른 44 locale 추가 필요) |
-| `app/src/debug/java/th1ngjin/fearindex/screenshot/ScreenshotPushReceiver.kt` | promo push 자동화 receiver |
+| `.claude/memory/bugs-fixed.md` | 버그 이력 (17번까지, 2026-05-09 keystore 사고 포함) |
+| `.claude/memory/deployment.md` | AAB / Play Console 절차 + 활성 키 SHA1/SHA256 |
+| `.claude/memory/secrets-env.md` | .env 키 목록 + 머신 간 sync 절차 |
+| `.claude/rules/secrets.md` | SSOT (thingineeer-env) 규약 |
+| `~/thingineeer-env/android/fearindex/README.md` | 활성 keystore SHA1/SHA256 원본 출처 |
+| `app/build.gradle.kts` | versionCode 4, versionName 1.0.3 |
 
 ## Notes
 
-### 집 컴퓨터 셋업 (한 번)
+### 새 머신 셋업 (절대 규칙)
 ```bash
 # 1. clone (이미 했으면 skip)
-gh repo clone thingineeer/FearIndex-Android ~/Desktop/side/FearIndex-Android
-cd ~/Desktop/side/FearIndex-Android
+gh repo clone thingineeer/FearIndex-Android ~/Desktop/FearIndex-Android
+cd ~/Desktop/FearIndex-Android
 
-# 2. fearindex-secrets 셋업 (~/.gradle/gradle.properties 자동 처리)
-# AirDrop 으로 ~/fearindex-secrets/ 통째 복사 후
-bash ~/fearindex-secrets/install.sh
-
-# 3. thingineeer-env (텍스트 토큰)
+# 2. SSOT (thingineeer-env) clone + install (옛 AirDrop 절차 deprecated)
+gh auth login
 gh repo clone thingineeer/thingineeer-env ~/thingineeer-env
+bash ~/thingineeer-env/android/fearindex/install.sh
 
-# 4. worktree 셋업 (선택)
-git worktree add ../FearIndex-Android-v103 feature/v1.0.3-ads-locale-ui
-git worktree add ../FearIndex-Android-promo feature/v1.0.3-promo-graphics
-```
-
-### 합성 이미지 검증 (집에서)
-```bash
-# 모든 locale 5장 정상 여부 audit
-DST=~/Desktop/side/FearIndex-Android/fastlane/metadata/android
-for d in "$DST"/*/; do
-  locale=$(basename "$d")
-  count=$(ls "$d/images/phoneScreenshots/"*.png 2>/dev/null | wc -l)
-  [ "$count" -ne 5 ] && echo "[BAD] $locale: $count files"
-done
+# 3. 검증
+keytool -list -v -keystore ~/fearindex-secrets/fearindex-release.keystore -alias upload \
+  | grep "SHA1:"
+# → CE:08:B4:8A:FA:1C:29:8B:51:22:AC:82:9F:B7:78:12:CF:DD:0F:16
 ```
 
 ### 알려진 이슈
 - iOS-Android Similar Events 카드 점수 불일치 (게이지 vs 마지막 historical) — 의도된 동작, v1.0.4 백로그
-- v1.0.3 출시 노트 ko_KR 만 작성됨 (44 locale 추가 필요)
+- Play Console 메타 글자수 초과 (title 5, short 16, full 9 locale) — 다른 에이전트가 fix 진행 중. 수동 업로드 영향 없음.
 
 ### Chrome MCP / fastlane supply
 - Chrome MCP 로 Play Console 이미지 업로드 불가 (macOS 네이티브 다이얼로그)
