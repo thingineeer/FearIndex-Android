@@ -147,7 +147,7 @@
     <!-- 개인정보 처리방침 (iOS PrivacyPolicyView 포팅) -->
     <string name="privacy_title">개인정보 처리방침</string>
     <string name="privacy_contact">문의</string>
-    <string name="privacy_last_updated">최종 업데이트: 2026년 3월 4일</string>
+    <string name="privacy_last_updated">최종 업데이트: 2026년 5월 9일</string>
     <string name="privacy_common_close">닫기</string>
 
     <string name="privacy_section_overview">개요</string>

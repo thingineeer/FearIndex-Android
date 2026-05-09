@@ -256,7 +256,7 @@
     <string name="privacy_item_opt_out">Отключить аналитику: Настройки &gt; Конфиденциальность &gt; Аналитика и улучшения</string>
     <string name="privacy_item_optimize">Оптимизация пользовательского опыта</string>
     <string name="privacy_item_personal_info">Персональные данные (имя, электронная почта, номер телефона)</string>
-    <string name="privacy_last_updated">Последнее обновление: 4 марта 2026 г.</string>
+    <string name="privacy_last_updated">Последнее обновление: 9 мая 2026 г.</string>
     <string name="privacy_remote_config_data">Собираемые данные: Информация об устройстве</string>
     <string name="privacy_remote_config_purpose">Назначение: Настройка функций приложения</string>
     <string name="privacy_section_changes">Изменения политики</string>

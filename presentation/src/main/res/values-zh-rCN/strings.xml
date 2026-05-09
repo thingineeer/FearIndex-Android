@@ -255,7 +255,7 @@
     <string name="privacy_item_opt_out">拒绝分析数据收集：设置 &gt; 隐私 &gt; 分析与改进</string>
     <string name="privacy_item_optimize">优化用户体验</string>
     <string name="privacy_item_personal_info">个人身份信息（姓名、电子邮件、电话号码）</string>
-    <string name="privacy_last_updated">最后更新：2026年3月4日</string>
+    <string name="privacy_last_updated">最后更新：2026年5月9日</string>
     <string name="privacy_remote_config_data">收集的数据：设备信息</string>
     <string name="privacy_remote_config_purpose">用途：应用功能配置</string>
     <string name="privacy_section_changes">政策变更</string>

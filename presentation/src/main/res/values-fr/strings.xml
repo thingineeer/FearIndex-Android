@@ -256,7 +256,7 @@
     <string name="privacy_item_opt_out">Refuser la collecte analytique : Réglages &gt; Confidentialité &gt; Analyses et améliorations</string>
     <string name="privacy_item_optimize">Optimiser l\'expérience utilisateur</string>
     <string name="privacy_item_personal_info">Informations d\'identification personnelle (nom, e-mail, téléphone)</string>
-    <string name="privacy_last_updated">Dernière mise à jour : 4 mars 2026</string>
+    <string name="privacy_last_updated">Dernière mise à jour : 9 mai 2026</string>
     <string name="privacy_remote_config_data">Données collectées : Informations sur l\'appareil</string>
     <string name="privacy_remote_config_purpose">Objectif : Configuration des fonctionnalités</string>
     <string name="privacy_section_changes">Modifications de la politique</string>
