@@ -255,7 +255,7 @@
     <string name="privacy_item_opt_out">分析データ収集の拒否: 設定 &gt; プライバシー &gt; 解析および改善</string>
     <string name="privacy_item_optimize">ユーザー体験の最適化</string>
     <string name="privacy_item_personal_info">氏名、メールアドレス、電話番号などの個人識別情報</string>
-    <string name="privacy_last_updated">最終更新日: 2026年3月4日</string>
+    <string name="privacy_last_updated">最終更新日: 2026年5月9日</string>
     <string name="privacy_remote_config_data">収集データ: デバイス情報</string>
     <string name="privacy_remote_config_purpose">用途: アプリ機能設定</string>
     <string name="privacy_section_changes">ポリシーの変更</string>
