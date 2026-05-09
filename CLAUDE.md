@@ -329,19 +329,27 @@ stuckStatus/user_{deviceId}      # Admin SDK 전용
 
 ## Release Signing & Secrets
 
-비밀 정보는 **두 저장소**에 나눠 보관:
+비밀 정보는 **GitHub private repo `thingineeer/thingineeer-env` 가 단일 진실 출처 (SSOT)**.
+`~/fearindex-secrets/` 는 install.sh 가 만든 결과물일 뿐 — 머신별로 옛 keystore 가 남아 사고 발생 (2026-05-09, `@.claude/memory/bugs-fixed.md` 17번).
 
-### 1. 파일 기반 비밀 — `~/fearindex-secrets/`
+### 1. 파일 기반 비밀 — SSOT: `~/thingineeer-env/android/fearindex/`
 
 빌드/서명용 바이너리 파일. 상세 규칙: `@.claude/rules/secrets.md`
 
-| 파일 | 경로 | 용도 |
+| 파일 (SSOT) | 처리 | 용도 |
 |---|---|---|
-| Keystore | `~/fearindex-secrets/fearindex-release.keystore` | 릴리즈 서명 (alias `fearindex`) |
-| Gradle 비밀번호 | `~/fearindex-secrets/gradle.properties` → `~/.gradle/gradle.properties` (install.sh가 복사) | `FEARINDEX_STORE_PASSWORD` 등 |
-| Firebase 설정 | `~/fearindex-secrets/google-services.json` → `app/google-services.json` (심볼릭 링크) | Firebase BoM 초기화 |
+| `fearindex-release.keystore` | `~/fearindex-secrets/` 복사 | 릴리즈 서명 (alias `upload`, v1.0.3+) |
+| `gradle.properties` | `~/.gradle/gradle.properties` append | `FEARINDEX_STORE_PASSWORD` 등 |
+| `upload_certificate.pem` | `~/fearindex-secrets/` 복사 | Play Console 업로드 키 PEM |
+| `google-services.json` | `~/fearindex-secrets/` 복사 → `app/google-services.json` 심볼릭 링크 | Firebase 설정 |
 
-- **새 맥 셋업**: 다른 맥에서 `~/fearindex-secrets/` 통째로 AirDrop → `bash ~/fearindex-secrets/install.sh` 실행
+- **새 맥 셋업** (한 번만):
+  ```bash
+  gh auth login
+  gh repo clone thingineeer/thingineeer-env ~/thingineeer-env
+  bash ~/thingineeer-env/android/fearindex/install.sh
+  ```
+- **옛 AirDrop 절차는 deprecated**. 머신별 keystore 평행 존재 → 사고 위험.
 - **절대 커밋 금지** (git hook + `.gitignore`로 차단)
 
 ### 2. 텍스트 토큰 — `~/thingineeer-env/projects/fearindex-android/.env`
@@ -355,7 +363,8 @@ GitHub private repo `thingineeer/thingineeer-env` 에 저장. **다른 머신에
 | Android 패키지명 (prod/debug) | `ANDROID_PACKAGE_PROD` / `ANDROID_PACKAGE_DEBUG` |
 | AdMob App/Banner ID | `ADMOB_APP_ID` / `ADMOB_HOME_BANNER` |
 | App Check Debug Tokens (머신별) | `APPCHECK_DEBUG_TOKEN_MACBOOK{1,2}_EMULATOR` |
-| Keystore SHA-1 / SHA-256 | `KEYSTORE_SHA1` / `KEYSTORE_SHA256` |
+| Keystore SHA-1 / SHA-256 (활성) | `KEYSTORE_SHA1=CE:08:B4:...` / `KEYSTORE_SHA256=91:47:9A:...` (v1.0.3+, alias=upload) |
+| Keystore 폐기 키 (이력) | `KEYSTORE_SHA1_V100` (v1.0.0), `KEYSTORE_SHA1_V101` (v1.0.1~v1.0.2) |
 | Google Play / Firebase Console 계정 | `PLAY_CONSOLE_ACCOUNT` / `FIREBASE_CONSOLE_ACCOUNT` |
 | Cloud Functions 이름들 | `FN_SUBMIT_STUCK_STATUS` 등 |
 
@@ -377,7 +386,7 @@ vi ~/thingineeer-env/projects/fearindex-android/.env
 cd ~/thingineeer-env && git add -A && git commit -m "update: fearindex-android <변경내용>" && git push
 ```
 
-- **SHA-1 / SHA-256**: Firebase Console에 등록 완료
+- **SHA-1 / SHA-256 (활성)**: `CE:08:B4:8A:FA:1C:29:8B:51:22:AC:82:9F:B7:78:12:CF:DD:0F:16` / `91:47:9A:4E:3C:F6:F4:F0:D4:0C:1D:AB:C8:0E:95:94:AE:91:EB:0C:64:1B:A7:ED:3B:D6:79:44:BC:AB:57:A2`. Firebase Console에 등록 완료. 옛 키 이력은 `@.claude/memory/deployment.md` 참조.
 
 자세한 배포 절차는 `@.claude/memory/deployment.md` 및 `@docs/GOOGLE-PLAY-INTERNAL-TEST.md` 참조.
 

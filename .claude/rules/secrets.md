@@ -1,33 +1,39 @@
 # Secrets (절대 규칙)
 
-## 보관 위치 — 이 규약만 사용
+## SSOT (Single Source of Truth)
 
-**로컬 시크릿 폴더: `~/fearindex-secrets/`** (home 디렉토리, 프로젝트 외부)
+**`~/thingineeer-env/android/fearindex/`** (GitHub private repo `thingineeer/thingineeer-env` 에서 clone) — 모든 빌드/배포용 비밀 파일의 원본.
 
-모든 빌드/배포 관련 비밀 파일은 **반드시 이 폴더 안에 저장**. 다른 경로 사용 금지.
+`~/fearindex-secrets/` 는 install.sh 가 복사한 **결과물 폴더** (== 원본 동일).
+**옛 AirDrop 절차는 deprecated** — 2026-05-09 사고 이후 단일화 (`@../memory/bugs-fixed.md` 17번 참조).
 
-## 포함 파일
+## 포함 파일 (SSOT 위치)
 
-| 파일 | 심볼릭/복사 대상 | 용도 |
+| 파일 (SSOT) | install.sh 처리 결과 | 용도 |
 |---|---|---|
-| `~/fearindex-secrets/fearindex-release.keystore` | (그대로 사용) | 릴리즈 서명 키 |
-| `~/fearindex-secrets/gradle.properties` | `~/.gradle/gradle.properties`로 복사/append (install.sh가 처리) | keystore 비밀번호 (FEARINDEX_*) |
-| `~/fearindex-secrets/google-services.json` | `app/google-services.json`로 심볼릭 링크 | Firebase 설정 |
+| `~/thingineeer-env/android/fearindex/fearindex-release.keystore` | `~/fearindex-secrets/fearindex-release.keystore` 복사 | 릴리즈 서명 키 (alias=upload) |
+| `~/thingineeer-env/android/fearindex/gradle.properties` | `~/.gradle/gradle.properties`로 append | keystore 비밀번호 (FEARINDEX_*) |
+| `~/thingineeer-env/android/fearindex/upload_certificate.pem` | `~/fearindex-secrets/upload_certificate.pem` 복사 | Play Console 업로드 키 재설정용 PEM |
+| `~/thingineeer-env/android/fearindex/google-services.json` | `~/fearindex-secrets/google-services.json` 복사 → `app/google-services.json` 심볼릭 링크 | Firebase 설정 |
 
 ## install.sh
 
-다른 맥으로 이동/새 셋업 시:
+새 맥 / 새 세션 시:
 
 ```bash
-# 1. 다른 맥에서 ~/fearindex-secrets/ 통째로 AirDrop/iCloud으로 복사
-# 2. 이 맥에서:
-bash ~/fearindex-secrets/install.sh
+# 1. env repo clone (한 번만)
+gh auth login
+gh repo clone thingineeer/thingineeer-env ~/thingineeer-env
+
+# 2. install (idempotent, 여러 번 실행 안전)
+bash ~/thingineeer-env/android/fearindex/install.sh
 ```
 
-- idempotent — 여러 번 실행해도 안전
-- google-services.json을 `app/` 에 심볼릭 링크
-- `~/.gradle/gradle.properties`에 FEARINDEX_* 없으면 append
-- `local.properties` 없으면 SDK 경로 생성
+`install.sh` 가 처리하는 항목:
+- `~/fearindex-secrets/` 디렉토리 생성 (chmod 700) + keystore/cert/gradle.properties 복사 (chmod 600)
+- `~/.gradle/gradle.properties` 에 `FEARINDEX_*` append (기존 값 제거 후)
+- `~/fearindex-secrets/google-services.json` 복사 + `app/google-services.json` 심볼릭 링크
+- `local.properties` 없으면 SDK 경로 자동 생성
 
 ## 절대 금지
 

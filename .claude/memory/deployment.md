@@ -14,13 +14,24 @@ type: reference
 | Package (debug) | `th1ngjin.fearindex.debug` |
 | versionCode | `app/build.gradle.kts:20` 참고 (매 제출마다 증가) |
 | versionName | `app/build.gradle.kts:21` |
-| Keystore 파일 | `~/fearindex-release.keystore` (PKCS12) |
-| Keystore alias | `fearindex` |
+| Keystore 파일 (활성) | `~/fearindex-secrets/fearindex-release.keystore` (PKCS12) |
+| Keystore 원본 (SSOT) | `~/thingineeer-env/android/fearindex/fearindex-release.keystore` |
+| Keystore alias | `upload` (v1.0.3+) |
 | Keystore 비밀번호 | `~/.gradle/gradle.properties`의 `FEARINDEX_STORE_PASSWORD` 키 사용 — 코드/문서에 직접 기록 금지 |
-| SHA-1 | `A1:54:8A:92:C3:AF:A5:0E:BD:31:F6:6B:47:1B:9E:BB:51:5D:23:51` |
-| SHA-256 | `AD:48:68:DA:81:3C:9D:39:65:D0:C8:F9:59:62:61:6F:0A:6D:3A:BF:4E:21:DA:12:C0:DF:D8:2C:11:6A:14:0D` |
+| SHA-1 (활성, v1.0.3+) | `CE:08:B4:8A:FA:1C:29:8B:51:22:AC:82:9F:B7:78:12:CF:DD:0F:16` |
+| SHA-256 (활성, v1.0.3+) | `91:47:9A:4E:3C:F6:F4:F0:D4:0C:1D:AB:C8:0E:95:94:AE:91:EB:0C:64:1B:A7:ED:3B:D6:79:44:BC:AB:57:A2` |
 | AdMob App ID | `ca-app-pub-5283496525222246~1308884877` |
 | AdMob HomeBanner | `ca-app-pub-5283496525222246/3189551565` |
+
+### 키 이력 (폐기됨, Firebase 등록 정리 시 참고)
+
+| 시기 | alias | SHA-1 |
+|---|---|---|
+| v1.0.0 | `fearindex` | `A1:54:8A:92:C3:AF:A5:0E:BD:31:F6:6B:47:1B:9E:BB:51:5D:23:51` |
+| v1.0.1~v1.0.2 | `fearindex` | `81:AD:9D:5D:9A:E1:50:EB:F1:AE:9D:AF:86:CB:03:3D:67:6B:2A:75` |
+| **v1.0.3+ (활성)** | **`upload`** | **`CE:08:B4:8A:FA:1C:29:8B:51:22:AC:82:9F:B7:78:12:CF:DD:0F:16`** |
+
+진짜 활성 keystore 는 **`~/thingineeer-env/android/fearindex/`** 의 README 가 SSOT. 새 머신 셋업 시 `bash ~/thingineeer-env/android/fearindex/install.sh` 실행. 자세한 사고 이력은 `@bugs-fixed.md` 17번 참조.
 
 ## AAB 빌드 (Release)
 
