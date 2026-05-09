@@ -44,6 +44,7 @@ import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
+import kotlin.math.roundToInt
 
 // MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
 
@@ -215,7 +216,7 @@ private fun CurrentScoreHeader(
         }
 
         if (previousClose != null) {
-            val diff = score - previousClose.toInt()
+            val diff = score - previousClose.roundToInt()
             val sign = if (diff >= 0) "+" else ""
             val delta = "$sign${String.format("%.1f", score - previousClose)}"
             Text(

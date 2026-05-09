@@ -76,6 +76,7 @@ import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import kotlin.math.roundToInt
 
 // MARK: - Chart Period
 
@@ -579,7 +580,7 @@ private fun DrawScope.drawSelectionIndicator(
     )
 
     // 3. 툴팁 (점수 + 등급 + 날짜)
-    val score = point.score.toInt()
+    val score = point.score.roundToInt()
     val scoreText = "$score"
     val ratingText = ratingLabelFromArray(score, ratingLabels)
     val days = if (isCrypto) cryptoPeriod.days else marketPeriod.days
