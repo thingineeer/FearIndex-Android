@@ -30,6 +30,9 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/*.html
 fastlane/test_output/
+# Service account JSON (Play Console upload key — ~/fearindex-secrets/ 보관, 절대 커밋 금지)
+play-store-service-account.json
+**/play-store-service-account.json
 
 .claude/scheduled_tasks.lock
 
