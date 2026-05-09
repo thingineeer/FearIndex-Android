@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
 import kotlin.math.abs
+import kotlin.math.roundToInt
 
 /**
  * Comparison card matching the iOS FearComparisonCard.
@@ -101,7 +102,7 @@ private fun ComparisonColumn(
         Spacer(modifier = Modifier.height(6.dp))
 
         if (previousScore != null) {
-            val prevInt = previousScore.toInt()
+            val prevInt = previousScore.roundToInt()
 
             // Score value colored by fear level
             Text(

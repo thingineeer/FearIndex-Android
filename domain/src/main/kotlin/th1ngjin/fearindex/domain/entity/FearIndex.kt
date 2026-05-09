@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.domain.entity
 
 import java.time.Instant
+import kotlin.math.roundToInt
 
 data class FearIndex(
     val score: Double,
@@ -11,7 +12,7 @@ data class FearIndex(
     val previous1Month: Double? = null,
     val previous1Year: Double? = null,
 ) {
-    val roundedScore: Int get() = score.toInt()
+    val roundedScore: Int get() = score.roundToInt()
 
     enum class Rating {
         EXTREME_FEAR,
