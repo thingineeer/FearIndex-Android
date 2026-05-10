@@ -117,17 +117,16 @@ capture_locale_size() {
     "$ADB" shell screencap -p "/sdcard/cap.png"
     "$ADB" pull -a "/sdcard/cap.png" "$out_dir/4_vote.png" >/dev/null 2>&1
 
-    # 1_notification + 5_notification_settings: 설정 → 알림 메뉴 (첫 항목)
+    # 1_notification: 설정 → 알림 메뉴 (첫 항목). 태블릿은 4장만 사용 (5_notification_settings 안 만듦)
     "$ADB" shell input tap "$T4X" "$TABY"
     sleep 3
     "$ADB" shell input tap "$NOTIF_X" "$NOTIF_Y"
     sleep 4
     "$ADB" shell screencap -p "/sdcard/cap.png"
     "$ADB" pull -a "/sdcard/cap.png" "$out_dir/1_notification.png" >/dev/null 2>&1
-    cp "$out_dir/1_notification.png" "$out_dir/5_notification_settings.png"
 
     "$ADB" shell rm "/sdcard/cap.png" >/dev/null 2>&1
-    echo "  ✓ $bcp: 5/5"
+    echo "  ✓ $bcp: 4/4"
   done
 
   echo ""
