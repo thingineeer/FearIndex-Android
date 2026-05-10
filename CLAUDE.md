@@ -327,6 +327,21 @@ stuckStatus/user_{deviceId}      # Admin SDK 전용
 - `buildConfigField`로 빌드 타입 분기 (`app/build.gradle.kts`에 선언됨)
 - release AAB 빌드 전 반드시 App ID 확인
 
+### 스크린샷 모드 (절대 규칙)
+
+**Play Store / App Store 등록용 스크린샷에는 광고가 절대 포함되면 안 된다.**
+
+- 테스트 광고 (debug 빌드의 `ca-app-pub-3940256099942544/...`) 노출 시 → AdMob 정책 위반
+- 프로덕션 광고 노출 시 → 스토어 화면이 광고로 어수선해 부적절
+- ∴ **스크린샷 캡처용 빌드는 광고 영역을 완전히 hide** 하는 모드로 빌드/실행해야 함.
+
+**현재 구현** (`presentation/.../component/AdBanner.kt`):
+- `isScreenshotMode()` 함수가 `android.os.SystemProperties.get("debug.screenshot_mode")` 를 읽어 `"1"` 이면 광고 컴포넌트 자체를 빈 뷰로 렌더 (`return`).
+- 에뮬레이터 / 디바이스에서 캡처 직전 활성화: `adb shell setprop debug.screenshot_mode 1`
+- 캡처 끝난 후 비활성화 (선택): `adb shell setprop debug.screenshot_mode 0`
+
+`scripts/screenshots/capture-tablet-all-locales.sh` 등 모든 캡처 스크립트는 시작 시 **반드시** `setprop debug.screenshot_mode 1` 을 호출해야 한다. 잊으면 테스트 광고가 캡처되어 fastlane metadata 에 commit 되는 사고가 재발한다 (2026-05-10 사고).
+
 ## Release Signing & Secrets
 
 비밀 정보는 **GitHub private repo `thingineeer/thingineeer-env` 가 단일 진실 출처 (SSOT)**.
