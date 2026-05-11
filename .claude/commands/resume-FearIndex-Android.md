@@ -15,6 +15,8 @@ Run `git status`, `git branch -vv`, `git worktree list`. Show recent commits usi
 - All commits from today: `git log --oneline --since="midnight"`
 - Last 10 commits: `git log --oneline -10`
 
+Also show tags: `git tag -l "v*"` (v1.0.0 부터 정식 태깅 시작).
+
 ## 5. Key files
 Read all files listed in the "Key Files" section of `docs/checkpoints/SESSION-STATE.md`.
 
@@ -25,12 +27,15 @@ Verify `./gradlew tasks --quiet | head` runs (Gradle wrapper alive). Don't full 
 Print:
 
 ---
-**Project**: FearIndex-Android (v1.0.3 출시 준비)
-**Branch**: dev
-**Worktrees**: 본진(dev) / -promo(feature/v1.0.3-promo-graphics) / -v103(feature/v1.0.3-ads-locale-ui)
-**Done**: 45 locale × 5 합성 promo 이미지 정착, promo 자동 촬영 스크립트, debug-only push receiver, 광고 차단 모드
-**Current**: v1.0.3 출시 준비 (versionCode 3 → 4 bump 대기)
-**Next**: AAB 빌드 → Play Console Closed Testing 업로드 → 출시 노트 44 locale 추가 작성
+**Project**: FearIndex-Android (v1.0.0 출시 완료 — 이제 개선 단계)
+**Branch**: dev (clean)
+**Tag**: v1.0.0 (release 브랜치 = `acf9876`)
+**Worktrees**: 본진만 (피처 브랜치 모두 머지/정리됨)
+**Done**: v1.0.0 Production 출시 통과, ko-KR 앱 이름 "공포지수" 단축 + iOS description 동기화, 빌드 산출물/일회성 docs 정리
+**Current**: v1.0.1+ 개선 백로그 대기
+**Next**: v1.0.1 시작 시 `git checkout -b feature/v1.0.1` → worktree 분기
 ---
 
-Ask: "Ready to continue?"
+Pending (사용자 작업): Play Console에서 Celestial Oracle/FLIPOP/옛 공포지수 3개 영구 삭제 (transaction ID 입력 필요).
+
+Ask: "Ready to continue? v1.0.1에서 작업할 항목은 뭐예요?"
