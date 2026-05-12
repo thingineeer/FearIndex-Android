@@ -70,18 +70,39 @@ platform :android do
     )
   end
 
-  desc "비공개 테스트 → 프로덕션 트랙 승격 (staged rollout 10%)"
+  desc "비공개 테스트 → 프로덕션 트랙 승격 (100% rollout)"
   lane :promote_to_production do
     upload_to_play_store(
       track: "alpha",
       track_promote_to: "production",
-      rollout: "0.1",
+      rollout: "1.0",
       skip_upload_apk: true,
       skip_upload_aab: true,
       skip_upload_metadata: true,
       skip_upload_changelogs: true,
       skip_upload_images: true,
       skip_upload_screenshots: true
+    )
+  end
+
+  desc "AAB 빌드 + 프로덕션 트랙 직접 푸시 (100% rollout, 45 locale 메타 + 스크린샷 + 이미지 일괄)"
+  lane :production do
+    gradle(
+      task: "bundle",
+      build_type: "Release",
+      project_dir: PROJECT_ROOT
+    )
+
+    upload_to_play_store(
+      track: "production",
+      aab: lockstep_aab_path,
+      rollout: "1.0",
+      release_status: "completed",
+      skip_upload_apk: true,
+      skip_upload_metadata: false,
+      skip_upload_changelogs: false,
+      skip_upload_images: false,
+      skip_upload_screenshots: false
     )
   end
 

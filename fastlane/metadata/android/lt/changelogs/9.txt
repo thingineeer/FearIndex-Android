@@ -1,3 +1,1 @@
-Fear & Greed Index v1.0.1 naujinimas.
-- Patobulintas „Android 15“ edge-to-edge ekrano suderinamumas
-- Stabilumo ir vidinio našumo patobulinimai
+Pagerintas stabilumas.

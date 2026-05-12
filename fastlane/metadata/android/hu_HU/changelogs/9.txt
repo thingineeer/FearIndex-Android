@@ -1,3 +1,1 @@
-Fear & Greed Index v1.0.1 frissítés.
-- Android 15 edge-to-edge megjelenítés kompatibilitási javítások
-- Stabilitási és belső teljesítményjavítások
+Stabilitás javítva.
