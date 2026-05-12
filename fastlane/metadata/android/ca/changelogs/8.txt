@@ -1,0 +1,3 @@
+Actualització de Fear & Greed Index v1.0.1.
+- Millores d'estabilitat i rendiment intern
+- Neteja de l'entorn de compilació

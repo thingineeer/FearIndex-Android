@@ -1,0 +1,3 @@
+Kemas kini Fear & Greed Index v1.0.1.
+- Penambahbaikan kestabilan dan prestasi dalaman
+- Pembersihan persekitaran binaan
