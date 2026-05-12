@@ -3,13 +3,30 @@
 ## Date
 2026-05-12
 
+## 🚀 Release Status
+
+**v1.0.1 — 정식 게시 완료 (LIVE on Google Play, 2026-05-12)**
+
+- 트랙: **Production** (100% rollout)
+- versionCode: **9** / versionName: **1.0.1**
+- 게시 방식: `fastlane production` 한 줄 자동화 (Google 검토 통과 후 즉시 자동 게시)
+- 출시 노트: **"안정성을 개선하였습니다."** (45 locale 동일 메시지)
+- v1.0.0 사용자 전원에게 점진 자동 업데이트 진행 중
+
 ## Branch
-`dev` (clean) — `release` 브랜치 + `v1.0.1` annotated tag 머지/푸시 완료, fastlane production 자동화 동작 확인
+`dev` (clean) — `release` 브랜치 + `v1.0.1` annotated tag 머지/푸시 완료, **production 100% rollout 게시 완료** ✅
 
 ## Version
 - **v1.0.1 production 정식 게시 완료** ✅ (versionCode 9) — 2026-05-12 Google 검토 통과 → 100% rollout 라이브
 - `fastlane production` 한 줄로 AAB + 45 locale 메타 + 스크린샷 + changelog 일괄 푸시 검증됨
 - 다음: v1.0.2+ 부터는 `dev`에서 `feature/v1.0.2-<기능>` 분기로 시작
+
+## 📊 출시 이력
+
+| 버전 | versionCode | 게시일 | 상태 | 주요 변경 |
+|---|---|---|---|---|
+| v1.0.0 | 7 | 2026-05-09 | 정식 게시 ✅ | 최초 출시 |
+| **v1.0.1** | **9** | **2026-05-12** | **정식 게시 ✅ (LIVE)** | **Android 15 edge-to-edge 호환성 + 안정성 개선, `fastlane production` 자동화 첫 사용** |
 
 ## ✅ Completed (이번 세션)
 
