@@ -1,5 +1,8 @@
 {
-  "_comment": "FearIndex-Android 프로젝트 로컬 설정. 절대 경로 com/thingineer/* 차단 hook 포함.",
+  "_comment": "FearIndex-Android 프로젝트 로컬 설정. 절대 경로 com/thingineer/* 차단 hook + Agent Teams 실험 기능.",
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "hooks": {
     "PreToolUse": [
       {

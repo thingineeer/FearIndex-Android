@@ -1,0 +1,3 @@
+Posodobitev Fear & Greed Index v1.0.1.
+- Izboljšave stabilnosti in notranje zmogljivosti
+- Čiščenje gradbenega okolja
