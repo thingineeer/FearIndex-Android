@@ -52,7 +52,7 @@ Android: `values{-ko,-ja,...}/strings.xml`의 `rating_extreme_fear` 등 — **iO
 ### Firebase
 - **프로젝트**: `fear-index-a4f4b` — 공유.
 - **Firestore**: 동일 컬렉션 구조. Android가 iOS와 동시에 읽기/쓰기.
-- **Analytics 이벤트**: 이벤트 이름을 **소문자_스네이크 케이스**로 통일. iOS에서 쓰는 이름 그대로 Android 사용.
+- **Analytics 이벤트**: 이벤트 이름은 **영문 snake_case** 필수 (Firebase 규격 `^[A-Za-z][A-Za-z0-9_]{0,39}$`). Android 는 v1.0.1 (`feature/v1.0.1-analytics-en-names`) 에서 모든 한글 이벤트 이름을 영문화 완료. **iOS 도 동일한 매핑으로 변경 필요** — 매핑 표는 @bugs-fixed.md 18번 참조 (Android `AnalyticsEvent.kt` 가 SSOT).
 - **Crashlytics**: 같은 프로젝트에서 스트림. Android는 ProGuard mapping 업로드.
 - **App Check**: iOS는 App Attest, Android는 Play Integrity. 같은 Firebase Console App Check 설정에서 관리.
 

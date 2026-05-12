@@ -183,6 +183,48 @@ type: project
   3. `install.sh` 에 google-services.json 처리 추가 (안 되어있으면 빌드 깨짐).
   4. CLAUDE.md Release Signing 섹션에 thingineeer-env 가 single source of truth 라고 명시.
 
+## 2026-05-12 세션
+
+### 18. Firebase Analytics 이벤트 이름이 한글이라 SDK 가 모두 drop — Console 에 아무 데이터도 도달하지 않음
+
+- **증상**: 사용자가 Firebase Console (`fear-index-a4f4b`) Analytics 대시보드에서 이벤트가 보이는지 의심. 코드 점검 결과 `AnalyticsEvent.앱시작 → name="앱시작"`, `탭선택 → name="탭선택"` 처럼 **거의 모든 이벤트 이름이 한글**.
+- **원인**: Firebase Analytics 이벤트 이름 규격은 `^[A-Za-z][A-Za-z0-9_]{0,39}$`. 한글 등 비-ASCII 가 포함되면 SDK 가 `Invalid event name` 경고를 찍고 이벤트 자체를 drop. 즉 빌드/런타임 에러는 없지만 **데이터가 Console 에 단 한 건도 들어가지 않음**. `AnalyticsScreen.screenName` 도 한글이라 `screen_view` 의 `screen_name` 파라미터도 sanitize 됨.
+- **해결** (v1.0.1, `feature/v1.0.1-analytics-en-names`):
+  - `core/analytics/AnalyticsEvent.kt` 의 모든 case 의 `name` 인자를 영문 snake_case 로 변경. Kotlin 식별자(class/case 이름)는 한글 유지 (코드 가독성).
+  - 파라미터 키도 영문 raw 로 통일 (`탭이름→tab_name`, `현재점수→current_score`, `에러메시지→error_message` 등).
+  - `AnalyticsScreen.screenName` 도 영문화 (`홈→home`, `차트→chart`, `투표→vote`, `설정→settings`, `알림설정→notification_settings`).
+  - 기존부터 영문 raw 였던 `insight_*` 시리즈는 그대로 유지.
+- **iOS 동기화 필요 (읽기 전용 정책으로 본 저장소에서는 수정 금지)**:
+  - iOS `LocalPackages/Core/Sources/Core/Analytics/AnalyticsEvent.swift` 도 동일한 문제를 가짐 (case 가 한글 enum). iOS Firebase SDK 도 같은 규격 검증을 함.
+  - iOS 팀에서 Android 와 동일한 영문 raw 이름으로 변경해야 대시보드에서 플랫폼 비교 가능. 매핑 표는 본 커밋의 `AnalyticsEvent.kt` 가 SSOT.
+  - 매핑 (Android 기준 → iOS 도 동일하게):
+    - `앱시작=app_start`, `앱백그라운드=app_background`, `앱포그라운드=app_foreground`
+    - `탭선택=tab_selected` (param `tab_name`)
+    - `수동새로고침=manual_refresh` (param `screen`), `자동새로고침=auto_refresh`
+    - `차트기간선택=chart_period_selected` (param `period`)
+    - `시장지수조회=market_index_viewed` (param `index_name`)
+    - `API에러=api_error` (params `error_type`, `error_message`)
+    - `네트워크에러=network_error` (param `error_message`)
+    - `배너광고노출=banner_ad_impression` / `배너광고클릭=banner_ad_clicked` / `배너광고실패=banner_ad_failed`
+    - `설정변경=setting_changed` (params `setting_key`, `setting_value`)
+    - `위젯업데이트=widget_updated` / `워치동기화=watch_synced`(iOS 전용)
+    - `공포지수조회=fear_index_viewed` (params `current_score`, `rating`) / `비교데이터조회=comparison_viewed`
+    - `알림설정화면진입=notification_settings_opened` / `알림설정변경=notification_toggled` (param `enabled`)
+    - `알림임계값변경=notification_threshold_changed` (params `lower`, `upper`)
+    - `푸시알림수신=push_received` / `푸시알림탭=push_tapped` / `푸시알림후체류시간=push_engagement_duration`
+    - `지수타입전환=index_type_switched` (params `type`, `screen`, optional `previous_type`)
+    - `암호화폐공포지수조회=crypto_fear_index_viewed` / `암호화폐차트조회=crypto_chart_viewed`
+    - `암호화폐알림설정변경=crypto_notification_toggled` / `암호화폐알림임계값변경=crypto_notification_threshold_changed`
+    - `투표참여=vote_cast` (params `choice`, `index_type`, `current_score`)
+    - `투표결과조회=vote_results_viewed` / `투표중복시도=vote_duplicate_attempt` / `투표탭진입=vote_tab_opened`
+    - `투표세그먼트전환=vote_segment_switched` / `투표제출실패=vote_submit_failed`
+    - `공유버튼탭=share_button_tapped` / `공유카드생성=share_card_generated` / `공유완료=share_completed` / `공유취소=share_cancelled`
+    - `인터스티셜광고노출=interstitial_ad_impression` / `인터스티셜광고닫기=interstitial_ad_closed` / `인터스티셜광고실패=interstitial_ad_failed`
+    - `화면체류시간=screen_dwell_time` / `차트상호작용=chart_interaction` / `알림설정진입경로=notification_settings_source` / `세션종료=session_ended`
+  - Screen mapping: `홈=home`, `차트=chart`, `설정=settings`, `투표=vote`, `알림설정=notification_settings`.
+- **검증**: `./gradlew :app:assembleDebug` + `:app:bundleRelease` 통과. logcat 에서 `Invalid event name` 경고 사라지는지는 사용자가 디바이스에서 직접 확인.
+- **교훈**: Analytics 식별자는 처음부터 ASCII snake_case 로. 한글 그대로 쓰면 빌드는 성공하지만 dashboard 에서 데이터 0 건이라 운영이 깨짐. UI 라벨 ≠ Analytics key.
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
