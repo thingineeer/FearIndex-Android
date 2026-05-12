@@ -203,6 +203,27 @@ type: project
   3. 코드 컨벤션 메모(`AnalyticsEvent.kt` 의 "한국어 키값으로 Firebase Console에서 쉽게 확인 가능" 주석) 는 보통 검증 끝난 의도다. 무시하고 뒤집으면 안 됨.
 - **재발 방지**: 향후 Analytics 관련 의문 생기면 → (1) Firebase Console DebugView 또는 실제 events 화면 → (2) 사용자에게 "현재 수집되는지 본 결과" 공유 받고 → (3) 그 후 코드 변경 여부 결정.
 
+### 19. Android 15 (targetSdk 35) edge-to-edge — Play Console 경고 2건
+
+- **증상**: Play Console 사전 출시 보고서에 두 가지 경고.
+  1. "일부 사용자에게는 더 넓은 화면이 표시되지 않을 수 있습니다" — Android 15 부터 SDK 35 타겟 앱은 기본 edge-to-edge 동작, 미준비 시 inset 영역에 콘텐츠 잘림.
+  2. "지원 중단된 API 사용" — `Window.setStatusBarColor`, `Window.setNavigationBarColor`, `LAYOUT_IN_DISPLAY_CUTOUT_MODE_*` 사용 감지.
+- **원인**:
+  - `themes.xml` 의 `android:statusBarColor` + `android:navigationBarColor` 두 속성이 deprecated 상태 + Android 15 edge-to-edge 모드에서 무시됨.
+  - MainActivity 의 `enableEdgeToEdge()` 호출은 이미 있었고 Material3 Scaffold 가 자동으로 system bar inset 처리 중 → 코드 자체는 정상이고 themes 의 deprecated 속성만 잔재.
+  - `LAYOUT_IN_DISPLAY_CUTOUT_MODE_*` 직접 사용은 앱 코드에 없음 — Play Console 경고의 시작 위치 (`J5.b.invoke`, `c.r.a`, `D2.S.onApplyWindowInsets` 등) 는 ProGuard 난독화된 라이브러리 코드 (AdMob/Compose 내부). 라이브러리 업데이트로만 해결 가능.
+- **해결** (v1.0.1 vc 9, 2026-05-12, `feature/v1.0.1-edge-to-edge`):
+  - `app/src/main/res/values/themes.xml` 에서 `android:statusBarColor` + `android:navigationBarColor` 두 줄 제거 (windowBackground 만 유지).
+  - MainActivity 의 `enableEdgeToEdge()` 가 런타임에 system bar 를 transparent 로 설정하므로 themes 속성과 중복이었음.
+  - Material3 Scaffold 4 곳 (NavHost / Settings / Privacy / NotificationSettings) 모두 `innerPadding` 적용 검증 완료.
+- **검증**:
+  - 에뮬레이터 `Medium_Phone_API_36.1` 에 debug APK 설치 후 모든 탭 정상 동작.
+  - status bar / navigation bar 영역과 콘텐츠 가시적으로 분리됨.
+  - `./gradlew bundleRelease` + `fastlane production` push 성공 (versionCode 9, 100% rollout).
+- **교훈**:
+  - targetSdk 올릴 때마다 deprecated API 경고 체크 + themes.xml 의 시스템 bar 관련 속성 정리.
+  - `LAYOUT_IN_DISPLAY_CUTOUT_MODE_*` 같은 라이브러리 내부 호출 경고는 우리 코드 변경으로 못 고침 — 라이브러리 BoM 업그레이드 시 자연 해결.
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
