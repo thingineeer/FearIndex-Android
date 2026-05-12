@@ -1,0 +1,3 @@
+Fear & Greed Index v1.0.1-opdatering.
+- Verbeterde Android 15 edge-to-edge skerm-versoenbaarheid
+- Stabiliteit en interne werkverrigting verbeter

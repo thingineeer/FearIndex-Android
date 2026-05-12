@@ -9,9 +9,11 @@
         <item name="postSplashScreenTheme">@style/Theme.FearIndex</item>
     </style>
 
+    <!-- Android 15 (targetSdk 35) edge-to-edge: enableEdgeToEdge() 가 Activity 단에서
+         system bar 를 transparent + 인셋을 Compose 에 직접 전달한다.
+         android:statusBarColor / android:navigationBarColor 는 Android 15 에서 deprecated
+         되었고 edge-to-edge 모드에선 무시됨. → 제거. -->
     <style name="Theme.FearIndex" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/ic_launcher_background</item>
     </style>
 </resources>
