@@ -1,0 +1,3 @@
+Pembaruan Fear & Greed Index v1.0.1.
+- Peningkatan stabilitas dan performa internal
+- Pembersihan lingkungan build

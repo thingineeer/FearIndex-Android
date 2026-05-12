@@ -1,0 +1,3 @@
+Aggiornamento Fear & Greed Index v1.0.1.
+- Miglioramenti di stabilità e prestazioni interne
+- Pulizia dell'ambiente di build

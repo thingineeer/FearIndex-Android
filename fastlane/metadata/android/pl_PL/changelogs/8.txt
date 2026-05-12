@@ -1,0 +1,3 @@
+Aktualizacja Fear & Greed Index v1.0.1.
+- Poprawa stabilności i wydajności wewnętrznej
+- Porządkowanie środowiska kompilacji
