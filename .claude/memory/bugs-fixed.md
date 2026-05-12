@@ -185,45 +185,23 @@ type: project
 
 ## 2026-05-12 세션
 
-### 18. Firebase Analytics 이벤트 이름이 한글이라 SDK 가 모두 drop — Console 에 아무 데이터도 도달하지 않음
+### 18. (×) "Firebase Analytics 가 한글 이벤트 이름을 drop 한다" — Claude 의 잘못된 진단, revert 함
 
-- **증상**: 사용자가 Firebase Console (`fear-index-a4f4b`) Analytics 대시보드에서 이벤트가 보이는지 의심. 코드 점검 결과 `AnalyticsEvent.앱시작 → name="앱시작"`, `탭선택 → name="탭선택"` 처럼 **거의 모든 이벤트 이름이 한글**.
-- **원인**: Firebase Analytics 이벤트 이름 규격은 `^[A-Za-z][A-Za-z0-9_]{0,39}$`. 한글 등 비-ASCII 가 포함되면 SDK 가 `Invalid event name` 경고를 찍고 이벤트 자체를 drop. 즉 빌드/런타임 에러는 없지만 **데이터가 Console 에 단 한 건도 들어가지 않음**. `AnalyticsScreen.screenName` 도 한글이라 `screen_view` 의 `screen_name` 파라미터도 sanitize 됨.
-- **해결** (v1.0.1, `feature/v1.0.1-analytics-en-names`):
-  - `core/analytics/AnalyticsEvent.kt` 의 모든 case 의 `name` 인자를 영문 snake_case 로 변경. Kotlin 식별자(class/case 이름)는 한글 유지 (코드 가독성).
-  - 파라미터 키도 영문 raw 로 통일 (`탭이름→tab_name`, `현재점수→current_score`, `에러메시지→error_message` 등).
-  - `AnalyticsScreen.screenName` 도 영문화 (`홈→home`, `차트→chart`, `투표→vote`, `설정→settings`, `알림설정→notification_settings`).
-  - 기존부터 영문 raw 였던 `insight_*` 시리즈는 그대로 유지.
-- **iOS 동기화 필요 (읽기 전용 정책으로 본 저장소에서는 수정 금지)**:
-  - iOS `LocalPackages/Core/Sources/Core/Analytics/AnalyticsEvent.swift` 도 동일한 문제를 가짐 (case 가 한글 enum). iOS Firebase SDK 도 같은 규격 검증을 함.
-  - iOS 팀에서 Android 와 동일한 영문 raw 이름으로 변경해야 대시보드에서 플랫폼 비교 가능. 매핑 표는 본 커밋의 `AnalyticsEvent.kt` 가 SSOT.
-  - 매핑 (Android 기준 → iOS 도 동일하게):
-    - `앱시작=app_start`, `앱백그라운드=app_background`, `앱포그라운드=app_foreground`
-    - `탭선택=tab_selected` (param `tab_name`)
-    - `수동새로고침=manual_refresh` (param `screen`), `자동새로고침=auto_refresh`
-    - `차트기간선택=chart_period_selected` (param `period`)
-    - `시장지수조회=market_index_viewed` (param `index_name`)
-    - `API에러=api_error` (params `error_type`, `error_message`)
-    - `네트워크에러=network_error` (param `error_message`)
-    - `배너광고노출=banner_ad_impression` / `배너광고클릭=banner_ad_clicked` / `배너광고실패=banner_ad_failed`
-    - `설정변경=setting_changed` (params `setting_key`, `setting_value`)
-    - `위젯업데이트=widget_updated` / `워치동기화=watch_synced`(iOS 전용)
-    - `공포지수조회=fear_index_viewed` (params `current_score`, `rating`) / `비교데이터조회=comparison_viewed`
-    - `알림설정화면진입=notification_settings_opened` / `알림설정변경=notification_toggled` (param `enabled`)
-    - `알림임계값변경=notification_threshold_changed` (params `lower`, `upper`)
-    - `푸시알림수신=push_received` / `푸시알림탭=push_tapped` / `푸시알림후체류시간=push_engagement_duration`
-    - `지수타입전환=index_type_switched` (params `type`, `screen`, optional `previous_type`)
-    - `암호화폐공포지수조회=crypto_fear_index_viewed` / `암호화폐차트조회=crypto_chart_viewed`
-    - `암호화폐알림설정변경=crypto_notification_toggled` / `암호화폐알림임계값변경=crypto_notification_threshold_changed`
-    - `투표참여=vote_cast` (params `choice`, `index_type`, `current_score`)
-    - `투표결과조회=vote_results_viewed` / `투표중복시도=vote_duplicate_attempt` / `투표탭진입=vote_tab_opened`
-    - `투표세그먼트전환=vote_segment_switched` / `투표제출실패=vote_submit_failed`
-    - `공유버튼탭=share_button_tapped` / `공유카드생성=share_card_generated` / `공유완료=share_completed` / `공유취소=share_cancelled`
-    - `인터스티셜광고노출=interstitial_ad_impression` / `인터스티셜광고닫기=interstitial_ad_closed` / `인터스티셜광고실패=interstitial_ad_failed`
-    - `화면체류시간=screen_dwell_time` / `차트상호작용=chart_interaction` / `알림설정진입경로=notification_settings_source` / `세션종료=session_ended`
-  - Screen mapping: `홈=home`, `차트=chart`, `설정=settings`, `투표=vote`, `알림설정=notification_settings`.
-- **검증**: `./gradlew :app:assembleDebug` + `:app:bundleRelease` 통과. logcat 에서 `Invalid event name` 경고 사라지는지는 사용자가 디바이스에서 직접 확인.
-- **교훈**: Analytics 식별자는 처음부터 ASCII snake_case 로. 한글 그대로 쓰면 빌드는 성공하지만 dashboard 에서 데이터 0 건이라 운영이 깨짐. UI 라벨 ≠ Analytics key.
+- **상황**: v1.0.1 작업 중 Claude 가 `AnalyticsEvent.kt` 의 이벤트 이름이 한글(`앱시작`, `탭선택` 등)인 걸 발견하고 "Firebase Analytics 규격 `^[A-Za-z][A-Za-z0-9_]{0,39}$` 위반이라 SDK 가 drop 한다" 고 단언. 영문 snake_case 마이그레이션 worktree(`feature/v1.0.1-analytics-en-names`) 만들고 dev 까지 머지 완료한 상태에서 사용자가 Firebase Console Analytics 대시보드 스크린샷 제시.
+- **실측 (사용자 제공 스크린샷, iOS 측 632,127 이벤트)**:
+  - `차트상호작용` 103,953 / `배너광고노출` 72,556 / `공포지수조회` 60,867 / `자동새로고침` 44,980 / `앱시작` 40,109 / `인터스티셜광고실패` 24,518 ...
+  - **한글 이벤트 이름이 모두 정상 수집되고 있음**. drop 발생하지 않음.
+- **결론**: Claude 의 진단이 틀렸음. Firebase Analytics 가 비-ASCII 이벤트 이름을 정확히 어떻게 처리하는지에 대한 일반화된 단언을 했지만 실측과 다름. (공식 docs 가 영문 권장한다는 점은 사실이나, SDK 가 실제로 drop 하는지는 별개 — 적어도 현재 iOS 가 잘 보내고 있음.)
+- **조치 (2026-05-12)**:
+  - dev 의 머지 커밋 `6d2d126` 을 `git revert -m 1` 로 취소 → `4cf1591` "Revert 'merge: v1.0.1 analytics 영문화'" 생성.
+  - 그래프 보존: 잘못된 변경이 원래 머지된 흔적 + revert 이력 모두 남음.
+  - 잘못된 작업물(`docs/checkpoints/IOS-ANALYTICS-SYNC-PROMPT.md`) 삭제.
+  - `feature/v1.0.1-analytics-en-names` 브랜치 자체는 남겨둠 (히스토리 추적용).
+- **교훈 (Claude 작동 방식)**:
+  1. **단언 전 실측**. "이러이러한 규격이라 동작 안 함" 같은 주장은 공식 docs 한 줄로 단언하지 말고 실측(WebSearch, 실제 콘솔, logcat) 으로 확인 후 발언.
+  2. **이미 운영 중인 시스템을 "고장났다" 진단할 때는 더 보수적으로**. iOS 가 같은 코드로 production 운영 중이면 이미 동작 검증된 것. 사용자에게 "실제로 dashboard 에 데이터 들어오는지 먼저 확인해보자" 라고 묻고 시작했어야 함.
+  3. 코드 컨벤션 메모(`AnalyticsEvent.kt` 의 "한국어 키값으로 Firebase Console에서 쉽게 확인 가능" 주석) 는 보통 검증 끝난 의도다. 무시하고 뒤집으면 안 됨.
+- **재발 방지**: 향후 Analytics 관련 의문 생기면 → (1) Firebase Console DebugView 또는 실제 events 화면 → (2) 사용자에게 "현재 수집되는지 본 결과" 공유 받고 → (3) 그 후 코드 변경 여부 결정.
 
 ## 주의사항
 
