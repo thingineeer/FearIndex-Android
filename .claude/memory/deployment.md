@@ -33,6 +33,13 @@ type: reference
 
 진짜 활성 keystore 는 **`~/thingineeer-env/android/fearindex/`** 의 README 가 SSOT. 새 머신 셋업 시 `bash ~/thingineeer-env/android/fearindex/install.sh` 실행. 자세한 사고 이력은 `@bugs-fixed.md` 17번 참조.
 
+## 출시 이력
+
+| 버전 | versionCode | 게시일 | 상태 | 주요 변경 |
+|---|---|---|---|---|
+| v1.0.0 | 7 | 2026-05-09 | 정식 게시 ✅ | 최초 출시 |
+| v1.0.1 | 9 | 2026-05-12 | 정식 게시 ✅ | Android 15 edge-to-edge 호환성 + 안정성 개선 (`fastlane production` 자동화 첫 사용) |
+
 ## AAB 빌드 (Release)
 
 ```bash

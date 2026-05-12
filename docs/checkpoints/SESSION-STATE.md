@@ -7,8 +7,8 @@
 `dev` (clean) — `release` 브랜치 + `v1.0.1` annotated tag 머지/푸시 완료, fastlane production 자동화 동작 확인
 
 ## Version
-- **v1.0.1 production 푸시 완료** (versionCode 9) — 2026-05-12 16:43 KST `fastlane production` 한 줄로 100% rollout
-- Google 검토 대기 중 — 통과 즉시 자동 게시 (관리형 게시 OFF)
+- **v1.0.1 production 정식 게시 완료** ✅ (versionCode 9) — 2026-05-12 Google 검토 통과 → 100% rollout 라이브
+- `fastlane production` 한 줄로 AAB + 45 locale 메타 + 스크린샷 + changelog 일괄 푸시 검증됨
 - 다음: v1.0.2+ 부터는 `dev`에서 `feature/v1.0.2-<기능>` 분기로 시작
 
 ## ✅ Completed (이번 세션)
