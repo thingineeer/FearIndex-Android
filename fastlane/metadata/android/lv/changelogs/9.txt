@@ -1,0 +1,3 @@
+Fear & Greed Index v1.0.1 atjauninājums.
+- Uzlabota Android 15 edge-to-edge displeja saderība
+- Stabilitātes un iekšējās veiktspējas uzlabojumi
