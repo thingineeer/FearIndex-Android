@@ -1,3 +1,1 @@
-Fear & Greed Index v1.0.1 アップデート。
-- Android 15 全画面表示(edge-to-edge)対応改善
-- 安定性と内部パフォーマンスの改善
+安定性を改善しました。

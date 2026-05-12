@@ -1,3 +1,1 @@
-Fear & Greed Index v1.0.1 güncellemesi.
-- Android 15 tam ekran (edge-to-edge) uyumluluk iyileştirmeleri
-- Kararlılık ve dahili performans iyileştirmeleri
+Kararlılık iyileştirildi.
