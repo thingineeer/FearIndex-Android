@@ -1,0 +1,3 @@
+Aggiornamento Fear & Greed Index v1.0.1.
+- Miglioramenti di compatibilità schermo completo (edge-to-edge) Android 15
+- Miglioramenti di stabilità e prestazioni interne
