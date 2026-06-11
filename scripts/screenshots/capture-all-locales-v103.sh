@@ -102,6 +102,13 @@ clear_notifications() {
   adb shell input keyevent KEYCODE_HOME < /dev/null
 }
 
+dismiss_heads_up_banner() {
+  adb shell cmd statusbar collapse < /dev/null > /dev/null 2>&1 || true
+  adb shell input swipe 540 280 540 50 250 < /dev/null
+  sleep 1
+  adb shell cmd statusbar collapse < /dev/null > /dev/null 2>&1 || true
+}
+
 prime_notification_settings() {
   local prefs_file="/tmp/fearindex-notification-settings.xml"
   cat > "$prefs_file" <<'XML'
@@ -162,6 +169,7 @@ capture_push_banner() {
   # 실측 (cold-start scenario): 0.4-0.5s = banner 미아직, 0.7s = 깨끗, 1.0s = fade-out 시작
   python3 -c "import time; time.sleep(0.7)" < /dev/null
   adb exec-out screencap -p > "$out"
+  dismiss_heads_up_banner
 }
 
 # 화면 진입 후 캡처 (앱 내부)
