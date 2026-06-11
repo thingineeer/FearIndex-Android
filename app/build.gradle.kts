@@ -61,6 +61,7 @@ android {
             buildConfigField("String", "ADMOB_BANNER_CHART", "\"ca-app-pub-3940256099942544/9214589741\"")
             buildConfigField("String", "ADMOB_BANNER_VOTE", "\"ca-app-pub-3940256099942544/9214589741\"")
             buildConfigField("String", "ADMOB_BANNER_SETTINGS", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL", "\"ca-app-pub-3940256099942544/1033173712\"")
         }
         release {
             isMinifyEnabled = true
@@ -75,6 +76,7 @@ android {
             buildConfigField("String", "ADMOB_BANNER_CHART", "\"ca-app-pub-5283496525222246/1616216062\"")
             buildConfigField("String", "ADMOB_BANNER_VOTE", "\"ca-app-pub-5283496525222246/2417949811\"")
             buildConfigField("String", "ADMOB_BANNER_SETTINGS", "\"ca-app-pub-5283496525222246/4627498578\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL", "\"ca-app-pub-5283496525222246/1522532479\"")
             signingConfig = signingConfigs.getByName("release")
         }
     }

@@ -93,6 +93,7 @@
 | google-services.json 원본 | `~/fearindex-secrets/google-services.json` → `app/google-services.json` 심볼릭 링크 |
 | AdMob App ID | `ca-app-pub-5283496525222246~1308884877` |
 | AdMob HomeBanner | `ca-app-pub-5283496525222246/3189551565` |
+| AdMob KospiInterstitial | `ca-app-pub-5283496525222246/1522532479` |
 
 ## 세션 체크리스트
 
