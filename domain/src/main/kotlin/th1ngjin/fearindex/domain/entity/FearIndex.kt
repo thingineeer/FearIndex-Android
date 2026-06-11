@@ -33,4 +33,8 @@ data class FearIndex(
     }
 }
 
-enum class FearIndexType { MARKET, CRYPTO }
+enum class FearIndexType(val serverName: String) {
+    MARKET("market"),
+    KOSPI("kospi"),
+    CRYPTO("crypto"),
+}

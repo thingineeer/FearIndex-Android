@@ -38,6 +38,7 @@ fun InsightFeedView(
         // 섹션 헤더
         val headerText = when (indexType) {
             FearIndexType.MARKET -> stringResource(R.string.insight_feed_header_market)
+            FearIndexType.KOSPI -> stringResource(R.string.insight_feed_header_market)
             FearIndexType.CRYPTO -> stringResource(R.string.insight_feed_header_crypto)
         }
         Text(

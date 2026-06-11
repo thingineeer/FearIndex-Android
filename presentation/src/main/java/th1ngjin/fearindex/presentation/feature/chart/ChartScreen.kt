@@ -145,6 +145,7 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
     val currentState = when (uiState.selectedType) {
         FearIndexType.MARKET -> uiState.marketState
+        FearIndexType.KOSPI -> uiState.marketState
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
 
@@ -214,10 +215,12 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     selectedCryptoPeriod = currentCryptoPeriod,
                     history = when (uiState.selectedType) {
                         FearIndexType.MARKET -> uiState.marketHistory
+                        FearIndexType.KOSPI -> uiState.marketHistory
                         FearIndexType.CRYPTO -> uiState.cryptoHistory
                     },
                     isHistoryLoading = when (uiState.selectedType) {
                         FearIndexType.MARKET -> uiState.isMarketHistoryLoading
+                        FearIndexType.KOSPI -> uiState.isMarketHistoryLoading
                         FearIndexType.CRYPTO -> uiState.isCryptoHistoryLoading
                     },
                     onMarketPeriodSelected = { period ->

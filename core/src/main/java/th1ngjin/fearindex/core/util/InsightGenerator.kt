@@ -315,11 +315,13 @@ object InsightGenerator {
 /**
  * 지수 종류별 기준 종목 라벨 — iOS와 완전 동일.
  *  - MARKET → "S&P 500"
+ *  - KOSPI → "KOSPI"
  *  - CRYPTO → "Bitcoin"
  *
  * InsightGenerator와 InsightDetailSheet 양쪽에서 공유.
  */
 fun indexTypeLabel(indexType: FearIndexType): String = when (indexType) {
     FearIndexType.MARKET -> "S&P 500"
+    FearIndexType.KOSPI -> "KOSPI"
     FearIndexType.CRYPTO -> "Bitcoin"
 }

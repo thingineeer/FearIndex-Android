@@ -84,11 +84,13 @@ fun VoteScreen(
 
     val selectedIndex = when (selectedType) {
         FearIndexType.MARKET -> 0
+        FearIndexType.KOSPI -> 0
         FearIndexType.CRYPTO -> 1
     }
 
     val currentState = when (selectedType) {
         FearIndexType.MARKET -> uiState.marketState
+        FearIndexType.KOSPI -> uiState.marketState
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
 

@@ -127,17 +127,23 @@ class VoteViewModel @Inject constructor(
 
     fun resultFor(indexType: FearIndexType): StateFlow<StuckCounterResult> = when (indexType) {
         FearIndexType.MARKET -> marketResult
+        FearIndexType.KOSPI -> marketResult
         FearIndexType.CRYPTO -> cryptoResult
     }
 
     fun myStatusFor(indexType: FearIndexType): StateFlow<StuckStatus> = when (indexType) {
         FearIndexType.MARKET -> myMarketStatus
+        FearIndexType.KOSPI -> myMarketStatus
         FearIndexType.CRYPTO -> myCryptoStatus
     }
 
     fun toggleStuckStatus(indexType: FearIndexType, status: StuckStatus) {
         when (indexType) {
             FearIndexType.MARKET -> {
+                _myMarketStatus.value = status
+                _marketResult.value = _marketResult.value.withOptimisticToggle(status)
+            }
+            FearIndexType.KOSPI -> {
                 _myMarketStatus.value = status
                 _marketResult.value = _marketResult.value.withOptimisticToggle(status)
             }
@@ -155,6 +161,7 @@ class VoteViewModel @Inject constructor(
 
     fun voteResultFor(indexType: FearIndexType): StateFlow<VoteResult> = when (indexType) {
         FearIndexType.MARKET -> marketVoteResult
+        FearIndexType.KOSPI -> marketVoteResult
         FearIndexType.CRYPTO -> cryptoVoteResult
     }
 
@@ -213,12 +220,16 @@ class VoteViewModel @Inject constructor(
                 .collect { result ->
                     when (indexType) {
                         FearIndexType.MARKET -> _marketResult.value = result
+                        FearIndexType.KOSPI -> _marketResult.value = result
                         FearIndexType.CRYPTO -> _cryptoResult.value = result
                     }
                 }
         }
         when (indexType) {
             FearIndexType.MARKET -> {
+                marketStreamJob?.cancel(); marketStreamJob = job
+            }
+            FearIndexType.KOSPI -> {
                 marketStreamJob?.cancel(); marketStreamJob = job
             }
             FearIndexType.CRYPTO -> {
@@ -241,6 +252,9 @@ class VoteViewModel @Inject constructor(
         }
         when (indexType) {
             FearIndexType.MARKET -> {
+                marketVoteStreamJob?.cancel(); marketVoteStreamJob = job
+            }
+            FearIndexType.KOSPI -> {
                 marketVoteStreamJob?.cancel(); marketVoteStreamJob = job
             }
             FearIndexType.CRYPTO -> {
@@ -271,6 +285,7 @@ class VoteViewModel @Inject constructor(
     private fun updateVoteResult(indexType: FearIndexType, result: VoteResult) {
         when (indexType) {
             FearIndexType.MARKET -> _marketVoteResult.value = result
+            FearIndexType.KOSPI -> _marketVoteResult.value = result
             FearIndexType.CRYPTO -> _cryptoVoteResult.value = result
         }
     }

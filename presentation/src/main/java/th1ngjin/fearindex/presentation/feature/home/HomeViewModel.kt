@@ -92,6 +92,10 @@ class HomeViewModel @Inject constructor(
                 loadMarketCurrent(forceRefresh = true)
                 loadMarketHistory(_uiState.value.marketHistoryDays, forceRefresh = true)
             }
+            FearIndexType.KOSPI -> {
+                loadMarketCurrent(forceRefresh = true)
+                loadMarketHistory(_uiState.value.marketHistoryDays, forceRefresh = true)
+            }
             FearIndexType.CRYPTO -> {
                 loadCryptoCurrent(forceRefresh = true)
                 loadCryptoHistory(_uiState.value.cryptoHistoryDays, forceRefresh = true)
@@ -241,5 +245,6 @@ class HomeViewModel @Inject constructor(
 
 private fun FearIndexType.toLabel(): String = when (this) {
     FearIndexType.MARKET -> "시장"
+    FearIndexType.KOSPI -> "코스피"
     FearIndexType.CRYPTO -> "암호화폐"
 }
