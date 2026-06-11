@@ -81,6 +81,7 @@ import java.time.format.DateTimeFormatter
 // MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
 
 private const val ANALYTICS_TYPE_MARKET = "시장"
+private const val ANALYTICS_TYPE_KOSPI = "코스피"
 private const val ANALYTICS_TYPE_CRYPTO = "암호화폐"
 private const val ANALYTICS_STUCK = "물렸어요"
 private const val ANALYTICS_NOT_STUCK = "안물렸어요"
@@ -102,10 +103,12 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val selectedType = uiState.selectedType
     val selectedIndex = when (selectedType) {
         FearIndexType.MARKET -> 0
+        FearIndexType.KOSPI -> 0
         FearIndexType.CRYPTO -> 1
     }
     val currentState = when (selectedType) {
         FearIndexType.MARKET -> uiState.marketState
+        FearIndexType.KOSPI -> uiState.marketState
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
 

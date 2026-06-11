@@ -35,6 +35,7 @@ class SimilarEventsViewModel @Inject constructor(
 
     fun resultFor(indexType: FearIndexType): StateFlow<SimilarEventsResult> = when (indexType) {
         FearIndexType.MARKET -> marketResult
+        FearIndexType.KOSPI -> marketResult
         FearIndexType.CRYPTO -> cryptoResult
     }
 
@@ -43,6 +44,7 @@ class SimilarEventsViewModel @Inject constructor(
             repository.observe(indexType).collectLatest { result ->
                 when (indexType) {
                     FearIndexType.MARKET -> _marketResult.value = result
+                    FearIndexType.KOSPI -> _marketResult.value = result
                     FearIndexType.CRYPTO -> _cryptoResult.value = result
                 }
             }

@@ -102,10 +102,12 @@ class InsightViewModel @Inject constructor(
                 val indexType = home.selectedType
                 val state = when (indexType) {
                     FearIndexType.MARKET -> home.marketState
+                    FearIndexType.KOSPI -> home.marketState
                     FearIndexType.CRYPTO -> home.cryptoState
                 }
                 val history = when (indexType) {
                     FearIndexType.MARKET -> home.marketHistory
+                    FearIndexType.KOSPI -> home.marketHistory
                     FearIndexType.CRYPTO -> home.cryptoHistory
                 }
                 return InsightInputSnapshot(indexType, state, history)

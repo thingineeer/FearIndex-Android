@@ -7,9 +7,9 @@ import java.time.Instant
 class FearIndexTest {
 
     @Test
-    fun `roundedScore - 소수점 이하 버림`() {
+    fun `roundedScore - 소수점 반올림`() {
         val index = createFearIndex(score = 45.7)
-        assertEquals(45, index.roundedScore)
+        assertEquals(46, index.roundedScore)
     }
 
     @Test

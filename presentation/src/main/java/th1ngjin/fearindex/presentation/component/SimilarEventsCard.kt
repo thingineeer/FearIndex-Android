@@ -35,6 +35,7 @@ import th1ngjin.fearindex.presentation.common.localizedEventTitle
 
 private fun assetLabel(indexType: FearIndexType): String = when (indexType) {
     FearIndexType.MARKET -> "S&P"
+    FearIndexType.KOSPI -> "KOSPI"
     FearIndexType.CRYPTO -> "BTC"
 }
 
