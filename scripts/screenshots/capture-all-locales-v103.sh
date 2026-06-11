@@ -147,6 +147,46 @@ start_app_for_capture() {
   wait_for_app_ready
 }
 
+wait_for_notification_settings_ready() {
+  local tries=0
+  while [ $tries -lt 20 ]; do
+    if adb shell dumpsys window windows 2>/dev/null | grep -q "$PKG/$ACTIVITY"; then
+      if adb shell uiautomator dump /sdcard/fearindex-window.xml >/dev/null 2>&1 &&
+        adb shell grep -q "KOSPI" /sdcard/fearindex-window.xml 2>/dev/null &&
+        adb shell grep -q "30" /sdcard/fearindex-window.xml 2>/dev/null; then
+        sleep 2
+        return 0
+      fi
+    fi
+    sleep 1
+    tries=$((tries+1))
+  done
+  echo "  ! notification settings wait timed out" >&2
+  return 1
+}
+
+open_notification_settings_for_capture() {
+  local attempt=1
+  while [ $attempt -le 2 ]; do
+    adb shell input tap 945 2250 < /dev/null
+    sleep 3
+    dismiss_anr
+    adb shell input tap 540 390 < /dev/null
+    sleep 4
+    dismiss_anr
+    tap_kospi_notification_tab
+
+    if wait_for_notification_settings_ready; then
+      return 0
+    fi
+
+    echo "  ! retrying notification settings flow" >&2
+    start_app_for_capture
+    attempt=$((attempt+1))
+  done
+  return 1
+}
+
 dismiss_heads_up_banner() {
   adb shell input swipe 540 280 540 50 250 < /dev/null
   sleep 1
@@ -338,13 +378,7 @@ for triplet in "${LOCALES[@]}"; do
   # ────────────────────────────────────────────────────────────
   # 5. 설정 탭 → 알림 설정 (첫 번째 ListItem)
   # ────────────────────────────────────────────────────────────
-  adb shell input tap 945 2250 < /dev/null
-  sleep 3
-  dismiss_anr
-  adb shell input tap 540 390 < /dev/null
-  sleep 4
-  dismiss_anr
-  tap_kospi_notification_tab
+  open_notification_settings_for_capture
   capture_app_screen "$dir/5_notification_settings.png"
 
   # ────────────────────────────────────────────────────────────
