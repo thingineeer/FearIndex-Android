@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.data.repository
 
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
@@ -10,6 +11,7 @@ import org.junit.Test
 import th1ngjin.fearindex.data.datasource.CryptoFearIndexDataSource
 import th1ngjin.fearindex.data.dto.CryptoFearIndexDTO
 import th1ngjin.fearindex.data.dto.CryptoFearIndexResponse
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.domain.entity.FearIndex
 
 class CryptoFearIndexRepositoryImplTest {
@@ -138,6 +140,21 @@ class CryptoFearIndexRepositoryImplTest {
         val result = repository.fetchHistory(days = 7)
 
         assertEquals(0, result.size)
+    }
+
+    @Test
+    fun `screenshot mode - network 없이 crypto fixture를 반환한다`() = runTest {
+        ScreenshotMode.setOverrideForTesting(true)
+        try {
+            val current = repository.fetchCurrent()
+            val history = repository.fetchHistory(days = 5)
+
+            assertEquals(39.0, current.score, 0.01)
+            assertEquals(5, history.size)
+            coVerify(exactly = 0) { dataSource.fetchCurrent(any(), any()) }
+        } finally {
+            ScreenshotMode.setOverrideForTesting(null)
+        }
     }
 
     private fun createResponse(data: List<CryptoFearIndexDTO>) = CryptoFearIndexResponse(

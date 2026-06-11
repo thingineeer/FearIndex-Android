@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.data.repository
 
 import th1ngjin.fearindex.data.datasource.MarketIndexDataSource
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.domain.entity.MarketIndex
 import th1ngjin.fearindex.domain.repository.MarketIndexRepository
 import javax.inject.Inject
@@ -12,14 +13,16 @@ class MarketIndexRepositoryImpl @Inject constructor(
 ) : MarketIndexRepository {
 
     private val symbolNameMap = mapOf(
-        "^KS11" to "코스피",
-        "^KQ11" to "코스닥",
-        "^IXIC" to "나스닥",
+        "^KS11" to "KOSPI",
+        "^KQ11" to "KOSDAQ",
+        "^IXIC" to "Nasdaq",
         "^GSPC" to "S&P 500",
-        "^DJI" to "다우존스",
+        "^DJI" to "Dow Jones",
     )
 
     override suspend fun getMarketIndices(): List<MarketIndex> {
+        if (ScreenshotMode.isEnabled()) return ScreenshotFixtures.marketIndices()
+
         val response = dataSource.fetch()
         val results = response.spark?.result ?: return emptyList()
 

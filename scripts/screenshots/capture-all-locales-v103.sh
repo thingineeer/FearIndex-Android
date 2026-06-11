@@ -113,20 +113,35 @@ dismiss_anr() {
   done
 }
 
-wait_for_app_ready() {
+is_app_foreground() {
+  adb shell dumpsys window 2>/dev/null |
+    grep -Eq "mCurrentFocus=.*$PKG/$ACTIVITY|mFocusedApp=.*$PKG/$ACTIVITY"
+}
+
+wait_for_app_foreground() {
   local tries=0
-  while [ $tries -lt 40 ]; do
-    if adb shell dumpsys window windows 2>/dev/null | grep -q "$PKG/$ACTIVITY"; then
-      if adb shell uiautomator dump /sdcard/fearindex-window.xml >/dev/null 2>&1 &&
-        adb shell grep -q "KOSPI" /sdcard/fearindex-window.xml 2>/dev/null; then
-        sleep 20
-        return 0
-      fi
+  while [ $tries -lt 20 ]; do
+    if is_app_foreground; then
+      return 0
     fi
-    sleep 2
+    sleep 1
     tries=$((tries+1))
   done
-  echo "  ! app ready wait timed out" >&2
+  echo "  ! app foreground wait timed out" >&2
+  return 1
+}
+
+wait_until_app_not_foreground() {
+  local tries=0
+  while [ $tries -lt 8 ]; do
+    if ! is_app_foreground; then
+      return 0
+    fi
+    adb shell input keyevent KEYCODE_HOME < /dev/null > /dev/null 2>&1 || true
+    sleep 1
+    tries=$((tries+1))
+  done
+  echo "  ! app still foreground before launcher capture" >&2
   return 1
 }
 
@@ -137,6 +152,7 @@ clear_notifications() {
 }
 
 stop_app_process() {
+  adb shell am force-stop "$PKG" < /dev/null > /dev/null 2>&1 || true
   adb shell pkill -9 "$PKG" < /dev/null > /dev/null 2>&1 || true
   sleep 1
 }
@@ -150,6 +166,29 @@ dismiss_system_overlays() {
   sleep 1
 }
 
+set_app_locale() {
+  local bcp=$1
+  local expected=$bcp
+  case "$bcp" in
+    iw-IL) expected="(iw-IL|he-IL)" ;;
+    nb-NO) expected="(nb-NO|no-NO|nb)" ;;
+  esac
+
+  if ! adb shell cmd locale set-app-locales "$PKG" --locales "$bcp" \
+    < /dev/null > /dev/null; then
+    echo "  ! locale set failed: $bcp" >&2
+    return 1
+  fi
+  sleep 1
+
+  local actual
+  actual=$(adb shell cmd locale get-app-locales "$PKG" 2>/dev/null || true)
+  if ! echo "$actual" | grep -Eq "$expected"; then
+    echo "  ! locale verification failed: expected=$bcp actual=$actual" >&2
+    return 1
+  fi
+}
+
 start_app_for_capture() {
   dismiss_system_overlays
   if ! adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null; then
@@ -158,7 +197,8 @@ start_app_for_capture() {
     dismiss_system_overlays
     adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
   fi
-  if wait_for_app_ready; then
+  if wait_for_app_foreground; then
+    sleep 25
     return 0
   fi
 
@@ -166,25 +206,8 @@ start_app_for_capture() {
   stop_app_process
   dismiss_system_overlays
   adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
-  wait_for_app_ready
-}
-
-wait_for_notification_settings_ready() {
-  local tries=0
-  while [ $tries -lt 20 ]; do
-    if adb shell dumpsys window windows 2>/dev/null | grep -q "$PKG/$ACTIVITY"; then
-      if adb shell uiautomator dump /sdcard/fearindex-window.xml >/dev/null 2>&1 &&
-        adb shell grep -q "KOSPI" /sdcard/fearindex-window.xml 2>/dev/null &&
-        adb shell grep -q "30" /sdcard/fearindex-window.xml 2>/dev/null; then
-        sleep 2
-        return 0
-      fi
-    fi
-    sleep 1
-    tries=$((tries+1))
-  done
-  echo "  ! notification settings wait timed out" >&2
-  return 1
+  wait_for_app_foreground
+  sleep 25
 }
 
 open_notification_settings_for_capture() {
@@ -193,12 +216,19 @@ open_notification_settings_for_capture() {
     adb shell input tap 945 2250 < /dev/null
     sleep 3
     dismiss_anr
-    adb shell input tap 540 390 < /dev/null
-    sleep 4
+    if ! wait_for_app_foreground; then
+      echo "  ! settings tab did not keep app foreground" >&2
+      start_app_for_capture
+      attempt=$((attempt+1))
+      continue
+    fi
+    adb shell input tap 250 330 < /dev/null
+    sleep 5
     dismiss_anr
     tap_kospi_notification_tab
 
-    if wait_for_notification_settings_ready; then
+    if wait_for_app_foreground; then
+      sleep 2
       return 0
     fi
 
@@ -269,7 +299,10 @@ capture_push_banner() {
   # 스크린샷 산출물 안정성을 위해 시각적으로 동일한 promo card 를 생성한다.
   stop_app_process
   dismiss_system_overlays
-  capture_app_screen "$base"
+  adb shell input keyevent KEYCODE_HOME < /dev/null > /dev/null 2>&1 || true
+  sleep 2
+  wait_until_app_not_foreground
+  capture_app_screen "$base" 0
   TITLE="$title" BODY="$body" python3 - "$base" "$out" <<'PY'
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import os
@@ -345,9 +378,14 @@ PY
 # 화면 진입 후 캡처 (앱 내부)
 capture_app_screen() {
   local out=$1
+  local require_app=${2:-1}
   local remote="/data/local/tmp/fearindex-screenshot.png"
   local attempt=1
   while [ $attempt -le 2 ]; do
+    if [ "$require_app" = "1" ] && ! wait_for_app_foreground; then
+      echo "  ! app is not foreground before screencap" >&2
+      return 1
+    fi
     if adb shell screencap -p "$remote" < /dev/null > /dev/null &&
       adb pull -a "$remote" "$out" < /dev/null > /dev/null; then
       adb shell rm "$remote" < /dev/null > /dev/null 2>&1 || true
@@ -386,8 +424,7 @@ for triplet in "${LOCALES[@]}"; do
 
   # 0. locale 적용 (다음 cold-start에 반영)
   stop_app_process
-  adb shell cmd locale set-app-locales $PKG --locales $bcp < /dev/null > /dev/null 2>&1 || true
-  sleep 1
+  set_app_locale "$bcp"
 
   # ────────────────────────────────────────────────────────────
   # 2. 앱 cold start → 홈(KOSPI)

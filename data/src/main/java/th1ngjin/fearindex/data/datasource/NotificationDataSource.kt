@@ -5,6 +5,7 @@ import kotlinx.coroutines.tasks.await
 import th1ngjin.fearindex.domain.entity.NotificationSettings
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Provider
 import javax.inject.Singleton
 
 /**
@@ -19,7 +20,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class NotificationDataSource @Inject constructor(
-    private val functions: FirebaseFunctions,
+    private val functions: Provider<FirebaseFunctions>,
     private val metadataProvider: NotificationClientMetadataProvider,
 ) {
 
@@ -33,7 +34,7 @@ class NotificationDataSource @Inject constructor(
             "fcmToken" to fcmToken,
             "settings" to settings.toPayload(metadataProvider.current()),
         )
-        functions
+        functions.get()
             .getHttpsCallable("registerFCMToken")
             .call(payload)
             .await()
@@ -48,7 +49,7 @@ class NotificationDataSource @Inject constructor(
             "deviceId" to deviceId,
             "settings" to settings.toPayload(metadataProvider.current()),
         )
-        functions
+        functions.get()
             .getHttpsCallable("updateNotificationSettings")
             .call(payload)
             .await()
@@ -57,7 +58,7 @@ class NotificationDataSource @Inject constructor(
 
     suspend fun unregisterDevice(deviceId: String) {
         val payload = mapOf("deviceId" to deviceId)
-        functions
+        functions.get()
             .getHttpsCallable("unregisterDevice")
             .call(payload)
             .await()

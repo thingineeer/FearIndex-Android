@@ -5,6 +5,7 @@ import kotlinx.coroutines.tasks.await
 import th1ngjin.fearindex.data.dto.ReturnDataDTO
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Provider
 import javax.inject.Singleton
 
 /**
@@ -17,7 +18,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class ReturnDataSource @Inject constructor(
-    private val firestore: FirebaseFirestore,
+    private val firestore: Provider<FirebaseFirestore>,
 ) {
 
     /**
@@ -30,7 +31,7 @@ class ReturnDataSource @Inject constructor(
         }
 
         val snapshot = try {
-            firestore.collection("returnData")
+            firestore.get().collection("returnData")
                 .document(indexType)
                 .get()
                 .await()

@@ -15,6 +15,7 @@ import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
+import javax.inject.Provider
 import javax.inject.Singleton
 
 /**
@@ -25,14 +26,14 @@ import javax.inject.Singleton
  */
 @Singleton
 class VoteDataSource @Inject constructor(
-    private val functions: FirebaseFunctions,
-    private val firestore: FirebaseFirestore,
+    private val functions: Provider<FirebaseFunctions>,
+    private val firestore: Provider<FirebaseFirestore>,
 ) {
 
     private val listeners = ConcurrentHashMap<String, ListenerRegistration>()
 
     suspend fun submitVote(request: SubmitVoteRequest): VoteResponse {
-        val result = functions
+        val result = functions.get()
             .getHttpsCallable("submitVote")
             .call(request.toPayload())
             .await()
@@ -53,7 +54,7 @@ class VoteDataSource @Inject constructor(
             "indexType" to indexType,
             "date" to date,
         )
-        val result = functions
+        val result = functions.get()
             .getHttpsCallable("getVoteResult")
             .call(payload)
             .await()
@@ -72,7 +73,7 @@ class VoteDataSource @Inject constructor(
         listeners.remove(indexType)?.remove()
 
         val today = todayUTC()
-        val docRef = firestore.document("votes/$today/results/$indexType")
+        val docRef = firestore.get().document("votes/$today/results/$indexType")
         val registration = docRef.addSnapshotListener { snapshot, error ->
             if (error != null) {
                 Timber.e(error, "[VoteDataSource] Snapshot error ($indexType)")

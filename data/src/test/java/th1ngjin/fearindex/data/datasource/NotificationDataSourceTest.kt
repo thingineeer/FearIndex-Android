@@ -14,6 +14,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import th1ngjin.fearindex.domain.entity.NotificationSettings
+import javax.inject.Provider
 
 /**
  * NotificationDataSource — iOS Firebase Functions와의 payload 계약 검증.
@@ -33,7 +34,7 @@ class NotificationDataSourceTest {
     private val callable = mockk<HttpsCallableReference>()
     private val result = mockk<HttpsCallableResult>(relaxed = true)
     private val metadataProvider = mockk<NotificationClientMetadataProvider>()
-    private val dataSource = NotificationDataSource(functions, metadataProvider)
+    private val dataSource = NotificationDataSource(Provider { functions }, metadataProvider)
 
     private val deviceId = "550e8400-e29b-41d4-a716-446655440000"
 

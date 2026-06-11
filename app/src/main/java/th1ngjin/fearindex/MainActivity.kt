@@ -21,6 +21,7 @@ import com.google.android.ump.UserMessagingPlatform
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.presentation.feature.splash.SplashView
 import th1ngjin.fearindex.presentation.navigation.FearIndexNavHost
 import th1ngjin.fearindex.presentation.theme.FearIndexTheme
@@ -60,6 +61,8 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun requestAdsConsentInfo() {
+        if (ScreenshotMode.isEnabled()) return
+
         val consentInformation = UserMessagingPlatform.getConsentInformation(this)
         val params = ConsentRequestParameters.Builder().build()
         consentInformation.requestConsentInfoUpdate(

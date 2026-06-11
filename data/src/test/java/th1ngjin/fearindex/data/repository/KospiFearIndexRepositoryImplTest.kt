@@ -13,6 +13,7 @@ import th1ngjin.fearindex.data.dto.KospiHistoryDTO
 import th1ngjin.fearindex.data.dto.KospiLatestDTO
 import th1ngjin.fearindex.data.dto.KospiPublicSnapshotResponse
 import th1ngjin.fearindex.data.dto.KospiSignalScoreDTO
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.KospiCluster
 import th1ngjin.fearindex.domain.entity.KospiSnapshotType
@@ -145,6 +146,21 @@ class KospiFearIndexRepositoryImplTest {
 
         assertEquals(emptyList<FearIndex>(), result)
         coVerify(exactly = 0) { dataSource.fetchSnapshot(any(), any()) }
+    }
+
+    @Test
+    fun `screenshot mode - network 없이 KOSPI fixture를 반환한다`() = runTest {
+        ScreenshotMode.setOverrideForTesting(true)
+        try {
+            val current = repository.fetchCurrent()
+            val history = repository.fetchHistory(days = 5)
+
+            assertEquals(24.0, current.fearIndex.score, 0.01)
+            assertEquals(5, history.size)
+            coVerify(exactly = 0) { dataSource.fetchSnapshot(any(), any()) }
+        } finally {
+            ScreenshotMode.setOverrideForTesting(null)
+        }
     }
 
     private fun createResponse(

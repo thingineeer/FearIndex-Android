@@ -68,6 +68,11 @@ class HomeViewModel @Inject constructor(
     private val getMarketIndices: GetMarketIndicesUseCase,
     private val analytics: AnalyticsManager,
 ) : ViewModel() {
+    companion object {
+        const val NETWORK_ERROR_MESSAGE =
+            "Market data is temporarily unavailable. Please check your connection and try again."
+        const val GENERIC_ERROR_MESSAGE = "Market data is temporarily unavailable. Please try again."
+    }
 
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
@@ -193,12 +198,12 @@ class HomeViewModel @Inject constructor(
                 )
             } catch (e: IOException) {
                 _uiState.value = _uiState.value.copy(
-                    marketState = FearIndexState.Error(e.message ?: "Network error"),
+                    marketState = FearIndexState.Error(NETWORK_ERROR_MESSAGE),
                 )
                 analytics.log(AnalyticsEvent.네트워크에러(에러메시지 = e.message ?: "Unknown"))
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    marketState = FearIndexState.Error(e.message ?: "Unknown error"),
+                    marketState = FearIndexState.Error(GENERIC_ERROR_MESSAGE),
                 )
                 analytics.log(
                     AnalyticsEvent.API에러(
@@ -228,13 +233,13 @@ class HomeViewModel @Inject constructor(
                 )
             } catch (e: IOException) {
                 _uiState.value = _uiState.value.copy(
-                    kospiState = FearIndexState.Error(e.message ?: "Network error"),
+                    kospiState = FearIndexState.Error(NETWORK_ERROR_MESSAGE),
                     kospiSnapshot = null,
                 )
                 analytics.log(AnalyticsEvent.네트워크에러(에러메시지 = e.message ?: "Unknown"))
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    kospiState = FearIndexState.Error(e.message ?: "Unknown error"),
+                    kospiState = FearIndexState.Error(GENERIC_ERROR_MESSAGE),
                     kospiSnapshot = null,
                 )
                 analytics.log(
@@ -263,12 +268,12 @@ class HomeViewModel @Inject constructor(
                 )
             } catch (e: IOException) {
                 _uiState.value = _uiState.value.copy(
-                    cryptoState = FearIndexState.Error(e.message ?: "Network error"),
+                    cryptoState = FearIndexState.Error(NETWORK_ERROR_MESSAGE),
                 )
                 analytics.log(AnalyticsEvent.네트워크에러(에러메시지 = e.message ?: "Unknown"))
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    cryptoState = FearIndexState.Error(e.message ?: "Unknown error"),
+                    cryptoState = FearIndexState.Error(GENERIC_ERROR_MESSAGE),
                 )
                 analytics.log(
                     AnalyticsEvent.API에러(
