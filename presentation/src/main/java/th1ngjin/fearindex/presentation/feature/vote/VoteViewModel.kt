@@ -31,7 +31,6 @@ import javax.inject.Inject
  * 투표 화면 ViewModel.
  *
  * - 물림 카운터: Firestore 실시간 스트림 + 5초 디바운스 서버 호출
- * - Buy/Hold/Sell 투표: Cloud Function 호출 + Firestore 실시간 스트림
  * - UTC 자정 카운트다운: 1초 주기 갱신
  */
 @HiltViewModel
@@ -108,11 +107,8 @@ class VoteViewModel @Inject constructor(
         loadInitialStuckResults()
         viewModelScope.launch { debouncer.retryPendingIfNeeded() }
 
-        // 투표 초기화
-        startVoteStream(FearIndexType.MARKET)
-        startVoteStream(FearIndexType.KOSPI)
-        startVoteStream(FearIndexType.CRYPTO)
-        loadInitialVoteResults()
+        // iOS v1.8.0 Vote 탭은 물림 카운터만 사용한다.
+        // 배포되지 않은 레거시 Buy/Hold/Sell callable은 시작하지 않는다.
         startCountdown()
     }
 
