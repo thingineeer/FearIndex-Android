@@ -1,13 +1,13 @@
 #!/bin/bash
-# v1.0.3 — 45 locale × 5 화면 = 225 장 Play Store promo 스크린샷 자동 촬영
+# v1.1.0 — 45 locale × 5 화면 = 225 장 Play Store promo 스크린샷 자동 촬영
 #
 # 산출:
 #   fastlane/metadata/android/<supply_locale>/images/phoneScreenshots/
 #     ├── 1_notification.png        (Android Launcher 위에 푸시 banner)
-#     ├── 2_home.png                (앱 홈 탭)
-#     ├── 3_chart.png               (앱 차트 탭)
-#     ├── 4_vote.png                (앱 투표 탭)
-#     └── 5_notification_settings.png  (앱 알림 설정)
+#     ├── 2_home.png                (앱 홈 탭, KOSPI 선택)
+#     ├── 3_chart.png               (앱 차트 탭, KOSPI 선택)
+#     ├── 4_vote.png                (앱 투표 탭, KOSPI 선택)
+#     └── 5_notification_settings.png  (앱 알림 설정, KOSPI 선택)
 #
 # 선행 조건:
 #   - debug APK 설치 + POST_NOTIFICATIONS 권한 grant
@@ -22,6 +22,9 @@ PKG=th1ngjin.fearindex.debug
 ACTIVITY=th1ngjin.fearindex.MainActivity
 RECEIVER=th1ngjin.fearindex.screenshot.ScreenshotPushReceiver
 ACTION=th1ngjin.fearindex.SCREENSHOT_PUSH
+KOSPI_TAB_X=540
+INDEX_TAB_Y=320
+NOTIFICATION_TAB_Y=620
 
 adb shell settings put global hide_error_dialogs 1 < /dev/null > /dev/null
 adb shell setprop debug.screenshot_mode 1 < /dev/null > /dev/null
@@ -95,6 +98,45 @@ clear_notifications() {
   adb shell input keyevent KEYCODE_HOME < /dev/null
 }
 
+prime_notification_settings() {
+  local prefs_file="/tmp/fearindex-notification-settings.xml"
+  cat > "$prefs_file" <<'XML'
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<map>
+    <boolean name="notificationEnabled" value="true" />
+    <boolean name="globalNotificationEnabled" value="true" />
+    <boolean name="kospiNotificationEnabled" value="true" />
+    <boolean name="cryptoNotificationEnabled" value="true" />
+    <boolean name="weeklyReportNotificationEnabled" value="true" />
+    <int name="marketLowerThreshold" value="30" />
+    <int name="marketUpperThreshold" value="70" />
+    <int name="kospiLowerThreshold" value="30" />
+    <int name="kospiUpperThreshold" value="70" />
+    <int name="cryptoLowerThreshold" value="25" />
+    <int name="cryptoUpperThreshold" value="75" />
+</map>
+XML
+  adb shell pm grant $PKG android.permission.POST_NOTIFICATIONS < /dev/null > /dev/null 2>&1 || true
+  adb push "$prefs_file" /data/local/tmp/fearindex-notification-settings.xml < /dev/null > /dev/null
+  adb shell run-as $PKG mkdir -p shared_prefs < /dev/null > /dev/null 2>&1 || true
+  adb shell run-as $PKG cp /data/local/tmp/fearindex-notification-settings.xml \
+    shared_prefs/notification_settings_prefs.xml < /dev/null > /dev/null 2>&1 || true
+  adb shell rm /data/local/tmp/fearindex-notification-settings.xml < /dev/null > /dev/null 2>&1 || true
+  rm -f "$prefs_file"
+}
+
+tap_kospi_index_tab() {
+  adb shell input tap $KOSPI_TAB_X $INDEX_TAB_Y < /dev/null
+  sleep 2
+  dismiss_anr
+}
+
+tap_kospi_notification_tab() {
+  adb shell input tap $KOSPI_TAB_X $NOTIFICATION_TAB_Y < /dev/null
+  sleep 2
+  dismiss_anr
+}
+
 # 푸시 banner peek 캡처 (launcher 배경)
 capture_push_banner() {
   local push_lang=$1
@@ -124,6 +166,7 @@ capture_app_screen() {
 
 TOTAL=${#LOCALES[@]}
 count=0
+prime_notification_settings
 
 for triplet in "${LOCALES[@]}"; do
   count=$((count+1))
@@ -132,6 +175,7 @@ for triplet in "${LOCALES[@]}"; do
   push_lang=$(echo $triplet | awk '{print $3}')
   dir="$META/$supply/images/phoneScreenshots"
   mkdir -p "$dir"
+  rm -f "$dir/1_notification_en.png"
 
   echo "=== ($count/$TOTAL) supply=$supply bcp=$bcp push=$push_lang ==="
 
@@ -152,36 +196,30 @@ for triplet in "${LOCALES[@]}"; do
   sleep 1
 
   # ────────────────────────────────────────────────────────────
-  # 1b. Launcher + 푸시 banner peek (영어 — 글로벌 promo 용)
-  # ────────────────────────────────────────────────────────────
-  capture_push_banner "en" "$dir/1_notification_en.png"
-
-  sleep 5
-  adb shell input keyevent KEYCODE_HOME < /dev/null
-  sleep 1
-
-  # ────────────────────────────────────────────────────────────
-  # 2. 앱 cold start → 홈
+  # 2. 앱 cold start → 홈(KOSPI)
   # ────────────────────────────────────────────────────────────
   adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
-  sleep 12
+  sleep 35
   dismiss_anr
+  tap_kospi_index_tab
   capture_app_screen "$dir/2_home.png"
 
   # ────────────────────────────────────────────────────────────
-  # 3. 차트 탭 (bottom nav 두 번째 = x ≈ 405)
+  # 3. 차트 탭(KOSPI, bottom nav 두 번째 = x ≈ 405)
   # ────────────────────────────────────────────────────────────
   adb shell input tap 405 2250 < /dev/null
   sleep 4
   dismiss_anr
+  tap_kospi_index_tab
   capture_app_screen "$dir/3_chart.png"
 
   # ────────────────────────────────────────────────────────────
-  # 4. 투표 탭 (bottom nav 세 번째 = x ≈ 675)
+  # 4. 투표 탭(KOSPI, bottom nav 세 번째 = x ≈ 675)
   # ────────────────────────────────────────────────────────────
   adb shell input tap 675 2250 < /dev/null
   sleep 4
   dismiss_anr
+  tap_kospi_index_tab
   capture_app_screen "$dir/4_vote.png"
 
   # ────────────────────────────────────────────────────────────
@@ -193,6 +231,7 @@ for triplet in "${LOCALES[@]}"; do
   adb shell input tap 540 390 < /dev/null
   sleep 4
   dismiss_anr
+  tap_kospi_notification_tab
   capture_app_screen "$dir/5_notification_settings.png"
 
   echo "  [$supply] 5 screenshots saved -> $dir"

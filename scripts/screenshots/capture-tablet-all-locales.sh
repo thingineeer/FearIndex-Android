@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 7"/10" 태블릿 스크린샷 자동 캡처 — 45 locale × 5 화면 × 2 size = 450장.
+# 7"/10" 태블릿 스크린샷 자동 캡처 — 45 locale × 4 화면 × 2 size = 360장.
 #
 # 사전 조건:
 #   1. 태블릿 AVD 부팅 (7" 또는 10")
@@ -9,8 +9,8 @@
 #      bash scripts/screenshots/capture-tablet-all-locales.sh ten     # 10" only
 #
 # 산출물 경로:
-#   fastlane/metadata/android/<locale>/images/sevenInchScreenshots/{1..5}_*.png
-#   fastlane/metadata/android/<locale>/images/tenInchScreenshots/{1..5}_*.png
+#   fastlane/metadata/android/<locale>/images/sevenInchScreenshots/{1..4}_*.png
+#   fastlane/metadata/android/<locale>/images/tenInchScreenshots/{1..4}_*.png
 
 set -euo pipefail
 
@@ -28,6 +28,33 @@ else
   exit 1
 fi
 echo "▶ 감지된 PKG: $PKG"
+
+prime_notification_settings() {
+  local prefs_file="/tmp/fearindex-notification-settings.xml"
+  cat > "$prefs_file" <<'XML'
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<map>
+    <boolean name="notificationEnabled" value="true" />
+    <boolean name="globalNotificationEnabled" value="true" />
+    <boolean name="kospiNotificationEnabled" value="true" />
+    <boolean name="cryptoNotificationEnabled" value="true" />
+    <boolean name="weeklyReportNotificationEnabled" value="true" />
+    <int name="marketLowerThreshold" value="30" />
+    <int name="marketUpperThreshold" value="70" />
+    <int name="kospiLowerThreshold" value="30" />
+    <int name="kospiUpperThreshold" value="70" />
+    <int name="cryptoLowerThreshold" value="25" />
+    <int name="cryptoUpperThreshold" value="75" />
+</map>
+XML
+  "$ADB" shell pm grant "$PKG" android.permission.POST_NOTIFICATIONS >/dev/null 2>&1 || true
+  "$ADB" push "$prefs_file" /data/local/tmp/fearindex-notification-settings.xml >/dev/null
+  "$ADB" shell run-as "$PKG" mkdir -p shared_prefs >/dev/null 2>&1 || true
+  "$ADB" shell run-as "$PKG" cp /data/local/tmp/fearindex-notification-settings.xml \
+    shared_prefs/notification_settings_prefs.xml >/dev/null 2>&1 || true
+  "$ADB" shell rm /data/local/tmp/fearindex-notification-settings.xml >/dev/null 2>&1 || true
+  rm -f "$prefs_file"
+}
 
 # 45 locale (BCP-47, fastlane underscore → ICU hyphen 매핑)
 declare -a LOCALE_BCP=(
@@ -81,6 +108,9 @@ capture_locale_size() {
   local T2X=$((W * 3 / 8))
   local T3X=$((W * 5 / 8))
   local T4X=$((W * 7 / 8))
+  local KOSPI_X=$((W / 2))
+  local INDEX_TAB_Y=$((H * 13 / 100))
+  local NOTIFICATION_TAB_Y=$((H * 26 / 100))
   # 설정 화면 첫 ListItem (알림 설정) center y
   local NOTIF_Y=$((H * 12 / 100))
   local NOTIF_X=$((W / 2))
@@ -102,26 +132,35 @@ capture_locale_size() {
     # 2_home
     "$ADB" shell input tap "$T1X" "$TABY"
     sleep 3
+    "$ADB" shell input tap "$KOSPI_X" "$INDEX_TAB_Y"
+    sleep 2
     "$ADB" shell screencap -p "/sdcard/cap.png"
     "$ADB" pull -a "/sdcard/cap.png" "$out_dir/2_home.png" >/dev/null 2>&1
 
     # 3_chart
     "$ADB" shell input tap "$T2X" "$TABY"
     sleep 4
+    "$ADB" shell input tap "$KOSPI_X" "$INDEX_TAB_Y"
+    sleep 2
     "$ADB" shell screencap -p "/sdcard/cap.png"
     "$ADB" pull -a "/sdcard/cap.png" "$out_dir/3_chart.png" >/dev/null 2>&1
 
     # 4_vote
     "$ADB" shell input tap "$T3X" "$TABY"
     sleep 4
+    "$ADB" shell input tap "$KOSPI_X" "$INDEX_TAB_Y"
+    sleep 2
     "$ADB" shell screencap -p "/sdcard/cap.png"
     "$ADB" pull -a "/sdcard/cap.png" "$out_dir/4_vote.png" >/dev/null 2>&1
 
-    # 1_notification: 설정 → 알림 메뉴 (첫 항목). 태블릿은 4장만 사용 (5_notification_settings 안 만듦)
+    # 1_notification: 설정 → 알림 메뉴 (첫 항목) → KOSPI 알림 탭.
+    # 태블릿은 4장만 사용 (5_notification_settings 안 만듦)
     "$ADB" shell input tap "$T4X" "$TABY"
     sleep 3
     "$ADB" shell input tap "$NOTIF_X" "$NOTIF_Y"
     sleep 4
+    "$ADB" shell input tap "$KOSPI_X" "$NOTIFICATION_TAB_Y"
+    sleep 2
     "$ADB" shell screencap -p "/sdcard/cap.png"
     "$ADB" pull -a "/sdcard/cap.png" "$out_dir/1_notification.png" >/dev/null 2>&1
 
@@ -130,7 +169,7 @@ capture_locale_size() {
   done
 
   echo ""
-  echo "═══ $size 태블릿 완료 — $((${#LOCALE_BCP[@]} * 5))장 ═══"
+  echo "═══ $size 태블릿 완료 — $((${#LOCALE_BCP[@]} * 4))장 ═══"
 }
 
 # device 부팅 확인
@@ -147,6 +186,8 @@ fi
 # 잊으면 테스트 광고가 캡처되어 AdMob 정책 위반 + 스토어 메타 commit 사고 발생
 "$ADB" shell setprop debug.screenshot_mode 1
 echo "▶ debug.screenshot_mode=1 (AdBanner hide)"
+trap '"$ADB" shell setprop debug.screenshot_mode 0 >/dev/null 2>&1 || true' EXIT
+prime_notification_settings
 
 # 화면 wake + keyguard dismiss (이전 cold-start 실패 원인)
 "$ADB" shell input keyevent KEYCODE_WAKEUP
