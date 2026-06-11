@@ -96,7 +96,7 @@
     <string name="stuck_percentage_label">আটকে থাকার হার</string>
     <string name="stuck_button_im_stuck">"🤙 আমিও আটকে আছি"</string>
     <string name="stuck_button_im_safe">"✨ আমি আটকে নেই"</string>
-    <string name="stuck_footer_guide">"🤙 বাটনে চাপ দিন, রিয়েল-টাইমে দেখুন কতজন আটকে আছেন"</string>
+    <string name="stuck_footer_guide">"ঐচ্ছিক: আপনার অবস্থা জানাতে একটি পছন্দে ট্যাপ করুন; বাতিল করতে আবার ট্যাপ করুন। বিস্তারিত ⓘ-তে।"</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">আজকের ভোট</string>
@@ -283,6 +283,7 @@
     <string name="stuck_detail_stuck">আটকে · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">উত্তরের বিবরণ</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">স্কোরের পরিবর্তন, মিল থাকা অতীত সময়, ঐতিহাসিক রিটার্ন এবং কমিউনিটির প্রতিক্রিয়া একসাথে দেখায়।</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

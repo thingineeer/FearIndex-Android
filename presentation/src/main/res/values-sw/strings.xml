@@ -93,7 +93,7 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="stuck_percentage_label">Kiwango cha waliokwama</string>
     <string name="stuck_button_im_stuck">"🤙 Mimi pia nimekwama"</string>
     <string name="stuck_button_im_safe">"✨ Mimi sijakwama"</string>
-    <string name="stuck_footer_guide">"🤙 Bofya kitufe uone watu wangapi wamekwama kwa muda halisi"</string>
+    <string name="stuck_footer_guide">"Si lazima: gusa chaguo kushiriki hali yako; gusa tena kughairi. Maelezo yako chini ya ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Kura ya leo</string>
@@ -280,6 +280,7 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="stuck_detail_stuck">Nimekwama · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Maelezo ya majibu</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Huonyesha mabadiliko ya alama, vipindi vya zamani vinavyofanana, mapato ya kihistoria na majibu ya jumuiya kwa muktadha.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

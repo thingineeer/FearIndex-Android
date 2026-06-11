@@ -93,7 +93,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="stuck_percentage_label">Beragadási arány</string>
     <string name="stuck_button_im_stuck">"🤙 Én is beragadtam"</string>
     <string name="stuck_button_im_safe">"✨ Nem ragadtam be"</string>
-    <string name="stuck_footer_guide">"🤙 Nyomj meg egy gombot, hogy valós időben lásd, hányan ragadtak be"</string>
+    <string name="stuck_footer_guide">"Opcionális: érintsen meg egy választást az állapota megosztásához; új érintés visszavonja. Részletek: ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Mai szavazás</string>
@@ -280,6 +280,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="stuck_detail_stuck">Beragadt · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Válasz részletei</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Megmutatja a pontszámváltozásokat, hasonló múltbeli időszakokat, történelmi hozamokat és közösségi válaszokat.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

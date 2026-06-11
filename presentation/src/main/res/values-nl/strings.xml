@@ -93,7 +93,7 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="stuck_percentage_label">Percentage vast</string>
     <string name="stuck_button_im_stuck">"🤙 Ik zit ook vast"</string>
     <string name="stuck_button_im_safe">"✨ Ik zit niet vast"</string>
-    <string name="stuck_footer_guide">"🤙 Tik op een knop om in realtime te zien hoeveel mensen vastzitten"</string>
+    <string name="stuck_footer_guide">"Optioneel: tik op een keuze om je status te delen; tik opnieuw om te annuleren. Details onder ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Stemming van vandaag</string>
@@ -280,6 +280,7 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="stuck_detail_stuck">Vast · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Responsdetails</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Toont scorewijzigingen, vergelijkbare eerdere perioden, historische rendementen en reacties van de community als context.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

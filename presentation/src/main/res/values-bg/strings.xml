@@ -93,7 +93,7 @@
     <string name="stuck_percentage_label">Дял на заседналите</string>
     <string name="stuck_button_im_stuck">"🤙 И аз съм заседнал"</string>
     <string name="stuck_button_im_safe">"✨ Не съм заседнал"</string>
-    <string name="stuck_footer_guide">"🤙 Натиснете бутон, за да видите в реално време колко души са заседнали"</string>
+    <string name="stuck_footer_guide">"По избор: докоснете избор, за да споделите статуса си; докоснете отново за отмяна. Подробности под ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Днешно гласуване</string>
@@ -280,6 +280,7 @@
     <string name="stuck_detail_stuck">Блокиран · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Подробности за отговорите</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Показва промени в оценката, подобни минали периоди, историческа доходност и отговори от общността за контекст.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

@@ -92,7 +92,7 @@
     <string name="stuck_percentage_label">套牢比例</string>
     <string name="stuck_button_im_stuck">"🤙 我也被套了"</string>
     <string name="stuck_button_im_safe">"✨ 我没被套"</string>
-    <string name="stuck_footer_guide">"🤙 点击按钮实时查看有多少人被套牢"</string>
+    <string name="stuck_footer_guide">"可选：点按一个选项分享你的状态；再次点按即可取消。详情见 ⓘ。"</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">今日投票</string>
@@ -279,6 +279,7 @@
     <string name="stuck_detail_stuck">被套 · %1$d 人 · %2$d%%</string>
     <string name="stuck_detail_title">响应详情</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">显示分数变化、相似历史阶段、历史回报和社区回应，为情绪分数提供背景。</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

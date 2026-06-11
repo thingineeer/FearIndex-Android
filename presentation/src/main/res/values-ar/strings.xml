@@ -92,7 +92,7 @@
     <string name="stuck_percentage_label">نسبة العالقين</string>
     <string name="stuck_button_im_stuck">"🤙 أنا عالق أيضًا"</string>
     <string name="stuck_button_im_safe">"✨ أنا لست عالقًا"</string>
-    <string name="stuck_footer_guide">"🤙 اضغط زرًا لترى كم شخصًا عالق الآن في الوقت الفعلي"</string>
+    <string name="stuck_footer_guide">"اختياري: اضغط خيارًا لمشاركة حالتك؛ اضغطه مرة أخرى للإلغاء. التفاصيل تحت ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">تصويت اليوم</string>
@@ -279,6 +279,7 @@
     <string name="stuck_detail_stuck">عالق · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">تفاصيل الردود</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">يعرض تغيّرات الدرجة والفترات التاريخية المشابهة والعوائد السابقة وردود المجتمع لتوضيح سياق المؤشر.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

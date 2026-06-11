@@ -92,7 +92,7 @@
     <string name="stuck_percentage_label">שיעור תקועים</string>
     <string name="stuck_button_im_stuck">"🤙 גם אני תקוע"</string>
     <string name="stuck_button_im_safe">"✨ אני לא תקוע"</string>
-    <string name="stuck_footer_guide">"🤙 הקש על כפתור לראות כמה תקועים עכשיו בזמן אמת"</string>
+    <string name="stuck_footer_guide">"אופציונלי: הקש על בחירה כדי לשתף את הסטטוס שלך; הקש שוב לביטול. פרטים תחת ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">ההצבעה של היום</string>
@@ -279,6 +279,7 @@
     <string name="stuck_detail_stuck">תקוע · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">פרטי תגובות</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">מציג שינויי ציון, תקופות עבר דומות, תשואות היסטוריות ותגובות קהילה כדי לתת הקשר.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

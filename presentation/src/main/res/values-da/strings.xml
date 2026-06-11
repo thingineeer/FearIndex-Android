@@ -93,7 +93,7 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="stuck_percentage_label">Fanget-rate</string>
     <string name="stuck_button_im_stuck">"🤙 Jeg er også fanget"</string>
     <string name="stuck_button_im_safe">"✨ Jeg er ikke fanget"</string>
-    <string name="stuck_footer_guide">"🤙 Tryk på en knap for at se, hvor mange der er fanget lige nu"</string>
+    <string name="stuck_footer_guide">"Valgfrit: tryk på et valg for at dele din status; tryk igen for at annullere. Detaljer under ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Dagens afstemning</string>
@@ -280,6 +280,7 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="stuck_detail_stuck">Fast · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Svardetaljer</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Viser scoreændringer, lignende tidligere perioder, historiske afkast og svar fra fællesskabet som kontekst.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

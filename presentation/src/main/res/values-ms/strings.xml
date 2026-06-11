@@ -92,7 +92,7 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="stuck_percentage_label">Kadar tersekat</string>
     <string name="stuck_button_im_stuck">"🤙 Saya juga tersekat"</string>
     <string name="stuck_button_im_safe">"✨ Saya tidak tersekat"</string>
-    <string name="stuck_footer_guide">"🤙 Ketik butang untuk lihat berapa ramai tersekat secara masa nyata"</string>
+    <string name="stuck_footer_guide">"Pilihan: ketik pilihan untuk berkongsi status anda; ketik lagi untuk membatalkan. Butiran di ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Undian hari ini</string>
@@ -279,6 +279,7 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="stuck_detail_stuck">Tersangkut · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Butiran respons</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Memaparkan perubahan skor, tempoh lalu yang serupa, pulangan sejarah dan respons komuniti sebagai konteks.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

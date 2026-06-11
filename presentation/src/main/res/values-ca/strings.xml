@@ -93,7 +93,7 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="stuck_percentage_label">Taxa d\'atrapats</string>
     <string name="stuck_button_im_stuck">"🤙 Jo també estic atrapat"</string>
     <string name="stuck_button_im_safe">"✨ Jo no estic atrapat"</string>
-    <string name="stuck_footer_guide">"🤙 Prem un botó per veure en temps real quants hi ha atrapats"</string>
+    <string name="stuck_footer_guide">"Opcional: toca una opció per compartir el teu estat; torna a tocar per cancel·lar. Detalls a ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Votació d\'avui</string>
@@ -280,6 +280,7 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="stuck_detail_stuck">Atrapat · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Detalls de respostes</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Mostra canvis de puntuació, períodes passats similars, rendiments històrics i respostes de la comunitat per donar context.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

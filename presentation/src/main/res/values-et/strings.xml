@@ -93,7 +93,7 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="stuck_percentage_label">Kinniolemise määr</string>
     <string name="stuck_button_im_stuck">"🤙 Mina olen ka kinni"</string>
     <string name="stuck_button_im_safe">"✨ Mina ei ole kinni"</string>
-    <string name="stuck_footer_guide">"🤙 Vajuta nuppu, et näha reaalajas, kui paljud on kinni"</string>
+    <string name="stuck_footer_guide">"Valikuline: puuduta valikut oma seisu jagamiseks; tühistamiseks puuduta uuesti. Üksikasjad on ⓘ all."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Tänane hääletus</string>
@@ -280,6 +280,7 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="stuck_detail_stuck">Kinni · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Vastuste üksikasjad</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Näitab skoorimuutusi, sarnaseid varasemaid perioode, ajaloolisi tootlusi ja kogukonna vastuseid kontekstiks.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

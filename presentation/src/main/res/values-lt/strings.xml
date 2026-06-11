@@ -93,7 +93,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="stuck_percentage_label">Įstrigusiųjų dalis</string>
     <string name="stuck_button_im_stuck">"🤙 Aš taip pat įstrigęs"</string>
     <string name="stuck_button_im_safe">"✨ Aš neįstrigęs"</string>
-    <string name="stuck_footer_guide">"🤙 Paspauskite mygtuką, kad realiu laiku pamatytumėte, kiek žmonių yra įstrigę"</string>
+    <string name="stuck_footer_guide">"Pasirinktinai: bakstelėkite pasirinkimą, kad pasidalytumėte būsena; bakstelėkite dar kartą, kad atšauktumėte. Išsamiau ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Šiandienos balsavimas</string>
@@ -280,6 +280,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="stuck_detail_stuck">Įstrigęs · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Atsakymų informacija</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Rodo balo pokyčius, panašius ankstesnius laikotarpius, istorines grąžas ir bendruomenės atsakymus kontekstui.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

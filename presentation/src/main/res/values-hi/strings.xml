@@ -96,7 +96,7 @@
     <string name="stuck_percentage_label">फँसाव दर</string>
     <string name="stuck_button_im_stuck">"🤙 मैं भी फँसा हूँ"</string>
     <string name="stuck_button_im_safe">"✨ मैं नहीं फँसा"</string>
-    <string name="stuck_footer_guide">"🤙 बटन दबाइए और रीयल-टाइम में देखिए कितने लोग फँसे हैं"</string>
+    <string name="stuck_footer_guide">"वैकल्पिक: अपनी स्थिति साझा करने के लिए विकल्प टैप करें; रद्द करने के लिए फिर टैप करें। विवरण ⓘ में हैं।"</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">आज का मतदान</string>
@@ -283,6 +283,7 @@
     <string name="stuck_detail_stuck">फंसे · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">उत्तर विवरण</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">स्कोर बदलाव, समान पुराने दौर, ऐतिहासिक रिटर्न और समुदाय की प्रतिक्रियाएं संदर्भ के लिए दिखाता है।</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

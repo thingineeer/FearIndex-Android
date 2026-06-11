@@ -96,7 +96,7 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="stuck_percentage_label">Tỷ lệ kẹt hàng</string>
     <string name="stuck_button_im_stuck">"🤙 Tôi cũng bị kẹt"</string>
     <string name="stuck_button_im_safe">"✨ Tôi không bị kẹt"</string>
-    <string name="stuck_footer_guide">"🤙 Nhấn nút để xem có bao nhiêu người đang kẹt hàng theo thời gian thực"</string>
+    <string name="stuck_footer_guide">"Không bắt buộc: chạm một lựa chọn để chia sẻ trạng thái; chạm lại để hủy. Chi tiết ở ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Bình chọn hôm nay</string>
@@ -283,6 +283,7 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="stuck_detail_stuck">Bị kẹt · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Chi tiết phản hồi</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Hiển thị thay đổi điểm, giai đoạn quá khứ tương tự, lợi suất lịch sử và phản hồi cộng đồng để tạo ngữ cảnh.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

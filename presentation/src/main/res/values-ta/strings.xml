@@ -96,7 +96,7 @@
     <string name="stuck_percentage_label">சிக்கல் விகிதம்</string>
     <string name="stuck_button_im_stuck">"🤙 நானும் சிக்கினேன்"</string>
     <string name="stuck_button_im_safe">"✨ நான் சிக்கவில்லை"</string>
-    <string name="stuck_footer_guide">"🤙 பொத்தானை அழுத்தி எத்தனை பேர் சிக்கியுள்ளனர் என்பதை நேரலையில் பாருங்கள்"</string>
+    <string name="stuck_footer_guide">"விருப்பம்: உங்கள் நிலையைப் பகிர ஒரு தேர்வைத் தட்டவும்; ரத்து செய்ய மீண்டும் தட்டவும். விவரங்கள் ⓘ-இல்."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">இன்றைய வாக்கு</string>
@@ -283,6 +283,7 @@
     <string name="stuck_detail_stuck">சிக்கியுள்ள · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">பதில் விவரங்கள்</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">மதிப்பெண் மாற்றங்கள், ஒத்த கடந்த காலங்கள், வரலாற்று வருமானங்கள் மற்றும் சமூக பதில்களைச் சூழலாக காட்டுகிறது.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

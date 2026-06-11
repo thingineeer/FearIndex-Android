@@ -93,7 +93,7 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="stuck_percentage_label">Tasso di bloccati</string>
     <string name="stuck_button_im_stuck">"🤙 Sono bloccato anch\'io"</string>
     <string name="stuck_button_im_safe">"✨ Non sono bloccato"</string>
-    <string name="stuck_footer_guide">"🤙 Tocca un pulsante per vedere in tempo reale quanti sono bloccati"</string>
+    <string name="stuck_footer_guide">"Facoltativo: tocca una scelta per condividere il tuo stato; tocca di nuovo per annullare. Dettagli in ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Voto di oggi</string>
@@ -280,6 +280,7 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="stuck_detail_stuck">Incastrato · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Dettagli risposte</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Mostra variazioni del punteggio, periodi storici simili, rendimenti passati e risposte della community per contesto.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

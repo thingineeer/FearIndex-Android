@@ -93,7 +93,7 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="stuck_percentage_label">Tasa de atrapados</string>
     <string name="stuck_button_im_stuck">"🤙 Yo también estoy atrapado"</string>
     <string name="stuck_button_im_safe">"✨ No estoy atrapado"</string>
-    <string name="stuck_footer_guide">"🤙 Pulsa un botón para ver en tiempo real cuántos están atrapados"</string>
+    <string name="stuck_footer_guide">"Opcional: toca una opción para compartir tu estado; toca de nuevo para cancelar. Detalles en ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Votación de hoy</string>
@@ -280,6 +280,7 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="stuck_detail_stuck">Atrapado · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Detalles de respuestas</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Muestra cambios de puntuación, periodos similares, rendimientos históricos y respuestas de la comunidad para dar contexto.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
