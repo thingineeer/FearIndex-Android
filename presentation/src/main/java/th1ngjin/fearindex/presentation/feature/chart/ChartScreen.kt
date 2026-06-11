@@ -72,6 +72,7 @@ import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
+import th1ngjin.fearindex.presentation.feature.insight.InsightIndexScope
 import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
 import th1ngjin.fearindex.presentation.theme.fearScoreColor
 import java.time.ZoneId
@@ -112,8 +113,8 @@ enum class CryptoChartPeriod(val label: String, val days: Int) {
 // MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
 
 private const val ANALYTICS_TYPE_MARKET = "시장"
+private const val ANALYTICS_TYPE_KOSPI = "코스피"
 private const val ANALYTICS_TYPE_CRYPTO = "암호화폐"
-private const val ANALYTICS_SCREEN_CHART = "차트"
 
 // MARK: - Chart Colors
 
@@ -133,7 +134,7 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
     // InsightViewModel이 HomeViewModel을 관찰
     LaunchedEffect(Unit) {
-        insightViewModel.observeHome(viewModel)
+        insightViewModel.observeHome(viewModel, InsightIndexScope.CHART)
     }
 
     val context = LocalContext.current
@@ -143,15 +144,18 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
             .analyticsManager()
     }
 
-    val currentState = when (uiState.selectedType) {
+    val selectedType = uiState.selectedChartType
+
+    val currentState = when (selectedType) {
         FearIndexType.MARKET -> uiState.marketState
-        FearIndexType.KOSPI -> uiState.marketState
+        FearIndexType.KOSPI -> uiState.kospiState
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
 
     // 기간 선택 상태는 ViewModel의 marketHistoryDays/cryptoHistoryDays에서 역산 (SSOT)
     // 탭 재진입 시 로컬 remember가 리셋되어도 ViewModel은 살아있어 UI/데이터 일치 유지
     val currentMarketPeriod = ChartPeriod.fromDays(uiState.marketHistoryDays)
+    val currentKospiPeriod = ChartPeriod.fromDays(uiState.kospiHistoryDays)
     val currentCryptoPeriod = CryptoChartPeriod.fromDays(uiState.cryptoHistoryDays)
 
     // 인사이트 상세 BottomSheet
@@ -183,20 +187,29 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
         SegmentedPicker(
             items = listOf(
                 stringResource(R.string.tab_market),
+                stringResource(R.string.tab_kospi),
                 stringResource(R.string.tab_crypto),
             ),
-            selectedIndex = if (uiState.selectedType == FearIndexType.MARKET) 0 else 1,
+            selectedIndex = when (selectedType) {
+                FearIndexType.MARKET -> 0
+                FearIndexType.KOSPI -> 1
+                FearIndexType.CRYPTO -> 2
+            },
             onItemSelected = { index ->
-                val newType = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
-                val previousType = if (uiState.selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO
-                analytics.log(
-                    AnalyticsEvent.지수타입전환(
-                        타입 = if (newType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO,
-                        화면 = ANALYTICS_SCREEN_CHART,
-                        이전타입 = previousType,
-                    ),
-                )
-                viewModel.selectIndexType(newType)
+                val newType = when (index) {
+                    0 -> FearIndexType.MARKET
+                    1 -> FearIndexType.KOSPI
+                    else -> FearIndexType.CRYPTO
+                }
+                if (newType != selectedType) {
+                    analytics.log(
+                        AnalyticsEvent.인사이트세그먼트전환(
+                            이전타입 = selectedType.analyticsLabel(),
+                            변경타입 = newType.analyticsLabel(),
+                        ),
+                    )
+                }
+                viewModel.selectChartIndexType(newType)
             },
         )
 
@@ -210,28 +223,36 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
             is FearIndexState.Loaded -> {
                 ChartLoadedContent(
                     fearIndex = currentState.fearIndex,
-                    isCrypto = uiState.selectedType == FearIndexType.CRYPTO,
-                    selectedMarketPeriod = currentMarketPeriod,
+                    isCrypto = selectedType == FearIndexType.CRYPTO,
+                    selectedMarketPeriod = if (selectedType == FearIndexType.KOSPI) {
+                        currentKospiPeriod
+                    } else {
+                        currentMarketPeriod
+                    },
                     selectedCryptoPeriod = currentCryptoPeriod,
-                    history = when (uiState.selectedType) {
+                    history = when (selectedType) {
                         FearIndexType.MARKET -> uiState.marketHistory
-                        FearIndexType.KOSPI -> uiState.marketHistory
+                        FearIndexType.KOSPI -> uiState.kospiHistory
                         FearIndexType.CRYPTO -> uiState.cryptoHistory
                     },
-                    isHistoryLoading = when (uiState.selectedType) {
+                    isHistoryLoading = when (selectedType) {
                         FearIndexType.MARKET -> uiState.isMarketHistoryLoading
-                        FearIndexType.KOSPI -> uiState.isMarketHistoryLoading
+                        FearIndexType.KOSPI -> uiState.isKospiHistoryLoading
                         FearIndexType.CRYPTO -> uiState.isCryptoHistoryLoading
                     },
                     onMarketPeriodSelected = { period ->
-                        viewModel.loadMarketHistoryForDays(period.days)
+                        if (selectedType == FearIndexType.KOSPI) {
+                            viewModel.loadKospiHistoryForDays(period.days)
+                        } else {
+                            viewModel.loadMarketHistoryForDays(period.days)
+                        }
                         analytics.log(AnalyticsEvent.차트기간선택(기간 = period.label))
                     },
                     onCryptoPeriodSelected = { period ->
                         viewModel.loadCryptoHistoryForDays(period.days)
                         analytics.log(AnalyticsEvent.암호화폐차트조회(기간 = period.label))
                     },
-                    indexType = uiState.selectedType,
+                    indexType = selectedType,
                     insights = insightState.insights,
                     onInsightClick = insightViewModel::selectInsight,
                     onCardViewed = insightViewModel::logCardViewed,
@@ -247,6 +268,12 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
             }
         }
     }
+}
+
+private fun FearIndexType.analyticsLabel(): String = when (this) {
+    FearIndexType.MARKET -> ANALYTICS_TYPE_MARKET
+    FearIndexType.KOSPI -> ANALYTICS_TYPE_KOSPI
+    FearIndexType.CRYPTO -> ANALYTICS_TYPE_CRYPTO
 }
 
 // MARK: - Loaded Content

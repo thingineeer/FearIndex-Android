@@ -71,6 +71,7 @@ import th1ngjin.fearindex.presentation.component.StuckCounterCard
 import th1ngjin.fearindex.presentation.component.StuckDetailSheet
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
+import th1ngjin.fearindex.presentation.feature.insight.InsightIndexScope
 import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
 import th1ngjin.fearindex.presentation.feature.similarevents.SimilarEventsViewModel
 import th1ngjin.fearindex.presentation.feature.vote.VoteViewModel
@@ -97,18 +98,18 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
     // InsightViewModel이 HomeViewModel을 관찰
     LaunchedEffect(Unit) {
-        insightViewModel.observeHome(viewModel)
+        insightViewModel.observeHome(viewModel, InsightIndexScope.HOME)
     }
 
-    val selectedType = uiState.selectedType
+    val selectedType = uiState.selectedHomeType
     val selectedIndex = when (selectedType) {
         FearIndexType.MARKET -> 0
-        FearIndexType.KOSPI -> 0
-        FearIndexType.CRYPTO -> 1
+        FearIndexType.KOSPI -> 1
+        FearIndexType.CRYPTO -> 2
     }
     val currentState = when (selectedType) {
         FearIndexType.MARKET -> uiState.marketState
-        FearIndexType.KOSPI -> uiState.marketState
+        FearIndexType.KOSPI -> uiState.kospiState
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
 
@@ -167,10 +168,15 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
             ratingLabel = loadedRating,
             onShareClicked = {
                 if (loadedScore != null) {
-                    val typeLabel = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO
-                    analytics.log(AnalyticsEvent.공유버튼탭(지수타입 = typeLabel, 현재점수 = loadedScore))
+                    analytics.log(
+                        AnalyticsEvent.공유버튼탭(
+                            지수타입 = selectedType.analyticsLabel(),
+                            현재점수 = loadedScore,
+                        ),
+                    )
                 }
             },
+            shareType = selectedType.serverName,
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -179,12 +185,17 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         SegmentedPicker(
             items = listOf(
                 stringResource(R.string.tab_market),
+                stringResource(R.string.tab_kospi),
                 stringResource(R.string.tab_crypto),
             ),
             selectedIndex = selectedIndex,
             onItemSelected = { index ->
-                val type = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
-                viewModel.selectIndexType(type)
+                val type = when (index) {
+                    0 -> FearIndexType.MARKET
+                    1 -> FearIndexType.KOSPI
+                    else -> FearIndexType.CRYPTO
+                }
+                viewModel.selectHomeIndexType(type)
             },
         )
 
@@ -217,7 +228,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                                 UiStuckStatus.NOT_STUCK -> ANALYTICS_NOT_STUCK
                                 UiStuckStatus.NO_RESPONSE -> ANALYTICS_CANCEL
                             },
-                            지수타입 = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO,
+                            지수타입 = selectedType.analyticsLabel(),
                             현재점수 = score,
                         ),
                     )
@@ -242,6 +253,7 @@ private fun TitleBar(
     currentScore: Int? = null,
     ratingLabel: String? = null,
     onShareClicked: () -> Unit = {},
+    shareType: String = FearIndexType.MARKET.serverName,
 ) {
     // 공유 메시지의 제목/본문도 다국어. 점수와 등급은 호출부에서 ratingLabel(score)로 미리 주입.
     val shareTitle = stringResource(R.string.home_title) // "공포 탐욕 지수" / "Fear & Greed Index" 등
@@ -262,7 +274,7 @@ private fun TitleBar(
                 // 모든 문자열은 strings.xml(45 locale)에서 가져오므로 하드코딩 금지.
                 val shareUrl = ShareUrlBuilder.build(
                     score = currentScore ?: 0,
-                    type = "market",
+                    type = shareType,
                     rating = ratingLabel ?: "",
                 )
                 val shareText = "$shareTemplate\n$shareUrl"
@@ -496,4 +508,10 @@ private fun UiStuckStatus.toDomain(): DomainStuckStatus = when (this) {
     UiStuckStatus.STUCK -> DomainStuckStatus.STUCK
     UiStuckStatus.NOT_STUCK -> DomainStuckStatus.SAFE
     UiStuckStatus.NO_RESPONSE -> DomainStuckStatus.NONE
+}
+
+private fun FearIndexType.analyticsLabel(): String = when (this) {
+    FearIndexType.MARKET -> ANALYTICS_TYPE_MARKET
+    FearIndexType.KOSPI -> ANALYTICS_TYPE_KOSPI
+    FearIndexType.CRYPTO -> ANALYTICS_TYPE_CRYPTO
 }

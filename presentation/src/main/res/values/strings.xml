@@ -129,6 +129,7 @@
     <string name="insight_detail_best_case">Best case</string>
     <string name="insight_detail_sample_basis_crypto">Based on crypto sentiment data</string>
     <string name="insight_detail_sample_basis_market">Based on %1$d extreme periods (S&amp;P 500)</string>
+    <string name="insight_detail_sample_basis_kospi">Based on %1$d KOSPI historical episodes</string>
     <string name="insight_detail_no_similar_data">Not enough similar-period data.</string>
     <string name="insight_detail_past_events_title">Past similar events (%1$s)</string>
     <string name="insight_detail_similar_past_title">Past periods similar to now</string>
@@ -138,6 +139,7 @@
     <string name="insight_detail_investment_label">Investment amount (KRW)</string>
     <string name="insight_detail_disclaimer_crypto">⚠️ Based on Bitcoin (BTC) prices. Crypto is extremely volatile.</string>
     <string name="insight_detail_disclaimer_market">⚠️ Based on S&amp;P 500 historical data. Past performance does not guarantee future returns.</string>
+    <string name="insight_detail_disclaimer_kospi">Based on historical KOSPI close-to-close data. Past performance does not guarantee future results.</string>
     <string name="insight_detail_amount_won">%1$s KRW</string>
     <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
     <string name="insight_detail_drawdown_title">Drawdown analysis (%1$s)</string>
@@ -206,6 +208,7 @@
     <string name="insight_historical_return_summary_matched">%1$s — %3$d past periods similar to current %2$d points</string>
     <string name="insight_historical_return_summary_empty">%1$s — Limited historical data near current %2$d points</string>
     <string name="insight_return_chart_title_market">If you invested in S&amp;P 500?</string>
+    <string name="insight_return_chart_title_kospi">If You Invested in KOSPI</string>
     <string name="insight_return_chart_title_crypto">If you invested in Bitcoin?</string>
     <string name="insight_return_chart_summary">What would returns look like if you invested in this range?</string>
     <string name="insight_drawdown_title">Max Drawdown Analysis (%1$s)</string>
@@ -284,6 +287,7 @@
 
     <!-- Feature screen common labels -->
     <string name="tab_market">Market</string>
+    <string name="tab_kospi">KOSPI</string>
     <string name="tab_crypto">Crypto</string>
     <string name="current_index_label">Current Index</string>
     <string name="vs_previous_close_label">vs. previous close</string>
@@ -302,6 +306,7 @@
 
     <!-- Insight feed section headers -->
     <string name="insight_feed_header_market">Market Insights</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="stuck_total_responded">%1$d participants</string>

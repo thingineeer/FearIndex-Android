@@ -29,6 +29,15 @@ object DefaultReturnData {
         )
     }
 
+    val kospi: ReturnDataTable by lazy {
+        ReturnDataTable(
+            version = 1,
+            updatedAt = Instant.now(),
+            dataPoints = kospiDataPoints(),
+            historicalEvents = makeKospiEvents(),
+        )
+    }
+
     val crypto: ReturnDataTable by lazy {
         ReturnDataTable(
             version = 2,
@@ -140,6 +149,25 @@ object DefaultReturnData {
         dp(98, r(0.0, 0.0, 0.0, 0.0), r(0.0, 0.0, 0.0, 0.0), r(0.0, 0.0, 0.0, 0.0), 0),
         dp(99, r(0.0, 0.0, 0.0, 0.0), r(0.0, 0.0, 0.0, 0.0), r(0.0, 0.0, 0.0, 0.0), 0),
         dp(100, r(0.0, 0.0, 0.0, 0.0), r(0.0, 0.0, 0.0, 0.0), r(0.0, 0.0, 0.0, 0.0), 0),
+    )
+
+    private fun kospiDataPoints(): List<ReturnDataPoint> {
+        val verified = kospiVerifiedDataPoints()
+        return (0..100).map { score -> verified[score] ?: zeroDp(score) }
+    }
+
+    private fun kospiVerifiedDataPoints(): Map<Int, ReturnDataPoint> = mapOf(
+        8 to dp(8, r(8.4, 4.4, 10.6, 21.3), r(2.1, -1.6, 4.1, 9.5), r(17.4, 11.1, 20.8, 28.7), 3),
+        10 to dp(10, r(5.2, 11.2, 19.4, 50.5), r(-2.7, -3.5, -3.6, 5.3), r(13.7, 39.6, 63.4, 179.8), 4),
+        13 to dp(13, r(7.8, 9.4, 16.1, 28.4), r(2.7, -0.4, -4.0, -15.5), r(13.8, 36.7, 57.1, 167.1), 10),
+        17 to dp(17, r(3.9, 5.0, 10.7, 30.1), r(-7.5, -6.2, -9.1, -27.0), r(13.0, 31.0, 57.2, 166.2), 9),
+        18 to dp(18, r(1.7, 0.7, 1.6, 20.6), r(-2.8, -6.3, -12.7, -25.0), r(5.4, 11.6, 30.3, 131.6), 13),
+        24 to dp(24, r(2.0, 6.4, 14.0, 38.6), r(-6.5, -6.9, -14.1, -24.7), r(8.1, 22.1, 44.1, 143.1), 8),
+        25 to dp(25, r(3.2, 4.8, 9.8, 22.9), r(-5.5, -4.4, -6.4, -17.5), r(7.3, 14.6, 32.4, 112.2), 9),
+        29 to dp(29, r(0.8, 1.7, 5.7, 30.6), r(-4.3, -7.8, -16.1, -24.1), r(10.6, 30.0, 58.1, 169.4), 15),
+        32 to dp(32, r(0.1, -3.8, -3.3, 13.0), r(-4.7, -11.0, -14.3, -21.8), r(3.4, 6.3, 27.9, 119.5), 13),
+        50 to dp(50, r(-1.9, -5.2, -4.4, 7.0), r(-9.1, -12.0, -22.2, -28.0), r(4.9, 7.3, 27.3, 104.2), 22),
+        64 to dp(64, r(-0.3, 2.5, 6.2, 7.5), r(-7.7, -3.0, -4.1, -13.2), r(8.5, 9.7, 20.2, 109.0), 12),
     )
 
     private fun cryptoDataPoints(): List<ReturnDataPoint> = listOf(
@@ -261,6 +289,22 @@ object DefaultReturnData {
         ev("dotcom", d(2000, 3, 10), 95, "insight.event.dotcom", r(7.8, 3.7, 6.8, -15.4)),
     )
 
+    private fun makeKospiEvents(): List<ReturnEventEntry> = listOf(
+        ev("kospi-yen-carry-2024", d(2024, 8, 5), 8, "insight.kospi.event.yenCarry2024", r(5.7, 3.7, 6.9, 28.7)),
+        ev("kospi-tariff-2025", d(2025, 4, 9), 10, "insight.kospi.event.tariff2025", r(13.7, 39.6, 63.4, 179.8)),
+        ev("kospi-hamas-israel-2023", d(2023, 10, 30), 13, "insight.kospi.event.hamasIsrael2023", r(9.1, 8.1, 15.8, 9.6)),
+        ev("kospi-iran-war-2026", d(2026, 3, 13), 18, "insight.kospi.event.iranWar2026"),
+        ev(
+            "kospi-martial-law-aftermath-2024",
+            d(2024, 12, 9),
+            17,
+            "insight.kospi.event.martialLawAftermath",
+            r(6.6, 10.7, 28.0, 74.4),
+        ),
+        ev("kospi-legoland-pf-2023", d(2023, 8, 21), 29, "insight.kospi.event.legolandPf", r(2.0, 0.2, 4.6, 6.6)),
+        ev("kospi-twelve-day-war-2025", d(2025, 6, 13), 64, "insight.kospi.event.twelveDayWar2025"),
+    )
+
     private fun makeCryptoEvents(): List<ReturnEventEntry> = listOf(
         ev("crypto-covid", d(2020, 3, 13), 10, "insight.crypto.event.covid", r(23.0, 70.3, 85.6, 996.2)),
         ev("crypto-luna", d(2022, 5, 12), 12, "insight.crypto.event.luna", r(-6.9, -16.0, -42.2, -8.1)),
@@ -282,7 +326,9 @@ object DefaultReturnData {
     private fun dp(score: Int, ret: HistoricalReturns, worst: HistoricalReturns, best: HistoricalReturns, count: Int) =
         ReturnDataPoint(score = score, returns = ret, worstCase = worst, bestCase = best, sampleCount = count)
 
-    private fun ev(id: String, date: Instant, score: Int, key: String, ret: HistoricalReturns) =
+    private fun zeroDp(score: Int) = dp(score, r(0.0, 0.0, 0.0, 0.0), r(0.0, 0.0, 0.0, 0.0), r(0.0, 0.0, 0.0, 0.0), 0)
+
+    private fun ev(id: String, date: Instant, score: Int, key: String, ret: HistoricalReturns? = null) =
         ReturnEventEntry(id = id, date = date, score = score, descriptionKey = key, returnAfter = ret)
 
     private fun d(year: Int, month: Int, day: Int): Instant =

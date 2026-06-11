@@ -49,6 +49,7 @@ import kotlin.math.roundToInt
 // MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
 
 private const val ANALYTICS_TYPE_MARKET = "시장"
+private const val ANALYTICS_TYPE_KOSPI = "코스피"
 private const val ANALYTICS_TYPE_CRYPTO = "암호화폐"
 private const val ANALYTICS_SCREEN_VOTE = "투표"
 private const val ANALYTICS_STUCK = "물렸어요"
@@ -61,7 +62,7 @@ fun VoteScreen(
     voteViewModel: VoteViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    val selectedType = uiState.selectedType
+    val selectedType = uiState.selectedVoteType
 
     val stuckResult by voteViewModel.resultFor(selectedType).collectAsState()
     val myStuckStatus by voteViewModel.myStatusFor(selectedType).collectAsState()
@@ -77,20 +78,20 @@ fun VoteScreen(
     LaunchedEffect(selectedType) {
         analytics.log(
             AnalyticsEvent.투표탭진입(
-                지수타입 = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO,
+                지수타입 = selectedType.analyticsLabel(),
             ),
         )
     }
 
     val selectedIndex = when (selectedType) {
         FearIndexType.MARKET -> 0
-        FearIndexType.KOSPI -> 0
-        FearIndexType.CRYPTO -> 1
+        FearIndexType.KOSPI -> 1
+        FearIndexType.CRYPTO -> 2
     }
 
     val currentState = when (selectedType) {
         FearIndexType.MARKET -> uiState.marketState
-        FearIndexType.KOSPI -> uiState.marketState
+        FearIndexType.KOSPI -> uiState.kospiState
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
 
@@ -113,22 +114,25 @@ fun VoteScreen(
         SegmentedPicker(
             items = listOf(
                 stringResource(R.string.tab_market),
+                stringResource(R.string.tab_kospi),
                 stringResource(R.string.tab_crypto),
             ),
             selectedIndex = selectedIndex,
             onItemSelected = { index ->
-                val newType = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
+                val newType = when (index) {
+                    0 -> FearIndexType.MARKET
+                    1 -> FearIndexType.KOSPI
+                    else -> FearIndexType.CRYPTO
+                }
                 if (newType != selectedType) {
-                    val previousLabel = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO
-                    val newLabel = if (newType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO
                     analytics.log(
                         AnalyticsEvent.투표세그먼트전환(
-                            지수타입 = newLabel,
-                            이전타입 = previousLabel,
+                            지수타입 = newType.analyticsLabel(),
+                            이전타입 = selectedType.analyticsLabel(),
                         ),
                     )
                 }
-                viewModel.selectIndexType(newType)
+                viewModel.selectVoteIndexType(newType)
             },
         )
 
@@ -156,7 +160,7 @@ fun VoteScreen(
                             UiStuckStatus.NOT_STUCK -> ANALYTICS_NOT_STUCK
                             UiStuckStatus.NO_RESPONSE -> ANALYTICS_CANCEL
                         },
-                        지수타입 = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO,
+                        지수타입 = selectedType.analyticsLabel(),
                         현재점수 = score,
                     ),
                 )
@@ -242,4 +246,10 @@ private fun UiStuckStatus.toDomain(): DomainStuckStatus = when (this) {
     UiStuckStatus.STUCK -> DomainStuckStatus.STUCK
     UiStuckStatus.NOT_STUCK -> DomainStuckStatus.SAFE
     UiStuckStatus.NO_RESPONSE -> DomainStuckStatus.NONE
+}
+
+private fun FearIndexType.analyticsLabel(): String = when (this) {
+    FearIndexType.MARKET -> ANALYTICS_TYPE_MARKET
+    FearIndexType.KOSPI -> ANALYTICS_TYPE_KOSPI
+    FearIndexType.CRYPTO -> ANALYTICS_TYPE_CRYPTO
 }

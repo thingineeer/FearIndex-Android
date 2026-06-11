@@ -282,4 +282,9 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Jika Anda Melabur dalam KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Berdasarkan data dekat ke dekat KOSPI sejarah. Prestasi masa lalu tidak menjamin hasil masa depan.</string>
+    <string name="insight_detail_sample_basis_kospi">Berdasarkan episod sejarah %1$d KOSPI</string>
 </resources>

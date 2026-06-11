@@ -283,4 +283,9 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Als u in KOSPI hebt geïnvesteerd</string>
+    <string name="insight_detail_disclaimer_kospi">Gebaseerd op historische KOSPI close-to-close-gegevens. In het verleden behaalde resultaten bieden geen garantie voor toekomstige resultaten.</string>
+    <string name="insight_detail_sample_basis_kospi">Gebaseerd op %1$d KOSPI historische afleveringen</string>
 </resources>
