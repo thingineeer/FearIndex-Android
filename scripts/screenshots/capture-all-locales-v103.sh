@@ -96,6 +96,23 @@ dismiss_anr() {
   done
 }
 
+wait_for_app_ready() {
+  local tries=0
+  while [ $tries -lt 40 ]; do
+    if adb shell dumpsys window windows 2>/dev/null | grep -q "$PKG/$ACTIVITY"; then
+      if adb shell uiautomator dump /sdcard/fearindex-window.xml >/dev/null 2>&1 &&
+        adb shell grep -q "KOSPI" /sdcard/fearindex-window.xml 2>/dev/null; then
+        sleep 2
+        return 0
+      fi
+    fi
+    sleep 2
+    tries=$((tries+1))
+  done
+  echo "  ! app ready wait timed out; using fallback sleep" >&2
+  sleep 15
+}
+
 clear_notifications() {
   # API 28+ 의 cmd notification clear 미지원 → 알림 ID 단위 cancel 또는 패널 swipe 활용.
   # 우리는 매 broadcast 가 같은 ID(20503)을 덮어쓰므로 사실상 1개만 존재.
@@ -204,7 +221,7 @@ for triplet in "${LOCALES[@]}"; do
   # 2. 앱 cold start → 홈(KOSPI)
   # ────────────────────────────────────────────────────────────
   adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
-  sleep 35
+  wait_for_app_ready
   dismiss_anr
   tap_kospi_index_tab
   capture_app_screen "$dir/2_home.png"
