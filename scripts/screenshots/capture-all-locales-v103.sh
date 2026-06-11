@@ -197,6 +197,7 @@ capture_app_screen() {
 
 TOTAL=${#LOCALES[@]}
 count=0
+prime_notification_settings
 
 for triplet in "${LOCALES[@]}"; do
   count=$((count+1))
@@ -209,11 +210,9 @@ for triplet in "${LOCALES[@]}"; do
 
   echo "=== ($count/$TOTAL) supply=$supply bcp=$bcp push=$push_lang ==="
 
-  # 0. 이전 locale notification/app state 제거 + locale 적용
+  # 0. locale 적용 (다음 cold-start에 반영)
   adb shell am force-stop $PKG < /dev/null
-  adb shell pm clear $PKG < /dev/null > /dev/null 2>&1 || true
   sleep 1
-  prime_notification_settings
   adb shell cmd locale set-app-locales $PKG --locales $bcp < /dev/null > /dev/null 2>&1 || true
   sleep 1
 
