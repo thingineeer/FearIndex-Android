@@ -80,6 +80,7 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="notification_push_description">Nhận thông báo khi chỉ số sợ hãi đạt ngưỡng bạn đặt.</string>
     <string name="notification_tab_market">Thị trường</string>
     <string name="notification_tab_crypto">Crypto</string>
+    <string name="notification_weekly_title">Cảnh báo báo cáo hàng tuần</string>
     <string name="notification_market_title">Cảnh báo chỉ số sợ hãi thị trường</string>
     <string name="notification_crypto_title">Cảnh báo chỉ số sợ hãi crypto</string>
     <string name="notification_lower_label">Ngưỡng dưới (Sợ hãi)</string>
@@ -217,6 +218,7 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="settings_menu_notification">Thông báo</string>
     <string name="settings_menu_privacy">Chính sách quyền riêng tư</string>
     <string name="settings_menu_about">Thông tin ứng dụng</string>
+    <string name="settings_menu_ad_privacy">Lựa chọn quyền riêng tư</string>
     <string name="settings_menu_rate">Viết đánh giá</string>
     <string name="settings_menu_share">Chia sẻ ứng dụng</string>
     <string name="settings_about_version">Version %1$s</string>

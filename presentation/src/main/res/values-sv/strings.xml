@@ -75,6 +75,7 @@
     <string name="notification_push_description">Få avisering när rädslaindexet når din tröskel.</string>
     <string name="notification_tab_market">Marknad</string>
     <string name="notification_tab_crypto">Krypto</string>
+    <string name="notification_weekly_title">Veckorapportvarningar</string>
     <string name="notification_market_title">Marknadsrädslaindex-varningar</string>
     <string name="notification_crypto_title">Kryptorädslaindex-varningar</string>
     <string name="notification_lower_label">Lägre (Rädsla)</string>
@@ -214,6 +215,7 @@
     <string name="settings_menu_notification">Aviseringar</string>
     <string name="settings_menu_privacy">Integritetspolicy</string>
     <string name="settings_menu_about">Appinformation</string>
+    <string name="settings_menu_ad_privacy">Integritetsval</string>
     <string name="settings_menu_rate">Lämna en recension</string>
     <string name="settings_menu_share">Dela appen</string>
     <string name="settings_about_version">Version %1$s</string>

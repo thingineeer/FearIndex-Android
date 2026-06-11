@@ -75,6 +75,7 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="notification_push_description">Ontvang een melding wanneer de angstindex uw drempel bereikt.</string>
     <string name="notification_tab_market">Markt</string>
     <string name="notification_tab_crypto">Crypto</string>
+    <string name="notification_weekly_title">Wekelijkse rapportwaarschuwingen</string>
     <string name="notification_market_title">Angstindex-meldingen (Markt)</string>
     <string name="notification_crypto_title">Angstindex-meldingen (Crypto)</string>
     <string name="notification_lower_label">Ondergrens (Angst)</string>
@@ -214,6 +215,7 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="settings_menu_notification">Meldingen</string>
     <string name="settings_menu_privacy">Privacybeleid</string>
     <string name="settings_menu_about">App-info</string>
+    <string name="settings_menu_ad_privacy">Privacykeuzes</string>
     <string name="settings_menu_rate">Beoordeling schrijven</string>
     <string name="settings_menu_share">App delen</string>
     <string name="settings_about_version">Version %1$s</string>

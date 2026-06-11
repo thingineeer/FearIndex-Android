@@ -75,6 +75,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="notification_push_description">Primești notificare când indicele fricii atinge pragul tău.</string>
     <string name="notification_tab_market">Piață</string>
     <string name="notification_tab_crypto">Cripto</string>
+    <string name="notification_weekly_title">Alerte de rapoarte săptămânale</string>
     <string name="notification_market_title">Alerte indice frică piață</string>
     <string name="notification_crypto_title">Alerte indice frică cripto</string>
     <string name="notification_lower_label">Inferior (Frică)</string>
@@ -214,6 +215,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="settings_menu_notification">Notificări</string>
     <string name="settings_menu_privacy">Politica de Confidențialitate</string>
     <string name="settings_menu_about">Informații Aplicație</string>
+    <string name="settings_menu_ad_privacy">Opțiuni de confidențialitate</string>
     <string name="settings_menu_rate">Scrie o recenzie</string>
     <string name="settings_menu_share">Distribuie aplicația</string>
     <string name="settings_about_version">Version %1$s</string>

@@ -76,6 +76,7 @@
     <string name="notification_push_description">تلقَّ إشعارًا عند وصول مؤشر الخوف إلى الحد الذي حددته.</string>
     <string name="notification_tab_market">السوق</string>
     <string name="notification_tab_crypto">العملات الرقمية</string>
+    <string name="notification_weekly_title">تنبيهات التقرير الأسبوعي</string>
     <string name="notification_market_title">تنبيهات مؤشر خوف السوق</string>
     <string name="notification_crypto_title">تنبيهات مؤشر خوف العملات الرقمية</string>
     <string name="notification_lower_label">الحد الأدنى (خوف)</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">الإشعارات</string>
     <string name="settings_menu_privacy">سياسة الخصوصية</string>
     <string name="settings_menu_about">معلومات التطبيق</string>
+    <string name="settings_menu_ad_privacy">خيارات الخصوصية</string>
     <string name="settings_menu_rate">اكتب مراجعة</string>
     <string name="settings_menu_share">مشاركة</string>
     <string name="settings_about_version">Version %1$s</string>

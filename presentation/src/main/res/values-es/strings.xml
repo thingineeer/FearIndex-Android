@@ -75,6 +75,7 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="notification_push_description">Recibe una notificación cuando el índice de miedo alcance tu umbral.</string>
     <string name="notification_tab_market">Mercado</string>
     <string name="notification_tab_crypto">Cripto</string>
+    <string name="notification_weekly_title">Alertas de informes semanales</string>
     <string name="notification_market_title">Alertas de índice de miedo (Mercado)</string>
     <string name="notification_crypto_title">Alertas de índice de miedo (Cripto)</string>
     <string name="notification_lower_label">Límite inferior (Miedo)</string>
@@ -214,6 +215,7 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="settings_menu_notification">Notificaciones</string>
     <string name="settings_menu_privacy">Política de privacidad</string>
     <string name="settings_menu_about">Info de la App</string>
+    <string name="settings_menu_ad_privacy">Opciones de privacidad</string>
     <string name="settings_menu_rate">Dejar una reseña</string>
     <string name="settings_menu_share">Compartir app</string>
     <string name="settings_about_version">Version %1$s</string>

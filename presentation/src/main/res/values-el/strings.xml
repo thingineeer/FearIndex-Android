@@ -75,6 +75,7 @@
     <string name="notification_push_description">Λάβετε ειδοποίηση όταν ο δείκτης φόβου φτάσει στο όριό σας.</string>
     <string name="notification_tab_market">Αγορά</string>
     <string name="notification_tab_crypto">Κρύπτο</string>
+    <string name="notification_weekly_title">Ειδοποιήσεις εβδομαδιαίας αναφοράς</string>
     <string name="notification_market_title">Ειδοποιήσεις δείκτη φόβου αγοράς</string>
     <string name="notification_crypto_title">Ειδοποιήσεις δείκτη φόβου κρύπτο</string>
     <string name="notification_lower_label">Κάτω όριο (Φόβος)</string>
@@ -214,6 +215,7 @@
     <string name="settings_menu_notification">Ειδοποιήσεις</string>
     <string name="settings_menu_privacy">Πολιτική Απορρήτου</string>
     <string name="settings_menu_about">Πληροφορίες Εφαρμογής</string>
+    <string name="settings_menu_ad_privacy">Επιλογές απορρήτου</string>
     <string name="settings_menu_rate">Γράψτε κριτική</string>
     <string name="settings_menu_share">Κοινοποίηση</string>
     <string name="settings_about_version">Version %1$s</string>

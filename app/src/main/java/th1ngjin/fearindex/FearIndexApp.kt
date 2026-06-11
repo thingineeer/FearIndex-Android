@@ -3,6 +3,7 @@ package th1ngjin.fearindex
 import android.app.Application
 import android.app.NotificationManager
 import android.app.NotificationChannel
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
@@ -19,6 +20,8 @@ import th1ngjin.fearindex.core.appcheck.AppCheckInitializer
 import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.remoteconfig.RemoteConfigManager
 import th1ngjin.fearindex.domain.repository.NotificationRepository
+import th1ngjin.fearindex.domain.entity.NotificationPermissionSyncPolicy
+import th1ngjin.fearindex.domain.entity.NotificationSettings
 import th1ngjin.fearindex.domain.service.DeviceIdProvider
 import th1ngjin.fearindex.notification.NotificationChannels
 import timber.log.Timber
@@ -119,6 +122,7 @@ class FearIndexApp : Application() {
             object : DefaultLifecycleObserver {
                 override fun onStart(owner: LifecycleOwner) {
                     analytics.log(AnalyticsEvent.앱포그라운드)
+                    syncNotificationPermissionState()
                 }
 
                 override fun onStop(owner: LifecycleOwner) {
@@ -127,5 +131,33 @@ class FearIndexApp : Application() {
             },
         )
         analytics.log(AnalyticsEvent.앱시작)
+    }
+
+    private fun syncNotificationPermissionState() {
+        appScope.launch {
+            val settings = notificationRepository.loadSettingsLocal()
+            val systemAuthorized = NotificationManagerCompat
+                .from(this@FearIndexApp)
+                .areNotificationsEnabled()
+            val action = NotificationPermissionSyncPolicy.foregroundAction(
+                systemAuthorized = systemAuthorized,
+                appNotificationEnabled = settings.notificationEnabled,
+            )
+            if (action == NotificationPermissionSyncPolicy.Action.DISABLE_AND_SYNC_SERVER) {
+                syncNotificationDisabled(settings)
+            }
+        }
+    }
+
+    private suspend fun syncNotificationDisabled(settings: NotificationSettings) {
+        try {
+            notificationRepository.updateSettings(
+                deviceIdProvider.loadDeviceId(),
+                settings.copy(notificationEnabled = false),
+            )
+            Timber.d("Notification permission revoked; synced disabled state")
+        } catch (e: Exception) {
+            Timber.e(e, "Notification permission sync failed")
+        }
     }
 }

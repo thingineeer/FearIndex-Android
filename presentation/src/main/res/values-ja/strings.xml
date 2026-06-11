@@ -76,6 +76,7 @@
     <string name="notification_push_description">恐怖指数が設定したしきい値に達したときに通知を受け取ります。</string>
     <string name="notification_tab_market">市場</string>
     <string name="notification_tab_crypto">暗号資産</string>
+    <string name="notification_weekly_title">週次レポートのアラート</string>
     <string name="notification_market_title">市場恐怖指数アラート</string>
     <string name="notification_crypto_title">暗号資産恐怖指数アラート</string>
     <string name="notification_lower_label">下限 (恐怖)</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">通知</string>
     <string name="settings_menu_privacy">プライバシーポリシー</string>
     <string name="settings_menu_about">アプリ情報</string>
+    <string name="settings_menu_ad_privacy">プライバシー設定</string>
     <string name="settings_menu_rate">レビューを書く</string>
     <string name="settings_menu_share">アプリを共有</string>
     <string name="settings_about_version">Version %1$s</string>

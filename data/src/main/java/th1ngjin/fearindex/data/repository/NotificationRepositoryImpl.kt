@@ -21,18 +21,14 @@ class NotificationRepositoryImpl @Inject constructor(
 ) : NotificationRepository {
 
     override suspend fun registerFCMToken(deviceId: String, fcmToken: String) {
-        dataSource.registerFCMToken(deviceId, fcmToken)
+        dataSource.registerFCMToken(deviceId, fcmToken, storage.load())
     }
 
     override suspend fun updateSettings(deviceId: String, settings: NotificationSettings) {
         storage.save(settings)
         dataSource.updateSettings(
             deviceId = deviceId,
-            notificationEnabled = settings.notificationEnabled,
-            lowerThreshold = settings.marketLowerThreshold,
-            upperThreshold = settings.marketUpperThreshold,
-            cryptoLowerThreshold = settings.cryptoLowerThreshold,
-            cryptoUpperThreshold = settings.cryptoUpperThreshold,
+            settings = settings,
         )
     }
 

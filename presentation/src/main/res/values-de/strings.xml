@@ -75,6 +75,7 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="notification_push_description">Werden Sie benachrichtigt, wenn der Angstindex Ihren Schwellenwert erreicht.</string>
     <string name="notification_tab_market">Markt</string>
     <string name="notification_tab_crypto">Krypto</string>
+    <string name="notification_weekly_title">Wöchentliche Berichtsbenachrichtigungen</string>
     <string name="notification_market_title">Angstindex-Benachrichtigungen (Markt)</string>
     <string name="notification_crypto_title">Angstindex-Benachrichtigungen (Krypto)</string>
     <string name="notification_lower_label">Untergrenze (Angst)</string>
@@ -214,6 +215,7 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="settings_menu_notification">Benachrichtigungen</string>
     <string name="settings_menu_privacy">Datenschutz</string>
     <string name="settings_menu_about">App-Info</string>
+    <string name="settings_menu_ad_privacy">Datenschutzauswahl</string>
     <string name="settings_menu_rate">Bewertung schreiben</string>
     <string name="settings_menu_share">App teilen</string>
     <string name="settings_about_version">Version %1$s</string>

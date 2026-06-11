@@ -76,6 +76,7 @@
     <string name="notification_push_description">وقتی شاخص ترس به آستانه تعیین‌شده رسید به شما اطلاع داده می‌شود.</string>
     <string name="notification_tab_market">بازار</string>
     <string name="notification_tab_crypto">ارز دیجیتال</string>
+    <string name="notification_weekly_title">هشدارهای گزارش هفتگی</string>
     <string name="notification_market_title">هشدارهای شاخص ترس بازار</string>
     <string name="notification_crypto_title">هشدارهای شاخص ترس ارز دیجیتال</string>
     <string name="notification_lower_label">حد پایین (ترس)</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">اعلان‌ها</string>
     <string name="settings_menu_privacy">سیاست حریم خصوصی</string>
     <string name="settings_menu_about">اطلاعات برنامه</string>
+    <string name="settings_menu_ad_privacy">گزینه‌های حریم خصوصی</string>
     <string name="settings_menu_rate">نوشتن بازبینی</string>
     <string name="settings_menu_share">اشتراک‌گذاری</string>
     <string name="settings_about_version">Version %1$s</string>

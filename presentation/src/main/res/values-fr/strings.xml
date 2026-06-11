@@ -75,6 +75,7 @@
     <string name="notification_push_description">Recevez une notification lorsque l\'indice de peur atteint votre seuil.</string>
     <string name="notification_tab_market">Marché</string>
     <string name="notification_tab_crypto">Crypto</string>
+    <string name="notification_weekly_title">Alertes de rapport hebdomadaires</string>
     <string name="notification_market_title">Alertes indice de peur (Marché)</string>
     <string name="notification_crypto_title">Alertes indice de peur (Crypto)</string>
     <string name="notification_lower_label">Seuil bas (Peur)</string>
@@ -214,6 +215,7 @@
     <string name="settings_menu_notification">Notifications</string>
     <string name="settings_menu_privacy">Politique de confidentialité</string>
     <string name="settings_menu_about">Infos App</string>
+    <string name="settings_menu_ad_privacy">Choix de confidentialité</string>
     <string name="settings_menu_rate">Laisser un avis</string>
     <string name="settings_menu_share">Partager l\'app</string>
     <string name="settings_about_version">Version %1$s</string>

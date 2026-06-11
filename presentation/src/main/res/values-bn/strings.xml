@@ -80,6 +80,7 @@
     <string name="notification_push_description">ভয় সূচক আপনার সীমা ছুঁলে বিজ্ঞপ্তি পান।</string>
     <string name="notification_tab_market">বাজার</string>
     <string name="notification_tab_crypto">ক্রিপ্টো</string>
+    <string name="notification_weekly_title">সাপ্তাহিক রিপোর্ট সতর্কতা</string>
     <string name="notification_market_title">বাজার ভয় সূচক সতর্কতা</string>
     <string name="notification_crypto_title">ক্রিপ্টো ভয় সূচক সতর্কতা</string>
     <string name="notification_lower_label">নিম্ন সীমা (ভয়)</string>
@@ -217,6 +218,7 @@
     <string name="settings_menu_notification">বিজ্ঞপ্তি</string>
     <string name="settings_menu_privacy">গোপনীয়তা নীতি</string>
     <string name="settings_menu_about">অ্যাপ তথ্য</string>
+    <string name="settings_menu_ad_privacy">গোপনীয়তা পছন্দ</string>
     <string name="settings_menu_rate">রিভিউ লিখুন</string>
     <string name="settings_menu_share">অ্যাপ শেয়ার করুন</string>
     <string name="settings_about_version">Version %1$s</string>

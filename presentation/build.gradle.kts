@@ -76,6 +76,7 @@ dependencies {
 
     // AdMob (Compose 광고 컴포넌트용)
     implementation(libs.play.services.ads)
+    implementation(libs.user.messaging.platform)
 
     // Accompanist
     implementation(libs.accompanist.permissions)

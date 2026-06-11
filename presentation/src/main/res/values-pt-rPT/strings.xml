@@ -75,6 +75,7 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="notification_push_description">Receba uma notificação quando o índice de medo atingir o seu limite.</string>
     <string name="notification_tab_market">Mercado</string>
     <string name="notification_tab_crypto">Cripto</string>
+    <string name="notification_weekly_title">Alertas de relatórios semanais</string>
     <string name="notification_market_title">Alertas do índice de medo (Mercado)</string>
     <string name="notification_crypto_title">Alertas do índice de medo (Cripto)</string>
     <string name="notification_lower_label">Limite inferior (Medo)</string>
@@ -214,6 +215,7 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="settings_menu_notification">Notificações</string>
     <string name="settings_menu_privacy">Política de privacidade</string>
     <string name="settings_menu_about">Informações da app</string>
+    <string name="settings_menu_ad_privacy">Opções de privacidade</string>
     <string name="settings_menu_rate">Deixar avaliação</string>
     <string name="settings_menu_share">Partilhar app</string>
     <string name="settings_about_version">Version %1$s</string>

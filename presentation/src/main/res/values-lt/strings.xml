@@ -75,6 +75,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="notification_push_description">Gaukite pranešimą, kai baimės indeksas pasieks jūsų ribą.</string>
     <string name="notification_tab_market">Rinka</string>
     <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_weekly_title">Savaitės ataskaitų įspėjimai</string>
     <string name="notification_market_title">Rinkos baimės indekso įspėjimai</string>
     <string name="notification_crypto_title">Kripto baimės indekso įspėjimai</string>
     <string name="notification_lower_label">Žemesnė riba (Baimė)</string>
@@ -214,6 +215,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="settings_menu_notification">Pranešimai</string>
     <string name="settings_menu_privacy">Privatumo politika</string>
     <string name="settings_menu_about">Programėlės informacija</string>
+    <string name="settings_menu_ad_privacy">Privatumo pasirinkimai</string>
     <string name="settings_menu_rate">Parašyti atsiliepimą</string>
     <string name="settings_menu_share">Dalintis programa</string>
     <string name="settings_about_version">Version %1$s</string>

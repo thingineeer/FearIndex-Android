@@ -76,6 +76,7 @@
     <string name="notification_push_description">當恐懼指數達到您設定的門檻時接收通知。</string>
     <string name="notification_tab_market">市場</string>
     <string name="notification_tab_crypto">加密貨幣</string>
+    <string name="notification_weekly_title">每週報告提醒</string>
     <string name="notification_market_title">市場恐懼指數提醒</string>
     <string name="notification_crypto_title">加密貨幣恐懼指數提醒</string>
     <string name="notification_lower_label">下限 (恐懼)</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">通知</string>
     <string name="settings_menu_privacy">隱私權政策</string>
     <string name="settings_menu_about">應用程式資訊</string>
+    <string name="settings_menu_ad_privacy">隱私選擇</string>
     <string name="settings_menu_rate">撰寫評論</string>
     <string name="settings_menu_share">分享應用程式</string>
     <string name="settings_about_version">Version %1$s</string>

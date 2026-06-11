@@ -75,6 +75,7 @@
     <string name="notification_push_description">Получавайте известие, когато индексът на страха достигне зададения праг.</string>
     <string name="notification_tab_market">Пазар</string>
     <string name="notification_tab_crypto">Криптовалути</string>
+    <string name="notification_weekly_title">Сигнали за седмични отчети</string>
     <string name="notification_market_title">Известия за индекса на страха на пазара</string>
     <string name="notification_crypto_title">Известия за индекса на страха на криптовалутите</string>
     <string name="notification_lower_label">Долен праг (Страх)</string>
@@ -214,6 +215,7 @@
     <string name="settings_menu_notification">Известия</string>
     <string name="settings_menu_privacy">Политика за поверителност</string>
     <string name="settings_menu_about">Информация за приложението</string>
+    <string name="settings_menu_ad_privacy">Избори за поверителност</string>
     <string name="settings_menu_rate">Напишете отзив</string>
     <string name="settings_menu_share">Споделете приложението</string>
     <string name="settings_about_version">Version %1$s</string>

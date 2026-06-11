@@ -75,6 +75,7 @@
     <string name="notification_push_description">Отримуйте сповіщення, коли індекс страху досягає встановленого порогу.</string>
     <string name="notification_tab_market">Ринок</string>
     <string name="notification_tab_crypto">Криптовалюта</string>
+    <string name="notification_weekly_title">Сповіщення про щотижневі звіти</string>
     <string name="notification_market_title">Сповіщення про індекс страху ринку</string>
     <string name="notification_crypto_title">Сповіщення про індекс страху криптовалют</string>
     <string name="notification_lower_label">Нижня межа (Страх)</string>
@@ -214,6 +215,7 @@
     <string name="settings_menu_notification">Сповіщення</string>
     <string name="settings_menu_privacy">Політика конфіденційності</string>
     <string name="settings_menu_about">Інформація про додаток</string>
+    <string name="settings_menu_ad_privacy">Вибір конфіденційності</string>
     <string name="settings_menu_rate">Залишити відгук</string>
     <string name="settings_menu_share">Поділитися</string>
     <string name="settings_about_version">Version %1$s</string>

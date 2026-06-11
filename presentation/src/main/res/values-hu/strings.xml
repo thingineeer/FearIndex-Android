@@ -75,6 +75,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="notification_push_description">Értesítést kap, amikor a félelemindex eléri a küszöböt.</string>
     <string name="notification_tab_market">Piac</string>
     <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_weekly_title">Heti jelentés figyelmeztetések</string>
     <string name="notification_market_title">Piaci félelemindex figyelmeztetések</string>
     <string name="notification_crypto_title">Kripto félelemindex figyelmeztetések</string>
     <string name="notification_lower_label">Alsó (Félelem)</string>
@@ -214,6 +215,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="settings_menu_notification">Értesítések</string>
     <string name="settings_menu_privacy">Adatvédelmi irányelvek</string>
     <string name="settings_menu_about">Alkalmazás információk</string>
+    <string name="settings_menu_ad_privacy">Adatvédelmi beállítások</string>
     <string name="settings_menu_rate">Vélemény írása</string>
     <string name="settings_menu_share">App megosztása</string>
     <string name="settings_about_version">Version %1$s</string>

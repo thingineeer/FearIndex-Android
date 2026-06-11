@@ -80,6 +80,7 @@
     <string name="notification_push_description">பயக் குறியீடு உங்கள் வரம்பை அடையும்போது அறிவிப்பு பெறுங்கள்.</string>
     <string name="notification_tab_market">சந்தை</string>
     <string name="notification_tab_crypto">கிரிப்டோ</string>
+    <string name="notification_weekly_title">வாராந்திர அறிக்கை எச்சரிக்கைகள்</string>
     <string name="notification_market_title">சந்தை பயக் குறியீடு எச்சரிக்கைகள்</string>
     <string name="notification_crypto_title">கிரிப்டோ பயக் குறியீடு எச்சரிக்கைகள்</string>
     <string name="notification_lower_label">கீழ் வரம்பு (பயம்)</string>
@@ -217,6 +218,7 @@
     <string name="settings_menu_notification">அறிவிப்புகள்</string>
     <string name="settings_menu_privacy">தனியுரிமைக் கொள்கை</string>
     <string name="settings_menu_about">செயலி தகவல்</string>
+    <string name="settings_menu_ad_privacy">தனியுரிமை தேர்வுகள்</string>
     <string name="settings_menu_rate">மதிப்புரை எழுதுங்கள்</string>
     <string name="settings_menu_share">பகிரவும்</string>
     <string name="settings_about_version">Version %1$s</string>

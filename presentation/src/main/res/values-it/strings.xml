@@ -75,6 +75,7 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="notification_push_description">Ricevi una notifica quando l\'indice di paura raggiunge la tua soglia.</string>
     <string name="notification_tab_market">Mercato</string>
     <string name="notification_tab_crypto">Cripto</string>
+    <string name="notification_weekly_title">Avvisi sui rapporti settimanali</string>
     <string name="notification_market_title">Avvisi indice di paura (Mercato)</string>
     <string name="notification_crypto_title">Avvisi indice di paura (Cripto)</string>
     <string name="notification_lower_label">Soglia bassa (Paura)</string>
@@ -214,6 +215,7 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="settings_menu_notification">Notifiche</string>
     <string name="settings_menu_privacy">Informativa sulla Privacy</string>
     <string name="settings_menu_about">Info App</string>
+    <string name="settings_menu_ad_privacy">Scelte sulla privacy</string>
     <string name="settings_menu_rate">Lascia una recensione</string>
     <string name="settings_menu_share">Condividi app</string>
     <string name="settings_about_version">Version %1$s</string>

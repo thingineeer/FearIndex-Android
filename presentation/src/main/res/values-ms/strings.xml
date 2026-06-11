@@ -76,6 +76,7 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="notification_push_description">Dapatkan pemberitahuan apabila indeks ketakutan mencapai ambang anda.</string>
     <string name="notification_tab_market">Pasaran</string>
     <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_weekly_title">Makluman Laporan Mingguan</string>
     <string name="notification_market_title">Makluman Indeks Ketakutan Pasaran</string>
     <string name="notification_crypto_title">Makluman Indeks Ketakutan Kripto</string>
     <string name="notification_lower_label">Bawah (Ketakutan)</string>
@@ -213,6 +214,7 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="settings_menu_notification">Pemberitahuan</string>
     <string name="settings_menu_privacy">Dasar Privasi</string>
     <string name="settings_menu_about">Maklumat Apl</string>
+    <string name="settings_menu_ad_privacy">Pilihan privasi</string>
     <string name="settings_menu_rate">Tulis Ulasan</string>
     <string name="settings_menu_share">Kongsi Apl</string>
     <string name="settings_about_version">Version %1$s</string>
