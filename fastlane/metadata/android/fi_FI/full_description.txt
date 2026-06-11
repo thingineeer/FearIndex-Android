@@ -1,7 +1,10 @@
 Fear & Greed Index on sijoittajakäyttäytymisen analyysisovellus, jonka avulla voit seurata sekä markkinoiden pelko- ja ahneusindeksiä (Market Fear & Greed Index) että kryptovaluuttojen pelko- ja ahneusindeksiä (Crypto Fear & Greed Index) yhdellä silmäyksellä. Seuraa kahta erillistä pelkoindeksiä tärkeimpien markkinaindeksien rinnalla ymmärtääksesi joukkopsykologiaa ja tehdäksesi perusteltuja sijoituspäätöksiä.
 
-[Kaksi pelko- ja ahneusindeksiä]
+KOSPI Fear & Greed Index on lisätty.
+
+[Kolme pelko- ja ahneusindeksiä]
 - Markkinoiden pelkoindeksi: Perinteisten rahoitusmarkkinoiden mielialaindikaattori
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Krypton pelkoindeksi: Kryptovaluuttamarkkinoiden mielialaindikaattori
 - Vertaile molempia indeksejä rinnakkain markkinoiden kokonaisvaltaisen dynamiikan ymmärtämiseksi
 
@@ -13,13 +16,9 @@ Fear & Greed Index on sijoittajakäyttäytymisen analyysisovellus, jonka avulla 
 - Tärkeimmät markkinaindeksit reaaliajassa (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Yhden napin vaihto markkina- ja kryptoindeksien välillä
 
-[Widgetit]
-- Aloitusnäytön widgetit: Small / Medium / Large -koot
-- Lukitusnäytön widgetit: erilliset näytöt markkina- ja krypton pelkoindekseille
-- Markkina/krypto-vaihto widgeteissä
-
 [Push-ilmoitukset]
 - Välittömät hälytykset, kun markkinoiden pelkoindeksi saavuttaa kynnysarvosi
+- KOSPI Fear & Greed Index threshold alerts
 - Välittömät hälytykset, kun krypton pelkoindeksi saavuttaa kynnysarvosi
 - Mukautettavat ylä- ja alakynnysarvoasetukset
 

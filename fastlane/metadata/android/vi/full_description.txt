@@ -1,7 +1,10 @@
 Fear & Greed Index là ứng dụng phân tích tâm lý đầu tư cho phép bạn theo dõi Chỉ số Sợ hãi và Tham lam Thị trường (Market Fear & Greed Index) và Chỉ số Sợ hãi và Tham lam Crypto (Crypto Fear & Greed Index) trong một cái nhìn. Theo dõi hai chỉ số sợ hãi khác nhau cùng với các chỉ số thị trường chính để hiểu tâm lý đám đông và đưa ra quyết định đầu tư sáng suốt.
 
-[Hai Chỉ số Sợ hãi và Tham lam]
+Đã thêm KOSPI Fear & Greed Index.
+
+[Ba Chỉ số Sợ hãi và Tham lam]
 - Chỉ số Sợ hãi Thị trường: Chỉ báo tâm lý cho các thị trường tài chính truyền thống
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Chỉ số Sợ hãi Crypto: Chỉ báo tâm lý cho thị trường tiền điện tử
 - So sánh cả hai chỉ số để hiểu động lực tổng thể của thị trường
 
@@ -13,13 +16,9 @@ Fear & Greed Index là ứng dụng phân tích tâm lý đầu tư cho phép b�
 - Các chỉ số thị trường chính theo thời gian thực (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Chuyển đổi một chạm giữa chỉ số thị trường và crypto
 
-[Widget]
-- Widget màn hình chính: kích thước Small / Medium / Large
-- Widget màn hình khóa: màn hình riêng biệt cho chỉ số sợ hãi thị trường và crypto
-- Chuyển đổi thị trường/crypto trong widget
-
 [Thông báo Push]
 - Cảnh báo tức thì khi chỉ số sợ hãi thị trường đạt ngưỡng của bạn
+- KOSPI Fear & Greed Index threshold alerts
 - Cảnh báo tức thì khi chỉ số sợ hãi crypto đạt ngưỡng của bạn
 - Cài đặt ngưỡng trên và dưới có thể tùy chỉnh
 

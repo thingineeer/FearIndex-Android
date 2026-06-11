@@ -1,7 +1,10 @@
 Fear & Greed Index je aplikacija za analizo naložbenega razpoloženja, ki vam omogoča hkratno spremljanje Tržnega indeksa strahu in pohlepa ter Kriptovalutnega indeksa strahu in pohlepa. Sledite dvema ločenima indeksoma strahu skupaj z glavnimi tržnimi indeksi, da razumete množično psihologijo in sprejemate informirane naložbene odločitve.
 
-[Dva indeksa strahu in pohlepa]
+Dodan je KOSPI Fear & Greed Index.
+
+[Trije indeksi strahu in pohlepa]
 - Tržni indeks strahu in pohlepa: kazalnik razpoloženja tradicionalnih finančnih trgov
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Kriptovalutni indeks strahu in pohlepa: kazalnik razpoloženja trga kriptovalut
 - Primerjajte oba indeksa vzporedno, da razumete splošno tržno dinamiko
 
@@ -12,11 +15,6 @@ Fear & Greed Index je aplikacija za analizo naložbenega razpoloženja, ki vam o
 - Analiza trendov z zgodovinskimi grafi (1M / 3M / 6M / 1L)
 - Glavni tržni indeksi v realnem času (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Preklop med tržnim in kriptovalutnim indeksom z enim dotikom
-
-[Gradniki]
-- Gradniki začetnega zaslona: velikosti Majhna / Srednja / Velika
-- Gradniki zaklenjenega zaslona: ločeni prikazi za tržni in kriptovalutni indeks strahu
-- Preklop trg/kriptovalute znotraj gradnika
 
 [Potisna obvestila]
 - Takojšnja opozorila, ko tržni indeks strahu doseže vaš prag

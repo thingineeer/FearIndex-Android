@@ -1,7 +1,10 @@
 A Fear & Greed Index egy befektetési hangulatelemző alkalmazás, amely lehetővé teszi, hogy egy pillantással kövesse a piaci félelem- és mohóság-indexet (Market Fear & Greed Index) és a kriptó félelem- és mohóság-indexet (Crypto Fear & Greed Index). Kövesse nyomon mindkét félelem-indexet a főbb piaci indexekkel együtt, hogy megértse a tömegpszichológiát és megalapozott befektetési döntéseket hozzon.
 
-[Két félelem és mohóság index]
+Megérkezett a KOSPI Fear & Greed Index.
+
+[Három félelem és mohóság index]
 - Piaci félelem-index: Hangulat-indikátor a hagyományos pénzügyi piacokhoz
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Kriptó félelem-index: Hangulat-indikátor a kriptovaluta piachoz
 - Hasonlítsa össze mindkét indexet egymás mellett a piac átfogó dinamikájának megértéséhez
 
@@ -13,13 +16,9 @@ A Fear & Greed Index egy befektetési hangulatelemző alkalmazás, amely lehető
 - Főbb piaci indexek valós időben (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Egyérintéses váltás a piaci és kriptó indexek között
 
-[Widgetek]
-- Kezdőképernyő widgetek: Small / Medium / Large méretek
-- Zárolási képernyő widgetek: különálló kijelzők piaci és kriptó félelem-indexekhez
-- Piac/kriptó váltás a widgeteken belül
-
 [Push értesítések]
 - Azonnali riasztások, amikor a piaci félelem-index eléri a küszöbértékét
+- KOSPI Fear & Greed Index threshold alerts
 - Azonnali riasztások, amikor a kriptó félelem-index eléri a küszöbértékét
 - Testreszabható felső és alsó küszöbérték beállítások
 

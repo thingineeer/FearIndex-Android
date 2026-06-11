@@ -1,7 +1,10 @@
 Fear & Greed Index to aplikacja do analizy nastrojów inwestycyjnych, która pozwala śledzić zarówno rynkowy indeks strachu i chciwości (Market Fear & Greed Index), jak i kryptowalutowy indeks strachu i chciwości (Crypto Fear & Greed Index) na jednym ekranie. Śledź dwa różne indeksy strachu razem z głównymi indeksami rynkowymi, aby zrozumieć psychologię tłumu i podejmować świadome decyzje inwestycyjne.
 
-[Dwa indeksy strachu i chciwości]
+Dodano KOSPI Fear & Greed Index.
+
+[Trzy indeksy strachu i chciwości]
 - Rynkowy indeks strachu: Wskaźnik nastrojów dla tradycyjnych rynków finansowych
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Kryptoindeks strachu: Wskaźnik nastrojów dla rynku kryptowalut
 - Porównuj oba indeksy, aby rozumieć ogólną dynamikę rynku
 
@@ -13,13 +16,9 @@ Fear & Greed Index to aplikacja do analizy nastrojów inwestycyjnych, która poz
 - Główne indeksy rynkowe w czasie rzeczywistym (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Przełączanie jednym dotknięciem między indeksami rynkowymi i kryptowalutowymi
 
-[Widgety]
-- Widgety ekranu głównego: rozmiary Small / Medium / Large
-- Widgety ekranu blokady: oddzielne wyświetlacze dla rynkowych i krypto indeksów strachu
-- Przełącznik rynek/krypto wewnątrz widgetów
-
 [Powiadomienia Push]
 - Natychmiastowe alerty, gdy rynkowy indeks strachu osiągnie Twój próg
+- KOSPI Fear & Greed Index threshold alerts
 - Natychmiastowe alerty, gdy kryptoindeks strachu osiągnie Twój próg
 - Konfigurowalne ustawienia progu górnego i dolnego
 
