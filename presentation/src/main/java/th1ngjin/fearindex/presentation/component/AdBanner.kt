@@ -1,17 +1,16 @@
 package th1ngjin.fearindex.presentation.component
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
-import android.util.DisplayMetrics
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -19,13 +18,14 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
-import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
+import th1ngjin.fearindex.core.ads.AdRequestAvailability
+import th1ngjin.fearindex.presentation.di.AdsEntryPoint
 
 /**
  * AdMob Adaptive 배너 광고 컴포넌트.
  *
- * - `getCurrentOrientationAnchoredAdaptiveBannerAdSize`로 디바이스 폭에 맞게 자동 사이즈 결정
- *   → 320×50 고정보다 수익률 +20~40% (Google 권장)
+ * - 스크롤 콘텐츠 안에 배치되므로 inline adaptive banner 사용.
+ * - SDK에 전달하는 폭은 화면 전체가 아니라 실제 parent content 폭을 사용해 ad frame resize를 피한다.
  * - 단위 ID는 호출자가 명시 (`BuildConfig.ADMOB_BANNER_HOME` 등) — debug/release 분기는 BuildConfig가 담당
  * - Preview/스크린샷 모드에서는 빈 뷰 렌더링
  */
@@ -40,67 +40,61 @@ fun AdBanner(
     }
     // Play Store promo 스크린샷 촬영 모드 — `adb shell setprop debug.screenshot_mode 1` 으로 활성화.
     // 광고가 첨부된 promo 이미지는 AdMob 정책 위반 위험이 있어 명시적으로 숨긴다.
-    if (isScreenshotMode()) {
+    if (isAdScreenshotMode()) {
         return
     }
 
     val context = LocalContext.current
-    val analytics = remember(context) {
+    val adsEntryPoint = remember(context) {
         EntryPointAccessors
-            .fromApplication(context.applicationContext, AnalyticsEntryPoint::class.java)
-            .analyticsManager()
+            .fromApplication(context.applicationContext, AdsEntryPoint::class.java)
+    }
+    val analytics = remember(adsEntryPoint) {
+        adsEntryPoint.analyticsManager()
+    }
+    val remoteConfig = remember(adsEntryPoint) {
+        adsEntryPoint.remoteConfigManager()
+    }
+    val adsConfig by remoteConfig.adsConfig.collectAsStateWithLifecycle()
+    val canRequestAds by AdRequestAvailability.canRequestAds.collectAsStateWithLifecycle()
+    if (!canRequestAds || !adsConfig.adsEnabled || adUnitId.isBlank()) {
+        return
     }
 
-    AndroidView(
-        modifier = modifier.fillMaxWidth(),
-        factory = { ctx ->
-            AdView(ctx).apply {
-                setAdSize(adaptiveAdSize(ctx))
-                this.adUnitId = adUnitId
-                layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                )
-                adListener = object : AdListener() {
-                    override fun onAdLoaded() {
-                        analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
-                    }
+    BoxWithConstraints(modifier = modifier.fillMaxWidth()) {
+        val widthDp = bannerAdWidthDp(maxWidth.value) ?: return@BoxWithConstraints
+        val adSize = remember(context, widthDp) {
+            AdSize.getInlineAdaptiveBannerAdSize(widthDp, MAX_INLINE_BANNER_HEIGHT_DP)
+        }
 
-                    override fun onAdClicked() {
-                        analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
-                    }
+        AndroidView(
+            modifier = Modifier.fillMaxWidth(),
+            factory = { ctx ->
+                AdView(ctx).apply {
+                    setAdSize(adSize)
+                    this.adUnitId = adUnitId
+                    layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                    )
+                    adListener = object : AdListener() {
+                        override fun onAdLoaded() {
+                            analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
+                        }
 
-                    override fun onAdFailedToLoad(error: LoadAdError) {
-                        analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = error.message))
+                        override fun onAdClicked() {
+                            analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
+                        }
+
+                        override fun onAdFailedToLoad(error: LoadAdError) {
+                            analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = error.message))
+                        }
                     }
+                    loadAd(AdRequest.Builder().build())
                 }
-                loadAd(AdRequest.Builder().build())
-            }
-        },
-    )
-}
-
-private fun adaptiveAdSize(context: Context): AdSize {
-    val activity = context.findActivity()
-    val metrics = if (activity != null) {
-        DisplayMetrics().also { activity.windowManager.defaultDisplay.getMetrics(it) }
-    } else {
-        context.resources.displayMetrics
+            },
+        )
     }
-    val dpWidth = (metrics.widthPixels / metrics.density).toInt().coerceAtLeast(320)
-    return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, dpWidth)
 }
 
-private tailrec fun Context.findActivity(): Activity? = when (this) {
-    is Activity -> this
-    is ContextWrapper -> baseContext.findActivity()
-    else -> null
-}
-
-private fun isScreenshotMode(): Boolean = try {
-    val systemProperties = Class.forName("android.os.SystemProperties")
-    val get = systemProperties.getMethod("get", String::class.java, String::class.java)
-    (get.invoke(null, "debug.screenshot_mode", "0") as? String) == "1"
-} catch (e: Throwable) {
-    false
-}
+private const val MAX_INLINE_BANNER_HEIGHT_DP = 90
