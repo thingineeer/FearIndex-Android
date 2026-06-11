@@ -180,7 +180,6 @@ capture_app_screen() {
 
 TOTAL=${#LOCALES[@]}
 count=0
-prime_notification_settings
 
 for triplet in "${LOCALES[@]}"; do
   count=$((count+1))
@@ -193,20 +192,12 @@ for triplet in "${LOCALES[@]}"; do
 
   echo "=== ($count/$TOTAL) supply=$supply bcp=$bcp push=$push_lang ==="
 
-  # 0. locale 적용 (다음 cold-start에 반영)
+  # 0. 이전 locale notification/app state 제거 + locale 적용
   adb shell am force-stop $PKG < /dev/null
+  adb shell pm clear $PKG < /dev/null > /dev/null 2>&1 || true
   sleep 1
+  prime_notification_settings
   adb shell cmd locale set-app-locales $PKG --locales $bcp < /dev/null > /dev/null 2>&1 || true
-  sleep 1
-
-  # ────────────────────────────────────────────────────────────
-  # 1. Launcher + 푸시 banner peek (네이티브 언어)
-  # ────────────────────────────────────────────────────────────
-  capture_push_banner "$push_lang" "$dir/1_notification.png"
-
-  # banner 가 사라지길 기다린 후 home 으로 (5초면 모든 heads-up fade-out 끝남)
-  sleep 5
-  adb shell input keyevent KEYCODE_HOME < /dev/null
   sleep 1
 
   # ────────────────────────────────────────────────────────────
@@ -247,6 +238,12 @@ for triplet in "${LOCALES[@]}"; do
   dismiss_anr
   tap_kospi_notification_tab
   capture_app_screen "$dir/5_notification_settings.png"
+
+  # ────────────────────────────────────────────────────────────
+  # 1. Launcher + 푸시 banner peek (네이티브 언어)
+  #    앱 내부 화면을 먼저 찍고 마지막에 캡처해야 heads-up banner가 섞이지 않는다.
+  # ────────────────────────────────────────────────────────────
+  capture_push_banner "$push_lang" "$dir/1_notification.png"
 
   echo "  [$supply] 5 screenshots saved -> $dir"
 done
