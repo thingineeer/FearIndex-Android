@@ -200,7 +200,7 @@ capture_push_banner() {
   local title=$(jq -r --arg k "$push_lang" '.[$k].title // .en.title' "$PUSH_JSON")
   local body=$(jq -r --arg k "$push_lang" '.[$k].body  // .en.body'  "$PUSH_JSON")
   local base
-  base=$(mktemp /tmp/fearindex-launcher-base.XXXXXX.png)
+  base=$(mktemp /tmp/fearindex-launcher-base.XXXXXX)
 
   # 앱 백그라운드로 보낸 뒤 launcher 배경을 캡처하고, localized notification card 를 합성한다.
   # 실제 heads-up 은 emulator 상태/notification assistant 에 따라 suppressed 될 수 있어
