@@ -67,6 +67,7 @@ class VoteViewModel @Inject constructor(
     private var marketStreamJob: Job? = null
     private var kospiStreamJob: Job? = null
     private var cryptoStreamJob: Job? = null
+    private val startedStuckTypes = mutableSetOf<FearIndexType>()
 
     // ============================================================
     // Buy/Hold/Sell Vote
@@ -101,10 +102,6 @@ class VoteViewModel @Inject constructor(
         _myMarketStatus.value = observeStuckCounter.loadLocalStatus(FearIndexType.MARKET)
         _myKospiStatus.value = observeStuckCounter.loadLocalStatus(FearIndexType.KOSPI)
         _myCryptoStatus.value = observeStuckCounter.loadLocalStatus(FearIndexType.CRYPTO)
-        startStream(FearIndexType.MARKET)
-        startStream(FearIndexType.KOSPI)
-        startStream(FearIndexType.CRYPTO)
-        loadInitialStuckResults()
         viewModelScope.launch { debouncer.retryPendingIfNeeded() }
 
         // iOS v1.8.0 Vote 탭은 물림 카운터만 사용한다.
@@ -112,29 +109,19 @@ class VoteViewModel @Inject constructor(
         startCountdown()
     }
 
-    private fun loadInitialStuckResults() {
+    fun ensureStuckCounterStarted(indexType: FearIndexType) {
+        if (!startedStuckTypes.add(indexType)) return
+        startStream(indexType)
+        loadInitialStuckResult(indexType)
+    }
+
+    private fun loadInitialStuckResult(indexType: FearIndexType) {
         viewModelScope.launch {
             try {
-                val result = observeStuckCounter.fetchOnce(FearIndexType.MARKET)
-                _marketResult.value = result
+                val result = observeStuckCounter.fetchOnce(indexType)
+                updateStuckResult(indexType, result)
             } catch (e: Exception) {
-                Timber.e(e, "[VoteViewModel] 시장 물림 카운터 초기 로딩 실패")
-            }
-        }
-        viewModelScope.launch {
-            try {
-                val result = observeStuckCounter.fetchOnce(FearIndexType.KOSPI)
-                _kospiResult.value = result
-            } catch (e: Exception) {
-                Timber.e(e, "[VoteViewModel] 코스피 물림 카운터 초기 로딩 실패")
-            }
-        }
-        viewModelScope.launch {
-            try {
-                val result = observeStuckCounter.fetchOnce(FearIndexType.CRYPTO)
-                _cryptoResult.value = result
-            } catch (e: Exception) {
-                Timber.e(e, "[VoteViewModel] 암호화폐 물림 카운터 초기 로딩 실패")
+                Timber.e(e, "[VoteViewModel] 물림 카운터 초기 로딩 실패: $indexType")
             }
         }
     }
@@ -236,11 +223,7 @@ class VoteViewModel @Inject constructor(
             observeStuckCounter.stream(indexType)
                 .catch { e -> Timber.e(e, "[VoteViewModel] stream error: $indexType") }
                 .collect { result ->
-                    when (indexType) {
-                        FearIndexType.MARKET -> _marketResult.value = result
-                        FearIndexType.KOSPI -> _kospiResult.value = result
-                        FearIndexType.CRYPTO -> _cryptoResult.value = result
-                    }
+                    updateStuckResult(indexType, result)
                 }
         }
         when (indexType) {
@@ -253,6 +236,14 @@ class VoteViewModel @Inject constructor(
             FearIndexType.CRYPTO -> {
                 cryptoStreamJob?.cancel(); cryptoStreamJob = job
             }
+        }
+    }
+
+    private fun updateStuckResult(indexType: FearIndexType, result: StuckCounterResult) {
+        when (indexType) {
+            FearIndexType.MARKET -> _marketResult.value = result
+            FearIndexType.KOSPI -> _kospiResult.value = result
+            FearIndexType.CRYPTO -> _cryptoResult.value = result
         }
     }
 

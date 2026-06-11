@@ -40,6 +40,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.google.android.ump.UserMessagingPlatform
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.component.AdBanner
@@ -191,6 +192,7 @@ private fun shareApp(context: Context, message: String, chooserTitle: String) {
 }
 
 private fun openAdPrivacyOptions(context: Context) {
+    if (ScreenshotMode.isEnabled()) return
     val activity = context.findActivity() ?: return
     UserMessagingPlatform.showPrivacyOptionsForm(activity) { error ->
         error?.let { android.util.Log.w("FearIndexSettings", "UMP privacy options failed: ${it.message}") }

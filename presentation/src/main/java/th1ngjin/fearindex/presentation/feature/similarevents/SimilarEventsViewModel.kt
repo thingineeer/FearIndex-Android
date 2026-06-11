@@ -31,16 +31,17 @@ class SimilarEventsViewModel @Inject constructor(
     private val _cryptoResult = MutableStateFlow(SimilarEventsResult.EMPTY)
     val cryptoResult: StateFlow<SimilarEventsResult> = _cryptoResult.asStateFlow()
 
-    init {
-        observeType(FearIndexType.MARKET)
-        observeType(FearIndexType.KOSPI)
-        observeType(FearIndexType.CRYPTO)
-    }
+    private val observedTypes = mutableSetOf<FearIndexType>()
 
     fun resultFor(indexType: FearIndexType): StateFlow<SimilarEventsResult> = when (indexType) {
         FearIndexType.MARKET -> marketResult
         FearIndexType.KOSPI -> kospiResult
         FearIndexType.CRYPTO -> cryptoResult
+    }
+
+    fun ensureObserved(indexType: FearIndexType) {
+        if (!observedTypes.add(indexType)) return
+        observeType(indexType)
     }
 
     private fun observeType(indexType: FearIndexType) {
@@ -61,6 +62,7 @@ class SimilarEventsViewModel @Inject constructor(
      * 같은 (indexType, score) 조합은 1번만 호출 (Repository 내부 캐시).
      */
     fun triggerForScore(indexType: FearIndexType, score: Int) {
+        ensureObserved(indexType)
         viewModelScope.launch {
             repository.triggerCallable(indexType, score)
         }
