@@ -96,7 +96,7 @@
     <string name="stuck_percentage_label">Stuck rate</string>
     <string name="stuck_button_im_stuck">"🤙 I\'m stuck too"</string>
     <string name="stuck_button_im_safe">"✨ I\'m not stuck"</string>
-    <string name="stuck_footer_guide">"🤙 Tap a button to see how many are stuck in real time"</string>
+    <string name="stuck_footer_guide">"Optional: tap a choice to share your status; tap it again to cancel. Details are under ⓘ."</string>
 
     <!-- Stuck Detail Sheet -->
     <string name="common_done">Done</string>
@@ -310,6 +310,7 @@
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_feed_header_kospi">KOSPI Insights</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Shows score changes, similar past periods, historical returns, and community responses so the sentiment score has context.</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="stuck_total_responded">%1$d participants</string>
 </resources>

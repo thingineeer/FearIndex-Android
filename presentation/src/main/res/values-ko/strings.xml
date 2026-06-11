@@ -96,7 +96,7 @@
     <string name="stuck_percentage_label">물림 비율</string>
     <string name="stuck_button_im_stuck">"🤙 나도 물렸어요"</string>
     <string name="stuck_button_im_safe">"✨ 난 안 물렸어요"</string>
-    <string name="stuck_footer_guide">"🤙 버튼을 누르면 지금 몇 명이 물려있는지 실시간으로 볼 수 있어요"</string>
+    <string name="stuck_footer_guide">"선택은 필수가 아니에요. 버튼은 내 상태 공유용이고, 다시 누르면 취소돼요. ⓘ에서 상세를 볼 수 있어요"</string>
 
     <!-- 물림 응답 상세 시트 -->
     <string name="common_done">완료</string>
@@ -305,6 +305,7 @@
     <string name="insight_feed_header_market">시장 인사이트</string>
     <string name="insight_feed_header_kospi">코스피 인사이트</string>
     <string name="insight_feed_header_crypto">암호화폐 인사이트</string>
+    <string name="insight_feed_explainer">점수 변화, 비슷했던 과거 구간, 과거 수익률, 사용자 응답을 함께 보여줘 공포지수의 맥락을 설명합니다.</string>
     <string name="insight_teaser_detail_content_description">상세 보기</string>
     <string name="stuck_total_responded">%1$d명 참여</string>
 </resources>
