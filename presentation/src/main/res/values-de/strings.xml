@@ -93,7 +93,7 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="stuck_percentage_label">Stuck-Quote</string>
     <string name="stuck_button_im_stuck">"🤙 Ich sitze auch fest"</string>
     <string name="stuck_button_im_safe">"✨ Ich sitze nicht fest"</string>
-    <string name="stuck_footer_guide">"🤙 Tippen Sie auf eine Taste, um in Echtzeit zu sehen, wie viele feststecken"</string>
+    <string name="stuck_footer_guide">"Optional: Tippen Sie, um Ihren Status zu teilen; erneutes Tippen widerruft die Auswahl. Details unter ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Heutige Abstimmung</string>
@@ -281,6 +281,7 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="stuck_detail_title">Antwort-Details</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
     <string name="insight_feed_header_market">Market Insights</string>
+    <string name="insight_feed_explainer">Zeigt Score-Änderungen, ähnliche historische Phasen, Renditen und Community-Antworten als Kontext.</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
