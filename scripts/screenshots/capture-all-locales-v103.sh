@@ -30,6 +30,23 @@ INDEX_TAB_Y=242
 HOME_INDEX_TAB_Y=320
 NOTIFICATION_TAB_Y=672
 
+adb() {
+  python3 - "$@" <<'PY'
+import os
+import subprocess
+import sys
+
+timeout = int(os.environ.get("ADB_TIMEOUT_SECONDS", "8"))
+cmd = ["adb", *sys.argv[1:]]
+try:
+    completed = subprocess.run(cmd, timeout=timeout)
+    raise SystemExit(completed.returncode)
+except subprocess.TimeoutExpired:
+    print(f"adb timeout after {timeout}s: {' '.join(cmd)}", file=sys.stderr)
+    raise SystemExit(124)
+PY
+}
+
 adb shell settings put global hide_error_dialogs 1 < /dev/null > /dev/null
 adb shell setprop debug.screenshot_mode 1 < /dev/null > /dev/null
 
@@ -129,13 +146,18 @@ dismiss_system_overlays() {
   sleep 1
   adb shell input keyevent KEYCODE_BACK < /dev/null > /dev/null 2>&1 || true
   sleep 1
-  adb shell input keyevent KEYCODE_HOME < /dev/null
+  adb shell input keyevent KEYCODE_HOME < /dev/null > /dev/null 2>&1 || true
   sleep 1
 }
 
 start_app_for_capture() {
   dismiss_system_overlays
-  adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
+  if ! adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null; then
+    echo "  ! app start command failed; retrying" >&2
+    stop_app_process
+    dismiss_system_overlays
+    adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
+  fi
   if wait_for_app_ready; then
     return 0
   fi
@@ -330,11 +352,19 @@ capture_app_screen() {
 }
 
 TOTAL=${#LOCALES[@]}
+START_AT=${START_AT:-1}
+END_AT=${END_AT:-$TOTAL}
 count=0
 prime_notification_settings
 
 for triplet in "${LOCALES[@]}"; do
   count=$((count+1))
+  if [ "$count" -lt "$START_AT" ]; then
+    continue
+  fi
+  if [ "$count" -gt "$END_AT" ]; then
+    break
+  fi
   supply=$(echo $triplet | awk '{print $1}')
   bcp=$(echo $triplet | awk '{print $2}')
   push_lang=$(echo $triplet | awk '{print $3}')
@@ -390,4 +420,4 @@ for triplet in "${LOCALES[@]}"; do
   echo "  [$supply] 5 screenshots saved -> $dir"
 done
 
-echo "=== 완료 (locales=$TOTAL, screens=5, total=$((TOTAL*5))) ==="
+echo "=== 완료 (locales=$START_AT-$END_AT/$TOTAL, screens=5) ==="
