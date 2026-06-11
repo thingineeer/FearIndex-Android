@@ -28,6 +28,7 @@
     <string name="notification_push_description">공포지수가 설정한 임계값에 도달하면 알림을 받습니다.</string>
     <string name="notification_tab_market">시장</string>
     <string name="notification_tab_crypto">암호화폐</string>
+    <string name="notification_weekly_title">주간 리포트 알림</string>
     <string name="notification_market_title">시장 공포지수 알림</string>
     <string name="notification_crypto_title">암호화폐 공포지수 알림</string>
     <string name="notification_lower_label">하한 (공포)</string>
@@ -296,6 +297,7 @@
     <string name="settings_menu_rate">앱 평가하기</string>
     <string name="settings_menu_share">앱 공유하기</string>
     <string name="settings_menu_about">앱 정보</string>
+    <string name="settings_menu_ad_privacy">개인정보 선택</string>
     <string name="settings_menu_privacy">개인정보 처리방침</string>
     <string name="settings_about_version">Version %1$s</string>
 

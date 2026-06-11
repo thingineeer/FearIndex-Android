@@ -75,6 +75,7 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="notification_push_description">Få varsel når fryktindeksen når terskelen din.</string>
     <string name="notification_tab_market">Marked</string>
     <string name="notification_tab_crypto">Krypto</string>
+    <string name="notification_weekly_title">Ukentlige rapportvarsler</string>
     <string name="notification_market_title">Markedsfryktindeks-varsler</string>
     <string name="notification_crypto_title">Kryptofryktindeks-varsler</string>
     <string name="notification_lower_label">Nedre (Frykt)</string>
@@ -214,6 +215,7 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="settings_menu_notification">Varsler</string>
     <string name="settings_menu_privacy">Personvernpolicy</string>
     <string name="settings_menu_about">App-info</string>
+    <string name="settings_menu_ad_privacy">Personvernvalg</string>
     <string name="settings_menu_rate">Skriv en anmeldelse</string>
     <string name="settings_menu_share">Del appen</string>
     <string name="settings_about_version">Version %1$s</string>

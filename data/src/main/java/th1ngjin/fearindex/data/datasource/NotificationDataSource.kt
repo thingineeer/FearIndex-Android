@@ -2,8 +2,8 @@ package th1ngjin.fearindex.data.datasource
 
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
+import th1ngjin.fearindex.domain.entity.NotificationSettings
 import timber.log.Timber
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -20,15 +20,18 @@ import javax.inject.Singleton
 @Singleton
 class NotificationDataSource @Inject constructor(
     private val functions: FirebaseFunctions,
+    private val metadataProvider: NotificationClientMetadataProvider,
 ) {
 
-    suspend fun registerFCMToken(deviceId: String, fcmToken: String) {
+    suspend fun registerFCMToken(
+        deviceId: String,
+        fcmToken: String,
+        settings: NotificationSettings,
+    ) {
         val payload = mapOf(
             "deviceId" to deviceId,
             "fcmToken" to fcmToken,
-            "settings" to mapOf(
-                "language" to languageCode(),
-            ),
+            "settings" to settings.toPayload(metadataProvider.current()),
         )
         functions
             .getHttpsCallable("registerFCMToken")
@@ -39,29 +42,11 @@ class NotificationDataSource @Inject constructor(
 
     suspend fun updateSettings(
         deviceId: String,
-        notificationEnabled: Boolean,
-        lowerThreshold: Int,
-        upperThreshold: Int,
-        cryptoLowerThreshold: Int,
-        cryptoUpperThreshold: Int,
+        settings: NotificationSettings,
     ) {
-        // 클라이언트 레벨 클램핑 (iOS와 동일: lower 0~50, upper 50~100).
-        val clampedLower = lowerThreshold.coerceIn(0, 50)
-        val clampedUpper = upperThreshold.coerceIn(50, 100)
-        val clampedCryptoLower = cryptoLowerThreshold.coerceIn(0, 50)
-        val clampedCryptoUpper = cryptoUpperThreshold.coerceIn(50, 100)
-
         val payload = mapOf(
             "deviceId" to deviceId,
-            "settings" to mapOf(
-                "notificationEnabled" to notificationEnabled,
-                "lowerThreshold" to clampedLower,
-                "upperThreshold" to clampedUpper,
-                "cryptoLowerThreshold" to clampedCryptoLower,
-                "cryptoUpperThreshold" to clampedCryptoUpper,
-                "cryptoNotificationEnabled" to notificationEnabled,
-                "language" to languageCode(),
-            ),
+            "settings" to settings.toPayload(metadataProvider.current()),
         )
         functions
             .getHttpsCallable("updateNotificationSettings")
@@ -79,10 +64,30 @@ class NotificationDataSource @Inject constructor(
         Timber.d("Device unregistered: $deviceId")
     }
 
-    /**
-     * ISO 639-1 2자리 언어 코드 (iOS와 동일).
-     * iOS: `Locale.current.language.languageCode?.identifier ?? "en"`
-     */
-    private fun languageCode(): String =
-        Locale.getDefault().language.ifEmpty { "en" }
+    private fun NotificationSettings.toPayload(metadata: NotificationClientMetadata): Map<String, Any> =
+        mapOf(
+            "notificationEnabled" to notificationEnabled,
+            "globalNotificationEnabled" to globalNotificationEnabled,
+            "lowerThreshold" to marketLowerThreshold.clampLower(),
+            "upperThreshold" to marketUpperThreshold.clampUpper(),
+            "kospiNotificationEnabled" to kospiNotificationEnabled,
+            "kospiLowerThreshold" to kospiLowerThreshold.clampLower(),
+            "kospiUpperThreshold" to kospiUpperThreshold.clampUpper(),
+            "cryptoNotificationEnabled" to cryptoNotificationEnabled,
+            "cryptoLowerThreshold" to cryptoLowerThreshold.clampLower(),
+            "cryptoUpperThreshold" to cryptoUpperThreshold.clampUpper(),
+            "weeklyReportNotificationEnabled" to weeklyReportNotificationEnabled,
+        ) + metadata.toPayload()
+
+    private fun NotificationClientMetadata.toPayload(): Map<String, Any> =
+        mapOf(
+            "language" to language,
+            "platform" to platform,
+            "appVersion" to appVersion,
+            "buildNumber" to buildNumber,
+            "notificationSchemaVersion" to notificationSchemaVersion,
+        )
+
+    private fun Int.clampLower(): Int = coerceIn(0, 50)
+    private fun Int.clampUpper(): Int = coerceIn(51, 100)
 }

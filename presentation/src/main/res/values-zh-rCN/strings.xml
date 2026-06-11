@@ -76,6 +76,7 @@
     <string name="notification_push_description">当恐惧指数达到您设置的阈值时接收通知。</string>
     <string name="notification_tab_market">市场</string>
     <string name="notification_tab_crypto">加密货币</string>
+    <string name="notification_weekly_title">每周报告提醒</string>
     <string name="notification_market_title">市场恐惧指数提醒</string>
     <string name="notification_crypto_title">加密货币恐惧指数提醒</string>
     <string name="notification_lower_label">下限 (恐惧)</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">通知</string>
     <string name="settings_menu_privacy">隐私政策</string>
     <string name="settings_menu_about">应用信息</string>
+    <string name="settings_menu_ad_privacy">隐私选择</string>
     <string name="settings_menu_rate">撰写评论</string>
     <string name="settings_menu_share">分享应用</string>
     <string name="settings_about_version">Version %1$s</string>

@@ -80,6 +80,7 @@
     <string name="notification_push_description">รับการแจ้งเตือนเมื่อดัชนีความกลัวถึงค่าที่คุณตั้งไว้</string>
     <string name="notification_tab_market">ตลาด</string>
     <string name="notification_tab_crypto">คริปโต</string>
+    <string name="notification_weekly_title">การแจ้งเตือนรายงานรายสัปดาห์</string>
     <string name="notification_market_title">การแจ้งเตือนดัชนีความกลัวของตลาด</string>
     <string name="notification_crypto_title">การแจ้งเตือนดัชนีความกลัวของคริปโต</string>
     <string name="notification_lower_label">ค่าต่ำสุด (ความกลัว)</string>
@@ -217,6 +218,7 @@
     <string name="settings_menu_notification">การแจ้งเตือน</string>
     <string name="settings_menu_privacy">นโยบายความเป็นส่วนตัว</string>
     <string name="settings_menu_about">ข้อมูลแอป</string>
+    <string name="settings_menu_ad_privacy">ตัวเลือกความเป็นส่วนตัว</string>
     <string name="settings_menu_rate">เขียนรีวิว</string>
     <string name="settings_menu_share">แชร์แอป</string>
     <string name="settings_about_version">Version %1$s</string>

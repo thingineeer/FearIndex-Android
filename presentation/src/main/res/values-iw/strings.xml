@@ -76,6 +76,7 @@
     <string name="notification_push_description">קבל התראה כשמדד הפחד מגיע לסף שהגדרת.</string>
     <string name="notification_tab_market">שוק</string>
     <string name="notification_tab_crypto">קריפטו</string>
+    <string name="notification_weekly_title">התראות דיווח שבועיות</string>
     <string name="notification_market_title">התראות מדד פחד השוק</string>
     <string name="notification_crypto_title">התראות מדד פחד הקריפטו</string>
     <string name="notification_lower_label">תחתון (פחד)</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">התראות</string>
     <string name="settings_menu_privacy">מדיניות פרטיות</string>
     <string name="settings_menu_about">מידע על האפליקציה</string>
+    <string name="settings_menu_ad_privacy">אפשרויות פרטיות</string>
     <string name="settings_menu_rate">כתוב ביקורת</string>
     <string name="settings_menu_share">שתף אפליקציה</string>
     <string name="settings_about_version">Version %1$s</string>

@@ -75,6 +75,7 @@
     <string name="notification_push_description">Получайте уведомления, когда индекс страха достигает установленного порога.</string>
     <string name="notification_tab_market">Рынок</string>
     <string name="notification_tab_crypto">Криптовалюта</string>
+    <string name="notification_weekly_title">Еженедельные оповещения об отчетах</string>
     <string name="notification_market_title">Уведомления об индексе страха рынка</string>
     <string name="notification_crypto_title">Уведомления об индексе страха криптовалют</string>
     <string name="notification_lower_label">Нижний предел (Страх)</string>
@@ -214,6 +215,7 @@
     <string name="settings_menu_notification">Уведомления</string>
     <string name="settings_menu_privacy">Политика конфиденциальности</string>
     <string name="settings_menu_about">О приложении</string>
+    <string name="settings_menu_ad_privacy">Настройки конфиденциальности</string>
     <string name="settings_menu_rate">Оставить отзыв</string>
     <string name="settings_menu_share">Поделиться</string>
     <string name="settings_about_version">Version %1$s</string>

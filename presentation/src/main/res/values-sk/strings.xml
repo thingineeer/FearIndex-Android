@@ -75,6 +75,7 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="notification_push_description">Získajte upozornenie, keď index strachu dosiahne nastavený prah.</string>
     <string name="notification_tab_market">Trh</string>
     <string name="notification_tab_crypto">Kryptomeny</string>
+    <string name="notification_weekly_title">Upozornenia na týždenné správy</string>
     <string name="notification_market_title">Upozornenia indexu strachu trhu</string>
     <string name="notification_crypto_title">Upozornenia indexu strachu kryptomien</string>
     <string name="notification_lower_label">Dolný prah (Strach)</string>
@@ -214,6 +215,7 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="settings_menu_notification">Oznámenia</string>
     <string name="settings_menu_privacy">Zásady Ochrany Osobných Údajov</string>
     <string name="settings_menu_about">Informácie o Aplikácii</string>
+    <string name="settings_menu_ad_privacy">Voľby ochrany súkromia</string>
     <string name="settings_menu_rate">Napísať recenziu</string>
     <string name="settings_menu_share">Zdieľať aplikáciu</string>
     <string name="settings_about_version">Version %1$s</string>

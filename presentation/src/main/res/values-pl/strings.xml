@@ -75,6 +75,7 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="notification_push_description">Otrzymuj powiadomienia, gdy wskaźnik paniki osiągnie ustawiony próg.</string>
     <string name="notification_tab_market">Rynek</string>
     <string name="notification_tab_crypto">Kryptowaluty</string>
+    <string name="notification_weekly_title">Cotygodniowe alerty raportu</string>
     <string name="notification_market_title">Alerty wskaźnika paniki rynku</string>
     <string name="notification_crypto_title">Alerty wskaźnika paniki kryptowalut</string>
     <string name="notification_lower_label">Dolny próg (Panika)</string>
@@ -214,6 +215,7 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="settings_menu_notification">Powiadomienia</string>
     <string name="settings_menu_privacy">Polityka prywatności</string>
     <string name="settings_menu_about">Informacje o aplikacji</string>
+    <string name="settings_menu_ad_privacy">Wybory dotyczące prywatności</string>
     <string name="settings_menu_rate">Napisz recenzję</string>
     <string name="settings_menu_share">Udostępnij aplikację</string>
     <string name="settings_about_version">Version %1$s</string>

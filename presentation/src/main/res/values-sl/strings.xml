@@ -75,6 +75,7 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="notification_push_description">Prejmite obvestilo, ko indeks strahu doseže nastavljeni prag.</string>
     <string name="notification_tab_market">Trg</string>
     <string name="notification_tab_crypto">Kriptovalute</string>
+    <string name="notification_weekly_title">Tedenska opozorila o poročilih</string>
     <string name="notification_market_title">Opozorila indeksa strahu trga</string>
     <string name="notification_crypto_title">Opozorila indeksa strahu kriptovalut</string>
     <string name="notification_lower_label">Spodnji prag (Strah)</string>
@@ -214,6 +215,7 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="settings_menu_notification">Obvestila</string>
     <string name="settings_menu_privacy">Politika Zasebnosti</string>
     <string name="settings_menu_about">Informacije o Aplikaciji</string>
+    <string name="settings_menu_ad_privacy">Izbire zasebnosti</string>
     <string name="settings_menu_rate">Napišite oceno</string>
     <string name="settings_menu_share">Deli aplikacijo</string>
     <string name="settings_about_version">Version %1$s</string>

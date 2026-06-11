@@ -23,36 +23,35 @@ class NotificationRepositoryImplTest {
     @Test
     fun `registerFCMToken - DataSource에 deviceId+token 그대로 위임`() = runTest {
         val token = "fake-fcm-token-abc123"
+        val localSettings = NotificationSettings.DEFAULT.copy(notificationEnabled = false)
+        every { storage.load() } returns localSettings
 
         repository.registerFCMToken(deviceId, token)
 
-        coVerify(exactly = 1) { dataSource.registerFCMToken(deviceId, token) }
+        coVerify(exactly = 1) { dataSource.registerFCMToken(deviceId, token, localSettings) }
     }
 
     @Test
     fun `updateSettings - 로컬 저장 먼저 수행한 뒤 서버 동기화`() = runTest {
         val settings = NotificationSettings(
             notificationEnabled = true,
+            globalNotificationEnabled = false,
             marketLowerThreshold = 25,
             marketUpperThreshold = 75,
+            kospiNotificationEnabled = true,
+            kospiLowerThreshold = 30,
+            kospiUpperThreshold = 70,
+            cryptoNotificationEnabled = false,
             cryptoLowerThreshold = 30,
             cryptoUpperThreshold = 70,
+            weeklyReportNotificationEnabled = false,
         )
 
         repository.updateSettings(deviceId, settings)
 
         // 로컬 → 서버 순서 검증 (optimistic update)
         verify(exactly = 1) { storage.save(settings) }
-        coVerify(exactly = 1) {
-            dataSource.updateSettings(
-                deviceId = deviceId,
-                notificationEnabled = true,
-                lowerThreshold = 25,
-                upperThreshold = 75,
-                cryptoLowerThreshold = 30,
-                cryptoUpperThreshold = 70,
-            )
-        }
+        coVerify(exactly = 1) { dataSource.updateSettings(deviceId, settings) }
     }
 
     @Test
@@ -70,9 +69,9 @@ class NotificationRepositoryImplTest {
         val result = repository.getSettings(deviceId)
 
         assertEquals(cached, result)
-        coVerify(exactly = 0) { dataSource.registerFCMToken(any(), any()) }
+        coVerify(exactly = 0) { dataSource.registerFCMToken(any(), any(), any()) }
         coVerify(exactly = 0) {
-            dataSource.updateSettings(any(), any(), any(), any(), any(), any())
+            dataSource.updateSettings(any(), any())
         }
     }
 
@@ -84,7 +83,7 @@ class NotificationRepositoryImplTest {
 
         verify(exactly = 1) { storage.save(settings) }
         coVerify(exactly = 0) {
-            dataSource.updateSettings(any(), any(), any(), any(), any(), any())
+            dataSource.updateSettings(any(), any())
         }
     }
 
@@ -102,7 +101,7 @@ class NotificationRepositoryImplTest {
     fun `updateSettings - DataSource 실패해도 로컬은 이미 저장됨`() = runTest {
         val settings = NotificationSettings(notificationEnabled = true)
         coEvery {
-            dataSource.updateSettings(any(), any(), any(), any(), any(), any())
+            dataSource.updateSettings(any(), any())
         } throws RuntimeException("network failure")
 
         val ex = runCatching { repository.updateSettings(deviceId, settings) }.exceptionOrNull()

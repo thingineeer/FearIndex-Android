@@ -75,6 +75,7 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="notification_push_description">Kry kennisgewing wanneer die vreesindeks jou drempel bereik.</string>
     <string name="notification_tab_market">Mark</string>
     <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_weekly_title">Weeklikse Verslagwaarskuwings</string>
     <string name="notification_market_title">Mark Vreesindeks-waarskuwings</string>
     <string name="notification_crypto_title">Kripto Vreesindeks-waarskuwings</string>
     <string name="notification_lower_label">Onderste (Vrees)</string>
@@ -214,6 +215,7 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="settings_menu_notification">Kennisgewings</string>
     <string name="settings_menu_privacy">Privaatsheidsbeleid</string>
     <string name="settings_menu_about">App-inligting</string>
+    <string name="settings_menu_ad_privacy">Privaatheidkeuses</string>
     <string name="settings_menu_rate">Skryf resensie</string>
     <string name="settings_menu_share">Deel app</string>
     <string name="settings_about_version">Version %1$s</string>
