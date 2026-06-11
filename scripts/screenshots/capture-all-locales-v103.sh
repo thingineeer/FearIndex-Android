@@ -23,8 +23,10 @@ ACTIVITY=th1ngjin.fearindex.MainActivity
 RECEIVER=th1ngjin.fearindex.screenshot.ScreenshotPushReceiver
 ACTION=th1ngjin.fearindex.SCREENSHOT_PUSH
 KOSPI_TAB_X=540
-INDEX_TAB_Y=320
-NOTIFICATION_TAB_Y=620
+# 1080x2400 phone emulator 기준 uiautomator bounds:
+# index tabs [42,179][1038,305], notification tabs [42,609][1038,735].
+INDEX_TAB_Y=242
+NOTIFICATION_TAB_Y=672
 
 adb shell settings put global hide_error_dialogs 1 < /dev/null > /dev/null
 adb shell setprop debug.screenshot_mode 1 < /dev/null > /dev/null
