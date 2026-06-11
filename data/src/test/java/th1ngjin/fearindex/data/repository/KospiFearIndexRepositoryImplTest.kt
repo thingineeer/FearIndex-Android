@@ -6,6 +6,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Test
 import th1ngjin.fearindex.data.datasource.KospiFearIndexDataSource
 import th1ngjin.fearindex.data.dto.KospiHistoryDTO
@@ -30,7 +31,7 @@ class KospiFearIndexRepositoryImplTest {
             latest = createLatest(),
             history = listOf(
                 createHistory("2025-06-11", 75.8, 76),
-                createHistory("2026-05-12", 60.7, 61),
+                createHistory("2026-05-11", 60.7, 61),
                 createHistory("2026-06-04", 43.0, 43),
                 createHistory("2026-06-10", 47.1, 47),
             ),
@@ -48,6 +49,61 @@ class KospiFearIndexRepositoryImplTest {
         assertFalse(result.isFinal)
         coVerify(exactly = 1) { dataSource.fetchSnapshot(includeHistory = false, forceRefresh = true) }
         coVerify(exactly = 1) { dataSource.fetchSnapshot(includeHistory = true, forceRefresh = true) }
+    }
+
+    @Test
+    fun `fetchCurrent - 1개월 1년 anchor는 고정 일수가 아니라 calendar month year 기준이다`() = runTest {
+        coEvery { dataSource.fetchSnapshot(includeHistory = false, forceRefresh = false) } returns createResponse(
+            latest = createLatest(score = 32.1, intScore = 32, dataDate = "2026-06-11"),
+        )
+        coEvery { dataSource.fetchSnapshot(includeHistory = true, forceRefresh = false) } returns createResponse(
+            latest = createLatest(),
+            history = listOf(
+                createHistory("2025-06-11", 75.8, 76),
+                createHistory("2026-05-11", 60.7, 61),
+                createHistory("2026-05-12", 99.0, 99),
+                createHistory("2026-06-04", 43.0, 43),
+                createHistory("2026-06-10", 41.1, 41),
+            ),
+        )
+
+        val result = repository.fetchCurrent()
+
+        assertEquals(60.7, result.fearIndex.previous1Month!!, 0.01)
+        assertEquals(75.8, result.fearIndex.previous1Year!!, 0.01)
+    }
+
+    @Test
+    fun `fetchCurrent - 1년 anchor가 없으면 previous1Year는 null이다`() = runTest {
+        coEvery { dataSource.fetchSnapshot(includeHistory = false, forceRefresh = false) } returns createResponse(
+            latest = createLatest(score = 32.1, intScore = 32, dataDate = "2026-06-11"),
+        )
+        coEvery { dataSource.fetchSnapshot(includeHistory = true, forceRefresh = false) } returns createResponse(
+            latest = createLatest(),
+            history = listOf(
+                createHistory("2026-05-11", 60.7, 61),
+                createHistory("2026-06-10", 41.1, 41),
+            ),
+        )
+
+        val result = repository.fetchCurrent()
+
+        assertNull(result.fearIndex.previous1Year)
+    }
+
+    @Test
+    fun `fetchCurrent - history fetch 실패 시 previous1Year는 null이다`() = runTest {
+        coEvery { dataSource.fetchSnapshot(includeHistory = false, forceRefresh = false) } returns createResponse(
+            latest = createLatest(score = 32.1, intScore = 32, dataDate = "2026-06-11"),
+        )
+        coEvery { dataSource.fetchSnapshot(includeHistory = true, forceRefresh = false) } throws RuntimeException("history fail")
+
+        val result = repository.fetchCurrent()
+
+        assertEquals(32.1, result.fearIndex.previousClose!!, 0.01)
+        assertEquals(32.1, result.fearIndex.previous1Week!!, 0.01)
+        assertEquals(32.1, result.fearIndex.previous1Month!!, 0.01)
+        assertNull(result.fearIndex.previous1Year)
     }
 
     @Test(expected = IllegalStateException::class)

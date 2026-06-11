@@ -9,7 +9,10 @@ import th1ngjin.fearindex.domain.entity.KospiSignalScore
 import th1ngjin.fearindex.domain.entity.KospiSnapshotType
 import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
 import java.time.ZoneOffset
+import java.time.ZonedDateTime
 import kotlin.math.roundToInt
 
 @Serializable
@@ -44,9 +47,9 @@ data class KospiLatestDTO(
     val intScore: Int? = null,
     val snapshotType: String = "intraday",
     val isFinal: Boolean? = null,
-    val stale: Boolean = false,
+    val stale: Boolean? = null,
 ) {
-    fun toDomain(generatedAt: Instant): KospiFearIndex {
+    fun toDomain(generatedAt: Instant, now: Instant = Instant.now()): KospiFearIndex {
         val resolvedSnapshotType = KospiSnapshotType.from(snapshotType)
         val timestamp = parseMilliseconds(updatedAt) ?: parseDay(dataDate) ?: generatedAt
         val displayedScore = intScore ?: score.roundToInt()
@@ -62,7 +65,12 @@ data class KospiLatestDTO(
             ),
             snapshotType = resolvedSnapshotType,
             isFinal = isFinal ?: (resolvedSnapshotType == KospiSnapshotType.CLOSE),
-            isStale = stale,
+            isStale = stale ?: KospiStalenessResolver.isStale(
+                dataDate = dataDate,
+                updatedAt = updatedAt,
+                snapshotType = resolvedSnapshotType,
+                now = now,
+            ),
             dataDate = dataDate,
             generatedAt = generatedAt,
             confidence = KospiConfidence.from(confidence),
@@ -128,3 +136,41 @@ private fun parseDay(value: String): Instant? =
 
 private fun parseMilliseconds(value: Double): Instant? =
     if (value > 0) Instant.ofEpochMilli(value.toLong()) else null
+
+private object KospiStalenessResolver {
+    private val kstZone: ZoneId = ZoneId.of("Asia/Seoul")
+    private val regularOpen: LocalTime = LocalTime.of(9, 0)
+    private val regularClose: LocalTime = LocalTime.of(15, 20)
+    private const val INTRADAY_STALL_SECONDS = 2 * 60 * 60L
+
+    fun isStale(
+        dataDate: String,
+        updatedAt: Double,
+        snapshotType: KospiSnapshotType,
+        now: Instant,
+    ): Boolean {
+        val kstNow = now.atZone(kstZone)
+        if (dataDate.isBlank()) return true
+        if (isKstWeekday(kstNow) && !kstNow.toLocalTime().isBefore(regularOpen) &&
+            dataDate != kstNow.toLocalDate().toString()
+        ) {
+            return true
+        }
+        if (snapshotType != KospiSnapshotType.INTRADAY || !isKstRegularSession(kstNow)) {
+            return false
+        }
+        val updatedAtInstant = parseMilliseconds(updatedAt) ?: return false
+        return now.epochSecond - updatedAtInstant.epochSecond > INTRADAY_STALL_SECONDS
+    }
+
+    private fun isKstRegularSession(kst: ZonedDateTime): Boolean {
+        if (!isKstWeekday(kst)) return false
+        val time = kst.toLocalTime()
+        return !time.isBefore(regularOpen) && !time.isAfter(regularClose)
+    }
+
+    private fun isKstWeekday(kst: ZonedDateTime): Boolean {
+        val value = kst.dayOfWeek.value
+        return value in 1..5
+    }
+}

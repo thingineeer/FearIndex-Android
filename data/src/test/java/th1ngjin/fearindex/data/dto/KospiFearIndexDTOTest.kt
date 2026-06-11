@@ -3,6 +3,7 @@ package th1ngjin.fearindex.data.dto
 import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.KospiCluster
@@ -34,6 +35,23 @@ class KospiFearIndexDTOTest {
         assertEquals(KospiCluster.PRICE, result.signals.first().cluster)
         assertEquals(44.0, result.clusterScores[KospiCluster.PRICE]!!, 0.01)
         assertEquals(null, result.clusterScores[KospiCluster.CREDIT])
+    }
+
+    @Test
+    fun `decode - stale 필드가 없으면 KST 장중 staleness fallback을 적용한다`() {
+        val response = json.decodeFromString<KospiPublicSnapshotResponse>(
+            snapshotJson(
+                dataDate = "2026-06-10",
+                includeStale = false,
+            ),
+        )
+
+        val result = response.latest!!.toDomain(
+            generatedAt = response.generatedAtInstant,
+            now = Instant.parse("2026-06-11T01:30:00Z"),
+        )
+
+        assertTrue(result.isStale)
     }
 
     @Test
@@ -94,10 +112,13 @@ class KospiFearIndexDTOTest {
         confidence: String = "high",
         snapshotType: String = "intraday",
         signalCluster: String = "price",
+        dataDate: String = "2026-06-11",
+        includeStale: Boolean = true,
         historyJson: String = defaultHistoryJson,
         chartHistoryJson: String? = null,
     ): String {
         val chartHistory = chartHistoryJson?.let { ""","chartHistory":$it""" } ?: ""
+        val stale = if (includeStale) ""","stale": false""" else ""
         return """
         {
           "version": 2,
@@ -114,12 +135,12 @@ class KospiFearIndexDTOTest {
             "clusterDivergence": 6.7,
             "updatedAt": 1781139607154,
             "dataSource": "kis_ecos_v2",
-            "date": "2026-06-11",
-            "dataDate": "2026-06-11",
+            "date": "$dataDate",
+            "dataDate": "$dataDate",
             "intScore": 45,
             "snapshotType": "$snapshotType",
-            "isFinal": false,
-            "stale": false
+            "isFinal": false
+            $stale
           },
           "history": $historyJson
           $chartHistory
