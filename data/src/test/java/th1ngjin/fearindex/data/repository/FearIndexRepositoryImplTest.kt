@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.data.repository
 
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
@@ -11,6 +12,7 @@ import th1ngjin.fearindex.data.dto.CNNFearGreedResponse
 import th1ngjin.fearindex.data.dto.FearAndGreedDTO
 import th1ngjin.fearindex.data.dto.FearAndGreedHistoricalDTO
 import th1ngjin.fearindex.data.dto.HistoricalDataPointDTO
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.domain.entity.FearIndex
 
 class FearIndexRepositoryImplTest {
@@ -135,6 +137,21 @@ class FearIndexRepositoryImplTest {
         repository.fetchHistory(days = 180, forceRefresh = true)
 
         // 검증: forceRefresh=true로 호출됨 (coEvery에서 매칭)
+    }
+
+    @Test
+    fun `screenshot mode - network 없이 fixture를 반환`() = runTest {
+        ScreenshotMode.setOverrideForTesting(true)
+        try {
+            val current = repository.fetchCurrent()
+            val history = repository.fetchHistory(days = 5)
+
+            assertEquals(27.0, current.score, 0.01)
+            assertEquals(5, history.size)
+            coVerify(exactly = 0) { dataSource.fetchCurrent(any(), any()) }
+        } finally {
+            ScreenshotMode.setOverrideForTesting(null)
+        }
     }
 
     private fun createResponse(

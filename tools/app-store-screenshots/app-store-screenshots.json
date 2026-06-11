@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 2,
+  "appName": "FearIndex",
+  "themeId": "ocean-fresh",
+  "connectedCanvas": false,
+  "locales": [
+    "en",
+    "ko"
+  ],
+  "locale": "en",
+  "device": "feature-graphic",
+  "orientation": "portrait",
+  "appIcon": "/app-icon.png",
+  "slidesByDevice": {
+    "iphone": [],
+    "android": [
+      {
+        "id": "phone-home",
+        "layout": "hero",
+        "label": {
+          "en": "MARKET FEAR",
+          "ko": "시장 공포"
+        },
+        "headline": {
+          "en": "Read market fear\nat a glance.",
+          "ko": "시장 심리를\n한눈에 확인하세요."
+        },
+        "screenshot": "/screenshots/android/phone/{locale}/2_home.png"
+      },
+      {
+        "id": "phone-kospi",
+        "layout": "device-bottom",
+        "label": {
+          "en": "KOSPI ADDED",
+          "ko": "코스피 추가"
+        },
+        "headline": {
+          "en": "Track KOSPI fear\nbeside global markets.",
+          "ko": "코스피 공포지수를\n글로벌 시장과 함께."
+        },
+        "screenshot": "/screenshots/android/phone/{locale}/3_chart.png",
+        "inverted": true
+      },
+      {
+        "id": "phone-vote",
+        "layout": "two-devices",
+        "label": {
+          "en": "COMMUNITY SIGNAL",
+          "ko": "투표 신호"
+        },
+        "headline": {
+          "en": "See how many investors\nfeel stuck.",
+          "ko": "물린 투자자들의\n체감 심리를 확인하세요."
+        },
+        "screenshot": "/screenshots/android/phone/{locale}/4_vote.png",
+        "screenshotSecondary": "/screenshots/android/phone/{locale}/2_home.png"
+      },
+      {
+        "id": "phone-alerts",
+        "layout": "device-top",
+        "label": {
+          "en": "THRESHOLD ALERTS",
+          "ko": "임계값 알림"
+        },
+        "headline": {
+          "en": "Set alerts for fear,\ngreed, crypto and KOSPI.",
+          "ko": "공포, 탐욕, 암호화폐,\n코스피 알림을 설정하세요."
+        },
+        "screenshot": "/screenshots/android/phone/{locale}/5_notification_settings.png"
+      },
+      {
+        "id": "phone-push",
+        "layout": "device-bottom",
+        "label": {
+          "en": "FAST NOTICES",
+          "ko": "빠른 알림"
+        },
+        "headline": {
+          "en": "Catch major sentiment\nmoves as they happen.",
+          "ko": "중요한 심리 변화를\n놓치지 마세요."
+        },
+        "screenshot": "/screenshots/android/phone/{locale}/1_notification.png",
+        "inverted": true
+      }
+    ],
+    "ipad": [],
+    "android-7": [
+      {
+        "id": "tablet7-home",
+        "layout": "hero",
+        "label": {
+          "en": "MARKET FEAR",
+          "ko": "시장 공포"
+        },
+        "headline": {
+          "en": "Read market fear\nat a glance.",
+          "ko": "시장 심리를\n한눈에 확인하세요."
+        },
+        "screenshot": "/screenshots/android/tablet7/{locale}/2_home.png"
+      },
+      {
+        "id": "tablet7-kospi",
+        "layout": "device-bottom",
+        "label": {
+          "en": "KOSPI ADDED",
+          "ko": "코스피 추가"
+        },
+        "headline": {
+          "en": "Track KOSPI fear\nbeside global markets.",
+          "ko": "코스피 공포지수를\n글로벌 시장과 함께."
+        },
+        "screenshot": "/screenshots/android/tablet7/{locale}/3_chart.png",
+        "inverted": true
+      },
+      {
+        "id": "tablet7-vote",
+        "layout": "two-devices",
+        "label": {
+          "en": "COMMUNITY SIGNAL",
+          "ko": "투표 신호"
+        },
+        "headline": {
+          "en": "See how many investors\nfeel stuck.",
+          "ko": "물린 투자자들의\n체감 심리를 확인하세요."
+        },
+        "screenshot": "/screenshots/android/tablet7/{locale}/4_vote.png",
+        "screenshotSecondary": "/screenshots/android/tablet7/{locale}/2_home.png"
+      },
+      {
+        "id": "tablet7-push",
+        "layout": "device-top",
+        "label": {
+          "en": "THRESHOLD ALERTS",
+          "ko": "임계값 알림"
+        },
+        "headline": {
+          "en": "Set KOSPI and crypto\nthreshold alerts.",
+          "ko": "코스피와 암호화폐\n임계값 알림을 설정하세요."
+        },
+        "screenshot": "/screenshots/android/tablet7/{locale}/1_notification.png"
+      }
+    ],
+    "android-10": [
+      {
+        "id": "tablet10-home",
+        "layout": "hero",
+        "label": {
+          "en": "MARKET FEAR",
+          "ko": "시장 공포"
+        },
+        "headline": {
+          "en": "Read market fear\nat a glance.",
+          "ko": "시장 심리를\n한눈에 확인하세요."
+        },
+        "screenshot": "/screenshots/android/tablet10/{locale}/2_home.png"
+      },
+      {
+        "id": "tablet10-kospi",
+        "layout": "device-bottom",
+        "label": {
+          "en": "KOSPI ADDED",
+          "ko": "코스피 추가"
+        },
+        "headline": {
+          "en": "Track KOSPI fear\nbeside global markets.",
+          "ko": "코스피 공포지수를\n글로벌 시장과 함께."
+        },
+        "screenshot": "/screenshots/android/tablet10/{locale}/3_chart.png",
+        "inverted": true
+      },
+      {
+        "id": "tablet10-vote",
+        "layout": "two-devices",
+        "label": {
+          "en": "COMMUNITY SIGNAL",
+          "ko": "투표 신호"
+        },
+        "headline": {
+          "en": "See how many investors\nfeel stuck.",
+          "ko": "물린 투자자들의\n체감 심리를 확인하세요."
+        },
+        "screenshot": "/screenshots/android/tablet10/{locale}/4_vote.png",
+        "screenshotSecondary": "/screenshots/android/tablet10/{locale}/2_home.png"
+      },
+      {
+        "id": "tablet10-push",
+        "layout": "device-top",
+        "label": {
+          "en": "THRESHOLD ALERTS",
+          "ko": "임계값 알림"
+        },
+        "headline": {
+          "en": "Set KOSPI and crypto\nthreshold alerts.",
+          "ko": "코스피와 암호화폐\n임계값 알림을 설정하세요."
+        },
+        "screenshot": "/screenshots/android/tablet10/{locale}/1_notification.png"
+      }
+    ],
+    "feature-graphic": [
+      {
+        "id": "feature-graphic",
+        "layout": "feature-graphic",
+        "label": {},
+        "headline": {
+          "en": "Market fear, KOSPI and crypto sentiment in one view.",
+          "ko": "시장 공포, 코스피, 암호화폐 심리를 한눈에."
+        },
+        "screenshot": ""
+      }
+    ]
+  }
+}

@@ -8,6 +8,7 @@ import io.mockk.verify
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.data.datasource.NotificationDataSource
 import th1ngjin.fearindex.data.storage.NotificationStorage
 import th1ngjin.fearindex.domain.entity.NotificationSettings
@@ -95,6 +96,25 @@ class NotificationRepositoryImplTest {
         val result = repository.loadSettingsLocal()
 
         assertEquals(cached, result)
+    }
+
+    @Test
+    fun `screenshot mode - 서버 동기화는 건너뛰고 로컬 저장만 수행`() = runTest {
+        ScreenshotMode.setOverrideForTesting(true)
+        val settings = NotificationSettings(notificationEnabled = true)
+
+        try {
+            repository.registerFCMToken(deviceId, "token")
+            repository.updateSettings(deviceId, settings)
+            repository.unregisterDevice(deviceId)
+
+            verify(exactly = 1) { storage.save(settings) }
+            coVerify(exactly = 0) { dataSource.registerFCMToken(any(), any(), any()) }
+            coVerify(exactly = 0) { dataSource.updateSettings(any(), any()) }
+            coVerify(exactly = 0) { dataSource.unregisterDevice(any()) }
+        } finally {
+            ScreenshotMode.setOverrideForTesting(null)
+        }
     }
 
     @Test

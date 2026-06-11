@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.data.repository
 
 import th1ngjin.fearindex.data.datasource.KospiFearIndexDataSource
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.KospiFearIndex
 import th1ngjin.fearindex.domain.repository.KospiFearIndexRepository
@@ -16,6 +17,8 @@ class KospiFearIndexRepositoryImpl @Inject constructor(
 ) : KospiFearIndexRepository {
 
     override suspend fun fetchCurrent(forceRefresh: Boolean): KospiFearIndex {
+        if (ScreenshotMode.isEnabled()) return ScreenshotFixtures.kospiCurrent()
+
         val response = dataSource.fetchSnapshot(includeHistory = false, forceRefresh = forceRefresh)
         val latest = response.latest ?: throw IllegalStateException("KOSPI latest snapshot missing")
         val current = latest.toDomain(response.generatedAtInstant)
@@ -26,6 +29,10 @@ class KospiFearIndexRepositoryImpl @Inject constructor(
 
     override suspend fun fetchHistory(days: Int, forceRefresh: Boolean): List<FearIndex> {
         if (days <= 0) return emptyList()
+        if (ScreenshotMode.isEnabled()) {
+            return ScreenshotFixtures.history(days = days, center = 42.0, amplitude = 21.0)
+        }
+
         val response = dataSource.fetchSnapshot(includeHistory = true, forceRefresh = forceRefresh)
         return response.chartHistoryForDisplay
             .map { it.toDomain() }

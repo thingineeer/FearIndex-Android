@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,15 +22,17 @@ import javax.inject.Singleton
  */
 @Singleton
 class AnalyticsManager @Inject constructor() {
-    private val firebase: FirebaseAnalytics = Firebase.analytics
+    private val firebase: FirebaseAnalytics by lazy { Firebase.analytics }
 
     fun log(event: AnalyticsEvent) {
+        if (ScreenshotMode.isEnabled()) return
         val bundle = event.parameters?.toBundle()
         firebase.logEvent(event.name, bundle)
         Timber.tag(TAG).d("event=%s params=%s", event.name, event.parameters ?: "{}")
     }
 
     fun logScreen(screen: AnalyticsScreen) {
+        if (ScreenshotMode.isEnabled()) return
         val bundle = Bundle().apply {
             putString(FirebaseAnalytics.Param.SCREEN_NAME, screen.screenName)
             putString(FirebaseAnalytics.Param.SCREEN_CLASS, screen.screenClass)
@@ -39,11 +42,13 @@ class AnalyticsManager @Inject constructor() {
     }
 
     fun setUserProperty(name: String, value: String?) {
+        if (ScreenshotMode.isEnabled()) return
         firebase.setUserProperty(name, value)
         Timber.tag(TAG).d("userProperty %s=%s", name, value)
     }
 
     fun setAnalyticsCollectionEnabled(enabled: Boolean) {
+        if (ScreenshotMode.isEnabled()) return
         firebase.setAnalyticsCollectionEnabled(enabled)
     }
 

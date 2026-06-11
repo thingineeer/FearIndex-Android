@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.tasks.await
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -28,36 +29,43 @@ import javax.inject.Singleton
 @Singleton
 class RemoteConfigManager @Inject constructor() {
 
-    private val config = Firebase.remoteConfig
-    private val _adsConfig = MutableStateFlow(currentAdsConfig())
+    private val screenshotMode = ScreenshotMode.isEnabled()
+    private val config by lazy { Firebase.remoteConfig }
+    private val _adsConfig = MutableStateFlow(defaultAdsConfig())
     val adsConfig: StateFlow<AdsRemoteConfig> = _adsConfig.asStateFlow()
 
     init {
-        val settings = remoteConfigSettings {
-            // Debug/staging에서는 즉시 반영, release는 1시간 캐시.
-            minimumFetchIntervalInSeconds = 3600
-        }
-        config.setConfigSettingsAsync(settings)
-        config.setDefaultsAsync(
-            mapOf(
-                Keys.ADS_ENABLED to false,
-                Keys.INTERSTITIAL_ADS_ENABLED to false,
-                Keys.INTERSTITIAL_SESSION_CAP to 0,
-                Keys.INTERSTITIAL_COOLDOWN_SEC to 180,
-                Keys.KOSPI_INTERSTITIAL_ENABLED to false,
-                Keys.VOTE_ENABLED to true,
-            ),
-        ).addOnCompleteListener {
-            _adsConfig.value = currentAdsConfig()
+        if (!screenshotMode) {
+            val settings = remoteConfigSettings {
+                // Debug/staging에서는 즉시 반영, release는 1시간 캐시.
+                minimumFetchIntervalInSeconds = 3600
+            }
+            config.setConfigSettingsAsync(settings)
+            config.setDefaultsAsync(
+                mapOf(
+                    Keys.ADS_ENABLED to false,
+                    Keys.INTERSTITIAL_ADS_ENABLED to false,
+                    Keys.INTERSTITIAL_SESSION_CAP to 0,
+                    Keys.INTERSTITIAL_COOLDOWN_SEC to 180,
+                    Keys.KOSPI_INTERSTITIAL_ENABLED to false,
+                    Keys.VOTE_ENABLED to true,
+                ),
+            ).addOnCompleteListener {
+                _adsConfig.value = currentAdsConfig()
+            }
         }
     }
 
-    suspend fun fetchAndActivate(): Boolean = runCatching {
-        config.fetchAndActivate().await()
-    }.onFailure {
-        Timber.tag(TAG).w(it, "Remote Config fetch 실패")
-    }.getOrDefault(false).also {
-        _adsConfig.value = currentAdsConfig()
+    suspend fun fetchAndActivate(): Boolean {
+        if (screenshotMode) return false
+
+        return runCatching {
+            config.fetchAndActivate().await()
+        }.onFailure {
+            Timber.tag(TAG).w(it, "Remote Config fetch 실패")
+        }.getOrDefault(false).also {
+            _adsConfig.value = currentAdsConfig()
+        }
     }
 
     val adsEnabled: Boolean get() = adsConfig.value.adsEnabled
@@ -67,15 +75,28 @@ class RemoteConfigManager @Inject constructor() {
     val interstitialCooldownMillis: Long
         get() = adsConfig.value.interstitialCooldownMillis
     val kospiInterstitialEnabled: Boolean get() = adsConfig.value.kospiInterstitialEnabled
-    val voteEnabled: Boolean get() = config.getBoolean(Keys.VOTE_ENABLED)
+    val voteEnabled: Boolean get() = if (screenshotMode) true else config.getBoolean(Keys.VOTE_ENABLED)
 
     private fun currentAdsConfig(): AdsRemoteConfig =
+        if (screenshotMode) {
+            defaultAdsConfig()
+        } else {
+            AdsRemoteConfig(
+                adsEnabled = config.getBoolean(Keys.ADS_ENABLED),
+                interstitialAdsEnabled = config.getBoolean(Keys.INTERSTITIAL_ADS_ENABLED),
+                interstitialSessionCap = config.getLong(Keys.INTERSTITIAL_SESSION_CAP).toInt().coerceAtLeast(0),
+                interstitialCooldownMillis = config.getLong(Keys.INTERSTITIAL_COOLDOWN_SEC).coerceAtLeast(0L) * 1_000L,
+                kospiInterstitialEnabled = config.getBoolean(Keys.KOSPI_INTERSTITIAL_ENABLED),
+            )
+        }
+
+    private fun defaultAdsConfig(): AdsRemoteConfig =
         AdsRemoteConfig(
-            adsEnabled = config.getBoolean(Keys.ADS_ENABLED),
-            interstitialAdsEnabled = config.getBoolean(Keys.INTERSTITIAL_ADS_ENABLED),
-            interstitialSessionCap = config.getLong(Keys.INTERSTITIAL_SESSION_CAP).toInt().coerceAtLeast(0),
-            interstitialCooldownMillis = config.getLong(Keys.INTERSTITIAL_COOLDOWN_SEC).coerceAtLeast(0L) * 1_000L,
-            kospiInterstitialEnabled = config.getBoolean(Keys.KOSPI_INTERSTITIAL_ENABLED),
+            adsEnabled = false,
+            interstitialAdsEnabled = false,
+            interstitialSessionCap = 0,
+            interstitialCooldownMillis = 180_000L,
+            kospiInterstitialEnabled = false,
         )
 
     object Keys {

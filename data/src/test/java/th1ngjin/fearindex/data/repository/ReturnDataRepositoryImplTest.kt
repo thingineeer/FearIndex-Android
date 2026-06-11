@@ -8,6 +8,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertSame
 import org.junit.Test
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.data.datasource.ReturnDataSource
 import th1ngjin.fearindex.data.datasource.ReturnDataSourceException
 import th1ngjin.fearindex.data.dto.HistoricalReturnsDTO
@@ -103,6 +104,20 @@ class ReturnDataRepositoryImplTest {
         assertEquals(7, result.historicalEvents.size)
         assertEquals(22, result.dataPoints.first { it.score == 50 }.sampleCount)
         assertEquals("kospi-tariff-2025", result.historicalEvents[1].id)
+    }
+
+    @Test
+    fun `screenshot mode - Firestore 없이 DefaultReturnData를 반환한다`() = runTest {
+        ScreenshotMode.setOverrideForTesting(true)
+
+        try {
+            val result = repository.fetch(FearIndexType.KOSPI)
+
+            assertSame(DefaultReturnData.kospi, result)
+            coVerify(exactly = 0) { dataSource.fetch(any()) }
+        } finally {
+            ScreenshotMode.setOverrideForTesting(null)
+        }
     }
 
     @Test

@@ -129,7 +129,9 @@ class HomeViewModelTest {
 
     @Test
     fun `IOException 시 marketState는 Error`() = runTest {
-        coEvery { getFearIndex(any()) } throws IOException("Network error")
+        coEvery { getFearIndex(any()) } throws IOException(
+            "Unable to resolve host \"production.dataviz.cnn.io\": No address associated with hostname",
+        )
         coEvery { getFearIndexHistory(any(), any()) } returns emptyList()
         coEvery { getCryptoFearIndex(any()) } returns createFearIndex(50.0)
         coEvery { getCryptoFearIndexHistory(any(), any()) } returns emptyList()
@@ -142,7 +144,8 @@ class HomeViewModelTest {
 
         val state = viewModel.uiState.value.marketState
         assertTrue(state is FearIndexState.Error)
-        assertEquals("Network error", (state as FearIndexState.Error).message)
+        assertEquals(HomeViewModel.NETWORK_ERROR_MESSAGE, (state as FearIndexState.Error).message)
+        assertTrue(!state.message.contains("production.dataviz.cnn.io"))
     }
 
     @Test
