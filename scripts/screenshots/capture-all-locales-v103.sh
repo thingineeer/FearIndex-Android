@@ -165,9 +165,9 @@ capture_push_banner() {
   # 알림 발사 (single-string 으로 한국어/공백 escape)
   adb shell "am broadcast -n $PKG/$RECEIVER -a $ACTION --es title '$title' --es body '$body'" \
     < /dev/null > /dev/null
-  # peek banner 가 떠있는 0.7초 윈도우에 캡처
-  # 실측 (cold-start scenario): 0.4-0.5s = banner 미아직, 0.7s = 깨끗, 1.0s = fade-out 시작
-  python3 -c "import time; time.sleep(0.7)" < /dev/null
+  # peek banner 가 안정적으로 올라온 뒤 캡처
+  # 실측 (app 화면 캡처 후 scenario): 0.7s = banner 미표시, 1.5s = 깨끗.
+  python3 -c "import time; time.sleep(1.5)" < /dev/null
   adb exec-out screencap -p > "$out"
   dismiss_heads_up_banner
 }
