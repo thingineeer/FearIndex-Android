@@ -134,6 +134,11 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     // SimilarEvents 실시간 구독
     val similarEventsResult by similarEventsViewModel.resultFor(selectedType).collectAsState()
 
+    LaunchedEffect(selectedType) {
+        voteViewModel.ensureStuckCounterStarted(selectedType)
+        similarEventsViewModel.ensureObserved(selectedType)
+    }
+
     // Firestore 문서가 없을 경우 Callable Function으로 캐시 생성 트리거
     val loadedScoreForTrigger = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore
     LaunchedEffect(selectedType, loadedScoreForTrigger) {
@@ -263,8 +268,9 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         Spacer(modifier = Modifier.height(12.dp))
 
         // 3. Ticker (auto-rotating market index bar)
-        if (uiState.marketIndices.isNotEmpty()) {
-            TickerView(indices = uiState.marketIndices)
+        val tickerIndices = tickerIndicesFor(selectedType, uiState.marketIndices)
+        if (tickerIndices.isNotEmpty()) {
+            TickerView(indices = tickerIndices)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -371,13 +377,16 @@ private fun TickerView(
 ) {
     var currentIndex by remember { mutableIntStateOf(0) }
 
-    LaunchedEffect(indices.size) {
+    LaunchedEffect(indices) {
         if (indices.isEmpty()) return@LaunchedEffect
+        currentIndex = 0
         while (true) {
             delay(3_000)
             currentIndex = (currentIndex + 1) % indices.size
         }
     }
+
+    val safeCurrentIndex = currentIndex.coerceIn(0, indices.lastIndex)
 
     Box(
         modifier = modifier
@@ -388,11 +397,11 @@ private fun TickerView(
         contentAlignment = Alignment.Center,
     ) {
         AnimatedContent(
-            targetState = currentIndex,
+            targetState = safeCurrentIndex,
             transitionSpec = { fadeIn() togetherWith fadeOut() },
             label = "ticker_rotation",
         ) { index ->
-            val item = indices[index]
+            val item = indices[index.coerceIn(0, indices.lastIndex)]
             val priceFormatted = formatPrice(item.price)
             val arrow = if (item.isPositive) "▲" else "▼"
             val percentFormatted = "$arrow%.2f%%".format(
@@ -438,6 +447,16 @@ private fun TickerView(
             }
         }
     }
+}
+
+internal fun tickerIndicesFor(type: FearIndexType, indices: List<MarketIndex>): List<MarketIndex> {
+    val koreanSymbols = setOf("^KS11", "^KQ11")
+    val filtered = when (type) {
+        FearIndexType.KOSPI -> indices.filter { it.symbol in koreanSymbols }
+        FearIndexType.MARKET -> indices.filter { it.symbol !in koreanSymbols }
+        FearIndexType.CRYPTO -> indices
+    }
+    return filtered.ifEmpty { indices }
 }
 
 private val priceFormatter: java.text.DecimalFormat by lazy {

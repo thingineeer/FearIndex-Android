@@ -36,7 +36,7 @@ import os
 import subprocess
 import sys
 
-timeout = int(os.environ.get("ADB_TIMEOUT_SECONDS", "8"))
+timeout = int(os.environ.get("ADB_TIMEOUT_SECONDS", "20"))
 cmd = ["adb", *sys.argv[1:]]
 try:
     completed = subprocess.run(cmd, timeout=timeout)
@@ -198,7 +198,7 @@ start_app_for_capture() {
     adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
   fi
   if wait_for_app_foreground; then
-    sleep 25
+    sleep 8
     return 0
   fi
 
@@ -207,14 +207,14 @@ start_app_for_capture() {
   dismiss_system_overlays
   adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
   wait_for_app_foreground
-  sleep 25
+  sleep 8
 }
 
 open_notification_settings_for_capture() {
   local attempt=1
   while [ $attempt -le 2 ]; do
     adb shell input tap 945 2250 < /dev/null
-    sleep 3
+    sleep 2
     dismiss_anr
     if ! wait_for_app_foreground; then
       echo "  ! settings tab did not keep app foreground" >&2
@@ -223,12 +223,12 @@ open_notification_settings_for_capture() {
       continue
     fi
     adb shell input tap 250 330 < /dev/null
-    sleep 5
+    sleep 3
     dismiss_anr
     tap_kospi_notification_tab
 
     if wait_for_app_foreground; then
-      sleep 2
+      sleep 1
       return 0
     fi
 
@@ -241,7 +241,7 @@ open_notification_settings_for_capture() {
 
 dismiss_heads_up_banner() {
   adb shell input swipe 540 280 540 50 250 < /dev/null
-  sleep 1
+  sleep 2
 }
 
 prime_notification_settings() {
@@ -273,7 +273,7 @@ XML
 
 tap_kospi_index_tab() {
   adb shell input tap $KOSPI_TAB_X $INDEX_TAB_Y < /dev/null
-  sleep 1
+  sleep 2
   adb shell input tap $KOSPI_TAB_X $HOME_INDEX_TAB_Y < /dev/null
   sleep 2
   dismiss_anr
@@ -438,7 +438,7 @@ for triplet in "${LOCALES[@]}"; do
   # 3. 차트 탭(KOSPI, bottom nav 두 번째 = x ≈ 405)
   # ────────────────────────────────────────────────────────────
   adb shell input tap 405 2250 < /dev/null
-  sleep 4
+  sleep 2
   dismiss_anr
   tap_kospi_index_tab
   capture_app_screen "$dir/3_chart.png"
@@ -447,7 +447,7 @@ for triplet in "${LOCALES[@]}"; do
   # 4. 투표 탭(KOSPI, bottom nav 세 번째 = x ≈ 675)
   # ────────────────────────────────────────────────────────────
   adb shell input tap 675 2250 < /dev/null
-  sleep 4
+  sleep 1
   dismiss_anr
   tap_kospi_index_tab
   capture_app_screen "$dir/4_vote.png"

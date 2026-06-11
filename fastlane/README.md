@@ -53,7 +53,15 @@ AAB 빌드 후 Play Console 내부 테스트 트랙 업로드 (draft)
 [bundle exec] fastlane android promote_to_production
 ```
 
-비공개 테스트 → 프로덕션 트랙 승격 (staged rollout 10%)
+비공개 테스트 → 프로덕션 트랙 승격 (100% rollout)
+
+### android production
+
+```sh
+[bundle exec] fastlane android production
+```
+
+AAB 빌드 + 프로덕션 트랙 직접 푸시 (100% rollout, 45 locale 메타 + 스크린샷 + 이미지 일괄)
 
 ### android screenshots
 

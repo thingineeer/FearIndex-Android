@@ -22,6 +22,8 @@ v1.7.9 Appium E2E 스크립트 — Android 모든 뷰/액션/UI label 검증.
 import os
 import sys
 import time
+import atexit
+import subprocess
 from typing import Optional
 
 from appium import webdriver
@@ -37,7 +39,17 @@ APP_ACTIVITY = "th1ngjin.fearindex.MainActivity"
 WAIT = 8
 
 
+def adb(*args: str):
+    subprocess.run(["adb", *args], check=False)
+
+
+def enable_screenshot_mode():
+    adb("shell", "setprop", "debug.screenshot_mode", "1")
+    atexit.register(lambda: adb("shell", "setprop", "debug.screenshot_mode", "0"))
+
+
 def make_driver():
+    enable_screenshot_mode()
     options = UiAutomator2Options()
     options.platform_name = "Android"
     options.automation_name = "UiAutomator2"

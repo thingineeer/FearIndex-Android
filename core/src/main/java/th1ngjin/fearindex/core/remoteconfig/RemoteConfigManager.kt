@@ -32,33 +32,15 @@ class RemoteConfigManager @Inject constructor() {
     private val screenshotMode = ScreenshotMode.isEnabled()
     private val config by lazy { Firebase.remoteConfig }
     private val _adsConfig = MutableStateFlow(defaultAdsConfig())
-    val adsConfig: StateFlow<AdsRemoteConfig> = _adsConfig.asStateFlow()
+    @Volatile
+    private var configured = false
 
-    init {
-        if (!screenshotMode) {
-            val settings = remoteConfigSettings {
-                // Debug/staging에서는 즉시 반영, release는 1시간 캐시.
-                minimumFetchIntervalInSeconds = 3600
-            }
-            config.setConfigSettingsAsync(settings)
-            config.setDefaultsAsync(
-                mapOf(
-                    Keys.ADS_ENABLED to false,
-                    Keys.INTERSTITIAL_ADS_ENABLED to false,
-                    Keys.INTERSTITIAL_SESSION_CAP to 0,
-                    Keys.INTERSTITIAL_COOLDOWN_SEC to 180,
-                    Keys.KOSPI_INTERSTITIAL_ENABLED to false,
-                    Keys.VOTE_ENABLED to true,
-                ),
-            ).addOnCompleteListener {
-                _adsConfig.value = currentAdsConfig()
-            }
-        }
-    }
+    val adsConfig: StateFlow<AdsRemoteConfig> = _adsConfig.asStateFlow()
 
     suspend fun fetchAndActivate(): Boolean {
         if (screenshotMode) return false
 
+        ensureConfigured()
         return runCatching {
             config.fetchAndActivate().await()
         }.onFailure {
@@ -75,7 +57,27 @@ class RemoteConfigManager @Inject constructor() {
     val interstitialCooldownMillis: Long
         get() = adsConfig.value.interstitialCooldownMillis
     val kospiInterstitialEnabled: Boolean get() = adsConfig.value.kospiInterstitialEnabled
-    val voteEnabled: Boolean get() = if (screenshotMode) true else config.getBoolean(Keys.VOTE_ENABLED)
+    val voteEnabled: Boolean
+        get() {
+            if (screenshotMode) return true
+            ensureConfigured()
+            return config.getBoolean(Keys.VOTE_ENABLED)
+        }
+
+    @Synchronized
+    private fun ensureConfigured() {
+        if (screenshotMode || configured) return
+
+        val settings = remoteConfigSettings {
+            // Debug/staging에서는 즉시 반영, release는 1시간 캐시.
+            minimumFetchIntervalInSeconds = 3600
+        }
+        config.setConfigSettingsAsync(settings)
+        config.setDefaultsAsync(defaultValues()).addOnCompleteListener {
+            _adsConfig.value = currentAdsConfig()
+        }
+        configured = true
+    }
 
     private fun currentAdsConfig(): AdsRemoteConfig =
         if (screenshotMode) {
@@ -97,6 +99,16 @@ class RemoteConfigManager @Inject constructor() {
             interstitialSessionCap = 0,
             interstitialCooldownMillis = 180_000L,
             kospiInterstitialEnabled = false,
+        )
+
+    private fun defaultValues(): Map<String, Any> =
+        mapOf(
+            Keys.ADS_ENABLED to false,
+            Keys.INTERSTITIAL_ADS_ENABLED to false,
+            Keys.INTERSTITIAL_SESSION_CAP to 0,
+            Keys.INTERSTITIAL_COOLDOWN_SEC to 180,
+            Keys.KOSPI_INTERSTITIAL_ENABLED to false,
+            Keys.VOTE_ENABLED to true,
         )
 
     object Keys {

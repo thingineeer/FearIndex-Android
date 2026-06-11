@@ -6,6 +6,14 @@ META=$ROOT/fastlane/metadata/android
 PKG=th1ngjin.fearindex.debug
 ACTIVITY=th1ngjin.fearindex.MainActivity
 
+adb shell settings put global hide_error_dialogs 1 < /dev/null > /dev/null || true
+adb shell setprop debug.screenshot_mode 1 < /dev/null > /dev/null
+if [ "$(adb shell getprop debug.screenshot_mode | tr -d '\r')" != "1" ]; then
+  echo "debug.screenshot_mode=1 설정 실패" >&2
+  exit 1
+fi
+trap 'adb shell setprop debug.screenshot_mode 0 < /dev/null > /dev/null 2>&1 || true' EXIT
+
 dismiss_anr() {
   local tries=0
   while [ $tries -lt 3 ]; do

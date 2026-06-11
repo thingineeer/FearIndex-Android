@@ -76,6 +76,7 @@ fun VoteScreen(
             .analyticsManager()
     }
     LaunchedEffect(selectedType) {
+        voteViewModel.ensureStuckCounterStarted(selectedType)
         analytics.log(
             AnalyticsEvent.투표탭진입(
                 지수타입 = selectedType.analyticsLabel(),

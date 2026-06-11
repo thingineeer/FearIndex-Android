@@ -12,7 +12,7 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="rating_neutral">Neutraal</string>
     <string name="rating_greed">Hebzucht</string>
     <string name="rating_extreme_greed">Extreme Hebzucht</string>
-    <string name="tab_home">Home</string>
+    <string name="tab_home">Thuis</string>
     <string name="tab_chart">Grafiek</string>
     <string name="tab_vote">Stem</string>
     <string name="tab_settings">Instellingen</string>
@@ -22,51 +22,60 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="share_chooser_title">Share via</string>
 
     <!-- v1.7.9 new keys -->
-    <string name="insight_similar_events_title">Similar Past Periods</string>
-    <string name="insight_similar_events_score_label">Current %1$d</string>
-    <string name="insight_similar_events_pinned_title">What if you bought at major lows?</string>
-    <string name="insight_similar_events_empty">No similar historical periods found</string>
-    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
-    <string name="insight_similar_events_ongoing">Ongoing</string>
-    <string name="insight_similar_events_sim_very">Very Similar</string>
-    <string name="insight_similar_events_sim_close">Similar</string>
-    <string name="insight_similar_events_sim_moderate">Moderate</string>
-    <string name="insight_similar_events_sim_far">Slightly Similar</string>
-    <string name="insight_similar_events_aggregate_title">Average for score %1$d range</string>
-    <string name="insight_similar_events_aggregate_summary">1Y avg %1$s (n=%2$d)</string>
-    <string name="insight_similar_events_disclaimer">Past returns do not guarantee future results</string>
-    <string name="insight_current_score_title">If you buy at %1$d</string>
-    <string name="insight_current_score_avg_return">Avg Return</string>
-    <string name="insight_current_score_max_drawdown">Max Drawdown</string>
-    <string name="insight_current_score_best_return">Best Return</string>
-    <string name="insight_current_score_sample_count">n=%1$d</string>
-    <string name="insight_event_score">%1$d pts</string>
-    <string name="event_covid">COVID-19 Pandemic Low</string>
-    <string name="event_tariff">2025 Tariff Crisis</string>
-    <string name="event_inflation">2022 Inflation Scare</string>
-    <string name="event_delta">Delta Variant Spread</string>
-    <string name="event_trade_war">US-China Trade War</string>
-    <string name="event_svb">SVB Bank Run</string>
-    <string name="event_reopening">2021 Economic Reopening</string>
-    <string name="event_post_election">Post 2024 Election</string>
-    <string name="event_2021bull">2021 Bull Market</string>
-    <string name="event_ai_rally">AI Rally</string>
-    <string name="event_pre_covid">Pre-COVID High</string>
-    <string name="event_dotcom">Dotcom Bubble Peak</string>
-    <string name="event_iran_war_2026">Iran-Israel War (2026)</string>
-    <string name="crypto_event_covid">COVID-19 Crypto Crash</string>
-    <string name="crypto_event_luna">LUNA/UST Collapse</string>
-    <string name="crypto_event_ftx">FTX Bankruptcy</string>
-    <string name="crypto_event_china_ban">China Crypto Ban</string>
-    <string name="crypto_event_svb">SVB Bank Run (Crypto)</string>
-    <string name="crypto_event_sec">SEC Lawsuit</string>
-    <string name="crypto_event_halving_2024">2024 Bitcoin Halving</string>
-    <string name="crypto_event_etf_approval">Bitcoin Spot ETF Approval</string>
-    <string name="crypto_event_defi_summer">DeFi Summer</string>
-    <string name="crypto_event_2021_peak">2021 Crypto Peak</string>
-    <string name="crypto_event_trump_pump">Trump Pump</string>
-    <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
-    <string name="crypto_event_iran_war_2026">Iran-Israël-oorlog (2026)</string>
+    <string name="insight_similar_events_title">Vergelijkbare momenten in de geschiedenis</string>
+    <string name="insight_similar_events_score_label">Huidig %1$d</string>
+    <string name="insight_similar_events_pinned_title">Als u op belangrijke dieptepunten had gekocht</string>
+    <string name="insight_similar_events_empty">Geen vergelijkbare momenten gevonden</string>
+    <string name="insight_similar_events_one_year_return">1J rendement %1$s</string>
+    <string name="insight_similar_events_ongoing">Lopend</string>
+    <string name="insight_similar_events_sim_very">Zeer vergelijkbaar</string>
+    <string name="insight_similar_events_sim_close">Vergelijkbaar</string>
+    <string name="insight_similar_events_sim_moderate">Matig</string>
+    <string name="insight_similar_events_sim_far">Licht vergelijkbaar</string>
+    <string name="insight_similar_events_aggregate_title">Gemiddelde voor score %1$d</string>
+    <string name="insight_similar_events_aggregate_summary">Gem. 1J %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">Rendementen uit het verleden garanderen geen toekomstige resultaten</string>
+    <string name="insight_current_score_title">Als u koopt bij %1$d</string>
+    <string name="insight_current_score_avg_return">Gem. rendement</string>
+    <string name="insight_current_score_max_drawdown">Max. daling</string>
+    <string name="insight_current_score_best_return">Beste rendement</string>
+    <string name="insight_current_score_sample_count">Steekproef %1$d</string>
+    <string name="insight_event_score">%1$d pt</string>
+    <string name="event_covid">COVID-19-crash (2020.03)</string>
+    <string name="event_tariff">Tariefschok (2025.04)</string>
+    <string name="event_inflation">Inflatiecrisis (2022.10)</string>
+    <string name="event_delta">Delta-variant angst (2021.07)</string>
+    <string name="event_trade_war">Handelsoorlog VS-China (2019.08)</string>
+    <string name="event_svb">SVB-bankencrisis (2023.03)</string>
+    <string name="event_reopening">Heropening-rally (2021.03)</string>
+    <string name="event_post_election">Rally na verkiezingen (2024.11)</string>
+    <string name="event_2021bull">Bullmarkt 2021</string>
+    <string name="event_ai_rally">AI-rally (2023.06)</string>
+    <string name="event_pre_covid">Piek vóór COVID (2020.01)</string>
+    <string name="event_dotcom">Dotcombubbel (2000)</string>
+    <string name="event_iran_war_2026">Iran–Israel War (2026)</string>
+    <string name="event_twelve_day_war_2025">12-Daagse Oorlog (Israël–Iran 2025)</string>
+    <string name="crypto_event_covid">COVID-19 Crypto Crash (2020.03)</string>
+    <string name="crypto_event_luna">LUNA/UST Collapse (2022.05)</string>
+    <string name="crypto_event_ftx">FTX Exchange Bankruptcy (2022.11)</string>
+    <string name="crypto_event_china_ban">China Crypto Ban (2021.09)</string>
+    <string name="crypto_event_svb">SVB Bank Crisis (2023.03)</string>
+    <string name="crypto_event_sec">SEC Exchange Lawsuits (2023.06)</string>
+    <string name="crypto_event_halving_2024">Bitcoin Halving (2024.04)</string>
+    <string name="crypto_event_etf_approval">Bitcoin ETF Approval (2024.01)</string>
+    <string name="crypto_event_defi_summer">DeFi Summer (2020.08)</string>
+    <string name="crypto_event_2021_peak">2021 Crypto Peak (2021.11)</string>
+    <string name="crypto_event_trump_pump">Trump Election Crypto Rally (2024.12)</string>
+    <string name="crypto_event_2017_peak">2017 Bitcoin Bubble Peak (2017.12)</string>
+    <string name="crypto_event_iran_war_2026">Iran–Israel War (2026)</string>
+    <string name="crypto_event_twelve_day_war_2025">12-Daagse Oorlog (Israël–Iran 2025)</string>
+    <string name="kospi_event_twelve_day_war_2025">12-Day War risk (2025.06)</string>
+    <string name="kospi_event_legoland_pf">PF credit stress concern (2023.08)</string>
+    <string name="kospi_event_martial_law_aftermath">12.3 martial law aftermath (2024.12)</string>
+    <string name="kospi_event_iran_war_2026">Iran war volatility shock (2026.03)</string>
+    <string name="kospi_event_hamas_israel_2023">Middle East war risk (2023.10)</string>
+    <string name="kospi_event_tariff_2025">Trump tariff shock (2025.04)</string>
+    <string name="kospi_event_yen_carry_2024">Yen carry unwind crash (2024.08)</string>
 
     <!-- Notification Settings -->
     <string name="notification_settings_title">Meldingsinstellingen</string>
@@ -97,9 +106,9 @@ Overweeg samen met fundamentals, stroom en macro.</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Stemming van vandaag</string>
-    <string name="vote_choice_buy">Buy</string>
-    <string name="vote_choice_hold">Hold</string>
-    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_choice_buy">Kopen</string>
+    <string name="vote_choice_hold">Houden</string>
+    <string name="vote_choice_sell">Verkopen</string>
     <string name="vote_button_content_description">Stem %1$s</string>
     <string name="vote_total_participants">%1$d deelnemers</string>
     <string name="vote_once_notice">"✅ Slechts 1 stem per dag"</string>

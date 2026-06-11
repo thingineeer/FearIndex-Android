@@ -22,55 +22,64 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="share_chooser_title">Chia sẻ qua</string>
 
     <!-- SimilarEvents card -->
-    <string name="insight_similar_events_title">Các giai đoạn tương tự trong quá khứ</string>
+    <string name="insight_similar_events_title">Khoảnh khắc lịch sử tương tự</string>
     <string name="insight_similar_events_score_label">Hiện tại %1$d</string>
-    <string name="insight_similar_events_pinned_title">Nếu bạn mua ở các đáy lớn?</string>
-    <string name="insight_similar_events_empty">Không tìm thấy giai đoạn lịch sử tương tự</string>
-    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
+    <string name="insight_similar_events_pinned_title">Nếu bạn mua ở các đáy quan trọng</string>
+    <string name="insight_similar_events_empty">Không tìm thấy khoảnh khắc tương tự</string>
+    <string name="insight_similar_events_one_year_return">Lợi nhuận 1N %1$s</string>
     <string name="insight_similar_events_ongoing">Đang diễn ra</string>
-    <string name="insight_similar_events_sim_very">Rất tương tự</string>
+    <string name="insight_similar_events_sim_very">Rất giống</string>
     <string name="insight_similar_events_sim_close">Tương tự</string>
-    <string name="insight_similar_events_sim_moderate">Trung bình</string>
-    <string name="insight_similar_events_sim_far">Hơi tương tự</string>
-    <string name="insight_similar_events_aggregate_title">Trung bình dải điểm %1$d</string>
-    <string name="insight_similar_events_aggregate_summary">TB 1 năm %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_sim_moderate">Vừa phải</string>
+    <string name="insight_similar_events_sim_far">Hơi giống</string>
+    <string name="insight_similar_events_aggregate_title">Trung bình cho điểm %1$d</string>
+    <string name="insight_similar_events_aggregate_summary">TB 1N %1$s (n=%2$d)</string>
     <string name="insight_similar_events_disclaimer">Lợi nhuận quá khứ không đảm bảo kết quả tương lai</string>
-    <string name="insight_current_score_title">Nếu bạn mua tại %1$d</string>
+    <string name="insight_current_score_title">Nếu mua ở %1$d</string>
     <string name="insight_current_score_avg_return">Lợi nhuận TB</string>
-    <string name="insight_current_score_max_drawdown">Mức sụt giảm tối đa</string>
-    <string name="insight_current_score_best_return">Lợi nhuận cao nhất</string>
-    <string name="insight_current_score_sample_count">n=%1$d</string>
+    <string name="insight_current_score_max_drawdown">Giảm tối đa</string>
+    <string name="insight_current_score_best_return">Lợi nhuận tốt nhất</string>
+    <string name="insight_current_score_sample_count">Mẫu %1$d</string>
     <string name="insight_event_score">%1$d điểm</string>
 
     <!-- Historical events (Market) -->
-    <string name="event_covid">Đáy đại dịch COVID-19</string>
-    <string name="event_tariff">Khủng hoảng thuế quan 2025</string>
-    <string name="event_inflation">Nỗi sợ lạm phát 2022</string>
-    <string name="event_delta">Biến thể Delta lan rộng</string>
-    <string name="event_trade_war">Chiến tranh thương mại Mỹ-Trung</string>
-    <string name="event_svb">SVB bị rút tiền hàng loạt</string>
-    <string name="event_reopening">Tái mở cửa kinh tế 2021</string>
-    <string name="event_post_election">Sau bầu cử 2024</string>
-    <string name="event_2021bull">Thị trường tăng 2021</string>
-    <string name="event_ai_rally">Đợt tăng AI</string>
-    <string name="event_pre_covid">Đỉnh trước COVID</string>
-    <string name="event_dotcom">Đỉnh bong bóng dotcom</string>
-    <string name="event_iran_war_2026">Chiến tranh Iran-Israel (2026)</string>
+    <string name="event_covid">Sụp đổ COVID-19 (2020.03)</string>
+    <string name="event_tariff">Cú sốc thuế quan (2025.04)</string>
+    <string name="event_inflation">Khủng hoảng lạm phát (2022.10)</string>
+    <string name="event_delta">Nỗi sợ biến thể Delta (2021.07)</string>
+    <string name="event_trade_war">Chiến tranh thương mại Mỹ-Trung (2019.08)</string>
+    <string name="event_svb">Khủng hoảng ngân hàng SVB (2023.03)</string>
+    <string name="event_reopening">Đợt tăng mở cửa lại (2021.03)</string>
+    <string name="event_post_election">Đợt tăng sau bầu cử (2024.11)</string>
+    <string name="event_2021bull">Thị trường tăng giá 2021</string>
+    <string name="event_ai_rally">Đợt tăng AI (2023.06)</string>
+    <string name="event_pre_covid">Đỉnh trước COVID (2020.01)</string>
+    <string name="event_dotcom">Bong bóng dot-com (2000)</string>
+    <string name="event_iran_war_2026">Iran–Israel War (2026)</string>
+    <string name="event_twelve_day_war_2025">Cuộc chiến 12 ngày (Israel–Iran 2025)</string>
 
     <!-- Historical events (Crypto) -->
-    <string name="crypto_event_covid">Crypto lao dốc vì COVID-19</string>
-    <string name="crypto_event_luna">Sụp đổ LUNA/UST</string>
-    <string name="crypto_event_ftx">FTX phá sản</string>
-    <string name="crypto_event_china_ban">Trung Quốc cấm crypto</string>
-    <string name="crypto_event_svb">SVB bị rút tiền (crypto)</string>
-    <string name="crypto_event_sec">Vụ kiện SEC</string>
-    <string name="crypto_event_halving_2024">Bitcoin halving 2024</string>
-    <string name="crypto_event_etf_approval">Phê duyệt Bitcoin spot ETF</string>
-    <string name="crypto_event_defi_summer">DeFi Summer</string>
-    <string name="crypto_event_2021_peak">Đỉnh crypto 2021</string>
-    <string name="crypto_event_trump_pump">Trump Pump</string>
-    <string name="crypto_event_2017_peak">Đỉnh crypto 2017</string>
-    <string name="crypto_event_iran_war_2026">Chiến tranh Iran-Israel (2026)</string>
+    <string name="crypto_event_covid">COVID-19 Crypto Crash (2020.03)</string>
+    <string name="crypto_event_luna">LUNA/UST Collapse (2022.05)</string>
+    <string name="crypto_event_ftx">FTX Exchange Bankruptcy (2022.11)</string>
+    <string name="crypto_event_china_ban">China Crypto Ban (2021.09)</string>
+    <string name="crypto_event_svb">SVB Bank Crisis (2023.03)</string>
+    <string name="crypto_event_sec">SEC Exchange Lawsuits (2023.06)</string>
+    <string name="crypto_event_halving_2024">Bitcoin Halving (2024.04)</string>
+    <string name="crypto_event_etf_approval">Bitcoin ETF Approval (2024.01)</string>
+    <string name="crypto_event_defi_summer">DeFi Summer (2020.08)</string>
+    <string name="crypto_event_2021_peak">2021 Crypto Peak (2021.11)</string>
+    <string name="crypto_event_trump_pump">Trump Election Crypto Rally (2024.12)</string>
+    <string name="crypto_event_2017_peak">2017 Bitcoin Bubble Peak (2017.12)</string>
+    <string name="crypto_event_iran_war_2026">Iran–Israel War (2026)</string>
+    <string name="crypto_event_twelve_day_war_2025">Cuộc chiến 12 ngày (Israel–Iran 2025)</string>
+    <string name="kospi_event_twelve_day_war_2025">12-Day War risk (2025.06)</string>
+    <string name="kospi_event_legoland_pf">PF credit stress concern (2023.08)</string>
+    <string name="kospi_event_martial_law_aftermath">12.3 martial law aftermath (2024.12)</string>
+    <string name="kospi_event_iran_war_2026">Iran war volatility shock (2026.03)</string>
+    <string name="kospi_event_hamas_israel_2023">Middle East war risk (2023.10)</string>
+    <string name="kospi_event_tariff_2025">Trump tariff shock (2025.04)</string>
+    <string name="kospi_event_yen_carry_2024">Yen carry unwind crash (2024.08)</string>
     <string name="insight_similar_events_similar_section_title">Giai đoạn tương tự</string>
 
     <!-- Notification Settings -->
@@ -100,9 +109,9 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
 
     <!-- Vote Card -->
     <string name="vote_card_title">Bình chọn hôm nay</string>
-    <string name="vote_choice_buy">Buy</string>
-    <string name="vote_choice_hold">Hold</string>
-    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_choice_buy">Mua</string>
+    <string name="vote_choice_hold">Giữ</string>
+    <string name="vote_choice_sell">Bán</string>
     <string name="vote_button_content_description">Bình chọn %1$s</string>
     <string name="vote_total_participants">%1$d người tham gia</string>
     <string name="vote_once_notice">"✅ Chỉ được bình chọn 1 lần mỗi ngày"</string>

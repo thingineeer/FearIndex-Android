@@ -19,6 +19,23 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 ADB="$HOME/Library/Android/sdk/platform-tools/adb"
 ACTIVITY=th1ngjin.fearindex.MainActivity
 
+adb_with_timeout() {
+  python3 - "$ADB" "$@" <<'PY'
+import os
+import subprocess
+import sys
+
+timeout = int(os.environ.get("ADB_TIMEOUT_SECONDS", "20"))
+cmd = sys.argv[1:]
+try:
+    completed = subprocess.run(cmd, timeout=timeout)
+    raise SystemExit(completed.returncode)
+except subprocess.TimeoutExpired:
+    print(f"adb timeout after {timeout}s: {' '.join(cmd)}", file=sys.stderr)
+    raise SystemExit(124)
+PY
+}
+
 # PKG 자동 감지: 스토어 캡처는 debug + screenshot mode 우선.
 if "$ADB" shell pm list packages 2>/dev/null | grep -q "package:th1ngjin.fearindex.debug$"; then
   PKG="th1ngjin.fearindex.debug"
@@ -83,9 +100,19 @@ is_app_foreground() {
     grep -Eq "mCurrentFocus=.*$PKG/$ACTIVITY|mFocusedApp=.*$PKG/$ACTIVITY"
 }
 
+dismiss_external_overlay_if_needed() {
+  if "$ADB" shell dumpsys window 2>/dev/null |
+    grep -E "mCurrentFocus|mFocusedApp" |
+    grep -Eq "com.android.intentresolver|ResolverActivity"; then
+    "$ADB" shell input keyevent KEYCODE_BACK >/dev/null 2>&1 || true
+    sleep 1
+  fi
+}
+
 wait_for_app_foreground() {
   local tries=0
   while [ $tries -lt 20 ]; do
+    dismiss_external_overlay_if_needed
     if is_app_foreground; then
       return 0
     fi
@@ -123,13 +150,13 @@ screencap_pull() {
   local remote="/data/local/tmp/fearindex-tablet-screenshot.png"
   local attempt=1
   while [ $attempt -le 2 ]; do
-    if "$ADB" shell screencap -p "$remote" >/dev/null 2>&1 &&
-      "$ADB" pull -a "$remote" "$out" >/dev/null 2>&1; then
-      "$ADB" shell rm "$remote" >/dev/null 2>&1 || true
+    if adb_with_timeout shell screencap -p "$remote" >/dev/null 2>&1 &&
+      adb_with_timeout pull -a "$remote" "$out" >/dev/null 2>&1; then
+      adb_with_timeout shell rm "$remote" >/dev/null 2>&1 || true
       return 0
     fi
     echo "  ! screencap retry $attempt" >&2
-    "$ADB" shell rm "$remote" >/dev/null 2>&1 || true
+    adb_with_timeout shell rm "$remote" >/dev/null 2>&1 || true
     sleep 2
     attempt=$((attempt+1))
   done
@@ -144,8 +171,8 @@ cold_start() {
   sleep 1
   "$ADB" shell am start -n "$pkg/$ACTIVITY" >/dev/null 2>&1
   wait_for_app_foreground
-  # splash → 메인까지 약 15~25초. screenshot fixture 첫 init 여유 포함.
-  sleep 30
+  # screenshot fixture mode starts locally; keep a short Compose render buffer.
+  sleep 6
   return 0
 }
 
@@ -204,36 +231,36 @@ capture_locale_size() {
 
     # 2_home
     "$ADB" shell input tap "$T1X" "$TABY"
-    sleep 3
+    sleep 1
     "$ADB" shell input tap "$KOSPI_X" "$HOME_INDEX_TAB_Y"
-    sleep 2
+    sleep 1
     wait_for_app_foreground
     screencap_pull "$out_dir/2_home.png"
 
     # 3_chart
     "$ADB" shell input tap "$T2X" "$TABY"
-    sleep 4
+    sleep 1
     "$ADB" shell input tap "$KOSPI_X" "$INDEX_TAB_Y"
-    sleep 2
+    sleep 1
     wait_for_app_foreground
     screencap_pull "$out_dir/3_chart.png"
 
     # 4_vote
     "$ADB" shell input tap "$T3X" "$TABY"
-    sleep 4
+    sleep 1
     "$ADB" shell input tap "$KOSPI_X" "$INDEX_TAB_Y"
-    sleep 2
+    sleep 1
     wait_for_app_foreground
     screencap_pull "$out_dir/4_vote.png"
 
     # 1_notification: 설정 → 알림 메뉴 (첫 항목) → KOSPI 알림 탭.
     # 태블릿은 4장만 사용 (5_notification_settings 안 만듦)
     "$ADB" shell input tap "$T4X" "$TABY"
-    sleep 3
+    sleep 1
     "$ADB" shell input tap "$NOTIF_X" "$NOTIF_Y"
-    sleep 4
-    "$ADB" shell input tap "$KOSPI_X" "$NOTIFICATION_TAB_Y"
     sleep 2
+    "$ADB" shell input tap "$KOSPI_X" "$NOTIFICATION_TAB_Y"
+    sleep 1
     wait_for_app_foreground
     screencap_pull "$out_dir/1_notification.png"
     echo "  ✓ $bcp: 4/4"

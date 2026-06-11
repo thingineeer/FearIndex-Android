@@ -73,6 +73,7 @@
     <string name="event_pre_covid">Pre-COVID High</string>
     <string name="event_dotcom">Dotcom Bubble Peak</string>
     <string name="event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="event_twelve_day_war_2025">Twelve-Day War (2025)</string>
 
     <!-- Historical events (Crypto) -->
     <string name="crypto_event_covid">COVID-19 Crypto Crash</string>
@@ -88,6 +89,14 @@
     <string name="crypto_event_trump_pump">Trump Pump</string>
     <string name="crypto_event_2017_peak">2017 Crypto Peak</string>
     <string name="crypto_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="crypto_event_twelve_day_war_2025">Twelve-Day War (2025)</string>
+    <string name="kospi_event_twelve_day_war_2025">Twelve-Day War (2025)</string>
+    <string name="kospi_event_legoland_pf">Legoland PF Crisis (2023)</string>
+    <string name="kospi_event_martial_law_aftermath">Martial Law Aftermath (2024)</string>
+    <string name="kospi_event_iran_war_2026">Iran-Israel War (2026)</string>
+    <string name="kospi_event_hamas_israel_2023">Hamas-Israel War (2023)</string>
+    <string name="kospi_event_tariff_2025">Tariff Shock (2025)</string>
+    <string name="kospi_event_yen_carry_2024">Yen Carry Trade Shock (2024)</string>
     <string name="insight_similar_events_similar_section_title">Similar Periods</string>
 
     <!-- Stuck Counter Card -->
