@@ -18,9 +18,8 @@ class KospiFearIndexRepositoryImpl @Inject constructor(
     override suspend fun fetchCurrent(forceRefresh: Boolean): KospiFearIndex {
         val response = dataSource.fetchSnapshot(includeHistory = false, forceRefresh = forceRefresh)
         val latest = response.latest ?: throw IllegalStateException("KOSPI latest snapshot missing")
-        if (latest.stale) throw IllegalStateException("KOSPI latest snapshot is stale")
-
         val current = latest.toDomain(response.generatedAtInstant)
+        if (current.isStale) throw IllegalStateException("KOSPI latest snapshot is stale")
         val history = fetchAnchorHistory(forceRefresh)
         return current.copy(fearIndex = enrich(current.fearIndex, current.dataDate, history))
     }
@@ -48,15 +47,20 @@ class KospiFearIndexRepositoryImpl @Inject constructor(
     private fun enrich(current: FearIndex, dataDate: String, history: List<FearIndex>): FearIndex {
         val referenceDate = parseDay(dataDate) ?: current.timestamp.atZone(ZoneOffset.UTC).toLocalDate()
         return current.copy(
-            previousClose = anchor(history, referenceDate, daysAgo = 1) ?: current.previousClose,
-            previous1Week = anchor(history, referenceDate, daysAgo = 7) ?: current.previous1Week,
-            previous1Month = anchor(history, referenceDate, daysAgo = 30) ?: current.previous1Month,
-            previous1Year = anchor(history, referenceDate, daysAgo = 365) ?: current.previous1Year,
+            previousClose = scoreBefore(history, referenceDate) ?: current.score,
+            previous1Week = scoreOnOrBefore(history, referenceDate.minusDays(7)) ?: current.score,
+            previous1Month = scoreOnOrBefore(history, referenceDate.minusMonths(1)) ?: current.score,
+            previous1Year = scoreOnOrBefore(history, referenceDate.minusYears(1)),
         )
     }
 
-    private fun anchor(history: List<FearIndex>, referenceDate: LocalDate, daysAgo: Long): Double? {
-        val target = referenceDate.minusDays(daysAgo)
+    private fun scoreBefore(history: List<FearIndex>, referenceDate: LocalDate): Double? =
+        history
+            .filter { it.timestamp.atZone(ZoneOffset.UTC).toLocalDate() < referenceDate }
+            .maxByOrNull { it.timestamp }
+            ?.score
+
+    private fun scoreOnOrBefore(history: List<FearIndex>, target: LocalDate): Double? {
         return history
             .filter { it.timestamp.atZone(ZoneOffset.UTC).toLocalDate() <= target }
             .maxByOrNull { it.timestamp }
