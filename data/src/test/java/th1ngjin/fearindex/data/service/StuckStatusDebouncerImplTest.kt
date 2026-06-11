@@ -23,7 +23,7 @@ import th1ngjin.fearindex.domain.repository.StuckCounterRepository
  * 실제 delay에 맞춰 `debounceMillis`를 짧게 세팅한 후 검증.
  *
  * 검증 포인트:
- * - 기본 debounceMillis 1.5초 (QA#3 해결 — 이전 5초에서 단축)
+ * - 기본 debounceMillis 5초 (서버 호출 비용과 Functions rate limit 보호)
  * - 연타 병합: 마지막 상태만 서버 호출
  * - MARKET/CRYPTO 독립 디바운스
  * - flush 실패 시 재시도 큐 저장
@@ -34,11 +34,11 @@ class StuckStatusDebouncerImplTest {
     private val storage = mockk<StuckCounterStorage>(relaxUnitFun = true)
 
     @Test
-    fun `기본 debounceMillis는 1500ms`() {
+    fun `기본 debounceMillis는 5000ms`() {
         val debouncer = StuckStatusDebouncerImpl(repository, storage)
         assertEquals(
-            "QA#3 해결 기준 — 5초에서 1.5초로 단축되어야 함",
-            1_500L,
+            "서버 호출 비용 보호 기준 — 기본 디바운스는 5초여야 함",
+            5_000L,
             debouncer.debounceMillis,
         )
     }

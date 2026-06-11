@@ -22,55 +22,64 @@
     <string name="share_chooser_title">பகிர்</string>
 
     <!-- SimilarEvents card -->
-    <string name="insight_similar_events_title">இதற்கு ஒத்த கடந்த காலங்கள்</string>
+    <string name="insight_similar_events_title">வரலாற்றில் ஒத்த தருணங்கள்</string>
     <string name="insight_similar_events_score_label">தற்போது %1$d</string>
-    <string name="insight_similar_events_pinned_title">முக்கியமான குறைவுகளில் வாங்கியிருந்தால்?</string>
-    <string name="insight_similar_events_empty">ஒத்த வரலாற்றுக் காலங்கள் எதுவும் இல்லை</string>
-    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
-    <string name="insight_similar_events_ongoing">தொடர்கிறது</string>
+    <string name="insight_similar_events_pinned_title">முக்கிய தாழ்வுகளில் வாங்கியிருந்தால்</string>
+    <string name="insight_similar_events_empty">ஒத்த தருணங்கள் இல்லை</string>
+    <string name="insight_similar_events_one_year_return">1 ஆண்டு வருமானம் %1$s</string>
+    <string name="insight_similar_events_ongoing">நடைபெறுகிறது</string>
     <string name="insight_similar_events_sim_very">மிகவும் ஒத்தது</string>
     <string name="insight_similar_events_sim_close">ஒத்தது</string>
     <string name="insight_similar_events_sim_moderate">மிதமானது</string>
-    <string name="insight_similar_events_sim_far">சற்று ஒத்தது</string>
-    <string name="insight_similar_events_aggregate_title">மதிப்பெண் %1$d வரம்பின் சராசரி</string>
-    <string name="insight_similar_events_aggregate_summary">1 ஆண்டு சராசரி %1$s (n=%2$d)</string>
-    <string name="insight_similar_events_disclaimer">கடந்த வருமானம் எதிர்கால முடிவுகளுக்கு உத்தரவாதம் அல்ல</string>
-    <string name="insight_current_score_title">நீங்கள் %1$d-இல் வாங்கினால்</string>
+    <string name="insight_similar_events_sim_far">சற்றே ஒத்தது</string>
+    <string name="insight_similar_events_aggregate_title">மதிப்பெண் %1$d சராசரி</string>
+    <string name="insight_similar_events_aggregate_summary">சராசரி 1 ஆண்டு %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">கடந்த வருமானம் எதிர்கால முடிவுகளை உறுதி செய்யாது</string>
+    <string name="insight_current_score_title">%1$d-ல் வாங்கினால்</string>
     <string name="insight_current_score_avg_return">சராசரி வருமானம்</string>
     <string name="insight_current_score_max_drawdown">அதிகபட்ச வீழ்ச்சி</string>
     <string name="insight_current_score_best_return">சிறந்த வருமானம்</string>
-    <string name="insight_current_score_sample_count">n=%1$d</string>
-    <string name="insight_event_score">%1$d புள்ளிகள்</string>
+    <string name="insight_current_score_sample_count">மாதிரி %1$d</string>
+    <string name="insight_event_score">%1$d புள்ளி</string>
 
     <!-- Historical events (Market) -->
-    <string name="event_covid">கோவிட்-19 பெருந்தொற்று தாழ்வு</string>
-    <string name="event_tariff">2025 வரி நெருக்கடி</string>
-    <string name="event_inflation">2022 பணவீக்க பயம்</string>
-    <string name="event_delta">டெல்டா மாறுபாடு பரவல்</string>
-    <string name="event_trade_war">அமெரிக்கா-சீனா வர்த்தகப் போர்</string>
-    <string name="event_svb">SVB வங்கி அவசர எடுப்பு</string>
-    <string name="event_reopening">2021 பொருளாதார மீட்சி</string>
-    <string name="event_post_election">2024 தேர்தலுக்குப் பிறகு</string>
-    <string name="event_2021bull">2021 எருதுச் சந்தை</string>
-    <string name="event_ai_rally">AI எழுச்சி</string>
-    <string name="event_pre_covid">கோவிட் முந்தைய உச்சம்</string>
-    <string name="event_dotcom">டாட்காம் குமிழி உச்சம்</string>
-    <string name="event_iran_war_2026">ஈரான்-இஸ்ரேல் போர் (2026)</string>
+    <string name="event_covid">COVID-19 வீழ்ச்சி (2020.03)</string>
+    <string name="event_tariff">கட்டண அதிர்ச்சி (2025.04)</string>
+    <string name="event_inflation">பணவீக்க நெருக்கடி (2022.10)</string>
+    <string name="event_delta">டெல்டா மாறுபாடு அச்சம் (2021.07)</string>
+    <string name="event_trade_war">அமெரிக்கா-சீன வர்த்தகப் போர் (2019.08)</string>
+    <string name="event_svb">SVB வங்கி நெருக்கடி (2023.03)</string>
+    <string name="event_reopening">மீண்டும் திறப்பு ரேலி (2021.03)</string>
+    <string name="event_post_election">தேர்தல் பின் ரேலி (2024.11)</string>
+    <string name="event_2021bull">2021 காளை ஓட்டம்</string>
+    <string name="event_ai_rally">AI ரேலி (2023.06)</string>
+    <string name="event_pre_covid">COVID முன் உச்சம் (2020.01)</string>
+    <string name="event_dotcom">டாட்-காம் குமிழி (2000)</string>
+    <string name="event_iran_war_2026">Iran–Israel War (2026)</string>
+    <string name="event_twelve_day_war_2025">12-நாள் போர் (இஸ்ரேல்–ஈரான் 2025)</string>
 
     <!-- Historical events (Crypto) -->
-    <string name="crypto_event_covid">கோவிட்-19 கிரிப்டோ சரிவு</string>
-    <string name="crypto_event_luna">LUNA/UST வீழ்ச்சி</string>
-    <string name="crypto_event_ftx">FTX திவால்</string>
-    <string name="crypto_event_china_ban">சீனா கிரிப்டோ தடை</string>
-    <string name="crypto_event_svb">SVB வங்கி அவசர எடுப்பு (கிரிப்டோ)</string>
-    <string name="crypto_event_sec">SEC வழக்கு</string>
-    <string name="crypto_event_halving_2024">2024 பிட்காயின் ஹால்விங்</string>
-    <string name="crypto_event_etf_approval">பிட்காயின் ஸ்பாட் ETF ஒப்புதல்</string>
-    <string name="crypto_event_defi_summer">DeFi கோடை</string>
-    <string name="crypto_event_2021_peak">2021 கிரிப்டோ உச்சம்</string>
-    <string name="crypto_event_trump_pump">டிரம்ப் பம்ப்</string>
-    <string name="crypto_event_2017_peak">2017 கிரிப்டோ உச்சம்</string>
-    <string name="crypto_event_iran_war_2026">ஈரான்-இஸ்ரேல் போர் (2026)</string>
+    <string name="crypto_event_covid">COVID-19 Crypto Crash (2020.03)</string>
+    <string name="crypto_event_luna">LUNA/UST Collapse (2022.05)</string>
+    <string name="crypto_event_ftx">FTX Exchange Bankruptcy (2022.11)</string>
+    <string name="crypto_event_china_ban">China Crypto Ban (2021.09)</string>
+    <string name="crypto_event_svb">SVB Bank Crisis (2023.03)</string>
+    <string name="crypto_event_sec">SEC Exchange Lawsuits (2023.06)</string>
+    <string name="crypto_event_halving_2024">Bitcoin Halving (2024.04)</string>
+    <string name="crypto_event_etf_approval">Bitcoin ETF Approval (2024.01)</string>
+    <string name="crypto_event_defi_summer">DeFi Summer (2020.08)</string>
+    <string name="crypto_event_2021_peak">2021 Crypto Peak (2021.11)</string>
+    <string name="crypto_event_trump_pump">Trump Election Crypto Rally (2024.12)</string>
+    <string name="crypto_event_2017_peak">2017 Bitcoin Bubble Peak (2017.12)</string>
+    <string name="crypto_event_iran_war_2026">Iran–Israel War (2026)</string>
+    <string name="crypto_event_twelve_day_war_2025">12-நாள் போர் (இஸ்ரேல்–ஈரான் 2025)</string>
+    <string name="kospi_event_twelve_day_war_2025">12-Day War risk (2025.06)</string>
+    <string name="kospi_event_legoland_pf">PF credit stress concern (2023.08)</string>
+    <string name="kospi_event_martial_law_aftermath">12.3 martial law aftermath (2024.12)</string>
+    <string name="kospi_event_iran_war_2026">Iran war volatility shock (2026.03)</string>
+    <string name="kospi_event_hamas_israel_2023">Middle East war risk (2023.10)</string>
+    <string name="kospi_event_tariff_2025">Trump tariff shock (2025.04)</string>
+    <string name="kospi_event_yen_carry_2024">Yen carry unwind crash (2024.08)</string>
     <string name="insight_similar_events_similar_section_title">ஒத்த காலங்கள்</string>
 
     <!-- Notification Settings -->
@@ -100,9 +109,9 @@
 
     <!-- Vote Card -->
     <string name="vote_card_title">இன்றைய வாக்கு</string>
-    <string name="vote_choice_buy">Buy</string>
-    <string name="vote_choice_hold">Hold</string>
-    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_choice_buy">வாங்கு</string>
+    <string name="vote_choice_hold">வைத்திரு</string>
+    <string name="vote_choice_sell">விற்</string>
     <string name="vote_button_content_description">%1$s வாக்கு</string>
     <string name="vote_total_participants">%1$d பங்கேற்பாளர்கள்</string>
     <string name="vote_once_notice">"✅ ஒரு நாளுக்கு 1 வாக்கு மட்டும்"</string>
