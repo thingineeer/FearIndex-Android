@@ -3,8 +3,8 @@
 # Usage: source "$(dirname "$0")/../lib/common.sh"
 
 # ─────────────────────────── Config ───────────────────────────
-: "${PKG:=com.thingineer.fearindex.debug}"
-: "${MAIN_ACTIVITY:=com.thingineer.fearindex.MainActivity}"
+: "${PKG:=th1ngjin.fearindex.debug}"
+: "${MAIN_ACTIVITY:=th1ngjin.fearindex.MainActivity}"
 : "${ADB:=adb}"
 : "${SERIAL:=}"   # set ANDROID_SERIAL externally if multiple devices
 
@@ -29,6 +29,7 @@ _adb() {
 # ─────────────────────────── Lifecycle ───────────────────────────
 launch_app() {
     echo "[common] launch_app $PKG"
+    _adb shell setprop debug.screenshot_mode 1 >/dev/null 2>&1 || true
     _adb shell monkey -p "$PKG" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1 || true
     sleep 3
 }

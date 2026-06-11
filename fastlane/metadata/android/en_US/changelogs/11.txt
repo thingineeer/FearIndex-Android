@@ -1,0 +1,2 @@
+KOSPI Fear & Greed Index has been added.
+Track Korean market sentiment with alerts and charts.

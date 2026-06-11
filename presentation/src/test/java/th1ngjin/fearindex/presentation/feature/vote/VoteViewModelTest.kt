@@ -28,7 +28,7 @@ import th1ngjin.fearindex.domain.usecase.SubmitVoteUseCase
  * VoteViewModel 무결성 테스트.
  *
  * QA#3 해결 근거:
- * - init 시 loadInitialStuckResults → fetchOnce(MARKET) + fetchOnce(KOSPI) + fetchOnce(CRYPTO) 호출
+ * - ensureStuckCounterStarted(indexType) 호출 시 해당 index만 fetchOnce/stream 시작
  * - 초기 result StateFlow 업데이트로 진입 즉시 카운터 표시
  *
  * Note: VoteViewModel.init이 startCountdown() (1초 주기 무한 loop)을 호출하므로
@@ -71,47 +71,42 @@ class VoteViewModelTest {
     )
 
     @Test
-    fun `init - MARKET과 KOSPI와 CRYPTO 초기 fetchOnce 호출 (QA#3 해결)`() {
+    fun `init - 서버 비용 절감을 위해 fetchOnce를 선제 호출하지 않는다`() {
         coEvery { observeStuckCounter.fetchOnce(any()) } returns StuckCounterResult.EMPTY
 
         createViewModel()
 
-        coVerify(exactly = 1) { observeStuckCounter.fetchOnce(FearIndexType.MARKET) }
-        coVerify(exactly = 1) { observeStuckCounter.fetchOnce(FearIndexType.KOSPI) }
-        coVerify(exactly = 1) { observeStuckCounter.fetchOnce(FearIndexType.CRYPTO) }
+        coVerify(exactly = 0) { observeStuckCounter.fetchOnce(any()) }
+        coVerify(exactly = 0) { observeStuckCounter.stream(any()) }
     }
 
     @Test
-    fun `init - 초기 fetch 결과로 marketResult와 kospiResult와 cryptoResult StateFlow 업데이트`() {
+    fun `ensureStuckCounterStarted - 요청한 index만 초기 fetch와 stream 시작`() {
         val marketInit = StuckCounterResult(
             stuckCount = 3, safeCount = 7, totalResponded = 10,
             stuckPercentage = 30.0, safePercentage = 70.0, myStatus = StuckStatus.NONE,
         )
-        val kospiInit = StuckCounterResult(
-            stuckCount = 4, safeCount = 6, totalResponded = 10,
-            stuckPercentage = 40.0, safePercentage = 60.0, myStatus = StuckStatus.NONE,
-        )
-        val cryptoInit = StuckCounterResult(
-            stuckCount = 5, safeCount = 5, totalResponded = 10,
-            stuckPercentage = 50.0, safePercentage = 50.0, myStatus = StuckStatus.NONE,
-        )
         coEvery { observeStuckCounter.fetchOnce(FearIndexType.MARKET) } returns marketInit
-        coEvery { observeStuckCounter.fetchOnce(FearIndexType.KOSPI) } returns kospiInit
-        coEvery { observeStuckCounter.fetchOnce(FearIndexType.CRYPTO) } returns cryptoInit
 
         val viewModel = createViewModel()
+        viewModel.ensureStuckCounterStarted(FearIndexType.MARKET)
 
         assertEquals(3, viewModel.marketResult.value.stuckCount)
         assertEquals(10, viewModel.marketResult.value.totalResponded)
-        assertEquals(4, viewModel.kospiResult.value.stuckCount)
-        assertEquals(5, viewModel.cryptoResult.value.stuckCount)
+        assertEquals(StuckCounterResult.EMPTY, viewModel.kospiResult.value)
+        assertEquals(StuckCounterResult.EMPTY, viewModel.cryptoResult.value)
+        coVerify(exactly = 1) { observeStuckCounter.fetchOnce(FearIndexType.MARKET) }
+        coVerify(exactly = 1) { observeStuckCounter.stream(FearIndexType.MARKET) }
+        coVerify(exactly = 0) { observeStuckCounter.fetchOnce(FearIndexType.KOSPI) }
+        coVerify(exactly = 0) { observeStuckCounter.fetchOnce(FearIndexType.CRYPTO) }
     }
 
     @Test
-    fun `init - fetchOnce 실패해도 ViewModel 정상 생성 (EMPTY 유지)`() {
+    fun `ensureStuckCounterStarted - fetchOnce 실패해도 ViewModel 정상 유지`() {
         coEvery { observeStuckCounter.fetchOnce(any()) } throws RuntimeException("network")
 
         val viewModel = createViewModel()
+        viewModel.ensureStuckCounterStarted(FearIndexType.MARKET)
 
         assertEquals(StuckCounterResult.EMPTY, viewModel.marketResult.value)
         assertEquals(StuckCounterResult.EMPTY, viewModel.kospiResult.value)

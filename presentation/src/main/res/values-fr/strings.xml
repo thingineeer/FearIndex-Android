@@ -22,51 +22,60 @@
     <string name="share_chooser_title">Partager via</string>
 
     <!-- v1.7.9 new keys -->
-    <string name="insight_similar_events_title">Périodes passées similaires</string>
+    <string name="insight_similar_events_title">Moments historiques similaires</string>
     <string name="insight_similar_events_score_label">Actuel %1$d</string>
-    <string name="insight_similar_events_pinned_title">Si vous aviez acheté aux principaux creux</string>
-    <string name="insight_similar_events_empty">Aucune période historique similaire trouvée</string>
+    <string name="insight_similar_events_pinned_title">Si vous aviez acheté aux creux clés</string>
+    <string name="insight_similar_events_empty">Aucun moment similaire trouvé</string>
     <string name="insight_similar_events_one_year_return">Rendement 1A %1$s</string>
     <string name="insight_similar_events_ongoing">En cours</string>
     <string name="insight_similar_events_sim_very">Très similaire</string>
     <string name="insight_similar_events_sim_close">Similaire</string>
     <string name="insight_similar_events_sim_moderate">Modéré</string>
     <string name="insight_similar_events_sim_far">Légèrement similaire</string>
-    <string name="insight_similar_events_aggregate_title">Moyenne pour la plage %1$d</string>
-    <string name="insight_similar_events_aggregate_summary">1A moy %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_aggregate_title">Moyenne pour le score %1$d</string>
+    <string name="insight_similar_events_aggregate_summary">Moy. 1A %1$s (n=%2$d)</string>
     <string name="insight_similar_events_disclaimer">Les rendements passés ne garantissent pas les résultats futurs</string>
     <string name="insight_current_score_title">Si vous achetez à %1$d</string>
     <string name="insight_current_score_avg_return">Rendement moyen</string>
-    <string name="insight_current_score_max_drawdown">Drawdown maximal</string>
+    <string name="insight_current_score_max_drawdown">Baisse max.</string>
     <string name="insight_current_score_best_return">Meilleur rendement</string>
-    <string name="insight_current_score_sample_count">n=%1$d</string>
-    <string name="insight_event_score">%1$d pts</string>
-    <string name="event_covid">Creux pandémique de la COVID-19</string>
-    <string name="event_tariff">Crise tarifaire 2025</string>
-    <string name="event_inflation">Peur de l\'inflation 2022</string>
-    <string name="event_delta">Propagation du variant Delta</string>
-    <string name="event_trade_war">Guerre commerciale USA-Chine</string>
-    <string name="event_svb">Bank Run SVB</string>
-    <string name="event_reopening">Réouverture économique 2021</string>
-    <string name="event_post_election">Après l\'élection 2024</string>
+    <string name="insight_current_score_sample_count">Échantillon %1$d</string>
+    <string name="insight_event_score">%1$d points</string>
+    <string name="event_covid">Krach COVID-19 (2020.03)</string>
+    <string name="event_tariff">Choc tarifaire (2025.04)</string>
+    <string name="event_inflation">Crise inflationniste (2022.10)</string>
+    <string name="event_delta">Peur du variant Delta (2021.07)</string>
+    <string name="event_trade_war">Guerre commerciale US-Chine (2019.08)</string>
+    <string name="event_svb">Crise bancaire SVB (2023.03)</string>
+    <string name="event_reopening">Rallye de réouverture (2021.03)</string>
+    <string name="event_post_election">Rallye post-électoral (2024.11)</string>
     <string name="event_2021bull">Marché haussier 2021</string>
-    <string name="event_ai_rally">Rallye IA</string>
-    <string name="event_pre_covid">Sommet pré-COVID</string>
-    <string name="event_dotcom">Pic de la bulle Internet</string>
-    <string name="event_iran_war_2026">Guerre Iran-Israël (2026)</string>
-    <string name="crypto_event_covid">Krach crypto COVID-19</string>
-    <string name="crypto_event_luna">Effondrement LUNA/UST</string>
-    <string name="crypto_event_ftx">Faillite de FTX</string>
-    <string name="crypto_event_china_ban">Interdiction crypto en Chine</string>
-    <string name="crypto_event_svb">Bank Run SVB (Crypto)</string>
-    <string name="crypto_event_sec">Procès SEC</string>
-    <string name="crypto_event_halving_2024">Halving Bitcoin 2024</string>
-    <string name="crypto_event_etf_approval">Approbation de l\'ETF Bitcoin Spot</string>
-    <string name="crypto_event_defi_summer">Été DeFi</string>
-    <string name="crypto_event_2021_peak">Pic crypto 2021</string>
-    <string name="crypto_event_trump_pump">Pump Trump</string>
-    <string name="crypto_event_2017_peak">Pic crypto 2017</string>
-    <string name="crypto_event_iran_war_2026">Guerre Iran-Israël (2026)</string>
+    <string name="event_ai_rally">Rallye IA (2023.06)</string>
+    <string name="event_pre_covid">Pic pré-COVID (2020.01)</string>
+    <string name="event_dotcom">Bulle Internet (2000)</string>
+    <string name="event_iran_war_2026">Guerre Iran–Israël (2026)</string>
+    <string name="event_twelve_day_war_2025">Guerre de 12 jours (Israël–Iran 2025)</string>
+    <string name="crypto_event_covid">Crash crypto COVID-19 (2020.03)</string>
+    <string name="crypto_event_luna">Effondrement LUNA/UST (2022.05)</string>
+    <string name="crypto_event_ftx">Faillite FTX (2022.11)</string>
+    <string name="crypto_event_china_ban">Interdiction crypto en Chine (2021.09)</string>
+    <string name="crypto_event_svb">Crise bancaire SVB (2023.03)</string>
+    <string name="crypto_event_sec">Poursuites SEC (2023.06)</string>
+    <string name="crypto_event_halving_2024">Halving Bitcoin (2024.04)</string>
+    <string name="crypto_event_etf_approval">Approbation ETF Bitcoin (2024.01)</string>
+    <string name="crypto_event_defi_summer">Été DeFi (2020.08)</string>
+    <string name="crypto_event_2021_peak">Pic crypto 2021 (2021.11)</string>
+    <string name="crypto_event_trump_pump">Rally crypto élection Trump (2024.12)</string>
+    <string name="crypto_event_2017_peak">Pic bulle Bitcoin 2017 (2017.12)</string>
+    <string name="crypto_event_iran_war_2026">Guerre Iran–Israël (2026)</string>
+    <string name="crypto_event_twelve_day_war_2025">Guerre de 12 jours (Israël–Iran 2025)</string>
+    <string name="kospi_event_twelve_day_war_2025">12-Day War risk (2025.06)</string>
+    <string name="kospi_event_legoland_pf">PF credit stress concern (2023.08)</string>
+    <string name="kospi_event_martial_law_aftermath">12.3 martial law aftermath (2024.12)</string>
+    <string name="kospi_event_iran_war_2026">Iran war volatility shock (2026.03)</string>
+    <string name="kospi_event_hamas_israel_2023">Middle East war risk (2023.10)</string>
+    <string name="kospi_event_tariff_2025">Trump tariff shock (2025.04)</string>
+    <string name="kospi_event_yen_carry_2024">Yen carry unwind crash (2024.08)</string>
 
     <!-- Notification Settings -->
     <string name="notification_settings_title">Paramètres de notification</string>
@@ -97,9 +106,9 @@
 
     <!-- Vote Card -->
     <string name="vote_card_title">Vote du jour</string>
-    <string name="vote_choice_buy">Buy</string>
-    <string name="vote_choice_hold">Hold</string>
-    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_choice_buy">Acheter</string>
+    <string name="vote_choice_hold">Conserver</string>
+    <string name="vote_choice_sell">Vendre</string>
     <string name="vote_button_content_description">Vote %1$s</string>
     <string name="vote_total_participants">%1$d participants</string>
     <string name="vote_once_notice">"✅ Un seul vote par jour"</string>

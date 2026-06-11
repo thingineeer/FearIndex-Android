@@ -1,0 +1,1 @@
+KOSPI Fear & Greed Indexを追加しました。

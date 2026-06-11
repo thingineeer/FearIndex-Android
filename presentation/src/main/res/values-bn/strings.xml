@@ -22,55 +22,64 @@
     <string name="share_chooser_title">শেয়ার করুন</string>
 
     <!-- SimilarEvents card -->
-    <string name="insight_similar_events_title">অতীতের অনুরূপ সময়</string>
+    <string name="insight_similar_events_title">ইতিহাসে অনুরূপ মুহূর্ত</string>
     <string name="insight_similar_events_score_label">বর্তমান %1$d</string>
-    <string name="insight_similar_events_pinned_title">বড় নিম্নে কিনলে কী হতো?</string>
-    <string name="insight_similar_events_empty">কোনো অনুরূপ ঐতিহাসিক সময় পাওয়া যায়নি</string>
-    <string name="insight_similar_events_one_year_return">1Y Return %1$s</string>
+    <string name="insight_similar_events_pinned_title">মূল নিম্নস্তরে কিনলে কী হতো</string>
+    <string name="insight_similar_events_empty">অনুরূপ মুহূর্ত পাওয়া যায়নি</string>
+    <string name="insight_similar_events_one_year_return">১ বছরের রিটার্ন %1$s</string>
     <string name="insight_similar_events_ongoing">চলমান</string>
-    <string name="insight_similar_events_sim_very">খুব অনুরূপ</string>
+    <string name="insight_similar_events_sim_very">খুবই অনুরূপ</string>
     <string name="insight_similar_events_sim_close">অনুরূপ</string>
     <string name="insight_similar_events_sim_moderate">মাঝারি</string>
     <string name="insight_similar_events_sim_far">সামান্য অনুরূপ</string>
-    <string name="insight_similar_events_aggregate_title">স্কোর %1$d পরিসরের গড়</string>
-    <string name="insight_similar_events_aggregate_summary">১ বছর গড় %1$s (n=%2$d)</string>
-    <string name="insight_similar_events_disclaimer">অতীতের রিটার্ন ভবিষ্যতের ফলাফলের নিশ্চয়তা দেয় না</string>
-    <string name="insight_current_score_title">আপনি %1$d-এ কিনলে</string>
+    <string name="insight_similar_events_aggregate_title">স্কোর %1$d-এর গড়</string>
+    <string name="insight_similar_events_aggregate_summary">গড় ১ বছর %1$s (n=%2$d)</string>
+    <string name="insight_similar_events_disclaimer">অতীতের রিটার্ন ভবিষ্যৎ রিটার্নের নিশ্চয়তা দেয় না</string>
+    <string name="insight_current_score_title">%1$d-এ কিনলে</string>
     <string name="insight_current_score_avg_return">গড় রিটার্ন</string>
     <string name="insight_current_score_max_drawdown">সর্বোচ্চ পতন</string>
     <string name="insight_current_score_best_return">সেরা রিটার্ন</string>
-    <string name="insight_current_score_sample_count">n=%1$d</string>
+    <string name="insight_current_score_sample_count">নমুনা %1$d</string>
     <string name="insight_event_score">%1$d পয়েন্ট</string>
 
     <!-- Historical events (Market) -->
-    <string name="event_covid">কোভিড-১৯ মহামারীর নিম্ন</string>
-    <string name="event_tariff">২০২৫ শুল্ক সংকট</string>
-    <string name="event_inflation">২০২২ মুদ্রাস্ফীতির আতঙ্ক</string>
-    <string name="event_delta">ডেল্টা ভ্যারিয়েন্টের বিস্তার</string>
-    <string name="event_trade_war">মার্কিন-চীন বাণিজ্য যুদ্ধ</string>
-    <string name="event_svb">SVB ব্যাংক রান</string>
-    <string name="event_reopening">২০২১ অর্থনৈতিক পুনরুদ্ধার</string>
-    <string name="event_post_election">২০২৪ নির্বাচনের পর</string>
-    <string name="event_2021bull">২০২১ ষাঁড়ের বাজার</string>
-    <string name="event_ai_rally">AI র‍্যালি</string>
-    <string name="event_pre_covid">কোভিড-পূর্ব উচ্চতা</string>
-    <string name="event_dotcom">ডটকম বুদবুদের শীর্ষ</string>
-    <string name="event_iran_war_2026">ইরান-ইসরায়েল যুদ্ধ (২০২৬)</string>
+    <string name="event_covid">COVID-19 পতন (2020.03)</string>
+    <string name="event_tariff">শুল্ক শক (2025.04)</string>
+    <string name="event_inflation">মুদ্রাস্ফীতি সংকট (2022.10)</string>
+    <string name="event_delta">ডেল্টা ভ্যারিয়েন্ট ভয় (2021.07)</string>
+    <string name="event_trade_war">মার্কিন-চীন বাণিজ্য যুদ্ধ (2019.08)</string>
+    <string name="event_svb">SVB ব্যাংক সংকট (2023.03)</string>
+    <string name="event_reopening">পুনরায় খোলার র‍্যালি (2021.03)</string>
+    <string name="event_post_election">নির্বাচন-পরবর্তী র‍্যালি (2024.11)</string>
+    <string name="event_2021bull">২০২১ বুল রান</string>
+    <string name="event_ai_rally">AI র‍্যালি (2023.06)</string>
+    <string name="event_pre_covid">COVID-পূর্ব শীর্ষ (2020.01)</string>
+    <string name="event_dotcom">ডট-কম বুদবুদ (2000)</string>
+    <string name="event_iran_war_2026">Iran–Israel War (2026)</string>
+    <string name="event_twelve_day_war_2025">১২-দিনের যুদ্ধ (ইসরায়েল–ইরান ২০২৫)</string>
 
     <!-- Historical events (Crypto) -->
-    <string name="crypto_event_covid">কোভিড-১৯ ক্রিপ্টো ক্র্যাশ</string>
-    <string name="crypto_event_luna">LUNA/UST পতন</string>
-    <string name="crypto_event_ftx">FTX দেউলিয়া</string>
-    <string name="crypto_event_china_ban">চীন ক্রিপ্টো নিষেধাজ্ঞা</string>
-    <string name="crypto_event_svb">SVB ব্যাংক রান (ক্রিপ্টো)</string>
-    <string name="crypto_event_sec">SEC মামলা</string>
-    <string name="crypto_event_halving_2024">২০২৪ বিটকয়েন হাভিং</string>
-    <string name="crypto_event_etf_approval">বিটকয়েন স্পট ETF অনুমোদন</string>
-    <string name="crypto_event_defi_summer">DeFi সামার</string>
-    <string name="crypto_event_2021_peak">২০২১ ক্রিপ্টো শীর্ষ</string>
-    <string name="crypto_event_trump_pump">ট্রাম্প পাম্প</string>
-    <string name="crypto_event_2017_peak">২০১৭ ক্রিপ্টো শীর্ষ</string>
-    <string name="crypto_event_iran_war_2026">ইরান-ইসরায়েল যুদ্ধ (২০২৬)</string>
+    <string name="crypto_event_covid">COVID-19 Crypto Crash (2020.03)</string>
+    <string name="crypto_event_luna">LUNA/UST Collapse (2022.05)</string>
+    <string name="crypto_event_ftx">FTX Exchange Bankruptcy (2022.11)</string>
+    <string name="crypto_event_china_ban">China Crypto Ban (2021.09)</string>
+    <string name="crypto_event_svb">SVB Bank Crisis (2023.03)</string>
+    <string name="crypto_event_sec">SEC Exchange Lawsuits (2023.06)</string>
+    <string name="crypto_event_halving_2024">Bitcoin Halving (2024.04)</string>
+    <string name="crypto_event_etf_approval">Bitcoin ETF Approval (2024.01)</string>
+    <string name="crypto_event_defi_summer">DeFi Summer (2020.08)</string>
+    <string name="crypto_event_2021_peak">2021 Crypto Peak (2021.11)</string>
+    <string name="crypto_event_trump_pump">Trump Election Crypto Rally (2024.12)</string>
+    <string name="crypto_event_2017_peak">2017 Bitcoin Bubble Peak (2017.12)</string>
+    <string name="crypto_event_iran_war_2026">Iran–Israel War (2026)</string>
+    <string name="crypto_event_twelve_day_war_2025">১২-দিনের যুদ্ধ (ইসরায়েল–ইরান ২০২৫)</string>
+    <string name="kospi_event_twelve_day_war_2025">12-Day War risk (2025.06)</string>
+    <string name="kospi_event_legoland_pf">PF credit stress concern (2023.08)</string>
+    <string name="kospi_event_martial_law_aftermath">12.3 martial law aftermath (2024.12)</string>
+    <string name="kospi_event_iran_war_2026">Iran war volatility shock (2026.03)</string>
+    <string name="kospi_event_hamas_israel_2023">Middle East war risk (2023.10)</string>
+    <string name="kospi_event_tariff_2025">Trump tariff shock (2025.04)</string>
+    <string name="kospi_event_yen_carry_2024">Yen carry unwind crash (2024.08)</string>
     <string name="insight_similar_events_similar_section_title">অনুরূপ সময়</string>
 
     <!-- Notification Settings -->
@@ -100,9 +109,9 @@
 
     <!-- Vote Card -->
     <string name="vote_card_title">আজকের ভোট</string>
-    <string name="vote_choice_buy">Buy</string>
-    <string name="vote_choice_hold">Hold</string>
-    <string name="vote_choice_sell">Sell</string>
+    <string name="vote_choice_buy">কিনুন</string>
+    <string name="vote_choice_hold">ধরে রাখুন</string>
+    <string name="vote_choice_sell">বিক্রি</string>
     <string name="vote_button_content_description">%1$s ভোট</string>
     <string name="vote_total_participants">%1$d জন অংশগ্রহণকারী</string>
     <string name="vote_once_notice">"✅ দিনে মাত্র ১টি ভোট"</string>

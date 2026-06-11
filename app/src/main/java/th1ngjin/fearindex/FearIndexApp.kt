@@ -9,6 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.Lazy
 import dagger.hilt.android.HiltAndroidApp
@@ -90,9 +91,13 @@ class FearIndexApp : Application() {
     }
 
     private fun initializeFirebaseApp() {
-        if (FirebaseApp.getApps(this).isEmpty()) {
-            FirebaseApp.initializeApp(this)
+        if (FirebaseApp.getApps(this).isNotEmpty()) return
+
+        val options = FirebaseOptions.fromResource(this)
+        checkNotNull(options) {
+            "Firebase options missing. Ensure google-services.json is present for ${BuildConfig.APPLICATION_ID}."
         }
+        FirebaseApp.initializeApp(this, options)
     }
 
     private fun setupNotificationChannels() {
