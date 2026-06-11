@@ -93,7 +93,7 @@
     <string name="stuck_percentage_label">Andel fastnade</string>
     <string name="stuck_button_im_stuck">"🤙 Jag sitter också fast"</string>
     <string name="stuck_button_im_safe">"✨ Jag sitter inte fast"</string>
-    <string name="stuck_footer_guide">"🤙 Tryck på en knapp för att se hur många som sitter fast i realtid"</string>
+    <string name="stuck_footer_guide">"Valfritt: tryck på ett val för att dela din status; tryck igen för att avbryta. Detaljer under ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Dagens omröstning</string>
@@ -280,6 +280,7 @@
     <string name="stuck_detail_stuck">Fast · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Svardetaljer</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Visar poängförändringar, liknande tidigare perioder, historisk avkastning och svar från communityn som kontext.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

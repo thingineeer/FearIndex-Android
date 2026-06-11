@@ -93,7 +93,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="stuck_percentage_label">Iestrēgušo īpatsvars</string>
     <string name="stuck_button_im_stuck">"🤙 Arī es esmu iestrēdzis"</string>
     <string name="stuck_button_im_safe">"✨ Es neesmu iestrēdzis"</string>
-    <string name="stuck_footer_guide">"🤙 Nospiediet pogu, lai reāllaikā redzētu, cik daudz cilvēku ir iestrēguši"</string>
+    <string name="stuck_footer_guide">"Neobligāti: pieskarieties izvēlei, lai kopīgotu statusu; pieskarieties vēlreiz, lai atceltu. Sīkāk ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Šodienas balsojums</string>
@@ -280,6 +280,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="stuck_detail_stuck">Iestrēdzis · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Atbilžu informācija</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Rāda rezultāta izmaiņas, līdzīgus pagātnes periodus, vēsturisko atdevi un kopienas atbildes kontekstam.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

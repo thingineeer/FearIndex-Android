@@ -93,7 +93,7 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="stuck_percentage_label">Fastlåst-andel</string>
     <string name="stuck_button_im_stuck">"🤙 Jeg er også fastlåst"</string>
     <string name="stuck_button_im_safe">"✨ Jeg er ikke fastlåst"</string>
-    <string name="stuck_footer_guide">"🤙 Trykk en knapp for å se i sanntid hvor mange som er fastlåst"</string>
+    <string name="stuck_footer_guide">"Valgfritt: trykk på et valg for å dele statusen din; trykk igjen for å avbryte. Detaljer under ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Dagens avstemning</string>
@@ -280,6 +280,7 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="stuck_detail_stuck">Fast · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Svardetaljer</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Viser scoreendringer, lignende tidligere perioder, historisk avkastning og svar fra fellesskapet som kontekst.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

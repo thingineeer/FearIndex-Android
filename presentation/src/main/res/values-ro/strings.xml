@@ -93,7 +93,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="stuck_percentage_label">Rată blocați</string>
     <string name="stuck_button_im_stuck">"🤙 Și eu sunt blocat"</string>
     <string name="stuck_button_im_safe">"✨ Nu sunt blocat"</string>
-    <string name="stuck_footer_guide">"🤙 Apasă un buton pentru a vedea în timp real câți sunt blocați"</string>
+    <string name="stuck_footer_guide">"Opțional: atingeți o alegere pentru a vă partaja starea; atingeți din nou pentru anulare. Detalii la ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Votul de azi</string>
@@ -280,6 +280,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="stuck_detail_stuck">Blocat · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Detalii răspunsuri</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Arată schimbări de scor, perioade trecute similare, randamente istorice și răspunsuri ale comunității pentru context.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

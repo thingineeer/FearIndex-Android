@@ -93,7 +93,7 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="stuck_percentage_label">Miera uviaznutia</string>
     <string name="stuck_button_im_stuck">"🤙 Tiež som v pasci"</string>
     <string name="stuck_button_im_safe">"✨ Nie som v pasci"</string>
-    <string name="stuck_footer_guide">"🤙 Klepnite na tlačidlo a uvidíte v reálnom čase, koľko ľudí je v pasci"</string>
+    <string name="stuck_footer_guide">"Voliteľné: ťuknutím zdieľate svoj stav; ďalším ťuknutím voľbu zrušíte. Podrobnosti pod ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Dnešné hlasovanie</string>
@@ -280,6 +280,7 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="stuck_detail_stuck">V mínuse · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Podrobnosti odpovedí</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Zobrazuje zmeny skóre, podobné minulé obdobia, historické výnosy a odpovede komunity pre kontext.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

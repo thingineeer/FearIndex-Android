@@ -92,7 +92,7 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="stuck_percentage_label">Sıkışma oranı</string>
     <string name="stuck_button_im_stuck">"🤙 Ben de sıkıştım"</string>
     <string name="stuck_button_im_safe">"✨ Ben sıkışmadım"</string>
-    <string name="stuck_footer_guide">"🤙 Gerçek zamanlı olarak kaç kişinin sıkıştığını görmek için bir düğmeye dokunun"</string>
+    <string name="stuck_footer_guide">"İsteğe bağlı: durumunuzu paylaşmak için bir seçeneğe dokunun; iptal etmek için tekrar dokunun. Ayrıntılar ⓘ altında."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Bugünün oylaması</string>
@@ -279,6 +279,7 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="stuck_detail_stuck">Mahsur · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Yanıt detayları</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Puan değişimleri, benzer geçmiş dönemler, tarihsel getiriler ve topluluk yanıtlarını bağlam olarak gösterir.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

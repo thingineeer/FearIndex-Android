@@ -93,7 +93,7 @@
     <string name="stuck_percentage_label">Taux de coincés</string>
     <string name="stuck_button_im_stuck">"🤙 Je suis coincé aussi"</string>
     <string name="stuck_button_im_safe">"✨ Je ne suis pas coincé"</string>
-    <string name="stuck_footer_guide">"🤙 Appuyez sur un bouton pour voir en temps réel combien de personnes sont coincées"</string>
+    <string name="stuck_footer_guide">"Facultatif : touchez un choix pour partager votre statut ; touchez encore pour annuler. Détails via ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Vote du jour</string>
@@ -280,6 +280,7 @@
     <string name="stuck_detail_stuck">Bloqué · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Détails des réponses</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Affiche les variations du score, les périodes similaires, les rendements historiques et les réponses de la communauté pour le contexte.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

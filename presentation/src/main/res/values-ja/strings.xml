@@ -92,7 +92,7 @@
     <string name="stuck_percentage_label">含み損比率</string>
     <string name="stuck_button_im_stuck">"🤙 私も抱えています"</string>
     <string name="stuck_button_im_safe">"✨ 抱えていません"</string>
-    <string name="stuck_footer_guide">"🤙 ボタンを押すと、いま何人が含み損を抱えているかリアルタイムで確認できます"</string>
+    <string name="stuck_footer_guide">"任意です。選択肢をタップすると状態を共有でき、もう一度タップすると取り消せます。詳細はⓘで確認できます。"</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">今日の投票</string>
@@ -279,6 +279,7 @@
     <string name="stuck_detail_stuck">含み損 · %1$d件 · %2$d%%</string>
     <string name="stuck_detail_title">回答詳細</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">スコア変化、過去の類似局面、過去リターン、コミュニティ回答を合わせて表示し、指数の文脈を示します。</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

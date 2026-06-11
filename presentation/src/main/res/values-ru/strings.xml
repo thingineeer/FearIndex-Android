@@ -93,7 +93,7 @@
     <string name="stuck_percentage_label">Доля застрявших</string>
     <string name="stuck_button_im_stuck">"🤙 Я тоже застрял"</string>
     <string name="stuck_button_im_safe">"✨ Я не застрял"</string>
-    <string name="stuck_footer_guide">"🤙 Нажмите кнопку, чтобы увидеть, сколько людей застряло прямо сейчас"</string>
+    <string name="stuck_footer_guide">"Необязательно: нажмите вариант, чтобы поделиться статусом; нажмите снова для отмены. Подробности в ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Сегодняшнее голосование</string>
@@ -280,6 +280,7 @@
     <string name="stuck_detail_stuck">В убытке · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Детали ответов</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Показывает изменения оценки, похожие прошлые периоды, историческую доходность и ответы сообщества для контекста.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

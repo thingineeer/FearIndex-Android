@@ -93,7 +93,7 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="stuck_percentage_label">Míra uvíznutí</string>
     <string name="stuck_button_im_stuck">"🤙 Taky jsem v pasti"</string>
     <string name="stuck_button_im_safe">"✨ Nejsem v pasti"</string>
-    <string name="stuck_footer_guide">"🤙 Klepněte na tlačítko a uvidíte v reálném čase, kolik lidí je v pasti"</string>
+    <string name="stuck_footer_guide">"Volitelné: klepnutím sdílíte svůj stav; dalším klepnutím volbu zrušíte. Podrobnosti pod ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Dnešní hlasování</string>
@@ -280,6 +280,7 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="stuck_detail_stuck">V mínusu · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Podrobnosti odpovědí</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Ukazuje změny skóre, podobná minulá období, historické výnosy a odpovědi komunity pro lepší kontext.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

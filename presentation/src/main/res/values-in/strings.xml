@@ -92,7 +92,7 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="stuck_percentage_label">Tingkat terjebak</string>
     <string name="stuck_button_im_stuck">"🤙 Saya juga terjebak"</string>
     <string name="stuck_button_im_safe">"✨ Saya tidak terjebak"</string>
-    <string name="stuck_footer_guide">"🤙 Ketuk tombol untuk melihat berapa banyak yang terjebak secara real-time"</string>
+    <string name="stuck_footer_guide">"Opsional: ketuk pilihan untuk membagikan status; ketuk lagi untuk membatalkan. Detail ada di ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Pemungutan suara hari ini</string>
@@ -279,6 +279,7 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="stuck_detail_stuck">Tersangkut · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Detail respons</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Menampilkan perubahan skor, periode masa lalu yang mirip, imbal hasil historis, dan respons komunitas sebagai konteks.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>

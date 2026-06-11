@@ -93,7 +93,7 @@ Considere junto com fundamentos, fluxo e macro.</string>
     <string name="stuck_percentage_label">Taxa de presos</string>
     <string name="stuck_button_im_stuck">"🤙 Eu também estou preso"</string>
     <string name="stuck_button_im_safe">"✨ Eu não estou preso"</string>
-    <string name="stuck_footer_guide">"🤙 Toque em um botão para ver em tempo real quantos estão presos"</string>
+    <string name="stuck_footer_guide">"Opcional: toque em uma opção para compartilhar seu status; toque de novo para cancelar. Detalhes em ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Votação de hoje</string>
@@ -280,6 +280,7 @@ Considere junto com fundamentos, fluxo e macro.</string>
     <string name="stuck_detail_stuck">Preso · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Detalhes das respostas</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Mostra mudanças na pontuação, períodos passados semelhantes, retornos históricos e respostas da comunidade para contexto.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
