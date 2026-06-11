@@ -24,8 +24,10 @@ RECEIVER=th1ngjin.fearindex.screenshot.ScreenshotPushReceiver
 ACTION=th1ngjin.fearindex.SCREENSHOT_PUSH
 KOSPI_TAB_X=540
 # 1080x2400 phone emulator 기준 uiautomator bounds:
-# index tabs [42,179][1038,305], notification tabs [42,609][1038,735].
+# chart/vote tabs [42,179][1038,305], home tabs [42,257][1038,383],
+# notification tabs [42,609][1038,735].
 INDEX_TAB_Y=242
+HOME_INDEX_TAB_Y=320
 NOTIFICATION_TAB_Y=672
 
 adb shell settings put global hide_error_dialogs 1 < /dev/null > /dev/null
@@ -129,6 +131,8 @@ XML
 
 tap_kospi_index_tab() {
   adb shell input tap $KOSPI_TAB_X $INDEX_TAB_Y < /dev/null
+  sleep 1
+  adb shell input tap $KOSPI_TAB_X $HOME_INDEX_TAB_Y < /dev/null
   sleep 2
   dismiss_anr
 }
