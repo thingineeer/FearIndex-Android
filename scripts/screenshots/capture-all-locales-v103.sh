@@ -119,11 +119,14 @@ clear_notifications() {
   adb shell input keyevent KEYCODE_HOME < /dev/null
 }
 
+stop_app_process() {
+  adb shell pkill -9 "$PKG" < /dev/null > /dev/null 2>&1 || true
+  sleep 1
+}
+
 dismiss_heads_up_banner() {
-  adb shell cmd statusbar collapse < /dev/null > /dev/null 2>&1 || true
   adb shell input swipe 540 280 540 50 250 < /dev/null
   sleep 1
-  adb shell cmd statusbar collapse < /dev/null > /dev/null 2>&1 || true
 }
 
 prime_notification_settings() {
@@ -173,26 +176,97 @@ capture_push_banner() {
   local out=$2
   local title=$(jq -r --arg k "$push_lang" '.[$k].title // .en.title' "$PUSH_JSON")
   local body=$(jq -r --arg k "$push_lang" '.[$k].body  // .en.body'  "$PUSH_JSON")
+  local base
+  base=$(mktemp /tmp/fearindex-launcher-base.XXXXXX.png)
 
-  # 앱 백그라운드로
-  adb shell am force-stop $PKG < /dev/null
+  # 앱 백그라운드로 보낸 뒤 launcher 배경을 캡처하고, localized notification card 를 합성한다.
+  # 실제 heads-up 은 emulator 상태/notification assistant 에 따라 suppressed 될 수 있어
+  # 스크린샷 산출물 안정성을 위해 시각적으로 동일한 promo card 를 생성한다.
+  stop_app_process
+  adb shell input keyevent KEYCODE_BACK < /dev/null > /dev/null 2>&1 || true
   sleep 1
   adb shell input keyevent KEYCODE_HOME < /dev/null
   sleep 1
-  # 알림 발사 (single-string 으로 한국어/공백 escape)
-  adb shell "am broadcast -n $PKG/$RECEIVER -a $ACTION --es title '$title' --es body '$body'" \
-    < /dev/null > /dev/null
-  # peek banner 가 안정적으로 올라온 뒤 캡처
-  # 실측 (app 화면 캡처 후 scenario): 0.7s = banner 미표시, 1.5s = 깨끗.
-  python3 -c "import time; time.sleep(1.5)" < /dev/null
-  adb exec-out screencap -p > "$out"
-  dismiss_heads_up_banner
+  capture_app_screen "$base"
+  TITLE="$title" BODY="$body" python3 - "$base" "$out" <<'PY'
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import os
+import sys
+import textwrap
+
+base_path, out_path = sys.argv[1:3]
+title = os.environ["TITLE"]
+body = os.environ["BODY"]
+
+img = Image.open(base_path).convert("RGBA")
+w, _ = img.size
+overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
+draw = ImageDraw.Draw(overlay)
+
+font_path = "/System/Library/Fonts/Supplemental/Arial Unicode.ttf"
+try:
+    title_font = ImageFont.truetype(font_path, 36)
+    body_font = ImageFont.truetype(font_path, 30)
+    time_font = ImageFont.truetype(font_path, 24)
+except OSError:
+    title_font = body_font = time_font = ImageFont.load_default()
+
+card_x = 42
+card_y = 150
+card_w = w - (card_x * 2)
+card_h = 184
+radius = 34
+
+shadow = Image.new("RGBA", img.size, (0, 0, 0, 0))
+shadow_draw = ImageDraw.Draw(shadow)
+shadow_draw.rounded_rectangle(
+    [card_x, card_y + 10, card_x + card_w, card_y + card_h + 10],
+    radius=radius,
+    fill=(0, 0, 0, 46),
+)
+overlay = Image.alpha_composite(overlay, shadow.filter(ImageFilter.GaussianBlur(12)))
+draw = ImageDraw.Draw(overlay)
+draw.rounded_rectangle(
+    [card_x, card_y, card_x + card_w, card_y + card_h],
+    radius=radius,
+    fill=(248, 249, 253, 242),
+)
+
+icon_x = card_x + 34
+icon_y = card_y + 50
+draw.ellipse([icon_x, icon_y, icon_x + 72, icon_y + 72], fill=(239, 59, 59, 255))
+draw.pieslice([icon_x + 18, icon_y + 13, icon_x + 55, icon_y + 61], 235, 55, fill=(255, 255, 255, 255))
+draw.rectangle([icon_x + 32, icon_y + 44, icon_x + 40, icon_y + 62], fill=(255, 255, 255, 255))
+
+text_x = icon_x + 100
+text_w = card_x + card_w - text_x - 110
+draw.text((text_x, card_y + 30), "FearIndex", font=time_font, fill=(109, 113, 121, 255))
+draw.text((card_x + card_w - 72, card_y + 30), "now", font=time_font, fill=(109, 113, 121, 255), anchor="ra")
+draw.text((text_x, card_y + 66), title, font=title_font, fill=(21, 24, 30, 255))
+
+avg_char_px = max(12, int(body_font.size * 0.56))
+wrap_width = max(16, text_w // avg_char_px)
+body_lines = textwrap.wrap(body, width=wrap_width, max_lines=2, placeholder="...")
+draw.multiline_text(
+    (text_x, card_y + 112),
+    "\n".join(body_lines),
+    font=body_font,
+    fill=(89, 94, 104, 255),
+    spacing=6,
+)
+
+Image.alpha_composite(img, overlay).convert("RGB").save(out_path)
+PY
+  rm -f "$base"
 }
 
 # 화면 진입 후 캡처 (앱 내부)
 capture_app_screen() {
   local out=$1
-  adb exec-out screencap -p > "$out"
+  local remote="/data/local/tmp/fearindex-screenshot.png"
+  adb shell screencap -p "$remote" < /dev/null > /dev/null
+  adb pull -a "$remote" "$out" < /dev/null > /dev/null
+  adb shell rm "$remote" < /dev/null > /dev/null 2>&1 || true
 }
 
 TOTAL=${#LOCALES[@]}
@@ -211,8 +285,7 @@ for triplet in "${LOCALES[@]}"; do
   echo "=== ($count/$TOTAL) supply=$supply bcp=$bcp push=$push_lang ==="
 
   # 0. locale 적용 (다음 cold-start에 반영)
-  adb shell am force-stop $PKG < /dev/null
-  sleep 1
+  stop_app_process
   adb shell cmd locale set-app-locales $PKG --locales $bcp < /dev/null > /dev/null 2>&1 || true
   sleep 1
 
