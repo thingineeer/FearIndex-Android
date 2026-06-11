@@ -346,9 +346,19 @@ PY
 capture_app_screen() {
   local out=$1
   local remote="/data/local/tmp/fearindex-screenshot.png"
-  adb shell screencap -p "$remote" < /dev/null > /dev/null
-  adb pull -a "$remote" "$out" < /dev/null > /dev/null
-  adb shell rm "$remote" < /dev/null > /dev/null 2>&1 || true
+  local attempt=1
+  while [ $attempt -le 2 ]; do
+    if adb shell screencap -p "$remote" < /dev/null > /dev/null &&
+      adb pull -a "$remote" "$out" < /dev/null > /dev/null; then
+      adb shell rm "$remote" < /dev/null > /dev/null 2>&1 || true
+      return 0
+    fi
+    echo "  ! screencap retry $attempt" >&2
+    adb shell rm "$remote" < /dev/null > /dev/null 2>&1 || true
+    sleep 2
+    attempt=$((attempt+1))
+  done
+  return 1
 }
 
 TOTAL=${#LOCALES[@]}
