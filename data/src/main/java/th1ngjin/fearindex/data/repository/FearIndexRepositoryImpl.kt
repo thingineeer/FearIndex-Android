@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.data.repository
 
 import th1ngjin.fearindex.data.datasource.FearIndexDataSource
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.repository.FearIndexRepository
 import java.time.Instant
@@ -13,6 +14,8 @@ class FearIndexRepositoryImpl @Inject constructor(
 ) : FearIndexRepository {
 
     override suspend fun fetchCurrent(forceRefresh: Boolean): FearIndex {
+        if (ScreenshotMode.isEnabled()) return ScreenshotFixtures.marketCurrent()
+
         // Current score는 짧은 기간(365일) 캐시 재사용
         val response = dataSource.fetchCurrent(days = 365, forceRefresh = forceRefresh)
         val dto = response.fearAndGreed
@@ -28,6 +31,10 @@ class FearIndexRepositoryImpl @Inject constructor(
     }
 
     override suspend fun fetchHistory(days: Int, forceRefresh: Boolean): List<FearIndex> {
+        if (ScreenshotMode.isEnabled()) {
+            return ScreenshotFixtures.history(days = days, center = 54.0, amplitude = 24.0)
+        }
+
         val response = dataSource.fetchCurrent(days = days, forceRefresh = forceRefresh)
         return response.fearAndGreedHistorical.data.map { point ->
             FearIndex(

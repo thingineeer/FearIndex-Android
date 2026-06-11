@@ -8,6 +8,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertSame
 import org.junit.Test
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.data.datasource.ReturnDataSource
 import th1ngjin.fearindex.data.datasource.ReturnDataSourceException
 import th1ngjin.fearindex.data.dto.HistoricalReturnsDTO
@@ -79,6 +80,44 @@ class ReturnDataRepositoryImplTest {
         val result = repository.fetch(FearIndexType.CRYPTO)
 
         assertSame(DefaultReturnData.crypto, result)
+    }
+
+    @Test
+    fun `fetch kospi - Firestore 성공 시 kospi 문서 데이터 반환`() = runTest {
+        val dto = buildValidDTO(eventId = "kospi-stress", eventScore = 22)
+        coEvery { dataSource.fetch("kospi") } returns dto
+
+        val result = repository.fetch(FearIndexType.KOSPI)
+
+        assertEquals("kospi-stress", result.historicalEvents.first().id)
+        coVerify(exactly = 1) { dataSource.fetch("kospi") }
+    }
+
+    @Test
+    fun `fetch kospi - 실패 시 Kospi fallback`() = runTest {
+        coEvery { dataSource.fetch("kospi") } throws ReturnDataSourceException.NoData
+
+        val result = repository.fetch(FearIndexType.KOSPI)
+
+        assertSame(DefaultReturnData.kospi, result)
+        assertEquals(101, result.dataPoints.size)
+        assertEquals(7, result.historicalEvents.size)
+        assertEquals(22, result.dataPoints.first { it.score == 50 }.sampleCount)
+        assertEquals("kospi-tariff-2025", result.historicalEvents[1].id)
+    }
+
+    @Test
+    fun `screenshot mode - Firestore 없이 DefaultReturnData를 반환한다`() = runTest {
+        ScreenshotMode.setOverrideForTesting(true)
+
+        try {
+            val result = repository.fetch(FearIndexType.KOSPI)
+
+            assertSame(DefaultReturnData.kospi, result)
+            coVerify(exactly = 0) { dataSource.fetch(any()) }
+        } finally {
+            ScreenshotMode.setOverrideForTesting(null)
+        }
     }
 
     @Test

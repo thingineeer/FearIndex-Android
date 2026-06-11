@@ -5,6 +5,7 @@ import kotlinx.coroutines.tasks.await
 import th1ngjin.fearindex.data.dto.ReturnDataDTO
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Provider
 import javax.inject.Singleton
 
 /**
@@ -17,20 +18,20 @@ import javax.inject.Singleton
  */
 @Singleton
 class ReturnDataSource @Inject constructor(
-    private val firestore: FirebaseFirestore,
+    private val firestore: Provider<FirebaseFirestore>,
 ) {
 
     /**
-     * @param indexType "market" 또는 "crypto"
+     * @param indexType "market", "kospi" 또는 "crypto"
      * @throws ReturnDataSourceException 문서 없음 / 스키마 불일치 / 네트워크 실패
      */
     suspend fun fetch(indexType: String): ReturnDataDTO {
-        require(indexType == "market" || indexType == "crypto") {
+        require(indexType == "market" || indexType == "kospi" || indexType == "crypto") {
             "지원되지 않는 indexType: $indexType"
         }
 
         val snapshot = try {
-            firestore.collection("returnData")
+            firestore.get().collection("returnData")
                 .document(indexType)
                 .get()
                 .await()

@@ -1,1 +1,1 @@
-市場・暗号資産の Fear & Greed Index をリアルタイム表示。閾値通知にも対応。
+市場・暗号資産の Fear & Greed Index をリアルタイム表示。閾値通知にも対応。 + KOSPI

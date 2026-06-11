@@ -1,7 +1,10 @@
 Fear & Greed Index är en app för analys av investeringssentiment som låter dig övervaka både marknadens rädsla- och girighet-index (Market Fear & Greed Index) och kryptovalutans rädsla- och girighet-index (Crypto Fear & Greed Index) med en blick. Spåra två olika rädsloindex tillsammans med viktiga marknadsindex för att förstå massornas psykologi och fatta välgrundade investeringsbeslut.
 
-[Två rädsla- och girighet-index]
+KOSPI Fear & Greed Index har lagts till.
+
+[Tre rädsla- och girighet-index]
 - Marknadsrädslindex: Sentimentindikator för traditionella finansmarknader
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Kryptorädslindex: Sentimentindikator för kryptovalutamarknaden
 - Jämför båda indexen sida vid sida för att förstå den övergripande marknadsdynamiken
 
@@ -13,13 +16,9 @@ Fear & Greed Index är en app för analys av investeringssentiment som låter di
 - Viktiga marknadsindex i realtid (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Ettrycks växling mellan marknads- och kryptoindex
 
-[Widgets]
-- Startskärm-widgets: Small / Medium / Large storlekar
-- Låsskärm-widgets: separata skärmar för marknads- och kryptorädslindex
-- Marknads/krypto-växling i widgets
-
 [Push-notiser]
 - Omedelbara varningar när marknadsrädsloindexet når din tröskel
+- KOSPI Fear & Greed Index threshold alerts
 - Omedelbara varningar när kryptorädslindexet når din tröskel
 - Anpassningsbara inställningar för övre och nedre tröskelvärde
 

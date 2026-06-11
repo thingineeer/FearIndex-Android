@@ -75,6 +75,7 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="notification_push_description">Otrzymuj powiadomienia, gdy wskaźnik paniki osiągnie ustawiony próg.</string>
     <string name="notification_tab_market">Rynek</string>
     <string name="notification_tab_crypto">Kryptowaluty</string>
+    <string name="notification_weekly_title">Cotygodniowe alerty raportu</string>
     <string name="notification_market_title">Alerty wskaźnika paniki rynku</string>
     <string name="notification_crypto_title">Alerty wskaźnika paniki kryptowalut</string>
     <string name="notification_lower_label">Dolny próg (Panika)</string>
@@ -92,7 +93,7 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="stuck_percentage_label">Odsetek utknięć</string>
     <string name="stuck_button_im_stuck">"🤙 Ja też utknąłem"</string>
     <string name="stuck_button_im_safe">"✨ Nie utknąłem"</string>
-    <string name="stuck_footer_guide">"🤙 Dotknij przycisku, aby zobaczyć na żywo, ile osób utknęło"</string>
+    <string name="stuck_footer_guide">"Opcjonalnie: stuknij wybór, aby udostępnić status; stuknij ponownie, aby anulować. Szczegóły pod ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Dzisiejsze głosowanie</string>
@@ -214,6 +215,7 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="settings_menu_notification">Powiadomienia</string>
     <string name="settings_menu_privacy">Polityka prywatności</string>
     <string name="settings_menu_about">Informacje o aplikacji</string>
+    <string name="settings_menu_ad_privacy">Wybory dotyczące prywatności</string>
     <string name="settings_menu_rate">Napisz recenzję</string>
     <string name="settings_menu_share">Udostępnij aplikację</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="stuck_detail_stuck">W stracie · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Szczegóły odpowiedzi</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Pokazuje zmiany wyniku, podobne okresy z przeszłości, historyczne zwroty i odpowiedzi społeczności dla kontekstu.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Jeśli zainwestowałeś w KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Na podstawie zbliżonych do historycznych danych KOSPI. Wyniki osiągnięte w przeszłości nie gwarantują wyników w przyszłości.</string>
+    <string name="insight_detail_sample_basis_kospi">Na podstawie odcinków historycznych %1$d KOSPI</string>
 </resources>

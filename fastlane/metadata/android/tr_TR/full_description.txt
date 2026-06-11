@@ -1,7 +1,10 @@
 Fear & Greed Index, Piyasa Korku ve Açgözlülük Endeksi (Market Fear & Greed Index) ile Kripto Korku ve Açgözlülük Endeksi'ni (Crypto Fear & Greed Index) tek bakışta takip etmenizi sağlayan bir yatırım duyarlılık analiz uygulamasıdır. İki farklı korku endeksini başlıca piyasa endeksleriyle birlikte karşılaştırarak kitle psikolojisini anlayın ve bilinçli yatırım kararları alın.
 
-[İki Korku ve Açgözlülük Endeksi]
+KOSPI Fear & Greed Index eklendi.
+
+[Üç Korku ve Açgözlülük Endeksi]
 - Market Fear & Greed Index: Geleneksel finansal piyasalar için duyarlılık göstergesi
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Crypto Fear & Greed Index: Kripto para piyasası için duyarlılık göstergesi
 - Her iki endeksi yan yana karşılaştırarak genel piyasa dinamiklerini kavrayın
 
@@ -13,13 +16,9 @@ Fear & Greed Index, Piyasa Korku ve Açgözlülük Endeksi (Market Fear & Greed 
 - Gerçek zamanlı başlıca piyasa endeksleri (KOSPI, KOSDAQ, NASDAQ, S&P500, Dow Jones)
 - Piyasa ve Kripto endeksleri arasında tek dokunuşla geçiş
 
-[Widget'lar]
-- Ana ekran widget'ları: Small / Medium / Large boyutlar
-- Kilit ekranı widget'ları: Piyasa ve Kripto endeksleri için ayrı gösterim
-- Widget içinde Piyasa/Kripto geçişi
-
 [Push Bildirimleri]
 - Piyasa endeksi eşik değerine ulaştığında anlık bildirim
+- KOSPI Fear & Greed Index threshold alerts
 - Kripto endeksi eşik değerine ulaştığında anlık bildirim
 - Özelleştirilebilir üst ve alt eşik değerleri
 

@@ -75,6 +75,7 @@
     <string name="notification_push_description">Λάβετε ειδοποίηση όταν ο δείκτης φόβου φτάσει στο όριό σας.</string>
     <string name="notification_tab_market">Αγορά</string>
     <string name="notification_tab_crypto">Κρύπτο</string>
+    <string name="notification_weekly_title">Ειδοποιήσεις εβδομαδιαίας αναφοράς</string>
     <string name="notification_market_title">Ειδοποιήσεις δείκτη φόβου αγοράς</string>
     <string name="notification_crypto_title">Ειδοποιήσεις δείκτη φόβου κρύπτο</string>
     <string name="notification_lower_label">Κάτω όριο (Φόβος)</string>
@@ -92,7 +93,7 @@
     <string name="stuck_percentage_label">Ποσοστό εγκλωβισμένων</string>
     <string name="stuck_button_im_stuck">"🤙 Είμαι κι εγώ εγκλωβισμένος"</string>
     <string name="stuck_button_im_safe">"✨ Δεν είμαι εγκλωβισμένος"</string>
-    <string name="stuck_footer_guide">"🤙 Πατήστε ένα κουμπί για να δείτε σε πραγματικό χρόνο πόσοι είναι εγκλωβισμένοι"</string>
+    <string name="stuck_footer_guide">"Προαιρετικό: πατήστε μια επιλογή για να μοιραστείτε την κατάστασή σας· πατήστε ξανά για ακύρωση. Λεπτομέρειες στο ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Η ψηφοφορία της ημέρας</string>
@@ -214,6 +215,7 @@
     <string name="settings_menu_notification">Ειδοποιήσεις</string>
     <string name="settings_menu_privacy">Πολιτική Απορρήτου</string>
     <string name="settings_menu_about">Πληροφορίες Εφαρμογής</string>
+    <string name="settings_menu_ad_privacy">Επιλογές απορρήτου</string>
     <string name="settings_menu_rate">Γράψτε κριτική</string>
     <string name="settings_menu_share">Κοινοποίηση</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@
     <string name="stuck_detail_stuck">Παγιδευμένος · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Λεπτομέρειες απαντήσεων</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Δείχνει αλλαγές βαθμολογίας, παρόμοιες παλιές περιόδους, ιστορικές αποδόσεις και απαντήσεις κοινότητας για πλαίσιο.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Αν Επένδυσες στον ΚΟΣΠΗ</string>
+    <string name="insight_detail_disclaimer_kospi">Με βάση τα ιστορικά στοιχεία του ΚΟΣΠΙ από κοντά. Οι προηγούμενες επιδόσεις δεν εγγυώνται μελλοντικά αποτελέσματα.</string>
+    <string name="insight_detail_sample_basis_kospi">Βασισμένο σε ιστορικά επεισόδια %1$d KOSPI</string>
 </resources>

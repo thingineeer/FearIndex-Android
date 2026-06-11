@@ -75,6 +75,7 @@
     <string name="notification_push_description">Recevez une notification lorsque l\'indice de peur atteint votre seuil.</string>
     <string name="notification_tab_market">Marché</string>
     <string name="notification_tab_crypto">Crypto</string>
+    <string name="notification_weekly_title">Alertes de rapport hebdomadaires</string>
     <string name="notification_market_title">Alertes indice de peur (Marché)</string>
     <string name="notification_crypto_title">Alertes indice de peur (Crypto)</string>
     <string name="notification_lower_label">Seuil bas (Peur)</string>
@@ -92,7 +93,7 @@
     <string name="stuck_percentage_label">Taux de coincés</string>
     <string name="stuck_button_im_stuck">"🤙 Je suis coincé aussi"</string>
     <string name="stuck_button_im_safe">"✨ Je ne suis pas coincé"</string>
-    <string name="stuck_footer_guide">"🤙 Appuyez sur un bouton pour voir en temps réel combien de personnes sont coincées"</string>
+    <string name="stuck_footer_guide">"Facultatif : touchez un choix pour partager votre statut ; touchez encore pour annuler. Détails via ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Vote du jour</string>
@@ -214,6 +215,7 @@
     <string name="settings_menu_notification">Notifications</string>
     <string name="settings_menu_privacy">Politique de confidentialité</string>
     <string name="settings_menu_about">Infos App</string>
+    <string name="settings_menu_ad_privacy">Choix de confidentialité</string>
     <string name="settings_menu_rate">Laisser un avis</string>
     <string name="settings_menu_share">Partager l\'app</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@
     <string name="stuck_detail_stuck">Bloqué · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Détails des réponses</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Affiche les variations du score, les périodes similaires, les rendements historiques et les réponses de la communauté pour le contexte.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Si vous avez investi dans KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Basé sur les données historiques de clôture du KOSPI. Les performances passées ne garantissent pas les résultats futurs.</string>
+    <string name="insight_detail_sample_basis_kospi">Basé sur les épisodes historiques %1$d KOSPI</string>
 </resources>

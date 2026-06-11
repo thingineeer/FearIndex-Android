@@ -76,6 +76,7 @@
     <string name="notification_push_description">وقتی شاخص ترس به آستانه تعیین‌شده رسید به شما اطلاع داده می‌شود.</string>
     <string name="notification_tab_market">بازار</string>
     <string name="notification_tab_crypto">ارز دیجیتال</string>
+    <string name="notification_weekly_title">هشدارهای گزارش هفتگی</string>
     <string name="notification_market_title">هشدارهای شاخص ترس بازار</string>
     <string name="notification_crypto_title">هشدارهای شاخص ترس ارز دیجیتال</string>
     <string name="notification_lower_label">حد پایین (ترس)</string>
@@ -91,7 +92,7 @@
     <string name="stuck_percentage_label">درصد گیر افتاده</string>
     <string name="stuck_button_im_stuck">"🤙 من هم گیر افتادم"</string>
     <string name="stuck_button_im_safe">"✨ من گیر نیفتادم"</string>
-    <string name="stuck_footer_guide">"🤙 روی یک دکمه بزنید تا ببینید همین الان چند نفر گیر افتاده‌اند"</string>
+    <string name="stuck_footer_guide">"اختیاری: برای اشتراک وضعیت خود یک گزینه را بزنید؛ برای لغو دوباره بزنید. جزئیات زیر ⓘ است."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">رأی‌گیری امروز</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">اعلان‌ها</string>
     <string name="settings_menu_privacy">سیاست حریم خصوصی</string>
     <string name="settings_menu_about">اطلاعات برنامه</string>
+    <string name="settings_menu_ad_privacy">گزینه‌های حریم خصوصی</string>
     <string name="settings_menu_rate">نوشتن بازبینی</string>
     <string name="settings_menu_share">اشتراک‌گذاری</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -277,9 +279,15 @@
     <string name="stuck_detail_stuck">گیر کرده · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">جزئیات پاسخ‌ها</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">تغییرات امتیاز، دوره‌های مشابه گذشته، بازده تاریخی و پاسخ‌های جامعه را برای زمینه بیشتر نشان می‌دهد.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">اگر در KOSPI سرمایه گذاری کرده اید</string>
+    <string name="insight_detail_disclaimer_kospi">بر اساس داده های نزدیک به نزدیک KOSPI تاریخی. عملکرد گذشته نتایج آینده را تضمین نمی کند.</string>
+    <string name="insight_detail_sample_basis_kospi">بر اساس قسمت های تاریخی %1$d KOSPI</string>
 </resources>

@@ -9,6 +9,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 
 /**
@@ -42,8 +44,11 @@ fun SegmentedPicker(
                 text = {
                     Text(
                         text = label,
-                        style = MaterialTheme.typography.titleSmall,
+                        style = MaterialTheme.typography.labelLarge,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Center,
                     )
                 },
                 selectedContentColor = MaterialTheme.colorScheme.primary,
@@ -57,7 +62,7 @@ fun SegmentedPicker(
 @Composable
 private fun SegmentedPickerPreview() {
     SegmentedPicker(
-        items = listOf("시장", "암호화폐"),
+        items = listOf("시장", "코스피", "암호화폐"),
         selectedIndex = 0,
         onItemSelected = {},
     )

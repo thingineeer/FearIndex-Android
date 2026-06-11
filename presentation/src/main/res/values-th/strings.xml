@@ -80,6 +80,7 @@
     <string name="notification_push_description">รับการแจ้งเตือนเมื่อดัชนีความกลัวถึงค่าที่คุณตั้งไว้</string>
     <string name="notification_tab_market">ตลาด</string>
     <string name="notification_tab_crypto">คริปโต</string>
+    <string name="notification_weekly_title">การแจ้งเตือนรายงานรายสัปดาห์</string>
     <string name="notification_market_title">การแจ้งเตือนดัชนีความกลัวของตลาด</string>
     <string name="notification_crypto_title">การแจ้งเตือนดัชนีความกลัวของคริปโต</string>
     <string name="notification_lower_label">ค่าต่ำสุด (ความกลัว)</string>
@@ -95,7 +96,7 @@
     <string name="stuck_percentage_label">อัตราการติดดอย</string>
     <string name="stuck_button_im_stuck">"🤙 ฉันก็ติดดอย"</string>
     <string name="stuck_button_im_safe">"✨ ฉันไม่ติดดอย"</string>
-    <string name="stuck_footer_guide">"🤙 กดปุ่มเพื่อดูว่ามีกี่คนติดดอยแบบเรียลไทม์"</string>
+    <string name="stuck_footer_guide">"ไม่บังคับ: แตะตัวเลือกเพื่อแชร์สถานะของคุณ แตะอีกครั้งเพื่อยกเลิก ดูรายละเอียดที่ ⓘ"</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">โหวตประจำวัน</string>
@@ -217,6 +218,7 @@
     <string name="settings_menu_notification">การแจ้งเตือน</string>
     <string name="settings_menu_privacy">นโยบายความเป็นส่วนตัว</string>
     <string name="settings_menu_about">ข้อมูลแอป</string>
+    <string name="settings_menu_ad_privacy">ตัวเลือกความเป็นส่วนตัว</string>
     <string name="settings_menu_rate">เขียนรีวิว</string>
     <string name="settings_menu_share">แชร์แอป</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -281,9 +283,15 @@
     <string name="stuck_detail_stuck">ติดดอย · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">รายละเอียดการตอบ</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">แสดงการเปลี่ยนแปลงคะแนน ช่วงอดีตที่คล้ายกัน ผลตอบแทนย้อนหลัง และคำตอบจากชุมชนเพื่อให้บริบท.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">หากคุณลงทุนใน KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">อิงจากข้อมูลใกล้ชิดของ KOSPI ในอดีต ประสิทธิภาพที่ผ่านมาไม่ได้รับประกันผลลัพธ์ในอนาคต</string>
+    <string name="insight_detail_sample_basis_kospi">อิงจากตอนทางประวัติศาสตร์ของ %1$d KOSPI</string>
 </resources>

@@ -75,6 +75,7 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="notification_push_description">Ontvang een melding wanneer de angstindex uw drempel bereikt.</string>
     <string name="notification_tab_market">Markt</string>
     <string name="notification_tab_crypto">Crypto</string>
+    <string name="notification_weekly_title">Wekelijkse rapportwaarschuwingen</string>
     <string name="notification_market_title">Angstindex-meldingen (Markt)</string>
     <string name="notification_crypto_title">Angstindex-meldingen (Crypto)</string>
     <string name="notification_lower_label">Ondergrens (Angst)</string>
@@ -92,7 +93,7 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="stuck_percentage_label">Percentage vast</string>
     <string name="stuck_button_im_stuck">"🤙 Ik zit ook vast"</string>
     <string name="stuck_button_im_safe">"✨ Ik zit niet vast"</string>
-    <string name="stuck_footer_guide">"🤙 Tik op een knop om in realtime te zien hoeveel mensen vastzitten"</string>
+    <string name="stuck_footer_guide">"Optioneel: tik op een keuze om je status te delen; tik opnieuw om te annuleren. Details onder ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Stemming van vandaag</string>
@@ -214,6 +215,7 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="settings_menu_notification">Meldingen</string>
     <string name="settings_menu_privacy">Privacybeleid</string>
     <string name="settings_menu_about">App-info</string>
+    <string name="settings_menu_ad_privacy">Privacykeuzes</string>
     <string name="settings_menu_rate">Beoordeling schrijven</string>
     <string name="settings_menu_share">App delen</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="stuck_detail_stuck">Vast · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Responsdetails</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Toont scorewijzigingen, vergelijkbare eerdere perioden, historische rendementen en reacties van de community als context.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Als u in KOSPI hebt geïnvesteerd</string>
+    <string name="insight_detail_disclaimer_kospi">Gebaseerd op historische KOSPI close-to-close-gegevens. In het verleden behaalde resultaten bieden geen garantie voor toekomstige resultaten.</string>
+    <string name="insight_detail_sample_basis_kospi">Gebaseerd op %1$d KOSPI historische afleveringen</string>
 </resources>

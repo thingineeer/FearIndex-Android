@@ -5,7 +5,9 @@ import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.tasks.await
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.domain.entity.AggregateStats
 import th1ngjin.fearindex.domain.entity.EventMatch
 import th1ngjin.fearindex.domain.entity.FearIndexType
@@ -17,6 +19,7 @@ import th1ngjin.fearindex.domain.repository.SimilarEventsRepository
 import timber.log.Timber
 import java.time.Instant
 import javax.inject.Inject
+import javax.inject.Provider
 import javax.inject.Singleton
 
 /**
@@ -27,50 +30,56 @@ import javax.inject.Singleton
  */
 @Singleton
 class SimilarEventsRepositoryImpl @Inject constructor(
-    private val firestore: FirebaseFirestore,
-    private val functions: FirebaseFunctions,
+    private val firestore: Provider<FirebaseFirestore>,
+    private val functions: Provider<FirebaseFunctions>,
 ) : SimilarEventsRepository {
 
     private val triggeredScores = mutableSetOf<String>()
 
-    override fun observe(indexType: FearIndexType): Flow<SimilarEventsResult> = callbackFlow {
-        val docId = "similarEvents_${indexType.name.lowercase()}"
-        Timber.i("SimilarEventsRepository: observe START ($docId)")
-        val registration = firestore
-            .collection("insights")
-            .document(docId)
-            .addSnapshotListener { snapshot, error ->
-                if (error != null) {
-                    Timber.e(error, "SimilarEventsRepository: observe error ($docId)")
-                    return@addSnapshotListener
-                }
-                if (snapshot == null) {
-                    Timber.w("SimilarEventsRepository: snapshot null ($docId)")
-                    return@addSnapshotListener
-                }
-                if (!snapshot.exists()) {
-                    Timber.w("SimilarEventsRepository: doc does not exist ($docId), will trigger Callable fallback")
-                    return@addSnapshotListener
+    override fun observe(indexType: FearIndexType): Flow<SimilarEventsResult> {
+        if (ScreenshotMode.isEnabled()) {
+            return flowOf(ScreenshotFixtures.similarEvents(indexType))
+        }
+
+        return callbackFlow {
+            val docId = "similarEvents_${indexType.name.lowercase()}"
+            Timber.i("SimilarEventsRepository: observe START ($docId)")
+            val registration = firestore.get()
+                .collection("insights")
+                .document(docId)
+                .addSnapshotListener { snapshot, error ->
+                    if (error != null) {
+                        Timber.e(error, "SimilarEventsRepository: observe error ($docId)")
+                        return@addSnapshotListener
+                    }
+                    if (snapshot == null) {
+                        Timber.w("SimilarEventsRepository: snapshot null ($docId)")
+                        return@addSnapshotListener
+                    }
+                    if (!snapshot.exists()) {
+                        Timber.w("SimilarEventsRepository: doc does not exist ($docId), will trigger Callable fallback")
+                        return@addSnapshotListener
+                    }
+
+                    val data = snapshot.data
+                    if (data == null) {
+                        Timber.w("SimilarEventsRepository: data null ($docId)")
+                        return@addSnapshotListener
+                    }
+                    Timber.i("SimilarEventsRepository: snapshot received ($docId, fields=${data.keys})")
+                    val result = parseResult(data, indexType)
+                    if (result != null) {
+                        Timber.i("SimilarEventsRepository: parsed OK ($docId, matches=${result.matches.size}, hasStats=${result.aggregateStats != null})")
+                        trySend(result)
+                    } else {
+                        Timber.w("SimilarEventsRepository: parse failed ($docId)")
+                    }
                 }
 
-                val data = snapshot.data
-                if (data == null) {
-                    Timber.w("SimilarEventsRepository: data null ($docId)")
-                    return@addSnapshotListener
-                }
-                Timber.i("SimilarEventsRepository: snapshot received ($docId, fields=${data.keys})")
-                val result = parseResult(data, indexType)
-                if (result != null) {
-                    Timber.i("SimilarEventsRepository: parsed OK ($docId, matches=${result.matches.size}, hasStats=${result.aggregateStats != null})")
-                    trySend(result)
-                } else {
-                    Timber.w("SimilarEventsRepository: parse failed ($docId)")
-                }
+            awaitClose {
+                Timber.i("SimilarEventsRepository: observe END ($docId)")
+                registration.remove()
             }
-
-        awaitClose {
-            Timber.i("SimilarEventsRepository: observe END ($docId)")
-            registration.remove()
         }
     }
 
@@ -82,6 +91,8 @@ class SimilarEventsRepositoryImpl @Inject constructor(
      * Android는 첫 진입 시 fearIndex가 아직 변경되지 않았을 수 있으므로 명시적으로 트리거.
      */
     override suspend fun triggerCallable(indexType: FearIndexType, currentScore: Int) {
+        if (ScreenshotMode.isEnabled()) return
+
         val key = "${indexType.name.lowercase()}_$currentScore"
         if (key in triggeredScores) return
         triggeredScores.add(key)
@@ -92,7 +103,7 @@ class SimilarEventsRepositoryImpl @Inject constructor(
                 "indexType" to indexType.name.lowercase(),
                 "currentScore" to currentScore,
             )
-            functions
+            functions.get()
                 .getHttpsCallable("getSimilarEvents")
                 .call(payload)
                 .await()

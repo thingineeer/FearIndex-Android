@@ -75,6 +75,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="notification_push_description">Primești notificare când indicele fricii atinge pragul tău.</string>
     <string name="notification_tab_market">Piață</string>
     <string name="notification_tab_crypto">Cripto</string>
+    <string name="notification_weekly_title">Alerte de rapoarte săptămânale</string>
     <string name="notification_market_title">Alerte indice frică piață</string>
     <string name="notification_crypto_title">Alerte indice frică cripto</string>
     <string name="notification_lower_label">Inferior (Frică)</string>
@@ -92,7 +93,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="stuck_percentage_label">Rată blocați</string>
     <string name="stuck_button_im_stuck">"🤙 Și eu sunt blocat"</string>
     <string name="stuck_button_im_safe">"✨ Nu sunt blocat"</string>
-    <string name="stuck_footer_guide">"🤙 Apasă un buton pentru a vedea în timp real câți sunt blocați"</string>
+    <string name="stuck_footer_guide">"Opțional: atingeți o alegere pentru a vă partaja starea; atingeți din nou pentru anulare. Detalii la ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Votul de azi</string>
@@ -214,6 +215,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="settings_menu_notification">Notificări</string>
     <string name="settings_menu_privacy">Politica de Confidențialitate</string>
     <string name="settings_menu_about">Informații Aplicație</string>
+    <string name="settings_menu_ad_privacy">Opțiuni de confidențialitate</string>
     <string name="settings_menu_rate">Scrie o recenzie</string>
     <string name="settings_menu_share">Distribuie aplicația</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="stuck_detail_stuck">Blocat · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Detalii răspunsuri</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Arată schimbări de scor, perioade trecute similare, randamente istorice și răspunsuri ale comunității pentru context.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Dacă ai investit în KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Pe baza datelor istorice KOSPI aproape de aproape. Performanța trecută nu garantează rezultate viitoare.</string>
+    <string name="insight_detail_sample_basis_kospi">Bazat pe episoadele istorice %1$d KOSPI</string>
 </resources>

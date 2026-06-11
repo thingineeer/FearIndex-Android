@@ -5,10 +5,12 @@ import th1ngjin.fearindex.data.dto.SubmitVoteRequest
 import th1ngjin.fearindex.data.dto.VoteResponse
 import th1ngjin.fearindex.data.storage.StuckCounterStorage
 import th1ngjin.fearindex.data.storage.VoteStorage
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.domain.entity.VoteChoice
 import th1ngjin.fearindex.domain.entity.VoteResult
 import th1ngjin.fearindex.domain.repository.VoteRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -29,6 +31,8 @@ class VoteRepositoryImpl @Inject constructor(
         choice: VoteChoice,
         fearScore: Int,
     ): VoteResult {
+        if (ScreenshotMode.isEnabled()) return VoteResult.EMPTY
+
         val deviceId = deviceStorage.loadDeviceId()
         val date = VoteDataSource.todayUTC()
         val request = SubmitVoteRequest(
@@ -44,6 +48,8 @@ class VoteRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getVoteResult(indexType: String): VoteResult {
+        if (ScreenshotMode.isEnabled()) return VoteResult.EMPTY
+
         val deviceId = deviceStorage.loadDeviceId()
         val date = VoteDataSource.todayUTC()
         val response = dataSource.getVoteResult(deviceId, indexType, date)
@@ -52,6 +58,8 @@ class VoteRepositoryImpl @Inject constructor(
     }
 
     override fun voteResultStream(indexType: String): Flow<VoteResult> {
+        if (ScreenshotMode.isEnabled()) return flowOf(VoteResult.EMPTY)
+
         return dataSource.voteResultStream(indexType).map { response ->
             val localMyVote = voteStorage.loadMyVote(indexType)
             response.copy(myVote = localMyVote).toEntity()

@@ -1,5 +1,6 @@
 package th1ngjin.fearindex.data.repository
 
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.data.datasource.NotificationDataSource
 import th1ngjin.fearindex.data.storage.NotificationStorage
 import th1ngjin.fearindex.domain.entity.NotificationSettings
@@ -21,22 +22,21 @@ class NotificationRepositoryImpl @Inject constructor(
 ) : NotificationRepository {
 
     override suspend fun registerFCMToken(deviceId: String, fcmToken: String) {
-        dataSource.registerFCMToken(deviceId, fcmToken)
+        if (ScreenshotMode.isEnabled()) return
+        dataSource.registerFCMToken(deviceId, fcmToken, storage.load())
     }
 
     override suspend fun updateSettings(deviceId: String, settings: NotificationSettings) {
         storage.save(settings)
+        if (ScreenshotMode.isEnabled()) return
         dataSource.updateSettings(
             deviceId = deviceId,
-            notificationEnabled = settings.notificationEnabled,
-            lowerThreshold = settings.marketLowerThreshold,
-            upperThreshold = settings.marketUpperThreshold,
-            cryptoLowerThreshold = settings.cryptoLowerThreshold,
-            cryptoUpperThreshold = settings.cryptoUpperThreshold,
+            settings = settings,
         )
     }
 
     override suspend fun unregisterDevice(deviceId: String) {
+        if (ScreenshotMode.isEnabled()) return
         dataSource.unregisterDevice(deviceId)
     }
 

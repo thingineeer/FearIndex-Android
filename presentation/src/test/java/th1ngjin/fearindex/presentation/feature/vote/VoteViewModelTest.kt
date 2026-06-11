@@ -28,7 +28,7 @@ import th1ngjin.fearindex.domain.usecase.SubmitVoteUseCase
  * VoteViewModel 무결성 테스트.
  *
  * QA#3 해결 근거:
- * - init 시 loadInitialStuckResults → fetchOnce(MARKET) + fetchOnce(CRYPTO) 호출
+ * - init 시 loadInitialStuckResults → fetchOnce(MARKET) + fetchOnce(KOSPI) + fetchOnce(CRYPTO) 호출
  * - 초기 result StateFlow 업데이트로 진입 즉시 카운터 표시
  *
  * Note: VoteViewModel.init이 startCountdown() (1초 주기 무한 loop)을 호출하므로
@@ -71,32 +71,39 @@ class VoteViewModelTest {
     )
 
     @Test
-    fun `init - MARKET과 CRYPTO 초기 fetchOnce 호출 (QA#3 해결)`() {
+    fun `init - MARKET과 KOSPI와 CRYPTO 초기 fetchOnce 호출 (QA#3 해결)`() {
         coEvery { observeStuckCounter.fetchOnce(any()) } returns StuckCounterResult.EMPTY
 
         createViewModel()
 
         coVerify(exactly = 1) { observeStuckCounter.fetchOnce(FearIndexType.MARKET) }
+        coVerify(exactly = 1) { observeStuckCounter.fetchOnce(FearIndexType.KOSPI) }
         coVerify(exactly = 1) { observeStuckCounter.fetchOnce(FearIndexType.CRYPTO) }
     }
 
     @Test
-    fun `init - 초기 fetch 결과로 marketResult와 cryptoResult StateFlow 업데이트`() {
+    fun `init - 초기 fetch 결과로 marketResult와 kospiResult와 cryptoResult StateFlow 업데이트`() {
         val marketInit = StuckCounterResult(
             stuckCount = 3, safeCount = 7, totalResponded = 10,
             stuckPercentage = 30.0, safePercentage = 70.0, myStatus = StuckStatus.NONE,
+        )
+        val kospiInit = StuckCounterResult(
+            stuckCount = 4, safeCount = 6, totalResponded = 10,
+            stuckPercentage = 40.0, safePercentage = 60.0, myStatus = StuckStatus.NONE,
         )
         val cryptoInit = StuckCounterResult(
             stuckCount = 5, safeCount = 5, totalResponded = 10,
             stuckPercentage = 50.0, safePercentage = 50.0, myStatus = StuckStatus.NONE,
         )
         coEvery { observeStuckCounter.fetchOnce(FearIndexType.MARKET) } returns marketInit
+        coEvery { observeStuckCounter.fetchOnce(FearIndexType.KOSPI) } returns kospiInit
         coEvery { observeStuckCounter.fetchOnce(FearIndexType.CRYPTO) } returns cryptoInit
 
         val viewModel = createViewModel()
 
         assertEquals(3, viewModel.marketResult.value.stuckCount)
         assertEquals(10, viewModel.marketResult.value.totalResponded)
+        assertEquals(4, viewModel.kospiResult.value.stuckCount)
         assertEquals(5, viewModel.cryptoResult.value.stuckCount)
     }
 
@@ -107,7 +114,18 @@ class VoteViewModelTest {
         val viewModel = createViewModel()
 
         assertEquals(StuckCounterResult.EMPTY, viewModel.marketResult.value)
+        assertEquals(StuckCounterResult.EMPTY, viewModel.kospiResult.value)
         assertEquals(StuckCounterResult.EMPTY, viewModel.cryptoResult.value)
+    }
+
+    @Test
+    fun `init - iOS v1_8_0 Vote 탭은 deprecated Buy Hold Sell callable을 시작하지 않음`() {
+        coEvery { observeStuckCounter.fetchOnce(any()) } returns StuckCounterResult.EMPTY
+
+        createViewModel()
+
+        coVerify(exactly = 0) { getVoteResultUseCase(any()) }
+        coVerify(exactly = 0) { observeVoteResultUseCase(any()) }
     }
 
     @Test
@@ -118,6 +136,19 @@ class VoteViewModelTest {
         viewModel.toggleStuckStatus(FearIndexType.MARKET, StuckStatus.STUCK)
 
         assertEquals(StuckStatus.STUCK, viewModel.myMarketStatus.value)
+    }
+
+    @Test
+    fun `toggleStuckStatus - KOSPI는 market과 별도 StateFlow에 반영`() {
+        coEvery { observeStuckCounter.fetchOnce(any()) } returns StuckCounterResult.EMPTY
+
+        val viewModel = createViewModel()
+        viewModel.toggleStuckStatus(FearIndexType.KOSPI, StuckStatus.STUCK)
+
+        assertEquals(StuckStatus.NONE, viewModel.myMarketStatus.value)
+        assertEquals(StuckStatus.STUCK, viewModel.myKospiStatus.value)
+        assertEquals(1, viewModel.kospiResult.value.stuckCount)
+        assertEquals(0, viewModel.marketResult.value.stuckCount)
     }
 
     @Test

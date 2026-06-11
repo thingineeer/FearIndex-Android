@@ -1,5 +1,8 @@
 package th1ngjin.fearindex.presentation.feature.home
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
@@ -46,8 +49,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
+import th1ngjin.fearindex.core.ads.AdRequestAvailability
+import th1ngjin.fearindex.core.remoteconfig.AdsRemoteConfig
 import th1ngjin.fearindex.core.util.ShareUrlBuilder
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
@@ -60,17 +68,22 @@ import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.AdBanner
+import th1ngjin.fearindex.presentation.component.AnalyticsInterstitialAdReporter
 import th1ngjin.fearindex.presentation.component.ComparisonCard
 import th1ngjin.fearindex.presentation.component.FearGaugeView
 import th1ngjin.fearindex.presentation.component.FearIndexSkeletonView
 import th1ngjin.fearindex.presentation.component.InsightDetailSheet
 import th1ngjin.fearindex.presentation.component.InsightTeaserCard
+import th1ngjin.fearindex.presentation.component.InterstitialAdCoordinator
+import th1ngjin.fearindex.presentation.component.InterstitialAdPolicyConfig
+import th1ngjin.fearindex.presentation.component.InterstitialAdSessionState
 import th1ngjin.fearindex.presentation.component.SimilarEventsCard
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.component.StuckCounterCard
 import th1ngjin.fearindex.presentation.component.StuckDetailSheet
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
-import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
+import th1ngjin.fearindex.presentation.di.AdsEntryPoint
+import th1ngjin.fearindex.presentation.feature.insight.InsightIndexScope
 import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
 import th1ngjin.fearindex.presentation.feature.similarevents.SimilarEventsViewModel
 import th1ngjin.fearindex.presentation.feature.vote.VoteViewModel
@@ -81,6 +94,7 @@ import java.time.format.DateTimeFormatter
 // MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
 
 private const val ANALYTICS_TYPE_MARKET = "시장"
+private const val ANALYTICS_TYPE_KOSPI = "코스피"
 private const val ANALYTICS_TYPE_CRYPTO = "암호화폐"
 private const val ANALYTICS_STUCK = "물렸어요"
 private const val ANALYTICS_NOT_STUCK = "안물렸어요"
@@ -96,16 +110,18 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
     // InsightViewModel이 HomeViewModel을 관찰
     LaunchedEffect(Unit) {
-        insightViewModel.observeHome(viewModel)
+        insightViewModel.observeHome(viewModel, InsightIndexScope.HOME)
     }
 
-    val selectedType = uiState.selectedType
+    val selectedType = uiState.selectedHomeType
     val selectedIndex = when (selectedType) {
         FearIndexType.MARKET -> 0
-        FearIndexType.CRYPTO -> 1
+        FearIndexType.KOSPI -> 1
+        FearIndexType.CRYPTO -> 2
     }
     val currentState = when (selectedType) {
         FearIndexType.MARKET -> uiState.marketState
+        FearIndexType.KOSPI -> uiState.kospiState
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
 
@@ -127,10 +143,59 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     }
 
     val context = LocalContext.current
-    val analytics = remember(context) {
+    val activity = remember(context) { context.findActivity() }
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val adsEntryPoint = remember(context) {
         EntryPointAccessors
-            .fromApplication(context.applicationContext, AnalyticsEntryPoint::class.java)
-            .analyticsManager()
+            .fromApplication(context.applicationContext, AdsEntryPoint::class.java)
+    }
+    val analytics = remember(adsEntryPoint) {
+        adsEntryPoint.analyticsManager()
+    }
+    val remoteConfig = remember(adsEntryPoint) {
+        adsEntryPoint.remoteConfigManager()
+    }
+    val adsConfig by remoteConfig.adsConfig.collectAsStateWithLifecycle()
+    val canRequestAds by AdRequestAvailability.canRequestAds.collectAsStateWithLifecycle()
+    val interstitialConfig = remember(adsConfig, canRequestAds) {
+        adsConfig.interstitialAdPolicyConfig(canRequestAds)
+    }
+    val interstitialReporter = remember(analytics) {
+        AnalyticsInterstitialAdReporter(analytics)
+    }
+    val interstitialCoordinator = remember(interstitialReporter) {
+        InterstitialAdCoordinator(
+            reporter = interstitialReporter,
+            policy = InterstitialAdSessionState.policy,
+        )
+    }
+    var previousInterstitialType by remember { mutableStateOf(selectedType) }
+
+    LaunchedEffect(interstitialConfig) {
+        interstitialCoordinator.preloadIfNeeded(
+            context = context,
+            adUnitId = BuildConfig.ADMOB_INTERSTITIAL,
+            config = interstitialConfig,
+        )
+    }
+
+    LaunchedEffect(selectedType, interstitialConfig) {
+        val previousType = previousInterstitialType
+        previousInterstitialType = selectedType
+        if (interstitialCoordinator.shouldScheduleKospiEntry(previousType, selectedType, interstitialConfig)) {
+            delay(interstitialConfig.kospiEntryDelayMillis)
+            val currentActivity = activity ?: return@LaunchedEffect
+            if (
+                lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED) &&
+                currentActivity.canShowInterstitialAd()
+            ) {
+                interstitialCoordinator.showKospiEntryIfAvailable(
+                    activity = currentActivity,
+                    adUnitId = BuildConfig.ADMOB_INTERSTITIAL,
+                    config = interstitialConfig,
+                )
+            }
+        }
     }
 
     // 인사이트 상세 BottomSheet
@@ -164,10 +229,15 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
             ratingLabel = loadedRating,
             onShareClicked = {
                 if (loadedScore != null) {
-                    val typeLabel = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO
-                    analytics.log(AnalyticsEvent.공유버튼탭(지수타입 = typeLabel, 현재점수 = loadedScore))
+                    analytics.log(
+                        AnalyticsEvent.공유버튼탭(
+                            지수타입 = selectedType.analyticsLabel(),
+                            현재점수 = loadedScore,
+                        ),
+                    )
                 }
             },
+            shareType = selectedType.serverName,
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -176,12 +246,17 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         SegmentedPicker(
             items = listOf(
                 stringResource(R.string.tab_market),
+                stringResource(R.string.tab_kospi),
                 stringResource(R.string.tab_crypto),
             ),
             selectedIndex = selectedIndex,
             onItemSelected = { index ->
-                val type = if (index == 0) FearIndexType.MARKET else FearIndexType.CRYPTO
-                viewModel.selectIndexType(type)
+                val type = when (index) {
+                    0 -> FearIndexType.MARKET
+                    1 -> FearIndexType.KOSPI
+                    else -> FearIndexType.CRYPTO
+                }
+                viewModel.selectHomeIndexType(type)
             },
         )
 
@@ -214,7 +289,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                                 UiStuckStatus.NOT_STUCK -> ANALYTICS_NOT_STUCK
                                 UiStuckStatus.NO_RESPONSE -> ANALYTICS_CANCEL
                             },
-                            지수타입 = if (selectedType == FearIndexType.MARKET) ANALYTICS_TYPE_MARKET else ANALYTICS_TYPE_CRYPTO,
+                            지수타입 = selectedType.analyticsLabel(),
                             현재점수 = score,
                         ),
                     )
@@ -239,6 +314,7 @@ private fun TitleBar(
     currentScore: Int? = null,
     ratingLabel: String? = null,
     onShareClicked: () -> Unit = {},
+    shareType: String = FearIndexType.MARKET.serverName,
 ) {
     // 공유 메시지의 제목/본문도 다국어. 점수와 등급은 호출부에서 ratingLabel(score)로 미리 주입.
     val shareTitle = stringResource(R.string.home_title) // "공포 탐욕 지수" / "Fear & Greed Index" 등
@@ -259,7 +335,7 @@ private fun TitleBar(
                 // 모든 문자열은 strings.xml(45 locale)에서 가져오므로 하드코딩 금지.
                 val shareUrl = ShareUrlBuilder.build(
                     score = currentScore ?: 0,
-                    type = "market",
+                    type = shareType,
                     rating = ratingLabel ?: "",
                 )
                 val shareText = "$shareTemplate\n$shareUrl"
@@ -494,3 +570,27 @@ private fun UiStuckStatus.toDomain(): DomainStuckStatus = when (this) {
     UiStuckStatus.NOT_STUCK -> DomainStuckStatus.SAFE
     UiStuckStatus.NO_RESPONSE -> DomainStuckStatus.NONE
 }
+
+private fun FearIndexType.analyticsLabel(): String = when (this) {
+    FearIndexType.MARKET -> ANALYTICS_TYPE_MARKET
+    FearIndexType.KOSPI -> ANALYTICS_TYPE_KOSPI
+    FearIndexType.CRYPTO -> ANALYTICS_TYPE_CRYPTO
+}
+
+private fun AdsRemoteConfig.interstitialAdPolicyConfig(canRequestAds: Boolean): InterstitialAdPolicyConfig =
+    InterstitialAdPolicyConfig(
+        canRequestAds = canRequestAds,
+        adsEnabled = adsEnabled,
+        interstitialEnabled = interstitialAdsEnabled,
+        kospiEntryEnabled = kospiInterstitialEnabled,
+        sessionCap = interstitialSessionCap,
+        cooldownMillis = interstitialCooldownMillis,
+    )
+
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
+}
+
+private fun Activity.canShowInterstitialAd(): Boolean = !isFinishing && !isDestroyed

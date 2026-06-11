@@ -12,30 +12,41 @@ import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
+import th1ngjin.fearindex.domain.entity.KospiFearIndex
 import th1ngjin.fearindex.domain.entity.MarketIndex
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
+import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexHistoryUseCase
+import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
 import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 
 data class HomeUiState(
-    val selectedType: FearIndexType = FearIndexType.MARKET,
+    val selectedHomeType: FearIndexType = FearIndexType.MARKET,
+    val selectedChartType: FearIndexType = FearIndexType.MARKET,
+    val selectedVoteType: FearIndexType = FearIndexType.MARKET,
     val marketState: FearIndexState = FearIndexState.Loading,
+    val kospiState: FearIndexState = FearIndexState.Loading,
     val cryptoState: FearIndexState = FearIndexState.Loading,
+    val kospiSnapshot: KospiFearIndex? = null,
     val marketHistory: List<FearIndex> = emptyList(),
+    val kospiHistory: List<FearIndex> = emptyList(),
     val cryptoHistory: List<FearIndex> = emptyList(),
     val marketHistoryDays: Int = DEFAULT_MARKET_DAYS,
+    val kospiHistoryDays: Int = DEFAULT_KOSPI_DAYS,
     val cryptoHistoryDays: Int = DEFAULT_CRYPTO_DAYS,
     val isMarketHistoryLoading: Boolean = false,
+    val isKospiHistoryLoading: Boolean = false,
     val isCryptoHistoryLoading: Boolean = false,
     val marketIndices: List<MarketIndex> = emptyList(),
 ) {
     companion object {
         const val DEFAULT_MARKET_DAYS = 90
+        const val DEFAULT_KOSPI_DAYS = 90
         const val DEFAULT_CRYPTO_DAYS = 90
     }
 }
@@ -52,50 +63,83 @@ class HomeViewModel @Inject constructor(
     private val getFearIndexHistory: GetFearIndexHistoryUseCase,
     private val getCryptoFearIndex: GetCryptoFearIndexUseCase,
     private val getCryptoFearIndexHistory: GetCryptoFearIndexHistoryUseCase,
+    private val getKospiFearIndex: GetKospiFearIndexUseCase,
+    private val getKospiFearIndexHistory: GetKospiFearIndexHistoryUseCase,
     private val getMarketIndices: GetMarketIndicesUseCase,
     private val analytics: AnalyticsManager,
 ) : ViewModel() {
+    companion object {
+        const val NETWORK_ERROR_MESSAGE =
+            "Market data is temporarily unavailable. Please check your connection and try again."
+        const val GENERIC_ERROR_MESSAGE = "Market data is temporarily unavailable. Please try again."
+    }
 
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
     private var marketHistoryJob: Job? = null
+    private var kospiHistoryJob: Job? = null
     private var cryptoHistoryJob: Job? = null
 
     init {
         loadMarketCurrent()
+        loadKospiCurrent()
         loadCryptoCurrent()
         loadMarketHistory(HomeUiState.DEFAULT_MARKET_DAYS)
+        loadKospiHistory(HomeUiState.DEFAULT_KOSPI_DAYS)
         loadCryptoHistory(HomeUiState.DEFAULT_CRYPTO_DAYS)
         loadMarketIndices()
     }
 
-    fun selectIndexType(type: FearIndexType) {
-        val previous = _uiState.value.selectedType
-        _uiState.value = _uiState.value.copy(selectedType = type)
-        if (previous != type) {
-            analytics.log(
-                AnalyticsEvent.지수타입전환(
-                    타입 = type.toLabel(),
-                    화면 = "홈",
-                    이전타입 = previous.toLabel(),
-                ),
-            )
+    fun selectHomeIndexType(type: FearIndexType) =
+        selectIndexType(type, screen = "홈", previous = _uiState.value.selectedHomeType) {
+            _uiState.value = _uiState.value.copy(selectedHomeType = type)
         }
-    }
+
+    fun selectChartIndexType(type: FearIndexType) =
+        selectIndexType(type, screen = "차트", previous = _uiState.value.selectedChartType) {
+            _uiState.value = _uiState.value.copy(selectedChartType = type)
+        }
+
+    fun selectVoteIndexType(type: FearIndexType) =
+        selectIndexType(type, screen = "투표", previous = _uiState.value.selectedVoteType) {
+            _uiState.value = _uiState.value.copy(selectedVoteType = type)
+        }
 
     fun refresh() {
-        val selectedType = _uiState.value.selectedType
+        val selectedType = _uiState.value.selectedHomeType
         analytics.log(AnalyticsEvent.수동새로고침(화면 = selectedType.toLabel()))
         when (selectedType) {
             FearIndexType.MARKET -> {
                 loadMarketCurrent(forceRefresh = true)
                 loadMarketHistory(_uiState.value.marketHistoryDays, forceRefresh = true)
             }
+            FearIndexType.KOSPI -> {
+                loadKospiCurrent(forceRefresh = true)
+                loadKospiHistory(_uiState.value.kospiHistoryDays, forceRefresh = true)
+            }
             FearIndexType.CRYPTO -> {
                 loadCryptoCurrent(forceRefresh = true)
                 loadCryptoHistory(_uiState.value.cryptoHistoryDays, forceRefresh = true)
             }
+        }
+    }
+
+    private fun selectIndexType(
+        type: FearIndexType,
+        screen: String,
+        previous: FearIndexType,
+        applySelection: () -> Unit,
+    ) {
+        applySelection()
+        if (previous != type) {
+            analytics.log(
+                AnalyticsEvent.지수타입전환(
+                    타입 = type.toLabel(),
+                    화면 = screen,
+                    이전타입 = previous.toLabel(),
+                ),
+            )
         }
     }
 
@@ -108,6 +152,14 @@ class HomeViewModel @Inject constructor(
             !_uiState.value.isMarketHistoryLoading
         ) return
         loadMarketHistory(days)
+    }
+
+    fun loadKospiHistoryForDays(days: Int) {
+        if (_uiState.value.kospiHistoryDays == days &&
+            _uiState.value.kospiHistory.isNotEmpty() &&
+            !_uiState.value.isKospiHistoryLoading
+        ) return
+        loadKospiHistory(days)
     }
 
     fun loadCryptoHistoryForDays(days: Int) {
@@ -146,16 +198,53 @@ class HomeViewModel @Inject constructor(
                 )
             } catch (e: IOException) {
                 _uiState.value = _uiState.value.copy(
-                    marketState = FearIndexState.Error(e.message ?: "Network error"),
+                    marketState = FearIndexState.Error(NETWORK_ERROR_MESSAGE),
                 )
                 analytics.log(AnalyticsEvent.네트워크에러(에러메시지 = e.message ?: "Unknown"))
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    marketState = FearIndexState.Error(e.message ?: "Unknown error"),
+                    marketState = FearIndexState.Error(GENERIC_ERROR_MESSAGE),
                 )
                 analytics.log(
                     AnalyticsEvent.API에러(
                         에러유형 = "시장공포지수",
+                        에러메시지 = e.message ?: "Unknown",
+                    ),
+                )
+            }
+        }
+    }
+
+    private fun loadKospiCurrent(forceRefresh: Boolean = false) {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(kospiState = FearIndexState.Loading)
+            try {
+                val snapshot = getKospiFearIndex(forceRefresh)
+                val index = snapshot.fearIndex
+                _uiState.value = _uiState.value.copy(
+                    kospiState = FearIndexState.Loaded(index),
+                    kospiSnapshot = snapshot,
+                )
+                analytics.log(
+                    AnalyticsEvent.공포지수조회(
+                        현재점수 = index.roundedScore,
+                        등급 = index.rating.name,
+                    ),
+                )
+            } catch (e: IOException) {
+                _uiState.value = _uiState.value.copy(
+                    kospiState = FearIndexState.Error(NETWORK_ERROR_MESSAGE),
+                    kospiSnapshot = null,
+                )
+                analytics.log(AnalyticsEvent.네트워크에러(에러메시지 = e.message ?: "Unknown"))
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    kospiState = FearIndexState.Error(GENERIC_ERROR_MESSAGE),
+                    kospiSnapshot = null,
+                )
+                analytics.log(
+                    AnalyticsEvent.API에러(
+                        에러유형 = "코스피공포지수",
                         에러메시지 = e.message ?: "Unknown",
                     ),
                 )
@@ -179,12 +268,12 @@ class HomeViewModel @Inject constructor(
                 )
             } catch (e: IOException) {
                 _uiState.value = _uiState.value.copy(
-                    cryptoState = FearIndexState.Error(e.message ?: "Network error"),
+                    cryptoState = FearIndexState.Error(NETWORK_ERROR_MESSAGE),
                 )
                 analytics.log(AnalyticsEvent.네트워크에러(에러메시지 = e.message ?: "Unknown"))
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    cryptoState = FearIndexState.Error(e.message ?: "Unknown error"),
+                    cryptoState = FearIndexState.Error(GENERIC_ERROR_MESSAGE),
                 )
                 analytics.log(
                     AnalyticsEvent.API에러(
@@ -217,6 +306,27 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    private fun loadKospiHistory(days: Int, forceRefresh: Boolean = false) {
+        kospiHistoryJob?.cancel()
+        kospiHistoryJob = viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(
+                kospiHistoryDays = days,
+                isKospiHistoryLoading = true,
+            )
+            try {
+                val history = getKospiFearIndexHistory(days, forceRefresh)
+                _uiState.value = _uiState.value.copy(
+                    kospiHistory = history,
+                    isKospiHistoryLoading = false,
+                )
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    isKospiHistoryLoading = false,
+                )
+            }
+        }
+    }
+
     private fun loadCryptoHistory(days: Int, forceRefresh: Boolean = false) {
         cryptoHistoryJob?.cancel()
         cryptoHistoryJob = viewModelScope.launch {
@@ -241,5 +351,6 @@ class HomeViewModel @Inject constructor(
 
 private fun FearIndexType.toLabel(): String = when (this) {
     FearIndexType.MARKET -> "시장"
+    FearIndexType.KOSPI -> "코스피"
     FearIndexType.CRYPTO -> "암호화폐"
 }

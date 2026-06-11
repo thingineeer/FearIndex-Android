@@ -76,6 +76,7 @@
     <string name="notification_push_description">恐怖指数が設定したしきい値に達したときに通知を受け取ります。</string>
     <string name="notification_tab_market">市場</string>
     <string name="notification_tab_crypto">暗号資産</string>
+    <string name="notification_weekly_title">週次レポートのアラート</string>
     <string name="notification_market_title">市場恐怖指数アラート</string>
     <string name="notification_crypto_title">暗号資産恐怖指数アラート</string>
     <string name="notification_lower_label">下限 (恐怖)</string>
@@ -91,7 +92,7 @@
     <string name="stuck_percentage_label">含み損比率</string>
     <string name="stuck_button_im_stuck">"🤙 私も抱えています"</string>
     <string name="stuck_button_im_safe">"✨ 抱えていません"</string>
-    <string name="stuck_footer_guide">"🤙 ボタンを押すと、いま何人が含み損を抱えているかリアルタイムで確認できます"</string>
+    <string name="stuck_footer_guide">"任意です。選択肢をタップすると状態を共有でき、もう一度タップすると取り消せます。詳細はⓘで確認できます。"</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">今日の投票</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">通知</string>
     <string name="settings_menu_privacy">プライバシーポリシー</string>
     <string name="settings_menu_about">アプリ情報</string>
+    <string name="settings_menu_ad_privacy">プライバシー設定</string>
     <string name="settings_menu_rate">レビューを書く</string>
     <string name="settings_menu_share">アプリを共有</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -277,9 +279,15 @@
     <string name="stuck_detail_stuck">含み損 · %1$d件 · %2$d%%</string>
     <string name="stuck_detail_title">回答詳細</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">スコア変化、過去の類似局面、過去リターン、コミュニティ回答を合わせて表示し、指数の文脈を示します。</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">KOSPIに投資した場合</string>
+    <string name="insight_detail_disclaimer_kospi">過去の KOSPI の終値に近いデータに基づいています。過去のパフォーマンスは将来の結果を保証するものではありません。</string>
+    <string name="insight_detail_sample_basis_kospi">%1$d KOSPI の歴史的なエピソードに基づく</string>
 </resources>

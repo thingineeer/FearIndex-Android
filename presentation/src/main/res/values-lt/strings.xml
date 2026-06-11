@@ -75,6 +75,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="notification_push_description">Gaukite pranešimą, kai baimės indeksas pasieks jūsų ribą.</string>
     <string name="notification_tab_market">Rinka</string>
     <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_weekly_title">Savaitės ataskaitų įspėjimai</string>
     <string name="notification_market_title">Rinkos baimės indekso įspėjimai</string>
     <string name="notification_crypto_title">Kripto baimės indekso įspėjimai</string>
     <string name="notification_lower_label">Žemesnė riba (Baimė)</string>
@@ -92,7 +93,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="stuck_percentage_label">Įstrigusiųjų dalis</string>
     <string name="stuck_button_im_stuck">"🤙 Aš taip pat įstrigęs"</string>
     <string name="stuck_button_im_safe">"✨ Aš neįstrigęs"</string>
-    <string name="stuck_footer_guide">"🤙 Paspauskite mygtuką, kad realiu laiku pamatytumėte, kiek žmonių yra įstrigę"</string>
+    <string name="stuck_footer_guide">"Pasirinktinai: bakstelėkite pasirinkimą, kad pasidalytumėte būsena; bakstelėkite dar kartą, kad atšauktumėte. Išsamiau ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Šiandienos balsavimas</string>
@@ -214,6 +215,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="settings_menu_notification">Pranešimai</string>
     <string name="settings_menu_privacy">Privatumo politika</string>
     <string name="settings_menu_about">Programėlės informacija</string>
+    <string name="settings_menu_ad_privacy">Privatumo pasirinkimai</string>
     <string name="settings_menu_rate">Parašyti atsiliepimą</string>
     <string name="settings_menu_share">Dalintis programa</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="stuck_detail_stuck">Įstrigęs · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Atsakymų informacija</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Rodo balo pokyčius, panašius ankstesnius laikotarpius, istorines grąžas ir bendruomenės atsakymus kontekstui.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Jei investavote į KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Remiantis istoriniais KOSPI artimais duomenimis. Ankstesni rezultatai negarantuoja ateities rezultatų.</string>
+    <string name="insight_detail_sample_basis_kospi">Remiantis %1$d KOSPI istoriniais epizodais</string>
 </resources>

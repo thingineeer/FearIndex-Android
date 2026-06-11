@@ -1,0 +1,79 @@
+package th1ngjin.fearindex.data.repository
+
+import th1ngjin.fearindex.data.datasource.KospiFearIndexDataSource
+import th1ngjin.fearindex.core.debug.ScreenshotMode
+import th1ngjin.fearindex.domain.entity.FearIndex
+import th1ngjin.fearindex.domain.entity.KospiFearIndex
+import th1ngjin.fearindex.domain.repository.KospiFearIndexRepository
+import timber.log.Timber
+import java.time.LocalDate
+import java.time.ZoneOffset
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class KospiFearIndexRepositoryImpl @Inject constructor(
+    private val dataSource: KospiFearIndexDataSource,
+) : KospiFearIndexRepository {
+
+    override suspend fun fetchCurrent(forceRefresh: Boolean): KospiFearIndex {
+        if (ScreenshotMode.isEnabled()) return ScreenshotFixtures.kospiCurrent()
+
+        val response = dataSource.fetchSnapshot(includeHistory = false, forceRefresh = forceRefresh)
+        val latest = response.latest ?: throw IllegalStateException("KOSPI latest snapshot missing")
+        val current = latest.toDomain(response.generatedAtInstant)
+        if (current.isStale) throw IllegalStateException("KOSPI latest snapshot is stale")
+        val history = fetchAnchorHistory(forceRefresh)
+        return current.copy(fearIndex = enrich(current.fearIndex, current.dataDate, history))
+    }
+
+    override suspend fun fetchHistory(days: Int, forceRefresh: Boolean): List<FearIndex> {
+        if (days <= 0) return emptyList()
+        if (ScreenshotMode.isEnabled()) {
+            return ScreenshotFixtures.history(days = days, center = 42.0, amplitude = 21.0)
+        }
+
+        val response = dataSource.fetchSnapshot(includeHistory = true, forceRefresh = forceRefresh)
+        return response.chartHistoryForDisplay
+            .map { it.toDomain() }
+            .sortedBy { it.timestamp }
+            .takeLast(days)
+    }
+
+    private suspend fun fetchAnchorHistory(forceRefresh: Boolean): List<FearIndex> =
+        runCatching {
+            dataSource.fetchSnapshot(includeHistory = true, forceRefresh = forceRefresh)
+                .history
+                .map { it.toDomain() }
+                .sortedBy { it.timestamp }
+        }.getOrElse { error ->
+            Timber.w(error, "[KospiFearIndexRepositoryImpl] KOSPI anchor history fetch failed")
+            emptyList()
+        }
+
+    private fun enrich(current: FearIndex, dataDate: String, history: List<FearIndex>): FearIndex {
+        val referenceDate = parseDay(dataDate) ?: current.timestamp.atZone(ZoneOffset.UTC).toLocalDate()
+        return current.copy(
+            previousClose = scoreBefore(history, referenceDate) ?: current.score,
+            previous1Week = scoreOnOrBefore(history, referenceDate.minusDays(7)) ?: current.score,
+            previous1Month = scoreOnOrBefore(history, referenceDate.minusMonths(1)) ?: current.score,
+            previous1Year = scoreOnOrBefore(history, referenceDate.minusYears(1)),
+        )
+    }
+
+    private fun scoreBefore(history: List<FearIndex>, referenceDate: LocalDate): Double? =
+        history
+            .filter { it.timestamp.atZone(ZoneOffset.UTC).toLocalDate() < referenceDate }
+            .maxByOrNull { it.timestamp }
+            ?.score
+
+    private fun scoreOnOrBefore(history: List<FearIndex>, target: LocalDate): Double? {
+        return history
+            .filter { it.timestamp.atZone(ZoneOffset.UTC).toLocalDate() <= target }
+            .maxByOrNull { it.timestamp }
+            ?.score
+    }
+
+    private fun parseDay(value: String): LocalDate? =
+        runCatching { LocalDate.parse(value) }.getOrNull()
+}

@@ -1,7 +1,9 @@
 package th1ngjin.fearindex.presentation.feature.settings
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -19,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.PrivacyTip
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.HorizontalDivider
@@ -36,6 +39,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.google.android.ump.UserMessagingPlatform
 import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.component.AdBanner
@@ -92,6 +96,13 @@ fun SettingsScreen(
                 icon = Icons.Default.Share,
                 title = stringResource(R.string.settings_menu_share),
                 onClick = { shareApp(context, shareMessage, shareChooser) },
+            )
+            HorizontalDivider()
+
+            SettingsItem(
+                icon = Icons.Default.PrivacyTip,
+                title = stringResource(R.string.settings_menu_ad_privacy),
+                onClick = { openAdPrivacyOptions(context) },
             )
             HorizontalDivider()
 
@@ -177,4 +188,17 @@ private fun shareApp(context: Context, message: String, chooserTitle: String) {
         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
     context.startActivity(chooser)
+}
+
+private fun openAdPrivacyOptions(context: Context) {
+    val activity = context.findActivity() ?: return
+    UserMessagingPlatform.showPrivacyOptionsForm(activity) { error ->
+        error?.let { android.util.Log.w("FearIndexSettings", "UMP privacy options failed: ${it.message}") }
+    }
+}
+
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
 }

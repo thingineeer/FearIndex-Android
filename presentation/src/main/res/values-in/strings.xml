@@ -76,6 +76,7 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="notification_push_description">Dapatkan notifikasi saat indeks ketakutan mencapai ambang batas Anda.</string>
     <string name="notification_tab_market">Pasar</string>
     <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_weekly_title">Peringatan Laporan Mingguan</string>
     <string name="notification_market_title">Peringatan Indeks Ketakutan Pasar</string>
     <string name="notification_crypto_title">Peringatan Indeks Ketakutan Kripto</string>
     <string name="notification_lower_label">Batas bawah (Ketakutan)</string>
@@ -91,7 +92,7 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="stuck_percentage_label">Tingkat terjebak</string>
     <string name="stuck_button_im_stuck">"🤙 Saya juga terjebak"</string>
     <string name="stuck_button_im_safe">"✨ Saya tidak terjebak"</string>
-    <string name="stuck_footer_guide">"🤙 Ketuk tombol untuk melihat berapa banyak yang terjebak secara real-time"</string>
+    <string name="stuck_footer_guide">"Opsional: ketuk pilihan untuk membagikan status; ketuk lagi untuk membatalkan. Detail ada di ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Pemungutan suara hari ini</string>
@@ -213,6 +214,7 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="settings_menu_notification">Notifikasi</string>
     <string name="settings_menu_privacy">Kebijakan Privasi</string>
     <string name="settings_menu_about">Info Aplikasi</string>
+    <string name="settings_menu_ad_privacy">Pilihan privasi</string>
     <string name="settings_menu_rate">Tulis Ulasan</string>
     <string name="settings_menu_share">Bagikan Aplikasi</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -277,9 +279,15 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="stuck_detail_stuck">Tersangkut · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Detail respons</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Menampilkan perubahan skor, periode masa lalu yang mirip, imbal hasil historis, dan respons komunitas sebagai konteks.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Jika Anda Berinvestasi di KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Berdasarkan data historis close-to-close KOSPI. Kinerja masa lalu tidak menjamin hasil di masa depan.</string>
+    <string name="insight_detail_sample_basis_kospi">Berdasarkan episode sejarah %1$d KOSPI</string>
 </resources>

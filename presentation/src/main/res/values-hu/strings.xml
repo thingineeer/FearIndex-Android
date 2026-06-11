@@ -75,6 +75,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="notification_push_description">Értesítést kap, amikor a félelemindex eléri a küszöböt.</string>
     <string name="notification_tab_market">Piac</string>
     <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_weekly_title">Heti jelentés figyelmeztetések</string>
     <string name="notification_market_title">Piaci félelemindex figyelmeztetések</string>
     <string name="notification_crypto_title">Kripto félelemindex figyelmeztetések</string>
     <string name="notification_lower_label">Alsó (Félelem)</string>
@@ -92,7 +93,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="stuck_percentage_label">Beragadási arány</string>
     <string name="stuck_button_im_stuck">"🤙 Én is beragadtam"</string>
     <string name="stuck_button_im_safe">"✨ Nem ragadtam be"</string>
-    <string name="stuck_footer_guide">"🤙 Nyomj meg egy gombot, hogy valós időben lásd, hányan ragadtak be"</string>
+    <string name="stuck_footer_guide">"Opcionális: érintsen meg egy választást az állapota megosztásához; új érintés visszavonja. Részletek: ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Mai szavazás</string>
@@ -214,6 +215,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="settings_menu_notification">Értesítések</string>
     <string name="settings_menu_privacy">Adatvédelmi irányelvek</string>
     <string name="settings_menu_about">Alkalmazás információk</string>
+    <string name="settings_menu_ad_privacy">Adatvédelmi beállítások</string>
     <string name="settings_menu_rate">Vélemény írása</string>
     <string name="settings_menu_share">App megosztása</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="stuck_detail_stuck">Beragadt · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Válasz részletei</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Megmutatja a pontszámváltozásokat, hasonló múltbeli időszakokat, történelmi hozamokat és közösségi válaszokat.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Ha befektet a KOSPI-ba</string>
+    <string name="insight_detail_disclaimer_kospi">Történelmi KOSPI közeli adatok alapján. A múltbeli teljesítmény nem garantálja a jövőbeli eredményeket.</string>
+    <string name="insight_detail_sample_basis_kospi">%1$d KOSPI történelmi epizódok alapján</string>
 </resources>

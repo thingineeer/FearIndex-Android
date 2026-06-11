@@ -1,7 +1,10 @@
 Fear & Greed Index ir ieguldījumu noskaņojuma analīzes lietotne, kas ļauj vienlaikus uzraudzīt gan tirgus baiļu un alkatības indeksu, gan kriptovalūtu baiļu un alkatības indeksu. Sekojiet diviem atšķirīgiem baiļu indeksiem kopā ar galvenajiem tirgus indeksiem, lai saprastu pūļa psiholoģiju un pieņemtu informētus ieguldījumu lēmumus.
 
-[Divi baiļu un alkatības indeksi]
+Pievienots KOSPI Fear & Greed Index.
+
+[Trīs baiļu un alkatības indeksi]
 - Tirgus baiļu un alkatības indekss: tradicionālo finanšu tirgu noskaņojuma rādītājs
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Kripto baiļu un alkatības indekss: kriptovalūtu tirgus noskaņojuma rādītājs
 - Salīdziniet abus indeksus blakus, lai saprastu kopējo tirgus dinamiku
 
@@ -13,13 +16,9 @@ Fear & Greed Index ir ieguldījumu noskaņojuma analīzes lietotne, kas ļauj vi
 - Galvenie tirgus indeksi reāllaikā (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Viena pieskāriena pārslēgšana starp tirgus un kripto indeksiem
 
-[Logrīki]
-- Sākuma ekrāna logrīki: Mazi / Vidēji / Lieli izmēri
-- Bloķēšanas ekrāna logrīki: atsevišķi tirgus un kripto baiļu indeksu rādījumi
-- Tirgus/kripto pārslēgšana logrīkā
-
 [Push paziņojumi]
 - Tūlītēji brīdinājumi, kad tirgus baiļu indekss sasniedz jūsu noteikto slieksni
+- KOSPI Fear & Greed Index threshold alerts
 - Tūlītēji brīdinājumi, kad kripto baiļu indekss sasniedz jūsu noteikto slieksni
 - Pielāgojami augšējā un apakšējā sliekšņa iestatījumi
 

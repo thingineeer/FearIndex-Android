@@ -75,6 +75,7 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="notification_push_description">Primite obavijest kad indeks straha dosegne postavljeni prag.</string>
     <string name="notification_tab_market">Tržište</string>
     <string name="notification_tab_crypto">Kriptovalute</string>
+    <string name="notification_weekly_title">Upozorenja o tjednim izvješćima</string>
     <string name="notification_market_title">Upozorenja indeksa straha tržišta</string>
     <string name="notification_crypto_title">Upozorenja indeksa straha kriptovaluta</string>
     <string name="notification_lower_label">Donji prag (Strah)</string>
@@ -92,7 +93,7 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="stuck_percentage_label">Udio zaglavljenih</string>
     <string name="stuck_button_im_stuck">"🤙 I ja sam zaglavljen"</string>
     <string name="stuck_button_im_safe">"✨ Nisam zaglavljen"</string>
-    <string name="stuck_footer_guide">"🤙 Dodirnite gumb da biste u stvarnom vremenu vidjeli koliko ljudi je zaglavljeno"</string>
+    <string name="stuck_footer_guide">"Neobavezno: dodirnite izbor za dijeljenje statusa; dodirnite ponovno za poništavanje. Detalji pod ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Današnje glasovanje</string>
@@ -214,6 +215,7 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="settings_menu_notification">Obavijesti</string>
     <string name="settings_menu_privacy">Pravila privatnosti</string>
     <string name="settings_menu_about">Informacije o aplikaciji</string>
+    <string name="settings_menu_ad_privacy">Odabiri privatnosti</string>
     <string name="settings_menu_rate">Napišite recenziju</string>
     <string name="settings_menu_share">Podijeli aplikaciju</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="stuck_detail_stuck">Zaglavljen · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Detalji odgovora</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Prikazuje promjene rezultata, slična prošla razdoblja, povijesne prinose i odgovore zajednice za kontekst.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Ako ste uložili u KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Na temelju povijesnih podataka KOSPI close-to-close. Prošli učinak ne jamči buduće rezultate.</string>
+    <string name="insight_detail_sample_basis_kospi">Na temelju %1$d KOSPI povijesnih epizoda</string>
 </resources>

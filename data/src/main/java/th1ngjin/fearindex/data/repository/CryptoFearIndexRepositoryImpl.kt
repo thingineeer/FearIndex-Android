@@ -2,6 +2,7 @@ package th1ngjin.fearindex.data.repository
 
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.data.datasource.CryptoFearIndexDataSource
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.repository.CryptoFearIndexRepository
@@ -16,6 +17,8 @@ class CryptoFearIndexRepositoryImpl @Inject constructor(
 ) : CryptoFearIndexRepository {
 
     override suspend fun fetchCurrent(forceRefresh: Boolean): FearIndex = coroutineScope {
+        if (ScreenshotMode.isEnabled()) return@coroutineScope ScreenshotFixtures.cryptoCurrent()
+
         // 31일 데이터 (current + previous1Week + previous1Month) + 365일 데이터 (previous1Year) 병렬 fetch.
         // iOS CryptoFearIndexRepository와 동일한 패턴 — previous1Year만 별도 호출로 네트워크 효율 유지.
         val shortDeferred = async { dataSource.fetchCurrent(days = 31, forceRefresh = forceRefresh) }
@@ -45,6 +48,10 @@ class CryptoFearIndexRepositoryImpl @Inject constructor(
     }
 
     override suspend fun fetchHistory(days: Int, forceRefresh: Boolean): List<FearIndex> {
+        if (ScreenshotMode.isEnabled()) {
+            return ScreenshotFixtures.history(days = days, center = 48.0, amplitude = 18.0)
+        }
+
         val response = dataSource.fetchCurrent(days = days, forceRefresh = forceRefresh)
         return response.data.map { dto ->
             val score = dto.value.toDouble()

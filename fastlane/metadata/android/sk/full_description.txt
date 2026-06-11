@@ -1,7 +1,10 @@
 Fear & Greed Index je aplikácia na analýzu investičných nálad, ktorá vám umožňuje sledovať trhový index strachu a chamtivosti (Market Fear & Greed Index) a kryptoindex strachu a chamtivosti (Crypto Fear & Greed Index) na jednom mieste. Sledujte oba indexy strachu spolu s hlavnými trhovými indexmi, aby ste pochopili psychológiu davu a prijímali informované investičné rozhodnutia.
 
-[Dva indexy strachu a chamtivosti]
+Bol pridaný KOSPI Fear & Greed Index.
+
+[Tri indexy strachu a chamtivosti]
 - Trhový index strachu: Ukazovateľ nálad pre tradičné finančné trhy
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Kryptoindex strachu: Ukazovateľ nálad pre trh s kryptomenami
 - Porovnávajte oba indexy, aby ste pochopili celkovú dynamiku trhu
 
@@ -13,13 +16,9 @@ Fear & Greed Index je aplikácia na analýzu investičných nálad, ktorá vám 
 - Hlavné trhové indexy v reálnom čase (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Prepínanie jedným dotykom medzi trhovými a kryptoindexami
 
-[Widgety]
-- Widgety domovskej obrazovky: veľkosti Small / Medium / Large
-- Widgety uzamknutej obrazovky: oddelené displeje pre trhový a kryptoindex strachu
-- Prepínanie trh/krypto vo widgetoch
-
 [Push oznámenia]
 - Okamžité upozornenia, keď trhový index strachu dosiahne váš prah
+- KOSPI Fear & Greed Index threshold alerts
 - Okamžité upozornenia, keď kryptoindex strachu dosiahne váš prah
 - Prispôsobiteľné nastavenia horného a dolného prahu
 

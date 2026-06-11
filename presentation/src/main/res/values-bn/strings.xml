@@ -80,6 +80,7 @@
     <string name="notification_push_description">ভয় সূচক আপনার সীমা ছুঁলে বিজ্ঞপ্তি পান।</string>
     <string name="notification_tab_market">বাজার</string>
     <string name="notification_tab_crypto">ক্রিপ্টো</string>
+    <string name="notification_weekly_title">সাপ্তাহিক রিপোর্ট সতর্কতা</string>
     <string name="notification_market_title">বাজার ভয় সূচক সতর্কতা</string>
     <string name="notification_crypto_title">ক্রিপ্টো ভয় সূচক সতর্কতা</string>
     <string name="notification_lower_label">নিম্ন সীমা (ভয়)</string>
@@ -95,7 +96,7 @@
     <string name="stuck_percentage_label">আটকে থাকার হার</string>
     <string name="stuck_button_im_stuck">"🤙 আমিও আটকে আছি"</string>
     <string name="stuck_button_im_safe">"✨ আমি আটকে নেই"</string>
-    <string name="stuck_footer_guide">"🤙 বাটনে চাপ দিন, রিয়েল-টাইমে দেখুন কতজন আটকে আছেন"</string>
+    <string name="stuck_footer_guide">"ঐচ্ছিক: আপনার অবস্থা জানাতে একটি পছন্দে ট্যাপ করুন; বাতিল করতে আবার ট্যাপ করুন। বিস্তারিত ⓘ-তে।"</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">আজকের ভোট</string>
@@ -217,6 +218,7 @@
     <string name="settings_menu_notification">বিজ্ঞপ্তি</string>
     <string name="settings_menu_privacy">গোপনীয়তা নীতি</string>
     <string name="settings_menu_about">অ্যাপ তথ্য</string>
+    <string name="settings_menu_ad_privacy">গোপনীয়তা পছন্দ</string>
     <string name="settings_menu_rate">রিভিউ লিখুন</string>
     <string name="settings_menu_share">অ্যাপ শেয়ার করুন</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -281,9 +283,15 @@
     <string name="stuck_detail_stuck">আটকে · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">উত্তরের বিবরণ</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">স্কোরের পরিবর্তন, মিল থাকা অতীত সময়, ঐতিহাসিক রিটার্ন এবং কমিউনিটির প্রতিক্রিয়া একসাথে দেখায়।</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">আপনি যদি KOSPI তে বিনিয়োগ করেন</string>
+    <string name="insight_detail_disclaimer_kospi">ঐতিহাসিক KOSPI ক্লোজ-টু-ক্লোজ ডেটার উপর ভিত্তি করে। অতীতের কর্মক্ষমতা ভবিষ্যতের ফলাফলের নিশ্চয়তা দেয় না।</string>
+    <string name="insight_detail_sample_basis_kospi">%1$d KOSPI ঐতিহাসিক পর্বের উপর ভিত্তি করে</string>
 </resources>

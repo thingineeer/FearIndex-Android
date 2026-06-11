@@ -270,7 +270,7 @@ private fun FooterGuide(onClick: () -> Unit) {
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.weight(1f),
-            maxLines = 2,
+            maxLines = 3,
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(

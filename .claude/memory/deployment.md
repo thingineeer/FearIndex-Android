@@ -22,6 +22,11 @@ type: reference
 | SHA-256 (활성, v1.0.3+) | `91:47:9A:4E:3C:F6:F4:F0:D4:0C:1D:AB:C8:0E:95:94:AE:91:EB:0C:64:1B:A7:ED:3B:D6:79:44:BC:AB:57:A2` |
 | AdMob App ID | `ca-app-pub-5283496525222246~1308884877` |
 | AdMob HomeBanner | `ca-app-pub-5283496525222246/3189551565` |
+| AdMob InsightBanner | `ca-app-pub-5283496525222246/1779867597` |
+| AdMob ChartBanner | `ca-app-pub-5283496525222246/1616216062` |
+| AdMob VoteBanner | `ca-app-pub-5283496525222246/2417949811` |
+| AdMob SettingsBanner | `ca-app-pub-5283496525222246/4627498578` |
+| AdMob KospiInterstitial | `ca-app-pub-5283496525222246/1522532479` |
 
 ### 키 이력 (폐기됨, Firebase 등록 정리 시 참고)
 
@@ -32,6 +37,13 @@ type: reference
 | **v1.0.3+ (활성)** | **`upload`** | **`CE:08:B4:8A:FA:1C:29:8B:51:22:AC:82:9F:B7:78:12:CF:DD:0F:16`** |
 
 진짜 활성 keystore 는 **`~/thingineeer-env/android/fearindex/`** 의 README 가 SSOT. 새 머신 셋업 시 `bash ~/thingineeer-env/android/fearindex/install.sh` 실행. 자세한 사고 이력은 `@bugs-fixed.md` 17번 참조.
+
+## 출시 이력
+
+| 버전 | versionCode | 게시일 | 상태 | 주요 변경 |
+|---|---|---|---|---|
+| v1.0.0 | 7 | 2026-05-09 | 정식 게시 ✅ | 최초 출시 |
+| v1.0.1 | 9 | 2026-05-12 | 정식 게시 ✅ | Android 15 edge-to-edge 호환성 + 안정성 개선 (`fastlane production` 자동화 첫 사용) |
 
 ## AAB 빌드 (Release)
 
@@ -71,8 +83,9 @@ bundle exec fastlane internal
 **내부 테스트 트랙**: 광고 제외 가능 (디버그 빌드는 테스트 광고 ID만). QA 편의상 일부 배너 숨김 허용.
 
 **Production 배포 전 필수**:
-- `app/build.gradle.kts`의 release 빌드 `buildConfigField` ADMOB_BANNER_HOME/CHART/COMMUNITY가 프로덕션 광고 단위 ID (`ca-app-pub-5283496525222246/3189551565`) 로 세팅되어 있는지 재확인.
-- 차트 탭에 전면(interstitial) 광고 추가 금지 (사용자 UX 저해 — bugs-fixed.md 1번 참고).
+- `app/build.gradle.kts`와 `presentation/build.gradle.kts`의 release 빌드 `buildConfigField`가 위 프로덕션 광고 단위 ID로 세팅되어 있는지 재확인.
+- Remote Config에서 광고를 켤 때 `ads_enabled=true`, `interstitial_ads_enabled=true`, `interstitial_session_cap=2`, `interstitial_cooldown_sec=180`, `kospi_interstitial_enabled=true`를 Android 조건에 맞게 설정.
+- 코스피 홈 진입 인터스티셜은 사용자가 KOSPI 탭으로 전환한 뒤 5초 후에만 노출. 앱 시작/종료/백그라운드 전환 시 노출 금지.
 - 광고 사이에 Insight/SimilarEvents 카드가 자연스럽게 배치되는지 확인.
 - 광고 로딩 실패 시 크래시 없이 빈 공간으로 처리되는지 확인.
 

@@ -4,11 +4,13 @@ import th1ngjin.fearindex.data.datasource.StuckCounterDataSource
 import th1ngjin.fearindex.data.dto.StuckCounterResponse
 import th1ngjin.fearindex.data.dto.SubmitStuckStatusRequest
 import th1ngjin.fearindex.data.storage.StuckCounterStorage
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.StuckCounterResult
 import th1ngjin.fearindex.domain.entity.StuckStatus
 import th1ngjin.fearindex.domain.repository.StuckCounterRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -27,6 +29,11 @@ class StuckCounterRepositoryImpl @Inject constructor(
         indexType: FearIndexType,
         status: StuckStatus,
     ): StuckCounterResult {
+        if (ScreenshotMode.isEnabled()) {
+            storage.saveStatus(indexType, status)
+            return ScreenshotFixtures.stuckCounter(status)
+        }
+
         val deviceId = storage.loadDeviceId()
         val request = SubmitStuckStatusRequest(
             deviceId = deviceId,
@@ -39,12 +46,20 @@ class StuckCounterRepositoryImpl @Inject constructor(
     }
 
     override suspend fun fetchResult(indexType: FearIndexType): StuckCounterResult {
+        if (ScreenshotMode.isEnabled()) {
+            return ScreenshotFixtures.stuckCounter(loadLocalStatus(indexType))
+        }
+
         val deviceId = storage.loadDeviceId()
         val response = dataSource.fetchResult(deviceId, indexType.serverValue())
         return response.toEntity()
     }
 
     override fun stuckCounterStream(indexType: FearIndexType): Flow<StuckCounterResult> {
+        if (ScreenshotMode.isEnabled()) {
+            return flowOf(ScreenshotFixtures.stuckCounter(loadLocalStatus(indexType)))
+        }
+
         return dataSource.resultStream(indexType.serverValue()).map { aggregate ->
             // DataSource는 집계만 스트림. 내 상태는 로컬 캐시로 주입.
             val localStatus = loadLocalStatus(indexType)

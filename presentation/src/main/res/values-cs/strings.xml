@@ -75,6 +75,7 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="notification_push_description">Získejte upozornění, když index strachu dosáhne nastaveného prahu.</string>
     <string name="notification_tab_market">Trh</string>
     <string name="notification_tab_crypto">Kryptoměny</string>
+    <string name="notification_weekly_title">Upozornění na týdenní zprávy</string>
     <string name="notification_market_title">Upozornění indexu strachu trhu</string>
     <string name="notification_crypto_title">Upozornění indexu strachu kryptoměn</string>
     <string name="notification_lower_label">Dolní práh (Strach)</string>
@@ -92,7 +93,7 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="stuck_percentage_label">Míra uvíznutí</string>
     <string name="stuck_button_im_stuck">"🤙 Taky jsem v pasti"</string>
     <string name="stuck_button_im_safe">"✨ Nejsem v pasti"</string>
-    <string name="stuck_footer_guide">"🤙 Klepněte na tlačítko a uvidíte v reálném čase, kolik lidí je v pasti"</string>
+    <string name="stuck_footer_guide">"Volitelné: klepnutím sdílíte svůj stav; dalším klepnutím volbu zrušíte. Podrobnosti pod ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Dnešní hlasování</string>
@@ -214,6 +215,7 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="settings_menu_notification">Oznámení</string>
     <string name="settings_menu_privacy">Zásady ochrany osobních údajů</string>
     <string name="settings_menu_about">Informace o aplikaci</string>
+    <string name="settings_menu_ad_privacy">Volby soukromí</string>
     <string name="settings_menu_rate">Napsat recenzi</string>
     <string name="settings_menu_share">Sdílet aplikaci</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="stuck_detail_stuck">V mínusu · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Podrobnosti odpovědí</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Ukazuje změny skóre, podobná minulá období, historické výnosy a odpovědi komunity pro lepší kontext.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Pokud jste investovali do KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Založeno na historických údajích KOSPI, které se blíží k uzavření. Minulá výkonnost nezaručuje budoucí výsledky.</string>
+    <string name="insight_detail_sample_basis_kospi">Na základě historických epizod %1$d KOSPI</string>
 </resources>
