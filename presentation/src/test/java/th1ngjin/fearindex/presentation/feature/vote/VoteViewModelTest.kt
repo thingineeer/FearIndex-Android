@@ -119,6 +119,16 @@ class VoteViewModelTest {
     }
 
     @Test
+    fun `init - iOS v1_8_0 Vote 탭은 deprecated Buy Hold Sell callable을 시작하지 않음`() {
+        coEvery { observeStuckCounter.fetchOnce(any()) } returns StuckCounterResult.EMPTY
+
+        createViewModel()
+
+        coVerify(exactly = 0) { getVoteResultUseCase(any()) }
+        coVerify(exactly = 0) { observeVoteResultUseCase(any()) }
+    }
+
+    @Test
     fun `toggleStuckStatus - 즉시 myStatus StateFlow 반영 (낙관적 업데이트)`() {
         coEvery { observeStuckCounter.fetchOnce(any()) } returns StuckCounterResult.EMPTY
 
