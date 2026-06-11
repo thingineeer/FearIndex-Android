@@ -75,6 +75,7 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="notification_push_description">Ricevi una notifica quando l\'indice di paura raggiunge la tua soglia.</string>
     <string name="notification_tab_market">Mercato</string>
     <string name="notification_tab_crypto">Cripto</string>
+    <string name="notification_weekly_title">Avvisi sui rapporti settimanali</string>
     <string name="notification_market_title">Avvisi indice di paura (Mercato)</string>
     <string name="notification_crypto_title">Avvisi indice di paura (Cripto)</string>
     <string name="notification_lower_label">Soglia bassa (Paura)</string>
@@ -92,7 +93,7 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="stuck_percentage_label">Tasso di bloccati</string>
     <string name="stuck_button_im_stuck">"🤙 Sono bloccato anch\'io"</string>
     <string name="stuck_button_im_safe">"✨ Non sono bloccato"</string>
-    <string name="stuck_footer_guide">"🤙 Tocca un pulsante per vedere in tempo reale quanti sono bloccati"</string>
+    <string name="stuck_footer_guide">"Facoltativo: tocca una scelta per condividere il tuo stato; tocca di nuovo per annullare. Dettagli in ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Voto di oggi</string>
@@ -214,6 +215,7 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="settings_menu_notification">Notifiche</string>
     <string name="settings_menu_privacy">Informativa sulla Privacy</string>
     <string name="settings_menu_about">Info App</string>
+    <string name="settings_menu_ad_privacy">Scelte sulla privacy</string>
     <string name="settings_menu_rate">Lascia una recensione</string>
     <string name="settings_menu_share">Condividi app</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="stuck_detail_stuck">Incastrato · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Dettagli risposte</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Mostra variazioni del punteggio, periodi storici simili, rendimenti passati e risposte della community per contesto.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Se hai investito in KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Basato sui dati storici KOSPI ravvicinati. Le performance passate non garantiscono risultati futuri.</string>
+    <string name="insight_detail_sample_basis_kospi">Basato sugli episodi storici di %1$d KOSPI</string>
 </resources>

@@ -1,7 +1,10 @@
 Fear & Greed Index is een app voor analyse van beleggingssentiment waarmee u zowel de Markt Fear & Greed Index als de Crypto Fear & Greed Index in één oogopslag kunt volgen. Volg twee verschillende angstindices naast de belangrijkste marktindices om de massa-psychologie te begrijpen en weloverwogen beleggingsbeslissingen te nemen.
 
-[Twee angst- en hebzuchtindices]
+De KOSPI Fear & Greed Index is toegevoegd.
+
+[Drie angst- en hebzuchtindices]
 - Markt angstindex: Sentiment-indicator voor traditionele financiële markten
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Crypto angstindex: Sentiment-indicator voor de cryptocurrency-markt
 - Vergelijk beide indices naast elkaar om de algehele marktdynamiek te begrijpen
 
@@ -13,13 +16,9 @@ Fear & Greed Index is een app voor analyse van beleggingssentiment waarmee u zow
 - Belangrijkste marktindices in realtime (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Één-tik schakelaar tussen markt- en crypto-indices
 
-[Widgets]
-- Startscherm-widgets: Small / Medium / Large formaten
-- Vergrendelscherm-widgets: aparte schermen voor markt- en crypto-angstindices
-- Markt/crypto-schakelaar in widgets
-
 [Push-meldingen]
 - Directe waarschuwingen wanneer de markt-angstindex uw drempelwaarde bereikt
+- KOSPI Fear & Greed Index threshold alerts
 - Directe waarschuwingen wanneer de crypto-angstindex uw drempelwaarde bereikt
 - Aanpasbare instellingen voor bovenste en onderste drempelwaarde
 

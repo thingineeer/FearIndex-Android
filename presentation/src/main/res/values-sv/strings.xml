@@ -75,6 +75,7 @@
     <string name="notification_push_description">Få avisering när rädslaindexet når din tröskel.</string>
     <string name="notification_tab_market">Marknad</string>
     <string name="notification_tab_crypto">Krypto</string>
+    <string name="notification_weekly_title">Veckorapportvarningar</string>
     <string name="notification_market_title">Marknadsrädslaindex-varningar</string>
     <string name="notification_crypto_title">Kryptorädslaindex-varningar</string>
     <string name="notification_lower_label">Lägre (Rädsla)</string>
@@ -92,7 +93,7 @@
     <string name="stuck_percentage_label">Andel fastnade</string>
     <string name="stuck_button_im_stuck">"🤙 Jag sitter också fast"</string>
     <string name="stuck_button_im_safe">"✨ Jag sitter inte fast"</string>
-    <string name="stuck_footer_guide">"🤙 Tryck på en knapp för att se hur många som sitter fast i realtid"</string>
+    <string name="stuck_footer_guide">"Valfritt: tryck på ett val för att dela din status; tryck igen för att avbryta. Detaljer under ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Dagens omröstning</string>
@@ -214,6 +215,7 @@
     <string name="settings_menu_notification">Aviseringar</string>
     <string name="settings_menu_privacy">Integritetspolicy</string>
     <string name="settings_menu_about">Appinformation</string>
+    <string name="settings_menu_ad_privacy">Integritetsval</string>
     <string name="settings_menu_rate">Lämna en recension</string>
     <string name="settings_menu_share">Dela appen</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@
     <string name="stuck_detail_stuck">Fast · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Svardetaljer</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Visar poängförändringar, liknande tidigare perioder, historisk avkastning och svar från communityn som kontext.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Om du investerat i KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Baserat på historiska KOSPI-nära-till-nära-data. Tidigare resultat garanterar inte framtida resultat.</string>
+    <string name="insight_detail_sample_basis_kospi">Baserat på %1$d KOSPI historiska episoder</string>
 </resources>

@@ -31,7 +31,6 @@ import javax.inject.Inject
  * 투표 화면 ViewModel.
  *
  * - 물림 카운터: Firestore 실시간 스트림 + 5초 디바운스 서버 호출
- * - Buy/Hold/Sell 투표: Cloud Function 호출 + Firestore 실시간 스트림
  * - UTC 자정 카운트다운: 1초 주기 갱신
  */
 @HiltViewModel
@@ -50,16 +49,23 @@ class VoteViewModel @Inject constructor(
     private val _marketResult = MutableStateFlow(StuckCounterResult.EMPTY)
     val marketResult: StateFlow<StuckCounterResult> = _marketResult.asStateFlow()
 
+    private val _kospiResult = MutableStateFlow(StuckCounterResult.EMPTY)
+    val kospiResult: StateFlow<StuckCounterResult> = _kospiResult.asStateFlow()
+
     private val _cryptoResult = MutableStateFlow(StuckCounterResult.EMPTY)
     val cryptoResult: StateFlow<StuckCounterResult> = _cryptoResult.asStateFlow()
 
     private val _myMarketStatus = MutableStateFlow(StuckStatus.NONE)
     val myMarketStatus: StateFlow<StuckStatus> = _myMarketStatus.asStateFlow()
 
+    private val _myKospiStatus = MutableStateFlow(StuckStatus.NONE)
+    val myKospiStatus: StateFlow<StuckStatus> = _myKospiStatus.asStateFlow()
+
     private val _myCryptoStatus = MutableStateFlow(StuckStatus.NONE)
     val myCryptoStatus: StateFlow<StuckStatus> = _myCryptoStatus.asStateFlow()
 
     private var marketStreamJob: Job? = null
+    private var kospiStreamJob: Job? = null
     private var cryptoStreamJob: Job? = null
 
     // ============================================================
@@ -68,6 +74,9 @@ class VoteViewModel @Inject constructor(
 
     private val _marketVoteResult = MutableStateFlow(VoteResult.EMPTY)
     val marketVoteResult: StateFlow<VoteResult> = _marketVoteResult.asStateFlow()
+
+    private val _kospiVoteResult = MutableStateFlow(VoteResult.EMPTY)
+    val kospiVoteResult: StateFlow<VoteResult> = _kospiVoteResult.asStateFlow()
 
     private val _cryptoVoteResult = MutableStateFlow(VoteResult.EMPTY)
     val cryptoVoteResult: StateFlow<VoteResult> = _cryptoVoteResult.asStateFlow()
@@ -83,22 +92,23 @@ class VoteViewModel @Inject constructor(
     val countdown: StateFlow<Triple<Int, Int, Int>> = _countdown.asStateFlow()
 
     private var marketVoteStreamJob: Job? = null
+    private var kospiVoteStreamJob: Job? = null
     private var cryptoVoteStreamJob: Job? = null
     private var countdownJob: Job? = null
 
     init {
         // 물림 카운터 초기화
         _myMarketStatus.value = observeStuckCounter.loadLocalStatus(FearIndexType.MARKET)
+        _myKospiStatus.value = observeStuckCounter.loadLocalStatus(FearIndexType.KOSPI)
         _myCryptoStatus.value = observeStuckCounter.loadLocalStatus(FearIndexType.CRYPTO)
         startStream(FearIndexType.MARKET)
+        startStream(FearIndexType.KOSPI)
         startStream(FearIndexType.CRYPTO)
         loadInitialStuckResults()
         viewModelScope.launch { debouncer.retryPendingIfNeeded() }
 
-        // 투표 초기화
-        startVoteStream(FearIndexType.MARKET)
-        startVoteStream(FearIndexType.CRYPTO)
-        loadInitialVoteResults()
+        // iOS v1.8.0 Vote 탭은 물림 카운터만 사용한다.
+        // 배포되지 않은 레거시 Buy/Hold/Sell callable은 시작하지 않는다.
         startCountdown()
     }
 
@@ -109,6 +119,14 @@ class VoteViewModel @Inject constructor(
                 _marketResult.value = result
             } catch (e: Exception) {
                 Timber.e(e, "[VoteViewModel] 시장 물림 카운터 초기 로딩 실패")
+            }
+        }
+        viewModelScope.launch {
+            try {
+                val result = observeStuckCounter.fetchOnce(FearIndexType.KOSPI)
+                _kospiResult.value = result
+            } catch (e: Exception) {
+                Timber.e(e, "[VoteViewModel] 코스피 물림 카운터 초기 로딩 실패")
             }
         }
         viewModelScope.launch {
@@ -127,11 +145,13 @@ class VoteViewModel @Inject constructor(
 
     fun resultFor(indexType: FearIndexType): StateFlow<StuckCounterResult> = when (indexType) {
         FearIndexType.MARKET -> marketResult
+        FearIndexType.KOSPI -> kospiResult
         FearIndexType.CRYPTO -> cryptoResult
     }
 
     fun myStatusFor(indexType: FearIndexType): StateFlow<StuckStatus> = when (indexType) {
         FearIndexType.MARKET -> myMarketStatus
+        FearIndexType.KOSPI -> myKospiStatus
         FearIndexType.CRYPTO -> myCryptoStatus
     }
 
@@ -140,6 +160,10 @@ class VoteViewModel @Inject constructor(
             FearIndexType.MARKET -> {
                 _myMarketStatus.value = status
                 _marketResult.value = _marketResult.value.withOptimisticToggle(status)
+            }
+            FearIndexType.KOSPI -> {
+                _myKospiStatus.value = status
+                _kospiResult.value = _kospiResult.value.withOptimisticToggle(status)
             }
             FearIndexType.CRYPTO -> {
                 _myCryptoStatus.value = status
@@ -155,6 +179,7 @@ class VoteViewModel @Inject constructor(
 
     fun voteResultFor(indexType: FearIndexType): StateFlow<VoteResult> = when (indexType) {
         FearIndexType.MARKET -> marketVoteResult
+        FearIndexType.KOSPI -> kospiVoteResult
         FearIndexType.CRYPTO -> cryptoVoteResult
     }
 
@@ -213,6 +238,7 @@ class VoteViewModel @Inject constructor(
                 .collect { result ->
                     when (indexType) {
                         FearIndexType.MARKET -> _marketResult.value = result
+                        FearIndexType.KOSPI -> _kospiResult.value = result
                         FearIndexType.CRYPTO -> _cryptoResult.value = result
                     }
                 }
@@ -220,6 +246,9 @@ class VoteViewModel @Inject constructor(
         when (indexType) {
             FearIndexType.MARKET -> {
                 marketStreamJob?.cancel(); marketStreamJob = job
+            }
+            FearIndexType.KOSPI -> {
+                kospiStreamJob?.cancel(); kospiStreamJob = job
             }
             FearIndexType.CRYPTO -> {
                 cryptoStreamJob?.cancel(); cryptoStreamJob = job
@@ -243,6 +272,9 @@ class VoteViewModel @Inject constructor(
             FearIndexType.MARKET -> {
                 marketVoteStreamJob?.cancel(); marketVoteStreamJob = job
             }
+            FearIndexType.KOSPI -> {
+                kospiVoteStreamJob?.cancel(); kospiVoteStreamJob = job
+            }
             FearIndexType.CRYPTO -> {
                 cryptoVoteStreamJob?.cancel(); cryptoVoteStreamJob = job
             }
@@ -260,6 +292,14 @@ class VoteViewModel @Inject constructor(
         }
         viewModelScope.launch {
             try {
+                val kospiResult = getVoteResultUseCase(FearIndexType.KOSPI.serverValue())
+                updateVoteResult(FearIndexType.KOSPI, kospiResult)
+            } catch (e: Exception) {
+                Timber.e(e, "[VoteViewModel] 코스피 투표 결과 초기 로딩 실패")
+            }
+        }
+        viewModelScope.launch {
+            try {
                 val cryptoResult = getVoteResultUseCase(FearIndexType.CRYPTO.serverValue())
                 updateVoteResult(FearIndexType.CRYPTO, cryptoResult)
             } catch (e: Exception) {
@@ -271,6 +311,7 @@ class VoteViewModel @Inject constructor(
     private fun updateVoteResult(indexType: FearIndexType, result: VoteResult) {
         when (indexType) {
             FearIndexType.MARKET -> _marketVoteResult.value = result
+            FearIndexType.KOSPI -> _kospiVoteResult.value = result
             FearIndexType.CRYPTO -> _cryptoVoteResult.value = result
         }
     }
@@ -302,8 +343,10 @@ class VoteViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         marketStreamJob?.cancel()
+        kospiStreamJob?.cancel()
         cryptoStreamJob?.cancel()
         marketVoteStreamJob?.cancel()
+        kospiVoteStreamJob?.cancel()
         cryptoVoteStreamJob?.cancel()
         countdownJob?.cancel()
     }

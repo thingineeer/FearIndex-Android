@@ -28,6 +28,7 @@
     <string name="notification_push_description">공포지수가 설정한 임계값에 도달하면 알림을 받습니다.</string>
     <string name="notification_tab_market">시장</string>
     <string name="notification_tab_crypto">암호화폐</string>
+    <string name="notification_weekly_title">주간 리포트 알림</string>
     <string name="notification_market_title">시장 공포지수 알림</string>
     <string name="notification_crypto_title">암호화폐 공포지수 알림</string>
     <string name="notification_lower_label">하한 (공포)</string>
@@ -95,7 +96,7 @@
     <string name="stuck_percentage_label">물림 비율</string>
     <string name="stuck_button_im_stuck">"🤙 나도 물렸어요"</string>
     <string name="stuck_button_im_safe">"✨ 난 안 물렸어요"</string>
-    <string name="stuck_footer_guide">"🤙 버튼을 누르면 지금 몇 명이 물려있는지 실시간으로 볼 수 있어요"</string>
+    <string name="stuck_footer_guide">"선택은 필수가 아니에요. 버튼은 내 상태 공유용이고, 다시 누르면 취소돼요. ⓘ에서 상세를 볼 수 있어요"</string>
 
     <!-- 물림 응답 상세 시트 -->
     <string name="common_done">완료</string>
@@ -129,6 +130,7 @@
     <string name="insight_historical_return_summary_matched">%1$s 기준 — 현재 %2$d점과 비슷했던 과거 %3$d개 시점</string>
     <string name="insight_historical_return_summary_empty">%1$s 기준 — 현재 %2$d점 구간의 과거 참고 데이터가 제한적입니다</string>
     <string name="insight_return_chart_title_market">S&amp;P 500에 투자했다면?</string>
+    <string name="insight_return_chart_title_kospi">현재 점수 구간의 KOSPI 수익률</string>
     <string name="insight_return_chart_title_crypto">Bitcoin에 투자했다면?</string>
     <string name="insight_return_chart_summary">이 구간에서 투자했다면 예상 수익률은 어떨까요?</string>
     <string name="insight_drawdown_title">최대 낙폭 분석 (%1$s)</string>
@@ -202,6 +204,7 @@
 
     <!-- 피처 화면 공통 라벨 -->
     <string name="tab_market">시장</string>
+    <string name="tab_kospi">코스피</string>
     <string name="tab_crypto">암호화폐</string>
     <string name="current_index_label">현재 지수</string>
     <string name="vs_previous_close_label">전일 대비</string>
@@ -219,6 +222,7 @@
     <string name="insight_detail_best_case">최선의 경우</string>
     <string name="insight_detail_sample_basis_crypto">암호화폐 시장 심리 데이터 기준</string>
     <string name="insight_detail_sample_basis_market">%1$d번의 극단적 구간 기준 (S&amp;P 500)</string>
+    <string name="insight_detail_sample_basis_kospi">%1$d번의 코스피 과거 구간 기준</string>
     <string name="insight_detail_no_similar_data">유사 시점 데이터가 부족합니다.</string>
     <string name="insight_detail_past_events_title">과거 유사 이벤트 (%1$s)</string>
     <string name="insight_detail_similar_past_title">현재와 비슷했던 과거 시점</string>
@@ -228,6 +232,7 @@
     <string name="insight_detail_investment_label">투자 금액 (원)</string>
     <string name="insight_detail_disclaimer_crypto">⚠️ Bitcoin(BTC) 가격 기준. 암호화폐는 극도로 변동성이 큽니다.</string>
     <string name="insight_detail_disclaimer_market">⚠️ S&amp;P 500 과거 데이터 기준. 과거 성과는 미래 수익을 보장하지 않습니다.</string>
+    <string name="insight_detail_disclaimer_kospi">코스피 과거 종가 기준입니다. 과거 성과는 미래 수익을 보장하지 않습니다.</string>
     <string name="insight_detail_amount_won">%1$s원</string>
     <string name="insight_detail_amount_diff">%1$s원 (%2$s)</string>
     <string name="insight_detail_drawdown_title">낙폭 분석 (%1$s)</string>
@@ -292,12 +297,15 @@
     <string name="settings_menu_rate">앱 평가하기</string>
     <string name="settings_menu_share">앱 공유하기</string>
     <string name="settings_menu_about">앱 정보</string>
+    <string name="settings_menu_ad_privacy">개인정보 선택</string>
     <string name="settings_menu_privacy">개인정보 처리방침</string>
     <string name="settings_about_version">Version %1$s</string>
 
     <!-- Insight feed section headers -->
     <string name="insight_feed_header_market">시장 인사이트</string>
+    <string name="insight_feed_header_kospi">코스피 인사이트</string>
     <string name="insight_feed_header_crypto">암호화폐 인사이트</string>
+    <string name="insight_feed_explainer">점수 변화, 비슷했던 과거 구간, 과거 수익률, 사용자 응답을 함께 보여줘 공포지수의 맥락을 설명합니다.</string>
     <string name="insight_teaser_detail_content_description">상세 보기</string>
     <string name="stuck_total_responded">%1$d명 참여</string>
 </resources>

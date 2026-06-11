@@ -1,7 +1,10 @@
 恐惧指数是一款投资情绪分析应用，让您一目了然地查看市场恐惧与贪婪指数（Market Fear & Greed Index）和加密货币恐惧与贪婪指数（Crypto Fear & Greed Index）。通过两种恐惧指数和主要市场指数，把握复杂市场环境中的大众心理，为冷静的投资决策提供依据。
 
-[两种恐惧与贪婪指数]
+已新增 KOSPI Fear & Greed Index。
+
+[三种恐惧与贪婪指数]
 - 市场 Fear & Greed Index：传统金融市场的投资情绪指标
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - 加密货币 Fear & Greed Index：加密货币市场的投资情绪指标
 - 两种指数并排对比，全面把握市场动态
 
@@ -13,13 +16,9 @@
 - 主要市场指数实时查询（KOSPI、KOSDAQ、纳斯达克、标普500、道琼斯）
 - 一键切换市场与加密货币指数
 
-[小组件]
-- 主屏幕小组件：Small / Medium / Large 三种尺寸
-- 锁屏小组件：市场与加密货币恐惧指数分别显示
-- 小组件内支持市场/加密货币切换
-
 [推送通知]
 - 市场恐惧指数达到阈值时即时提醒
+- KOSPI Fear & Greed Index threshold alerts
 - 加密货币恐惧指数达到阈值时即时提醒
 - 可分别设置上限和下限阈值
 

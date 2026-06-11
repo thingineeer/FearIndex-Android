@@ -3,6 +3,7 @@ package th1ngjin.fearindex.core.crash
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,9 +16,10 @@ import javax.inject.Singleton
 @Singleton
 class CrashReporter @Inject constructor() {
 
-    private val crashlytics: FirebaseCrashlytics = Firebase.crashlytics
+    private val crashlytics: FirebaseCrashlytics by lazy { Firebase.crashlytics }
 
     fun setStandardKeys(appVersion: String, buildType: String, language: String) {
+        if (ScreenshotMode.isEnabled()) return
         crashlytics.setCustomKey(Key.PLATFORM, "android")
         crashlytics.setCustomKey(Key.APP_VERSION, appVersion)
         crashlytics.setCustomKey(Key.BUILD_TYPE, buildType)
@@ -25,18 +27,22 @@ class CrashReporter @Inject constructor() {
     }
 
     fun log(message: String) {
+        if (ScreenshotMode.isEnabled()) return
         crashlytics.log(message)
     }
 
     fun recordException(throwable: Throwable) {
+        if (ScreenshotMode.isEnabled()) return
         crashlytics.recordException(throwable)
     }
 
     fun setUserId(id: String) {
+        if (ScreenshotMode.isEnabled()) return
         crashlytics.setUserId(id)
     }
 
     fun setCollectionEnabled(enabled: Boolean) {
+        if (ScreenshotMode.isEnabled()) return
         crashlytics.isCrashlyticsCollectionEnabled = enabled
     }
 

@@ -1,7 +1,10 @@
 恐懼指數是一款投資情緒分析應用程式，讓您一眼即可掌握市場恐懼貪婪指數（Market Fear & Greed Index）與加密貨幣恐懼貪婪指數（Crypto Fear & Greed Index）。透過追蹤兩種不同的恐懼指數以及主要市場指數，深入了解市場群眾心理，作出明智的投資決策。
 
-[兩種恐懼貪婪指數]
+已新增 KOSPI Fear & Greed Index。
+
+[三種恐懼貪婪指數]
 - 市場恐懼指數：傳統金融市場的情緒指標
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - 加密恐懼指數：加密貨幣市場的情緒指標
 - 並排比較兩種指數，掌握整體市場動態
 
@@ -13,13 +16,9 @@
 - 即時主要市場指數（KOSPI、KOSDAQ、NASDAQ、S&P 500、道瓊斯）
 - 一鍵切換市場與加密貨幣指數
 
-[小工具]
-- 主畫面小工具：支援 Small / Medium / Large 尺寸
-- 鎖定畫面小工具：市場恐懼指數、加密恐懼指數分別獨立顯示
-- 小工具內支援市場/加密貨幣切換
-
 [推播通知]
 - 市場恐懼指數達到閾值時立即通知
+- KOSPI Fear & Greed Index threshold alerts
 - 加密恐懼指數達到閾值時立即通知
 - 可分別設定上限/下限閾值
 

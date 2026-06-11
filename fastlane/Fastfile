@@ -108,7 +108,7 @@ platform :android do
 
   desc "45개 locale 스크린샷 자동 촬영 (adb 기반)"
   lane :screenshots do
-    script = File.join(PROJECT_ROOT, "scripts", "screenshots", "capture-all-locales.sh")
+    script = File.join(PROJECT_ROOT, "scripts", "screenshots", "capture-all-locales-v103.sh")
     UI.user_error!("script not found: #{script}") unless File.exist?(script)
     sh("bash #{script}")
   end

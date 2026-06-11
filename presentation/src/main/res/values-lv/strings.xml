@@ -75,6 +75,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="notification_push_description">Saņemiet paziņojumu, kad baiļu indekss sasniedz jūsu slieksni.</string>
     <string name="notification_tab_market">Tirgus</string>
     <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_weekly_title">Iknedēļas ziņojumu brīdinājumi</string>
     <string name="notification_market_title">Tirgus baiļu indeksa brīdinājumi</string>
     <string name="notification_crypto_title">Kripto baiļu indeksa brīdinājumi</string>
     <string name="notification_lower_label">Apakšējais (Bailes)</string>
@@ -92,7 +93,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="stuck_percentage_label">Iestrēgušo īpatsvars</string>
     <string name="stuck_button_im_stuck">"🤙 Arī es esmu iestrēdzis"</string>
     <string name="stuck_button_im_safe">"✨ Es neesmu iestrēdzis"</string>
-    <string name="stuck_footer_guide">"🤙 Nospiediet pogu, lai reāllaikā redzētu, cik daudz cilvēku ir iestrēguši"</string>
+    <string name="stuck_footer_guide">"Neobligāti: pieskarieties izvēlei, lai kopīgotu statusu; pieskarieties vēlreiz, lai atceltu. Sīkāk ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Šodienas balsojums</string>
@@ -214,6 +215,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="settings_menu_notification">Paziņojumi</string>
     <string name="settings_menu_privacy">Privātuma politika</string>
     <string name="settings_menu_about">Lietotnes informācija</string>
+    <string name="settings_menu_ad_privacy">Privātuma izvēles</string>
     <string name="settings_menu_rate">Uzrakstīt atsauksmi</string>
     <string name="settings_menu_share">Kopīgot lietotni</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="stuck_detail_stuck">Iestrēdzis · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Atbilžu informācija</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Rāda rezultāta izmaiņas, līdzīgus pagātnes periodus, vēsturisko atdevi un kopienas atbildes kontekstam.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Ja esat ieguldījis KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Pamatojoties uz vēsturiskiem KOSPI tuvuma datiem. Iepriekšējā darbība negarantē rezultātus nākotnē.</string>
+    <string name="insight_detail_sample_basis_kospi">Balstīts uz %1$d KOSPI vēsturiskajām epizodēm</string>
 </resources>

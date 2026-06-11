@@ -75,6 +75,7 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="notification_push_description">Saad teavituse, kui hirmuindeks jõuab sinu läveni.</string>
     <string name="notification_tab_market">Turg</string>
     <string name="notification_tab_crypto">Krüpto</string>
+    <string name="notification_weekly_title">Iganädalased aruannete hoiatused</string>
     <string name="notification_market_title">Turu hirmuindeksi hoiatused</string>
     <string name="notification_crypto_title">Krüpto hirmuindeksi hoiatused</string>
     <string name="notification_lower_label">Alumine (Hirm)</string>
@@ -92,7 +93,7 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="stuck_percentage_label">Kinniolemise määr</string>
     <string name="stuck_button_im_stuck">"🤙 Mina olen ka kinni"</string>
     <string name="stuck_button_im_safe">"✨ Mina ei ole kinni"</string>
-    <string name="stuck_footer_guide">"🤙 Vajuta nuppu, et näha reaalajas, kui paljud on kinni"</string>
+    <string name="stuck_footer_guide">"Valikuline: puuduta valikut oma seisu jagamiseks; tühistamiseks puuduta uuesti. Üksikasjad on ⓘ all."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Tänane hääletus</string>
@@ -214,6 +215,7 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="settings_menu_notification">Teavitused</string>
     <string name="settings_menu_privacy">Privaatsuspoliitika</string>
     <string name="settings_menu_about">Rakenduse teave</string>
+    <string name="settings_menu_ad_privacy">Privaatsusvalikud</string>
     <string name="settings_menu_rate">Kirjuta arvustus</string>
     <string name="settings_menu_share">Jaga rakendust</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="stuck_detail_stuck">Kinni · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Vastuste üksikasjad</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Näitab skoorimuutusi, sarnaseid varasemaid perioode, ajaloolisi tootlusi ja kogukonna vastuseid kontekstiks.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Kui investeerite KOSPI-sse</string>
+    <string name="insight_detail_disclaimer_kospi">Põhineb ajaloolistel KOSPI lähiandmetel. Varasemad tulemused ei taga tulevasi tulemusi.</string>
+    <string name="insight_detail_sample_basis_kospi">Põhineb %1$d KOSPI ajaloolistel episoodidel</string>
 </resources>

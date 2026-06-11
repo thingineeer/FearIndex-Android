@@ -75,6 +75,7 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="notification_push_description">Få besked, når frygtindekset når din tærskel.</string>
     <string name="notification_tab_market">Marked</string>
     <string name="notification_tab_crypto">Krypto</string>
+    <string name="notification_weekly_title">Ugentlige rapportalarmer</string>
     <string name="notification_market_title">Markedsfrygtindeks-alarmer</string>
     <string name="notification_crypto_title">Kryptofrygtindeks-alarmer</string>
     <string name="notification_lower_label">Nedre (Frygt)</string>
@@ -92,7 +93,7 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="stuck_percentage_label">Fanget-rate</string>
     <string name="stuck_button_im_stuck">"🤙 Jeg er også fanget"</string>
     <string name="stuck_button_im_safe">"✨ Jeg er ikke fanget"</string>
-    <string name="stuck_footer_guide">"🤙 Tryk på en knap for at se, hvor mange der er fanget lige nu"</string>
+    <string name="stuck_footer_guide">"Valgfrit: tryk på et valg for at dele din status; tryk igen for at annullere. Detaljer under ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Dagens afstemning</string>
@@ -214,6 +215,7 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="settings_menu_notification">Notifikationer</string>
     <string name="settings_menu_privacy">Privatlivspolitik</string>
     <string name="settings_menu_about">App-info</string>
+    <string name="settings_menu_ad_privacy">Valg om privatliv</string>
     <string name="settings_menu_rate">Skriv en anmeldelse</string>
     <string name="settings_menu_share">Del app</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="stuck_detail_stuck">Fast · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Svardetaljer</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Viser scoreændringer, lignende tidligere perioder, historiske afkast og svar fra fællesskabet som kontekst.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Hvis du har investeret i KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Baseret på historiske KOSPI tæt på tætte data. Tidligere resultater garanterer ikke fremtidige resultater.</string>
+    <string name="insight_detail_sample_basis_kospi">Baseret på %1$d KOSPI historiske episoder</string>
 </resources>

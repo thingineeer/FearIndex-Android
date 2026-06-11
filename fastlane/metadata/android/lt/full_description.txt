@@ -1,7 +1,10 @@
 Fear & Greed Index – tai investicijų nuotaikos analizės programėlė, leidžianti vienu metu stebėti rinkos baimės ir godumo indeksą bei kriptovaliutų baimės ir godumo indeksą. Stebėkite du skirtingus baimės indeksus kartu su pagrindiniais rinkos indeksais, kad suprastumėte minios psichologiją ir priimtumėte pagrįstus investavimo sprendimus.
 
-[Du baimės ir godumo indeksai]
+Pridėtas KOSPI Fear & Greed Index.
+
+[Trys baimės ir godumo indeksai]
 - Rinkos baimės ir godumo indeksas: tradicinių finansų rinkų nuotaikos rodiklis
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Kriptovaliutų baimės ir godumo indeksas: kriptovaliutų rinkos nuotaikos rodiklis
 - Palyginkite abu indeksus vienas šalia kito, kad suprastumėte bendrą rinkos dinamiką
 
@@ -12,11 +15,6 @@ Fear & Greed Index – tai investicijų nuotaikos analizės programėlė, leidž
 - Tendencijų analizė su istorijos diagramomis (1M / 3M / 6M / 1M)
 - Pagrindiniai rinkos indeksai realiu laiku (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Vienu bakstelėjimu perjungiama tarp rinkos ir kriptovaliutų indeksų
-
-[Valdikliai]
-- Pagrindinio ekrano valdikliai: mažo / vidutinio / didelio dydžio
-- Užrakto ekrano valdikliai: atskiri rinkos ir kriptovaliutų baimės indeksų rodikliai
-- Rinkos/kriptovaliutų perjungimas valdiklyje
 
 [Tiesioginiai pranešimai]
 - Momentiniai įspėjimai, kai rinkos baimės indeksas pasiekia jūsų nustatytą ribą

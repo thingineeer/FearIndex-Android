@@ -16,11 +16,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.UserMessagingPlatform
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
+import th1ngjin.fearindex.core.ads.AdRequestAvailability
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.presentation.feature.splash.SplashView
 import th1ngjin.fearindex.presentation.navigation.FearIndexNavHost
 import th1ngjin.fearindex.presentation.theme.FearIndexTheme
+import timber.log.Timber
 
 private const val SPLASH_MIN_DURATION_MS = 1_500L
 
@@ -33,6 +38,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        requestAdsConsentInfo()
         setContent {
             FearIndexTheme {
                 var showSplash by remember { mutableStateOf(true) }
@@ -52,5 +58,27 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun requestAdsConsentInfo() {
+        if (ScreenshotMode.isEnabled()) return
+
+        val consentInformation = UserMessagingPlatform.getConsentInformation(this)
+        val params = ConsentRequestParameters.Builder().build()
+        consentInformation.requestConsentInfoUpdate(
+            this,
+            params,
+            {
+                AdRequestAvailability.update(consentInformation.canRequestAds())
+                UserMessagingPlatform.loadAndShowConsentFormIfRequired(this) { formError ->
+                    formError?.let { Timber.w("UMP consent form failed: ${it.message}") }
+                    AdRequestAvailability.update(consentInformation.canRequestAds())
+                }
+            },
+            { requestError ->
+                Timber.w("UMP consent info update failed: ${requestError.message}")
+                AdRequestAvailability.update(consentInformation.canRequestAds())
+            },
+        )
     }
 }

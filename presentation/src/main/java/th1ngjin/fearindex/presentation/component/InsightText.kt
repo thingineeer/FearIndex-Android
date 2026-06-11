@@ -19,10 +19,10 @@ fun insightTitle(insight: MarketInsight): String {
             stringResource(R.string.insight_overheat_title)
         }
         InsightType.HISTORICAL_RETURN -> stringResource(R.string.insight_historical_return_title)
-        InsightType.RETURN_CHART -> if (insight.indexType == FearIndexType.CRYPTO) {
-            stringResource(R.string.insight_return_chart_title_crypto)
-        } else {
-            stringResource(R.string.insight_return_chart_title_market)
+        InsightType.RETURN_CHART -> when (insight.indexType) {
+            FearIndexType.MARKET -> stringResource(R.string.insight_return_chart_title_market)
+            FearIndexType.KOSPI -> stringResource(R.string.insight_return_chart_title_kospi)
+            FearIndexType.CRYPTO -> stringResource(R.string.insight_return_chart_title_crypto)
         }
         InsightType.DRAWDOWN_TOLERANCE -> stringResource(R.string.insight_drawdown_title, basis)
         InsightType.NUDGE -> stringResource(nudgeTitleRes(insight.score))

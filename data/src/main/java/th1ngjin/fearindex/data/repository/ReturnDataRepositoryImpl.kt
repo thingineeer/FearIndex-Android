@@ -1,5 +1,6 @@
 package th1ngjin.fearindex.data.repository
 
+import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.data.datasource.ReturnDataSource
 import th1ngjin.fearindex.domain.defaults.DefaultReturnData
 import th1ngjin.fearindex.domain.entity.FearIndexType
@@ -31,7 +32,14 @@ class ReturnDataRepositoryImpl @Inject constructor(
     @Volatile
     private var cryptoCache: ReturnDataTable? = null
 
+    @Volatile
+    private var kospiCache: ReturnDataTable? = null
+
     override suspend fun fetch(indexType: FearIndexType): ReturnDataTable {
+        if (ScreenshotMode.isEnabled()) {
+            return fallback(indexType)
+        }
+
         cached(indexType)?.let { return it }
 
         val key = indexType.serverKey()
@@ -50,23 +58,27 @@ class ReturnDataRepositoryImpl @Inject constructor(
 
     private fun cached(indexType: FearIndexType): ReturnDataTable? = when (indexType) {
         FearIndexType.MARKET -> marketCache
+        FearIndexType.KOSPI -> kospiCache
         FearIndexType.CRYPTO -> cryptoCache
     }
 
     private fun storeCache(indexType: FearIndexType, table: ReturnDataTable) {
         when (indexType) {
             FearIndexType.MARKET -> marketCache = table
+            FearIndexType.KOSPI -> kospiCache = table
             FearIndexType.CRYPTO -> cryptoCache = table
         }
     }
 
     private fun fallback(indexType: FearIndexType): ReturnDataTable = when (indexType) {
         FearIndexType.MARKET -> DefaultReturnData.market
+        FearIndexType.KOSPI -> DefaultReturnData.kospi
         FearIndexType.CRYPTO -> DefaultReturnData.crypto
     }
 
     private fun FearIndexType.serverKey(): String = when (this) {
         FearIndexType.MARKET -> "market"
+        FearIndexType.KOSPI -> "kospi"
         FearIndexType.CRYPTO -> "crypto"
     }
 }

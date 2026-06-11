@@ -27,6 +27,11 @@ data class InsightUiState(
     val isLoading: Boolean = true,
 )
 
+enum class InsightIndexScope {
+    HOME,
+    CHART,
+}
+
 /**
  * 인사이트 ViewModel.
  *
@@ -52,10 +57,13 @@ class InsightViewModel @Inject constructor(
      * 바뀔 때는 재계산 스킵. 티커가 3초마다 갱신되어도 인사이트 보간/이벤트 매칭은
      * score/indexType/history 변경 시에만 실행.
      */
-    fun observeHome(homeViewModel: HomeViewModel) {
+    fun observeHome(
+        homeViewModel: HomeViewModel,
+        scope: InsightIndexScope = InsightIndexScope.HOME,
+    ) {
         viewModelScope.launch {
             homeViewModel.uiState
-                .map { homeState -> InsightInputSnapshot.from(homeState) }
+                .map { homeState -> InsightInputSnapshot.from(homeState, scope) }
                 .distinctUntilChanged()
                 .collectLatest { snapshot ->
                     val state = snapshot.state
@@ -98,14 +106,22 @@ class InsightViewModel @Inject constructor(
         val history: List<th1ngjin.fearindex.domain.entity.FearIndex>,
     ) {
         companion object {
-            fun from(home: th1ngjin.fearindex.presentation.feature.home.HomeUiState): InsightInputSnapshot {
-                val indexType = home.selectedType
+            fun from(
+                home: th1ngjin.fearindex.presentation.feature.home.HomeUiState,
+                scope: InsightIndexScope,
+            ): InsightInputSnapshot {
+                val indexType = when (scope) {
+                    InsightIndexScope.HOME -> home.selectedHomeType
+                    InsightIndexScope.CHART -> home.selectedChartType
+                }
                 val state = when (indexType) {
                     FearIndexType.MARKET -> home.marketState
+                    FearIndexType.KOSPI -> home.kospiState
                     FearIndexType.CRYPTO -> home.cryptoState
                 }
                 val history = when (indexType) {
                     FearIndexType.MARKET -> home.marketHistory
+                    FearIndexType.KOSPI -> home.kospiHistory
                     FearIndexType.CRYPTO -> home.cryptoHistory
                 }
                 return InsightInputSnapshot(indexType, state, history)

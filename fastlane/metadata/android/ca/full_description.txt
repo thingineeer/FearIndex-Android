@@ -1,7 +1,10 @@
 Fear & Greed Index és una aplicació d'anàlisi del sentiment d'inversió que us permet supervisar l'índex de por i avaricia del mercat (Market Fear & Greed Index) i l'índex de por i avaricia de les criptomonedes (Crypto Fear & Greed Index) d'un sol cop d'ull. Seguiu dos índexs de por diferent juntament amb els principals índexs de mercat per comprendre la psicologia de masses i prendre decisions d'inversió informades.
 
-[Dos índexs de por i avaricia]
+S’ha afegit el KOSPI Fear & Greed Index.
+
+[Tres índexs de por i avaricia]
 - Índex de por del mercat: Indicador de sentiment per als mercats financers tradicionals
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Índex de por cripto: Indicador de sentiment per al mercat de criptomonedes
 - Compareu ambdós índexs per comprendre la dinàmica global del mercat
 
@@ -13,13 +16,9 @@ Fear & Greed Index és una aplicació d'anàlisi del sentiment d'inversió que u
 - Principals índexs de mercat en temps real (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Commutació d'un toc entre índexs de mercat i cripto
 
-[Widgets]
-- Widgets de pantalla d'inici: mides Small / Medium / Large
-- Widgets de pantalla de bloqueig: pantalles separades per als índexs de por del mercat i cripto
-- Commutació mercat/cripto dins dels widgets
-
 [Notificacions push]
 - Alertes instantànies quan l'índex de por del mercat arriba al vostre llindar
+- KOSPI Fear & Greed Index threshold alerts
 - Alertes instantànies quan l'índex de por cripto arriba al vostre llindar
 - Configuració personalitzable del llindar superior i inferior
 

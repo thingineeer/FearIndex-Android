@@ -1,7 +1,10 @@
 Fear & Greed Index adalah aplikasi analisis sentimen investasi yang memungkinkan Anda memantau Indeks Ketakutan & Keserakahan Pasar (Market Fear & Greed Index) dan Indeks Ketakutan & Keserakahan Kripto (Crypto Fear & Greed Index) sekaligus. Lacak dua indeks ketakutan yang berbeda bersama indeks pasar utama untuk memahami psikologi massa dan membuat keputusan investasi yang tepat.
 
-[Dua Indeks Ketakutan & Keserakahan]
+KOSPI Fear & Greed Index telah ditambahkan.
+
+[Tiga Indeks Ketakutan & Keserakahan]
 - Indeks Ketakutan Pasar: Indikator sentimen untuk pasar keuangan tradisional
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Indeks Ketakutan Kripto: Indikator sentimen untuk pasar cryptocurrency
 - Bandingkan kedua indeks untuk memahami dinamika pasar secara keseluruhan
 
@@ -13,13 +16,9 @@ Fear & Greed Index adalah aplikasi analisis sentimen investasi yang memungkinkan
 - Indeks pasar utama real-time (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Beralih antara indeks pasar dan kripto dengan satu sentuhan
 
-[Widget]
-- Widget layar beranda: ukuran Small / Medium / Large
-- Widget layar kunci: tampilan terpisah untuk indeks ketakutan pasar dan kripto
-- Toggle pasar/kripto di dalam widget
-
 [Notifikasi Push]
 - Peringatan instan saat indeks ketakutan pasar mencapai ambang batas Anda
+- KOSPI Fear & Greed Index threshold alerts
 - Peringatan instan saat indeks ketakutan kripto mencapai ambang batas Anda
 - Pengaturan ambang batas atas dan bawah yang dapat dikustomisasi
 

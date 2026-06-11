@@ -28,6 +28,7 @@
     <string name="notification_push_description">Get notified when the fear index reaches your threshold.</string>
     <string name="notification_tab_market">Market</string>
     <string name="notification_tab_crypto">Crypto</string>
+    <string name="notification_weekly_title">Weekly Report Alerts</string>
     <string name="notification_market_title">Market Fear Index Alerts</string>
     <string name="notification_crypto_title">Crypto Fear Index Alerts</string>
     <string name="notification_lower_label">Lower (Fear)</string>
@@ -95,7 +96,7 @@
     <string name="stuck_percentage_label">Stuck rate</string>
     <string name="stuck_button_im_stuck">"🤙 I\'m stuck too"</string>
     <string name="stuck_button_im_safe">"✨ I\'m not stuck"</string>
-    <string name="stuck_footer_guide">"🤙 Tap a button to see how many are stuck in real time"</string>
+    <string name="stuck_footer_guide">"Optional: tap a choice to share your status; tap it again to cancel. Details are under ⓘ."</string>
 
     <!-- Stuck Detail Sheet -->
     <string name="common_done">Done</string>
@@ -129,6 +130,7 @@
     <string name="insight_detail_best_case">Best case</string>
     <string name="insight_detail_sample_basis_crypto">Based on crypto sentiment data</string>
     <string name="insight_detail_sample_basis_market">Based on %1$d extreme periods (S&amp;P 500)</string>
+    <string name="insight_detail_sample_basis_kospi">Based on %1$d KOSPI historical episodes</string>
     <string name="insight_detail_no_similar_data">Not enough similar-period data.</string>
     <string name="insight_detail_past_events_title">Past similar events (%1$s)</string>
     <string name="insight_detail_similar_past_title">Past periods similar to now</string>
@@ -138,6 +140,7 @@
     <string name="insight_detail_investment_label">Investment amount (KRW)</string>
     <string name="insight_detail_disclaimer_crypto">⚠️ Based on Bitcoin (BTC) prices. Crypto is extremely volatile.</string>
     <string name="insight_detail_disclaimer_market">⚠️ Based on S&amp;P 500 historical data. Past performance does not guarantee future returns.</string>
+    <string name="insight_detail_disclaimer_kospi">Based on historical KOSPI close-to-close data. Past performance does not guarantee future results.</string>
     <string name="insight_detail_amount_won">%1$s KRW</string>
     <string name="insight_detail_amount_diff">%1$s KRW (%2$s)</string>
     <string name="insight_detail_drawdown_title">Drawdown analysis (%1$s)</string>
@@ -206,6 +209,7 @@
     <string name="insight_historical_return_summary_matched">%1$s — %3$d past periods similar to current %2$d points</string>
     <string name="insight_historical_return_summary_empty">%1$s — Limited historical data near current %2$d points</string>
     <string name="insight_return_chart_title_market">If you invested in S&amp;P 500?</string>
+    <string name="insight_return_chart_title_kospi">If You Invested in KOSPI</string>
     <string name="insight_return_chart_title_crypto">If you invested in Bitcoin?</string>
     <string name="insight_return_chart_summary">What would returns look like if you invested in this range?</string>
     <string name="insight_drawdown_title">Max Drawdown Analysis (%1$s)</string>
@@ -284,6 +288,7 @@
 
     <!-- Feature screen common labels -->
     <string name="tab_market">Market</string>
+    <string name="tab_kospi">KOSPI</string>
     <string name="tab_crypto">Crypto</string>
     <string name="current_index_label">Current Index</string>
     <string name="vs_previous_close_label">vs. previous close</string>
@@ -297,12 +302,15 @@
     <string name="settings_menu_rate">Rate App</string>
     <string name="settings_menu_share">Share App</string>
     <string name="settings_menu_about">About</string>
+    <string name="settings_menu_ad_privacy">Privacy choices</string>
     <string name="settings_menu_privacy">Privacy Policy</string>
     <string name="settings_about_version">Version %1$s</string>
 
     <!-- Insight feed section headers -->
     <string name="insight_feed_header_market">Market Insights</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Shows score changes, similar past periods, historical returns, and community responses so the sentiment score has context.</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="stuck_total_responded">%1$d participants</string>
 </resources>

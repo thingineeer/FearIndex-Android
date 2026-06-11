@@ -76,6 +76,22 @@ class NotificationSettingsViewModel @Inject constructor(
         }
     }
 
+    fun toggleGlobal(enabled: Boolean) {
+        updateCategory(_settings.value.copy(globalNotificationEnabled = enabled))
+    }
+
+    fun toggleKospi(enabled: Boolean) {
+        updateCategory(_settings.value.copy(kospiNotificationEnabled = enabled))
+    }
+
+    fun toggleCrypto(enabled: Boolean) {
+        updateCategory(_settings.value.copy(cryptoNotificationEnabled = enabled))
+    }
+
+    fun toggleWeekly(enabled: Boolean) {
+        updateCategory(_settings.value.copy(weeklyReportNotificationEnabled = enabled))
+    }
+
     fun updateMarketLower(value: Int) {
         val current = _settings.value
         val clamped = value.coerceAtMost(current.marketUpperThreshold - 1)
@@ -98,6 +114,24 @@ class NotificationSettingsViewModel @Inject constructor(
         val current = _settings.value
         val clamped = value.coerceAtMost(current.cryptoUpperThreshold - 1)
         val updated = current.copy(cryptoLowerThreshold = clamped)
+        _settings.value = updated
+        viewModelScope.launch { notificationRepository.saveSettingsLocal(updated) }
+        settingsUpdateFlow.tryEmit(updated)
+    }
+
+    fun updateKospiLower(value: Int) {
+        val current = _settings.value
+        val clamped = value.coerceAtMost(current.kospiUpperThreshold - 1)
+        val updated = current.copy(kospiLowerThreshold = clamped)
+        _settings.value = updated
+        viewModelScope.launch { notificationRepository.saveSettingsLocal(updated) }
+        settingsUpdateFlow.tryEmit(updated)
+    }
+
+    fun updateKospiUpper(value: Int) {
+        val current = _settings.value
+        val clamped = value.coerceAtLeast(current.kospiLowerThreshold + 1)
+        val updated = current.copy(kospiUpperThreshold = clamped)
         _settings.value = updated
         viewModelScope.launch { notificationRepository.saveSettingsLocal(updated) }
         settingsUpdateFlow.tryEmit(updated)
@@ -132,6 +166,16 @@ class NotificationSettingsViewModel @Inject constructor(
         )
     }
 
+    fun onKospiSliderFinished() {
+        val s = _settings.value
+        analytics.log(
+            AnalyticsEvent.알림임계값변경(
+                하한값 = s.kospiLowerThreshold,
+                상한값 = s.kospiUpperThreshold,
+            ),
+        )
+    }
+
     fun clearError() {
         _syncError.value = null
     }
@@ -143,6 +187,14 @@ class NotificationSettingsViewModel @Inject constructor(
         } catch (e: Exception) {
             Timber.e(e, "알림 설정 서버 동기화 실패")
             _syncError.value = e.message
+        }
+    }
+
+    private fun updateCategory(updated: NotificationSettings) {
+        _settings.value = updated
+        viewModelScope.launch {
+            notificationRepository.saveSettingsLocal(updated)
+            syncToServer(updated)
         }
     }
 }

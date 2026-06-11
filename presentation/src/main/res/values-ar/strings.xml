@@ -76,6 +76,7 @@
     <string name="notification_push_description">تلقَّ إشعارًا عند وصول مؤشر الخوف إلى الحد الذي حددته.</string>
     <string name="notification_tab_market">السوق</string>
     <string name="notification_tab_crypto">العملات الرقمية</string>
+    <string name="notification_weekly_title">تنبيهات التقرير الأسبوعي</string>
     <string name="notification_market_title">تنبيهات مؤشر خوف السوق</string>
     <string name="notification_crypto_title">تنبيهات مؤشر خوف العملات الرقمية</string>
     <string name="notification_lower_label">الحد الأدنى (خوف)</string>
@@ -91,7 +92,7 @@
     <string name="stuck_percentage_label">نسبة العالقين</string>
     <string name="stuck_button_im_stuck">"🤙 أنا عالق أيضًا"</string>
     <string name="stuck_button_im_safe">"✨ أنا لست عالقًا"</string>
-    <string name="stuck_footer_guide">"🤙 اضغط زرًا لترى كم شخصًا عالق الآن في الوقت الفعلي"</string>
+    <string name="stuck_footer_guide">"اختياري: اضغط خيارًا لمشاركة حالتك؛ اضغطه مرة أخرى للإلغاء. التفاصيل تحت ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">تصويت اليوم</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">الإشعارات</string>
     <string name="settings_menu_privacy">سياسة الخصوصية</string>
     <string name="settings_menu_about">معلومات التطبيق</string>
+    <string name="settings_menu_ad_privacy">خيارات الخصوصية</string>
     <string name="settings_menu_rate">اكتب مراجعة</string>
     <string name="settings_menu_share">مشاركة</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -277,9 +279,15 @@
     <string name="stuck_detail_stuck">عالق · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">تفاصيل الردود</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">يعرض تغيّرات الدرجة والفترات التاريخية المشابهة والعوائد السابقة وردود المجتمع لتوضيح سياق المؤشر.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">إذا استثمرت في KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">استنادًا إلى بيانات KOSPI التاريخية القريبة من الإغلاق. الأداء السابق لا يضمن النتائج المستقبلية.</string>
+    <string name="insight_detail_sample_basis_kospi">استنادًا إلى الحلقات التاريخية لـ %1$d KOSPI</string>
 </resources>

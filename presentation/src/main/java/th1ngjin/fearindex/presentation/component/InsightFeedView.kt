@@ -38,13 +38,20 @@ fun InsightFeedView(
         // 섹션 헤더
         val headerText = when (indexType) {
             FearIndexType.MARKET -> stringResource(R.string.insight_feed_header_market)
+            FearIndexType.KOSPI -> stringResource(R.string.insight_feed_header_kospi)
             FearIndexType.CRYPTO -> stringResource(R.string.insight_feed_header_crypto)
         }
         Text(
             text = headerText,
             fontSize = 17.sp,
             fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(vertical = 8.dp),
+            modifier = Modifier.padding(top = 8.dp),
+        )
+        Text(
+            text = stringResource(R.string.insight_feed_explainer),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 4.dp, bottom = 8.dp),
         )
 
         insights.forEachIndexed { index, insight ->

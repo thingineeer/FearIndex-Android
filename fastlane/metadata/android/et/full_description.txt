@@ -1,7 +1,10 @@
 Fear & Greed Index on investeerimismeeleolu analüüsi rakendus, mis võimaldab jälgida korraga nii turu hirmu ja ahnuse indeksit kui ka krüptovaluuta hirmu ja ahnuse indeksit. Jälgige kahte eraldi hirmuindeksit koos peamiste turuindeksitega, et mõista massipsühholoogiat ja teha teadlikke investeerimisotsuseid.
 
-[Kaks hirmu ja ahnuse indeksit]
+Lisatud on KOSPI Fear & Greed Index.
+
+[Kolm hirmu ja ahnuse indeksit]
 - Turu hirmu ja ahnuse indeks: traditsiooniliste finantsturgude meeleolunäitaja
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Krüpto hirmu ja ahnuse indeks: krüptovaluutaturu meeleolunäitaja
 - Võrrelge mõlemat indeksit kõrvuti, et mõista turu üldist dünaamikat
 
@@ -13,13 +16,9 @@ Fear & Greed Index on investeerimismeeleolu analüüsi rakendus, mis võimaldab 
 - Peamised turuindeksid reaalajas (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Ühe puudutusega lülitamine turu- ja krüptoindeksite vahel
 
-[Vidinad]
-- Avakuva vidinad: suurused Väike / Keskmine / Suur
-- Lukustusekraani vidinad: eraldi kuvad turu- ja krüptohirmuindeksitele
-- Turu/krüpto lülitamine vidinas
-
 [Tõuketeatised]
 - Koheselt teade, kui turu hirmuindeks jõuab teie seatud lävendini
+- KOSPI Fear & Greed Index threshold alerts
 - Koheselt teade, kui krüpto hirmuindeks jõuab teie seatud lävendini
 - Kohandatavad ülemise ja alumise lävendi seaded
 

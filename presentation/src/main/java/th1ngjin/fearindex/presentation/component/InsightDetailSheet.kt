@@ -202,10 +202,10 @@ private fun BuySignalContent(insight: MarketInsight) {
 
     insight.sampleCount?.let { count ->
         Spacer(modifier = Modifier.height(8.dp))
-        val sampleBasis = if (insight.indexType == FearIndexType.CRYPTO) {
-            stringResource(R.string.insight_detail_sample_basis_crypto)
-        } else {
-            stringResource(R.string.insight_detail_sample_basis_market, count)
+        val sampleBasis = when (insight.indexType) {
+            FearIndexType.MARKET -> stringResource(R.string.insight_detail_sample_basis_market, count)
+            FearIndexType.KOSPI -> stringResource(R.string.insight_detail_sample_basis_kospi, count)
+            FearIndexType.CRYPTO -> stringResource(R.string.insight_detail_sample_basis_crypto)
         }
         Text(
             text = sampleBasis,
@@ -442,10 +442,10 @@ private fun ReturnChartContent(insight: MarketInsight) {
  */
 @Composable
 private fun DisclaimerText(indexType: FearIndexType) {
-    val text = if (indexType == FearIndexType.CRYPTO) {
-        stringResource(R.string.insight_detail_disclaimer_crypto)
-    } else {
-        stringResource(R.string.insight_detail_disclaimer_market)
+    val text = when (indexType) {
+        FearIndexType.MARKET -> stringResource(R.string.insight_detail_disclaimer_market)
+        FearIndexType.KOSPI -> stringResource(R.string.insight_detail_disclaimer_kospi)
+        FearIndexType.CRYPTO -> stringResource(R.string.insight_detail_disclaimer_crypto)
     }
     Text(
         text = text,

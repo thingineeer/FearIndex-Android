@@ -12,6 +12,7 @@ import kotlinx.coroutines.tasks.await
 import timber.log.Timber
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
+import javax.inject.Provider
 import javax.inject.Singleton
 
 /**
@@ -25,15 +26,15 @@ import javax.inject.Singleton
  */
 @Singleton
 class StuckCounterDataSource @Inject constructor(
-    private val functions: FirebaseFunctions,
-    private val firestore: FirebaseFirestore,
+    private val functions: Provider<FirebaseFunctions>,
+    private val firestore: Provider<FirebaseFirestore>,
 ) {
 
     /** indexType별 listener 맵 — market/crypto 동시 구독 지원. */
     private val listeners = ConcurrentHashMap<String, ListenerRegistration>()
 
     suspend fun submitStatus(request: SubmitStuckStatusRequest): StuckCounterResponse {
-        val result = functions
+        val result = functions.get()
             .getHttpsCallable("submitStuckStatus")
             .call(request.toPayload())
             .await()
@@ -49,7 +50,7 @@ class StuckCounterDataSource @Inject constructor(
             "deviceId" to deviceId,
             "indexType" to indexType,
         )
-        val result = functions
+        val result = functions.get()
             .getHttpsCallable("getStuckCount")
             .call(payload)
             .await()
@@ -68,7 +69,7 @@ class StuckCounterDataSource @Inject constructor(
         // 이미 같은 indexType listener가 살아있으면 제거 후 재등록
         listeners.remove(indexType)?.remove()
 
-        val docRef = firestore.document("stuckStatus/global_$indexType")
+        val docRef = firestore.get().document("stuckStatus/global_$indexType")
         val registration = docRef.addSnapshotListener { snapshot, error ->
             if (error != null) {
                 Timber.e(error, "[StuckCounterDataSource] Snapshot error ($indexType)")

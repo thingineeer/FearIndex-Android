@@ -1,7 +1,10 @@
 Fear & Greed Index is 'n beleggingsstemming-ontledingstoepassing waarmee jy die Mark Vrees en Hebsug Indeks sowel as die Kripto Vrees en Hebsug Indeks in een oogopslag kan monitor. Volg twee afsonderlike vreesindekse saam met die hoofmarkindekse om die skare-sielkunde te verstaan en ingeligte beleggingsbesluite te neem.
 
-[Twee Vrees en Hebsug Indekse]
+KOSPI Fear & Greed Index is bygevoeg.
+
+[Drie Vrees en Hebsug Indekse]
 - Mark Vrees en Hebsug Indeks: stemmingsaanwyser vir tradisionele finansiële markte
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Kripto Vrees en Hebsug Indeks: stemmingsaanwyser vir die kriptovalutamark
 - Vergelyk beide indekse langs mekaar om die algehele markdinamika te verstaan
 
@@ -12,11 +15,6 @@ Fear & Greed Index is 'n beleggingsstemming-ontledingstoepassing waarmee jy die 
 - Tendensontleding met geskiedeniskaarte (1M / 3M / 6M / 1J)
 - Intydse hoofmarkindekse (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Een-tik skakel tussen mark- en kripto-indekse
-
-[Legstukke]
-- Tuisskerm-legstukke: Klein / Medium / Groot groottes
-- Sluitskerm-legstukke: afsonderlike vertonings vir mark- en kripto-vreesindekse
-- Mark/kripto-skakel binne legstukke
 
 [Stootkennisgewings]
 - Onmiddellike waarskuwings wanneer die mark-vreesindeks jou drempel bereik

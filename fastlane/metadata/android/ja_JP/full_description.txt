@@ -1,7 +1,10 @@
 恐怖指数は、市場の恐怖・貪欲指数（Market Fear & Greed Index）と暗号資産の恐怖・貪欲指数（Crypto Fear & Greed Index）を一目で確認できる投資心理分析アプリです。2つの恐怖指数と主要市場指数を通じて、複雑な市場状況の中で大衆心理を把握し、冷静な投資判断の根拠を見つけてください。
 
-[2つの恐怖・貪欲指数]
+KOSPI Fear & Greed Indexを追加しました。
+
+[3つの恐怖・貪欲指数]
 - 市場 Fear & Greed Index：伝統的金融市場の投資心理指標
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - 暗号資産 Fear & Greed Index：暗号資産市場の投資心理指標
 - 2つの指数を並べて比較し、市場全体の動向を把握
 
@@ -13,13 +16,9 @@
 - 主要市場指数リアルタイム照会（KOSPI、KOSDAQ、NASDAQ、S&P500、ダウ・ジョーンズ）
 - 市場／暗号資産のワンタップ切替
 
-[ウィジェット]
-- ホーム画面ウィジェット：Small / Medium / Large サイズ対応
-- ロック画面ウィジェット：市場と暗号資産の恐怖指数を個別に表示
-- ウィジェット内で市場／暗号資産トグル切替対応
-
 [プッシュ通知]
 - 市場恐怖指数が閾値に達したら即座に通知
+- KOSPI Fear & Greed Index threshold alerts
 - 暗号資産恐怖指数が閾値に達したら即座に通知
 - 上限／下限の閾値を個別に設定可能
 

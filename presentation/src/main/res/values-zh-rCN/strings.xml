@@ -76,6 +76,7 @@
     <string name="notification_push_description">当恐惧指数达到您设置的阈值时接收通知。</string>
     <string name="notification_tab_market">市场</string>
     <string name="notification_tab_crypto">加密货币</string>
+    <string name="notification_weekly_title">每周报告提醒</string>
     <string name="notification_market_title">市场恐惧指数提醒</string>
     <string name="notification_crypto_title">加密货币恐惧指数提醒</string>
     <string name="notification_lower_label">下限 (恐惧)</string>
@@ -91,7 +92,7 @@
     <string name="stuck_percentage_label">套牢比例</string>
     <string name="stuck_button_im_stuck">"🤙 我也被套了"</string>
     <string name="stuck_button_im_safe">"✨ 我没被套"</string>
-    <string name="stuck_footer_guide">"🤙 点击按钮实时查看有多少人被套牢"</string>
+    <string name="stuck_footer_guide">"可选：点按一个选项分享你的状态；再次点按即可取消。详情见 ⓘ。"</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">今日投票</string>
@@ -213,6 +214,7 @@
     <string name="settings_menu_notification">通知</string>
     <string name="settings_menu_privacy">隐私政策</string>
     <string name="settings_menu_about">应用信息</string>
+    <string name="settings_menu_ad_privacy">隐私选择</string>
     <string name="settings_menu_rate">撰写评论</string>
     <string name="settings_menu_share">分享应用</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -277,9 +279,15 @@
     <string name="stuck_detail_stuck">被套 · %1$d 人 · %2$d%%</string>
     <string name="stuck_detail_title">响应详情</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">显示分数变化、相似历史阶段、历史回报和社区回应，为情绪分数提供背景。</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">韩国综合</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">如果您投资了 KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">基于历史 KOSPI 接近收盘数据。过去的表现并不能保证未来的结果。</string>
+    <string name="insight_detail_sample_basis_kospi">基于 %1$d KOSPI 历史事件</string>
 </resources>

@@ -75,6 +75,7 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="notification_push_description">Pokea arifa wakati kiashiria cha hofu kinapofikia kizingiti chako.</string>
     <string name="notification_tab_market">Soko</string>
     <string name="notification_tab_crypto">Kripto</string>
+    <string name="notification_weekly_title">Arifa za Ripoti ya Kila Wiki</string>
     <string name="notification_market_title">Arifa za kiashiria cha hofu cha soko</string>
     <string name="notification_crypto_title">Arifa za kiashiria cha hofu cha kripto</string>
     <string name="notification_lower_label">Chini (Hofu)</string>
@@ -92,7 +93,7 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="stuck_percentage_label">Kiwango cha waliokwama</string>
     <string name="stuck_button_im_stuck">"🤙 Mimi pia nimekwama"</string>
     <string name="stuck_button_im_safe">"✨ Mimi sijakwama"</string>
-    <string name="stuck_footer_guide">"🤙 Bofya kitufe uone watu wangapi wamekwama kwa muda halisi"</string>
+    <string name="stuck_footer_guide">"Si lazima: gusa chaguo kushiriki hali yako; gusa tena kughairi. Maelezo yako chini ya ⓘ."</string>
 
     <!-- Vote Card -->
     <string name="vote_card_title">Kura ya leo</string>
@@ -214,6 +215,7 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="settings_menu_notification">Arifa</string>
     <string name="settings_menu_privacy">Sera ya Faragha</string>
     <string name="settings_menu_about">Maelezo ya Programu</string>
+    <string name="settings_menu_ad_privacy">Chaguo za faragha</string>
     <string name="settings_menu_rate">Andika hakiki</string>
     <string name="settings_menu_share">Shiriki Programu</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -278,9 +280,15 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="stuck_detail_stuck">Nimekwama · %1$d · %2$d%%</string>
     <string name="stuck_detail_title">Maelezo ya majibu</string>
     <string name="insight_feed_header_crypto">Crypto Insights</string>
+    <string name="insight_feed_explainer">Huonyesha mabadiliko ya alama, vipindi vya zamani vinavyofanana, mapato ya kihistoria na majibu ya jumuiya kwa muktadha.</string>
     <string name="insight_feed_header_market">Market Insights</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">KOSPI</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">Ikiwa Umewekeza katika KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">Kulingana na data ya kihistoria ya KOSPI ya karibu-kufunga. Utendaji wa awali hauhakikishi matokeo ya siku zijazo.</string>
+    <string name="insight_detail_sample_basis_kospi">Kulingana na vipindi vya kihistoria vya %1$d KOSPI</string>
 </resources>

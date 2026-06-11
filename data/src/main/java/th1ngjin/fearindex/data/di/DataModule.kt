@@ -5,9 +5,11 @@ import com.google.firebase.functions.FirebaseFunctions
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import th1ngjin.fearindex.data.datasource.CNNFearGreedApi
 import th1ngjin.fearindex.data.datasource.CryptoFearIndexApi
+import th1ngjin.fearindex.data.datasource.KospiFearIndexApi
 import th1ngjin.fearindex.data.datasource.MarketIndexApi
 import th1ngjin.fearindex.data.repository.CryptoFearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.FearIndexRepositoryImpl
+import th1ngjin.fearindex.data.repository.KospiFearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.MarketIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.ReturnDataRepositoryImpl
 import th1ngjin.fearindex.data.repository.SimilarEventsRepositoryImpl
@@ -18,6 +20,7 @@ import th1ngjin.fearindex.data.service.StuckStatusDebouncerImpl
 import th1ngjin.fearindex.domain.repository.CryptoFearIndexRepository
 import th1ngjin.fearindex.data.storage.StuckCounterStorage
 import th1ngjin.fearindex.domain.repository.FearIndexRepository
+import th1ngjin.fearindex.domain.repository.KospiFearIndexRepository
 import th1ngjin.fearindex.domain.repository.MarketIndexRepository
 import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.repository.ReturnDataRepository
@@ -30,6 +33,8 @@ import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
+import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexHistoryUseCase
+import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
 import th1ngjin.fearindex.domain.usecase.GetVoteResultUseCase
 import th1ngjin.fearindex.domain.usecase.ObserveStuckCounterUseCase
@@ -59,6 +64,10 @@ abstract class DataBindModule {
     @Binds
     @Singleton
     abstract fun bindCryptoFearIndexRepository(impl: CryptoFearIndexRepositoryImpl): CryptoFearIndexRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindKospiFearIndexRepository(impl: KospiFearIndexRepositoryImpl): KospiFearIndexRepository
 
     @Binds
     @Singleton
@@ -155,6 +164,17 @@ object DataModule {
 
     @Provides
     @Singleton
+    fun provideKospiApi(client: OkHttpClient): KospiFearIndexApi {
+        return Retrofit.Builder()
+            .baseUrl("https://fear-index-a4f4b.web.app/")
+            .client(client)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(KospiFearIndexApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideGetFearIndexUseCase(repository: FearIndexRepository): GetFearIndexUseCase =
         GetFearIndexUseCase(repository)
 
@@ -172,6 +192,16 @@ object DataModule {
     @Singleton
     fun provideGetCryptoFearIndexHistoryUseCase(repository: CryptoFearIndexRepository): GetCryptoFearIndexHistoryUseCase =
         GetCryptoFearIndexHistoryUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetKospiFearIndexUseCase(repository: KospiFearIndexRepository): GetKospiFearIndexUseCase =
+        GetKospiFearIndexUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetKospiFearIndexHistoryUseCase(repository: KospiFearIndexRepository): GetKospiFearIndexHistoryUseCase =
+        GetKospiFearIndexHistoryUseCase(repository)
 
     @Provides
     @Singleton

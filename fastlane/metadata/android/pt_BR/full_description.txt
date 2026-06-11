@@ -1,7 +1,10 @@
 Fear & Greed Index e um aplicativo de analise de sentimento de investimento que permite acompanhar tanto o Indice de Medo e Ganancia do Mercado (Market Fear & Greed Index) quanto o Indice de Medo e Ganancia Crypto (Crypto Fear & Greed Index) de relance. Compare dois indices de medo distintos junto com os principais indices de mercado para entender a psicologia coletiva e tomar decisoes de investimento informadas.
 
-[Dois Indices de Medo e Ganancia]
+O KOSPI Fear & Greed Index foi adicionado.
+
+[Três Indices de Medo e Ganancia]
 - Market Fear & Greed Index: indicador de sentimento para mercados financeiros tradicionais
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Crypto Fear & Greed Index: indicador de sentimento para o mercado de criptomoedas
 - Compare ambos os indices lado a lado para captar a dinamica geral do mercado
 
@@ -13,13 +16,9 @@ Fear & Greed Index e um aplicativo de analise de sentimento de investimento que 
 - Principais indices de mercado em tempo real (KOSPI, KOSDAQ, NASDAQ, S&P500, Dow Jones)
 - Alternancia com um toque entre indices Mercado e Crypto
 
-[Widgets]
-- Widgets da tela inicial: tamanhos Small / Medium / Large
-- Widgets da tela de bloqueio: exibicao separada para indices Mercado e Crypto
-- Alternancia Mercado/Crypto dentro dos widgets
-
 [Notificacoes push]
 - Alerta instantaneo quando o indice do Mercado atinge seu limite
+- KOSPI Fear & Greed Index threshold alerts
 - Alerta instantaneo quando o indice Crypto atinge seu limite
 - Limites superior e inferior personalizaveis
 

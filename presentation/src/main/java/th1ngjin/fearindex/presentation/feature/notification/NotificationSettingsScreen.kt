@@ -155,14 +155,27 @@ fun NotificationSettingsScreen(
                         Tab(
                             selected = selectedTab == 0,
                             onClick = { selectedTab = 0 },
-                            text = { Text(stringResource(R.string.notification_tab_market)) },
+                            text = { Text(stringResource(R.string.tab_market)) },
                         )
                         Tab(
                             selected = selectedTab == 1,
                             onClick = { selectedTab = 1 },
-                            text = { Text(stringResource(R.string.notification_tab_crypto)) },
+                            text = { Text(stringResource(R.string.tab_kospi)) },
+                        )
+                        Tab(
+                            selected = selectedTab == 2,
+                            onClick = { selectedTab = 2 },
+                            text = { Text(stringResource(R.string.tab_crypto)) },
                         )
                     }
+
+                    CategoryToggles(
+                        settings = settings,
+                        onGlobalToggle = viewModel::toggleGlobal,
+                        onKospiToggle = viewModel::toggleKospi,
+                        onCryptoToggle = viewModel::toggleCrypto,
+                        onWeeklyToggle = viewModel::toggleWeekly,
+                    )
 
                     when (selectedTab) {
                         0 -> ThresholdCard(
@@ -174,6 +187,14 @@ fun NotificationSettingsScreen(
                             onValueChangeFinished = { viewModel.onMarketSliderFinished() },
                         )
                         1 -> ThresholdCard(
+                            title = stringResource(R.string.tab_kospi),
+                            lower = settings.kospiLowerThreshold.toFloat(),
+                            upper = settings.kospiUpperThreshold.toFloat(),
+                            onLowerChange = { viewModel.updateKospiLower(it.toInt()) },
+                            onUpperChange = { viewModel.updateKospiUpper(it.toInt()) },
+                            onValueChangeFinished = { viewModel.onKospiSliderFinished() },
+                        )
+                        2 -> ThresholdCard(
                             title = stringResource(R.string.notification_crypto_title),
                             lower = settings.cryptoLowerThreshold.toFloat(),
                             upper = settings.cryptoUpperThreshold.toFloat(),
@@ -187,6 +208,72 @@ fun NotificationSettingsScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun CategoryToggles(
+    settings: th1ngjin.fearindex.domain.entity.NotificationSettings,
+    onGlobalToggle: (Boolean) -> Unit,
+    onKospiToggle: (Boolean) -> Unit,
+    onCryptoToggle: (Boolean) -> Unit,
+    onWeeklyToggle: (Boolean) -> Unit,
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        CategoryToggleItem(
+            title = stringResource(R.string.tab_market),
+            checked = settings.globalNotificationEnabled,
+            onCheckedChange = onGlobalToggle,
+        )
+        CategoryToggleItem(
+            title = stringResource(R.string.tab_kospi),
+            checked = settings.kospiNotificationEnabled,
+            onCheckedChange = onKospiToggle,
+        )
+        CategoryToggleItem(
+            title = stringResource(R.string.tab_crypto),
+            checked = settings.cryptoNotificationEnabled,
+            onCheckedChange = onCryptoToggle,
+        )
+        CategoryToggleItem(
+            title = stringResource(R.string.notification_weekly_title),
+            checked = settings.weeklyReportNotificationEnabled,
+            onCheckedChange = onWeeklyToggle,
+        )
+    }
+}
+
+@Composable
+private fun CategoryToggleItem(
+    title: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+        ),
+    ) {
+        ListItem(
+            headlineContent = {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Medium,
+                )
+            },
+            trailingContent = {
+                Switch(
+                    checked = checked,
+                    onCheckedChange = onCheckedChange,
+                )
+            },
+            colors = ListItemDefaults.colors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            ),
+        )
     }
 }
 
