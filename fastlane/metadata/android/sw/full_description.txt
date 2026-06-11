@@ -1,7 +1,10 @@
 Fear & Greed Index ni programu ya uchambuzi wa hisia za uwekezaji inayokuwezesha kufuatilia Kiashiria cha Hofu na Tamaa cha Soko na Kiashiria cha Hofu na Tamaa cha Cripto kwa mtazamo mmoja. Fuatilia viashiria viwili tofauti vya hofu pamoja na viashiria vikuu vya soko ili kuelewa saikolojia ya umati na kufanya maamuzi sahihi ya uwekezaji.
 
-[Viashiria Viwili vya Hofu na Tamaa]
+KOSPI Fear & Greed Index imeongezwa.
+
+[Viashiria Vitatu vya Hofu na Tamaa]
 - Kiashiria cha Hofu na Tamaa cha Soko: kiashiria cha hisia za masoko ya kawaida ya fedha
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Kiashiria cha Hofu na Tamaa cha Cripto: kiashiria cha hisia za soko la sarafu za kidijitali
 - Linganisha viashiria vyote viwili sambamba ili kuelewa mwelekeo wa jumla wa soko
 
@@ -13,13 +16,9 @@ Fear & Greed Index ni programu ya uchambuzi wa hisia za uwekezaji inayokuwezesha
 - Viashiria vikuu vya soko vya wakati halisi (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Badilisha kati ya soko na cripto kwa mgusa mmoja
 
-[Vijisehemu (Widgets)]
-- Vijisehemu vya skrini ya nyumbani: saizi Ndogo / Kati / Kubwa
-- Vijisehemu vya skrini ya kufunga: maonyesho tofauti ya kiashiria cha soko na cripto
-- Badilisha soko/cripto ndani ya kijisehemu
-
 [Arifa za Push]
 - Arifa za papo hapo wakati kiashiria cha hofu cha soko kinafikia kizingiti chako
+- KOSPI Fear & Greed Index threshold alerts
 - Arifa za papo hapo wakati kiashiria cha hofu cha cripto kinafikia kizingiti chako
 - Mipangilio ya kizingiti cha juu na chini inayoweza kubinafsishwa
 

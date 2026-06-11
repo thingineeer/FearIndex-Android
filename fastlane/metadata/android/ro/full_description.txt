@@ -1,7 +1,10 @@
 Fear & Greed Index este o aplicație de analiză a sentimentului de investiții care vă permite să monitorizați atât Indicele de Frică și Lăcomie al Pieței (Market Fear & Greed Index), cât și Indicele de Frică și Lăcomie Crypto (Crypto Fear & Greed Index) dintr-o privire. Urmăriți două indici de frică diferiți alături de principalii indici de piață pentru a înțelege psihologia mulțimii și a lua decizii de investiții informate.
 
-[Doi Indici de Frică și Lăcomie]
+A fost adăugat KOSPI Fear & Greed Index.
+
+[Trei Indici de Frică și Lăcomie]
 - Indicele de Frică al Pieței: Indicator de sentiment pentru piețele financiare tradiționale
+- KOSPI Fear & Greed Index: sentiment indicator for the Korean stock market
 - Indicele de Frică Crypto: Indicator de sentiment pentru piața criptomonedelor
 - Comparați ambii indici pentru a înțelege dinamica generală a pieței
 
@@ -13,13 +16,9 @@ Fear & Greed Index este o aplicație de analiză a sentimentului de investiții 
 - Principalii indici de piață în timp real (KOSPI, KOSDAQ, NASDAQ, S&P 500, Dow Jones)
 - Comutare cu o singură atingere între indicii de piață și crypto
 
-[Widgeturi]
-- Widgeturi ecran principal: dimensiuni Small / Medium / Large
-- Widgeturi ecran de blocare: afișaje separate pentru indicii de frică ai pieței și crypto
-- Comutator piață/crypto în interiorul widgeturilor
-
 [Notificări Push]
 - Alerte instantanee când indicele de frică al pieței atinge pragul dvs.
+- KOSPI Fear & Greed Index threshold alerts
 - Alerte instantanee când indicele de frică crypto atinge pragul dvs.
 - Setări personalizabile pentru pragul superior și inferior
 
