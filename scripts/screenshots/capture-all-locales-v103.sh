@@ -109,8 +109,8 @@ wait_for_app_ready() {
     sleep 2
     tries=$((tries+1))
   done
-  echo "  ! app ready wait timed out; using fallback sleep" >&2
-  sleep 15
+  echo "  ! app ready wait timed out" >&2
+  return 1
 }
 
 clear_notifications() {
@@ -122,6 +122,29 @@ clear_notifications() {
 stop_app_process() {
   adb shell pkill -9 "$PKG" < /dev/null > /dev/null 2>&1 || true
   sleep 1
+}
+
+dismiss_system_overlays() {
+  adb shell input keyevent KEYCODE_BACK < /dev/null > /dev/null 2>&1 || true
+  sleep 1
+  adb shell input keyevent KEYCODE_BACK < /dev/null > /dev/null 2>&1 || true
+  sleep 1
+  adb shell input keyevent KEYCODE_HOME < /dev/null
+  sleep 1
+}
+
+start_app_for_capture() {
+  dismiss_system_overlays
+  adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
+  if wait_for_app_ready; then
+    return 0
+  fi
+
+  echo "  ! retrying app cold start" >&2
+  stop_app_process
+  dismiss_system_overlays
+  adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
+  wait_for_app_ready
 }
 
 dismiss_heads_up_banner() {
@@ -183,10 +206,7 @@ capture_push_banner() {
   # 실제 heads-up 은 emulator 상태/notification assistant 에 따라 suppressed 될 수 있어
   # 스크린샷 산출물 안정성을 위해 시각적으로 동일한 promo card 를 생성한다.
   stop_app_process
-  adb shell input keyevent KEYCODE_BACK < /dev/null > /dev/null 2>&1 || true
-  sleep 1
-  adb shell input keyevent KEYCODE_HOME < /dev/null
-  sleep 1
+  dismiss_system_overlays
   capture_app_screen "$base"
   TITLE="$title" BODY="$body" python3 - "$base" "$out" <<'PY'
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
@@ -292,8 +312,7 @@ for triplet in "${LOCALES[@]}"; do
   # ────────────────────────────────────────────────────────────
   # 2. 앱 cold start → 홈(KOSPI)
   # ────────────────────────────────────────────────────────────
-  adb shell am start -n $PKG/$ACTIVITY < /dev/null > /dev/null
-  wait_for_app_ready
+  start_app_for_capture
   dismiss_anr
   tap_kospi_index_tab
   capture_app_screen "$dir/2_home.png"
