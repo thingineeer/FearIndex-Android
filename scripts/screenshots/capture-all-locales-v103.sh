@@ -102,7 +102,7 @@ wait_for_app_ready() {
     if adb shell dumpsys window windows 2>/dev/null | grep -q "$PKG/$ACTIVITY"; then
       if adb shell uiautomator dump /sdcard/fearindex-window.xml >/dev/null 2>&1 &&
         adb shell grep -q "KOSPI" /sdcard/fearindex-window.xml 2>/dev/null; then
-        sleep 2
+        sleep 20
         return 0
       fi
     fi
