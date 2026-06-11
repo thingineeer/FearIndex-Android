@@ -25,17 +25,21 @@ class SimilarEventsViewModel @Inject constructor(
     private val _marketResult = MutableStateFlow(SimilarEventsResult.EMPTY)
     val marketResult: StateFlow<SimilarEventsResult> = _marketResult.asStateFlow()
 
+    private val _kospiResult = MutableStateFlow(SimilarEventsResult.EMPTY)
+    val kospiResult: StateFlow<SimilarEventsResult> = _kospiResult.asStateFlow()
+
     private val _cryptoResult = MutableStateFlow(SimilarEventsResult.EMPTY)
     val cryptoResult: StateFlow<SimilarEventsResult> = _cryptoResult.asStateFlow()
 
     init {
         observeType(FearIndexType.MARKET)
+        observeType(FearIndexType.KOSPI)
         observeType(FearIndexType.CRYPTO)
     }
 
     fun resultFor(indexType: FearIndexType): StateFlow<SimilarEventsResult> = when (indexType) {
         FearIndexType.MARKET -> marketResult
-        FearIndexType.KOSPI -> marketResult
+        FearIndexType.KOSPI -> kospiResult
         FearIndexType.CRYPTO -> cryptoResult
     }
 
@@ -44,7 +48,7 @@ class SimilarEventsViewModel @Inject constructor(
             repository.observe(indexType).collectLatest { result ->
                 when (indexType) {
                     FearIndexType.MARKET -> _marketResult.value = result
-                    FearIndexType.KOSPI -> _marketResult.value = result
+                    FearIndexType.KOSPI -> _kospiResult.value = result
                     FearIndexType.CRYPTO -> _cryptoResult.value = result
                 }
             }

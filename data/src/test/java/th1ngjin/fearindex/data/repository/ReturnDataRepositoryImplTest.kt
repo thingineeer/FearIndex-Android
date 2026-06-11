@@ -82,6 +82,30 @@ class ReturnDataRepositoryImplTest {
     }
 
     @Test
+    fun `fetch kospi - Firestore 성공 시 kospi 문서 데이터 반환`() = runTest {
+        val dto = buildValidDTO(eventId = "kospi-stress", eventScore = 22)
+        coEvery { dataSource.fetch("kospi") } returns dto
+
+        val result = repository.fetch(FearIndexType.KOSPI)
+
+        assertEquals("kospi-stress", result.historicalEvents.first().id)
+        coVerify(exactly = 1) { dataSource.fetch("kospi") }
+    }
+
+    @Test
+    fun `fetch kospi - 실패 시 Kospi fallback`() = runTest {
+        coEvery { dataSource.fetch("kospi") } throws ReturnDataSourceException.NoData
+
+        val result = repository.fetch(FearIndexType.KOSPI)
+
+        assertSame(DefaultReturnData.kospi, result)
+        assertEquals(101, result.dataPoints.size)
+        assertEquals(7, result.historicalEvents.size)
+        assertEquals(22, result.dataPoints.first { it.score == 50 }.sampleCount)
+        assertEquals("kospi-tariff-2025", result.historicalEvents[1].id)
+    }
+
+    @Test
     fun `fetch market - 2회 호출 시 DataSource는 1번만 호출 (캐시)`() = runTest {
         coEvery { dataSource.fetch("market") } returns buildValidDTO()
 

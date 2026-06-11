@@ -21,11 +21,11 @@ class ReturnDataSource @Inject constructor(
 ) {
 
     /**
-     * @param indexType "market" 또는 "crypto"
+     * @param indexType "market", "kospi" 또는 "crypto"
      * @throws ReturnDataSourceException 문서 없음 / 스키마 불일치 / 네트워크 실패
      */
     suspend fun fetch(indexType: String): ReturnDataDTO {
-        require(indexType == "market" || indexType == "crypto") {
+        require(indexType == "market" || indexType == "kospi" || indexType == "crypto") {
             "지원되지 않는 indexType: $indexType"
         }
 

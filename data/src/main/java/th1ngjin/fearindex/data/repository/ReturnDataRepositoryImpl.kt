@@ -67,7 +67,7 @@ class ReturnDataRepositoryImpl @Inject constructor(
 
     private fun fallback(indexType: FearIndexType): ReturnDataTable = when (indexType) {
         FearIndexType.MARKET -> DefaultReturnData.market
-        FearIndexType.KOSPI -> DefaultReturnData.market
+        FearIndexType.KOSPI -> DefaultReturnData.kospi
         FearIndexType.CRYPTO -> DefaultReturnData.crypto
     }
 

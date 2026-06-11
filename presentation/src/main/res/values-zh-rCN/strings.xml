@@ -282,4 +282,9 @@
     <string name="privacy_common_close">Close</string>
     <string name="settings_share_app_chooser">Share Fear &amp;amp; Greed Index</string>
     <string name="settings_share_app_message">Fear &amp;amp; Greed Index — track market sentiment in real-time.\\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex</string>
+    <string name="tab_kospi">韩国综合</string>
+    <string name="insight_feed_header_kospi">KOSPI Insights</string>
+    <string name="insight_return_chart_title_kospi">如果您投资了 KOSPI</string>
+    <string name="insight_detail_disclaimer_kospi">基于历史 KOSPI 接近收盘数据。过去的表现并不能保证未来的结果。</string>
+    <string name="insight_detail_sample_basis_kospi">基于 %1$d KOSPI 历史事件</string>
 </resources>
