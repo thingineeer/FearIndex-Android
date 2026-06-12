@@ -1,55 +1,60 @@
 ---
 name: resume-FearIndex-Android
-description: Resume FearIndex-Android session — sync with remote, read save point, and brief current state.
+description: Resume FearIndex-Android session - auto-pulls, reads save point, and prints briefing.
 disable-model-invocation: true
 ---
 
-# Resume — FearIndex-Android
+# Resume - FearIndex-Android
 
-## 1. Sync with remote
-Run git fetch. If the local branch is behind, run git pull.
-If diverged, warn the user — do NOT force pull.
+## 1. Sync with remote - must run first
+Before reading any project file, run:
+- `git fetch`
+- `git status -sb | head -1`
+- If the current branch is behind, run `git pull --ff-only`
+- If the branch is diverged, stop and warn the user. Do not force pull.
 
-## 2. Project rules
-@CLAUDE.md
+Do not use `@` file references before this sync step. They can load stale files before `git pull`.
 
-## 3. Work state
-@docs/checkpoints/SESSION-STATE.md
+## 2. Read refreshed files
+After sync, read these files directly:
+- `CLAUDE.md` - project rules
+- `docs/checkpoints/SESSION-STATE.md` - current save point and conversation summary
+- `.claude/memory/MEMORY.md` - memory index
+- Every file listed in `SESSION-STATE.md` under "Key Files"
 
-## 4. Memory
-@.claude/memory/MEMORY.md
+All paths are project-root relative. Do not use machine-specific absolute paths in saved instructions.
 
-## 5. Git status
-Run git status and git branch, then show recent commits using the larger of:
-- All commits from today: `git log --oneline --since="midnight"`
-- Last 10 commits: `git log --oneline -10`
-Use whichever returns more results.
+## 3. Git status
+Run:
+- `git status`
+- `git branch -vv --all`
+- `git worktree list`
+- Show recent commits using the larger of:
+  - `git log --oneline --since="midnight"`
+  - `git log --oneline -10`
 
-## 6. Key files
-Read all files listed in the "Key Files" section of SESSION-STATE.md.
+Tell the user which branch is checked out and whether it is synced with origin.
 
-## 7. Worktrees
-Run `git worktree list` to show active worktrees.
-Each worktree has its own branch — tell the user which is currently checked out where.
+## 4. Build environment
+Verify at least one lightweight build/test command before resuming code work:
 
-## 8. Build environment
-Verify build commands work:
 ```bash
-./gradlew :app:assembleDebug 2>&1 | grep "BUILD"
+./gradlew test
 ```
 
-## 9. Briefing
+If the user only asks for a quick status briefing, report the previous saved test result first and ask before spending time on a fresh test run.
+
+## 5. Briefing
 Print:
 
 ---
-**Project**: FearIndex-Android (공포지수 Android)
-**Package**: `th1ngjin.fearindex` (+ `.debug`)
-**Branch**: {branch}
-**Version**: {SESSION-STATE.md에서 최신 버전}
-**Active worktrees**: {git worktree list 요약}
-**Done**: {SESSION-STATE.md Completed 요약}
-**Current**: {In Progress 또는 "없음"}
-**Next**: {Remaining 첫 항목}
+**Project**: FearIndex-Android
+**Branch**: {current branch and sync state}
+**Version**: {SESSION-STATE current version}
+**Done**: {SESSION-STATE Completed summary}
+**Current**: {SESSION-STATE In Progress}
+**Next**: {SESSION-STATE Remaining first actionable item}
+**지난 대화 핵심**: {SESSION-STATE 대화 요약 decision/context 1-2 lines}
 ---
 
 Ask: "Ready to continue?"
