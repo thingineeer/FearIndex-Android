@@ -3,6 +3,8 @@ package th1ngjin.fearindex.data.datasource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.async
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertSame
 import org.junit.Test
@@ -47,6 +49,24 @@ class KospiFearIndexDataSourceTest {
         dataSource.fetchSnapshot(includeHistory = true)
 
         coVerify(exactly = 1) { api.getKospiFearIndex(version = "20260610", history = null) }
+        coVerify(exactly = 1) { api.getKospiFearIndex(version = "20260610", history = 1) }
+    }
+
+    @Test
+    fun `fetchSnapshot - 동시에 들어온 같은 history 요청은 네트워크 1회만 호출한다`() = runTest {
+        val expected = createResponse()
+        val gate = CompletableDeferred<Unit>()
+        coEvery { api.getKospiFearIndex(version = "20260610", history = 1) } coAnswers {
+            gate.await()
+            expected
+        }
+
+        val first = async { dataSource.fetchSnapshot(includeHistory = true) }
+        val second = async { dataSource.fetchSnapshot(includeHistory = true) }
+        gate.complete(Unit)
+
+        assertSame(expected, first.await())
+        assertSame(expected, second.await())
         coVerify(exactly = 1) { api.getKospiFearIndex(version = "20260610", history = 1) }
     }
 

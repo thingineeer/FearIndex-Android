@@ -293,6 +293,15 @@ private fun ChartLoadedContent(
     onInsightClick: (MarketInsight) -> Unit = {},
     onCardViewed: (MarketInsight) -> Unit = {},
 ) {
+    val selectedDays = if (isCrypto) selectedCryptoPeriod.days else selectedMarketPeriod.days
+    val chartData = remember(history, selectedDays) {
+        ChartDataFilter.filter(
+            data = history,
+            days = selectedDays,
+            maxSamplePoints = chartMaxSamplePoints(selectedDays),
+        )
+    }
+
     // 3. Current Score Section
     CurrentScoreCard(fearIndex = fearIndex)
 
@@ -309,9 +318,9 @@ private fun ChartLoadedContent(
     )
 
     // 5. Chart Canvas
-    if (history.isNotEmpty() && !isHistoryLoading) {
+    if (chartData.isNotEmpty() && !isHistoryLoading) {
         ChartCard(
-            data = history,
+            data = chartData,
             isCrypto = isCrypto,
             selectedMarketPeriod = selectedMarketPeriod,
             selectedCryptoPeriod = selectedCryptoPeriod,
@@ -370,6 +379,13 @@ private fun ChartLoadedContent(
             onCardViewed = onCardViewed,
         )
     }
+}
+
+private fun chartMaxSamplePoints(days: Int): Int? = when {
+    days >= ChartPeriod.FIVE_YEARS.days -> 520
+    days >= ChartPeriod.THREE_YEARS.days -> 390
+    days >= ChartPeriod.TWO_YEARS.days -> 260
+    else -> null
 }
 
 // MARK: - Current Score Card
