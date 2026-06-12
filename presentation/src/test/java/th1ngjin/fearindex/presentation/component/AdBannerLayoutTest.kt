@@ -16,4 +16,9 @@ class AdBannerLayoutTest {
     fun `AdMob 최소 폭보다 좁으면 frame resize를 피하기 위해 광고를 숨긴다`() {
         assertNull(bannerAdWidthDp(319.9f))
     }
+
+    @Test
+    fun `inline adaptive banner는 작은 광고로 고정하지 않고 충분한 최대 높이를 요청한다`() {
+        assertEquals(120, bannerAdMaxHeightDp())
+    }
 }
