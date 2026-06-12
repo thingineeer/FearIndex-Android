@@ -13,6 +13,15 @@
   - 텍스트 토큰(Firebase/AdMob/AppCheck): `~/thingineeer-env/projects/fearindex-android/.env` (GitHub private repo, 다른 머신 공유)
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 
+## 최신 상태 (2026-06-12)
+
+- **현재 배포 기준**: Android `1.1.1` / `versionCode 13` / package `th1ngjin.fearindex`.
+- **Play Console**: Production track에 `1.1.1` 업로드 및 관리형 게시의 `변경사항 출시` 클릭 완료. Console에서 177개 국가/지역, 게시 버튼 없음, 앱 업데이트 게시 알림 확인. 단, Production 화면에 `검토 중` 문구가 남아 있어 다음 세션에서 Play Console 재확인 필요.
+- **검증**: `./gradlew test` 통과. 릴리즈 APK를 에뮬레이터에 설치해 `versionCode=13`, `versionName=1.1.1` 확인.
+- **브랜치 정리**: v1.1.1용 `feature/v1.1.1-edge-ads-hotfix`, `feature/v1.1.1-real-data-hotfix` local/remote 삭제 완료. local active branches는 `main`, `dev`, `release`.
+- **주의**: 릴리즈 배너 광고가 안 보이는 현상은 앱 코드 제거 문제가 아니라 UMP/Remote Config gate 문제로 판단. AdMob Privacy & messaging form 설정과 Firebase Remote Config `ads_enabled` 확인 필요.
+- **세션 저장**: 최신 resume 진입점은 @docs/checkpoints/SESSION-STATE.md.
+
 ## 문서 인덱스
 
 ### 메모리 (`.claude/memory/`)

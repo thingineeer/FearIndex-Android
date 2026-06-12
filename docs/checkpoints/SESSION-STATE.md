@@ -1,115 +1,121 @@
-# Session State — FearIndex-Android
+# Session State - FearIndex-Android
 
 ## Date
-2026-05-12
-
-## 🚀 Release Status
-
-**v1.0.1 — 정식 게시 완료 (LIVE on Google Play, 2026-05-12)**
-
-- 트랙: **Production** (100% rollout)
-- versionCode: **9** / versionName: **1.0.1**
-- 게시 방식: `fastlane production` 한 줄 자동화 (Google 검토 통과 후 즉시 자동 게시)
-- 출시 노트: **"안정성을 개선하였습니다."** (45 locale 동일 메시지)
-- v1.0.0 사용자 전원에게 점진 자동 업데이트 진행 중
+2026-06-12
 
 ## Branch
-`dev` (clean) — `release` 브랜치 + `v1.0.1` annotated tag 머지/푸시 완료, **production 100% rollout 게시 완료** ✅
+`release`
 
-## Version
-- **v1.0.1 production 정식 게시 완료** ✅ (versionCode 9) — 2026-05-12 Google 검토 통과 → 100% rollout 라이브
-- `fastlane production` 한 줄로 AAB + 45 locale 메타 + 스크린샷 + changelog 일괄 푸시 검증됨
-- 다음: v1.0.2+ 부터는 `dev`에서 `feature/v1.0.2-<기능>` 분기로 시작
+## Release Status
+- Current Android release branch: `release` at `433a35a` (`origin/release` synced before this save).
+- Current development branch: `dev` at `f240fab` (`origin/dev` synced before this save).
+- App version in code: `versionName = 1.1.1`, `versionCode = 13`.
+- Package: `th1ngjin.fearindex`.
+- Play Console production track was checked after publishing: `1.1.1` is on Production for 177 countries/regions, with no remaining "publish changes" button visible. Console also showed an "app update has been published" notification. Production track text still included `검토 중`, so if Play later moves approved changes back to `게시 준비됨`, managed publishing may require one more manual publish click.
 
-## 📊 출시 이력
+## Completed
+- [x] Ported the iOS 1.8.x parity work into Android 1.1.x: KOSPI Fear Index support, home/chart/vote/settings flow updates, locale work, Play Store metadata, and screenshots.
+- [x] Added KOSPI explanation text from iOS and kept iOS project read-only.
+- [x] Fixed the real data/chart loading issue reported around mock-looking values and created the 1.1.1 hotfix path.
+- [x] Prepared and uploaded Android 1.1.1 production builds with fastlane/Play Console. The final hotfix build is `versionCode 13`.
+- [x] Applied Android 15 edge-to-edge and AdMob banner frame fixes:
+  - removed direct status/navigation bar color writes from Compose theme code
+  - constrained inline adaptive banner height
+  - added tests for edge-to-edge policy and banner layout sizing
+- [x] Verified release APK on emulator:
+  - installed `th1ngjin.fearindex`
+  - confirmed package info `versionCode=13`, `versionName=1.1.1`
+  - launched the release app for user visual inspection
+- [x] Verified Play Console Reviews page:
+  - reviews page shows 2 reviews
+  - both reviews have visible replies and `답변 수정` buttons
+  - current filters: all time, no search query, sorted by newest
+- [x] Investigated missing banner ads in release:
+  - release app code path is gated by Remote Config `ads_enabled` and UMP consent availability
+  - logs showed UMP publisher misconfiguration for AdMob Privacy & messaging form using app ID `ca-app-pub-5283496525222246~1308884877`
+  - ad units do not need to be removed just because the banner is hidden
+- [x] Branch cleanup:
+  - deleted local and remote `feature/v1.1.1-edge-ads-hotfix`
+  - deleted local and remote `feature/v1.1.1-real-data-hotfix`
+  - ran `git fetch --prune` and `git worktree prune`
+  - no extra worktrees remain
+- [x] Verification before this save:
+  - `./gradlew test` passed
+  - `git worktree list` shows only `/Users/imyeongjin/Desktop/side/FearIndex-Android [release]`
 
-| 버전 | versionCode | 게시일 | 상태 | 주요 변경 |
-|---|---|---|---|---|
-| v1.0.0 | 7 | 2026-05-09 | 정식 게시 ✅ | 최초 출시 |
-| **v1.0.1** | **9** | **2026-05-12** | **정식 게시 ✅ (LIVE)** | **Android 15 edge-to-edge 호환성 + 안정성 개선, `fastlane production` 자동화 첫 사용** |
+## In Progress
+- None in source code.
+- Play Console may still show production `1.1.1` as `검토 중` even after the publish action. Recheck Play Console before assuming the rollout is fully visible to all users.
 
-## ✅ Completed (이번 세션)
-
-### v1.0.1 production 출시 자동화 — fastlane 한 줄
-- `fastlane production` lane 신규 추가 (`Fastfile`): AAB 빌드 + 45 locale 메타 + 스크린샷 + changelog → production 트랙 100% rollout completed
-- Service Account JSON 발급/검증/secrets 보관 자동화
-- ko/en/43 locale 메타 + 5장 phone + 4장 7"/10" 태블릿 스크린샷 + changelog 일괄 푸시 (총 ~600개 자산, 220초)
-- Google Play Console 페이지에서 "변경된 항목: 프로덕션 1.0.1 전체 출시 시작" 확인됨
-
-### Android 15 (targetSdk 35) edge-to-edge 호환성
-- Play Console 경고 2건 해결: "더 넓은 화면 표시 안 됨" + "지원 중단된 API 사용"
-- `themes.xml` deprecated `android:statusBarColor` + `android:navigationBarColor` 제거
-- MainActivity 의 `enableEdgeToEdge()` + Material3 Scaffold 자동 inset 처리 검증 완료
-- 에뮬레이터 (Medium_Phone_API_36.1) 실측: status/navigation bar 영역 정상 회피
-
-### Play Console Service Account 발급
-- `fastlane-deploy@fear-index-a4f4b.iam.gserviceaccount.com` SA 의 옛 키 2개 (2026-02-19, 2026-05-09) 삭제 + 신규 키 발급 (private_key_id `7c24583643f1...`)
-- `~/fearindex-secrets/play-store-service-account.json` (chmod 600) + `~/thingineeer-env/android/fearindex/play-store-service-account.json` (private repo SSOT) 양쪽 보관
-- `install.sh` 에 SA JSON 자동 처리 추가 → 새 머신 셋업 시 한 줄로 복원 가능
-- Play Console 에서 SA 에 "관리자(모든 권한)" 부여 (사용자 수동)
-
-### Analytics 영문화 시도 → 잘못된 진단으로 revert
-- "Firebase Analytics 가 한글 이벤트 이름을 drop 한다" 단언했으나 사용자가 Console 스크린샷 (iOS 한글 이벤트 632K건 정상 수집) 으로 반박 → 영문화 머지 커밋 `6d2d126` revert
-- 메모리 `bugs-fixed.md` 18번에 잘못된 진단 + 교훈 기록 (실측 우선 원칙)
-
-### Git 워크플로우
-- 4개 feature worktree 사용: `release-fastlane`, `analytics-en-names`(revert됨), `edge-to-edge`, `production`
-- 모두 `--no-ff` 머지로 분기/합류 그래프 보존
-- 9개 브랜치 + `v1.0.1` annotated tag 모두 origin push 완료
-
-## 🛑 미완료 (사용자 직접 작업 필요)
-
-### Play Console — Celestial Oracle / FLIPOP / 옛 공포지수(`com.thingineeer.fearindex`) 영구 삭제
-- 진입 경로: 각 앱 → 테스트 및 출시 → 고급 설정 → 앱 이용 가능 여부 → 앱 삭제
-- ⚠️ 본인 인증 다이얼로그가 거래 ID + 패키지명 요구 → Gmail "개발자 등록 수수료" transaction ID 필요
-- 자동화 불가 (transaction ID 는 사용자만 알 수 있음)
-
-| 앱 | 패키지명 |
-|---|---|
-| Celestial Oracle - Saju | `com.celestialoracle.saju_app` |
-| FLIPOP | `com.thingineeer.flipop` |
-| 공포지수 (옛 e3) | `com.thingineeer.fearindex` |
-
-### iOS 동기화
-- iOS 측에서도 "안정성을 개선하였습니다." changelog 로 동일 버전 출시할지 결정 필요 (별도 세션)
+## Remaining
+- Configure AdMob Privacy & messaging form for app ID `ca-app-pub-5283496525222246~1308884877`, then verify release banner ad visibility again.
+- Confirm Firebase Remote Config production values for ads:
+  - `ads_enabled`
+  - interstitial-related flags
+  - any banner placement flags
+- If Play Console managed publishing returns new approved changes to `게시 준비됨`, click the publish button again.
+- Optional cleanup: old remote feature branches for v1.1.0 still exist and were intentionally left untouched in this save because the current cleanup only targeted v1.1.1 hotfix branches.
+- Local untracked files remain and were not staged because they look like local agent/config files, not release artifacts:
+  - `.agents/`
+  - `.codex/`
+  - `AGENTS.md`
 
 ## Key Files
+- @CLAUDE.md - project rules, Android-only scope, memory path, browser automation policy, git workflow.
+- @docs/checkpoints/SESSION-STATE.md - this save point.
+- @.claude/memory/MEMORY.md - memory index and constants.
+- @.claude/memory/deployment.md - signing, Play Console, fastlane, and deployment notes.
+- @.claude/memory/ios-parity.md - iOS parity checklist.
+- @app/build.gradle.kts - current Android version, package, build configuration.
+- @presentation/src/main/java/th1ngjin/fearindex/presentation/theme/Theme.kt - Android 15 edge-to-edge theme handling.
+- @presentation/src/main/java/th1ngjin/fearindex/presentation/component/AdBanner.kt - AdMob banner rendering and screenshot-mode gate.
+- @presentation/src/main/java/th1ngjin/fearindex/presentation/component/AdBannerLayout.kt - inline adaptive banner height policy.
+- @app/src/test/java/th1ngjin/fearindex/edge/EdgeToEdgePolicyTest.kt - regression test for deprecated edge APIs.
+- @presentation/src/test/java/th1ngjin/fearindex/presentation/component/AdBannerLayoutTest.kt - banner sizing regression tests.
+- @fastlane/Fastfile - fastlane lanes used for metadata/build/upload.
+- @fastlane/metadata/android - Play metadata, screenshots, changelogs. Local changelogs currently go up to `12.txt`; final app code is `versionCode 13`, so document this mismatch before the next metadata upload.
 
-| 파일 | 역할 |
-|---|---|
-| `CLAUDE.md` | 프로젝트 절대 규칙 (스크린샷 모드 / 패키지 컨벤션 / Git 워크플로우) |
-| `.claude/memory/MEMORY.md` | 메모리 인덱스 |
-| `.claude/memory/bugs-fixed.md` | 버그 이력 (18번까지) |
-| `.claude/memory/deployment.md` | AAB / Play Console / 활성 키 SHA1 |
-| `.claude/rules/git-workflow.md` | 브랜치/워크트리 규칙 (release/dev/feature) |
-| `fastlane/Fastfile` | `internal` / `production` / `promote_to_*` lanes — `fastlane production` 한 줄로 출시 |
-| `~/fearindex-secrets/play-store-service-account.json` | fastlane supply 인증 (chmod 600) |
-| `~/thingineeer-env/android/fearindex/` | secrets SSOT (private GitHub repo) |
-| `app/build.gradle.kts` | versionCode 9, versionName 1.0.1 |
-| `app/src/main/res/values/themes.xml` | deprecated statusBarColor/navigationBarColor 제거됨 |
+## 대화 요약
+
+### 이번 세션에서 결정한 것
+- Android 1.1.1 hotfix should be treated as the current release candidate/result. Reason: production track and release emulator both confirmed `1.1.1`, with code at `versionCode 13`.
+- Do not remove AdMob ad units just because the banner is hidden. Reason: the app hides ads until UMP consent and Remote Config gates allow requests; logs indicate AdMob Privacy & messaging setup is the likely blocker.
+- For branch cleanup, delete only the v1.1.1 feature branches that were proven merged into both `release` and `dev`. Reason: project rules prohibit broad branch deletion without a clear target.
+- Keep iOS read-only. Reason: Android repo rules explicitly allow reading iOS for parity but prohibit edits.
+
+### 시도했다 접은 것
+- AppScreens paid/third-party screenshot path was not used. Reason: user wanted the `ParthJadhav/app-store-screenshots` style workflow and free/local screenshot handling.
+- Removing ad units was not performed. Reason: no evidence that ad unit deletion fixes the release banner issue; current evidence points to UMP/Remote Config gating.
+- Deleting old v1.1.0 remote feature branches was not performed. Reason: they were outside the explicit current v1.1.1 cleanup target.
+
+### 명시된 사용자 선호
+- Korean communication, with technical terms like commit, push, deploy left in English.
+- Use Chrome for logged-in Google surfaces: Play Console, Firebase Console, AdMob.
+- Do not ask permission for already requested release/deploy tasks.
+- Do TDD/verification for Android code changes.
+- Do not create side effects in the iOS project.
+- For Play release notes, use localized release notes. The requested Korean text for 1.1.1 was: `차트가 제대로 나오지 않는 현상을 해결했습니다`.
+
+### 다음 세션이 알아야 할 맥락
+- Production publish action was already clicked for the current pending changes. A fresh Play Console check is still the authoritative source.
+- Reviews page is visible and replies are present; if the user says reviews disappeared, check filters first.
+- Release banner ads may remain hidden until AdMob Privacy & messaging and Remote Config are configured.
+- `./gradlew test` passed immediately before this save.
+- The current working tree has untracked local `.agents/`, `.codex/`, and `AGENTS.md`; do not stage them unless the user explicitly asks.
+
+### 이 프로젝트 세션 이력 (이 기기)
+- 2026-04-15 to 2026-04-22 - Initial Android parity work, Firebase/App Check/testing setup, tester-track release setup, splash and localization fixes, crash triage, and internal testing.
+- 2026-05-06 to 2026-05-12 - Production readiness, fastlane metadata setup, Play Console service account, Android 15 edge-to-edge warning work, v1.0.1 production release, and session checkpointing.
+- 2026-06-11 to 2026-06-12 - Android 1.1.0 and 1.1.1 release work: KOSPI support, real chart/data hotfix, screenshots, reviews, Play production upload/publish, AdMob investigation, and v1.1.1 branch cleanup.
 
 ## Notes
-
-### Git 상태 (push 완료)
-- `dev` HEAD: `0cd9e1f` (v1.0.1 production 배포 준비 머지)
-- `release` HEAD: `e6577ea` (= `tag: v1.0.1`)
-- `main`: `4372efb` (초기 scaffold 시점 유지 — 의도적)
-
-### fastlane 워크플로우 (v1.0.2+ 기준)
-```bash
-# 1. 코드 작업 끝 (worktree → feature → dev 머지)
-# 2. app/build.gradle.kts: versionCode 9 → 10, versionName "1.0.1" → "1.0.2"
-# 3. fastlane/metadata/android/<locale>/changelogs/10.txt 작성 (45 locale)
-# 4. 한 줄:
-fastlane production  # AAB 빌드 + 메타 + 스크린샷 + changelog 일괄 → production 100%
-# 5. Play 검토 통과 후 release 머지 + tag
-```
-
-### 새 머신 셋업 (절대 규칙)
-```bash
-gh repo clone thingineeer/FearIndex-Android ~/Desktop/FearIndex-Android
-cd ~/Desktop/FearIndex-Android
-gh repo clone thingineeer/thingineeer-env ~/thingineeer-env
-bash ~/thingineeer-env/android/fearindex/install.sh
-# → keystore + gradle.properties + google-services.json + play-store-service-account.json 자동 설치
-```
+- Test result before this save: `./gradlew test` passed.
+- Branches after cleanup:
+  - local: `main`, `dev`, `release`
+  - remote: `origin/main`, `origin/dev`, `origin/release`, plus old v1.1.0 feature branches retained
+- Current tag list includes `v1.1.0`; no `v1.1.1` tag was created in this session.
+- AdMob IDs currently documented in project memory:
+  - App ID: `ca-app-pub-5283496525222246~1308884877`
+  - HomeBanner: `ca-app-pub-5283496525222246/3189551565`
+  - KospiInterstitial: `ca-app-pub-5283496525222246/1522532479`
+- Release signing and Play service account secrets are managed outside the repo under the existing private secret workflow. Do not commit secrets.
