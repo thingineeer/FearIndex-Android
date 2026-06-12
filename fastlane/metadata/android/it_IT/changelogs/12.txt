@@ -1,0 +1,1 @@
+Risolto un problema per cui il grafico non veniva visualizzato correttamente.

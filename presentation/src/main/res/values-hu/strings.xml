@@ -222,6 +222,8 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="insight_velocity_inflection_suffix"> (fordulópont észlelve)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Értesítések</string>
+    <string name="settings_menu_kospi_methodology">Hogyan számítjuk a KOSPI-t</string>
+    <string name="settings_kospi_methodology_summary">Az aktuális KOSPI-pontszám a koreai normál piaci órák alatt óránként frissül. Az előzménygrafikonok csak a megerősített zárás után frissülnek. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Adatvédelmi irányelvek</string>
     <string name="settings_menu_about">Alkalmazás információk</string>
     <string name="settings_menu_ad_privacy">Adatvédelmi beállítások</string>

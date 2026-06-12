@@ -222,6 +222,8 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="insight_velocity_inflection_suffix"> (punct de inflexiune detectat)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Notificări</string>
+    <string name="settings_menu_kospi_methodology">Cum este calculat KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Scorul curent KOSPI se actualizează din oră în oră în timpul programului normal al pieței din Coreea. Graficele istorice se actualizează doar după închiderea confirmată. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Politica de Confidențialitate</string>
     <string name="settings_menu_about">Informații Aplicație</string>
     <string name="settings_menu_ad_privacy">Opțiuni de confidențialitate</string>

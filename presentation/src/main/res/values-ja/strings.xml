@@ -221,6 +221,8 @@
     <string name="home_updated_at">更新: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">通知</string>
+    <string name="settings_menu_kospi_methodology">KOSPIの算出方法</string>
+    <string name="settings_kospi_methodology_summary">KOSPIの現在スコアは韓国の通常取引時間中に1時間ごとに更新されます。履歴チャートは確定した終値の後にのみ更新されます。 Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">プライバシーポリシー</string>
     <string name="settings_menu_about">アプリ情報</string>
     <string name="settings_menu_ad_privacy">プライバシー設定</string>

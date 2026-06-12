@@ -221,6 +221,8 @@
     <string name="insight_velocity_inflection_suffix"> (نقطه عطف شناسایی شد)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">اعلان‌ها</string>
+    <string name="settings_menu_kospi_methodology">نحوه محاسبه KOSPI</string>
+    <string name="settings_kospi_methodology_summary">امتیاز فعلی KOSPI در ساعات عادی بازار کره هر ساعت به‌روزرسانی می‌شود. نمودارهای تاریخچه فقط پس از بسته‌شدن تأییدشده به‌روزرسانی می‌شوند. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">سیاست حریم خصوصی</string>
     <string name="settings_menu_about">اطلاعات برنامه</string>
     <string name="settings_menu_ad_privacy">گزینه‌های حریم خصوصی</string>

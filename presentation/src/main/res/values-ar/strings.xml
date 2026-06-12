@@ -221,6 +221,8 @@
     <string name="insight_velocity_inflection_suffix"> (تم اكتشاف نقطة تحول)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">الإشعارات</string>
+    <string name="settings_menu_kospi_methodology">كيفية حساب KOSPI</string>
+    <string name="settings_kospi_methodology_summary">يتم تحديث نتيجة KOSPI الحالية كل ساعة أثناء ساعات السوق العادية في كوريا. يتم تحديث الرسوم البيانية التاريخية فقط بعد تأكيد الإغلاق. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">سياسة الخصوصية</string>
     <string name="settings_menu_about">معلومات التطبيق</string>
     <string name="settings_menu_ad_privacy">خيارات الخصوصية</string>

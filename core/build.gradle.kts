@@ -21,6 +21,19 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("Boolean", "SCREENSHOT_MODE_SUPPORTED", "true")
+        }
+        release {
+            buildConfigField("Boolean", "SCREENSHOT_MODE_SUPPORTED", "false")
+        }
+    }
 }
 
 dependencies {

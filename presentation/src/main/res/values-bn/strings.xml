@@ -225,6 +225,8 @@
     <string name="home_updated_at">আপডেট: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">বিজ্ঞপ্তি</string>
+    <string name="settings_menu_kospi_methodology">KOSPI কীভাবে গণনা করা হয়</string>
+    <string name="settings_kospi_methodology_summary">কোরিয়ার নিয়মিত বাজার সময়ে বর্তমান KOSPI স্কোর প্রতি ঘণ্টায় আপডেট হয়। ইতিহাস চার্ট কেবল নিশ্চিত ক্লোজের পরে আপডেট হয়। Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">গোপনীয়তা নীতি</string>
     <string name="settings_menu_about">অ্যাপ তথ্য</string>
     <string name="settings_menu_ad_privacy">গোপনীয়তা পছন্দ</string>

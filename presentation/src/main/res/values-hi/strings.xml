@@ -225,6 +225,8 @@
     <string name="home_updated_at">अपडेट: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">सूचनाएं</string>
+    <string name="settings_menu_kospi_methodology">KOSPI की गणना कैसे होती है</string>
+    <string name="settings_kospi_methodology_summary">KOSPI का वर्तमान स्कोर कोरिया के नियमित बाज़ार समय में हर घंटे अपडेट होता है। इतिहास चार्ट केवल पुष्टि किए गए बंद के बाद अपडेट होते हैं। Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">गोपनीयता नीति</string>
     <string name="settings_menu_about">ऐप जानकारी</string>
     <string name="settings_menu_ad_privacy">गोपनीयता विकल्प</string>

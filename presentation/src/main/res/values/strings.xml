@@ -312,6 +312,8 @@
     <string name="settings_menu_share">Share App</string>
     <string name="settings_menu_about">About</string>
     <string name="settings_menu_ad_privacy">Privacy choices</string>
+    <string name="settings_menu_kospi_methodology">How KOSPI is calculated</string>
+    <string name="settings_kospi_methodology_summary">KOSPI current score updates hourly during Korea regular market hours. History charts update only after the confirmed close. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privacy Policy</string>
     <string name="settings_about_version">Version %1$s</string>
 

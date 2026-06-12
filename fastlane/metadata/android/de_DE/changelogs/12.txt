@@ -1,0 +1,1 @@
+Ein Problem wurde behoben, bei dem das Diagramm nicht richtig angezeigt wurde.

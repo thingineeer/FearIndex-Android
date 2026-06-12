@@ -222,6 +222,8 @@
     <string name="home_updated_at">Uppdaterad: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Aviseringar</string>
+    <string name="settings_menu_kospi_methodology">Så beräknas KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Aktuell KOSPI-poäng uppdateras varje timme under Koreas ordinarie marknadstid. Historikdiagram uppdateras först efter bekräftad stängning. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Integritetspolicy</string>
     <string name="settings_menu_about">Appinformation</string>
     <string name="settings_menu_ad_privacy">Integritetsval</string>

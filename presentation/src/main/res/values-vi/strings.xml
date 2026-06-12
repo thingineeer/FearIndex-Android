@@ -225,6 +225,8 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="insight_velocity_inflection_suffix"> (đã phát hiện điểm uốn)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Thông báo</string>
+    <string name="settings_menu_kospi_methodology">Cách tính KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Điểm KOSPI hiện tại cập nhật mỗi giờ trong giờ giao dịch thường của Hàn Quốc. Biểu đồ lịch sử chỉ cập nhật sau khi đóng cửa được xác nhận. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Chính sách quyền riêng tư</string>
     <string name="settings_menu_about">Thông tin ứng dụng</string>
     <string name="settings_menu_ad_privacy">Lựa chọn quyền riêng tư</string>

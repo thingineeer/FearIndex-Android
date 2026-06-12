@@ -222,6 +222,8 @@
     <string name="insight_velocity_inflection_suffix"> (открита повратна точка)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Известия</string>
+    <string name="settings_menu_kospi_methodology">Как се изчислява KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Текущият резултат на KOSPI се обновява на всеки час по време на редовната борсова сесия в Корея. Историческите графики се обновяват само след потвърденото затваряне. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Политика за поверителност</string>
     <string name="settings_menu_about">Информация за приложението</string>
     <string name="settings_menu_ad_privacy">Избори за поверителност</string>

@@ -222,6 +222,8 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="insight_velocity_inflection_suffix"> (otkrivena prekretnica)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Obavijesti</string>
+    <string name="settings_menu_kospi_methodology">Kako se izračunava KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Trenutačni KOSPI rezultat ažurira se svakog sata tijekom redovnog radnog vremena korejskog tržišta. Povijesni grafikoni ažuriraju se tek nakon potvrđenog zatvaranja. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Pravila privatnosti</string>
     <string name="settings_menu_about">Informacije o aplikaciji</string>
     <string name="settings_menu_ad_privacy">Odabiri privatnosti</string>

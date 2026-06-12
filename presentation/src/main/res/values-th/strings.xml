@@ -225,6 +225,8 @@
     <string name="insight_velocity_inflection_suffix"> (ตรวจพบจุดเปลี่ยน)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">การแจ้งเตือน</string>
+    <string name="settings_menu_kospi_methodology">วิธีคำนวณ KOSPI</string>
+    <string name="settings_kospi_methodology_summary">คะแนน KOSPI ปัจจุบันอัปเดตทุกชั่วโมงในช่วงเวลาทำการปกติของตลาดเกาหลี กราฟประวัติจะอัปเดตหลังจากยืนยันราคาปิดแล้วเท่านั้น Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">นโยบายความเป็นส่วนตัว</string>
     <string name="settings_menu_about">ข้อมูลแอป</string>
     <string name="settings_menu_ad_privacy">ตัวเลือกความเป็นส่วนตัว</string>

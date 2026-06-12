@@ -222,6 +222,8 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="insight_velocity_inflection_suffix"> (detekován zlom)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Oznámení</string>
+    <string name="settings_menu_kospi_methodology">Jak se počítá KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Aktuální skóre KOSPI se během běžných korejských tržních hodin aktualizuje každou hodinu. Historické grafy se aktualizují až po potvrzeném uzavření. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Zásady ochrany osobních údajů</string>
     <string name="settings_menu_about">Informace o aplikaci</string>
     <string name="settings_menu_ad_privacy">Volby soukromí</string>

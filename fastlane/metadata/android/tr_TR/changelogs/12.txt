@@ -1,0 +1,1 @@
+Grafiğin düzgün görüntülenmemesine neden olan sorun düzeltildi.
