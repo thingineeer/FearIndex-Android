@@ -1,0 +1,1 @@
+Een probleem opgelost waarbij de grafiek niet correct werd weergegeven.

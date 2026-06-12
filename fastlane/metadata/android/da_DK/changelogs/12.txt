@@ -1,0 +1,1 @@
+Vi har rettet et problem, hvor diagrammet ikke blev vist korrekt.

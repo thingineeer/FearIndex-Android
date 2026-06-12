@@ -1,0 +1,1 @@
+Odpravljena je težava, zaradi katere se graf ni pravilno prikazoval.

@@ -1,0 +1,1 @@
+Corrigimos um problema em que o gráfico não era apresentado corretamente.

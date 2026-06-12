@@ -1,0 +1,1 @@
+Opravili jsme problém, kdy se graf nezobrazoval správně.
