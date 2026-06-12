@@ -221,6 +221,8 @@
     <string name="home_updated_at">更新於: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">通知</string>
+    <string name="settings_menu_kospi_methodology">KOSPI 的計算方式</string>
+    <string name="settings_kospi_methodology_summary">KOSPI 目前分數會在韓國常規交易時段每小時更新一次。歷史圖表只會在確認收盤後更新。 Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">隱私權政策</string>
     <string name="settings_menu_about">應用程式資訊</string>
     <string name="settings_menu_ad_privacy">隱私選擇</string>

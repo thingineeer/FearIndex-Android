@@ -225,6 +225,8 @@
     <string name="home_updated_at">புதுப்பிக்கப்பட்டது: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">அறிவிப்புகள்</string>
+    <string name="settings_menu_kospi_methodology">KOSPI எவ்வாறு கணக்கிடப்படுகிறது</string>
+    <string name="settings_kospi_methodology_summary">கொரியாவின் வழக்கமான சந்தை நேரங்களில் தற்போதைய KOSPI மதிப்பெண் ஒவ்வொரு மணிநேரமும் புதுப்பிக்கப்படும். வரலாறு வரைபடங்கள் உறுதிசெய்யப்பட்ட முடிவிற்குப் பிறகே புதுப்பிக்கப்படும். Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">தனியுரிமைக் கொள்கை</string>
     <string name="settings_menu_about">செயலி தகவல்</string>
     <string name="settings_menu_ad_privacy">தனியுரிமை தேர்வுகள்</string>

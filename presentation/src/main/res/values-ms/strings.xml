@@ -221,6 +221,8 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="insight_velocity_inflection_suffix"> (titik perubahan dikesan)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Pemberitahuan</string>
+    <string name="settings_menu_kospi_methodology">Cara KOSPI dikira</string>
+    <string name="settings_kospi_methodology_summary">Skor KOSPI semasa dikemas kini setiap jam semasa waktu pasaran biasa Korea. Carta sejarah hanya dikemas kini selepas penutupan disahkan. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Dasar Privasi</string>
     <string name="settings_menu_about">Maklumat Apl</string>
     <string name="settings_menu_ad_privacy">Pilihan privasi</string>

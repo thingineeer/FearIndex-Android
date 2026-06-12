@@ -222,6 +222,8 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="insight_velocity_inflection_suffix"> (mabadiliko yamegunduliwa)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Arifa</string>
+    <string name="settings_menu_kospi_methodology">Jinsi KOSPI inavyokokotolewa</string>
+    <string name="settings_kospi_methodology_summary">Alama ya sasa ya KOSPI husasishwa kila saa wakati wa saa za kawaida za soko la Korea. Chati za historia husasishwa tu baada ya kufungwa kuthibitishwa. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Sera ya Faragha</string>
     <string name="settings_menu_about">Maelezo ya Programu</string>
     <string name="settings_menu_ad_privacy">Chaguo za faragha</string>

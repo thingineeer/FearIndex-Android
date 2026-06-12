@@ -222,6 +222,8 @@ Considere junto com fundamentos, fluxo e macro.</string>
     <string name="insight_velocity_inflection_suffix"> (inflexão detectada)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Notificações</string>
+    <string name="settings_menu_kospi_methodology">Como o KOSPI é calculado</string>
+    <string name="settings_kospi_methodology_summary">A pontuação atual do KOSPI é atualizada a cada hora durante o horário regular do mercado coreano. Os gráficos de histórico só são atualizados após o fechamento confirmado. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Política de Privacidade</string>
     <string name="settings_menu_about">Informações do App</string>
     <string name="settings_menu_ad_privacy">Opções de privacidade</string>

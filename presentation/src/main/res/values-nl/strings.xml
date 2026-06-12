@@ -222,6 +222,8 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="insight_velocity_inflection_suffix"> (keerpunt gedetecteerd)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Meldingen</string>
+    <string name="settings_menu_kospi_methodology">Hoe KOSPI wordt berekend</string>
+    <string name="settings_kospi_methodology_summary">De huidige KOSPI-score wordt elk uur bijgewerkt tijdens de reguliere Koreaanse markturen. Historiekgrafieken worden pas na de bevestigde sluiting bijgewerkt. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privacybeleid</string>
     <string name="settings_menu_about">App-info</string>
     <string name="settings_menu_ad_privacy">Privacykeuzes</string>

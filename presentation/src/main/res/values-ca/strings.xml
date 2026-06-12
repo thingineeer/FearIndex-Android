@@ -222,6 +222,8 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="insight_velocity_inflection_suffix"> (inflexió detectada)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Notificacions</string>
+    <string name="settings_menu_kospi_methodology">Com es calcula el KOSPI</string>
+    <string name="settings_kospi_methodology_summary">La puntuació KOSPI actual s\'actualitza cada hora durant l\'horari regular del mercat coreà. Els gràfics d\'historial només s\'actualitzen després del tancament confirmat. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Política de privadesa</string>
     <string name="settings_menu_about">Informació de l\'aplicació</string>
     <string name="settings_menu_ad_privacy">Opcions de privadesa</string>

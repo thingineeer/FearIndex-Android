@@ -116,6 +116,13 @@ fun SettingsScreen(
 
             SettingsItem(
                 icon = Icons.Default.Description,
+                title = stringResource(R.string.settings_menu_kospi_methodology),
+                subtitle = stringResource(R.string.settings_kospi_methodology_summary),
+            )
+            HorizontalDivider()
+
+            SettingsItem(
+                icon = Icons.Default.PrivacyTip,
                 title = stringResource(R.string.settings_menu_privacy),
                 onClick = onPrivacyPolicyClick,
             )

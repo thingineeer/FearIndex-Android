@@ -222,6 +222,8 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="insight_velocity_inflection_suffix"> (wykryto punkt zwrotny)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Powiadomienia</string>
+    <string name="settings_menu_kospi_methodology">Jak obliczany jest KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Bieżący wynik KOSPI aktualizuje się co godzinę w regularnych godzinach rynku koreańskiego. Wykresy historii aktualizują się dopiero po potwierdzonym zamknięciu. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Polityka prywatności</string>
     <string name="settings_menu_about">Informacje o aplikacji</string>
     <string name="settings_menu_ad_privacy">Wybory dotyczące prywatności</string>

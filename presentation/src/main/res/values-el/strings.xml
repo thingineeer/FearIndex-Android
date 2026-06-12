@@ -222,6 +222,8 @@
     <string name="insight_velocity_inflection_suffix"> (εντοπίστηκε σημείο καμπής)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Ειδοποιήσεις</string>
+    <string name="settings_menu_kospi_methodology">Πώς υπολογίζεται ο KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Η τρέχουσα βαθμολογία KOSPI ενημερώνεται ανά ώρα κατά τις κανονικές ώρες της κορεατικής αγοράς. Τα ιστορικά γραφήματα ενημερώνονται μόνο μετά το επιβεβαιωμένο κλείσιμο. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Πολιτική Απορρήτου</string>
     <string name="settings_menu_about">Πληροφορίες Εφαρμογής</string>
     <string name="settings_menu_ad_privacy">Επιλογές απορρήτου</string>
