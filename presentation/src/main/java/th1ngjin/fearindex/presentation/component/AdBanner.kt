@@ -3,12 +3,15 @@ package th1ngjin.fearindex.presentation.component
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.gms.ads.AdListener
@@ -64,37 +67,39 @@ fun AdBanner(
     BoxWithConstraints(modifier = modifier.fillMaxWidth()) {
         val widthDp = bannerAdWidthDp(maxWidth.value) ?: return@BoxWithConstraints
         val adSize = remember(context, widthDp) {
-            AdSize.getInlineAdaptiveBannerAdSize(widthDp, MAX_INLINE_BANNER_HEIGHT_DP)
+            AdSize.getInlineAdaptiveBannerAdSize(widthDp, bannerAdMaxHeightDp())
         }
 
-        AndroidView(
-            modifier = Modifier.fillMaxWidth(),
-            factory = { ctx ->
-                AdView(ctx).apply {
-                    setAdSize(adSize)
-                    this.adUnitId = adUnitId
-                    layoutParams = ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                    )
-                    adListener = object : AdListener() {
-                        override fun onAdLoaded() {
-                            analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
-                        }
+        key(adUnitId, adSize) {
+            AndroidView(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(adSize.height.dp),
+                factory = { ctx ->
+                    AdView(ctx).apply {
+                        setAdSize(adSize)
+                        this.adUnitId = adUnitId
+                        layoutParams = ViewGroup.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            adSize.getHeightInPixels(ctx),
+                        )
+                        adListener = object : AdListener() {
+                            override fun onAdLoaded() {
+                                analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
+                            }
 
-                        override fun onAdClicked() {
-                            analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
-                        }
+                            override fun onAdClicked() {
+                                analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
+                            }
 
-                        override fun onAdFailedToLoad(error: LoadAdError) {
-                            analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = error.message))
+                            override fun onAdFailedToLoad(error: LoadAdError) {
+                                analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = error.message))
+                            }
                         }
+                        loadAd(AdRequest.Builder().build())
                     }
-                    loadAd(AdRequest.Builder().build())
-                }
-            },
-        )
+                },
+            )
+        }
     }
 }
-
-private const val MAX_INLINE_BANNER_HEIGHT_DP = 90
