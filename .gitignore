@@ -41,3 +41,8 @@ __pycache__/
 *.pyc
 .playwright-mcp/
 hybrid-bold-iphone-390.jpg
+
+# Local Codex / agent configuration
+AGENTS.md
+.agents/
+.codex/
