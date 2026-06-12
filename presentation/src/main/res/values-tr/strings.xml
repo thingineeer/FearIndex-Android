@@ -221,6 +221,8 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="insight_velocity_inflection_suffix"> (dönüm noktası tespit edildi)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Bildirimler</string>
+    <string name="settings_menu_kospi_methodology">KOSPI nasıl hesaplanır</string>
+    <string name="settings_kospi_methodology_summary">Mevcut KOSPI skoru Kore normal piyasa saatleri içinde saat başı güncellenir. Geçmiş grafikleri yalnızca onaylanmış kapanıştan sonra güncellenir. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Gizlilik Politikası</string>
     <string name="settings_menu_about">Uygulama Bilgisi</string>
     <string name="settings_menu_ad_privacy">Gizlilik tercihleri</string>

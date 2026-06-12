@@ -222,6 +222,8 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="home_updated_at">Oppdatert: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Varsler</string>
+    <string name="settings_menu_kospi_methodology">Slik beregnes KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Gjeldende KOSPI-score oppdateres hver time i Koreas ordinære markedstid. Historikkdiagrammer oppdateres først etter bekreftet stenging. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Personvernpolicy</string>
     <string name="settings_menu_about">App-info</string>
     <string name="settings_menu_ad_privacy">Personvernvalg</string>

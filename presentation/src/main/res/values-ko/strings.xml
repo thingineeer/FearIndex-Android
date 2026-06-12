@@ -307,6 +307,8 @@
     <string name="settings_menu_share">앱 공유하기</string>
     <string name="settings_menu_about">앱 정보</string>
     <string name="settings_menu_ad_privacy">개인정보 선택</string>
+    <string name="settings_menu_kospi_methodology">코스피 산출 방식</string>
+    <string name="settings_kospi_methodology_summary">코스피 현재 지수는 한국 정규장 중 1시간마다 업데이트됩니다. 히스토리 차트는 종가 확정 후에만 업데이트됩니다. 점수 산출과 과거 비교에는 변동성, 수급, 모멘텀 등 보조 지표가 함께 반영될 수 있습니다.</string>
     <string name="settings_menu_privacy">개인정보 처리방침</string>
     <string name="settings_about_version">Version %1$s</string>
 

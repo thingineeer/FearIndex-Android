@@ -120,9 +120,16 @@ object DataModule {
             .addInterceptor { chain ->
                 val original: Request = chain.request()
                 val request = original.newBuilder()
-                    .header("User-Agent", "Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36")
-                    .header("Referer", "https://edition.cnn.com/markets/fear-and-greed")
-                    .header("Origin", "https://edition.cnn.com")
+                    .header(
+                        "User-Agent",
+                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) " +
+                            "AppleWebKit/537.36 (KHTML, like Gecko) " +
+                            "Chrome/120.0.0.0 Safari/537.36",
+                    )
+                    .header("Accept", "*/*")
+                    .header("Accept-Language", "en-US,en;q=0.9")
+                    .header("Referer", "https://www.cnn.com/markets/fear-and-greed")
+                    .header("Origin", "https://www.cnn.com")
                     .build()
                 chain.proceed(request)
             }

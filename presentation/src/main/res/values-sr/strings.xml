@@ -222,6 +222,8 @@
     <string name="insight_velocity_inflection_suffix"> (откривена прекретница)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Обавештења</string>
+    <string name="settings_menu_kospi_methodology">Како се израчунава KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Тренутни KOSPI резултат ажурира се сваког сата током редовног радног времена корејског тржишта. Историјски графикони се ажурирају тек након потврђеног затварања. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Политика Приватности</string>
     <string name="settings_menu_about">Информације о Апликацији</string>
     <string name="settings_menu_ad_privacy">Избори приватности</string>

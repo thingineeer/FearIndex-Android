@@ -1,10 +1,13 @@
 package th1ngjin.fearindex.core.debug
 
+import th1ngjin.fearindex.core.BuildConfig
+
 object ScreenshotMode {
     @Volatile
     private var overrideForTesting: Boolean? = null
 
-    fun isEnabled(): Boolean = overrideForTesting ?: readSystemProperty()
+    fun isEnabled(): Boolean =
+        overrideForTesting ?: (BuildConfig.SCREENSHOT_MODE_SUPPORTED && readSystemProperty())
 
     fun setOverrideForTesting(enabled: Boolean?) {
         overrideForTesting = enabled

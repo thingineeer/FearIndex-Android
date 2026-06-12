@@ -222,6 +222,8 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="home_updated_at">Atnaujinta: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Pranešimai</string>
+    <string name="settings_menu_kospi_methodology">Kaip apskaičiuojamas KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Dabartinis KOSPI balas atnaujinamas kas valandą per įprastas Korėjos rinkos valandas. Istorijos grafikai atnaujinami tik po patvirtinto uždarymo. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privatumo politika</string>
     <string name="settings_menu_about">Programėlės informacija</string>
     <string name="settings_menu_ad_privacy">Privatumo pasirinkimai</string>

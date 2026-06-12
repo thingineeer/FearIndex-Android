@@ -222,6 +222,8 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="home_updated_at">Päivitetty: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Ilmoitukset</string>
+    <string name="settings_menu_kospi_methodology">Miten KOSPI lasketaan</string>
+    <string name="settings_kospi_methodology_summary">Nykyinen KOSPI-pistemäärä päivittyy tunnin välein Korean normaalien markkinatuntien aikana. Historiakaaviot päivittyvät vasta vahvistetun sulun jälkeen. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Tietosuojakäytäntö</string>
     <string name="settings_menu_about">Sovelluksen tiedot</string>
     <string name="settings_menu_ad_privacy">Tietosuojavalinnat</string>

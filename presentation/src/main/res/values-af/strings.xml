@@ -222,6 +222,8 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="insight_velocity_inflection_suffix"> (buigpunt bespeur)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Kennisgewings</string>
+    <string name="settings_menu_kospi_methodology">Hoe KOSPI bereken word</string>
+    <string name="settings_kospi_methodology_summary">Die huidige KOSPI-telling word uurliks tydens Korea se gewone markure opgedateer. Geskiedenisgrafieke word eers na die bevestigde sluiting opgedateer. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privaatsheidsbeleid</string>
     <string name="settings_menu_about">App-inligting</string>
     <string name="settings_menu_ad_privacy">Privaatheidkeuses</string>

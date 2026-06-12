@@ -1,0 +1,1 @@
+Åtgärdat ett problem där diagrammet inte visades korrekt.

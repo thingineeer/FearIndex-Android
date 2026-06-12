@@ -1,0 +1,1 @@
+Javítottunk egy hibát, amely miatt a grafikon nem jelent meg megfelelően.

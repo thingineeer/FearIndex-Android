@@ -222,6 +222,8 @@
     <string name="insight_velocity_inflection_suffix"> (обнаружен перелом)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Уведомления</string>
+    <string name="settings_menu_kospi_methodology">Как рассчитывается KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Текущий показатель KOSPI обновляется каждый час в обычные часы работы корейского рынка. Исторические графики обновляются только после подтвержденного закрытия. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Политика конфиденциальности</string>
     <string name="settings_menu_about">О приложении</string>
     <string name="settings_menu_ad_privacy">Настройки конфиденциальности</string>

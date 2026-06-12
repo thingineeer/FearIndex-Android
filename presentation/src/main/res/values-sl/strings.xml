@@ -222,6 +222,8 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="insight_velocity_inflection_suffix"> (zaznan prelom)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Obvestila</string>
+    <string name="settings_menu_kospi_methodology">Kako se izračuna KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Trenutna ocena KOSPI se med rednimi korejskimi tržnimi urami posodablja vsako uro. Zgodovinski grafi se posodobijo šele po potrjenem zaprtju. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Politika Zasebnosti</string>
     <string name="settings_menu_about">Informacije o Aplikaciji</string>
     <string name="settings_menu_ad_privacy">Izbire zasebnosti</string>

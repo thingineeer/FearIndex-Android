@@ -1,0 +1,1 @@
+Correction d’un problème empêchant l’affichage correct du graphique.

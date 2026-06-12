@@ -222,6 +222,8 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="home_updated_at">Atjaunināts: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Paziņojumi</string>
+    <string name="settings_menu_kospi_methodology">Kā tiek aprēķināts KOSPI</string>
+    <string name="settings_kospi_methodology_summary">Pašreizējais KOSPI rādītājs Korejas regulārajās tirgus stundās tiek atjaunināts reizi stundā. Vēstures grafiki tiek atjaunināti tikai pēc apstiprinātas slēgšanas. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privātuma politika</string>
     <string name="settings_menu_about">Lietotnes informācija</string>
     <string name="settings_menu_ad_privacy">Privātuma izvēles</string>

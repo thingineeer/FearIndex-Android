@@ -221,6 +221,8 @@
     <string name="insight_velocity_inflection_suffix"> (זוהתה נקודת מפנה)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">התראות</string>
+    <string name="settings_menu_kospi_methodology">כיצד KOSPI מחושב</string>
+    <string name="settings_kospi_methodology_summary">הציון הנוכחי של KOSPI מתעדכן מדי שעה במהלך שעות המסחר הרגילות בקוריאה. תרשימי ההיסטוריה מתעדכנים רק לאחר הסגירה המאושרת. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">מדיניות פרטיות</string>
     <string name="settings_menu_about">מידע על האפליקציה</string>
     <string name="settings_menu_ad_privacy">אפשרויות פרטיות</string>

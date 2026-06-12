@@ -222,6 +222,8 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="home_updated_at">Uuendatud: %1$s</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Teavitused</string>
+    <string name="settings_menu_kospi_methodology">Kuidas KOSPI arvutatakse</string>
+    <string name="settings_kospi_methodology_summary">Praegust KOSPI skoori uuendatakse Korea tavapärastel turuaegadel kord tunnis. Ajaloo graafikud uuenevad ainult pärast kinnitatud sulgemist. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privaatsuspoliitika</string>
     <string name="settings_menu_about">Rakenduse teave</string>
     <string name="settings_menu_ad_privacy">Privaatsusvalikud</string>

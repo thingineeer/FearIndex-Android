@@ -299,6 +299,54 @@ class HomeViewModelTest {
     }
 
     @Test
+    fun `loadMarketHistoryForDays - 3M부터 5Y까지 days를 그대로 전달한다`() = runTest {
+        stubAllSuccess(marketHistory = listOf(createFearIndex(30.0)))
+        val days = listOf(90, 180, 365, 730, 1095, 1825)
+
+        val viewModel = createViewModel()
+        advanceUntilIdle()
+        days.forEach {
+            viewModel.loadMarketHistoryForDays(it)
+            advanceUntilIdle()
+        }
+
+        coVerify(exactly = 1) { getFearIndexHistory(HomeUiState.DEFAULT_MARKET_DAYS, false) }
+        days.drop(1).forEach { coVerify(exactly = 1) { getFearIndexHistory(it, false) } }
+    }
+
+    @Test
+    fun `loadKospiHistoryForDays - 3M부터 5Y까지 days를 그대로 전달한다`() = runTest {
+        stubAllSuccess(kospiHistory = listOf(createFearIndex(30.0)))
+        val days = listOf(90, 180, 365, 730, 1095, 1825)
+
+        val viewModel = createViewModel()
+        advanceUntilIdle()
+        days.forEach {
+            viewModel.loadKospiHistoryForDays(it)
+            advanceUntilIdle()
+        }
+
+        coVerify(exactly = 1) { getKospiFearIndexHistory(HomeUiState.DEFAULT_KOSPI_DAYS, false) }
+        days.drop(1).forEach { coVerify(exactly = 1) { getKospiFearIndexHistory(it, false) } }
+    }
+
+    @Test
+    fun `loadCryptoHistoryForDays - 3M부터 5Y까지 days를 그대로 전달한다`() = runTest {
+        stubAllSuccess(cryptoHistory = listOf(createFearIndex(30.0)))
+        val days = listOf(90, 180, 365, 730, 1095, 1825)
+
+        val viewModel = createViewModel()
+        advanceUntilIdle()
+        days.forEach {
+            viewModel.loadCryptoHistoryForDays(it)
+            advanceUntilIdle()
+        }
+
+        coVerify(exactly = 1) { getCryptoFearIndexHistory(HomeUiState.DEFAULT_CRYPTO_DAYS, false) }
+        days.drop(1).forEach { coVerify(exactly = 1) { getCryptoFearIndexHistory(it, false) } }
+    }
+
+    @Test
     fun `marketIndices 로딩 성공`() = runTest {
         val indices = listOf(
             MarketIndex(symbol = "^GSPC", name = "S&P 500", price = 5200.0, changePercent = 1.2, isPositive = true),

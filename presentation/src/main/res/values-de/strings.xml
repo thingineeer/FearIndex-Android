@@ -222,6 +222,8 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="insight_velocity_inflection_suffix"> (Wendepunkt erkannt)</string>
     <!-- Settings menu -->
     <string name="settings_menu_notification">Benachrichtigungen</string>
+    <string name="settings_menu_kospi_methodology">Wie KOSPI berechnet wird</string>
+    <string name="settings_kospi_methodology_summary">Der aktuelle KOSPI-Score wird während der regulären koreanischen Handelszeiten stündlich aktualisiert. Verlaufscharts werden erst nach dem bestätigten Schlusskurs aktualisiert. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Datenschutz</string>
     <string name="settings_menu_about">App-Info</string>
     <string name="settings_menu_ad_privacy">Datenschutzauswahl</string>

@@ -1,0 +1,1 @@
+Hem solucionat un problema que feia que el gràfic no es mostrés correctament.
