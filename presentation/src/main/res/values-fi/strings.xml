@@ -302,4 +302,8 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="insight_return_chart_title_kospi">Jos sijoitat KOSPI:hen</string>
     <string name="insight_detail_disclaimer_kospi">Perustuu historiallisiin KOSPI-tietoihin. Aiempi tuotto ei takaa tulevia tuloksia.</string>
     <string name="insight_detail_sample_basis_kospi">Perustuu %1$d KOSPI:n historiallisiin jaksoihin</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Päivitys vaaditaan</string>
+    <string name="force_update_message">Uusi versio on saatavilla. Päivitä sovellus.</string>
+    <string name="force_update_button">Päivitä</string>
 </resources>

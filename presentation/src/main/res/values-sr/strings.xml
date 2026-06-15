@@ -302,4 +302,8 @@
     <string name="insight_return_chart_title_kospi">Ако сте инвестирали у KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Засновано на историјским KOSPI подацима од затварања до затварања. Прошли учинак не гарантује будуће резултате.</string>
     <string name="insight_detail_sample_basis_kospi">Засновано на %1$d историјских KOSPI периода</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Потребно Ажурирање</string>
+    <string name="force_update_message">Доступна је нова верзија. Молимо ажурирајте апликацију.</string>
+    <string name="force_update_button">Ажурирај</string>
 </resources>

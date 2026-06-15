@@ -42,6 +42,9 @@ coroutines = "1.9.0"
 playServicesAds = "23.6.0"
 userMessagingPlatform = "3.0.0"
 
+# Play In-App Update
+appUpdate = "2.1.0"
+
 # Accompanist
 accompanistPermissions = "0.36.0"
 
@@ -116,6 +119,10 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 # AdMob
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
 user-messaging-platform = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "userMessagingPlatform" }
+
+# Play In-App Update
+app-update = { group = "com.google.android.play", name = "app-update", version.ref = "appUpdate" }
+app-update-ktx = { group = "com.google.android.play", name = "app-update-ktx", version.ref = "appUpdate" }
 
 # Accompanist
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanistPermissions" }

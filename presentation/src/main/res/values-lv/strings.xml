@@ -302,4 +302,8 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="insight_return_chart_title_kospi">Ja esat ieguldījis KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Pamatojoties uz vēsturiskiem KOSPI tuvuma datiem. Iepriekšējā darbība negarantē rezultātus nākotnē.</string>
     <string name="insight_detail_sample_basis_kospi">Balstīts uz %1$d KOSPI vēsturiskajām epizodēm</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Nepieciešams atjauninājums</string>
+    <string name="force_update_message">Pieejama jauna versija. Lūdzu, atjauniniet lietotni.</string>
+    <string name="force_update_button">Atjaunināt</string>
 </resources>

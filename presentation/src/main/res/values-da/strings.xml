@@ -302,4 +302,8 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="insight_return_chart_title_kospi">Hvis du har investeret i KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Baseret på historiske KOSPI tæt på tætte data. Tidligere resultater garanterer ikke fremtidige resultater.</string>
     <string name="insight_detail_sample_basis_kospi">Baseret på %1$d KOSPI historiske episoder</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Opdatering påkrævet</string>
+    <string name="force_update_message">En ny version er tilgængelig. Opdatér venligst appen.</string>
+    <string name="force_update_button">Opdatér</string>
 </resources>

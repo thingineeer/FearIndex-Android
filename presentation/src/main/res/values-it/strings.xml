@@ -302,4 +302,8 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="insight_return_chart_title_kospi">Se hai investito in KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Basato sui dati storici KOSPI ravvicinati. Le performance passate non garantiscono risultati futuri.</string>
     <string name="insight_detail_sample_basis_kospi">Basato sugli episodi storici di %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Aggiornamento Necessario</string>
+    <string name="force_update_message">Una nuova versione è disponibile. Aggiorna l\'app.</string>
+    <string name="force_update_button">Aggiorna</string>
 </resources>

@@ -305,4 +305,8 @@
     <string name="insight_return_chart_title_kospi">আপনি যদি KOSPI তে বিনিয়োগ করেন</string>
     <string name="insight_detail_disclaimer_kospi">ঐতিহাসিক KOSPI ক্লোজ-টু-ক্লোজ ডেটার উপর ভিত্তি করে। অতীতের কর্মক্ষমতা ভবিষ্যতের ফলাফলের নিশ্চয়তা দেয় না।</string>
     <string name="insight_detail_sample_basis_kospi">%1$d KOSPI ঐতিহাসিক পর্বের উপর ভিত্তি করে</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">আপডেট প্রয়োজন</string>
+    <string name="force_update_message">একটি নতুন সংস্করণ পাওয়া গেছে। অনুগ্রহ করে অ্যাপটি আপডেট করুন।</string>
+    <string name="force_update_button">আপডেট করুন</string>
 </resources>
