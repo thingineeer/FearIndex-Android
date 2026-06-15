@@ -302,4 +302,8 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="insight_return_chart_title_kospi">Kui investeerite KOSPI-sse</string>
     <string name="insight_detail_disclaimer_kospi">Põhineb ajaloolistel KOSPI lähiandmetel. Varasemad tulemused ei taga tulevasi tulemusi.</string>
     <string name="insight_detail_sample_basis_kospi">Põhineb %1$d KOSPI ajaloolistel episoodidel</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Uuendus nõutav</string>
+    <string name="force_update_message">Uus versioon on saadaval. Palun uuendage rakendust.</string>
+    <string name="force_update_button">Uuenda</string>
 </resources>

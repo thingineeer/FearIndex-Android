@@ -302,4 +302,8 @@
     <string name="insight_return_chart_title_kospi">Якщо ви інвестували в KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">На основі історичних наближених даних KOSPI. Минулі результати не гарантують майбутніх результатів.</string>
     <string name="insight_detail_sample_basis_kospi">На основі історичних епізодів %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Необхідне оновлення</string>
+    <string name="force_update_message">Доступна нова версія. Будь ласка, оновіть додаток.</string>
+    <string name="force_update_button">Оновити</string>
 </resources>

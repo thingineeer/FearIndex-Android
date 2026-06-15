@@ -1,0 +1,1 @@
+Melhorias de estabilidade e correções. Atualize para a versão mais recente.

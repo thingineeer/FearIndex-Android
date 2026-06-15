@@ -302,4 +302,8 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="insight_return_chart_title_kospi">Ha befektet a KOSPI-ba</string>
     <string name="insight_detail_disclaimer_kospi">Történelmi KOSPI közeli adatok alapján. A múltbeli teljesítmény nem garantálja a jövőbeli eredményeket.</string>
     <string name="insight_detail_sample_basis_kospi">%1$d KOSPI történelmi epizódok alapján</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Frissítés szükséges</string>
+    <string name="force_update_message">Új verzió érhető el. Kérjük, frissítse az alkalmazást.</string>
+    <string name="force_update_button">Frissítés</string>
 </resources>

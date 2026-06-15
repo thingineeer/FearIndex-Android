@@ -319,4 +319,8 @@
     <string name="insight_feed_explainer">점수 변화, 비슷했던 과거 구간, 과거 수익률, 사용자 응답을 함께 보여줘 공포지수의 맥락을 설명합니다.</string>
     <string name="insight_teaser_detail_content_description">상세 보기</string>
     <string name="stuck_total_responded">%1$d명 참여</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">업데이트 필요</string>
+    <string name="force_update_message">새로운 버전이 출시되었습니다. 앱을 업데이트해주세요.</string>
+    <string name="force_update_button">업데이트</string>
 </resources>

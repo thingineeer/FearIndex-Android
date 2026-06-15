@@ -305,4 +305,8 @@
     <string name="insight_return_chart_title_kospi">நீங்கள் KOSPI இல் முதலீடு செய்திருந்தால்</string>
     <string name="insight_detail_disclaimer_kospi">வரலாற்று KOSPI க்கு நெருக்கமான தரவை அடிப்படையாகக் கொண்டது. கடந்த செயல்திறன் எதிர்கால முடிவுகளுக்கு உத்தரவாதம் அளிக்காது.</string>
     <string name="insight_detail_sample_basis_kospi">%1$d KOSPI வரலாற்று அத்தியாயங்களை அடிப்படையாகக் கொண்டது</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">புதுப்பிப்பு தேவை</string>
+    <string name="force_update_message">புதிய பதிப்பு கிடைக்கிறது. செயலியை புதுப்பிக்கவும்.</string>
+    <string name="force_update_button">புதுப்பி</string>
 </resources>

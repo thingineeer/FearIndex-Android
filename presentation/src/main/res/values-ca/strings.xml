@@ -302,4 +302,8 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="insight_return_chart_title_kospi">Si heu invertit a KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Basat en dades històriques de KOSPI properes a tancades. El rendiment passat no garanteix resultats futurs.</string>
     <string name="insight_detail_sample_basis_kospi">Basat en episodis històrics de %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Actualització necessària</string>
+    <string name="force_update_message">Hi ha una nova versió disponible. Si us plau, actualitzeu l\'aplicació.</string>
+    <string name="force_update_button">Actualitzar</string>
 </resources>

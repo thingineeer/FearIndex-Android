@@ -301,4 +301,8 @@
     <string name="insight_return_chart_title_kospi">إذا استثمرت في KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">استنادًا إلى بيانات KOSPI التاريخية القريبة من الإغلاق. الأداء السابق لا يضمن النتائج المستقبلية.</string>
     <string name="insight_detail_sample_basis_kospi">استنادًا إلى الحلقات التاريخية لـ %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">التحديث مطلوب</string>
+    <string name="force_update_message">يتوفر إصدار جديد. يرجى تحديث التطبيق.</string>
+    <string name="force_update_button">تحديث</string>
 </resources>

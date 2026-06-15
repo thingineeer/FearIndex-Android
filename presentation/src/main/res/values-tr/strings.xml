@@ -301,4 +301,8 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="insight_return_chart_title_kospi">KOSPI\'ye Yatırım Yaptıysanız</string>
     <string name="insight_detail_disclaimer_kospi">Geçmiş KOSPI yakın-yakın verilerine dayanmaktadır. Geçmiş performans gelecekteki sonuçları garanti etmez.</string>
     <string name="insight_detail_sample_basis_kospi">%1$d KOSPI\'nin geçmiş bölümlerine dayanmaktadır</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Güncelleme Gerekli</string>
+    <string name="force_update_message">Yeni bir sürüm mevcut. Lütfen uygulamayı güncelleyin.</string>
+    <string name="force_update_button">Güncelle</string>
 </resources>
