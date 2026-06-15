@@ -305,4 +305,8 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="insight_return_chart_title_kospi">Nếu bạn đầu tư vào KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Dựa trên dữ liệu gần gũi KOSPI lịch sử. Hiệu suất trong quá khứ không đảm bảo kết quả trong tương lai.</string>
     <string name="insight_detail_sample_basis_kospi">Dựa trên các tập phim lịch sử %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Cần cập nhật</string>
+    <string name="force_update_message">Có phiên bản mới. Vui lòng cập nhật ứng dụng.</string>
+    <string name="force_update_button">Cập nhật</string>
 </resources>

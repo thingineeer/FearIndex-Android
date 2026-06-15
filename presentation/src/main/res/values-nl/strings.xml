@@ -302,4 +302,8 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="insight_return_chart_title_kospi">Als u in KOSPI hebt geïnvesteerd</string>
     <string name="insight_detail_disclaimer_kospi">Gebaseerd op historische KOSPI close-to-close-gegevens. In het verleden behaalde resultaten bieden geen garantie voor toekomstige resultaten.</string>
     <string name="insight_detail_sample_basis_kospi">Gebaseerd op %1$d KOSPI historische afleveringen</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Update vereist</string>
+    <string name="force_update_message">Een nieuwe versie is beschikbaar. Werk de app bij.</string>
+    <string name="force_update_button">Bijwerken</string>
 </resources>
