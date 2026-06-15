@@ -1,0 +1,1 @@
+Millores d'estabilitat i correccions. Actualitzeu a la darrera versió.
