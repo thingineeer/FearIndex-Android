@@ -302,4 +302,8 @@
     <string name="insight_return_chart_title_kospi">Αν Επένδυσες στον ΚΟΣΠΗ</string>
     <string name="insight_detail_disclaimer_kospi">Με βάση τα ιστορικά στοιχεία του ΚΟΣΠΙ από κοντά. Οι προηγούμενες επιδόσεις δεν εγγυώνται μελλοντικά αποτελέσματα.</string>
     <string name="insight_detail_sample_basis_kospi">Βασισμένο σε ιστορικά επεισόδια %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Απαιτείται Ενημέρωση</string>
+    <string name="force_update_message">Είναι διαθέσιμη νέα έκδοση. Παρακαλώ ενημερώστε την εφαρμογή.</string>
+    <string name="force_update_button">Ενημέρωση</string>
 </resources>

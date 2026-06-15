@@ -302,4 +302,8 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="insight_return_chart_title_kospi">Dacă ai investit în KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Pe baza datelor istorice KOSPI aproape de aproape. Performanța trecută nu garantează rezultate viitoare.</string>
     <string name="insight_detail_sample_basis_kospi">Bazat pe episoadele istorice %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Actualizare Necesară</string>
+    <string name="force_update_message">O nouă versiune este disponibilă. Vă rugăm actualizați aplicația.</string>
+    <string name="force_update_button">Actualizare</string>
 </resources>

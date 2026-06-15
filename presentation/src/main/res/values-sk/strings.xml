@@ -302,4 +302,8 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="insight_return_chart_title_kospi">Ak ste investovali do KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Na základe historických údajov KOSPI, ktoré sa blížia k záveru. Minulá výkonnosť nezaručuje budúce výsledky.</string>
     <string name="insight_detail_sample_basis_kospi">Na základe historických epizód %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Aktualizácia Potrebná</string>
+    <string name="force_update_message">Je dostupná nová verzia. Prosím aktualizujte aplikáciu.</string>
+    <string name="force_update_button">Aktualizovať</string>
 </resources>

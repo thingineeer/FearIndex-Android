@@ -301,4 +301,8 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="insight_return_chart_title_kospi">Jika Anda Berinvestasi di KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Berdasarkan data historis close-to-close KOSPI. Kinerja masa lalu tidak menjamin hasil di masa depan.</string>
     <string name="insight_detail_sample_basis_kospi">Berdasarkan episode sejarah %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Pembaruan Diperlukan</string>
+    <string name="force_update_message">Versi baru tersedia. Perbarui aplikasi sekarang.</string>
+    <string name="force_update_button">Perbarui</string>
 </resources>

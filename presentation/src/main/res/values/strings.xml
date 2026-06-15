@@ -324,4 +324,8 @@
     <string name="insight_feed_explainer">Shows score changes, similar past periods, historical returns, and community responses so the sentiment score has context.</string>
     <string name="insight_teaser_detail_content_description">View details</string>
     <string name="stuck_total_responded">%1$d participants</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Update Required</string>
+    <string name="force_update_message">A new version is available. Please update the app.</string>
+    <string name="force_update_button">Update</string>
 </resources>

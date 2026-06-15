@@ -301,4 +301,8 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="insight_return_chart_title_kospi">Jika Anda Melabur dalam KOSPI</string>
     <string name="insight_detail_disclaimer_kospi">Berdasarkan data dekat ke dekat KOSPI sejarah. Prestasi masa lalu tidak menjamin hasil masa depan.</string>
     <string name="insight_detail_sample_basis_kospi">Berdasarkan episod sejarah %1$d KOSPI</string>
+    <!-- 강제 업데이트 (AdMob 정책 대응 / iOS force.update.* 대칭) -->
+    <string name="force_update_title">Kemas Kini Diperlukan</string>
+    <string name="force_update_message">Versi baharu tersedia. Sila kemas kini apl.</string>
+    <string name="force_update_button">Kemas Kini</string>
 </resources>
