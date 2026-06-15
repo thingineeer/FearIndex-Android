@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.tasks.await
 import th1ngjin.fearindex.core.debug.ScreenshotMode
+import th1ngjin.fearindex.core.update.UpdateChecker
+import th1ngjin.fearindex.core.update.UpdateStatus
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,6 +27,8 @@ import javax.inject.Singleton
  * - [Keys.INTERSTITIAL_COOLDOWN_SEC]: 인터스티셜 노출 간 쿨다운(초)
  * - [Keys.KOSPI_INTERSTITIAL_ENABLED]: KOSPI 홈 진입 인터스티셜 on/off
  * - [Keys.VOTE_ENABLED]: 투표 기능 on/off (릴리즈 안전장치)
+ * - [Keys.FORCE_UPDATE_MINIMUM_VERSION]: 강제 업데이트 최소 버전(major.minor)
+ * - [Keys.MINIMUM_APP_VERSION]: 선택 업데이트 권장 버전(전체)
  */
 @Singleton
 class RemoteConfigManager @Inject constructor() {
@@ -63,6 +67,36 @@ class RemoteConfigManager @Inject constructor() {
             ensureConfigured()
             return config.getBoolean(Keys.VOTE_ENABLED)
         }
+
+    /** 강제 업데이트 최소 버전(major.minor). iOS 와 동일 키. */
+    val forceUpdateMinimumVersion: String
+        get() {
+            if (screenshotMode) return ""
+            ensureConfigured()
+            return config.getString(Keys.FORCE_UPDATE_MINIMUM_VERSION)
+        }
+
+    /** 선택 업데이트 권장 버전(전체). iOS 와 동일 키. */
+    val minimumAppVersion: String
+        get() {
+            if (screenshotMode) return ""
+            ensureConfigured()
+            return config.getString(Keys.MINIMUM_APP_VERSION)
+        }
+
+    /**
+     * 현재 앱 버전 기준 업데이트 필요 여부를 판정한다.
+     *
+     * @param currentVersion `BuildConfig.VERSION_NAME` 등 현재 versionName.
+     */
+    fun checkForUpdate(currentVersion: String): UpdateStatus {
+        if (screenshotMode) return UpdateStatus.UP_TO_DATE
+        return UpdateChecker.evaluate(
+            currentVersion = currentVersion,
+            forceUpdateMinimumVersion = forceUpdateMinimumVersion,
+            minimumAppVersion = minimumAppVersion,
+        )
+    }
 
     @Synchronized
     private fun ensureConfigured() {
@@ -109,6 +143,9 @@ class RemoteConfigManager @Inject constructor() {
             Keys.INTERSTITIAL_COOLDOWN_SEC to 180,
             Keys.KOSPI_INTERSTITIAL_ENABLED to false,
             Keys.VOTE_ENABLED to true,
+            // 기본값은 "아무도 차단하지 않음". 실제 강제 트리거는 Firebase Console 에서 설정.
+            Keys.FORCE_UPDATE_MINIMUM_VERSION to "",
+            Keys.MINIMUM_APP_VERSION to "",
         )
 
     object Keys {
@@ -118,6 +155,8 @@ class RemoteConfigManager @Inject constructor() {
         const val INTERSTITIAL_COOLDOWN_SEC = "interstitial_cooldown_sec"
         const val KOSPI_INTERSTITIAL_ENABLED = "kospi_interstitial_enabled"
         const val VOTE_ENABLED = "vote_enabled"
+        const val FORCE_UPDATE_MINIMUM_VERSION = "force_update_minimum_version"
+        const val MINIMUM_APP_VERSION = "minimum_app_version"
     }
 
     private companion object {
