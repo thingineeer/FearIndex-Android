@@ -288,6 +288,116 @@ type: project
 - **순서 중요**: 1.1.3이 Play Store에 전파되기 전에 강제 기준을 올리면 In-App Update가 받을 새 버전이 없어 스토어 폴백됨.
 - **RC default는 fail-open 유지**: `force_update_minimum_version` default=`""`. default를 `1.1`로 올리는 fail-closed 처방은 **채택 금지** (미래 minor 출시 후 최신 유저를 영구 게이트에 가둘 위험, iOS parity 깨짐).
 
+## 2026-06-16 세션 (v1.2.0 — peak 마커 + 공유 링크 + SimilarEvents 점수)
+
+브랜치: `feature/v1.2.0-banner-clip-fix` (v1.2.0 / versionCode 16). 4개 커밋. 모두 iOS parity 성격이라 현재 브랜치에 함께 커밋 (사용자 선택).
+
+### 24. 차트 고점/저점(peak) 마커 추가 — iOS parity, TDD
+
+- **요청**: "그 시기의 고점과 저점" — iOS 차트 peak 마커를 Android 포팅.
+- **iOS SSOT**: `Domain/Entities/FearIndexPeak.swift` + `Domain/UseCases/ComputeFearIndexPeaks.swift` + `Presentation/.../SwiftUIChartView.swift`(peakMarks). Android엔 셋 다 없었음.
+- **구현** (TDD):
+  1. `domain/.../entity/FearIndexPeak.kt`: kind(HIGH/LOW)/score/date/index.
+  2. `domain/.../usecase/ComputeFearIndexPeaks.kt`: history 1회 순회 min/max, **동점 시 `>=`/`<=`로 최근(뒤) 채택**, 빈 배열 null, 단일 포인트 high==low. `fun interface FearIndexPeaksComputing` + `operator fun invoke` → `Pair<high,low>?`. iOS 11개 테스트 케이스 포팅 (`ComputeFearIndexPeaksTest`).
+  3. `ChartScreen.kt` Canvas: `drawPeakMarkers` — 빨간 점(`PeakMarkerColor=0xFFFF3B30`) + 점수 라벨. high 위/low 아래, score>85(high)/score<10(low) 시 좌우 배치. 단일 포인트는 high만. `peakScoreText`: 정수 "82" / 소수 "2.9".
+- **핵심 함정 (iOS #19 회귀와 동일)**: Android `ChartDataFilter.sample`이 **고정 step 샘플링**이라 원본 min/max index가 누락되면 peak 마커가 라인 위 허공에 뜸. 2Y/3Y/5Y(maxSamplePoints 260/390/520)만 샘플링, 3M/6M/1Y는 null이라 무관.
+  - **해결**: `ChartDataFilter.samplePeakPreserving`로 교체 — 시작/끝/min/max 4 anchor + 각 extremum 좌우 1포인트 보존 후 균등 step으로 채움. iOS `sample`(#19 fix)과 1:1. **TDD 10개 테스트**(`SamplePeakPreservingTest`): min/max 포함, 동점 최근 보존, 정확히 maxPoints개, 정렬, 중복 없음.
+  - **1px 일치 강제**: `ChartCoordinates`(core/util) 순수 함수로 x=`width*index/(count-1)`, y=`height*(1-score/100)` 추출 → 라인/peak/선택점이 **동일 수식 공유**. **TDD 11개**(`ChartCoordinatesTest`).
+- **검증**: 에뮬레이터+실기기(Galaxy S23) release 빌드에서 시각 확인 — 고점 71.2(위)/저점 5.8(아래) 빨간 점이 라인 위 정확히, 암호화폐는 정수 50/8.
+- **교훈**: 차트 마커는 반드시 라인과 **같은 좌표 변환 함수** + **peak-preserving 샘플링**을 써야 1px 어긋남 없음. `onAdLoaded`처럼 "값은 맞는데 화면 어긋남"은 실제 캡처로만 검증 가능.
+
+### 25. 홈 공유 버튼 → Play 스토어 링크 (TDD)
+
+- **요청**: 공포탐욕지수 우측 상단 공유버튼이 Play 스토어 링크 공유 (앱 있으면 앱으로, 없으면 설치).
+- **이전**: `ShareUrlBuilder.build()`가 웹앱 URL(`fear-index-a4f4b.web.app/?score=...`) 공유.
+- **변경**: `ShareUrlBuilder.playStoreUrl()` = `https://play.google.com/store/apps/details?id=th1ngjin.fearindex`. **항상 production 패키지**(debug suffix 미포함) — debug 빌드에서 공유해도 스토어엔 prod만 존재. Android 표준 동작으로 앱 있으면 앱/없으면 설치 페이지. 안 쓰이게 된 `shareType` 파라미터 제거. **TDD 4개 테스트**.
+- **검증**: 에뮬레이터 공유 시트 — "Today's Fear & Greed Index: 41 (Fear)\n\n...app.\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex" 정상.
+- **주의**: ShareUrlBuilder.build 사용처는 HomeScreen 한 곳뿐이라 안전하게 교체. 공유 본문(`share_message_template`)은 점수/등급 그대로 유지.
+
+### 26. SimilarEvents 헤더 점수를 게이지와 일치 (iOS parity)
+
+- **증상**: SimilarEvents 카드 헤더 점수가 서버 raw(`result.currentScore`, 갱신 지연)라 게이지/비교카드(`fearIndex.roundedScore`)와 어긋남.
+- **해결**: `SimilarEventsCard(displayedScore: Int)` 파라미터 추가 → HomeScreen에서 `score`(=roundedScore) 주입. iOS `SimilarEventsCardView.displayedScore` (`fearIndex.score.roundedScore`) 대칭.
+
+### (참고) 실기기/에뮬레이터 광고 차이
+
+- **에뮬레이터**: release 빌드(프로덕션 광고단위)여도 AdMob이 "Test Ad" 라벨 광고 표시 — 정상.
+- **실기기**: 진짜 AdMob 광고 노출(예: 대출 광고). release 빌드 = minify+프로덕션 서명(SHA-1 `CE:08:B4:...` 일치 확인)+프로덕션 광고.
+- ⚠️ 실기기엔 release(`th1ngjin.fearindex`)와 debug(`.debug`)가 동시 설치 가능 — recents에서 섞임. release 검증 시 `monkey -p th1ngjin.fearindex`로 명시 실행할 것.
+
+## 2026-06-16 세션 (v1.2.0 — info 버튼 + 데이터 정합성 + 시장 상세)
+
+브랜치: `feature/v1.2.0-banner-clip-fix`. 모두 iOS parity. TDD 위주.
+
+### 27. 현재 지수 info 버튼 + KOSPI 장 상태/업데이트 시각 (iOS parity)
+
+- **요청**: iOS는 현재 지수에 ⓘ버튼·업데이트시각·장마감여부를 알려주는데 Android는 없음. "iOS 로직 그대로만".
+- **iOS 동작 (이것만 구현)**: ⓘ버튼→대표기준 시트(글로벌=S&P500/한국=KOSPI/암호화폐=BTC + KOSPI 업데이트정책), 업데이트시각(timestampView: KOSPI="지수 업데이트" 그외="업데이트", indexType별 타임존 NY/Seoul/UTC, `yyyy.MM.dd HH:mm`), KOSPI 장상태(kospiCurrentStatusLine: isFinal 기반 "장마감 확정/장중 추정"). **홈탭엔 currentScoreHeader 없음(timestampView만)**, 차트·투표탭에만 ⓘ버튼+상태줄.
+- **구현**: `FearIndexDateContext`(타임존 매핑, domain) + `IndexTimestampFormatter`(core) + `RepresentativeIndexInfoSheet`(ModalBottomSheet) 신규. ChartScreen CurrentScoreCard / VoteScreen CurrentScoreHeader에 ⓘ버튼+KOSPI상태줄. HomeScreen timestamp를 iOS 로직으로 교체. `KospiFearIndex.isFinal`이 이미 uiState.kospiSnapshot에 있어 데이터 장애 0. TDD: FearIndexDateContext 6 + IndexTimestampFormatter 5.
+- **strings**: 11키 × 45 locale (iOS xcstrings). 검증: 에뮬+실기기 release에서 KOSPI "장마감 확정 · 지수 업데이트: 2026.06.16 15:30"(KST), 대표기준 시트 4항목 시각 확인.
+- **검증 Workflow**: iOS parity/locale/compose 3축 적대적 검증 → confirmed 0건(전부 정확).
+
+### 28. 코스피 36 vs 37 — 반올림/staleness 검증, 코드 정상 (수정 없음)
+
+- **증상**: 코스피 현재지수 Android=36 iOS=37.
+- **검증 결과**: 서버 API(`/api/kospi/v2`) score=37(정수), Android도 37 정확 표시(차트 KOSPI 직접 확인). 반올림 로직도 iOS와 동일(Kotlin `roundToInt`=Swift `Int(rounded())`=half-up, **둘 다 banker's 아님**). `KospiStalenessResolver`(정규장 09:00~15:20, intraday 2h stall, dataDate≠오늘+장열림→stale)도 iOS와 1:1. → **재현 안 됨, 데이터 갱신 타이밍 차**(애프터장 갱신 전후). 코드 정상.
+- **사용자 확인**: "애프터장 ~20시 갱신 시 iOS와 동일하게 갱신되는지" → staleness 로직 동일하므로 같은 시점 같은 데이터 받으면 동일. close 스냅샷 isFinal=true면 isStale=false로 그대로 표시.
+
+### 29. 암호화폐 비교 수치(1개월/1년) iOS와 다름 — 배열 인덱스 → 날짜 기반 (실제 버그)
+
+- **증상**: 암호화폐 비교카드 [전일/1주/1개월/1년] iOS=20/10/31/61, Android=20/10/27/68. 1개월·1년 다름.
+- **원인**: `CryptoFearIndexRepositoryImpl`이 `data[30]`(1개월)/`data[365]`(1년) **배열 인덱스**로 앵커 선택. iOS는 `HistoricalAnchorResolver`로 **날짜 기반**(정확히 N개월/년 전 날짜 이하 최신). 윤달/누락일 때문에 인덱스≠날짜.
+- **해결**: `HistoricalAnchorResolver`(domain) 신규 — iOS 1:1 포팅(previousClose=기준일 이전 최신, 1주/월/년=날짜-오프셋 이하 최신, 1년 못찾으면 null). crypto repo를 367일 단일 fetch + 날짜기반 enrich(UTC)로 교체. **실 API 검증**: 전일20/1주10/1개월31/1년61 = iOS 정확 일치. TDD: resolver 5 + crypto repo 9.
+- **주의**: KOSPI repo는 **이미 날짜 기반**(`scoreOnOrBefore`)이라 정상. crypto만 인덱스 버그였음.
+
+### 30. 시장 상세 화면 신규 구현 (iOS MarketDetailView parity)
+
+- **요청**: iOS만 있는 "시장 상세" feature(지수/환율/암호화폐 3탭) Material Design 포팅.
+- **데이터소스 4개 (iOS 전략 1:1)**:
+  - **Yahoo chart v8** `query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=1d` UA=Mozilla/5.0 — 글로벌 7(^IXIC,NQ=F,^GSPC,RTY=F,^DJI,^SOX,^VIX)+DXY(DX-Y.NYB). prevClose=`chartPreviousClose ?? previousClose ?? price`.
+  - **Naver** `m.stock.naver.com/api/index/{KOSPI|KOSDAQ}/basic` — 응답 전부 String, 콤마제거 파싱. symbol은 ^KS11이지만 URL은 KOSPI.
+  - **CoinGecko** `api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,solana,binancecoin&vs_currencies=usd&include_24hr_change=true` — 동적 키 맵 → `Map<String,CoinGeckoCoinPrice>`.
+  - **currency-api** `latest.currency-api.pages.dev/v1/currencies/usd.json` + 이전일 `{date}.currency-api.pages.dev/...` — usd[krw], 이전일=`LocalDate.parse(date).minusDays(1)`.
+- **도메인**: MarketIndex(change/timestamp 추가, isPositive computed로 변경 → 기존 호출처 수정), MarketIndexType(10종 enum), CryptoPrice/CryptoCoinType, ExchangeRateQuote 신규. MarketDetailRepository + UseCase 3개.
+- **data**: MarketDetailMapper(순수 변환, TDD 11) + MarketDetailRepositoryImpl(병렬 fetch+부분실패 허용). DI에 @Named("market") UA 클라이언트 + 4 API + repo binding.
+- **presentation**: MarketDetailScreen(3탭 SegmentedPicker, 행=좌title+subtitle/우price+change, RowGroup) + MarketDetailViewModel(병렬로드, 10분 쿨다운). MarketQuoteFormat(core, 가격대별 소수/▲▼색, TDD 10).
+- **색상 (절대 규칙)**: 지수·환율=상승빨강(0xFFE53935)/하락파랑(0xFF1E88E5) **한국식**, 암호화폐=상승초록(0xFF43A047)/하락빨강 **서양식**.
+- **진입점**: 홈 TickerView 탭 → `market_detail` route. ⚠️ **기존 홈 티커가 쓰던 Yahoo spark API(`v8/finance/spark`)가 응답 0건**(833바이트 빈 body) → 홈 `marketIndices`를 새 `GetMarketIndicesDetailUseCase`(chart API)로 교체해 티커 복구 + 진입점 확보.
+- **DXY**: 환율 탭이지만 Yahoo에서 옴(currency-api 아님). repo가 indices+DXY 같이 fetch, 화면 indices탭은 DXY 필터링, FX탭만 노출.
+- **검증**: 에뮬+실기기 release(R8 minify 후 JSON 파싱 정상). 3탭 전부 iOS 스크린샷과 1:1: NASDAQ 26,683.94 ▲3.07% / S&P 7,554.29 ▲1.65% / KOSPI 8,726.60 ▲2.11% / BTC $66,283 ▲0.94% / USD/KRW 1,512.6 / DXY 99.66. strings 23키 × 45 locale.
+- **교훈**: 외부 시세 API는 응답 형식이 바뀔 수 있음(Yahoo spark 0건). chart API가 더 안정적. R8 release에서 kotlinx.serialization DTO는 @Serializable이면 keep됨(별도 proguard 불필요, 실기기 검증 완료).
+
+## 2026-06-16 세션 (v1.2.0 production 배포)
+
+### 31. v1.2.0 production 배포 — 관리형 게시(Managed Publishing) 발견
+
+- **작업**: v1.2.0(versionCode 16)을 production 100% rollout으로 배포. 강제 업데이트 1.2.0 적용 준비. changelog "전체적인 성능 및 개선을 하였습니다." (45 locale).
+- **절차**:
+  1. `UpdateChecker` 강제 업데이트 v1.2.0 시나리오 TDD 3개 추가 (force=1.2: 1.0.x/1.1.x 강제, 1.2.0 제외). `compareMajorMinor([1,2,0],[1,2])=0` 검증.
+  2. changelog 45 locale `16.txt` 생성 (한국어="전체적인 성능 및 개선을 하였습니다.", 나머지 44 동일 의미 번역). 500자 이하 검증.
+  3. 스크린샷: 어제(6/16 14:16) 광고 없이 촬영된 기존 5장(home/chart/vote/notification_settings/notification) 그대로 사용. 45 locale 전부 보유. 시장 상세는 미포함(사용자 선택).
+  4. `./gradlew test` = **585 테스트 통과**(failures=0). `bundleRelease` AAB 서명 SHA-1 `CE:08:B4:...`(활성 업로드키 UPLOAD.RSA) 일치.
+  5. `bundle exec fastlane production` → **HTTP 200 성공** (AAB+메타+changelog 16+스크린샷 phone/7inch/10inch, 100% rollout, release_status completed).
+- **⚠️ 핵심 발견 — 관리형 게시 ON**: fastlane 업로드 후 Play Console "게시 개요"에 **"관리형 게시가 사용 설정됨"** + **"변경사항이 아직 검토를 위해 전송되지 않음"**(136개 대기). fastlane이 올려도 **자동 검토/게시 안 됨**. Chrome MCP로 "검토를 위해 변경사항 136개 전송" 버튼 클릭 → 확인 다이얼로그 "검토를 위해 변경사항 전송" → **"검토 중인 변경사항"** 전환 확인. 변경 항목 = 프로덕션 1.2.0(전체 출시 시작) + 스토어 등록정보(45 locale × phone/7in/10in 스크린샷).
+- **관리형 게시 후속**: 심사 통과 후에도 **자동 게시 안 됨** → Play Console에서 **"게시" 버튼 1회 더** 눌러야 실제 출시. (Managed Publishing 특성)
+- **강제 업데이트 RC 타이밍 (사용자 승인)**: 현재 RC `force_update_minimum_version` [Android app users]=`1.1`(1.0.x만 강제), `minimum_app_version` Android=`1.1.3`. **1.2.0이 Play 전파되기 전엔 RC를 1.2로 올리지 않음**(전파 전 상향 시 1.0~1.1 유저가 받을 1.2.0이 스토어에 없어 In-App Update 폴백/막힘). **1.2.0 게시·전파 확인 후** Android force_update=`1.1`→`1.2` 상향. RC default는 fail-open(`""`/iOS용 1.6.0/1.8.2) 유지.
+- **다음 세션 최우선**:
+  1. 1.2.0 심사 통과 확인 (Play Console "검토 중인 변경사항" → 승인).
+  2. **관리형 게시이므로 승인 후 "게시" 버튼 수동 클릭** → 실제 production 출시.
+  3. Play Store 전파 확인 후 **Firebase Console RC `force_update_minimum_version` [Android app users]=`1.2`** 설정 → 1.0.x/1.1.x 강제 업데이트 발동.
+- **교훈**: 이 앱은 **관리형 게시 ON**. fastlane production은 "업로드+검토전송 대기"까지만 자동, 실제 검토전송·게시는 Console 수동(또는 fastlane `changes_not_sent_for_review`/별도 publish 호출). 이전 v1.1.x "100% rollout completed" 기록은 검토전송까지 자동 처리된 것으로 보였으나, 이번엔 관리형 게시 대기가 명시적으로 잡힘 — 매 배포 시 Console "게시 개요"에서 대기 변경사항 확인 필수.
+
+## 2026-06-16 세션 (v1.2.0 강제 업데이트 발동)
+
+### 32. RC `force_update_minimum_version` [Android]=`1.1`→`1.2` 상향 — 1.0.x/1.1.x 강제 업데이트 발동
+
+- **맥락**: v1.2.0(vc16)이 Play Store에 게시·전파 완료. 31번에서 보류했던 "전파 후 RC 1.2 상향"을 실행.
+- **전파 검증 (선행 필수)**: 공개 Play Store 리스팅(`https://play.google.com/store/apps/details?id=th1ngjin.fearindex`) HTML 파싱 → semver 토큰 `1.2.0` + "Updated on Jun 16, 2026"(당일) 확인. **전파 전 RC 상향 시 1.0~1.1 유저가 받을 1.2.0이 없어 강제창에 막힘**(23번 원칙)이라, 반드시 전파를 먼저 확인하고 진행.
+- **변경**: firebase CLI `deploy --only remoteconfig`. `firebase remoteconfig:get -o`로 현재 템플릿(conditions+parameters 10개) 추출 → `force_update_minimum_version`.conditionalValues['Android app users'].value 만 `1.1`→`1.2` 수정 → diff 정확히 한 줄 확인 → `/tmp/rc_deploy/`(firebase.json+.firebaserc) 에서 deploy. **나머지 9개 파라미터/조건/default 전부 보존** (default 1.6.0 iOS, `minimum_app_version` Android 1.1.3, ads 키 6개).
+- **결과 (라이브 재확인)**: `force_update_minimum_version` default=1.6.0 / [Android]=`1.2`. `UpdateChecker` major.minor 비교로 **1.0.x·1.1.x 강제 / 1.2.0 통과**(`compareMajorMinor([1,2,0],[1,2])=0`).
+- **기대 효과**: AdMob 배너 "적용 불가"(1.0.1 정책위반, 23번)는 구버전 트래픽이 0으로 수렴하며 자연 해소. AdMob 정책센터 상태는 수일 후 재확인.
+- **교훈**: RC 강제 게이트 상향 순서 = (1) **새 버전 Play 전파를 공개 리스팅 등으로 먼저 검증** → (2) **한 줄만 변경하는 diff 확인** → (3) deploy 후 **라이브 값 재조회**. firebase CLI deploy는 전체 템플릿을 publish하므로 get→최소수정→deploy로 기존 파라미터 보존.
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.

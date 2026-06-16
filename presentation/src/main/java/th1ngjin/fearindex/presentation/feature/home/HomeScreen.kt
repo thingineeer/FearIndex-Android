@@ -9,6 +9,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -88,8 +89,7 @@ import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
 import th1ngjin.fearindex.presentation.feature.similarevents.SimilarEventsViewModel
 import th1ngjin.fearindex.presentation.feature.vote.VoteViewModel
 import kotlinx.coroutines.delay
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
+import th1ngjin.fearindex.core.util.IndexTimestampFormatter
 
 // MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
 
@@ -101,7 +101,10 @@ private const val ANALYTICS_NOT_STUCK = "안물렸어요"
 private const val ANALYTICS_CANCEL = "취소"
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(
+    viewModel: HomeViewModel = hiltViewModel(),
+    onTickerClick: () -> Unit = {},
+) {
     val uiState by viewModel.uiState.collectAsState()
     val insightViewModel: InsightViewModel = hiltViewModel()
     val insightState by insightViewModel.uiState.collectAsState()
@@ -242,7 +245,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     )
                 }
             },
-            shareType = selectedType.serverName,
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -270,7 +272,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         // 3. Ticker (auto-rotating market index bar)
         val tickerIndices = tickerIndicesFor(selectedType, uiState.marketIndices)
         if (tickerIndices.isNotEmpty()) {
-            TickerView(indices = tickerIndices)
+            TickerView(indices = tickerIndices, onClick = onTickerClick)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -320,7 +322,6 @@ private fun TitleBar(
     currentScore: Int? = null,
     ratingLabel: String? = null,
     onShareClicked: () -> Unit = {},
-    shareType: String = FearIndexType.MARKET.serverName,
 ) {
     // 공유 메시지의 제목/본문도 다국어. 점수와 등급은 호출부에서 ratingLabel(score)로 미리 주입.
     val shareTitle = stringResource(R.string.home_title) // "공포 탐욕 지수" / "Fear & Greed Index" 등
@@ -339,11 +340,8 @@ private fun TitleBar(
                 onShareClicked()
                 // Android Intent.ACTION_SEND — 카카오톡/문자/메모 등 공유 가능 대상 전체로 전달.
                 // 모든 문자열은 strings.xml(45 locale)에서 가져오므로 하드코딩 금지.
-                val shareUrl = ShareUrlBuilder.build(
-                    score = currentScore ?: 0,
-                    type = shareType,
-                    rating = ratingLabel ?: "",
-                )
+                // 링크는 Play 스토어 페이지 — 수신자가 앱 설치돼 있으면 앱으로, 없으면 설치 페이지로.
+                val shareUrl = ShareUrlBuilder.playStoreUrl()
                 val shareText = "$shareTemplate\n$shareUrl"
                 val shareIntent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
@@ -374,6 +372,7 @@ private fun TitleBar(
 private fun TickerView(
     indices: List<MarketIndex>,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
 ) {
     var currentIndex by remember { mutableIntStateOf(0) }
 
@@ -393,7 +392,8 @@ private fun TickerView(
             .fillMaxWidth()
             .height(36.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)),
+            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f))
+            .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         AnimatedContent(
@@ -529,7 +529,11 @@ private fun LoadedContent(
     // 3.5. SimilarEvents 카드 — "지금과 비슷했던 시기" (v1.7.9)
     if (similarEventsResult.matches.isNotEmpty() || similarEventsResult.aggregateStats != null) {
         Spacer(modifier = Modifier.height(16.dp))
-        SimilarEventsCard(result = similarEventsResult, indexType = indexType)
+        SimilarEventsCard(
+            result = similarEventsResult,
+            indexType = indexType,
+            displayedScore = score,
+        )
     }
 
     // 4. 인사이트 티저 카드 — 현재 점수 기준 통계(전 구간). 첫 번째 인사이트 1개.
@@ -561,17 +565,19 @@ private fun LoadedContent(
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    // 6. Timestamp
+    // 6. Timestamp (iOS timestampView 대칭: indexType별 타임존 + 라벨 분기)
+    val updatedAt = IndexTimestampFormatter.format(fearIndex.timestamp, indexType)
+    val timestampText = if (indexType == FearIndexType.KOSPI) {
+        "${stringResource(R.string.kospi_current_updated_at)}: $updatedAt"
+    } else {
+        stringResource(R.string.home_updated_at, updatedAt)
+    }
     Text(
-        text = stringResource(R.string.home_updated_at, timestampFormatter.format(fearIndex.timestamp)),
+        text = timestampText,
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         fontSize = 12.sp,
     )
-}
-
-private val timestampFormatter: DateTimeFormatter by lazy {
-    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(ZoneId.systemDefault())
 }
 
 // ---------------------------------------------------------------------------

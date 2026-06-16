@@ -18,8 +18,8 @@ class GetMarketIndicesUseCaseTest {
     @Test
     fun `invoke - 시장 지수 리스트 반환`() = runTest {
         val expected = listOf(
-            MarketIndex(symbol = "^GSPC", name = "S&P 500", price = 5200.0, changePercent = 1.2, isPositive = true),
-            MarketIndex(symbol = "^KS11", name = "KOSPI", price = 2650.0, changePercent = -0.5, isPositive = false),
+            MarketIndex(symbol = "^GSPC", name = "S&P 500", price = 5200.0, change = 62.0, changePercent = 1.2),
+            MarketIndex(symbol = "^KS11", name = "KOSPI", price = 2650.0, change = -13.0, changePercent = -0.5),
         )
         coEvery { repository.getMarketIndices() } returns expected
 

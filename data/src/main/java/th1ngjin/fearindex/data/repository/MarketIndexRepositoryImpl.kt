@@ -31,8 +31,9 @@ class MarketIndexRepositoryImpl @Inject constructor(
             val price = meta.regularMarketPrice ?: return@mapNotNull null
             val previousClose = meta.previousClose ?: return@mapNotNull null
 
+            val change = price - previousClose
             val changePercent = if (previousClose != 0.0) {
-                ((price - previousClose) / previousClose) * 100.0
+                (change / previousClose) * 100.0
             } else {
                 0.0
             }
@@ -41,8 +42,8 @@ class MarketIndexRepositoryImpl @Inject constructor(
                 symbol = sparkResult.symbol,
                 name = symbolNameMap[sparkResult.symbol] ?: sparkResult.symbol,
                 price = price,
+                change = change,
                 changePercent = changePercent,
-                isPositive = changePercent >= 0,
             )
         }
     }

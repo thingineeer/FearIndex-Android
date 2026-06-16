@@ -9,8 +9,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,9 +32,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
+import th1ngjin.fearindex.core.util.IndexTimestampFormatter
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
 import th1ngjin.fearindex.presentation.BuildConfig
@@ -37,6 +44,7 @@ import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.component.AdBanner
+import th1ngjin.fearindex.presentation.component.RepresentativeIndexInfoSheet
 import th1ngjin.fearindex.presentation.component.StuckCounterCard
 import th1ngjin.fearindex.presentation.component.StuckDetailSheet
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
@@ -143,6 +151,9 @@ fun VoteScreen(
             CurrentScoreHeader(
                 score = currentState.fearIndex.roundedScore,
                 previousClose = currentState.fearIndex.previousClose,
+                indexType = selectedType,
+                timestamp = currentState.fearIndex.timestamp,
+                kospiIsFinal = uiState.kospiSnapshot?.isFinal,
             )
         }
 
@@ -194,42 +205,82 @@ fun VoteScreen(
 private fun CurrentScoreHeader(
     score: Int,
     previousClose: Double?,
+    indexType: FearIndexType = FearIndexType.MARKET,
+    timestamp: java.time.Instant? = null,
+    kospiIsFinal: Boolean? = null,
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.Bottom,
-    ) {
+    // 대표 기준 설명 시트 (iOS RepresentativeIndexInfoSheet 대칭)
+    var showInfoSheet by remember { mutableStateOf(false) }
+    if (showInfoSheet) {
+        RepresentativeIndexInfoSheet(onDismiss = { showInfoSheet = false })
+    }
+
+    Column(modifier = Modifier.fillMaxWidth()) {
         Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom,
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
         ) {
-            Text(
-                text = stringResource(R.string.current_index_label),
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Text(
-                text = "$score",
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                color = fearScoreColor(score),
-            )
-            Text(
-                text = ratingLabel(score),
-                style = MaterialTheme.typography.labelMedium,
-                color = fearScoreColor(score),
-            )
+            Row(
+                verticalAlignment = Alignment.Bottom,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Text(
+                    text = stringResource(R.string.current_index_label),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                // ⓘ 버튼 (iOS representativeIndexInfoButton 대칭)
+                IconButton(
+                    onClick = { showInfoSheet = true },
+                    modifier = Modifier.size(18.dp),
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Info,
+                        contentDescription = stringResource(R.string.representative_index_info_accessibility),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(13.dp),
+                    )
+                }
+                Text(
+                    text = "$score",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = fearScoreColor(score),
+                )
+                Text(
+                    text = ratingLabel(score),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = fearScoreColor(score),
+                )
+            }
+
+            if (previousClose != null) {
+                val diff = score - previousClose.roundToInt()
+                val sign = if (diff >= 0) "+" else ""
+                val delta = "$sign${String.format("%.1f", score - previousClose)}"
+                Text(
+                    text = stringResource(R.string.vs_previous_close_value, delta),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
 
-        if (previousClose != null) {
-            val diff = score - previousClose.roundToInt()
-            val sign = if (diff >= 0) "+" else ""
-            val delta = "$sign${String.format("%.1f", score - previousClose)}"
+        // KOSPI 장 상태줄 (iOS kospiCurrentStatusLine 대칭): KOSPI일 때만.
+        if (indexType == FearIndexType.KOSPI && timestamp != null) {
+            val statusText = stringResource(
+                if (kospiIsFinal == true) R.string.kospi_status_final
+                else R.string.kospi_status_intraday,
+            )
+            val updatedLabel = stringResource(R.string.kospi_current_updated_at)
+            val updatedAt = IndexTimestampFormatter.format(timestamp, indexType)
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = stringResource(R.string.vs_previous_close_value, delta),
-                style = MaterialTheme.typography.labelSmall,
+                text = "$statusText · $updatedLabel: $updatedAt",
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontSize = 11.sp,
             )
         }
     }

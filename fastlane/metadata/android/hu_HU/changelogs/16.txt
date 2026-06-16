@@ -1,0 +1,1 @@
+Általános teljesítmény- és stabilitásjavítások.

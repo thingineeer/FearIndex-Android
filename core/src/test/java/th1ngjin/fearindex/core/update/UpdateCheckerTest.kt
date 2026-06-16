@@ -102,4 +102,36 @@ class UpdateCheckerTest {
         )
         assertEquals(UpdateStatus.UP_TO_DATE, status)
     }
+
+    // --- v1.2.0 배포 시나리오: force_update_minimum_version = "1.2" ---
+
+    @Test
+    fun `v1_2_0 배포 - 1_0_x 사용자는 강제 업데이트`() {
+        val status = UpdateChecker.evaluate(
+            currentVersion = "1.0.3",
+            forceUpdateMinimumVersion = "1.2",
+            minimumAppVersion = "1.2.0",
+        )
+        assertEquals(UpdateStatus.FORCE_UPDATE_REQUIRED, status)
+    }
+
+    @Test
+    fun `v1_2_0 배포 - 1_1_x 사용자도 강제 업데이트`() {
+        val status = UpdateChecker.evaluate(
+            currentVersion = "1.1.3",
+            forceUpdateMinimumVersion = "1.2",
+            minimumAppVersion = "1.2.0",
+        )
+        assertEquals(UpdateStatus.FORCE_UPDATE_REQUIRED, status)
+    }
+
+    @Test
+    fun `v1_2_0 배포 - 1_2_0 사용자는 강제 제외되고 최신`() {
+        val status = UpdateChecker.evaluate(
+            currentVersion = "1.2.0",
+            forceUpdateMinimumVersion = "1.2",
+            minimumAppVersion = "1.2.0",
+        )
+        assertEquals(UpdateStatus.UP_TO_DATE, status)
+    }
 }
