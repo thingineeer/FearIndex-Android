@@ -48,6 +48,7 @@ type: reference
 | v1.1.1 | 13 | 2026-06-12 | 정식 게시 ✅ | 실데이터/차트 hotfix + Android 15 edge-to-edge & AdMob 배너 프레임 fix |
 | v1.1.2 | 14 | 2026-06-15 | 게시 완료 ✅ | **강제 업데이트(Play In-App Update) + AdMob 정책 대응**. 177개국 100% rollout. Firebase Console Remote Config `force_update_minimum_version` Android=1.1 게시 완료 |
 | v1.1.3 | 15 | 2026-06-16 | production 업로드 ✅ (전파 중) | **배너 광고 미표시 버그 fix** (inline adaptive height 0) + Play Core proguard keep. fastlane production 100% rollout. RC 광고키 6개(`ads_enabled` 등) + `minimum_app_version` Android=1.1.3 게시. ⚠️ 전파 후 force_update Android=1.2 상향 검토 |
+| v1.2.0 | 16 | 2026-06-16 | **검토 전송 ✅ (심사 대기)** | **iOS parity 대량**: 차트 peak 고점/저점 마커, 홈 공유→Play 스토어 링크, SimilarEvents 점수 게이지 일치, 현재지수 info 버튼+KOSPI 장상태/업데이트시각, 암호화폐 비교 날짜기반 앵커, **시장 상세 화면(지수/환율/암호화폐 3탭)**. 585 테스트 통과. fastlane production 100% rollout + changelog 16(45 locale "전체적인 성능 및 개선") + 스크린샷 5장. **⚠️ 관리형 게시(Managed Publishing) ON** → 검토 전송 완료, 심사 통과 후 **수동 "게시" 버튼** 1회 더 필요(자동 게시 안 됨). ⚠️ **전파 확인 후** RC force_update Android=`1.1`→`1.2` 상향 (사용자 승인). RC default fail-open(`""`) 유지 |
 
 ## AAB 빌드 (Release)
 

@@ -367,6 +367,26 @@ type: project
 - **검증**: 에뮬+실기기 release(R8 minify 후 JSON 파싱 정상). 3탭 전부 iOS 스크린샷과 1:1: NASDAQ 26,683.94 ▲3.07% / S&P 7,554.29 ▲1.65% / KOSPI 8,726.60 ▲2.11% / BTC $66,283 ▲0.94% / USD/KRW 1,512.6 / DXY 99.66. strings 23키 × 45 locale.
 - **교훈**: 외부 시세 API는 응답 형식이 바뀔 수 있음(Yahoo spark 0건). chart API가 더 안정적. R8 release에서 kotlinx.serialization DTO는 @Serializable이면 keep됨(별도 proguard 불필요, 실기기 검증 완료).
 
+## 2026-06-16 세션 (v1.2.0 production 배포)
+
+### 31. v1.2.0 production 배포 — 관리형 게시(Managed Publishing) 발견
+
+- **작업**: v1.2.0(versionCode 16)을 production 100% rollout으로 배포. 강제 업데이트 1.2.0 적용 준비. changelog "전체적인 성능 및 개선을 하였습니다." (45 locale).
+- **절차**:
+  1. `UpdateChecker` 강제 업데이트 v1.2.0 시나리오 TDD 3개 추가 (force=1.2: 1.0.x/1.1.x 강제, 1.2.0 제외). `compareMajorMinor([1,2,0],[1,2])=0` 검증.
+  2. changelog 45 locale `16.txt` 생성 (한국어="전체적인 성능 및 개선을 하였습니다.", 나머지 44 동일 의미 번역). 500자 이하 검증.
+  3. 스크린샷: 어제(6/16 14:16) 광고 없이 촬영된 기존 5장(home/chart/vote/notification_settings/notification) 그대로 사용. 45 locale 전부 보유. 시장 상세는 미포함(사용자 선택).
+  4. `./gradlew test` = **585 테스트 통과**(failures=0). `bundleRelease` AAB 서명 SHA-1 `CE:08:B4:...`(활성 업로드키 UPLOAD.RSA) 일치.
+  5. `bundle exec fastlane production` → **HTTP 200 성공** (AAB+메타+changelog 16+스크린샷 phone/7inch/10inch, 100% rollout, release_status completed).
+- **⚠️ 핵심 발견 — 관리형 게시 ON**: fastlane 업로드 후 Play Console "게시 개요"에 **"관리형 게시가 사용 설정됨"** + **"변경사항이 아직 검토를 위해 전송되지 않음"**(136개 대기). fastlane이 올려도 **자동 검토/게시 안 됨**. Chrome MCP로 "검토를 위해 변경사항 136개 전송" 버튼 클릭 → 확인 다이얼로그 "검토를 위해 변경사항 전송" → **"검토 중인 변경사항"** 전환 확인. 변경 항목 = 프로덕션 1.2.0(전체 출시 시작) + 스토어 등록정보(45 locale × phone/7in/10in 스크린샷).
+- **관리형 게시 후속**: 심사 통과 후에도 **자동 게시 안 됨** → Play Console에서 **"게시" 버튼 1회 더** 눌러야 실제 출시. (Managed Publishing 특성)
+- **강제 업데이트 RC 타이밍 (사용자 승인)**: 현재 RC `force_update_minimum_version` [Android app users]=`1.1`(1.0.x만 강제), `minimum_app_version` Android=`1.1.3`. **1.2.0이 Play 전파되기 전엔 RC를 1.2로 올리지 않음**(전파 전 상향 시 1.0~1.1 유저가 받을 1.2.0이 스토어에 없어 In-App Update 폴백/막힘). **1.2.0 게시·전파 확인 후** Android force_update=`1.1`→`1.2` 상향. RC default는 fail-open(`""`/iOS용 1.6.0/1.8.2) 유지.
+- **다음 세션 최우선**:
+  1. 1.2.0 심사 통과 확인 (Play Console "검토 중인 변경사항" → 승인).
+  2. **관리형 게시이므로 승인 후 "게시" 버튼 수동 클릭** → 실제 production 출시.
+  3. Play Store 전파 확인 후 **Firebase Console RC `force_update_minimum_version` [Android app users]=`1.2`** 설정 → 1.0.x/1.1.x 강제 업데이트 발동.
+- **교훈**: 이 앱은 **관리형 게시 ON**. fastlane production은 "업로드+검토전송 대기"까지만 자동, 실제 검토전송·게시는 Console 수동(또는 fastlane `changes_not_sent_for_review`/별도 publish 호출). 이전 v1.1.x "100% rollout completed" 기록은 검토전송까지 자동 처리된 것으로 보였으나, 이번엔 관리형 게시 대기가 명시적으로 잡힘 — 매 배포 시 Console "게시 개요"에서 대기 변경사항 확인 필수.
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
