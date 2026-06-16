@@ -1,131 +1,80 @@
-# Session State - FearIndex-Android
+# Session State — FearIndex-Android
 
 ## Date
 2026-06-16
 
-## ⚡ 최신 (2026-06-16): AdMob 배너 정책 + 광고 미노출 완전 해결 (v1.1.3)
+## Branch
+`feature/v1.2.0-banner-clip-fix`
 
-**근본 원인 3가지 모두 해결:**
-1. **광고 미노출 (배너+인터스티셜)** → Firebase Remote Config에 `ads_enabled` 등 광고 키가 **통째로 없었음** (코드 default=false). → firebase CLI로 6개 키 게시 (`ads_enabled=true`, `interstitial_ads_enabled=true`, `interstitial_session_cap=2`, `interstitial_cooldown_sec=180`, `kospi_interstitial_enabled=true`, `vote_enabled=true`). RC 버전 38.
-2. **배너 화면 미표시 (onAdLoaded는 뜨는데 안 보임)** → **실제 코드 버그**. inline adaptive 배너는 로드 전 `adSize.height=0`인데 컨테이너를 0으로 고정 → 광고 수신돼도 0높이. dynamic workflow(11 agents)가 `AdBanner.kt:77,84`로 정확히 지목. → `resolveBannerHeightDp()` + `onAdLoaded`에서 실제 높이 state 반영으로 fix. **에뮬레이터에서 배너 시각적 노출 확인 ✅**. v1.1.3(vc15) 배포.
-3. **`minimum_app_version=1.8.2`(iOS값) 무한 선택업데이트 alert** → RC에 Android 조건값 `1.1.3` 분기 게시.
+## ⚡ 최신 (2026-06-16): v1.2.0 production 배포 — 검토 전송 완료 (심사 대기)
 
-**AdMob 정책 (배너 "적용 불가"):**
-- 광고단위 6개 중 배너 5개 "적용 불가", KospiInterstitial(전면)만 "제한 없음". 원인 = 1.0.1 "광고 프레임 크기 변경" 정책 위반으로 **앱 전체 배너 게재 제한**.
-- **항소 버튼 없음** (정책센터 확인). "발견된 문제(이전 버전)" 타입 = 1.0.x 트래픽 0 수렴만이 유일 해법.
-- **새 광고단위 추가는 무의미** (새로 만들어도 "적용 불가").
-- 해법 = 강제 업데이트로 1.0.x → 1.1.3 전환 → 위반 트래픽 0 → AdMob 자동 해제 (수일).
+**Android `1.2.0` / `versionCode 16` 을 production 100% rollout 으로 Play Console 검토 전송 완료.**
 
-**점검 완료 (광고 차단 요인 전부 클리어):**
-- UMP/GDPR consent form: "활성화된 메시지 1개" ✅ (canRequestAds 정상)
-- 결제 계정: 애드센스(대한민국) 연결 ✅
-- release 배너 광고단위 ID 5개: AdMob 콘솔과 일치 ✅
-
-**다음 세션 TODO:**
-- **사용자 질문 "1.1.3 강제 업데이트로 광고 빠르게"**: 정책 해소엔 `force_update_minimum_version=1.1`(1.0.x만 강제)로 충분. 1.1.3 배너 버그 수정을 빨리 퍼뜨리려면 1.1.3 Play 전파 후 강제 기준 상향 검토 (단, 1.1.0~1.1.2 유저까지 강제됨 — 과할 수 있음). **1.1.3 Play Store 전파 확인 후 결정.**
-- 정책센터 "광고요청 7일"(현 1.7천) 2일 간격 모니터링 → 0 도달 시 카드 소멸 = 해제.
-- v1.1.3(vc15) Play 심사 통과/게시 확인.
-- ⚠️ workflow 미반영 결함 (1.1.4 후보): splash가 RC fetch 완료 아닌 delay(1500) 고정으로 닫혀 느린 네트워크 시 강제게이트 전 구버전 UI 노출 가능 / ForceUpdateView 터치 차단 미보장(pointerInput 없음). 정책 급하지 않으면 다음 버전에.
-- **RC default fail-open 유지** (force_update_minimum_version default="" 그대로). default를 1.1로 올리는 fail-closed 처방은 채택 금지 (미래 유저 영구 게이트 위험).
+핵심 한 줄: fastlane 으로 올렸지만 **관리형 게시(Managed Publishing)가 ON** 이라, ①검토 전송(이번엔 Chrome MCP로 클릭 완료) + ②심사 통과 후 **"게시" 버튼 수동 클릭**이 별도로 필요하다. 강제 업데이트 RC(`force_update_minimum_version` Android=1.1→1.2)는 **1.2.0 전파 확인 후**에 올린다 (지금 올리면 받을 버전이 없어 강제창에 막힘).
 
 ---
 
-## (이전) Date
-2026-06-15
+## Completed (이번 배포 세션)
 
-## Branch
-`release` (체크아웃 상태). dev/release 모두 origin과 동기화 완료.
-
-## Release Status
-- **현재 배포 기준**: Android `1.1.2` / `versionCode 14` / package `th1ngjin.fearindex`.
-- **Play Console production 트랙**: `1.1.2` 177개국 100% rollout, `release_status: completed`. **사용자가 관리형 게시(managed publishing) "변경사항 출시" 클릭 완료** → 출시 처리됨 (Google 심사는 백그라운드 진행).
-- **배포 방식**: `bundle exec fastlane production` → HTTP 200 성공 (AAB + 45 locale 메타/changelog/스크린샷 일괄 업로드). service account JSON: `~/fearindex-secrets/play-store-service-account.json`.
-- **태그**: `v1.1.2` 생성 + push 완료.
-
-## 이번 세션에서 한 일 (v1.1.2 — 강제 업데이트 / AdMob 정책 대응)
-- [x] **AdMob 정책 문제 진단** (Chrome MCP, 사용자 로그인 세션):
-  - 정책 센터 URL: `https://admob.google.com/v2/policycenter/issues/details/app/1/th1ngjin.fearindex`
-  - **광고 게재 제한됨** (1.7천 요청/7일, 신고 2026-06-09). 문제 유형 `발견된 문제(이전 버전)`, 샘플 버전 `1.0.1`, 정책 문제 `광고 프레임 크기 변경`.
-  - AdMob 권장 해결책 = "사용자를 최신 버전으로 업데이트 유도" → 강제 업데이트 구현으로 대응.
-- [x] **iOS force-update 패턴 포팅** (iOS가 SSOT, 읽기 전용 준수):
-  - `core/.../update/UpdateChecker.kt` + `UpdateStatus.kt`: iOS `RemoteConfigManager.checkForUpdate()` 로직 (major.minor 강제 비교, 전체버전 선택 비교).
-  - `core/.../remoteconfig/RemoteConfigManager.kt`: `force_update_minimum_version` / `minimum_app_version` 키 추가 (iOS 동일). 코드 default 빈 문자열 = 차단 안 함.
-  - **TDD**: `UpdateCheckerTest.kt` 9개 케이스 (RED→GREEN 확인).
-- [x] **Play In-App Update IMMEDIATE**: `app/.../update/InAppUpdateManager.kt` (의존성 `com.google.android.play:app-update(-ktx):2.1.0`). 스토어에 새 버전 없으면 `market://` 폴백.
-- [x] **강제 업데이트 UI**: `presentation/.../feature/update/ForceUpdateView.kt` (iOS 레이아웃 대칭, BackHandler dismiss 차단).
-- [x] **MainActivity 게이트**: RemoteConfig fetch → 강제 판정 → ForceUpdateView + IMMEDIATE 플로우 (debug `-debug` suffix 제거 후 비교).
-- [x] **45 locale 다국어**: `force_update_title/message/button` (iOS `force.update.*` 값 동일).
-- [x] **45 locale changelog**: `fastlane/metadata/android/*/changelogs/14.txt` (안정성 개선 + 업데이트 유도 메시지).
-- [x] **versionCode 14 / versionName 1.1.2** bump.
-- [x] **빌드/배포**: `./gradlew test` 통과, `./gradlew clean :app:bundleRelease` 성공(서명됨), `fastlane production` HTTP 200.
-- [x] **Git workflow**: worktree 단위 feature 브랜치 → `feature/v1.1.2` → `dev` → `release` 모두 `--no-ff` 머지 (squash 금지 준수). 분기/합류 그래프 유지. 태그 `v1.1.2`.
-- [x] **브랜치 정리**: `feature/v1.1.2`, `feature/v1.1.2-changelog`, `feature/v1.1.2-force-update` 로컬 삭제 (release 머지 확인 후). dev/release/v1.1.2 push 완료.
+- [x] **강제 업데이트 v1.2.0 시나리오 TDD 검증** — `UpdateCheckerTest` 에 force=1.2 케이스 3개 추가 (1.0.x/1.1.x 강제, 1.2.0 제외). `compareMajorMinor([1,2,0],[1,2])=0` 확인. 커밋 `d57c1f3`.
+- [x] **changelog 45 locale `16.txt` 생성** — 한국어="전체적인 성능 및 개선을 하였습니다." + 44 locale 동일 의미 번역. 500자 이하 검증. 커밋 `e1d4ab1`.
+- [x] **스크린샷** — 어제(6/16 14:16) 광고 없이 촬영된 기존 5장(home/chart/vote/notification_settings/notification) × 45 locale 그대로 사용 (사용자 선택). 이미 git 커밋됨. 시장 상세는 미포함.
+- [x] **테스트 + AAB** — `./gradlew test` **585 통과**(failures=0). `bundleRelease` 서명 SHA-1 `CE:08:B4:8A:...`(UPLOAD.RSA, 활성 업로드키) 일치 검증.
+- [x] **fastlane production** — HTTP 200 성공. AAB+메타+changelog 16+스크린샷(phone/7inch/10inch) 업로드, 100% rollout.
+- [x] **검토 전송** — Chrome MCP로 Play Console "게시 개요" → "검토를 위해 변경사항 136개 전송" 클릭 → 확인 다이얼로그 승인 → "검토 중인 변경사항" 전환 확인. 변경 항목 = 프로덕션 1.2.0(전체 출시 시작) + 스토어 등록정보 45 locale × 3 스크린샷 크기.
+- [x] **메모리 갱신** — bugs-fixed 31번, deployment 출시이력 v1.2.0, MEMORY.md 최신상태. 커밋 `c5fa5a5`.
 
 ## In Progress
-- 없음 (source code 작업 완료).
-- Play Console production `1.1.2` 심사 진행 중 — 다음 세션에서 게시 완료 여부 재확인.
+- 없음. v1.2.0 은 Google **심사 대기** 상태로 넘어갔고, 이 세션의 능동 작업은 종료됨.
 
-## Remaining (다음 세션 — 중요도 순)
-1. **⚠️ 가장 중요**: 1.1.2 심사 통과/게시 후 **Firebase Console Remote Config에서 `force_update_minimum_version=1.1` 설정**. 이걸 해야 1.0.x 유저에게 강제 업데이트가 실제 발동한다. (코드 default는 빈 값이라 지금은 아무도 차단 안 됨 = 안전.)
-   - 동시에 `minimum_app_version=1.1.2`도 설정 권장 (선택 업데이트 안내용).
-   - Remote Config 조건: `platform == android` (iOS와 키 공유, 조건부 값으로 분기).
-2. 1.1.2 심사 통과 확인 (production 트랙 `검토 중` → 게시 완료).
-3. **AdMob 정책 센터 재확인** — 1.0.x 사용자가 1.1.2+로 전환되면 광고 게재 제한 자연 해소. AdMob Privacy & messaging form 설정(`ca-app-pub-5283496525222246~1308884877`)도 별건으로 남아있음 (배너 미노출 이슈, SESSION 이전 항목).
-4. Firebase Remote Config 광고 gate 확인: `ads_enabled`, interstitial flags.
-5. Local 미추적 파일(`.agents/`, `.codex/`, `AGENTS.md`)은 로컬 agent/config로 판단해 스테이징 안 함 (사용자 명시 요청 시에만).
+## Remaining (다음 세션 최우선 — 순서 중요)
+1. **Play Console 1.2.0 심사 통과 확인** ("검토 중인 변경사항" → 승인).
+2. **관리형 게시이므로 "게시" 버튼 수동 클릭** → 실제 production 출시 (심사 통과해도 자동 게시 안 됨).
+3. **Play Store 전파 확인** 후 → **Firebase Console Remote Config `force_update_minimum_version` [Android app users] = `1.2`** 설정 → 1.0.x/1.1.x 강제 업데이트 발동. (전파 전 상향 금지)
+4. (선택) `feature/v1.2.0-banner-clip-fix` 브랜치를 dev/release 머지 + 태그 — **사용자 명시 요청 시에만**.
 
-## Key Files (이번 세션 추가/변경 — @ 참조)
-- @CLAUDE.md - 프로젝트 규칙, Android-only scope, 메모리 경로, git workflow.
-- @docs/checkpoints/SESSION-STATE.md - 이 save point (resume 진입점).
-- @.claude/memory/MEMORY.md - 메모리 인덱스 + 상수표.
-- @.claude/memory/bugs-fixed.md - **20번 항목**: AdMob 정책 + 강제 업데이트 전체 이력.
-- @.claude/memory/deployment.md - 출시 이력에 v1.1.0~v1.1.2 추가됨, fastlane 절차.
-- @.claude/memory/ios-parity.md - iOS 대칭성 체크리스트 (force-update도 iOS가 SSOT).
-- @.claude/memory/firebase-setup.md - Firebase / Remote Config 설정.
-- @core/src/main/java/th1ngjin/fearindex/core/update/UpdateChecker.kt - 버전 판정 순수 로직 (iOS checkForUpdate 포팅).
-- @core/src/main/java/th1ngjin/fearindex/core/update/UpdateStatus.kt - UP_TO_DATE / UPDATE_AVAILABLE / FORCE_UPDATE_REQUIRED.
-- @core/src/test/java/th1ngjin/fearindex/core/update/UpdateCheckerTest.kt - TDD 9개 케이스.
-- @core/src/main/java/th1ngjin/fearindex/core/remoteconfig/RemoteConfigManager.kt - force_update_minimum_version / minimum_app_version 키 + checkForUpdate().
-- @app/src/main/java/th1ngjin/fearindex/update/InAppUpdateManager.kt - Play In-App Update IMMEDIATE 래퍼 + 스토어 폴백.
-- @app/src/main/java/th1ngjin/fearindex/MainActivity.kt - RemoteConfig 판정 → 강제 업데이트 게이트.
-- @presentation/src/main/java/th1ngjin/fearindex/presentation/feature/update/ForceUpdateView.kt - 강제 업데이트 풀스크린 UI (BackHandler dismiss 차단).
-- @app/build.gradle.kts - versionCode 14 / versionName 1.1.2 + app-update 의존성.
-- @gradle/libs.versions.toml - appUpdate 2.1.0 추가.
-- @fastlane/Fastfile - `production` lane (gradle bundle + production 트랙 100% rollout + 메타 일괄).
-- @fastlane/metadata/android - changelogs/14.txt 45 locale 추가됨.
+## Key Files
+- @.claude/memory/MEMORY.md — 프로젝트 메모리 인덱스 + 최신 상태(v1.2.0 배포). 세션 시작 시 필독.
+- @.claude/memory/bugs-fixed.md — 24~31번이 이번 v1.2.0 작업/배포 이력 (31번 = 관리형 게시 발견).
+- @.claude/memory/deployment.md — 출시 이력 테이블 v1.2.0 추가, keystore/AAB/RC 절차.
+- @core/src/main/java/th1ngjin/fearindex/core/update/UpdateChecker.kt — 강제 업데이트 판정 로직 (major.minor 비교).
+- @core/src/test/java/th1ngjin/fearindex/core/update/UpdateCheckerTest.kt — force=1.2 시나리오 테스트 3개 추가됨.
+- @core/src/main/java/th1ngjin/fearindex/core/remoteconfig/RemoteConfigManager.kt — RC 키(`force_update_minimum_version`, `minimum_app_version`) default fail-open.
+- @fastlane/Fastfile — `production` lane (bundle+upload, 100% rollout). 관리형 게시라 검토전송/게시는 Console 수동.
+- @app/build.gradle.kts — versionCode 16 / versionName 1.2.0 (line 24-25).
 
 ## 대화 요약
 
 ### 이번 세션에서 결정한 것
-- **강제 업데이트 구현 방식**: 사용자가 AskUserQuestion에서 "Play In-App Update API" + "1.1 강제(1.0.x 차단)" 선택. 실제로는 **Remote Config 판정(정밀 제어) + Play In-App Update IMMEDIATE(실제 설치)** 하이브리드로 구현 — 두 선택 모두 만족하고 iOS 대칭성도 유지.
-- **트리거 버전**: `force_update_minimum_version=1.1` → 1.0.x 유저만 강제, 1.1.x는 통과. 코드 default는 빈 값(아무도 차단 안 함), 실제 트리거는 Firebase Console에서 설정.
-- **iOS 읽기 전용 준수**: force-update 패턴은 iOS `RemoteConfigManager.swift` / `AppRoot.swift`에서 읽어 포팅만 함, iOS 파일 수정 없음.
-- **배포**: fastlane production lane으로 100% rollout + completed 제출. 사용자가 "당장 강제업데이트 올려줘", "심사까지 올려줘", "중간 승인 받지말고 진행" 명시 → 자율 배포.
+- **v1.2.0 production 배포** — 사용자 `/goal`: "1.2.0 배포, 새 스크린샷 함께, mcp로도 배포, 릴리즈 노트='전체적인 성능 및 개선을 하였습니다.', 1.2.0 강제업데이트 가능하게". → 6단계(강제업데이트 코드검증 → changelog 45locale → 스크린샷 → 테스트+AAB → Play업로드 → RC타이밍)로 분해 실행.
+- **changelog 한국어 = "전체적인 성능 및 개선을 하였습니다."** (사용자 지정 문구 그대로), 나머지 44 locale 동일 의미 번역.
+- **스크린샷은 기존 5장 그대로** — 사용자가 AskUserQuestion에서 선택. 어제 광고 없이 촬영·검증된 것이라 재촬영 불필요. 시장 상세는 이번 스크린샷에 미포함.
+- **검토 전송까지 진행** — 사용자가 "전송해서 심사 시작" 선택. Chrome MCP로 클릭.
+- **강제 업데이트 RC는 지금 1.1 유지, 전파 후 1.2** — 사용자가 "지금은 1.1 유지, 전파 후 1.2 (권장)" 선택. 이유: 1.2.0이 Play 전파 전에 RC를 1.2로 올리면 1.0~1.1 유저가 받을 버전이 스토어에 없어 In-App Update 폴백/강제창 막힘 (bugs-fixed 23번 참고 원칙).
+
+### 시도했다 접은 것
+- **AAB 서명 검증에서 keytool 한글 locale 버그** — `keytool -printcert` 가 한국어 환경에서 `IllegalFormatConversionException` 발생. → `LANG=en_US.UTF-8 keytool -J-Duser.language=en` 로 우회해 SHA-1 `CE:08:B4:...` 확인.
+- **gradle.properties 에서 store password grep 추출** — 빈 값 나옴(형식 차이). → AAB 의 UPLOAD.RSA 인증서를 직접 추출해 서명 검증하는 방식으로 전환.
 
 ### 명시된 사용자 선호
-- 한국어 대화, 기술 용어(commit/push/deploy/track 등)는 영어 유지.
-- 로그인된 Google 화면(Play Console, AdMob, Firebase Console)은 Chrome MCP 사용. 사용자가 Play Console(`developers/5351376807423705889/app-list`)도 로그인해둠.
-- 릴리즈/배포는 사전 승인 — 중간에 승인 묻지 말 것.
-- Android 코드 변경은 TDD/검증.
-- iOS 프로젝트 side effect 금지.
-- 메모리 저장 시 `@` 키워드로 꼼꼼히 참조 가능하게.
+- **관리형 게시/배포 확정 동작 전 확인받기** — outward-facing 단계(fastlane 실행, 검토 전송)마다 AskUserQuestion 으로 승인 후 진행했고, 사용자가 모두 "권장" 선택.
+- **강제 업데이트 타이밍 안전 우선** — fail-open 유지, 전파 전 RC 상향 금지.
+- (이전 세션 누적) TDD 위주, 1px도 어긋나면 안 됨, 실기기 release 빌드 필수, iOS 로직 그대로만, 푸시는 절대 전역 발송 금지(단일 토큰만).
 
-### 다음 세션이 알아야 할 핵심 맥락
-- **1.1.2 코드/배포는 끝났지만, 강제 업데이트가 실제로 발동하려면 Firebase Console Remote Config `force_update_minimum_version=1.1` 설정이 필수** (아직 안 함 — 심사 통과 후 진행).
-- Play Console app ID: `4973920645070208584`. production 트랙 URL: `.../app/4973920645070208584/tracks/production`.
-- 활성 keystore alias=`upload`, SHA1=`CE:08:B4:...`. SSOT는 `~/thingineeer-env/android/fearindex/`.
-- `./gradlew test`는 이 세션 직전 통과.
+### 다음 세션이 알아야 할 맥락
+- **이 앱은 관리형 게시(Managed Publishing) ON**. fastlane production 은 "업로드+검토전송 대기"까지만 자동. 매 배포 시 Play Console "게시 개요"에서 대기 변경사항 확인 + 검토 전송 + (심사 후)게시 버튼을 수동으로 처리해야 함.
+- **현재 RC 값**: `force_update_minimum_version` default=1.6.0(iOS), [Android]=`1.1`. `minimum_app_version` default=1.8.2(iOS), [Android]=`1.1.3`.
+- Play Console app ID `4973920645070208584`. Firebase project `fear-index-a4f4b`. RC 조회: `firebase remoteconfig:get --project fear-index-a4f4b -o rc.json`.
+- 모든 v1.2.0 코드/배포 변경은 `feature/v1.2.0-banner-clip-fix` 에 커밋. push/dev머지 미실행(명시 요청 대기).
 
 ### 이 프로젝트 세션 이력 (이 기기)
-- 2026-04-15 ~ 04-22 - 초기 Android parity, Firebase/App Check/test 셋업, 테스터 트랙, 로컬라이즈/크래시 triage.
-- 2026-05-06 ~ 05-12 - Production readiness, fastlane 메타, Play 서비스 계정, Android 15 edge-to-edge, v1.0.1 정식 게시.
-- 2026-06-11 ~ 06-12 - v1.1.0/v1.1.1: KOSPI, 실데이터/차트 hotfix, 스크린샷, 리뷰, Play production 업로드, AdMob 조사, 브랜치 정리.
-- **2026-06-15 - v1.1.2: AdMob 광고 게재 제한 대응 → 강제 업데이트(Play In-App Update + Remote Config) 구현, 45 locale, production 100% rollout 제출, 브랜치 정리/push.**
+- 14:52~15:20 — 차트 peak 고점/저점 마커(TDD, iOS parity), 홈 공유→Play 스토어 링크, 현재지수 info 버튼+KOSPI 장상태/업데이트시각 구현. 릴리즈 빌드 반복.
+- 16:01~16:03 — 암호화폐 비교 수치 날짜기반 앵커 수정(20/10/31/61), 코스피 36 vs 37 검증(코드 정상), 시장 상세 화면(3탭) Material 구현.
+- 17:08~17:28 — 푸시 알림 단일 토큰 테스트(에뮬레이터 수신 확인, 전역 발송 안 함). Chrome MCP 사용.
+- 17:30~18:00 — `/goal` v1.2.0 배포. 강제업데이트 검증 → changelog → AAB → fastlane production → 검토 전송 → RC 타이밍 결정 → 세션 저장.
 
 ## Notes
-- Test result before this save: `./gradlew test` 통과.
-- Branches after cleanup:
-  - local: `main`, `dev`, `release` (모두 origin 동기화)
-  - remote: `origin/main`, `origin/dev`, `origin/release` + 태그 `v1.0.1`, `v1.1.0`, `v1.1.2`
-- AdMob IDs: App `ca-app-pub-5283496525222246~1308884877`, HomeBanner `.../3189551565`, KospiInterstitial `.../1522532479`.
-- Release signing / Play service account secrets는 repo 외부 private workflow 관리. 커밋 금지.
+- 빌드: `./gradlew test` (585 통과), `./gradlew clean :app:bundleRelease` (서명 자동, `~/.gradle/gradle.properties` 의 FEARINDEX_* 필요).
+- 배포: `bundle exec fastlane production` → HTTP 200 후 **반드시 Play Console 게시 개요에서 검토 전송 + 게시 수동 처리** (관리형 게시).
+- Secrets: keystore `~/fearindex-secrets/fearindex-release.keystore` (alias=upload, SHA-1 `CE:08:B4:...`). SSOT는 `~/thingineeer-env/android/fearindex/`.
+- 알려진 잔존 이슈: AdMob 배너 "적용 불가"(1.0.1 정책 위반) — 1.0.x/1.1.x 트래픽이 강제 업데이트로 0 수렴해야 자연 해소. v1.2.0 강제 기준 상향이 이를 가속.
