@@ -46,7 +46,8 @@ type: reference
 | v1.0.1 | 9 | 2026-05-12 | 정식 게시 ✅ | Android 15 edge-to-edge 호환성 + 안정성 개선 (`fastlane production` 자동화 첫 사용) |
 | v1.1.0 | ~12 | 2026-06-11 | 정식 게시 ✅ | KOSPI Fear Index, iOS 1.8.x parity, 실데이터/차트 |
 | v1.1.1 | 13 | 2026-06-12 | 정식 게시 ✅ | 실데이터/차트 hotfix + Android 15 edge-to-edge & AdMob 배너 프레임 fix |
-| v1.1.2 | 14 | 2026-06-15 | 관리형 게시 완료 ✅ (심사 진행) | **강제 업데이트(Play In-App Update) + AdMob 정책 대응**. 177개국 100% rollout, `release_status: completed`. 관리형 게시 출시 완료. ⚠️ Firebase Console Remote Config `force_update_minimum_version=1.1` 설정 필요 |
+| v1.1.2 | 14 | 2026-06-15 | 게시 완료 ✅ | **강제 업데이트(Play In-App Update) + AdMob 정책 대응**. 177개국 100% rollout. Firebase Console Remote Config `force_update_minimum_version` Android=1.1 게시 완료 |
+| v1.1.3 | 15 | 2026-06-16 | production 업로드 ✅ (전파 중) | **배너 광고 미표시 버그 fix** (inline adaptive height 0) + Play Core proguard keep. fastlane production 100% rollout. RC 광고키 6개(`ads_enabled` 등) + `minimum_app_version` Android=1.1.3 게시. ⚠️ 전파 후 force_update Android=1.2 상향 검토 |
 
 ## AAB 빌드 (Release)
 
