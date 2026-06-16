@@ -242,7 +242,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     )
                 }
             },
-            shareType = selectedType.serverName,
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -320,7 +319,6 @@ private fun TitleBar(
     currentScore: Int? = null,
     ratingLabel: String? = null,
     onShareClicked: () -> Unit = {},
-    shareType: String = FearIndexType.MARKET.serverName,
 ) {
     // 공유 메시지의 제목/본문도 다국어. 점수와 등급은 호출부에서 ratingLabel(score)로 미리 주입.
     val shareTitle = stringResource(R.string.home_title) // "공포 탐욕 지수" / "Fear & Greed Index" 등
@@ -339,11 +337,8 @@ private fun TitleBar(
                 onShareClicked()
                 // Android Intent.ACTION_SEND — 카카오톡/문자/메모 등 공유 가능 대상 전체로 전달.
                 // 모든 문자열은 strings.xml(45 locale)에서 가져오므로 하드코딩 금지.
-                val shareUrl = ShareUrlBuilder.build(
-                    score = currentScore ?: 0,
-                    type = shareType,
-                    rating = ratingLabel ?: "",
-                )
+                // 링크는 Play 스토어 페이지 — 수신자가 앱 설치돼 있으면 앱으로, 없으면 설치 페이지로.
+                val shareUrl = ShareUrlBuilder.playStoreUrl()
                 val shareText = "$shareTemplate\n$shareUrl"
                 val shareIntent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
