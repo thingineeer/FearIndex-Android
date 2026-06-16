@@ -17,3 +17,7 @@
 
 # Hilt
 -keep class dagger.hilt.** { *; }
+
+# Play In-App Update (강제/선택 업데이트) — release minify에서 조용히 실패 방지
+-keep class com.google.android.play.core.** { *; }
+-dontwarn com.google.android.play.core.**
