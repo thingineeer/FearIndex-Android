@@ -49,7 +49,17 @@ class AdBannerLayoutTest {
     }
 
     @Test
-    fun `로드 높이는 최대 높이를 넘지 않도록 클램프된다`() {
-        assertEquals(MAX_INLINE_BANNER_HEIGHT_DP_PUBLIC, resolveBannerHeightDp(estimatedHeightDp = 50, loadedHeightDp = 999))
+    fun `로드 후 실제 높이는 클램프하지 않고 그대로 사용해 광고가 잘리지 않는다`() {
+        // ★중요: AdMob "광고 프레임 크기 변경" 정책 위반 방지.
+        // SDK가 정한 실제 광고 높이를 임의 상한으로 자르면 광고가 잘려 정책 위반.
+        // iOS(AdBannerView.swift)도 bannerView.adSize.size 를 clamp 없이 그대로 사용.
+        assertEquals(250, resolveBannerHeightDp(estimatedHeightDp = 50, loadedHeightDp = 250))
+        assertEquals(300, resolveBannerHeightDp(estimatedHeightDp = 50, loadedHeightDp = 300))
+    }
+
+    @Test
+    fun `로드 전 추정 높이만 maxHeight 상한으로 공간을 예약한다`() {
+        // 로드 전엔 실제 크기를 모르므로 maxHeight(120)로만 예약. 로드되면 실제 높이로 교체.
+        assertEquals(MAX_INLINE_BANNER_HEIGHT_DP_PUBLIC, resolveBannerHeightDp(estimatedHeightDp = 999, loadedHeightDp = null))
     }
 }
