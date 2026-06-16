@@ -1,12 +1,11 @@
 package th1ngjin.fearindex.data.repository
 
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
 import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.data.datasource.CryptoFearIndexDataSource
 import th1ngjin.fearindex.domain.entity.FearIndex
+import th1ngjin.fearindex.domain.entity.FearIndexDateContext
 import th1ngjin.fearindex.domain.repository.CryptoFearIndexRepository
-import timber.log.Timber
+import th1ngjin.fearindex.domain.usecase.HistoricalAnchorResolver
 import java.time.Instant
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,34 +15,32 @@ class CryptoFearIndexRepositoryImpl @Inject constructor(
     private val dataSource: CryptoFearIndexDataSource,
 ) : CryptoFearIndexRepository {
 
-    override suspend fun fetchCurrent(forceRefresh: Boolean): FearIndex = coroutineScope {
-        if (ScreenshotMode.isEnabled()) return@coroutineScope ScreenshotFixtures.cryptoCurrent()
+    override suspend fun fetchCurrent(forceRefresh: Boolean): FearIndex {
+        if (ScreenshotMode.isEnabled()) return ScreenshotFixtures.cryptoCurrent()
 
-        // 31일 데이터 (current + previous1Week + previous1Month) + 365일 데이터 (previous1Year) 병렬 fetch.
-        // iOS CryptoFearIndexRepository와 동일한 패턴 — previous1Year만 별도 호출로 네트워크 효율 유지.
-        val shortDeferred = async { dataSource.fetchCurrent(days = 31, forceRefresh = forceRefresh) }
-        val yearDeferred = async { runCatching { dataSource.fetchCurrent(days = 365, forceRefresh = forceRefresh) } }
-
-        val response = shortDeferred.await()
+        // 367일치 단일 fetch (current + 전일/1주전/1개월전/1년전 앵커 전부 커버).
+        // iOS CryptoFearIndexRepository(limit:367) + HistoricalAnchorResolver 와 동일.
+        val response = dataSource.fetchCurrent(days = ANCHOR_HISTORY_DAYS, forceRefresh = forceRefresh)
         val dto = response.data.first()
         val score = dto.value.toDouble()
 
-        val previous1Year = yearDeferred.await().getOrNull()?.let { yearResponse ->
-            // Alternative.me는 최신 데이터가 index 0, 가장 오래된 게 끝에. 365일 요청 시 data.size == 365면 마지막 값이 "1년 전".
-            yearResponse.data.getOrNull(yearResponse.data.size - 1)?.value?.toDoubleOrNull()
-        } ?: run {
-            Timber.w("[CryptoFearIndexRepositoryImpl] 1년치 fetch 실패 — previous1Year=null")
-            null
-        }
-
-        FearIndex(
+        val current = FearIndex(
             score = score,
             rating = FearIndex.Rating.from(score),
             timestamp = Instant.ofEpochSecond(dto.timestamp.toLong()),
-            previousClose = findPreviousScore(response.data, 1),
-            previous1Week = findPreviousScore(response.data, 7),
-            previous1Month = findPreviousScore(response.data, 30),
-            previous1Year = previous1Year,
+        )
+        // 비교 카드 앵커를 **날짜 기반**으로 계산 (배열 인덱스 오차 제거). crypto 는 UTC.
+        val history = response.data.map { item ->
+            FearIndex(
+                score = item.value.toDouble(),
+                rating = FearIndex.Rating.from(item.value.toDouble()),
+                timestamp = Instant.ofEpochSecond(item.timestamp.toLong()),
+            )
+        }
+        return HistoricalAnchorResolver.enrich(
+            current = current,
+            history = history,
+            context = FearIndexDateContext.CRYPTO,
         )
     }
 
@@ -63,7 +60,8 @@ class CryptoFearIndexRepositoryImpl @Inject constructor(
         }.sortedBy { it.timestamp }
     }
 
-    private fun findPreviousScore(data: List<th1ngjin.fearindex.data.dto.CryptoFearIndexDTO>, daysAgo: Int): Double? {
-        return data.getOrNull(daysAgo)?.value?.toDoubleOrNull()
+    private companion object {
+        /** iOS limit:367 과 동일 — 1년 앵커 + 며칠 여유. */
+        const val ANCHOR_HISTORY_DAYS = 367
     }
 }
