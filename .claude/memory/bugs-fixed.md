@@ -325,6 +325,48 @@ type: project
 - **실기기**: 진짜 AdMob 광고 노출(예: 대출 광고). release 빌드 = minify+프로덕션 서명(SHA-1 `CE:08:B4:...` 일치 확인)+프로덕션 광고.
 - ⚠️ 실기기엔 release(`th1ngjin.fearindex`)와 debug(`.debug`)가 동시 설치 가능 — recents에서 섞임. release 검증 시 `monkey -p th1ngjin.fearindex`로 명시 실행할 것.
 
+## 2026-06-16 세션 (v1.2.0 — info 버튼 + 데이터 정합성 + 시장 상세)
+
+브랜치: `feature/v1.2.0-banner-clip-fix`. 모두 iOS parity. TDD 위주.
+
+### 27. 현재 지수 info 버튼 + KOSPI 장 상태/업데이트 시각 (iOS parity)
+
+- **요청**: iOS는 현재 지수에 ⓘ버튼·업데이트시각·장마감여부를 알려주는데 Android는 없음. "iOS 로직 그대로만".
+- **iOS 동작 (이것만 구현)**: ⓘ버튼→대표기준 시트(글로벌=S&P500/한국=KOSPI/암호화폐=BTC + KOSPI 업데이트정책), 업데이트시각(timestampView: KOSPI="지수 업데이트" 그외="업데이트", indexType별 타임존 NY/Seoul/UTC, `yyyy.MM.dd HH:mm`), KOSPI 장상태(kospiCurrentStatusLine: isFinal 기반 "장마감 확정/장중 추정"). **홈탭엔 currentScoreHeader 없음(timestampView만)**, 차트·투표탭에만 ⓘ버튼+상태줄.
+- **구현**: `FearIndexDateContext`(타임존 매핑, domain) + `IndexTimestampFormatter`(core) + `RepresentativeIndexInfoSheet`(ModalBottomSheet) 신규. ChartScreen CurrentScoreCard / VoteScreen CurrentScoreHeader에 ⓘ버튼+KOSPI상태줄. HomeScreen timestamp를 iOS 로직으로 교체. `KospiFearIndex.isFinal`이 이미 uiState.kospiSnapshot에 있어 데이터 장애 0. TDD: FearIndexDateContext 6 + IndexTimestampFormatter 5.
+- **strings**: 11키 × 45 locale (iOS xcstrings). 검증: 에뮬+실기기 release에서 KOSPI "장마감 확정 · 지수 업데이트: 2026.06.16 15:30"(KST), 대표기준 시트 4항목 시각 확인.
+- **검증 Workflow**: iOS parity/locale/compose 3축 적대적 검증 → confirmed 0건(전부 정확).
+
+### 28. 코스피 36 vs 37 — 반올림/staleness 검증, 코드 정상 (수정 없음)
+
+- **증상**: 코스피 현재지수 Android=36 iOS=37.
+- **검증 결과**: 서버 API(`/api/kospi/v2`) score=37(정수), Android도 37 정확 표시(차트 KOSPI 직접 확인). 반올림 로직도 iOS와 동일(Kotlin `roundToInt`=Swift `Int(rounded())`=half-up, **둘 다 banker's 아님**). `KospiStalenessResolver`(정규장 09:00~15:20, intraday 2h stall, dataDate≠오늘+장열림→stale)도 iOS와 1:1. → **재현 안 됨, 데이터 갱신 타이밍 차**(애프터장 갱신 전후). 코드 정상.
+- **사용자 확인**: "애프터장 ~20시 갱신 시 iOS와 동일하게 갱신되는지" → staleness 로직 동일하므로 같은 시점 같은 데이터 받으면 동일. close 스냅샷 isFinal=true면 isStale=false로 그대로 표시.
+
+### 29. 암호화폐 비교 수치(1개월/1년) iOS와 다름 — 배열 인덱스 → 날짜 기반 (실제 버그)
+
+- **증상**: 암호화폐 비교카드 [전일/1주/1개월/1년] iOS=20/10/31/61, Android=20/10/27/68. 1개월·1년 다름.
+- **원인**: `CryptoFearIndexRepositoryImpl`이 `data[30]`(1개월)/`data[365]`(1년) **배열 인덱스**로 앵커 선택. iOS는 `HistoricalAnchorResolver`로 **날짜 기반**(정확히 N개월/년 전 날짜 이하 최신). 윤달/누락일 때문에 인덱스≠날짜.
+- **해결**: `HistoricalAnchorResolver`(domain) 신규 — iOS 1:1 포팅(previousClose=기준일 이전 최신, 1주/월/년=날짜-오프셋 이하 최신, 1년 못찾으면 null). crypto repo를 367일 단일 fetch + 날짜기반 enrich(UTC)로 교체. **실 API 검증**: 전일20/1주10/1개월31/1년61 = iOS 정확 일치. TDD: resolver 5 + crypto repo 9.
+- **주의**: KOSPI repo는 **이미 날짜 기반**(`scoreOnOrBefore`)이라 정상. crypto만 인덱스 버그였음.
+
+### 30. 시장 상세 화면 신규 구현 (iOS MarketDetailView parity)
+
+- **요청**: iOS만 있는 "시장 상세" feature(지수/환율/암호화폐 3탭) Material Design 포팅.
+- **데이터소스 4개 (iOS 전략 1:1)**:
+  - **Yahoo chart v8** `query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=1d` UA=Mozilla/5.0 — 글로벌 7(^IXIC,NQ=F,^GSPC,RTY=F,^DJI,^SOX,^VIX)+DXY(DX-Y.NYB). prevClose=`chartPreviousClose ?? previousClose ?? price`.
+  - **Naver** `m.stock.naver.com/api/index/{KOSPI|KOSDAQ}/basic` — 응답 전부 String, 콤마제거 파싱. symbol은 ^KS11이지만 URL은 KOSPI.
+  - **CoinGecko** `api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,solana,binancecoin&vs_currencies=usd&include_24hr_change=true` — 동적 키 맵 → `Map<String,CoinGeckoCoinPrice>`.
+  - **currency-api** `latest.currency-api.pages.dev/v1/currencies/usd.json` + 이전일 `{date}.currency-api.pages.dev/...` — usd[krw], 이전일=`LocalDate.parse(date).minusDays(1)`.
+- **도메인**: MarketIndex(change/timestamp 추가, isPositive computed로 변경 → 기존 호출처 수정), MarketIndexType(10종 enum), CryptoPrice/CryptoCoinType, ExchangeRateQuote 신규. MarketDetailRepository + UseCase 3개.
+- **data**: MarketDetailMapper(순수 변환, TDD 11) + MarketDetailRepositoryImpl(병렬 fetch+부분실패 허용). DI에 @Named("market") UA 클라이언트 + 4 API + repo binding.
+- **presentation**: MarketDetailScreen(3탭 SegmentedPicker, 행=좌title+subtitle/우price+change, RowGroup) + MarketDetailViewModel(병렬로드, 10분 쿨다운). MarketQuoteFormat(core, 가격대별 소수/▲▼색, TDD 10).
+- **색상 (절대 규칙)**: 지수·환율=상승빨강(0xFFE53935)/하락파랑(0xFF1E88E5) **한국식**, 암호화폐=상승초록(0xFF43A047)/하락빨강 **서양식**.
+- **진입점**: 홈 TickerView 탭 → `market_detail` route. ⚠️ **기존 홈 티커가 쓰던 Yahoo spark API(`v8/finance/spark`)가 응답 0건**(833바이트 빈 body) → 홈 `marketIndices`를 새 `GetMarketIndicesDetailUseCase`(chart API)로 교체해 티커 복구 + 진입점 확보.
+- **DXY**: 환율 탭이지만 Yahoo에서 옴(currency-api 아님). repo가 indices+DXY 같이 fetch, 화면 indices탭은 DXY 필터링, FX탭만 노출.
+- **검증**: 에뮬+실기기 release(R8 minify 후 JSON 파싱 정상). 3탭 전부 iOS 스크린샷과 1:1: NASDAQ 26,683.94 ▲3.07% / S&P 7,554.29 ▲1.65% / KOSPI 8,726.60 ▲2.11% / BTC $66,283 ▲0.94% / USD/KRW 1,512.6 / DXY 99.66. strings 23키 × 45 locale.
+- **교훈**: 외부 시세 API는 응답 형식이 바뀔 수 있음(Yahoo spark 0건). chart API가 더 안정적. R8 release에서 kotlinx.serialization DTO는 @Serializable이면 keep됨(별도 proguard 불필요, 실기기 검증 완료).
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
