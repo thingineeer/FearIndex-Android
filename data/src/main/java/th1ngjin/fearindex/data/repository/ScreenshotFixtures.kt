@@ -88,11 +88,11 @@ internal object ScreenshotFixtures {
     }
 
     fun marketIndices(): List<MarketIndex> = listOf(
-        MarketIndex("^KS11", "KOSPI", 2864.12, -1.42, isPositive = false),
-        MarketIndex("^KQ11", "KOSDAQ", 802.45, -0.86, isPositive = false),
-        MarketIndex("^IXIC", "Nasdaq", 17896.21, 0.74, isPositive = true),
-        MarketIndex("^GSPC", "S&P 500", 5421.03, 0.31, isPositive = true),
-        MarketIndex("^DJI", "Dow Jones", 38974.12, -0.18, isPositive = false),
+        MarketIndex("^KS11", "KOSPI", price = 2864.12, change = -41.2, changePercent = -1.42),
+        MarketIndex("^KQ11", "KOSDAQ", price = 802.45, change = -6.9, changePercent = -0.86),
+        MarketIndex("^IXIC", "Nasdaq", price = 17896.21, change = 131.4, changePercent = 0.74),
+        MarketIndex("^GSPC", "S&P 500", price = 5421.03, change = 16.7, changePercent = 0.31),
+        MarketIndex("^DJI", "Dow Jones", price = 38974.12, change = -70.1, changePercent = -0.18),
     )
 
     fun stuckCounter(status: StuckStatus = StuckStatus.NONE): StuckCounterResult =

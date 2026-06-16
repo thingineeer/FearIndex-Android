@@ -38,6 +38,7 @@ import androidx.compose.ui.platform.LocalContext
 import th1ngjin.fearindex.presentation.feature.chart.ChartScreen
 import th1ngjin.fearindex.presentation.feature.home.HomeScreen
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
+import th1ngjin.fearindex.presentation.feature.marketdetail.MarketDetailScreen
 import th1ngjin.fearindex.presentation.feature.notification.NotificationSettingsScreen
 import th1ngjin.fearindex.presentation.feature.settings.SettingsScreen
 import th1ngjin.fearindex.presentation.feature.vote.VoteScreen
@@ -132,7 +133,10 @@ fun FearIndexNavHost() {
             modifier = Modifier.padding(paddingValues),
         ) {
             composable(BottomNavItem.Home.route) {
-                HomeScreen(viewModel = homeViewModel)
+                HomeScreen(
+                    viewModel = homeViewModel,
+                    onTickerClick = { navController.navigate("market_detail") },
+                )
             }
             composable(BottomNavItem.Chart.route) {
                 ChartScreen(viewModel = homeViewModel)
@@ -159,6 +163,9 @@ fun FearIndexNavHost() {
                 th1ngjin.fearindex.presentation.feature.privacy.PrivacyPolicyScreen(
                     onBack = { navController.popBackStack() },
                 )
+            }
+            composable("market_detail") {
+                MarketDetailScreen(onBack = { navController.popBackStack() })
             }
         }
     }

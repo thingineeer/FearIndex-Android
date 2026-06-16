@@ -319,4 +319,31 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="kospi_status_final">Schließen bestätigt</string>
     <string name="kospi_status_intraday">Intraday-Schätzung</string>
     <string name="kospi_current_updated_at">Index aktualisiert</string>
+
+    <!-- 시장 상세 (iOS parity) -->
+    <string name="market_detail_title">Market Details</string>
+    <string name="market_detail_tab_indices">Indices</string>
+    <string name="market_detail_tab_exchange">FX</string>
+    <string name="market_detail_tab_crypto">Crypto</string>
+    <string name="market_nasdaq">NASDAQ</string>
+    <string name="market_nasdaq100_futures">Nasdaq 100 Futures</string>
+    <string name="market_sp500">S&amp;P 500</string>
+    <string name="market_russell2000_futures">Russell 2000 Futures</string>
+    <string name="market_dow_jones">Dow Jones</string>
+    <string name="market_philadelphia_semiconductor">Philadelphia Semiconductor</string>
+    <string name="market_vix">VIX</string>
+    <string name="market_dollar_index">Dollar Index</string>
+    <string name="market_kospi">KOSPI</string>
+    <string name="market_kosdaq">KOSDAQ</string>
+    <string name="market_detail_nasdaq_composite">NASDAQ Composite</string>
+    <string name="market_detail_dollar_index_official">US Dollar Index</string>
+    <string name="market_detail_updated_at">Updated %1$s</string>
+    <string name="market_detail_empty_indices">Loading index data</string>
+    <string name="market_detail_empty_exchange">Loading exchange data</string>
+    <string name="market_detail_empty_crypto">Loading crypto data</string>
+    <string name="market_loading">Indizes laden...</string>
+
+    <!-- 시장 상세 새로고침 (iOS 하드코딩 → Android strings) -->
+    <string name="market_detail_refresh">Refresh</string>
+    <string name="market_detail_refresh_cooldown">You can refresh again after 10 minutes.</string>
 </resources>

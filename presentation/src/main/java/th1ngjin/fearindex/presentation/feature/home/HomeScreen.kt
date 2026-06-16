@@ -9,6 +9,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -100,7 +101,10 @@ private const val ANALYTICS_NOT_STUCK = "안물렸어요"
 private const val ANALYTICS_CANCEL = "취소"
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(
+    viewModel: HomeViewModel = hiltViewModel(),
+    onTickerClick: () -> Unit = {},
+) {
     val uiState by viewModel.uiState.collectAsState()
     val insightViewModel: InsightViewModel = hiltViewModel()
     val insightState by insightViewModel.uiState.collectAsState()
@@ -268,7 +272,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         // 3. Ticker (auto-rotating market index bar)
         val tickerIndices = tickerIndicesFor(selectedType, uiState.marketIndices)
         if (tickerIndices.isNotEmpty()) {
-            TickerView(indices = tickerIndices)
+            TickerView(indices = tickerIndices, onClick = onTickerClick)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -368,6 +372,7 @@ private fun TitleBar(
 private fun TickerView(
     indices: List<MarketIndex>,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
 ) {
     var currentIndex by remember { mutableIntStateOf(0) }
 
@@ -387,7 +392,8 @@ private fun TickerView(
             .fillMaxWidth()
             .height(36.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)),
+            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f))
+            .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         AnimatedContent(

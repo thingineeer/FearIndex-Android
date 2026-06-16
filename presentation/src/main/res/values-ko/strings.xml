@@ -336,4 +336,31 @@
     <string name="kospi_status_final">장마감 확정</string>
     <string name="kospi_status_intraday">장중 추정</string>
     <string name="kospi_current_updated_at">지수 업데이트</string>
+
+    <!-- 시장 상세 (iOS parity) -->
+    <string name="market_detail_title">시장 상세</string>
+    <string name="market_detail_tab_indices">지수</string>
+    <string name="market_detail_tab_exchange">환율</string>
+    <string name="market_detail_tab_crypto">암호화폐</string>
+    <string name="market_nasdaq">나스닥</string>
+    <string name="market_nasdaq100_futures">나스닥 100 선물</string>
+    <string name="market_sp500">S&amp;P 500</string>
+    <string name="market_russell2000_futures">러셀 2000 선물</string>
+    <string name="market_dow_jones">다우존스</string>
+    <string name="market_philadelphia_semiconductor">필라델피아 반도체</string>
+    <string name="market_vix">VIX</string>
+    <string name="market_dollar_index">달러인덱스</string>
+    <string name="market_kospi">코스피</string>
+    <string name="market_kosdaq">코스닥</string>
+    <string name="market_detail_nasdaq_composite">나스닥 종합 / NASDAQ Composite</string>
+    <string name="market_detail_dollar_index_official">달러인덱스 / US Dollar Index</string>
+    <string name="market_detail_updated_at">갱신 %1$s</string>
+    <string name="market_detail_empty_indices">지수 데이터를 불러오는 중입니다</string>
+    <string name="market_detail_empty_exchange">환율 데이터를 불러오는 중입니다</string>
+    <string name="market_detail_empty_crypto">암호화폐 데이터를 불러오는 중입니다</string>
+    <string name="market_loading">지수 로딩 중...</string>
+
+    <!-- 시장 상세 새로고침 (iOS 하드코딩 → Android strings) -->
+    <string name="market_detail_refresh">새로고침</string>
+    <string name="market_detail_refresh_cooldown">10분 뒤 갱신 가능해요</string>
 </resources>
