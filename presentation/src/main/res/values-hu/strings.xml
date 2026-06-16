@@ -306,4 +306,17 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="force_update_title">Frissítés szükséges</string>
     <string name="force_update_message">Új verzió érhető el. Kérjük, frissítse az alkalmazást.</string>
     <string name="force_update_button">Frissítés</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">Representative Benchmarks</string>
+    <string name="representative_index_summary_header">Benchmark by asset class</string>
+    <string name="representative_index_summary_footer">Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
+    <string name="representative_index_market">Global market: S&amp;P 500</string>
+    <string name="representative_index_kospi">Korea: KOSPI</string>
+    <string name="representative_index_crypto">Crypto: BTC</string>
+    <string name="representative_index_update_policy">Az aktuális KOSPI-pontszám a koreai normál piaci órák alatt óránként frissül. Az előzménygrafikonok csak a megerősített zárás után frissülnek.</string>
+    <string name="representative_index_info_accessibility">Show representative benchmarks</string>
+    <string name="kospi_status_final">Bezárás megerősítve</string>
+    <string name="kospi_status_intraday">Napközbeni becslés</string>
+    <string name="kospi_current_updated_at">Index frissítve</string>
 </resources>

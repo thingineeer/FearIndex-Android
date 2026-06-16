@@ -309,4 +309,17 @@
     <string name="force_update_title">புதுப்பிப்பு தேவை</string>
     <string name="force_update_message">புதிய பதிப்பு கிடைக்கிறது. செயலியை புதுப்பிக்கவும்.</string>
     <string name="force_update_button">புதுப்பி</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">Representative Benchmarks</string>
+    <string name="representative_index_summary_header">Benchmark by asset class</string>
+    <string name="representative_index_summary_footer">Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
+    <string name="representative_index_market">Global market: S&amp;P 500</string>
+    <string name="representative_index_kospi">Korea: KOSPI</string>
+    <string name="representative_index_crypto">Crypto: BTC</string>
+    <string name="representative_index_update_policy">கொரியாவின் வழக்கமான சந்தை நேரங்களில் தற்போதைய KOSPI மதிப்பெண் ஒவ்வொரு மணிநேரமும் புதுப்பிக்கப்படும். வரலாறு வரைபடங்கள் உறுதிசெய்யப்பட்ட முடிவிற்குப் பிறகே புதுப்பிக்கப்படும்.</string>
+    <string name="representative_index_info_accessibility">Show representative benchmarks</string>
+    <string name="kospi_status_final">மூடு உறுதி</string>
+    <string name="kospi_status_intraday">இன்ட்ராடே மதிப்பீடு</string>
+    <string name="kospi_current_updated_at">குறியீடு புதுப்பிக்கப்பட்டது</string>
 </resources>

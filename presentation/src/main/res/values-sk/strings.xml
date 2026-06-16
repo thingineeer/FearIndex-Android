@@ -306,4 +306,17 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="force_update_title">Aktualizácia Potrebná</string>
     <string name="force_update_message">Je dostupná nová verzia. Prosím aktualizujte aplikáciu.</string>
     <string name="force_update_button">Aktualizovať</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">Representative Benchmarks</string>
+    <string name="representative_index_summary_header">Benchmark by asset class</string>
+    <string name="representative_index_summary_footer">Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
+    <string name="representative_index_market">Global market: S&amp;P 500</string>
+    <string name="representative_index_kospi">Korea: KOSPI</string>
+    <string name="representative_index_crypto">Crypto: BTC</string>
+    <string name="representative_index_update_policy">Aktuálne skóre KOSPI sa počas bežných kórejských trhových hodín aktualizuje každú hodinu. Historické grafy sa aktualizujú až po potvrdenom zatvorení.</string>
+    <string name="representative_index_info_accessibility">Show representative benchmarks</string>
+    <string name="kospi_status_final">Zatvoriť potvrdené</string>
+    <string name="kospi_status_intraday">Vnútrodenný odhad</string>
+    <string name="kospi_current_updated_at">Index aktualizovaný</string>
 </resources>

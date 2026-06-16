@@ -323,4 +323,17 @@
     <string name="force_update_title">업데이트 필요</string>
     <string name="force_update_message">새로운 버전이 출시되었습니다. 앱을 업데이트해주세요.</string>
     <string name="force_update_button">업데이트</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">대표 기준</string>
+    <string name="representative_index_summary_header">자산군별 기준</string>
+    <string name="representative_index_summary_footer">점수 산출과 과거 비교에는 변동성, 수급, 모멘텀 등 보조 지표가 함께 반영될 수 있습니다.</string>
+    <string name="representative_index_market">글로벌 시장: S&amp;P 500</string>
+    <string name="representative_index_kospi">한국: KOSPI</string>
+    <string name="representative_index_crypto">암호화폐: BTC</string>
+    <string name="representative_index_update_policy">코스피 현재 지수는 한국 정규장 중 1시간마다 업데이트됩니다. 히스토리 차트는 종가 확정 후에만 업데이트됩니다.</string>
+    <string name="representative_index_info_accessibility">대표 기준 보기</string>
+    <string name="kospi_status_final">장마감 확정</string>
+    <string name="kospi_status_intraday">장중 추정</string>
+    <string name="kospi_current_updated_at">지수 업데이트</string>
 </resources>

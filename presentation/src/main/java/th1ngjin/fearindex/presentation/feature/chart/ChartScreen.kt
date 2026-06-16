@@ -14,11 +14,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -57,6 +62,8 @@ import kotlin.math.abs
 import androidx.hilt.navigation.compose.hiltViewModel
 import th1ngjin.fearindex.core.util.ChartCoordinates
 import th1ngjin.fearindex.core.util.ChartDataFilter
+import th1ngjin.fearindex.core.util.IndexTimestampFormatter
+import th1ngjin.fearindex.presentation.component.RepresentativeIndexInfoSheet
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexPeak
 import th1ngjin.fearindex.domain.entity.FearIndexType
@@ -259,6 +266,7 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
                         analytics.log(AnalyticsEvent.암호화폐차트조회(기간 = period.label))
                     },
                     indexType = selectedType,
+                    kospiIsFinal = uiState.kospiSnapshot?.isFinal,
                     insights = insightState.insights,
                     onInsightClick = insightViewModel::selectInsight,
                     onCardViewed = insightViewModel::logCardViewed,
@@ -295,6 +303,7 @@ private fun ChartLoadedContent(
     onMarketPeriodSelected: (ChartPeriod) -> Unit,
     onCryptoPeriodSelected: (CryptoChartPeriod) -> Unit,
     indexType: FearIndexType = FearIndexType.MARKET,
+    kospiIsFinal: Boolean? = null,
     insights: List<MarketInsight> = emptyList(),
     onInsightClick: (MarketInsight) -> Unit = {},
     onCardViewed: (MarketInsight) -> Unit = {},
@@ -309,7 +318,11 @@ private fun ChartLoadedContent(
     }
 
     // 3. Current Score Section
-    CurrentScoreCard(fearIndex = fearIndex)
+    CurrentScoreCard(
+        fearIndex = fearIndex,
+        indexType = indexType,
+        kospiIsFinal = kospiIsFinal,
+    )
 
     Spacer(modifier = Modifier.height(16.dp))
 
@@ -397,7 +410,11 @@ private fun chartMaxSamplePoints(days: Int): Int? = when {
 // MARK: - Current Score Card
 
 @Composable
-private fun CurrentScoreCard(fearIndex: FearIndex) {
+private fun CurrentScoreCard(
+    fearIndex: FearIndex,
+    indexType: FearIndexType = FearIndexType.MARKET,
+    kospiIsFinal: Boolean? = null,
+) {
     val score = fearIndex.roundedScore
     val scoreColor = fearScoreColor(score)
     val change = fearIndex.score - (fearIndex.previousClose ?: fearIndex.score)
@@ -412,6 +429,12 @@ private fun CurrentScoreCard(fearIndex: FearIndex) {
         else -> ""
     }
     val changeText = "${changePrefix}${"%.1f".format(kotlin.math.abs(change))}"
+
+    // 대표 기준 설명 시트 (iOS RepresentativeIndexInfoSheet 대칭)
+    var showInfoSheet by remember { mutableStateOf(false) }
+    if (showInfoSheet) {
+        RepresentativeIndexInfoSheet(onDismiss = { showInfoSheet = false })
+    }
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -430,11 +453,28 @@ private fun CurrentScoreCard(fearIndex: FearIndex) {
         ) {
             // Left: 현재 지수
             Column {
-                Text(
-                    text = stringResource(R.string.current_index_label),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+                // "현재 지수" 라벨 + ⓘ 버튼 (iOS currentScoreTitleRow 대칭)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(2.dp),
+                ) {
+                    Text(
+                        text = stringResource(R.string.current_index_label),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    IconButton(
+                        onClick = { showInfoSheet = true },
+                        modifier = Modifier.size(20.dp),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Info,
+                            contentDescription = stringResource(R.string.representative_index_info_accessibility),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.size(14.dp),
+                        )
+                    }
+                }
                 Spacer(modifier = Modifier.height(4.dp))
                 Row(
                     verticalAlignment = Alignment.Bottom,
@@ -451,6 +491,22 @@ private fun CurrentScoreCard(fearIndex: FearIndex) {
                         fontWeight = FontWeight.SemiBold,
                         color = scoreColor,
                         modifier = Modifier.padding(bottom = 4.dp),
+                    )
+                }
+                // KOSPI 장 상태줄 (iOS kospiCurrentStatusLine 대칭): KOSPI일 때만.
+                if (indexType == FearIndexType.KOSPI) {
+                    val statusText = stringResource(
+                        if (kospiIsFinal == true) R.string.kospi_status_final
+                        else R.string.kospi_status_intraday,
+                    )
+                    val updatedLabel = stringResource(R.string.kospi_current_updated_at)
+                    val updatedAt = IndexTimestampFormatter.format(fearIndex.timestamp, indexType)
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "$statusText · $updatedLabel: $updatedAt",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontSize = 11.sp,
                     )
                 }
             }

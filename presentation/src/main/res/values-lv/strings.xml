@@ -306,4 +306,17 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="force_update_title">Nepieciešams atjauninājums</string>
     <string name="force_update_message">Pieejama jauna versija. Lūdzu, atjauniniet lietotni.</string>
     <string name="force_update_button">Atjaunināt</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">Representative Benchmarks</string>
+    <string name="representative_index_summary_header">Benchmark by asset class</string>
+    <string name="representative_index_summary_footer">Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
+    <string name="representative_index_market">Global market: S&amp;P 500</string>
+    <string name="representative_index_kospi">Korea: KOSPI</string>
+    <string name="representative_index_crypto">Crypto: BTC</string>
+    <string name="representative_index_update_policy">Pašreizējais KOSPI rādītājs Korejas regulārajās tirgus stundās tiek atjaunināts reizi stundā. Vēstures grafiki tiek atjaunināti tikai pēc apstiprinātas slēgšanas.</string>
+    <string name="representative_index_info_accessibility">Show representative benchmarks</string>
+    <string name="kospi_status_final">Aizvērt apstiprināts</string>
+    <string name="kospi_status_intraday">Dienas aprēķins</string>
+    <string name="kospi_current_updated_at">Indekss atjaunināts</string>
 </resources>

@@ -306,4 +306,17 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="force_update_title">Sasisha Inahitajika</string>
     <string name="force_update_message">Toleo jipya linapatikana. Tafadhali sasisha programu.</string>
     <string name="force_update_button">Sasisha</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">Representative Benchmarks</string>
+    <string name="representative_index_summary_header">Benchmark by asset class</string>
+    <string name="representative_index_summary_footer">Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
+    <string name="representative_index_market">Global market: S&amp;P 500</string>
+    <string name="representative_index_kospi">Korea: KOSPI</string>
+    <string name="representative_index_crypto">Crypto: BTC</string>
+    <string name="representative_index_update_policy">Alama ya sasa ya KOSPI husasishwa kila saa wakati wa saa za kawaida za soko la Korea. Chati za historia husasishwa tu baada ya kufungwa kuthibitishwa.</string>
+    <string name="representative_index_info_accessibility">Show representative benchmarks</string>
+    <string name="kospi_status_final">Funga imethibitishwa</string>
+    <string name="kospi_status_intraday">Makadirio ya siku ya ndani</string>
+    <string name="kospi_current_updated_at">Fahirisi imesasishwa</string>
 </resources>

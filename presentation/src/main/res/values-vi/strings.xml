@@ -309,4 +309,17 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="force_update_title">Cần cập nhật</string>
     <string name="force_update_message">Có phiên bản mới. Vui lòng cập nhật ứng dụng.</string>
     <string name="force_update_button">Cập nhật</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">Representative Benchmarks</string>
+    <string name="representative_index_summary_header">Benchmark by asset class</string>
+    <string name="representative_index_summary_footer">Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
+    <string name="representative_index_market">Global market: S&amp;P 500</string>
+    <string name="representative_index_kospi">Korea: KOSPI</string>
+    <string name="representative_index_crypto">Crypto: BTC</string>
+    <string name="representative_index_update_policy">Điểm KOSPI hiện tại cập nhật mỗi giờ trong giờ giao dịch thường của Hàn Quốc. Biểu đồ lịch sử chỉ cập nhật sau khi đóng cửa được xác nhận.</string>
+    <string name="representative_index_info_accessibility">Show representative benchmarks</string>
+    <string name="kospi_status_final">Đã xác nhận đóng</string>
+    <string name="kospi_status_intraday">Ước tính trong ngày</string>
+    <string name="kospi_current_updated_at">Chỉ số đã cập nhật</string>
 </resources>

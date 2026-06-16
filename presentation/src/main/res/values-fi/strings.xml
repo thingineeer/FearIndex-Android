@@ -306,4 +306,17 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="force_update_title">Päivitys vaaditaan</string>
     <string name="force_update_message">Uusi versio on saatavilla. Päivitä sovellus.</string>
     <string name="force_update_button">Päivitä</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">Representative Benchmarks</string>
+    <string name="representative_index_summary_header">Benchmark by asset class</string>
+    <string name="representative_index_summary_footer">Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
+    <string name="representative_index_market">Global market: S&amp;P 500</string>
+    <string name="representative_index_kospi">Korea: KOSPI</string>
+    <string name="representative_index_crypto">Crypto: BTC</string>
+    <string name="representative_index_update_policy">Nykyinen KOSPI-pistemäärä päivittyy tunnin välein Korean normaalien markkinatuntien aikana. Historiakaaviot päivittyvät vasta vahvistetun sulun jälkeen.</string>
+    <string name="representative_index_info_accessibility">Show representative benchmarks</string>
+    <string name="kospi_status_final">Sulje vahvistettu</string>
+    <string name="kospi_status_intraday">Päivänsisäinen arvio</string>
+    <string name="kospi_current_updated_at">Indeksi päivitetty</string>
 </resources>

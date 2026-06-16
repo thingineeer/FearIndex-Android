@@ -88,8 +88,7 @@ import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
 import th1ngjin.fearindex.presentation.feature.similarevents.SimilarEventsViewModel
 import th1ngjin.fearindex.presentation.feature.vote.VoteViewModel
 import kotlinx.coroutines.delay
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
+import th1ngjin.fearindex.core.util.IndexTimestampFormatter
 
 // MARK: - Analytics Constants (사용자 UI에 노출되지 않는 Analytics 이벤트 파라미터용 한국어 상수)
 
@@ -560,17 +559,19 @@ private fun LoadedContent(
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    // 6. Timestamp
+    // 6. Timestamp (iOS timestampView 대칭: indexType별 타임존 + 라벨 분기)
+    val updatedAt = IndexTimestampFormatter.format(fearIndex.timestamp, indexType)
+    val timestampText = if (indexType == FearIndexType.KOSPI) {
+        "${stringResource(R.string.kospi_current_updated_at)}: $updatedAt"
+    } else {
+        stringResource(R.string.home_updated_at, updatedAt)
+    }
     Text(
-        text = stringResource(R.string.home_updated_at, timestampFormatter.format(fearIndex.timestamp)),
+        text = timestampText,
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         fontSize = 12.sp,
     )
-}
-
-private val timestampFormatter: DateTimeFormatter by lazy {
-    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(ZoneId.systemDefault())
 }
 
 // ---------------------------------------------------------------------------

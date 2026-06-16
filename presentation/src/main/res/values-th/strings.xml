@@ -309,4 +309,17 @@
     <string name="force_update_title">ต้องอัปเดต</string>
     <string name="force_update_message">มีเวอร์ชันใหม่แล้ว กรุณาอัปเดตแอป</string>
     <string name="force_update_button">อัปเดต</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">Representative Benchmarks</string>
+    <string name="representative_index_summary_header">Benchmark by asset class</string>
+    <string name="representative_index_summary_footer">Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
+    <string name="representative_index_market">Global market: S&amp;P 500</string>
+    <string name="representative_index_kospi">Korea: KOSPI</string>
+    <string name="representative_index_crypto">Crypto: BTC</string>
+    <string name="representative_index_update_policy">คะแนน KOSPI ปัจจุบันอัปเดตทุกชั่วโมงในช่วงเวลาทำการปกติของตลาดเกาหลี กราฟประวัติจะอัปเดตหลังจากยืนยันราคาปิดแล้วเท่านั้น</string>
+    <string name="representative_index_info_accessibility">Show representative benchmarks</string>
+    <string name="kospi_status_final">ยืนยันปิดแล้ว</string>
+    <string name="kospi_status_intraday">การประมาณการระหว่างวัน</string>
+    <string name="kospi_current_updated_at">อัปเดตดัชนี</string>
 </resources>

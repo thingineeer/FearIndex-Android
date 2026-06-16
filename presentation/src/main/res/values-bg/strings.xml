@@ -306,4 +306,17 @@
     <string name="force_update_title">Необходима актуализация</string>
     <string name="force_update_message">Налична е нова версия. Моля, актуализирайте приложението.</string>
     <string name="force_update_button">Актуализирай</string>
+
+    <!-- 대표 기준 / 현재 지수 상태 (iOS parity) -->
+    <string name="representative_index_title">Representative Benchmarks</string>
+    <string name="representative_index_summary_header">Benchmark by asset class</string>
+    <string name="representative_index_summary_footer">Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
+    <string name="representative_index_market">Global market: S&amp;P 500</string>
+    <string name="representative_index_kospi">Korea: KOSPI</string>
+    <string name="representative_index_crypto">Crypto: BTC</string>
+    <string name="representative_index_update_policy">Текущият резултат на KOSPI се обновява на всеки час по време на редовната борсова сесия в Корея. Историческите графики се обновяват само след потвърденото затваряне.</string>
+    <string name="representative_index_info_accessibility">Show representative benchmarks</string>
+    <string name="kospi_status_final">Затваряне потвърдено</string>
+    <string name="kospi_status_intraday">Оценка в рамките на деня</string>
+    <string name="kospi_current_updated_at">Индексът е обновен</string>
 </resources>
