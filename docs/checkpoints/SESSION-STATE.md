@@ -1,6 +1,36 @@
 # Session State - FearIndex-Android
 
 ## Date
+2026-06-16
+
+## ⚡ 최신 (2026-06-16): AdMob 배너 정책 + 광고 미노출 완전 해결 (v1.1.3)
+
+**근본 원인 3가지 모두 해결:**
+1. **광고 미노출 (배너+인터스티셜)** → Firebase Remote Config에 `ads_enabled` 등 광고 키가 **통째로 없었음** (코드 default=false). → firebase CLI로 6개 키 게시 (`ads_enabled=true`, `interstitial_ads_enabled=true`, `interstitial_session_cap=2`, `interstitial_cooldown_sec=180`, `kospi_interstitial_enabled=true`, `vote_enabled=true`). RC 버전 38.
+2. **배너 화면 미표시 (onAdLoaded는 뜨는데 안 보임)** → **실제 코드 버그**. inline adaptive 배너는 로드 전 `adSize.height=0`인데 컨테이너를 0으로 고정 → 광고 수신돼도 0높이. dynamic workflow(11 agents)가 `AdBanner.kt:77,84`로 정확히 지목. → `resolveBannerHeightDp()` + `onAdLoaded`에서 실제 높이 state 반영으로 fix. **에뮬레이터에서 배너 시각적 노출 확인 ✅**. v1.1.3(vc15) 배포.
+3. **`minimum_app_version=1.8.2`(iOS값) 무한 선택업데이트 alert** → RC에 Android 조건값 `1.1.3` 분기 게시.
+
+**AdMob 정책 (배너 "적용 불가"):**
+- 광고단위 6개 중 배너 5개 "적용 불가", KospiInterstitial(전면)만 "제한 없음". 원인 = 1.0.1 "광고 프레임 크기 변경" 정책 위반으로 **앱 전체 배너 게재 제한**.
+- **항소 버튼 없음** (정책센터 확인). "발견된 문제(이전 버전)" 타입 = 1.0.x 트래픽 0 수렴만이 유일 해법.
+- **새 광고단위 추가는 무의미** (새로 만들어도 "적용 불가").
+- 해법 = 강제 업데이트로 1.0.x → 1.1.3 전환 → 위반 트래픽 0 → AdMob 자동 해제 (수일).
+
+**점검 완료 (광고 차단 요인 전부 클리어):**
+- UMP/GDPR consent form: "활성화된 메시지 1개" ✅ (canRequestAds 정상)
+- 결제 계정: 애드센스(대한민국) 연결 ✅
+- release 배너 광고단위 ID 5개: AdMob 콘솔과 일치 ✅
+
+**다음 세션 TODO:**
+- **사용자 질문 "1.1.3 강제 업데이트로 광고 빠르게"**: 정책 해소엔 `force_update_minimum_version=1.1`(1.0.x만 강제)로 충분. 1.1.3 배너 버그 수정을 빨리 퍼뜨리려면 1.1.3 Play 전파 후 강제 기준 상향 검토 (단, 1.1.0~1.1.2 유저까지 강제됨 — 과할 수 있음). **1.1.3 Play Store 전파 확인 후 결정.**
+- 정책센터 "광고요청 7일"(현 1.7천) 2일 간격 모니터링 → 0 도달 시 카드 소멸 = 해제.
+- v1.1.3(vc15) Play 심사 통과/게시 확인.
+- ⚠️ workflow 미반영 결함 (1.1.4 후보): splash가 RC fetch 완료 아닌 delay(1500) 고정으로 닫혀 느린 네트워크 시 강제게이트 전 구버전 UI 노출 가능 / ForceUpdateView 터치 차단 미보장(pointerInput 없음). 정책 급하지 않으면 다음 버전에.
+- **RC default fail-open 유지** (force_update_minimum_version default="" 그대로). default를 1.1로 올리는 fail-closed 처방은 채택 금지 (미래 유저 영구 게이트 위험).
+
+---
+
+## (이전) Date
 2026-06-15
 
 ## Branch

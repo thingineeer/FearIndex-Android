@@ -13,9 +13,12 @@
   - 텍스트 토큰(Firebase/AdMob/AppCheck): `~/thingineeer-env/projects/fearindex-android/.env` (GitHub private repo, 다른 머신 공유)
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 
-## 최신 상태 (2026-06-15)
+## 최신 상태 (2026-06-16)
 
-- **현재 배포 기준**: Android `1.1.2` / `versionCode 14` / package `th1ngjin.fearindex`.
+- **현재 배포 기준**: Android `1.1.3` / `versionCode 15` / package `th1ngjin.fearindex`.
+- **광고 미노출 + AdMob 정책 완전 해결**: ① RC에 광고키(`ads_enabled` 등 6개) 통째 누락 → CLI 게시(v38) ② 배너 화면 미표시 = inline adaptive height 0 **실제 버그** → v1.1.3 fix(에뮬레이터 노출 확인) ③ 배너 "적용 불가" = 1.0.1 정책 위반, 새 광고단위·항소 불가, 강제 업데이트로 1.0.x 트래픽 0 수렴만이 답. UMP form/결제계정 정상 확인. 상세: @memory/bugs-fixed.md 21·22·23번.
+- **강제 업데이트 기준**: 정책 해소는 Android=1.1로 충분(설정됨). 1.1.3 Play 전파 후 1.2로 상향 검토(사용자 선택). RC default fail-open 유지.
+- **(이전) 1.1.2**: 강제 업데이트(Play In-App Update) 최초 도입.
 - **이번 작업**: **AdMob 광고 게재 제한(이전 1.0.1 광고 프레임 크기 정책 위반) 대응 → 강제 업데이트 구현**. iOS force-update 패턴 포팅(Remote Config `force_update_minimum_version` 판정) + Play In-App Update IMMEDIATE + ForceUpdateView + 45 locale. 상세: @memory/bugs-fixed.md 20번.
 - **Play Console**: production 트랙 `활성 · 출시 버전 1.1.2 검토 중 · 177개국 · 100% rollout`(`release_status: completed`). `fastlane production` HTTP 200 성공. app ID `4973920645070208584`.
 - **검증**: `./gradlew test` 통과. `UpdateCheckerTest` 9개 TDD 통과. `bundleRelease` 서명 성공.
