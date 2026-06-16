@@ -6,11 +6,11 @@
 ## Branch
 `feature/v1.2.0-banner-clip-fix`
 
-## ⚡ 최신 (2026-06-16): v1.2.0 production 배포 — 검토 전송 완료 (심사 대기)
+## ⚡ 최신 (2026-06-16): v1.2.0 게시·전파 완료 + 강제 업데이트 1.2 발동 완료 ✅
 
-**Android `1.2.0` / `versionCode 16` 을 production 100% rollout 으로 Play Console 검토 전송 완료.**
+**Android `1.2.0` / `versionCode 16` 이 Play Store에 게시·전파 완료** (공개 리스팅 version=1.2.0, Updated Jun 16 2026). **강제 업데이트 게이트 발동 완료.**
 
-핵심 한 줄: fastlane 으로 올렸지만 **관리형 게시(Managed Publishing)가 ON** 이라, ①검토 전송(이번엔 Chrome MCP로 클릭 완료) + ②심사 통과 후 **"게시" 버튼 수동 클릭**이 별도로 필요하다. 강제 업데이트 RC(`force_update_minimum_version` Android=1.1→1.2)는 **1.2.0 전파 확인 후**에 올린다 (지금 올리면 받을 버전이 없어 강제창에 막힘).
+핵심 한 줄: 1.2.0 전파를 공개 리스팅으로 확인한 뒤, Firebase Remote Config `force_update_minimum_version` [Android app users]=`1.1`→`1.2` 로 상향(firebase CLI deploy, 한 줄만 변경, 나머지 보존)했다. 이제 **1.0.x/1.1.x 전부 강제 업데이트**, 1.2.0은 통과(`compareMajorMinor([1,2,0],[1,2])=0`). AdMob 배너 "적용 불가"(1.0.1 정책위반)는 구버전 트래픽 0 수렴으로 자연 해소될 것.
 
 ---
 
@@ -27,10 +27,10 @@
 ## In Progress
 - 없음. v1.2.0 은 Google **심사 대기** 상태로 넘어갔고, 이 세션의 능동 작업은 종료됨.
 
-## Remaining (다음 세션 최우선 — 순서 중요)
-1. **Play Console 1.2.0 심사 통과 확인** ("검토 중인 변경사항" → 승인).
-2. **관리형 게시이므로 "게시" 버튼 수동 클릭** → 실제 production 출시 (심사 통과해도 자동 게시 안 됨).
-3. **Play Store 전파 확인** 후 → **Firebase Console Remote Config `force_update_minimum_version` [Android app users] = `1.2`** 설정 → 1.0.x/1.1.x 강제 업데이트 발동. (전파 전 상향 금지)
+## Remaining (다음 세션)
+1. ~~Play Console 1.2.0 심사 통과 + "게시"~~ → **완료** (Play Store 공개 리스팅 1.2.0 / Updated Jun 16 2026 확인).
+2. ~~RC `force_update_minimum_version` [Android] = `1.2`~~ → **완료** (firebase CLI deploy, 라이브 값 1.2 재확인).
+3. (선택) **AdMob 정책센터 상태 재확인** — 1.0.x/1.1.x 트래픽 감소 후 배너 "적용 불가" 해제 여부.
 4. (선택) `feature/v1.2.0-banner-clip-fix` 브랜치를 dev/release 머지 + 태그 — **사용자 명시 요청 시에만**.
 
 ## Key Files

@@ -387,6 +387,17 @@ type: project
   3. Play Store 전파 확인 후 **Firebase Console RC `force_update_minimum_version` [Android app users]=`1.2`** 설정 → 1.0.x/1.1.x 강제 업데이트 발동.
 - **교훈**: 이 앱은 **관리형 게시 ON**. fastlane production은 "업로드+검토전송 대기"까지만 자동, 실제 검토전송·게시는 Console 수동(또는 fastlane `changes_not_sent_for_review`/별도 publish 호출). 이전 v1.1.x "100% rollout completed" 기록은 검토전송까지 자동 처리된 것으로 보였으나, 이번엔 관리형 게시 대기가 명시적으로 잡힘 — 매 배포 시 Console "게시 개요"에서 대기 변경사항 확인 필수.
 
+## 2026-06-16 세션 (v1.2.0 강제 업데이트 발동)
+
+### 32. RC `force_update_minimum_version` [Android]=`1.1`→`1.2` 상향 — 1.0.x/1.1.x 강제 업데이트 발동
+
+- **맥락**: v1.2.0(vc16)이 Play Store에 게시·전파 완료. 31번에서 보류했던 "전파 후 RC 1.2 상향"을 실행.
+- **전파 검증 (선행 필수)**: 공개 Play Store 리스팅(`https://play.google.com/store/apps/details?id=th1ngjin.fearindex`) HTML 파싱 → semver 토큰 `1.2.0` + "Updated on Jun 16, 2026"(당일) 확인. **전파 전 RC 상향 시 1.0~1.1 유저가 받을 1.2.0이 없어 강제창에 막힘**(23번 원칙)이라, 반드시 전파를 먼저 확인하고 진행.
+- **변경**: firebase CLI `deploy --only remoteconfig`. `firebase remoteconfig:get -o`로 현재 템플릿(conditions+parameters 10개) 추출 → `force_update_minimum_version`.conditionalValues['Android app users'].value 만 `1.1`→`1.2` 수정 → diff 정확히 한 줄 확인 → `/tmp/rc_deploy/`(firebase.json+.firebaserc) 에서 deploy. **나머지 9개 파라미터/조건/default 전부 보존** (default 1.6.0 iOS, `minimum_app_version` Android 1.1.3, ads 키 6개).
+- **결과 (라이브 재확인)**: `force_update_minimum_version` default=1.6.0 / [Android]=`1.2`. `UpdateChecker` major.minor 비교로 **1.0.x·1.1.x 강제 / 1.2.0 통과**(`compareMajorMinor([1,2,0],[1,2])=0`).
+- **기대 효과**: AdMob 배너 "적용 불가"(1.0.1 정책위반, 23번)는 구버전 트래픽이 0으로 수렴하며 자연 해소. AdMob 정책센터 상태는 수일 후 재확인.
+- **교훈**: RC 강제 게이트 상향 순서 = (1) **새 버전 Play 전파를 공개 리스팅 등으로 먼저 검증** → (2) **한 줄만 변경하는 diff 확인** → (3) deploy 후 **라이브 값 재조회**. firebase CLI deploy는 전체 템플릿을 publish하므로 get→최소수정→deploy로 기존 파라미터 보존.
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
