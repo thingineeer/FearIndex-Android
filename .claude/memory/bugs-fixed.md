@@ -247,6 +247,47 @@ type: project
   - AdMob "발견된 문제(이전 버전)"는 **이미 수정된 버전이 있어도** 구버전 사용자가 남아있으면 제한 유지 → **강제 업데이트로 구버전 사용자를 0으로** 만드는 게 정공법.
   - 강제 업데이트 게이트는 코드만 배포하면 끝이 아니라 **Remote Config 트리거 값 설정이 필수**. 코드 default를 빈 값으로 두면 배포해도 아무도 차단 안 되므로 안전.
 
+## 2026-06-16 세션 (광고 미노출 + 배너 버그 + 정책 심화)
+
+### 21. 광고가 배너·인터스티셜 전부 미노출 → Remote Config에 광고 키 자체가 없었음
+
+- **증상**: release/debug 모두 배너·인터스티셜 광고가 하나도 안 뜸.
+- **진단**: firebase CLI(`firebase remoteconfig:get --project fear-index-a4f4b`)로 확인 → **`ads_enabled` 등 광고 관련 키가 Remote Config에 통째로 없음**. 파라미터는 force_update/minimum_app/review/storefronts 4개뿐.
+- **원인**: `RemoteConfigManager.defaultAdsConfig()`가 `adsEnabled=false`. Console에 키가 없으면 앱이 코드 default `false`를 사용 → `AdBanner.kt:63` 게이트 `!adsConfig.adsEnabled`에서 `return` → 빈 뷰.
+- **해결**: firebase CLI로 광고 키 6개 게시 (RC 버전 38). `firebase deploy --only remoteconfig`는 firebase.json 필요 → `/tmp/rc_deploy/`에 임시 firebase.json+.firebaserc+rc_template.json 구성 후 deploy.
+  - `ads_enabled=true`, `interstitial_ads_enabled=true`, `interstitial_session_cap=2`, `interstitial_cooldown_sec=180`, `kospi_interstitial_enabled=true`, `vote_enabled=true`
+- **교훈**: 코드에 RemoteConfig 키를 쓰면 **Firebase Console/CLI에도 반드시 키를 게시**해야 함. 키 없으면 코드 default(여기선 광고 off)로 조용히 동작. CLI(`remoteconfig:get`)가 Console 클릭보다 빠른 검증 수단.
+
+### 22. 배너 광고 화면 미표시 (onAdLoaded는 뜨는데 안 보임) → inline adaptive height 0 버그
+
+- **증상**: 21번 해결 후 logcat에 `배너광고노출`(onAdLoaded) 이벤트는 정상 발사 + 실패 0건인데 **화면에는 배너가 안 보임**.
+- **진단**: dynamic workflow(11 agents, 5축 검증+적대적 반박)가 `AdBanner.kt:77,84`로 정확히 지목.
+- **원인**: inline adaptive 배너는 **로드 전 `adSize.height`가 0**인데, 컨테이너 높이를 `.height(adSize.height.dp)`(line 77) + `getHeightInPixels`(line 84)로 **로드 전에 고정**하고 `onAdLoaded`에서 실제 높이로 갱신 안 함 → 광고 수신돼도 0높이/클립.
+- **해결** (v1.1.3 vc15, `feature/v1.1.3-ad-banner-height`):
+  1. `AdBannerLayout.kt`에 `resolveBannerHeightDp(estimatedHeightDp, loadedHeightDp)` 순수 함수 추가: 로드 전 추정/0이면 fallback(50dp), 로드 후 실제 높이 우선, MAX(120dp) 클램프. **TDD 5개 케이스**.
+  2. `AdBanner.kt`: `onAdLoaded`에서 실제 AdView 높이를 `mutableStateOf`로 끌어올려 컨테이너 height 갱신. layoutParams를 WRAP_CONTENT로.
+  3. `proguard-rules.pro`에 `com.google.android.play.core.*` keep 추가 (In-App Update release minify 안정성).
+- **검증**: 에뮬레이터 debug 빌드에서 "AdMob Adaptive Banner / Test Ad" **배너 시각적 노출 확인** (수정 전엔 같은 로그인데 안 보였음).
+- **교훈**: `onAdLoaded` = "광고 수신"이지 "화면 표시"가 아님. inline adaptive 배너는 반드시 로드 후 실제 높이를 컨테이너에 반영해야 함. logcat 노출 이벤트만 믿지 말고 실제 화면 캡처로 검증.
+
+### 23. AdMob 배너 "적용 불가" — 새 광고단위 추가는 무의미, 항소도 불가
+
+- **상황**: AdMob 광고단위 6개 중 **배너 5개 "적용 불가"**, KospiInterstitial(전면)만 "제한 없음". 사용자가 "새 광고단위 추가해야 하나?" 질문.
+- **진단**: 정책센터 = "광고 게재 제한됨", 정책 문제 "수정된 광고 코드: 광고 프레임 크기 변경", 샘플 버전 1.0.1.
+- **결론**:
+  1. **새 광고단위 추가 무의미** — 제한이 *광고단위*가 아니라 **앱 전체 배너 게재**에 걸림. 새로 만들어도 똑같이 "적용 불가". (전면광고가 "제한 없음"인 이유 = "프레임 크기" 정책은 배너에만 적용)
+  2. **항소 버튼 없음** — "발견된 문제(이전 버전)" 타입은 정책센터에 검토요청/항소 UI 없음. AdMob 안내문 자체가 "구버전 광고 재개 불가, 유저를 최신으로 유도하라"고 명시.
+  3. **유일 해법 = 1.0.x 트래픽 0 수렴** → 강제 업데이트(이미 v1.1.2부터 적용). 1.0.x 유저가 빠지면 AdMob 자동 해제 (수일).
+- **점검 완료 (광고 차단 요인 전부 클리어)**: UMP/GDPR consent form "활성화된 메시지 1개" ✅ (canRequestAds 정상) / 결제계정 애드센스(대한민국) ✅ / release 배너 광고단위 ID 5개 콘솔 일치 ✅.
+- **교훈**: AdMob "적용 불가"는 광고단위 문제가 아니라 앱/계정 레벨 신호. "발견된 문제(이전버전)"는 트래픽 전환만이 답. 새 단위 생성·항소로 시간 낭비 금지.
+
+### (참고) 강제 업데이트 기준 정책
+
+- **정책 해소만**: `force_update_minimum_version` Android=`1.1` 로 충분 (1.0.x만 강제, 위반 트래픽 제거).
+- **배너버그(1.1.3) 빠른 전파**: 1.1.3 Play 전파 확인 후 Android=`1.2`로 상향 → 1.1.0~1.1.2도 강제. (사용자 선택, 2026-06-16)
+- **순서 중요**: 1.1.3이 Play Store에 전파되기 전에 강제 기준을 올리면 In-App Update가 받을 새 버전이 없어 스토어 폴백됨.
+- **RC default는 fail-open 유지**: `force_update_minimum_version` default=`""`. default를 `1.1`로 올리는 fail-closed 처방은 **채택 금지** (미래 minor 출시 후 최신 유저를 영구 게이트에 가둘 위험, iOS parity 깨짐).
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
