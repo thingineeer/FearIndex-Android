@@ -288,6 +288,43 @@ type: project
 - **순서 중요**: 1.1.3이 Play Store에 전파되기 전에 강제 기준을 올리면 In-App Update가 받을 새 버전이 없어 스토어 폴백됨.
 - **RC default는 fail-open 유지**: `force_update_minimum_version` default=`""`. default를 `1.1`로 올리는 fail-closed 처방은 **채택 금지** (미래 minor 출시 후 최신 유저를 영구 게이트에 가둘 위험, iOS parity 깨짐).
 
+## 2026-06-16 세션 (v1.2.0 — peak 마커 + 공유 링크 + SimilarEvents 점수)
+
+브랜치: `feature/v1.2.0-banner-clip-fix` (v1.2.0 / versionCode 16). 4개 커밋. 모두 iOS parity 성격이라 현재 브랜치에 함께 커밋 (사용자 선택).
+
+### 24. 차트 고점/저점(peak) 마커 추가 — iOS parity, TDD
+
+- **요청**: "그 시기의 고점과 저점" — iOS 차트 peak 마커를 Android 포팅.
+- **iOS SSOT**: `Domain/Entities/FearIndexPeak.swift` + `Domain/UseCases/ComputeFearIndexPeaks.swift` + `Presentation/.../SwiftUIChartView.swift`(peakMarks). Android엔 셋 다 없었음.
+- **구현** (TDD):
+  1. `domain/.../entity/FearIndexPeak.kt`: kind(HIGH/LOW)/score/date/index.
+  2. `domain/.../usecase/ComputeFearIndexPeaks.kt`: history 1회 순회 min/max, **동점 시 `>=`/`<=`로 최근(뒤) 채택**, 빈 배열 null, 단일 포인트 high==low. `fun interface FearIndexPeaksComputing` + `operator fun invoke` → `Pair<high,low>?`. iOS 11개 테스트 케이스 포팅 (`ComputeFearIndexPeaksTest`).
+  3. `ChartScreen.kt` Canvas: `drawPeakMarkers` — 빨간 점(`PeakMarkerColor=0xFFFF3B30`) + 점수 라벨. high 위/low 아래, score>85(high)/score<10(low) 시 좌우 배치. 단일 포인트는 high만. `peakScoreText`: 정수 "82" / 소수 "2.9".
+- **핵심 함정 (iOS #19 회귀와 동일)**: Android `ChartDataFilter.sample`이 **고정 step 샘플링**이라 원본 min/max index가 누락되면 peak 마커가 라인 위 허공에 뜸. 2Y/3Y/5Y(maxSamplePoints 260/390/520)만 샘플링, 3M/6M/1Y는 null이라 무관.
+  - **해결**: `ChartDataFilter.samplePeakPreserving`로 교체 — 시작/끝/min/max 4 anchor + 각 extremum 좌우 1포인트 보존 후 균등 step으로 채움. iOS `sample`(#19 fix)과 1:1. **TDD 10개 테스트**(`SamplePeakPreservingTest`): min/max 포함, 동점 최근 보존, 정확히 maxPoints개, 정렬, 중복 없음.
+  - **1px 일치 강제**: `ChartCoordinates`(core/util) 순수 함수로 x=`width*index/(count-1)`, y=`height*(1-score/100)` 추출 → 라인/peak/선택점이 **동일 수식 공유**. **TDD 11개**(`ChartCoordinatesTest`).
+- **검증**: 에뮬레이터+실기기(Galaxy S23) release 빌드에서 시각 확인 — 고점 71.2(위)/저점 5.8(아래) 빨간 점이 라인 위 정확히, 암호화폐는 정수 50/8.
+- **교훈**: 차트 마커는 반드시 라인과 **같은 좌표 변환 함수** + **peak-preserving 샘플링**을 써야 1px 어긋남 없음. `onAdLoaded`처럼 "값은 맞는데 화면 어긋남"은 실제 캡처로만 검증 가능.
+
+### 25. 홈 공유 버튼 → Play 스토어 링크 (TDD)
+
+- **요청**: 공포탐욕지수 우측 상단 공유버튼이 Play 스토어 링크 공유 (앱 있으면 앱으로, 없으면 설치).
+- **이전**: `ShareUrlBuilder.build()`가 웹앱 URL(`fear-index-a4f4b.web.app/?score=...`) 공유.
+- **변경**: `ShareUrlBuilder.playStoreUrl()` = `https://play.google.com/store/apps/details?id=th1ngjin.fearindex`. **항상 production 패키지**(debug suffix 미포함) — debug 빌드에서 공유해도 스토어엔 prod만 존재. Android 표준 동작으로 앱 있으면 앱/없으면 설치 페이지. 안 쓰이게 된 `shareType` 파라미터 제거. **TDD 4개 테스트**.
+- **검증**: 에뮬레이터 공유 시트 — "Today's Fear & Greed Index: 41 (Fear)\n\n...app.\nhttps://play.google.com/store/apps/details?id=th1ngjin.fearindex" 정상.
+- **주의**: ShareUrlBuilder.build 사용처는 HomeScreen 한 곳뿐이라 안전하게 교체. 공유 본문(`share_message_template`)은 점수/등급 그대로 유지.
+
+### 26. SimilarEvents 헤더 점수를 게이지와 일치 (iOS parity)
+
+- **증상**: SimilarEvents 카드 헤더 점수가 서버 raw(`result.currentScore`, 갱신 지연)라 게이지/비교카드(`fearIndex.roundedScore`)와 어긋남.
+- **해결**: `SimilarEventsCard(displayedScore: Int)` 파라미터 추가 → HomeScreen에서 `score`(=roundedScore) 주입. iOS `SimilarEventsCardView.displayedScore` (`fearIndex.score.roundedScore`) 대칭.
+
+### (참고) 실기기/에뮬레이터 광고 차이
+
+- **에뮬레이터**: release 빌드(프로덕션 광고단위)여도 AdMob이 "Test Ad" 라벨 광고 표시 — 정상.
+- **실기기**: 진짜 AdMob 광고 노출(예: 대출 광고). release 빌드 = minify+프로덕션 서명(SHA-1 `CE:08:B4:...` 일치 확인)+프로덕션 광고.
+- ⚠️ 실기기엔 release(`th1ngjin.fearindex`)와 debug(`.debug`)가 동시 설치 가능 — recents에서 섞임. release 검증 시 `monkey -p th1ngjin.fearindex`로 명시 실행할 것.
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
