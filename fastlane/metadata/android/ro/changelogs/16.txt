@@ -1,0 +1,1 @@
+Îmbunătățiri generale de performanță și stabilitate.

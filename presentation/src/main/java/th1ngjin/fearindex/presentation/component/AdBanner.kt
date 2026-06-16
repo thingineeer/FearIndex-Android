@@ -12,7 +12,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -77,7 +76,6 @@ fun AdBanner(
         // 고정하면 광고가 수신돼도 0높이/클립으로 안 보인다. onAdLoaded 후 실제 AdView 높이를
         // state로 끌어올려 컨테이너 높이를 갱신한다. (배너 미표시 버그 수정)
         var loadedHeightDp by remember(adUnitId, adSize) { mutableStateOf<Int?>(null) }
-        val density = LocalDensity.current
         val containerHeightDp = resolveBannerHeightDp(
             estimatedHeightDp = adSize.height,
             loadedHeightDp = loadedHeightDp,
@@ -98,10 +96,13 @@ fun AdBanner(
                         )
                         adListener = object : AdListener() {
                             override fun onAdLoaded() {
-                                // 실제 렌더된 AdView 높이를 dp로 환산해 컨테이너에 반영.
-                                val measuredPx = height.takeIf { it > 0 }
-                                    ?: adSize.getHeightInPixels(ctx)
-                                loadedHeightDp = with(density) { measuredPx.toDp().value.toInt() }
+                                // iOS(AdBannerView.swift) 와 동일: 로드 후 SDK가 확정한
+                                // adSize 의 실제 높이를 clamp 없이 그대로 컨테이너에 반영.
+                                // (렌더 height 는 레이아웃 타이밍에 부정확 → adSize 사용)
+                                val loadedDp = this@apply.adSize?.height
+                                    ?.takeIf { it > 0 }
+                                    ?: adSize.height
+                                loadedHeightDp = loadedDp
                                 analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
                             }
 

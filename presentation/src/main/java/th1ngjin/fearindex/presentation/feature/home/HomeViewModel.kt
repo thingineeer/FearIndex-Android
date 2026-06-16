@@ -20,7 +20,7 @@ import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexUseCase
-import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
+import th1ngjin.fearindex.domain.usecase.GetMarketIndicesDetailUseCase
 import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
@@ -65,7 +65,7 @@ class HomeViewModel @Inject constructor(
     private val getCryptoFearIndexHistory: GetCryptoFearIndexHistoryUseCase,
     private val getKospiFearIndex: GetKospiFearIndexUseCase,
     private val getKospiFearIndexHistory: GetKospiFearIndexHistoryUseCase,
-    private val getMarketIndices: GetMarketIndicesUseCase,
+    private val getMarketIndices: GetMarketIndicesDetailUseCase,
     private val analytics: AnalyticsManager,
 ) : ViewModel() {
     companion object {

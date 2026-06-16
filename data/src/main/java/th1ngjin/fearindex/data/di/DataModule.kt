@@ -11,6 +11,15 @@ import th1ngjin.fearindex.data.repository.CryptoFearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.FearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.KospiFearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.MarketIndexRepositoryImpl
+import th1ngjin.fearindex.data.repository.MarketDetailRepositoryImpl
+import th1ngjin.fearindex.data.datasource.YahooChartApi
+import th1ngjin.fearindex.data.datasource.NaverFinanceApi
+import th1ngjin.fearindex.data.datasource.CoinGeckoApi
+import th1ngjin.fearindex.data.datasource.ExchangeRateApi
+import th1ngjin.fearindex.domain.repository.MarketDetailRepository
+import th1ngjin.fearindex.domain.usecase.GetMarketIndicesDetailUseCase
+import th1ngjin.fearindex.domain.usecase.GetCryptoPricesUseCase
+import th1ngjin.fearindex.domain.usecase.GetUsdKrwRateUseCase
 import th1ngjin.fearindex.data.repository.ReturnDataRepositoryImpl
 import th1ngjin.fearindex.data.repository.SimilarEventsRepositoryImpl
 import th1ngjin.fearindex.data.repository.StuckCounterRepositoryImpl
@@ -76,6 +85,10 @@ abstract class DataBindModule {
     @Binds
     @Singleton
     abstract fun bindMarketIndexRepository(impl: MarketIndexRepositoryImpl): MarketIndexRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindMarketDetailRepository(impl: MarketDetailRepositoryImpl): MarketDetailRepository
 
     @Binds
     @Singleton
@@ -157,6 +170,78 @@ object DataModule {
             .build()
             .create(MarketIndexApi::class.java)
     }
+
+    // 시장 상세: Yahoo/Naver 는 브라우저 User-Agent 가 필요 (봇 차단 방지, iOS/Watch parity).
+    @Provides
+    @Singleton
+    @Named("market")
+    fun provideMarketOkHttpClient(baseClient: OkHttpClient): OkHttpClient {
+        return baseClient.newBuilder()
+            .addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                    .header("User-Agent", "Mozilla/5.0")
+                    .header("Accept", "application/json")
+                    .build()
+                chain.proceed(request)
+            }
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideYahooChartApi(@Named("market") client: OkHttpClient): YahooChartApi =
+        Retrofit.Builder()
+            .baseUrl("https://query1.finance.yahoo.com/")
+            .client(client)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(YahooChartApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideNaverFinanceApi(@Named("market") client: OkHttpClient): NaverFinanceApi =
+        Retrofit.Builder()
+            .baseUrl("https://m.stock.naver.com/")
+            .client(client)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(NaverFinanceApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCoinGeckoApi(client: OkHttpClient): CoinGeckoApi =
+        Retrofit.Builder()
+            .baseUrl("https://api.coingecko.com/")
+            .client(client)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(CoinGeckoApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideExchangeRateApi(client: OkHttpClient): ExchangeRateApi =
+        Retrofit.Builder()
+            // @Url full-URL 만 쓰므로 baseUrl 은 placeholder.
+            .baseUrl("https://latest.currency-api.pages.dev/")
+            .client(client)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(ExchangeRateApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideGetMarketIndicesDetailUseCase(repository: MarketDetailRepository): GetMarketIndicesDetailUseCase =
+        GetMarketIndicesDetailUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetCryptoPricesUseCase(repository: MarketDetailRepository): GetCryptoPricesUseCase =
+        GetCryptoPricesUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetUsdKrwRateUseCase(repository: MarketDetailRepository): GetUsdKrwRateUseCase =
+        GetUsdKrwRateUseCase(repository)
 
     @Provides
     @Singleton

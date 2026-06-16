@@ -34,7 +34,7 @@ import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexUseCase
-import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
+import th1ngjin.fearindex.domain.usecase.GetMarketIndicesDetailUseCase
 import java.io.IOException
 import java.time.Instant
 
@@ -49,7 +49,7 @@ class HomeViewModelTest {
     private val getCryptoFearIndexHistory = mockk<GetCryptoFearIndexHistoryUseCase>()
     private val getKospiFearIndex = mockk<GetKospiFearIndexUseCase>()
     private val getKospiFearIndexHistory = mockk<GetKospiFearIndexHistoryUseCase>()
-    private val getMarketIndices = mockk<GetMarketIndicesUseCase>()
+    private val getMarketIndices = mockk<GetMarketIndicesDetailUseCase>()
     private val analytics = mockk<AnalyticsManager>(relaxed = true)
 
     @Before
@@ -349,7 +349,7 @@ class HomeViewModelTest {
     @Test
     fun `marketIndices 로딩 성공`() = runTest {
         val indices = listOf(
-            MarketIndex(symbol = "^GSPC", name = "S&P 500", price = 5200.0, changePercent = 1.2, isPositive = true),
+            MarketIndex(symbol = "^GSPC", name = "S&P 500", price = 5200.0, change = 62.0, changePercent = 1.2),
         )
         stubAllSuccess(marketIndices = indices)
 

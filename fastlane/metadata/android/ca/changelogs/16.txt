@@ -1,0 +1,1 @@
+Millores generals de rendiment i estabilitat.

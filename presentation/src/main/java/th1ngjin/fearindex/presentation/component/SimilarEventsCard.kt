@@ -47,6 +47,9 @@ private fun assetLabel(indexType: FearIndexType): String = when (indexType) {
 fun SimilarEventsCard(
     result: SimilarEventsResult,
     indexType: FearIndexType,
+    /** 게이지와 일치하는 반올림 점수. 서버 raw(result.currentScore)는 갱신 지연이 있어
+     *  헤더에는 실시간 게이지 점수를 표시한다 (iOS SimilarEventsCardView.displayedScore 대칭). */
+    displayedScore: Int,
     modifier: Modifier = Modifier,
 ) {
     val pinned = result.matches.filter { it.isPinned }
@@ -73,7 +76,7 @@ fun SimilarEventsCard(
                 fontWeight = FontWeight.Bold,
             )
             Text(
-                text = stringResource(R.string.insight_similar_events_score_label, result.currentScore),
+                text = stringResource(R.string.insight_similar_events_score_label, displayedScore),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
