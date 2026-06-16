@@ -1,0 +1,1 @@
+Cải thiện độ ổn định và sửa lỗi. Vui lòng cập nhật lên phiên bản mới nhất.
