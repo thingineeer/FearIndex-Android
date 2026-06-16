@@ -224,6 +224,29 @@ type: project
   - targetSdk 올릴 때마다 deprecated API 경고 체크 + themes.xml 의 시스템 bar 관련 속성 정리.
   - `LAYOUT_IN_DISPLAY_CUTOUT_MODE_*` 같은 라이브러리 내부 호출 경고는 우리 코드 변경으로 못 고침 — 라이브러리 BoM 업그레이드 시 자연 해결.
 
+## 2026-06-15 세션
+
+### 20. AdMob 광고 게재 제한 (이전 1.0.1 버전 광고 프레임 크기 정책 위반) → 강제 업데이트로 대응
+
+- **증상**: AdMob 정책 센터(`https://admob.google.com/v2/policycenter/issues/details/app/1/th1ngjin.fearindex`)에서 **"광고 게재 제한됨"** (광고 요청 1.7천/7일, 신고일 2026-06-09). 문제 유형: `발견된 문제(이전 버전)` — 문제 샘플 버전 **`1.0.1`**, 정책 문제 = **"수정된 광고 코드: 광고 프레임 크기 변경"**.
+- **원인**: 구버전(1.0.x)의 inline adaptive banner 프레임 크기 변경이 AdMob 정책 위반으로 판정됨. **이미 1.1.1(edge-ads-hotfix)에서 배너 높이 constrain으로 수정 완료** (bugs-fixed 19번 + SESSION-STATE 참조). AdMob 안내문 그대로: *"이전 버전에서 광고 재개 불가. 문제를 해결하고 사용자를 최신 버전으로 업데이트하도록 유도하라."*
+- **해결** (v1.1.2, versionCode 14, `feature/v1.1.2-force-update`):
+  1. **iOS force-update 패턴 포팅** (iOS가 SSOT — `FearIndex-iOS/.../RemoteConfigManager.swift` checkForUpdate(), `AppRoot.swift` ForceUpdateView):
+     - `core/.../update/UpdateChecker.kt` + `UpdateStatus.kt`: major.minor 비교(1.0.x < 1.1 → 강제), 전체버전 비교(선택), 수치 비교(1.10>1.9), 비정상 입력 안전 처리. **TDD 9개 케이스** (`UpdateCheckerTest.kt`).
+     - `RemoteConfigManager`에 iOS 동일 키 추가: `force_update_minimum_version`(major.minor), `minimum_app_version`(전체). **코드 default는 빈 문자열 = 아무도 차단 안 함** → 실제 트리거는 Firebase Console에서 `force_update_minimum_version=1.1` 설정.
+  2. **Play In-App Update IMMEDIATE** (`com.google.android.play:app-update(-ktx):2.1.0`): `app/.../update/InAppUpdateManager.kt`. Store에 새 버전 없으면 `market://details?id=th1ngjin.fearindex` 폴백. onResume에서 진행 중 업데이트 재개.
+  3. `presentation/.../feature/update/ForceUpdateView.kt`: iOS 레이아웃 포팅, **BackHandler로 dismiss 차단**.
+  4. `MainActivity`: RemoteConfig fetch → `checkForUpdate(BuildConfig.VERSION_NAME.substringBefore("-"))` → 강제 시 ForceUpdateView + IMMEDIATE 플로우. debug suffix(`-debug`) 제거 후 비교.
+  5. **force_update_title/message/button 45 locale** (iOS `force.update.*` 값 동일, apostrophe/ampersand escape).
+- **배포**: `bundle exec fastlane production` → **HTTP 200 성공**. Play Console production 트랙 = **"활성 · 출시 버전 1.1.2 검토 중 · 국가/지역 177개 · 100% rollout"** (`release_status: completed`). 심사 통과 시 자동 게시.
+- **남은 작업 (다음 세션)**:
+  1. **Firebase Console Remote Config에서 `force_update_minimum_version=1.1` 설정** ← 이게 안 되면 강제 업데이트가 트리거되지 않음. 1.1.2 심사 통과/게시 후 설정해야 1.0.x 유저에게 강제 업데이트 발동.
+  2. 1.1.2 심사 통과 확인 (production 트랙 `검토 중` → `게시 완료`).
+  3. AdMob 정책 센터 상태 재확인 — 1.0.x 사용자가 1.1.2+로 빠지면 정책 위반 자연 해소.
+- **교훈**:
+  - AdMob "발견된 문제(이전 버전)"는 **이미 수정된 버전이 있어도** 구버전 사용자가 남아있으면 제한 유지 → **강제 업데이트로 구버전 사용자를 0으로** 만드는 게 정공법.
+  - 강제 업데이트 게이트는 코드만 배포하면 끝이 아니라 **Remote Config 트리거 값 설정이 필수**. 코드 default를 빈 값으로 두면 배포해도 아무도 차단 안 되므로 안전.
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
