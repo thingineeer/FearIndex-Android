@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -70,21 +73,35 @@ fun AdBanner(
             AdSize.getInlineAdaptiveBannerAdSize(widthDp, bannerAdMaxHeightDp())
         }
 
+        // 인라인 어댑티브 배너는 로드 전 adSize.height가 0일 수 있어, 컨테이너를 그 값으로
+        // 고정하면 광고가 수신돼도 0높이/클립으로 안 보인다. onAdLoaded 후 실제 AdView 높이를
+        // state로 끌어올려 컨테이너 높이를 갱신한다. (배너 미표시 버그 수정)
+        var loadedHeightDp by remember(adUnitId, adSize) { mutableStateOf<Int?>(null) }
+        val density = LocalDensity.current
+        val containerHeightDp = resolveBannerHeightDp(
+            estimatedHeightDp = adSize.height,
+            loadedHeightDp = loadedHeightDp,
+        )
+
         key(adUnitId, adSize) {
             AndroidView(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(adSize.height.dp),
+                    .height(containerHeightDp.dp),
                 factory = { ctx ->
                     AdView(ctx).apply {
                         setAdSize(adSize)
                         this.adUnitId = adUnitId
                         layoutParams = ViewGroup.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
-                            adSize.getHeightInPixels(ctx),
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
                         )
                         adListener = object : AdListener() {
                             override fun onAdLoaded() {
+                                // 실제 렌더된 AdView 높이를 dp로 환산해 컨테이너에 반영.
+                                val measuredPx = height.takeIf { it > 0 }
+                                    ?: adSize.getHeightInPixels(ctx)
+                                loadedHeightDp = with(density) { measuredPx.toDp().value.toInt() }
                                 analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
                             }
 
