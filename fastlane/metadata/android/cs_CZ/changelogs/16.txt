@@ -1,0 +1,1 @@
+Celkové vylepšení výkonu a stability.
