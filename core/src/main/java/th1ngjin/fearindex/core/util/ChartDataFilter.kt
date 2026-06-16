@@ -43,7 +43,7 @@ object ChartDataFilter {
 
         val sorted = filtered.sortedBy { it.timestamp }
 
-        return sample(sorted, maxSamplePoints)
+        return samplePeakPreserving(sorted, maxSamplePoints)
     }
 
     /**
@@ -130,22 +130,74 @@ object ChartDataFilter {
         return sorted.takeLast(count)
     }
 
-    /** 데이터 샘플링 (성능 최적화). */
-    private fun sample(data: List<FearIndex>, maxPoints: Int?): List<FearIndex> {
+    /**
+     * 데이터 샘플링 — **peak-preserving**. 원본 min/max + 좌우 이웃 포인트를
+     * 항상 포함시켜 라인과 고점/저점 마커가 시각적으로 정확히(1px 오차 없이) 일치하도록 보장한다.
+     *
+     * 고정 step 샘플링은 원본 peak index 가 시퀀스에 없으면 마커가 라인 위 허공에 뜨는
+     * 버그를 유발 → extrema 를 anchor 로 고정. (iOS #19 회귀 fix 와 1:1 대응)
+     *
+     * @return min/max anchor 를 포함하고 timestamp 오름차순 정렬된, 정확히 maxPoints 개의 샘플.
+     */
+    internal fun samplePeakPreserving(data: List<FearIndex>, maxPoints: Int?): List<FearIndex> {
         if (maxPoints == null) return data
         if (data.size <= maxPoints) return data
 
+        val (minIdx, maxIdx) = extremaIndices(data)
+        val selected = collectAnchors(data, minIdx, maxIdx)
+        expandNeighbors(selected, data, minIdx, maxIdx)
+        fillRemainingSamples(selected, data, maxPoints)
+        return selected.sorted().map { data[it] }
+    }
+
+    /** 시작/끝/min/max 4 anchor 를 수집. */
+    private fun collectAnchors(data: List<FearIndex>, minIdx: Int, maxIdx: Int): MutableSet<Int> {
+        return mutableSetOf(0, data.size - 1, minIdx, maxIdx)
+    }
+
+    /** 각 extremum 좌우 1 포인트씩 추가 (peak 주변 세그먼트 밀도 유지). */
+    private fun expandNeighbors(
+        selected: MutableSet<Int>,
+        data: List<FearIndex>,
+        minIdx: Int,
+        maxIdx: Int,
+    ) {
+        for (neighbor in intArrayOf(minIdx - 1, minIdx + 1, maxIdx - 1, maxIdx + 1)) {
+            if (neighbor in data.indices) selected.add(neighbor)
+        }
+    }
+
+    /**
+     * 잔여 슬롯을 균등 step 으로 채움. anchor 와 충돌하면 자연스럽게 dedup.
+     * 그래도 부족하면 앞에서부터 채워 정확히 maxPoints 개를 보장.
+     */
+    private fun fillRemainingSamples(
+        selected: MutableSet<Int>,
+        data: List<FearIndex>,
+        maxPoints: Int,
+    ) {
+        if (selected.size >= maxPoints) return
         val step = (data.size - 1).toDouble() / (maxPoints - 1).toDouble()
-        val sampled = MutableList(maxPoints) { i ->
-            data[(i * step).toInt()]
+        var i = 0
+        while (i < maxPoints && selected.size < maxPoints) {
+            selected.add((i * step).let { Math.round(it).toInt() })
+            i++
         }
-
-        // 마지막 데이터 포함 보장
-        val last = data.last()
-        if (sampled.last().timestamp != last.timestamp) {
-            sampled[sampled.size - 1] = last
+        var index = 0
+        while (selected.size < maxPoints && index < data.size) {
+            selected.add(index)
+            index++
         }
+    }
 
-        return sampled
+    /** 원본에서 (최저 score index, 최고 score index). 동점 시 최근(뒤) 우선. */
+    private fun extremaIndices(data: List<FearIndex>): Pair<Int, Int> {
+        var minIdx = 0
+        var maxIdx = 0
+        for ((i, item) in data.withIndex()) {
+            if (item.score >= data[maxIdx].score) maxIdx = i
+            if (item.score <= data[minIdx].score) minIdx = i
+        }
+        return minIdx to maxIdx
     }
 }

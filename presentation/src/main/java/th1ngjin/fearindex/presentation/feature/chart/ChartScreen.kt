@@ -55,10 +55,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlin.math.abs
 import androidx.hilt.navigation.compose.hiltViewModel
+import th1ngjin.fearindex.core.util.ChartCoordinates
 import th1ngjin.fearindex.core.util.ChartDataFilter
 import th1ngjin.fearindex.domain.entity.FearIndex
+import th1ngjin.fearindex.domain.entity.FearIndexPeak
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.MarketInsight
+import th1ngjin.fearindex.domain.usecase.ComputeFearIndexPeaks
 import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import dagger.hilt.android.EntryPointAccessors
@@ -123,6 +126,9 @@ private val ChartAreaTopColor = Color(0xFFFF9800).copy(alpha = 0.5f)
 private val ChartAreaBottomColor = Color(0xFFFF9800).copy(alpha = 0f)
 private val GridLineColor = Color.Gray.copy(alpha = 0.3f)
 private val SelectedPeriodBackground = Color(0xFF1976D2)
+
+/** 고점/저점 peak 마커 색 (iOS SwiftUIChartView.peakMarkerColor = .red 대칭). */
+private val PeakMarkerColor = Color(0xFFFF3B30)
 
 // MARK: - Chart Screen
 
@@ -498,6 +504,10 @@ private fun ChartCard(
     var selectedIndex by remember(data) { mutableStateOf<Int?>(null) }
     var touchX by remember(data) { mutableStateOf(0f) }
 
+    // 고점/저점 peak 계산 — data 변경 시에만 재계산 (iOS cachedPeaks 대칭).
+    // data 는 이미 period 필터링된 차트 데이터라 라인과 index 가 정확히 일치한다.
+    val peaks = remember(data) { ComputeFearIndexPeaks().invoke(data) }
+
     // 기간이 바뀌면 선택 해제
     LaunchedEffect(selectedMarketPeriod, selectedCryptoPeriod, isCrypto) {
         selectedIndex = null
@@ -554,6 +564,17 @@ private fun ChartCard(
                 selectedCryptoPeriod = selectedCryptoPeriod,
             )
 
+            // 고점/저점 peak 마커 (빨간 점 + 점수 라벨). 선택 인디케이터보다 먼저 그려
+            // 드래그 툴팁이 항상 위에 오도록 한다.
+            if (peaks != null) {
+                drawPeakMarkers(
+                    data = data,
+                    high = peaks.first,
+                    low = peaks.second,
+                    textMeasurer = textMeasurer,
+                )
+            }
+
             // 선택 인디케이터 (수직선 + 점 + 툴팁)
             val sel = selectedIndex
             if (sel != null && sel in data.indices) {
@@ -585,6 +606,101 @@ private suspend fun androidx.compose.ui.input.pointer.AwaitPointerEventScope.awa
         null
     }
 
+// MARK: - Peak Markers (고점/저점)
+
+/**
+ * 차트 위 고점/저점 마커. 빨간 점 + 점수 라벨.
+ * iOS `SwiftUIChartView.peakMarks` 와 시각 대칭:
+ * - high == low (단일 포인트) 인 경우 `.high` 만 그려 중복 방지.
+ * - high 라벨은 점 위, low 라벨은 점 아래 배치가 기본.
+ * - high.score > 85 (Y축 상단 근접) / low.score < 10 (X축 근접) 시 라벨을 점 옆(좌/우)으로.
+ *
+ * peak.index 가 라인 데이터 인덱스와 동일하므로 X 좌표는 라인과 정확히 일치한다.
+ */
+private fun DrawScope.drawPeakMarkers(
+    data: List<FearIndex>,
+    high: FearIndexPeak,
+    low: FearIndexPeak,
+    textMeasurer: TextMeasurer,
+) {
+    val isSinglePoint = high.index == low.index
+    drawPeakMarker(data, high, textMeasurer)
+    if (!isSinglePoint) {
+        drawPeakMarker(data, low, textMeasurer)
+    }
+}
+
+private fun DrawScope.drawPeakMarker(
+    data: List<FearIndex>,
+    peak: FearIndexPeak,
+    textMeasurer: TextMeasurer,
+) {
+    val chartWidth = size.width
+    val chartHeight = size.height
+    // 라인과 동일 수식 → peak.index 의 라인 점과 1px 오차 없이 일치.
+    val x = ChartCoordinates.xForIndex(peak.index, data.size, chartWidth)
+    val y = ChartCoordinates.yForScore(peak.score, chartHeight)
+
+    // 빨간 점
+    drawCircle(
+        color = PeakMarkerColor,
+        radius = 3.5.dp.toPx(),
+        center = Offset(x, y),
+    )
+
+    // 점수 라벨
+    val labelText = peakScoreText(peak.score)
+    val textResult = textMeasurer.measure(
+        text = labelText,
+        style = TextStyle(
+            fontSize = 11.sp,
+            color = PeakMarkerColor,
+            fontWeight = FontWeight.SemiBold,
+        ),
+    )
+    val labelW = textResult.size.width
+    val labelH = textResult.size.height
+    val gap = 6.dp.toPx()
+    val isHigh = peak.kind == FearIndexPeak.Kind.HIGH
+    val isLeftHalf = x <= chartWidth / 2f
+
+    // 라벨이 점 옆(좌/우)으로 가야 하는 경계 케이스:
+    // - high: 점이 Y축 상단에 붙어 위쪽 공간이 없을 때 (score > 85)
+    // - low: 점이 X축 라벨과 겹칠 만큼 아래에 붙을 때 (score < 10)
+    val placeSide = if (isHigh) peak.score > 85 else peak.score < 10
+
+    val labelX: Float
+    val labelY: Float
+    if (placeSide) {
+        // 왼쪽 절반 peak → 라벨을 오른쪽에, 오른쪽 절반 → 왼쪽에 (차트 밖으로 안 나가게)
+        labelX = if (isLeftHalf) x + gap else x - gap - labelW
+        labelY = y - labelH / 2f
+    } else {
+        // high → 점 위, low → 점 아래
+        labelX = x - labelW / 2f
+        labelY = if (isHigh) y - gap - labelH else y + gap
+    }
+
+    drawText(
+        textLayoutResult = textResult,
+        topLeft = Offset(
+            x = labelX.coerceIn(0f, (chartWidth - labelW).coerceAtLeast(0f)),
+            y = labelY.coerceIn(0f, (chartHeight - labelH).coerceAtLeast(0f)),
+        ),
+    )
+}
+
+/** 점수 포맷 — 정수는 "82", 소수 한 자리는 "2.9" (서양 숫자). iOS peakScoreText 대칭. */
+private fun peakScoreText(score: Double): String {
+    val tenths = (score * 10).roundToInt()
+    return if (tenths % 10 == 0) {
+        (tenths / 10).toString()
+    } else {
+        // 소수 한 자리, 항상 '.' 구분자 (en_US_POSIX 동등). 도메인 score 는 0..100.
+        "${tenths / 10}.${tenths % 10}"
+    }
+}
+
 private fun DrawScope.drawSelectionIndicator(
     data: List<FearIndex>,
     selectedIndex: Int,
@@ -601,9 +717,9 @@ private fun DrawScope.drawSelectionIndicator(
     val chartHeight = size.height
     val point = data[selectedIndex]
 
-    // 선택 포인트의 X, Y 좌표
-    val x = chartWidth * selectedIndex / (data.size - 1).coerceAtLeast(1)
-    val y = chartHeight * (1f - point.score.toFloat() / 100f)
+    // 선택 포인트의 X, Y 좌표 — 라인/peak 과 동일 수식.
+    val x = ChartCoordinates.xForIndex(selectedIndex, data.size, chartWidth)
+    val y = ChartCoordinates.yForScore(point.score, chartHeight)
 
     // 1. 수직선
     drawLine(
@@ -740,11 +856,12 @@ private fun DrawScope.drawChart(
         )
     }
 
-    // Build data points
+    // Build data points — 라인/peak/선택점이 동일 수식을 공유하도록 ChartCoordinates 사용.
     val points = data.mapIndexed { i, item ->
-        val x = chartWidth * i / (data.size - 1).coerceAtLeast(1)
-        val y = chartHeight * (1f - item.score.toFloat() / 100f)
-        Offset(x, y)
+        Offset(
+            ChartCoordinates.xForIndex(i, data.size, chartWidth),
+            ChartCoordinates.yForScore(item.score, chartHeight),
+        )
     }
 
     // Catmull-Rom spline interpolation
