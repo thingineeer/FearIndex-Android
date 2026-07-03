@@ -346,4 +346,40 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <!-- 시장 상세 새로고침 (iOS 하드코딩 → Android strings) -->
     <string name="market_detail_refresh">Refresh</string>
     <string name="market_detail_refresh_cooldown">You can refresh again after 10 minutes.</string>
+    <!-- RSI / 공매도 보조 지표 (iOS indicator.* 대응) -->
+    <string name="indicator_rsi_info_accessibility">What is RSI?</string>
+    <string name="indicator_rsi_info_analogy_body">Think of it like your heart rate right after a run. Too high (overbought) and it may need to cool off; too low (oversold) and it often bounces back.</string>
+    <string name="indicator_rsi_info_analogy_title">In plain terms</string>
+    <string name="indicator_rsi_info_overbought_body">Above 70 suggests the price may be overheated (overbought).</string>
+    <string name="indicator_rsi_info_oversold_body">Below 30 suggests the price may be oversold — often a fear zone.</string>
+    <string name="indicator_rsi_info_read_section">How to read it</string>
+    <string name="indicator_rsi_info_scale_caption">Below 30 signals oversold (fear); above 70 signals overbought (overheated). The middle (30–70) is neutral.</string>
+    <string name="indicator_rsi_info_scale_section">At a glance</string>
+    <string name="indicator_rsi_info_support_body">RSI is a separate, price-based check that helps you see whether the Fear Index reading lines up with the market\'s technical momentum.</string>
+    <string name="indicator_rsi_info_support_section">Why it\'s here</string>
+    <string name="indicator_rsi_info_support_title">A second opinion for the Fear Index</string>
+    <string name="indicator_rsi_info_what_body">RSI (Relative Strength Index) measures how fast and how much a price has risen or fallen, on a 0–100 scale.</string>
+    <string name="indicator_rsi_info_what_title">What is RSI?</string>
+    <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
+    <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
+    <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_rsi_title">%1$s RSI</string>
+    <string name="indicator_rsi_zone_neutral">Neutral</string>
+    <string name="indicator_rsi_zone_overbought">Overbought</string>
+    <string name="indicator_rsi_zone_oversold">Oversold</string>
+    <string name="indicator_short_info_accessibility">What is short selling?</string>
+    <string name="indicator_short_info_covering_body">Buying back shares that were sold short. A falling short share signals covering — that repurchasing can spark a short-term bounce.</string>
+    <string name="indicator_short_info_read_section">How to read it</string>
+    <string name="indicator_short_info_support_body">Short-selling trends reveal bearish or rebound sentiment apart from price. It\'s not a standalone trade signal — just a supporting clue for reading the index.</string>
+    <string name="indicator_short_info_support_section">Why we show this</string>
+    <string name="indicator_short_info_support_title">A supporting clue for the index</string>
+    <string name="indicator_short_info_what_body">Selling borrowed shares, betting the price will fall. A higher share means more money is betting on a decline. (Measured as short volume or short-position ratio, depending on the asset.)</string>
+    <string name="indicator_short_info_what_title">What is short selling?</string>
+    <string name="indicator_short_signal_covering">Short covering</string>
+    <string name="indicator_short_signal_heavy">Shorting up</string>
+    <string name="indicator_short_signal_neutral">Neutral</string>
+    <string name="indicator_short_support_covering">Shorts are being bought back (covering) — this can add buying pressure.</string>
+    <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
+    <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
+    <string name="indicator_short_title">%1$s Short interest</string>
 </resources>
