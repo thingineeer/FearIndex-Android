@@ -12,8 +12,12 @@ import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
+import th1ngjin.fearindex.domain.entity.FearRSI
 import th1ngjin.fearindex.domain.entity.KospiFearIndex
 import th1ngjin.fearindex.domain.entity.MarketIndex
+import th1ngjin.fearindex.domain.entity.ShortPressure
+import th1ngjin.fearindex.domain.usecase.GetAssetRSIUseCase
+import th1ngjin.fearindex.domain.usecase.GetAssetShortPressureUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
@@ -43,7 +47,15 @@ data class HomeUiState(
     val isKospiHistoryLoading: Boolean = false,
     val isCryptoHistoryLoading: Boolean = false,
     val marketIndices: List<MarketIndex> = emptyList(),
+    val rsiByType: Map<FearIndexType, FearRSI> = emptyMap(),
+    val shortPressureByType: Map<FearIndexType, ShortPressure> = emptyMap(),
 ) {
+    /** 현재 홈에서 선택된 자산의 가격 RSI — iOS `currentRSI` 대응. null이면 카드 숨김. */
+    val currentRsi: FearRSI? get() = rsiByType[selectedHomeType]
+
+    /** 현재 홈에서 선택된 자산의 공매도 지표 — iOS `currentShortPressure` 대응. null이면 카드 숨김. */
+    val currentShortPressure: ShortPressure? get() = shortPressureByType[selectedHomeType]
+
     companion object {
         const val DEFAULT_MARKET_DAYS = 90
         const val DEFAULT_KOSPI_DAYS = 90
@@ -66,6 +78,8 @@ class HomeViewModel @Inject constructor(
     private val getKospiFearIndex: GetKospiFearIndexUseCase,
     private val getKospiFearIndexHistory: GetKospiFearIndexHistoryUseCase,
     private val getMarketIndices: GetMarketIndicesDetailUseCase,
+    private val getAssetRsi: GetAssetRSIUseCase,
+    private val getAssetShortPressure: GetAssetShortPressureUseCase,
     private val analytics: AnalyticsManager,
 ) : ViewModel() {
     companion object {
@@ -89,11 +103,14 @@ class HomeViewModel @Inject constructor(
         loadKospiHistory(HomeUiState.DEFAULT_KOSPI_DAYS)
         loadCryptoHistory(HomeUiState.DEFAULT_CRYPTO_DAYS)
         loadMarketIndices()
+        loadIndicators(FearIndexType.MARKET)
     }
 
     fun selectHomeIndexType(type: FearIndexType) =
         selectIndexType(type, screen = "홈", previous = _uiState.value.selectedHomeType) {
             _uiState.value = _uiState.value.copy(selectedHomeType = type)
+            // iOS refreshAsset*ForSelectedHome 대응 — 선택된 자산만 외부 호출(비용 절감).
+            loadIndicators(type)
         }
 
     fun selectChartIndexType(type: FearIndexType) =
@@ -109,6 +126,7 @@ class HomeViewModel @Inject constructor(
     fun refresh() {
         val selectedType = _uiState.value.selectedHomeType
         analytics.log(AnalyticsEvent.수동새로고침(화면 = selectedType.toLabel()))
+        loadIndicators(selectedType)
         when (selectedType) {
             FearIndexType.MARKET -> {
                 loadMarketCurrent(forceRefresh = true)
@@ -179,6 +197,33 @@ class HomeViewModel @Inject constructor(
                 // 시장 지수 로딩 실패 시 빈 리스트 유지 (전체 화면 깨트리지 않음)
                 Timber.w(e, "Failed to load market indices")
             }
+        }
+    }
+
+    /**
+     * RSI/공매도 보조 지표 로드 — iOS refreshAssetRSI/ShortPressureForSelectedHome 대응.
+     * 실패/데이터 부족은 해당 카드만 숨김(null) — 홈 화면 전체에 영향 없음.
+     */
+    private fun loadIndicators(type: FearIndexType) {
+        viewModelScope.launch {
+            val rsi = runCatching { getAssetRsi(type) }
+                .onFailure { Timber.w(it, "RSI 로드 실패: $type") }
+                .getOrNull()
+            _uiState.value = _uiState.value.copy(
+                rsiByType = _uiState.value.rsiByType.toMutableMap().apply {
+                    if (rsi != null) put(type, rsi) else remove(type)
+                },
+            )
+        }
+        viewModelScope.launch {
+            val shortPressure = runCatching { getAssetShortPressure(type) }
+                .onFailure { Timber.w(it, "공매도 지표 로드 실패: $type") }
+                .getOrNull()
+            _uiState.value = _uiState.value.copy(
+                shortPressureByType = _uiState.value.shortPressureByType.toMutableMap().apply {
+                    if (shortPressure != null) put(type, shortPressure) else remove(type)
+                },
+            )
         }
     }
 

@@ -363,4 +363,40 @@
     <!-- 시장 상세 새로고침 (iOS 하드코딩 → Android strings) -->
     <string name="market_detail_refresh">새로고침</string>
     <string name="market_detail_refresh_cooldown">10분 뒤 갱신 가능해요</string>
+    <!-- RSI / 공매도 보조 지표 (iOS indicator.* 대응) -->
+    <string name="indicator_rsi_info_accessibility">RSI란 무엇인가요?</string>
+    <string name="indicator_rsi_info_analogy_body">달리기 직후 심박수처럼 생각하세요. 너무 높으면(과매수) 잠깐 쉬어갈 수 있고, 너무 낮으면(과매도) 곧 회복되곤 해요.</string>
+    <string name="indicator_rsi_info_analogy_title">쉽게 말하면</string>
+    <string name="indicator_rsi_info_overbought_body">70 이상이면 가격이 과열(과매수)됐을 수 있다는 신호예요.</string>
+    <string name="indicator_rsi_info_oversold_body">30 이하면 가격이 과매도됐을 수 있어요 — 흔히 공포 구간이에요.</string>
+    <string name="indicator_rsi_info_read_section">보는 법</string>
+    <string name="indicator_rsi_info_scale_caption">30 아래는 과매도(공포), 70 위는 과매수(과열) 신호예요. 가운데(30~70)는 중립이에요.</string>
+    <string name="indicator_rsi_info_scale_section">한눈에 보기</string>
+    <string name="indicator_rsi_info_support_body">RSI는 가격 기반의 별도 지표로, 공포지수가 시장의 기술적 흐름과 맞는지 함께 확인하도록 도와줘요.</string>
+    <string name="indicator_rsi_info_support_section">왜 보여주나요</string>
+    <string name="indicator_rsi_info_support_title">공포지수의 보조 근거</string>
+    <string name="indicator_rsi_info_what_body">RSI(상대강도지수)는 가격이 얼마나 빠르게, 얼마나 많이 오르내렸는지를 0~100으로 나타낸 지표예요.</string>
+    <string name="indicator_rsi_info_what_title">RSI란?</string>
+    <string name="indicator_rsi_support_neutral">가격 모멘텀은 중립 구간이에요.</string>
+    <string name="indicator_rsi_support_overbought">가격도 기술적으로 과열 상태예요 — 탐욕 쪽을 거듭니다.</string>
+    <string name="indicator_rsi_support_oversold">가격도 기술적으로 과매도 상태예요 — 공포 쪽을 거듭니다.</string>
+    <string name="indicator_rsi_title">%1$s RSI (상대강도지수)</string>
+    <string name="indicator_rsi_zone_neutral">중립</string>
+    <string name="indicator_rsi_zone_overbought">과매수</string>
+    <string name="indicator_rsi_zone_oversold">과매도</string>
+    <string name="indicator_short_info_accessibility">공매도란 무엇인가요?</string>
+    <string name="indicator_short_info_covering_body">공매도했던 주식을 되사서 갚는 거예요. 공매도 비중이 줄면 숏커버링 신호 — 되사는 매수세가 단기 반등을 부르기도 해요.</string>
+    <string name="indicator_short_info_read_section">보는 법</string>
+    <string name="indicator_short_info_support_body">공매도 동향은 가격과 별개로 시장의 하락·반등 심리를 보여줘요. 단독 매매 신호가 아니라 공포지수를 해석하는 보조 근거예요.</string>
+    <string name="indicator_short_info_support_section">왜 보여주나요</string>
+    <string name="indicator_short_info_support_title">공포지수의 보조 근거</string>
+    <string name="indicator_short_info_what_body">주가가 내릴 거라 보고 주식을 빌려서 미리 파는 거래예요. 공매도 비중이 높을수록 하락에 베팅한 돈이 많다는 뜻이에요. (자산에 따라 숏 거래량 또는 숏 포지션 비율로 측정해요.)</string>
+    <string name="indicator_short_info_what_title">공매도란?</string>
+    <string name="indicator_short_signal_covering">숏커버링</string>
+    <string name="indicator_short_signal_heavy">공매도 증가</string>
+    <string name="indicator_short_signal_neutral">중립</string>
+    <string name="indicator_short_support_covering">숏을 되사는 중이에요(숏커버링) — 매수 압력이 생길 수 있어요.</string>
+    <string name="indicator_short_support_heavy">공매도 비중이 늘고 있어요 — 하락에 베팅한 자금이 우세해요.</string>
+    <string name="indicator_short_support_neutral">공매도 비중이 안정적이에요 — 뚜렷한 쏠림은 없어요.</string>
+    <string name="indicator_short_title">%1$s 공매도 동향</string>
 </resources>

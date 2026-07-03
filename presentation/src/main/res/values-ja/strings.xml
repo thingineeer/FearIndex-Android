@@ -345,4 +345,40 @@
     <!-- 시장 상세 새로고침 (iOS 하드코딩 → Android strings) -->
     <string name="market_detail_refresh">Refresh</string>
     <string name="market_detail_refresh_cooldown">You can refresh again after 10 minutes.</string>
+    <!-- RSI / 공매도 보조 지표 (iOS indicator.* 대응) -->
+    <string name="indicator_rsi_info_accessibility">RSIとは？</string>
+    <string name="indicator_rsi_info_analogy_body">ランニング直後の心拍数のようなものです。高すぎる（買われすぎ）と一服しやすく、低すぎる（売られすぎ）と反発しやすい傾向があります。</string>
+    <string name="indicator_rsi_info_analogy_title">かんたんに言うと</string>
+    <string name="indicator_rsi_info_overbought_body">70以上は価格が過熱（買われすぎ）の可能性を示します。</string>
+    <string name="indicator_rsi_info_oversold_body">30以下は売られすぎの可能性 — 多くは恐怖の局面です。</string>
+    <string name="indicator_rsi_info_read_section">読み方</string>
+    <string name="indicator_rsi_info_scale_caption">30未満は売られすぎ（恐怖）、70超は買われすぎ（過熱）のサイン。中間（30〜70）は中立です。</string>
+    <string name="indicator_rsi_info_scale_section">ひと目で見る</string>
+    <string name="indicator_rsi_info_support_body">RSIは価格ベースの別指標で、恐怖指数が市場の技術的な動きと一致しているかを確認する助けになります。</string>
+    <string name="indicator_rsi_info_support_section">なぜ表示するか</string>
+    <string name="indicator_rsi_info_support_title">恐怖指数の補助的な根拠</string>
+    <string name="indicator_rsi_info_what_body">RSI（相対力指数）は、価格がどれだけ速く・どれだけ大きく上下したかを0〜100で表す指標です。</string>
+    <string name="indicator_rsi_info_what_title">RSIとは？</string>
+    <string name="indicator_rsi_support_neutral">価格モメンタムは中立圏です。</string>
+    <string name="indicator_rsi_support_overbought">価格も技術的に過熱気味 — 強欲寄りを裏づけます。</string>
+    <string name="indicator_rsi_support_oversold">価格も技術的に売られすぎ — 恐怖寄りを裏づけます。</string>
+    <string name="indicator_rsi_title">%1$s RSI (相対力指数)</string>
+    <string name="indicator_rsi_zone_neutral">中立</string>
+    <string name="indicator_rsi_zone_overbought">買われすぎ</string>
+    <string name="indicator_rsi_zone_oversold">売られすぎ</string>
+    <string name="indicator_short_info_accessibility">空売りとは？</string>
+    <string name="indicator_short_info_covering_body">空売りした株を買い戻して返済すること。比率が下がればカバーの兆し — 買い戻しが短期反発を招くことがあります。</string>
+    <string name="indicator_short_info_read_section">見方</string>
+    <string name="indicator_short_info_support_body">空売り動向は価格とは別に下落・反発の心理を映します。単独の売買シグナルではなく、指数を読むための補助的な手がかりです。</string>
+    <string name="indicator_short_info_support_section">なぜ表示するか</string>
+    <string name="indicator_short_info_support_title">指数の補助的な手がかり</string>
+    <string name="indicator_short_info_what_body">値下がりを見込んで株を借りて先に売る取引です。比率が高いほど下落に賭けた資金が多いことを意味します。（資産により空売り出来高または売り建て比率で測定します。）</string>
+    <string name="indicator_short_info_what_title">空売りとは？</string>
+    <string name="indicator_short_signal_covering">ショートカバー</string>
+    <string name="indicator_short_signal_heavy">空売り増加</string>
+    <string name="indicator_short_signal_neutral">中立</string>
+    <string name="indicator_short_support_covering">ショートの買い戻し（カバー）中 — 買い圧力につながることがあります。</string>
+    <string name="indicator_short_support_heavy">空売りが増えています — 下落への賭けが優勢です。</string>
+    <string name="indicator_short_support_neutral">空売り比率は安定しています — 明確な偏りはありません。</string>
+    <string name="indicator_short_title">%1$s 空売り動向</string>
 </resources>
