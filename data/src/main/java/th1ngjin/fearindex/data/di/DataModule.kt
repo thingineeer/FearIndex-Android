@@ -3,10 +3,18 @@ package th1ngjin.fearindex.data.di
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import th1ngjin.fearindex.data.datasource.BinanceFuturesApi
 import th1ngjin.fearindex.data.datasource.CNNFearGreedApi
 import th1ngjin.fearindex.data.datasource.CryptoFearIndexApi
+import th1ngjin.fearindex.data.datasource.FinraShortVolumeApi
 import th1ngjin.fearindex.data.datasource.KospiFearIndexApi
 import th1ngjin.fearindex.data.datasource.MarketIndexApi
+import th1ngjin.fearindex.data.repository.AssetPriceClosesRepositoryImpl
+import th1ngjin.fearindex.data.repository.AssetShortPressureRepositoryImpl
+import th1ngjin.fearindex.domain.repository.AssetPriceClosesRepository
+import th1ngjin.fearindex.domain.repository.AssetShortPressureRepository
+import th1ngjin.fearindex.domain.usecase.GetAssetRSIUseCase
+import th1ngjin.fearindex.domain.usecase.GetAssetShortPressureUseCase
 import th1ngjin.fearindex.data.repository.CryptoFearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.FearIndexRepositoryImpl
 import th1ngjin.fearindex.data.repository.KospiFearIndexRepositoryImpl
@@ -113,6 +121,18 @@ abstract class DataBindModule {
     @Binds
     @Singleton
     abstract fun bindStuckStatusDebouncer(impl: StuckStatusDebouncerImpl): StuckStatusDebouncer
+
+    @Binds
+    @Singleton
+    abstract fun bindAssetPriceClosesRepository(
+        impl: AssetPriceClosesRepositoryImpl,
+    ): AssetPriceClosesRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindAssetShortPressureRepository(
+        impl: AssetShortPressureRepositoryImpl,
+    ): AssetShortPressureRepository
 }
 
 @Module
@@ -264,6 +284,42 @@ object DataModule {
             .build()
             .create(KospiFearIndexApi::class.java)
     }
+
+    // ============================================================
+    // RSI / 공매도 보조 지표 (iOS AssetPriceClose/AssetShortRatio DataSource 대응)
+    // ============================================================
+
+    @Provides
+    @Singleton
+    fun provideFinraShortVolumeApi(client: OkHttpClient): FinraShortVolumeApi =
+        Retrofit.Builder()
+            .baseUrl("https://cdn.finra.org/")
+            .client(client)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(FinraShortVolumeApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideBinanceFuturesApi(client: OkHttpClient): BinanceFuturesApi =
+        Retrofit.Builder()
+            .baseUrl("https://fapi.binance.com/")
+            .client(client)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(BinanceFuturesApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideGetAssetRSIUseCase(repository: AssetPriceClosesRepository): GetAssetRSIUseCase =
+        GetAssetRSIUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetAssetShortPressureUseCase(
+        repository: AssetShortPressureRepository,
+    ): GetAssetShortPressureUseCase =
+        GetAssetShortPressureUseCase(repository)
 
     @Provides
     @Singleton
