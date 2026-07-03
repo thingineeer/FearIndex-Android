@@ -398,6 +398,25 @@ type: project
 - **기대 효과**: AdMob 배너 "적용 불가"(1.0.1 정책위반, 23번)는 구버전 트래픽이 0으로 수렴하며 자연 해소. AdMob 정책센터 상태는 수일 후 재확인.
 - **교훈**: RC 강제 게이트 상향 순서 = (1) **새 버전 Play 전파를 공개 리스팅 등으로 먼저 검증** → (2) **한 줄만 변경하는 diff 확인** → (3) deploy 후 **라이브 값 재조회**. firebase CLI deploy는 전체 템플릿을 publish하므로 get→최소수정→deploy로 기존 파라미터 보존.
 
+## 2026-07-03 세션 (FCM 정책 개편 검증 + v1.3.0 RSI/공매도 지표 배포)
+
+### 33. FCM 알림 정책 개편 검증 — Android 코드 무수정 확인 + 서버 즉시체크 공백 발견
+
+- **검증 3항목**: ① title/body 그대로 표시 (`FearIndexMessagingService.kt:37-38`, 가공/파싱 없음, Manifest 기본 채널 `fear_index_alerts` HIGH 일치) ② 클릭은 extras 없는 MainActivity Intent — 문구 파싱 의존 없음 ③ registerFCMToken 매 실행 + onNewToken 호출 확인.
+- **실수신 테스트**: admin SDK로 서버 `sendBatch`와 동일 payload(notification+data) 발송 → 새 포맷("글로벌 시장 지수가 25. 매수 기회가 될 수 있습니다.") 백그라운드/포그라운드/탭 진입 모두 정상 (에뮬레이터). App Check debug token(MacBook emulator, 2026-07-03) Firebase Console 등록.
+- **⚠️ 서버 공백 (iOS 팀 전달 필요)**: `dispatchInstantCheck`가 `registerFCMToken` **신규 유저 분기에만** 존재 (`device-callables.ts:245`). Android 신규 유저는 최초 실행 시 `notificationEnabled=false`로 등록 → 즉시체크 no-op. 알림 켜는 순간(권한 허용)은 `updateNotificationSettings` 호출인데 **여기엔 훅 없음** → Android 유저는 즉시 알림 혜택을 못 받고 30분 cron 폴백. `updateNotificationSettings`의 enabled false→true 전환 시 훅 추가 권장. instant-check.ts 주석은 양쪽 훅을 전제하나 실제 코드 미구현.
+- **비고**: 임계치 실발동(서버 cron) E2E는 서버 배포 후 재검증 필요.
+
+### 34. v1.3.0 — RSI(14)/공매도 동향 투자 지표 (iOS SSOT 포팅, TDD 45개)
+
+- **Domain**: `RSICalculator`(Wilder's smoothing, avgLoss 0→RSI 100, history 변형은 JVM 소거 충돌로 `calculateFromHistory`), `ShortPressureCalculator`(최신값 vs 직전 5개 평균 상대변화율 ±15%, scale-invariant, baseline 0→중립), `FearRSI`/`ShortPressure` 엔티티, `GetAssetRSIUseCase`/`GetAssetShortPressureUseCase`.
+- **Data**: MARKET=Yahoo `^GSPC` 6mo(기존 YahooChartApi에 getCloseChart 추가) / CRYPTO=CoinGecko market_chart 180d(getMarketChart 추가, ohlc 무료티어는 4일봉이라 부적합) / KOSPI 종가=**기존 스냅샷 `chartHistoryForDisplay[].kospiClose` 재사용**(KospiHistoryDTO에 nullable 필드 추가, 추가 API 0). 공매도: FINRA RegSHO(신규 FinraShortVolumeApi, NY 기준 주말 제외 후보 5일 병렬 fetch·부분실패 허용·suffix 3) / Binance globalLongShortAccountRatio(shortAccount×100) / 서버 `/api/kospi/short`. In-memory TTL 캐시(MARKET 12h/CRYPTO 30m/KOSPI 1h, **3개 미만 미캐시**) + `withTimeout(8s)`.
+- **Presentation**: 홈 비교카드/광고 다음에 RSI 카드+공매도 카드(iOS 순서), ⓘ→ModalBottomSheet 설명 시트(RSI 눈금 막대 0/30/70/100). 선택 탭만 로드(iOS 정책), 실패/부족 시 해당 카드만 숨김(null). `indicator.*` 35키 × 45 locale (iOS xcstrings 스크립트 추출, %@→%%1$s).
+- **검증**: 실기기(Galaxy S23) 3탭 육안 확인 — 시장 RSI 54.7 중립/공매도 50.2% 중립, KOSPI RSI 52.9(서버 kospiClose 1352/1355행 존재), BTC RSI 44.0/37.3% 공매도 증가(빨강). 에뮬레이터는 /data 400MB 부족으로 설치 실패(정리 필요).
+- **⚠️ 발견 이슈 (서버/기존)**: ① `/api/kospi/short` 미집계 당일 값이 `0` → latest=0 → "-100%" → **"0.0%% 숏커버링" 오신호** (iOS 동일 영향, 서버 kospi-market-short-flow에서 미집계일 제외 권장) ② KOSPI SimilarEvents 카드에 `insight.kospi.event.tradeWar2018` **raw key 노출** (기존 버그, 번역 키 누락 — 별도 fix 대상).
+- **배포**: versionCode 17 / 1.3.0. 버전 선택 근거 = 신규 기능(minor) + 강제 게이트가 major.minor 비교라 1.2.1은 1.2.0과 식별 불가. changelog 17 "투자 지표를 추가하였습니다."(45 locale). **AAB+changelog만 업로드**(fastlane run upload_to_play_store, 스크린샷/메타 skip). 업로드 후 **빠른 검사(pre-review scan) 통과 시 자동 검토 전송** 확인(이번엔 수동 "검토 전송" 불필요 — v1.2.0의 136개 대기와 달리 변경이 트랙+changelog뿐). 당일 심사 통과, 사용자가 관리형 게시 "게시" 클릭 → **2026-07-03 게시 완료**. release 머지 + v1.3.0 태그.
+- **Git**: dev → feature/v1.3.0 → worktree feature/v1.3.0-rsi-short-indicators(5커밋: domain/파서/data·DI/presentation/버전bump). --no-ff 머지 그래프 유지.
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
