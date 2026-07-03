@@ -60,8 +60,10 @@ import th1ngjin.fearindex.core.remoteconfig.AdsRemoteConfig
 import th1ngjin.fearindex.core.util.ShareUrlBuilder
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
+import th1ngjin.fearindex.domain.entity.FearRSI
 import th1ngjin.fearindex.domain.entity.MarketIndex
 import th1ngjin.fearindex.domain.entity.MarketInsight
+import th1ngjin.fearindex.domain.entity.ShortPressure
 import th1ngjin.fearindex.domain.entity.SimilarEventsResult
 import th1ngjin.fearindex.domain.entity.StuckCounterResult
 import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
@@ -71,6 +73,10 @@ import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.AnalyticsInterstitialAdReporter
 import th1ngjin.fearindex.presentation.component.ComparisonCard
+import th1ngjin.fearindex.presentation.component.RSIIndicatorCard
+import th1ngjin.fearindex.presentation.component.RSIInfoSheet
+import th1ngjin.fearindex.presentation.component.ShortPressureCard
+import th1ngjin.fearindex.presentation.component.ShortPressureInfoSheet
 import th1ngjin.fearindex.presentation.component.FearGaugeView
 import th1ngjin.fearindex.presentation.component.FearIndexSkeletonView
 import th1ngjin.fearindex.presentation.component.InsightDetailSheet
@@ -133,6 +139,8 @@ fun HomeScreen(
     val myStuckStatus by voteViewModel.myStatusFor(selectedType).collectAsState()
 
     var showStuckDetail by rememberSaveable { mutableStateOf(false) }
+    var showRsiInfo by rememberSaveable { mutableStateOf(false) }
+    var showShortInfo by rememberSaveable { mutableStateOf(false) }
 
     // SimilarEvents 실시간 구독
     val similarEventsResult by similarEventsViewModel.resultFor(selectedType).collectAsState()
@@ -221,6 +229,20 @@ fun HomeScreen(
         )
     }
 
+    if (showRsiInfo) {
+        RSIInfoSheet(
+            assetLabel = selectedType.assetTickerLabel(),
+            onDismiss = { showRsiInfo = false },
+        )
+    }
+
+    if (showShortInfo) {
+        ShortPressureInfoSheet(
+            assetLabel = selectedType.assetTickerLabel(),
+            onDismiss = { showShortInfo = false },
+        )
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -286,6 +308,10 @@ fun HomeScreen(
                 insights = insightState.insights,
                 onInsightClick = insightViewModel::selectInsight,
                 similarEventsResult = similarEventsResult,
+                rsi = uiState.currentRsi,
+                shortPressure = uiState.currentShortPressure,
+                onRsiInfoClick = { showRsiInfo = true },
+                onShortInfoClick = { showShortInfo = true },
                 stuckResult = stuckResult,
                 myStuckStatus = myStuckStatus.toUi(),
                 onStuckToggle = { newStatus ->
@@ -497,6 +523,10 @@ private fun LoadedContent(
     insights: List<MarketInsight> = emptyList(),
     onInsightClick: (MarketInsight) -> Unit = {},
     similarEventsResult: SimilarEventsResult = SimilarEventsResult.EMPTY,
+    rsi: FearRSI? = null,
+    shortPressure: ShortPressure? = null,
+    onRsiInfoClick: () -> Unit = {},
+    onShortInfoClick: () -> Unit = {},
     stuckResult: StuckCounterResult = StuckCounterResult.EMPTY,
     myStuckStatus: UiStuckStatus = UiStuckStatus.NO_RESPONSE,
     onStuckToggle: (UiStuckStatus) -> Unit = {},
@@ -525,6 +555,26 @@ private fun LoadedContent(
         adUnitId = BuildConfig.ADMOB_BANNER_HOME,
         screenName = "홈_상단",
     )
+
+    // 3.2. 가격 RSI 카드 — 공포지수 보조 근거 (iOS rsiIndicatorSection). 계산 불가면 숨김.
+    if (rsi != null) {
+        Spacer(modifier = Modifier.height(16.dp))
+        RSIIndicatorCard(
+            rsi = rsi,
+            assetLabel = indexType.assetTickerLabel(),
+            onInfoClick = onRsiInfoClick,
+        )
+    }
+
+    // 3.3. 공매도/숏커버링 카드 (iOS shortPressureSection). 데이터 부족이면 숨김.
+    if (shortPressure != null) {
+        Spacer(modifier = Modifier.height(16.dp))
+        ShortPressureCard(
+            shortPressure = shortPressure,
+            assetLabel = indexType.assetTickerLabel(),
+            onInfoClick = onShortInfoClick,
+        )
+    }
 
     // 3.5. SimilarEvents 카드 — "지금과 비슷했던 시기" (v1.7.9)
     if (similarEventsResult.matches.isNotEmpty() || similarEventsResult.aggregateStats != null) {
@@ -600,6 +650,13 @@ private fun FearIndexType.analyticsLabel(): String = when (this) {
     FearIndexType.MARKET -> ANALYTICS_TYPE_MARKET
     FearIndexType.KOSPI -> ANALYTICS_TYPE_KOSPI
     FearIndexType.CRYPTO -> ANALYTICS_TYPE_CRYPTO
+}
+
+/** RSI/공매도 카드용 자산 티커 라벨 — iOS assetTickerLabel 대응(번역 불필요 고유명). */
+private fun FearIndexType.assetTickerLabel(): String = when (this) {
+    FearIndexType.MARKET -> "S&P500"
+    FearIndexType.KOSPI -> "KOSPI"
+    FearIndexType.CRYPTO -> "BTC"
 }
 
 private fun AdsRemoteConfig.interstitialAdPolicyConfig(canRequestAds: Boolean): InterstitialAdPolicyConfig =

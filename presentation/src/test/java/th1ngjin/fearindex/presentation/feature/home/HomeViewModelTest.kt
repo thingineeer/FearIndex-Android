@@ -23,11 +23,15 @@ import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
+import th1ngjin.fearindex.domain.entity.FearRSI
 import th1ngjin.fearindex.domain.entity.KospiCluster
 import th1ngjin.fearindex.domain.entity.KospiConfidence
 import th1ngjin.fearindex.domain.entity.KospiFearIndex
 import th1ngjin.fearindex.domain.entity.KospiSnapshotType
 import th1ngjin.fearindex.domain.entity.MarketIndex
+import th1ngjin.fearindex.domain.entity.ShortPressure
+import th1ngjin.fearindex.domain.usecase.GetAssetRSIUseCase
+import th1ngjin.fearindex.domain.usecase.GetAssetShortPressureUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
@@ -50,6 +54,8 @@ class HomeViewModelTest {
     private val getKospiFearIndex = mockk<GetKospiFearIndexUseCase>()
     private val getKospiFearIndexHistory = mockk<GetKospiFearIndexHistoryUseCase>()
     private val getMarketIndices = mockk<GetMarketIndicesDetailUseCase>()
+    private val getAssetRsi = mockk<GetAssetRSIUseCase>()
+    private val getAssetShortPressure = mockk<GetAssetShortPressureUseCase>()
     private val analytics = mockk<AnalyticsManager>(relaxed = true)
 
     @Before
@@ -71,6 +77,8 @@ class HomeViewModelTest {
             getKospiFearIndex = getKospiFearIndex,
             getKospiFearIndexHistory = getKospiFearIndexHistory,
             getMarketIndices = getMarketIndices,
+            getAssetRsi = getAssetRsi,
+            getAssetShortPressure = getAssetShortPressure,
             analytics = analytics,
         )
     }
@@ -85,6 +93,31 @@ class HomeViewModelTest {
         assertEquals(FearIndexType.MARKET, viewModel.uiState.value.selectedHomeType)
         assertEquals(FearIndexType.MARKET, viewModel.uiState.value.selectedChartType)
         assertEquals(FearIndexType.MARKET, viewModel.uiState.value.selectedVoteType)
+    }
+
+    @Test
+    fun `RSI-공매도 지표 로드 성공 시 uiState 반영, 미지원 자산은 null(카드 숨김)`() = runTest {
+        stubAllSuccess()
+        val rsi = FearRSI(value = 28.4, signal = FearRSI.RSISignal.OVERSOLD)
+        val shortPressure = ShortPressure(
+            ratioPercent = 38.0,
+            trend = ShortPressure.Trend.RISING,
+            signal = ShortPressure.Signal.HEAVY_SHORTING,
+        )
+        coEvery { getAssetRsi(FearIndexType.MARKET) } returns rsi
+        coEvery { getAssetShortPressure(FearIndexType.MARKET) } returns shortPressure
+
+        val viewModel = createViewModel()
+        advanceUntilIdle()
+
+        assertEquals(rsi, viewModel.uiState.value.currentRsi)
+        assertEquals(shortPressure, viewModel.uiState.value.currentShortPressure)
+
+        // 탭 전환 — CRYPTO 지표 없음(null) → 카드 숨김
+        viewModel.selectHomeIndexType(FearIndexType.CRYPTO)
+        advanceUntilIdle()
+        assertEquals(null, viewModel.uiState.value.currentRsi)
+        assertEquals(null, viewModel.uiState.value.currentShortPressure)
     }
 
     @Test
@@ -420,6 +453,8 @@ class HomeViewModelTest {
         coEvery { getKospiFearIndex(any()) } returns kospiCurrent
         coEvery { getKospiFearIndexHistory(any(), any()) } returns kospiHistory
         coEvery { getMarketIndices() } returns marketIndices
+        coEvery { getAssetRsi(any()) } returns null
+        coEvery { getAssetShortPressure(any()) } returns null
     }
 
     private fun createFearIndex(score: Double) = FearIndex(

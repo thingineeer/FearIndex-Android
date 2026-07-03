@@ -105,6 +105,8 @@ data class KospiHistoryDTO(
     val confidence: String,
     val clusterDivergence: Double = 0.0,
     val intScore: Int? = null,
+    /** KOSPI 종가 (RSI 보조 지표용). 구버전 스냅샷엔 없을 수 있어 nullable. */
+    val kospiClose: Double? = null,
 ) {
     fun toDomain(): FearIndex {
         val displayedScore = intScore ?: score.roundToInt()
