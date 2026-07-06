@@ -96,6 +96,11 @@ class MainActivity : ComponentActivity() {
                     delay(SPLASH_MIN_DURATION_MS)
                     showSplash = false
                 }
+                // 스플래시/강제 업데이트 표시 중엔 앱오픈 광고가 그 위에 겹치지 않도록 차단.
+                // (앱오픈은 콜드스타트에 원래 안 뜨지만, 그 사이 백그라운드 왕복 등 엣지 케이스 방어.)
+                LaunchedEffect(showSplash, forceUpdate) {
+                    FearIndexApp.appOpenAdManager.isForegroundBlocked = showSplash || forceUpdate
+                }
                 Box(modifier = Modifier.fillMaxSize()) {
                     FearIndexNavHost()
                     if (forceUpdate) {
