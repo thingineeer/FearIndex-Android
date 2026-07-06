@@ -3,8 +3,7 @@ package th1ngjin.fearindex.data.datasource
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
-import th1ngjin.fearindex.data.dto.BinanceLongShortRatioDTO
+import th1ngjin.fearindex.data.dto.OfficialIndicatorsResponse
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -15,14 +14,13 @@ interface FinraShortVolumeApi {
     suspend fun getDailyShortVolume(@Path("ymd") ymd: String): ResponseBody
 }
 
-/** Binance Futures 롱숏 계정 비율 (무인증 공개 API). */
-interface BinanceFuturesApi {
-    @GET("futures/data/globalLongShortAccountRatio")
-    suspend fun getGlobalLongShortAccountRatio(
-        @Query("symbol") symbol: String = "BTCUSDT",
-        @Query("period") period: String = "1d",
-        @Query("limit") limit: Int = 14,
-    ): List<BinanceLongShortRatioDTO>
+/**
+ * 서버 official indicators endpoint (Cloud Functions asia-northeast3).
+ * BTC 지표는 Binance 공식 소스를 서버가 수집 — 클라는 소비만 (iOS v1.8.8 parity).
+ */
+interface OfficialIndicatorsApi {
+    @GET("cryptoOfficialIndicatorsV1")
+    suspend fun getCryptoOfficialIndicators(): OfficialIndicatorsResponse
 }
 
 /**

@@ -380,6 +380,7 @@
     <string name="indicator_rsi_support_neutral">가격 모멘텀은 중립 구간이에요.</string>
     <string name="indicator_rsi_support_overbought">가격도 기술적으로 과열 상태예요 — 탐욕 쪽을 거듭니다.</string>
     <string name="indicator_rsi_support_oversold">가격도 기술적으로 과매도 상태예요 — 공포 쪽을 거듭니다.</string>
+    <string name="indicator_source_section">데이터 기준</string>
     <string name="indicator_rsi_title">%1$s RSI (상대강도지수)</string>
     <string name="indicator_rsi_zone_neutral">중립</string>
     <string name="indicator_rsi_zone_overbought">과매수</string>

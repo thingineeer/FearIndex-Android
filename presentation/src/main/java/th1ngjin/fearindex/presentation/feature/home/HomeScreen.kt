@@ -233,6 +233,7 @@ fun HomeScreen(
         RSIInfoSheet(
             assetLabel = selectedType.assetTickerLabel(),
             onDismiss = { showRsiInfo = false },
+            sourceMetadata = uiState.currentRsi?.sourceMetadata,
         )
     }
 
@@ -240,6 +241,7 @@ fun HomeScreen(
         ShortPressureInfoSheet(
             assetLabel = selectedType.assetTickerLabel(),
             onDismiss = { showShortInfo = false },
+            sourceMetadata = uiState.currentShortPressure?.sourceMetadata,
         )
     }
 

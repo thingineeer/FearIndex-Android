@@ -3,12 +3,12 @@ package th1ngjin.fearindex.data.di
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import th1ngjin.fearindex.data.datasource.BinanceFuturesApi
 import th1ngjin.fearindex.data.datasource.CNNFearGreedApi
 import th1ngjin.fearindex.data.datasource.CryptoFearIndexApi
 import th1ngjin.fearindex.data.datasource.FinraShortVolumeApi
 import th1ngjin.fearindex.data.datasource.KospiFearIndexApi
 import th1ngjin.fearindex.data.datasource.MarketIndexApi
+import th1ngjin.fearindex.data.datasource.OfficialIndicatorsApi
 import th1ngjin.fearindex.data.repository.AssetPriceClosesRepositoryImpl
 import th1ngjin.fearindex.data.repository.AssetShortPressureRepositoryImpl
 import th1ngjin.fearindex.domain.repository.AssetPriceClosesRepository
@@ -301,13 +301,13 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideBinanceFuturesApi(client: OkHttpClient): BinanceFuturesApi =
+    fun provideOfficialIndicatorsApi(client: OkHttpClient): OfficialIndicatorsApi =
         Retrofit.Builder()
-            .baseUrl("https://fapi.binance.com/")
+            .baseUrl("https://asia-northeast3-fear-index-a4f4b.cloudfunctions.net/")
             .client(client)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
-            .create(BinanceFuturesApi::class.java)
+            .create(OfficialIndicatorsApi::class.java)
 
     @Provides
     @Singleton

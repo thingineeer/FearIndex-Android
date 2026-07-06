@@ -12,6 +12,9 @@ class GetAssetShortPressureUseCase(
     private val repository: AssetShortPressureRepository,
     private val calculator: ShortPressureCalculator = ShortPressureCalculator(),
 ) {
-    suspend operator fun invoke(type: FearIndexType): ShortPressure? =
-        calculator.calculate(dailyRatios = repository.dailyShortRatios(type))
+    suspend operator fun invoke(type: FearIndexType): ShortPressure? {
+        val series = repository.dailyShortRatios(type)
+        return calculator.calculate(dailyRatios = series.ratios)
+            ?.copy(sourceMetadata = series.sourceMetadata)
+    }
 }

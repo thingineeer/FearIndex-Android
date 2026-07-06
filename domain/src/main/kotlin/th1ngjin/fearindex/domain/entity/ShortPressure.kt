@@ -9,6 +9,7 @@ data class ShortPressure(
     val ratioPercent: Double,
     val trend: Trend,
     val signal: Signal,
+    val sourceMetadata: IndicatorSourceMetadata? = null,
 ) {
     enum class Trend {
         RISING,

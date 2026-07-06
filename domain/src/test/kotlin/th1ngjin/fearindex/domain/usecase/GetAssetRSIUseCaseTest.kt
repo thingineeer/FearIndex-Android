@@ -8,8 +8,10 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertThrows
 import org.junit.Test
+import th1ngjin.fearindex.domain.entity.AssetCloseSeries
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.FearRSI
+import th1ngjin.fearindex.domain.entity.IndicatorSourceMetadata
 import th1ngjin.fearindex.domain.repository.AssetPriceClosesRepository
 import java.io.IOException
 
@@ -24,7 +26,7 @@ class GetAssetRSIUseCaseTest {
     @Test
     fun `단조 상승 종가면 RSI 100 overbought`() = runTest {
         coEvery { repository.dailyCloses(FearIndexType.MARKET) } returns
-            List(20) { it * 2.0 + 10 }
+            AssetCloseSeries(closes = List(20) { it * 2.0 + 10 })
 
         val rsi = useCase(FearIndexType.MARKET)
 
@@ -34,8 +36,25 @@ class GetAssetRSIUseCaseTest {
     }
 
     @Test
+    fun `출처 메타데이터를 RSI에 부착`() = runTest {
+        val metadata = IndicatorSourceMetadata(
+            sourceName = "Binance USD-M Futures",
+            basisLabel = "BTC",
+            asOf = "2026-07-05",
+            isOfficial = true,
+            methodology = "14-day RSI from Binance BTCUSDT daily futures closes.",
+        )
+        coEvery { repository.dailyCloses(FearIndexType.CRYPTO) } returns
+            AssetCloseSeries(closes = List(20) { it * 2.0 + 10 }, sourceMetadata = metadata)
+
+        val rsi = useCase(FearIndexType.CRYPTO)
+
+        assertEquals(metadata, rsi!!.sourceMetadata)
+    }
+
+    @Test
     fun `종가 부족이면 null(카드 숨김)`() = runTest {
-        coEvery { repository.dailyCloses(FearIndexType.CRYPTO) } returns emptyList()
+        coEvery { repository.dailyCloses(FearIndexType.CRYPTO) } returns AssetCloseSeries.EMPTY
 
         assertNull(useCase(FearIndexType.CRYPTO))
     }

@@ -70,6 +70,7 @@ fun RSIIndicatorCard(
         valueText = String.format(Locale.US, "%.1f", rsi.value),
         signalLabel = zoneLabel,
         signalColor = zoneColor,
+        sourceLabel = rsi.sourceMetadata?.cardLabel,
         supportingText = supportingText,
         infoContentDescription = stringResource(R.string.indicator_rsi_info_accessibility),
         onInfoClick = onInfoClick,
@@ -106,6 +107,7 @@ fun ShortPressureCard(
         valueText = String.format(Locale.US, "%.1f%%", shortPressure.ratioPercent),
         signalLabel = signalLabel,
         signalColor = signalColor,
+        sourceLabel = shortPressure.sourceMetadata?.cardLabel,
         supportingText = supportingText,
         infoContentDescription = stringResource(R.string.indicator_short_info_accessibility),
         onInfoClick = onInfoClick,
@@ -120,6 +122,7 @@ private fun IndicatorCard(
     valueText: String,
     signalLabel: String,
     signalColor: Color,
+    sourceLabel: String?,
     supportingText: String,
     infoContentDescription: String,
     onInfoClick: () -> Unit,
@@ -174,6 +177,14 @@ private fun IndicatorCard(
                     fontWeight = FontWeight.Medium,
                     color = signalColor,
                     modifier = Modifier.padding(bottom = 2.dp),
+                )
+            }
+            if (!sourceLabel.isNullOrBlank()) {
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = sourceLabel,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))

@@ -1,7 +1,6 @@
 package th1ngjin.fearindex.data.datasource
 
 import th1ngjin.fearindex.data.dto.CoinGeckoCoinPrice
-import th1ngjin.fearindex.data.dto.CoinGeckoMarketChartResponse
 import th1ngjin.fearindex.data.dto.ExchangeRateDailyResponse
 import th1ngjin.fearindex.data.dto.NaverIndexResponse
 import th1ngjin.fearindex.data.dto.YahooChartResponse
@@ -45,17 +44,6 @@ interface CoinGeckoApi {
         @Query("vs_currencies") vsCurrencies: String = "usd",
         @Query("include_24hr_change") include24hChange: Boolean = true,
     ): Map<String, CoinGeckoCoinPrice>
-
-    /**
-     * 일봉 종가 시계열 — RSI(14)용. days>=91이면 무료 티어 자동 일봉
-     * (ohlc 엔드포인트는 4일봉이라 부적합, iOS BTCPriceCloseDataSource 대응).
-     */
-    @GET("api/v3/coins/{id}/market_chart")
-    suspend fun getMarketChart(
-        @Path("id") id: String = "bitcoin",
-        @Query("vs_currency") vsCurrency: String = "usd",
-        @Query("days") days: Int = 180,
-    ): CoinGeckoMarketChartResponse
 }
 
 /** currency-api — USD 기준 일별 환율. base URL 이 날짜 서브도메인으로 가변이라 @Url 사용. */
