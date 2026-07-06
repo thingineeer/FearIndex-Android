@@ -84,6 +84,31 @@ class AssetShortPressureRepositoryImplTest {
     }
 
     @Test
+    fun `KOSPI available=false면 shortRatios가 있어도 빈 배열 - 카드 숨김`() = runTest {
+        coEvery { kospiApi.getKospiShort() } returns KospiShortResponse(
+            available = false,
+            shortRatios = listOf(4.2, 4.5, 3.9),
+        )
+
+        val ratios = repository.dailyShortRatios(FearIndexType.KOSPI)
+
+        assertEquals(emptyList<Double>(), ratios)
+    }
+
+    @Test
+    fun `KOSPI unavailable 응답은 캐시하지 않음 - 소스 복구 시 즉시 반영`() = runTest {
+        coEvery { kospiApi.getKospiShort() } returns KospiShortResponse(
+            available = false,
+            shortRatios = emptyList(),
+        )
+
+        repository.dailyShortRatios(FearIndexType.KOSPI)
+        repository.dailyShortRatios(FearIndexType.KOSPI)
+
+        coVerify(exactly = 2) { kospiApi.getKospiShort() }
+    }
+
+    @Test
     fun `3개 미만이면 캐시하지 않음`() = runTest {
         coEvery { kospiApi.getKospiShort() } returns KospiShortResponse(shortRatios = listOf(4.2))
 
