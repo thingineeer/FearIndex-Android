@@ -1,12 +1,14 @@
 package th1ngjin.fearindex.presentation.component
 
+import android.os.Handler
+import android.os.Looper
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -24,6 +26,7 @@ import com.google.android.gms.ads.LoadAdError
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
+import th1ngjin.fearindex.core.ads.AdRetryPolicy
 import th1ngjin.fearindex.presentation.di.AdsEntryPoint
 
 /**
@@ -86,43 +89,60 @@ fun AdBanner(
             loadedHeightDp = loadedHeightDp,
         )
 
-        key(adUnitId, adSize) {
-            AndroidView(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(containerHeightDp.dp),
-                factory = { ctx ->
-                    AdView(ctx).apply {
-                        setAdSize(adSize)
-                        this.adUnitId = adUnitId
-                        layoutParams = ViewGroup.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT,
-                        )
-                        adListener = object : AdListener() {
-                            override fun onAdLoaded() {
-                                // iOS(AdBannerView.swift) 와 동일: 로드 후 SDK가 확정한
-                                // adSize 의 실제 높이를 clamp 없이 그대로 컨테이너에 반영.
-                                // (렌더 height 는 레이아웃 타이밍에 부정확 → adSize 사용)
-                                val loadedDp = this@apply.adSize?.height
-                                    ?.takeIf { it > 0 }
-                                    ?: adSize.height
-                                loadedHeightDp = loadedDp
-                                analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
-                            }
-
-                            override fun onAdClicked() {
-                                analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
-                            }
-
-                            override fun onAdFailedToLoad(error: LoadAdError) {
-                                analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = error.message))
-                            }
-                        }
-                        loadAd(AdRequest.Builder().build())
+        // AdView와 재시도 스케줄을 (adUnitId, adSize) 키로 remember 해 리컴포지션마다 재생성되지
+        // 않도록 유지한다. onAdFailedToLoad(no-fill/네트워크) 시 exponential backoff로 재요청해
+        // 첫 요청 실패가 그대로 빈 슬롯으로 남지 않게 한다.
+        val retryHandler = remember { Handler(Looper.getMainLooper()) }
+        val retryPolicy = remember { AdRetryPolicy() }
+        val adView = remember(adUnitId, adSize) {
+            AdView(context).apply {
+                setAdSize(adSize)
+                this.adUnitId = adUnitId
+                layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                )
+                var retryCount = 0
+                adListener = object : AdListener() {
+                    override fun onAdLoaded() {
+                        retryCount = 0
+                        // iOS(AdBannerView.swift) 와 동일: 로드 후 SDK가 확정한 adSize 실제 높이
+                        // 를 clamp 없이 컨테이너에 반영. (렌더 height 는 레이아웃 타이밍에 부정확)
+                        val loadedDp = this@apply.adSize?.height
+                            ?.takeIf { it > 0 }
+                            ?: adSize.height
+                        loadedHeightDp = loadedDp
+                        analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
                     }
-                },
-            )
+
+                    override fun onAdClicked() {
+                        analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
+                    }
+
+                    override fun onAdFailedToLoad(error: LoadAdError) {
+                        analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = error.message))
+                        if (!AdRetryPolicy.isRetryable(error.code)) return
+                        val delay = retryPolicy.nextDelayMillis(retryCount) ?: return
+                        retryCount += 1
+                        retryHandler.postDelayed({ loadAd(AdRequest.Builder().build()) }, delay)
+                    }
+                }
+                loadAd(AdRequest.Builder().build())
+            }
         }
+
+        DisposableEffect(adView) {
+            onDispose {
+                retryHandler.removeCallbacksAndMessages(null)
+                adView.destroy()
+            }
+        }
+
+        AndroidView(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(containerHeightDp.dp),
+            factory = { adView },
+        )
     }
 }
