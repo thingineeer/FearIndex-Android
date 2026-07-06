@@ -56,7 +56,8 @@ class AssetShortPressureRepositoryImpl internal constructor(
                 BinanceShortRatioParser.shortRatios(binanceApi.getGlobalLongShortAccountRatio())
             }
             FearIndexType.KOSPI -> withTimeout(TIMEOUT_MS) {
-                kospiApi.getKospiShort().shortRatios
+                // KRX 공식 소스 확정 전까지 서버가 unavailable을 내려주면 카드 숨김 (빈 배열 → 계산 불가).
+                kospiApi.getKospiShort().takeIf { it.available }?.shortRatios.orEmpty()
             }
         }
         // 3개 미만이면 계산 불가 데이터라 캐시하지 않음 (다음 호출에서 재시도).

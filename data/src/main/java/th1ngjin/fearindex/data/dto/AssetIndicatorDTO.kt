@@ -35,8 +35,12 @@ data class BinanceLongShortRatioDTO(
     val timestamp: Long,
 )
 
-/** 서버 `/api/kospi/short` — KIS 시총상위 합산 공매도 비중(%) 시계열. */
+/**
+ * 서버 `/api/kospi/short` — KIS 시총상위 합산 공매도 비중(%) 시계열.
+ * KRX 공식 소스 확정 전까지 서버가 `available=false` + 빈 배열을 반환 (구버전 응답엔 필드 없음 → true).
+ */
 @Serializable
 data class KospiShortResponse(
+    val available: Boolean = true,
     val shortRatios: List<Double> = emptyList(),
 )
