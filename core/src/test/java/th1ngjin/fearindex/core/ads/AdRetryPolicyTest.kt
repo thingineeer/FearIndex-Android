@@ -5,49 +5,31 @@ import org.junit.Assert.assertNull
 import org.junit.Test
 
 /**
- * 광고 로드 실패 시 재시도 backoff 정책 — 순수 로직.
- * exponential backoff (base*2^n), 최대 지연 cap, 최대 시도 횟수 초과 시 재시도 중단.
+ * 광고 로드 실패 시 재시도 backoff 정책 — 순수 로직. iOS AdBannerView 스펙 1:1.
+ * retryDelays [5s, 15s, 45s] 3회 → 그 후 최종 1회 300s(5분). 이후 중단.
  */
 class AdRetryPolicyTest {
 
-    private val policy = AdRetryPolicy(
-        baseDelayMillis = 2_000L,
-        maxDelayMillis = 60_000L,
-        maxRetries = 5,
-    )
+    private val policy = AdRetryPolicy()
 
     @Test
-    fun `첫 재시도는 base 지연`() {
-        assertEquals(2_000L, policy.nextDelayMillis(previousRetryCount = 0))
+    fun `초기 재시도는 5s, 15s, 45s 순서 (iOS retryDelays)`() {
+        assertEquals(5_000L, policy.nextDelayMillis(previousRetryCount = 0))
+        assertEquals(15_000L, policy.nextDelayMillis(previousRetryCount = 1))
+        assertEquals(45_000L, policy.nextDelayMillis(previousRetryCount = 2))
     }
 
     @Test
-    fun `재시도마다 지연이 2배로 증가 (exponential)`() {
-        assertEquals(2_000L, policy.nextDelayMillis(0))  // 2s
-        assertEquals(4_000L, policy.nextDelayMillis(1))  // 4s
-        assertEquals(8_000L, policy.nextDelayMillis(2))  // 8s
-        assertEquals(16_000L, policy.nextDelayMillis(3)) // 16s
+    fun `초기 3회 후 최종 재시도는 300s (5분, 1회 한정)`() {
+        // previousRetryCount = 3 → 초기 배열 소진, 최종 300s 1회
+        assertEquals(300_000L, policy.nextDelayMillis(previousRetryCount = 3))
     }
 
     @Test
-    fun `지연은 maxDelay로 상한 clamp`() {
-        // maxRetries=8 정책으로 큰 지수의 clamp를 검증 (2s * 2^5 = 64s 이지만 cap 60s)
-        val longPolicy = AdRetryPolicy(baseDelayMillis = 2_000L, maxDelayMillis = 60_000L, maxRetries = 12)
-        assertEquals(60_000L, longPolicy.nextDelayMillis(5))  // 64s → 60s
-        assertEquals(60_000L, longPolicy.nextDelayMillis(10)) // 훨씬 큼 → 60s
-    }
-
-    @Test
-    fun `최대 시도 횟수 초과면 null (재시도 중단)`() {
-        // previousRetryCount 가 maxRetries 이상이면 더 이상 재시도 안 함
+    fun `최종 재시도 이후는 null (재시도 완전 중단)`() {
+        // previousRetryCount = 4 → 초기 3 + 최종 1 = 4회 모두 소진
+        assertNull(policy.nextDelayMillis(previousRetryCount = 4))
         assertNull(policy.nextDelayMillis(previousRetryCount = 5))
-        assertNull(policy.nextDelayMillis(previousRetryCount = 6))
-    }
-
-    @Test
-    fun `maxRetries 직전까지는 재시도 허용`() {
-        // previousRetryCount = 4 → 5번째 시도 (아직 maxRetries=5 미만). 2s * 2^4 = 32s
-        assertEquals(32_000L, policy.nextDelayMillis(4))
     }
 
     @Test
@@ -56,6 +38,6 @@ class AdRetryPolicyTest {
         assertEquals(true, AdRetryPolicy.isRetryable(errorCode = 2)) // NETWORK_ERROR
         assertEquals(true, AdRetryPolicy.isRetryable(errorCode = 3)) // NO_FILL
         assertEquals(true, AdRetryPolicy.isRetryable(errorCode = 0)) // INTERNAL (일시적)
-        assertEquals(false, AdRetryPolicy.isRetryable(errorCode = 1)) // INVALID_REQUEST (설정 오류 — 재시도 무의미)
+        assertEquals(false, AdRetryPolicy.isRetryable(errorCode = 1)) // INVALID_REQUEST (설정 오류)
     }
 }
