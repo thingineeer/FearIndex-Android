@@ -4,6 +4,46 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-07-06 세션 (v1.4.0 — iOS v1.8.8 parity 5건, dev 통합)
+
+브랜치: dev←feature/v1.4.0←4개 worktree 피처 브랜치(kospi-short-availability / notification-sync / crypto-official-endpoint / iap) + version-bump. 모두 --no-ff, 분기/합류 그래프 유지. 총 701 테스트 GREEN. **아직 배포 전(로컬 dev만), push 미실행.**
+
+### 35. 알림 온보딩 개선 — 최초 권한 허용 시 master toggle 디폴트 ON (리텐션) + FCM 등록 후 설정 동기화
+- **요청**: iOS v1.8.8 — 시스템 알림 프롬프트가 실제로 표시된 최초 결정에서 허용 시 앱 내 master toggle을 ON 저장+서버 동기화. 이미 결정된 기기(즉시 granted)는 저장값 불가침(사용자 OFF 존중).
+- **구현**: `domain/.../entity/NotificationPermissionSyncPolicy.kt`에 `initialAuthorizationAction(systemAuthorized, hasStoredPreference, isFirstAuthorizationDecision)` 순수 함수 추가 (iOS `NotificationAuthorizationSyncPolicy` 1:1). sealed `InitialAuthorizationAction`: NoChange / InitializeLocalOnly(enabled) / InitializeAndSyncServer(enabled). 로직: 최초결정+허용→ON+서버동기화(저장값 무시), hasStored→NoChange(불가침), 저장값X+허용→로컬만 ON, 저장값X+미허용→OFF+동기화. TDD 5케이스.
+  - **iOS "stale 저장값" 문제(App Group/iCloud 상속)는 Android에 없음** → `isFirstDecision` = "런타임 POST_NOTIFICATIONS를 지금 처음 요청해 허용됨"으로 매핑. `NotificationStorage`에 `hasStoredPreference()`(KEY_ENABLED 존재)/`hasRequestedPermission()`(신규 플래그 KEY_PERMISSION_REQUESTED) 추가.
+  - MainActivity: 시작 시(33+, 미허용, 미요청) `notificationPermissionLauncher.launch(POST_NOTIFICATIONS)` — launch 시점에 `markPermissionRequested()`로 회전/킬 재프롬프트 방지. 콜백/pre-33/기결정은 `applyInitialNotificationAuthorization(granted, isFirstDecision)` → 정책 액션대로 saveSettingsLocal 또는 updateSettings(서버).
+- **FCM 등록 직후 동기화**(같은 머지 단위): `NotificationRepositoryImpl.registerFCMToken`이 registerFCMToken 호출 **직후** `dataSource.updateSettings(deviceId, storage.load())` 추가. 서버 registerFCMToken이 payload에 임계값 없으면 신규 기기 즉시체크 보류 → updateNotificationSettings가 즉시체크 대신 트리거(33번 서버 공백 클라측 대응). 앱 시작+onNewToken 두 경로 모두 커버(repository 단일 지점). 등록 왕복 중 toggle 변경 반영 위해 최신 storage.load() 재조회.
+- **검증**(에뮬 debug): 최초 실행 → "Allow" → prefs `notificationEnabled=true` + `NotificationDataSource: Notification settings updated` 로그. 재실행 → 프롬프트 없음 + 값 불변(NoChange). **App Check debug token 미등록 시 서버 Callable이 Unauthenticated 거부**(코드 정상, 환경 문제) → Firebase Console App Check "공포지수 Android Debug"에 debug token 등록 후 registerFCMToken+updateNotificationSettings 서버 성공 확인.
+- **교훈**: 알림 초기화 정책은 순수 함수로 분리해 TDD. Android엔 iOS notDetermined 대응이 없으므로 "권한 요청 이력 플래그"로 최초 결정을 추적.
+
+### 36. BTC 지표 cryptoOfficialIndicatorsV1 서버 endpoint 전환 + 지표 카드 출처 라벨
+- **요청**: iOS v1.8.8 — CRYPTO RSI/공매도를 서버 official endpoint 경유로 전환(Binance 공식 소스), 지표 카드에 출처 라벨("source · basis · asOf") 작은 글씨 표시. SPX는 서버 endpoint 없음(FINRA/FRED가 GCP IP 차단) → 기기 직접 호출 유지.
+- **구현**: `GET https://asia-northeast3-fear-index-a4f4b.cloudfunctions.net/cryptoOfficialIndicatorsV1` → `OfficialIndicatorsResponse{rsi, short}`, 각 `OfficialIndicatorSeriesDTO{available, values, closes, ratios, dates, source, basis, asOf, official, methodology}`. 클라: `closes ?? values`(RSI), `ratios ?? values`(short), available=false면 빈 시계열(카드 숨김). Wilder RSI/ShortPressure 계산은 클라 유지(변경 없음).
+  - `domain/.../entity/IndicatorSourceMetadata.kt`(cardLabel="source·basis·asOf", sheetBody="source·asOf·methodology", 빈 값 제외) + `AssetCloseSeries`/`AssetShortRatioSeries`(closes/ratios + sourceMetadata). FearRSI/ShortPressure에 sourceMetadata 부착, UseCase가 `.copy(sourceMetadata=...)`.
+  - Repository: CRYPTO=officialApi, MARKET=Yahoo ^GSPC(하드코딩 메타 sourceName="Yahoo Finance ^GSPC"/basis="S&P 500"/**isOfficial=false**경고아이콘), MARKET 공매도=FINRA(하드코딩 "FINRA Daily Short Sale Volume"/"SPY ETF"/asOf=마지막 파일일), KOSPI RSI=KIS/KRX(asOf=마지막 종가일), KOSPI 공매도=서버 응답 메타. **CoinGecko market_chart/Binance globalLongShortAccountRatio 직접 호출·파서 제거**(DataModule에서 BinanceFuturesApi→OfficialIndicatorsApi 교체).
+  - UI: `IndicatorCards.kt` sourceLabel(labelSmall/onSurfaceVariant), `IndicatorInfoSheets.kt` SourceSection("데이터 기준" 헤더, 공식=Verified/비공식=WarningAmber 아이콘). HomeScreen이 uiState.currentRsi/currentShortPressure.sourceMetadata 주입.
+- **⚠️ 절대 규칙**: source/basis/methodology는 45 locale에 노출되지만 **번역 금지 — locale-neutral 영문 하드코딩**(서버 official endpoint + 클라 하드코딩 동일). l10n 키는 `indicator_source_section`("데이터 기준"/"Data basis") 하나만 45 locale.
+- **검증**(에뮬 debug 라이브): BTC RSI "Binance USD-M Futures · BTC · 2026-07-06", S&P500 RSI "Yahoo Finance ^GSPC · S&P 500", S&P500 공매도 "FINRA Daily Short Sale Volume · SPY ETF · 2026-07-02", KOSPI RSI "KIS/KRX KOSPI · KOSPI · 2026-06-30".
+
+### 37. KOSPI 공매도 available:false 처리 — 카드 숨김 (34번 오신호 해소)
+- **요청/원인**: 서버 `/api/kospi/short`가 KRX 공식 소스 확정 전까지 `{available:false, shortRatios:[]}` 반환(iOS 팀 변경). 기존 Android는 미집계 당일 `0` → "0.0% 숏커버링" 오신호(34번).
+- **구현**: `KospiShortResponse`에 `available: Boolean = true`(구버전 응답 default true) 필드 추가. repo에서 `getKospiShort().takeIf { it.available }?.shortRatios.orEmpty()` → available=false면 빈 배열 → ShortPressureCalculator `count>=3` 가드에서 null → 카드 숨김(기존 null 경로 재사용, 별도 hidden 분기 없음). unavailable 응답은 미캐시(소스 복구 시 즉시 반영). TDD 4개(DTO decode 2 + repo 2).
+- **검증**: 에뮬 KOSPI 탭에서 공매도 카드 미노출(RSI 카드만), 오신호 사라짐.
+
+### 38. Android IAP(광고 제거) 신규 구현 — Play Billing (iOS PurchaseManager 1:1)
+- **요청**: 사용자 지시 "안드로이드도 인앱결제 넣어". iOS는 광고 제거 non-consumable IAP(v1.6.0~). Android엔 billing 의존성 0건이었음(신규).
+- **구현**: `core/purchases/PurchaseManager.kt`(@Singleton, billing-ktx 7.1.1). 상품 ID `remove_ads_lifetime`(one-time INAPP non-consumable). `isAdFree: StateFlow`(SharedPreferences "iap_prefs"/"iap.adFree.cached" 캐시로 init 동기 복원 — 첫 프레임 깜빡임 방지), `priceText`(oneTimePurchaseOfferDetails.formattedPrice, 미로드 null→UI fallback "US$4.99"), `purchaseEvents: SharedFlow`(Completed/Failed/Cancelled).
+  - start()=FearIndexApp.onCreate 1회(screenshotMode 스킵): connect→queryPurchasesAsync(INAPP) entitlement 재평가→queryProductDetailsAsync 가격 로드. onResume=refreshEntitlements(외부 구매/환불 반영). purchaseRemoveAds=launchBillingFlow, 성공 PURCHASED→acknowledgePurchase(**consume 금지**, non-consumable). restorePurchases=queryPurchasesAsync 재평가.
+  - **순수 로직 분리 TDD 13개**: `IapEntitlement.evaluate`(구매목록→isAdFree+미ack 토큰), `IapPurchaseOutcome.evaluate`(responseCode→Completed/Cancelled/Failed). BillingClient 글루는 얇게.
+  - **코드리뷰(xhigh) 보강 5건**: purchaseInFlight AtomicBoolean 이벤트 1회 발행(launchBillingFlow 실패+onPurchasesUpdated 이중 방지), ITEM_ALREADY_OWNED→entitlement 재평가 grant(오류 다이얼로그 방지), ensureConnected 10s timeout(스피너 무한대기 방지), 상품 미로드 구매 경로 실패 시 반드시 실패 이벤트(스피너 해제), grantAdFree 중복 디스크 쓰기 제거.
+  - 광고 게이트: `AdBanner.kt:70`(`isAdFree || !canRequestAds || ...`→return), 인터스티셜 `HomeScreen.kt:181`(`interstitialAdPolicyConfig(canRequestAds && !isAdFree)`), 둘 다 `AdsEntryPoint.purchaseManager()` 경유. Analytics 한글 이벤트(광고제거구매시작/완료/실패/복원) parity.
+  - 설정 프리미엄 카드: SettingsScreen 최상단(Premium 헤더 + Remove Ads/가격 + Restore Purchases, 구매완료 시 초록 체크+"광고 제거됨"). SettingsViewModel(purchase/restore + isPurchasing/isRestoring + dialog). **구매 실패 다이얼로그에 "문의: dlaudwls1203@gmail.com" 작은 글씨(bodySmall)** + 복원 성공/실패 다이얼로그. **모든 IAP 로그에 "Error" 토큰**(콘솔 필터). 10키×45 locale(settings_premium_header 등, %@→%1$s).
+- **검증**(에뮬 debug): 설정 프리미엄 카드 정상(Premium/Remove Ads/US$4.99 fallback/Restore Purchases), 광고 게이트 배선 확인. **실결제는 에뮬 Play Billing 제약 → 실기기 라이선스 테스터로 재검증 필요**.
+- **⚠️ Play Console 사용자 작업**: 결제 프로필 연결(이매진), 상품 `remove_ads_lifetime` 등록(일회성/non-consumable/US$4.99 상당), 라이선스 테스터, 데이터 보안/앱 콘텐츠 선언.
+- **교훈**: Play Billing non-consumable은 consume 금지 acknowledge만. SharedPreferences 캐시로 async 쿼리 전 첫 프레임 광고 깜빡임 방지. 이벤트 1회 발행은 AtomicBoolean 게이트로 이중 콜백 방어.
+
+
 # Bugs Fixed
 
 ## 2026-04-14 세션

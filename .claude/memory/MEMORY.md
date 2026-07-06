@@ -14,15 +14,19 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
-## 최신 상태 (2026-07-03, v1.3.0 배포)
+## 최신 상태 (2026-07-06, v1.4.0 dev 통합 — iOS v1.8.8 parity)
 
-- **현재 배포 기준**: Android `1.3.0` / `versionCode 17` / package `th1ngjin.fearindex`. **production 게시 완료 ✅** (2026-07-03 당일 심사 통과, 관리형 게시 "게시"는 사용자 수동 클릭). `release` 머지 + `v1.3.0` 태그 완료.
-- **v1.3.0 = RSI/공매도 투자 지표 신규**: 3자산(S&P500/KOSPI/BTC) 가격 RSI(14, Wilder) + 공매도 동향 카드 + 설명 시트. KOSPI 종가는 기존 스냅샷 `kospiClose` 재사용(추가 API 0). TDD 신규 45개, 전체 GREEN. 상세: @memory/bugs-fixed.md 34번.
-- **FCM 정책 개편 검증 완료 (33번)**: Android는 payload 그대로 표시 — 코드 무수정 확인, 실수신 테스트 통과. ⚠️ **서버 전달 필요**: `updateNotificationSettings`에 즉시체크 훅 없음 → Android 신규 유저 즉시 알림 못 받음(30분 cron 폴백).
-- **서버/기존 이슈 (미해결)**: ① `/api/kospi/short` 미집계 당일 `0` → "0.0% 숏커버링" 오신호 (iOS 동일 영향) ② KOSPI SimilarEvents에 `insight.kospi.event.tradeWar2018` raw key 노출 (기존 버그, fix 대상) ③ 에뮬레이터 /data 400MB 부족 — 정리 필요.
-- **RC 게이트**: `force_update_minimum_version` [Android]=`1.2` 유지 (1.3.0 통과, 조치 불필요). `minimum_app_version` Android=`1.1.3` 유지.
-- **다음 세션 (선택)**: SimilarEvents raw key fix, AdMob 정책센터 재확인, push (모든 브랜치 로컬 상태 — 명시 요청 대기), 서버 팀 전달 2건.
-- **세션 저장**: 최신 resume 진입점은 @docs/checkpoints/SESSION-STATE.md.
+- **현재 dev 기준**: Android `1.4.0` / `versionCode 18` / package `th1ngjin.fearindex`. **dev 머지 완료** (아직 배포 전 — Play Console 업로드/게시 미실행, push도 미실행: 모두 로컬 상태, 명시 요청 대기). 이전 배포본은 v1.3.0(vc17, release 태그).
+- **v1.4.0 = iOS v1.8.8 동기화 5건** (worktree 단위 분할, --no-ff 그래프 유지, 총 701 테스트 GREEN):
+  1. **알림 온보딩 개선**: `NotificationPermissionSyncPolicy.initialAuthorizationAction`(iOS 1:1). 시스템 프롬프트 실표시 최초 결정에서 허용 → master toggle ON + 서버 동기화. 이미 결정된 기기/사용자 OFF 불가침. MainActivity 시작 시 POST_NOTIFICATIONS 요청. + registerFCMToken 직후 updateNotificationSettings 전체 동기화(서버 즉시체크 트리거 — 33번 서버 공백 클라측 대응).
+  2. **BTC 지표 cryptoOfficialIndicatorsV1 전환**: CRYPTO RSI/공매도를 서버 official endpoint(`asia-northeast3-fear-index-a4f4b.cloudfunctions.net/cryptoOfficialIndicatorsV1`)로 전환(rsi.closes 180 → 클라 Wilder RSI, short.ratios 14). CoinGecko/Binance 직접 호출 제거. `IndicatorSourceMetadata` 엔티티 + 카드 출처 라벨("source·basis·asOf") + info 시트 "데이터 기준" 섹션. SPX(Yahoo·비공식)/KOSPI(KIS/KRX)는 클라 하드코딩 메타(locale-neutral 영문, 번역 금지). `indicator_source_section` 45 locale.
+  3. **KOSPI 공매도 숨김**: `/api/kospi/short` {available:false} → 빈 배열 → 카드 숨김. KospiShortResponse에 available 필드(default true). unavailable은 미캐시(소스 복구 시 즉시 반영). → 34번 "0.0% 숏커버링" 오신호 해소.
+  4. **광고 제거 IAP 신규**(Play Billing): `core/purchases/PurchaseManager.kt`(iOS PurchaseManager 1:1), 상품 ID `remove_ads_lifetime`(one-time non-consumable). isAdFree StateFlow + SharedPreferences 캐시(첫 프레임 깜빡임 방지). 배너/인터스티셜 게이트(AdBanner.kt:70, HomeScreen.kt:181, AdsEntryPoint.purchaseManager()). 설정 프리미엄 카드(구매/복원). 순수 로직 IapEntitlement/IapPurchaseOutcome TDD 13개. 구매 실패 다이얼로그에 "문의: dlaudwls1203@gmail.com" 작은 라벨 + 모든 IAP 로그에 "Error" 토큰. 10키×45 locale.
+- **⚠️ Play Console 사용자 작업 필요** (IAP 실동작 전제): (1) 수익 창출 결제 프로필 연결(이매진 3593-7323-4054 사용 가능), (2) 인앱 상품 `remove_ads_lifetime` 등록(일회성/non-consumable, 권장가 US$4.99 상당), (3) 라이선스 테스터 등록, (4) 데이터 보안/앱 콘텐츠 선언 업데이트. 미등록 시 앱은 가격 fallback "US$4.99" 표시 + 구매 시 실패 다이얼로그.
+- **런타임 검증 완료**(에뮬 Medium_Phone_API_36.1 debug): 알림 프롬프트→ON→서버 동기화(App Check debug token `74af5682-8968-4d1f-a9b9-59753d98c5bf` Firebase Console 등록 후 registerFCMToken+updateNotificationSettings 성공 확인), BTC/SPX/KOSPI 출처 라벨 노출, KOSPI 공매도 카드 숨김, 프리미엄 카드(US$4.99 fallback+복원) 표시. IAP 실결제는 실기기 라이선스 테스터로 재검증 권장(에뮬 Play Billing 제약).
+- **서버/기존 이슈 (미해결)**: ① KOSPI SimilarEvents에 `insight.kospi.event.tradeWar2018` raw key 노출 (기존 버그, 번역 키 누락 — 이번 범위 밖, fix 대상) ② `/api/kospi/short` 서버측 available:false는 iOS 팀이 처리(클라는 대응 완료).
+- **RC 게이트**: `force_update_minimum_version` [Android]=`1.2` 유지 (1.4.0 통과, 조치 불필요). 배포 시 전파 확인 후 상향 검토.
+- **다음 세션 (선택)**: v1.4.0 Play Console 배포(AAB+changelog 18), push(모든 브랜치 로컬), Play Console IAP 상품 등록, release 머지+v1.4.0 태그(배포 통과 후), SimilarEvents raw key fix.
 
 ## 문서 인덱스
 
