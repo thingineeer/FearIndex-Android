@@ -363,6 +363,7 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +383,14 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Advertenties verwijderen</string>
+    <string name="settings_remove_ads_description">Eenmalige aankoop. Verwijdert alle advertenties voorgoed.</string>
+    <string name="settings_remove_ads_purchased">Advertenties verwijderd</string>
+    <string name="settings_remove_ads_purchase_failed">Aankoop mislukt. Probeer het opnieuw.</string>
+    <string name="settings_restore_purchases">Aankopen herstellen</string>
+    <string name="settings_restore_success">Aankopen hersteld.</string>
+    <string name="settings_restore_failure">Geen aankopen om te herstellen.</string>
+    <string name="settings_support_contact">Contact: %1$s</string>
+    <string name="common_confirm">Bevestigen</string>
 </resources>

@@ -363,6 +363,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +383,14 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Noņemt reklāmas</string>
+    <string name="settings_remove_ads_description">Vienreizējs pirkums. Uz visiem laikiem noņem visas reklāmas.</string>
+    <string name="settings_remove_ads_purchased">Reklāmas noņemtas</string>
+    <string name="settings_remove_ads_purchase_failed">Pirkums neizdevās. Lūdzu, mēģiniet vēlreiz.</string>
+    <string name="settings_restore_purchases">Atjaunot pirkumus</string>
+    <string name="settings_restore_success">Pirkumi atjaunoti.</string>
+    <string name="settings_restore_failure">Nav pirkumu, ko atjaunot.</string>
+    <string name="settings_support_contact">Kontakti: %1$s</string>
+    <string name="common_confirm">Apstiprināt</string>
 </resources>

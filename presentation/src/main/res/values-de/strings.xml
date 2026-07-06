@@ -363,6 +363,7 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Datenbasis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +383,14 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Werbung entfernen</string>
+    <string name="settings_remove_ads_description">Einmaliger Kauf. Entfernt dauerhaft alle Werbung.</string>
+    <string name="settings_remove_ads_purchased">Werbung entfernt</string>
+    <string name="settings_remove_ads_purchase_failed">Kauf fehlgeschlagen. Bitte erneut versuchen.</string>
+    <string name="settings_restore_purchases">Käufe wiederherstellen</string>
+    <string name="settings_restore_success">Käufe wiederhergestellt.</string>
+    <string name="settings_restore_failure">Keine Käufe zum Wiederherstellen.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Bestätigen</string>
 </resources>

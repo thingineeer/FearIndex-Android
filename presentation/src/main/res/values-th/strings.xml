@@ -366,6 +366,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -385,4 +386,14 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">พรีเมียม</string>
+    <string name="settings_remove_ads_title">ลบโฆษณา</string>
+    <string name="settings_remove_ads_description">ซื้อครั้งเดียว ลบโฆษณาทั้งหมดตลอดไป</string>
+    <string name="settings_remove_ads_purchased">ลบโฆษณาแล้ว</string>
+    <string name="settings_remove_ads_purchase_failed">การซื้อล้มเหลว โปรดลองอีกครั้ง</string>
+    <string name="settings_restore_purchases">กู้คืนการซื้อ</string>
+    <string name="settings_restore_success">กู้คืนการซื้อแล้ว</string>
+    <string name="settings_restore_failure">ไม่มีการซื้อที่จะกู้คืน</string>
+    <string name="settings_support_contact">ติดต่อ: %1$s</string>
+    <string name="common_confirm">ยืนยัน</string>
 </resources>

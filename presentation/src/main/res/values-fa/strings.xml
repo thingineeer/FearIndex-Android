@@ -362,6 +362,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -381,4 +382,14 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">پریمیوم</string>
+    <string name="settings_remove_ads_title">حذف تبلیغات</string>
+    <string name="settings_remove_ads_description">خرید یک‌باره. همه تبلیغات را برای همیشه حذف می‌کند.</string>
+    <string name="settings_remove_ads_purchased">تبلیغات حذف شد</string>
+    <string name="settings_remove_ads_purchase_failed">خرید ناموفق بود. لطفاً دوباره تلاش کنید.</string>
+    <string name="settings_restore_purchases">بازیابی خریدها</string>
+    <string name="settings_restore_success">خریدها بازیابی شد.</string>
+    <string name="settings_restore_failure">خریدی برای بازیابی وجود ندارد.</string>
+    <string name="settings_support_contact">تماس: %1$s</string>
+    <string name="common_confirm">تأیید</string>
 </resources>

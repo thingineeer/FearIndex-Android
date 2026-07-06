@@ -362,6 +362,7 @@
     <string name="indicator_rsi_support_neutral">価格モメンタムは中立圏です。</string>
     <string name="indicator_rsi_support_overbought">価格も技術的に過熱気味 — 強欲寄りを裏づけます。</string>
     <string name="indicator_rsi_support_oversold">価格も技術的に売られすぎ — 恐怖寄りを裏づけます。</string>
+    <string name="indicator_source_section">データ基準</string>
     <string name="indicator_rsi_title">%1$s RSI (相対力指数)</string>
     <string name="indicator_rsi_zone_neutral">中立</string>
     <string name="indicator_rsi_zone_overbought">買われすぎ</string>
@@ -381,4 +382,14 @@
     <string name="indicator_short_support_heavy">空売りが増えています — 下落への賭けが優勢です。</string>
     <string name="indicator_short_support_neutral">空売り比率は安定しています — 明確な偏りはありません。</string>
     <string name="indicator_short_title">%1$s 空売り動向</string>
+    <string name="settings_premium_header">プレミアム</string>
+    <string name="settings_remove_ads_title">広告を削除</string>
+    <string name="settings_remove_ads_description">一度の購入で、すべての広告が永久に削除されます。</string>
+    <string name="settings_remove_ads_purchased">広告削除済み</string>
+    <string name="settings_remove_ads_purchase_failed">購入に失敗しました。もう一度お試しください。</string>
+    <string name="settings_restore_purchases">購入を復元</string>
+    <string name="settings_restore_success">購入が復元されました。</string>
+    <string name="settings_restore_failure">復元できる購入はありません。</string>
+    <string name="settings_support_contact">お問い合わせ: %1$s</string>
+    <string name="common_confirm">確認</string>
 </resources>

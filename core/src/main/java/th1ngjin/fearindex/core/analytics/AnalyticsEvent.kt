@@ -152,6 +152,15 @@ sealed class AnalyticsEvent(val name: String, val parameters: Map<String, Any>? 
     data class 인사이트상세조회(val 카드타입: String, val 점수: Int) :
         AnalyticsEvent("insight_detail_viewed", mapOf("card_type" to 카드타입, "score" to 점수))
 
+    // MARK: - 인앱결제 (광고 제거)
+    data object 광고제거구매시작 : AnalyticsEvent("광고제거구매시작")
+    data object 광고제거구매완료 : AnalyticsEvent("광고제거구매완료")
+    data class 광고제거구매실패(val 에러메시지: String) :
+        AnalyticsEvent("광고제거구매실패", mapOf("에러메시지" to 에러메시지))
+
+    data class 광고제거복원(val 성공여부: Boolean) :
+        AnalyticsEvent("광고제거복원", mapOf("성공여부" to 성공여부))
+
     // MARK: - 수익 최적화 이벤트
     data class 화면체류시간(val 화면: String, val 체류초: Int) :
         AnalyticsEvent("화면체류시간", mapOf("화면" to 화면, "체류초" to 체류초))

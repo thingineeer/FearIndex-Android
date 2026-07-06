@@ -21,8 +21,8 @@ android {
         applicationId = "th1ngjin.fearindex"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 17
-        versionName = "1.3.0"
+        versionCode = 18
+        versionName = "1.4.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }

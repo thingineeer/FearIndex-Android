@@ -33,6 +33,22 @@ class NotificationRepositoryImplTest {
     }
 
     @Test
+    fun `registerFCMToken - 등록 직후 로컬 설정 전체를 updateSettings로 동기화`() = runTest {
+        // 서버 registerFCMToken은 payload에 임계값이 없으면 신규 기기 즉시 체크를 보류함.
+        // 등록 직후 updateNotificationSettings 호출이 즉시 체크를 대신 트리거 (iOS v1.8.8 parity).
+        val token = "fake-fcm-token-abc123"
+        val localSettings = NotificationSettings.DEFAULT.copy(marketLowerThreshold = 20)
+        every { storage.load() } returns localSettings
+
+        repository.registerFCMToken(deviceId, token)
+
+        io.mockk.coVerifyOrder {
+            dataSource.registerFCMToken(deviceId, token, localSettings)
+            dataSource.updateSettings(deviceId, localSettings)
+        }
+    }
+
+    @Test
     fun `updateSettings - 로컬 저장 먼저 수행한 뒤 서버 동기화`() = runTest {
         val settings = NotificationSettings(
             notificationEnabled = true,
@@ -86,6 +102,19 @@ class NotificationRepositoryImplTest {
         coVerify(exactly = 0) {
             dataSource.updateSettings(any(), any())
         }
+    }
+
+    @Test
+    fun `초기 권한 부트스트랩 상태 - storage에 위임`() = runTest {
+        every { storage.hasStoredPreference() } returns true
+        every { storage.hasRequestedPermission() } returns false
+
+        assertEquals(true, repository.hasStoredNotificationPreference())
+        assertEquals(false, repository.hasRequestedNotificationPermission())
+
+        repository.markNotificationPermissionRequested()
+
+        verify(exactly = 1) { storage.markPermissionRequested() }
     }
 
     @Test

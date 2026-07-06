@@ -52,6 +52,9 @@ dependencies {
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
 
+    // Play Billing — 인앱결제(광고 제거)
+    implementation(libs.billing.ktx)
+
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

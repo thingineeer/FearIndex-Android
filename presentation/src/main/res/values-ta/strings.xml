@@ -366,6 +366,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -385,4 +386,14 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">பிரீமியம்</string>
+    <string name="settings_remove_ads_title">விளம்பரங்களை அகற்று</string>
+    <string name="settings_remove_ads_description">ஒருமுறை வாங்குதல். எல்லா விளம்பரங்களையும் நிரந்தரமாக அகற்றும்.</string>
+    <string name="settings_remove_ads_purchased">விளம்பரங்கள் அகற்றப்பட்டன</string>
+    <string name="settings_remove_ads_purchase_failed">வாங்குதல் தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்.</string>
+    <string name="settings_restore_purchases">வாங்குதல்களை மீட்டெடு</string>
+    <string name="settings_restore_success">வாங்குதல்கள் மீட்டெடுக்கப்பட்டன.</string>
+    <string name="settings_restore_failure">மீட்டெடுக்க வாங்குதல்கள் எதுவும் இல்லை.</string>
+    <string name="settings_support_contact">தொடர்பு: %1$s</string>
+    <string name="common_confirm">உறுதிப்படுத்து</string>
 </resources>

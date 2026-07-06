@@ -1,0 +1,1 @@
+Millores en les notificacions i una nova opció per eliminar els anuncis.
