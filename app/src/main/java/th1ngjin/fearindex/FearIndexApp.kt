@@ -22,6 +22,7 @@ import th1ngjin.fearindex.core.analytics.AnalyticsManager
 import th1ngjin.fearindex.core.appcheck.AppCheckInitializer
 import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.debug.ScreenshotMode
+import th1ngjin.fearindex.core.purchases.PurchaseManager
 import th1ngjin.fearindex.core.remoteconfig.RemoteConfigManager
 import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.entity.NotificationPermissionSyncPolicy
@@ -39,6 +40,7 @@ class FearIndexApp : Application() {
     @Inject lateinit var crashReporter: CrashReporter
     @Inject lateinit var remoteConfig: RemoteConfigManager
     @Inject lateinit var appCheck: AppCheckInitializer
+    @Inject lateinit var purchaseManager: PurchaseManager
     @Inject lateinit var notificationRepository: Lazy<NotificationRepository>
     @Inject lateinit var deviceIdProvider: Lazy<DeviceIdProvider>
 
@@ -53,6 +55,7 @@ class FearIndexApp : Application() {
         if (!screenshotMode) {
             registerFCMToken()
             initAdMob()
+            purchaseManager.start()
         }
         registerLifecycle(screenshotMode)
     }

@@ -400,4 +400,14 @@
     <string name="indicator_short_support_heavy">공매도 비중이 늘고 있어요 — 하락에 베팅한 자금이 우세해요.</string>
     <string name="indicator_short_support_neutral">공매도 비중이 안정적이에요 — 뚜렷한 쏠림은 없어요.</string>
     <string name="indicator_short_title">%1$s 공매도 동향</string>
+    <string name="settings_premium_header">프리미엄</string>
+    <string name="settings_remove_ads_title">광고 제거</string>
+    <string name="settings_remove_ads_description">한 번의 구매로 모든 광고가 영구 제거됩니다.</string>
+    <string name="settings_remove_ads_purchased">광고 제거됨</string>
+    <string name="settings_remove_ads_purchase_failed">구매에 실패했습니다. 다시 시도해 주세요.</string>
+    <string name="settings_restore_purchases">구매 항목 복원</string>
+    <string name="settings_restore_success">구매 내역이 복원되었습니다.</string>
+    <string name="settings_restore_failure">복원할 구매 내역이 없습니다.</string>
+    <string name="settings_support_contact">문의: %1$s</string>
+    <string name="common_confirm">확인</string>
 </resources>

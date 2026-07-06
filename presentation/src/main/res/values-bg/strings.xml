@@ -383,4 +383,14 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">Премиум</string>
+    <string name="settings_remove_ads_title">Премахване на рекламите</string>
+    <string name="settings_remove_ads_description">Еднократна покупка. Премахва всички реклами завинаги.</string>
+    <string name="settings_remove_ads_purchased">Рекламите са премахнати</string>
+    <string name="settings_remove_ads_purchase_failed">Покупката беше неуспешна. Моля, опитайте отново.</string>
+    <string name="settings_restore_purchases">Възстановяване на покупките</string>
+    <string name="settings_restore_success">Покупките са възстановени.</string>
+    <string name="settings_restore_failure">Няма покупки за възстановяване.</string>
+    <string name="settings_support_contact">Контакт: %1$s</string>
+    <string name="common_confirm">Потвърди</string>
 </resources>

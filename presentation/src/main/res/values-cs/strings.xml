@@ -383,4 +383,14 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Odstranit reklamy</string>
+    <string name="settings_remove_ads_description">Jednorázový nákup. Navždy odstraní všechny reklamy.</string>
+    <string name="settings_remove_ads_purchased">Reklamy odstraněny</string>
+    <string name="settings_remove_ads_purchase_failed">Nákup se nezdařil. Zkuste to prosím znovu.</string>
+    <string name="settings_restore_purchases">Obnovit nákupy</string>
+    <string name="settings_restore_success">Nákupy byly obnoveny.</string>
+    <string name="settings_restore_failure">Žádné nákupy k obnovení.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Potvrdit</string>
 </resources>
