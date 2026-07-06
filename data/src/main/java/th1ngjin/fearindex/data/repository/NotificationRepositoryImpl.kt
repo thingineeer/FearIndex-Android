@@ -23,11 +23,11 @@ class NotificationRepositoryImpl @Inject constructor(
 
     override suspend fun registerFCMToken(deviceId: String, fcmToken: String) {
         if (ScreenshotMode.isEnabled()) return
-        val settings = storage.load()
-        dataSource.registerFCMToken(deviceId, fcmToken, settings)
+        dataSource.registerFCMToken(deviceId, fcmToken, storage.load())
         // 서버 registerFCMToken은 payload에 임계값이 없으면 신규 기기의 즉시 알림 체크를
         // 보류하므로, 등록 직후 updateNotificationSettings가 즉시 체크를 트리거한다.
-        dataSource.updateSettings(deviceId, settings)
+        // 등록 네트워크 왕복 중 초기 권한 허용이 toggle을 켰을 수 있어 최신 스냅샷을 재조회.
+        dataSource.updateSettings(deviceId, storage.load())
     }
 
     override suspend fun updateSettings(deviceId: String, settings: NotificationSettings) {
@@ -54,5 +54,17 @@ class NotificationRepositoryImpl @Inject constructor(
 
     override suspend fun loadSettingsLocal(): NotificationSettings {
         return storage.load()
+    }
+
+    override suspend fun hasStoredNotificationPreference(): Boolean {
+        return storage.hasStoredPreference()
+    }
+
+    override suspend fun hasRequestedNotificationPermission(): Boolean {
+        return storage.hasRequestedPermission()
+    }
+
+    override suspend fun markNotificationPermissionRequested() {
+        storage.markPermissionRequested()
     }
 }

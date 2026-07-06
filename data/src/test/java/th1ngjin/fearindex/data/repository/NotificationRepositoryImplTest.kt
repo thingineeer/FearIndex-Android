@@ -105,6 +105,19 @@ class NotificationRepositoryImplTest {
     }
 
     @Test
+    fun `초기 권한 부트스트랩 상태 - storage에 위임`() = runTest {
+        every { storage.hasStoredPreference() } returns true
+        every { storage.hasRequestedPermission() } returns false
+
+        assertEquals(true, repository.hasStoredNotificationPreference())
+        assertEquals(false, repository.hasRequestedNotificationPermission())
+
+        repository.markNotificationPermissionRequested()
+
+        verify(exactly = 1) { storage.markPermissionRequested() }
+    }
+
+    @Test
     fun `loadSettingsLocal - storage load 결과 반환`() = runTest {
         val cached = NotificationSettings.DEFAULT
         every { storage.load() } returns cached
