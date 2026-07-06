@@ -382,4 +382,14 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">Prémium</string>
+    <string name="settings_remove_ads_title">Hirdetések eltávolítása</string>
+    <string name="settings_remove_ads_description">Egyszeri vásárlás. Véglegesen eltávolít minden hirdetést.</string>
+    <string name="settings_remove_ads_purchased">Hirdetések eltávolítva</string>
+    <string name="settings_remove_ads_purchase_failed">A vásárlás sikertelen. Kérjük, próbálja újra.</string>
+    <string name="settings_restore_purchases">Vásárlások visszaállítása</string>
+    <string name="settings_restore_success">A vásárlások visszaállítva.</string>
+    <string name="settings_restore_failure">Nincs visszaállítható vásárlás.</string>
+    <string name="settings_support_contact">Kapcsolat: %1$s</string>
+    <string name="common_confirm">Megerősítés</string>
 </resources>

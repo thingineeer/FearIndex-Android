@@ -382,4 +382,14 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Fjern annonser</string>
+    <string name="settings_remove_ads_description">Engangskjøp. Fjerner alle annonser for alltid.</string>
+    <string name="settings_remove_ads_purchased">Annonser fjernet</string>
+    <string name="settings_remove_ads_purchase_failed">Kjøpet mislyktes. Prøv igjen.</string>
+    <string name="settings_restore_purchases">Gjenopprett kjøp</string>
+    <string name="settings_restore_success">Kjøp gjenopprettet.</string>
+    <string name="settings_restore_failure">Ingen kjøp å gjenopprette.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Bekreft</string>
 </resources>

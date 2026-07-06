@@ -381,4 +381,14 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">高级版</string>
+    <string name="settings_remove_ads_title">移除广告</string>
+    <string name="settings_remove_ads_description">一次购买，永久移除所有广告。</string>
+    <string name="settings_remove_ads_purchased">已移除广告</string>
+    <string name="settings_remove_ads_purchase_failed">购买失败，请重试。</string>
+    <string name="settings_restore_purchases">恢复购买</string>
+    <string name="settings_restore_success">已恢复购买。</string>
+    <string name="settings_restore_failure">没有可恢复的购买。</string>
+    <string name="settings_support_contact">联系：%1$s</string>
+    <string name="common_confirm">确认</string>
 </resources>

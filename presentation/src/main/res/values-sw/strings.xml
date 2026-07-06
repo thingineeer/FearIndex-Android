@@ -382,4 +382,14 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Ondoa matangazo</string>
+    <string name="settings_remove_ads_description">Ununuzi wa mara moja. Huondoa matangazo yote milele.</string>
+    <string name="settings_remove_ads_purchased">Matangazo yameondolewa</string>
+    <string name="settings_remove_ads_purchase_failed">Ununuzi umeshindikana. Tafadhali jaribu tena.</string>
+    <string name="settings_restore_purchases">Rejesha ununuzi</string>
+    <string name="settings_restore_success">Ununuzi umerejeshwa.</string>
+    <string name="settings_restore_failure">Hakuna ununuzi wa kurejesha.</string>
+    <string name="settings_support_contact">Mawasiliano: %1$s</string>
+    <string name="common_confirm">Thibitisha</string>
 </resources>

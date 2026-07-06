@@ -382,4 +382,14 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Ukloni oglase</string>
+    <string name="settings_remove_ads_description">Jednokratna kupnja. Trajno uklanja sve oglase.</string>
+    <string name="settings_remove_ads_purchased">Oglasi uklonjeni</string>
+    <string name="settings_remove_ads_purchase_failed">Kupnja nije uspjela. Pokušajte ponovno.</string>
+    <string name="settings_restore_purchases">Vrati kupnje</string>
+    <string name="settings_restore_success">Kupnje su vraćene.</string>
+    <string name="settings_restore_failure">Nema kupnji za vraćanje.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Potvrdi</string>
 </resources>
