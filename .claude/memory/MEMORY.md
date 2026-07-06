@@ -26,7 +26,13 @@
 - **런타임 검증 완료**(에뮬 Medium_Phone_API_36.1 debug): 알림 프롬프트→ON→서버 동기화(App Check debug token `74af5682-8968-4d1f-a9b9-59753d98c5bf` Firebase Console 등록 후 registerFCMToken+updateNotificationSettings 성공 확인), BTC/SPX/KOSPI 출처 라벨 노출, KOSPI 공매도 카드 숨김, 프리미엄 카드(US$4.99 fallback+복원) 표시. IAP 실결제는 실기기 라이선스 테스터로 재검증 권장(에뮬 Play Billing 제약).
 - **서버/기존 이슈 (미해결)**: ① KOSPI SimilarEvents에 `insight.kospi.event.tradeWar2018` raw key 노출 (기존 버그, 번역 키 누락 — 이번 범위 밖, fix 대상) ② `/api/kospi/short` 서버측 available:false는 iOS 팀이 처리(클라는 대응 완료).
 - **RC 게이트**: `force_update_minimum_version` [Android]=`1.2` 유지 (1.4.0 통과, 조치 불필요). 배포 시 전파 확인 후 상향 검토.
-- **다음 세션 (선택)**: v1.4.0 Play Console 배포(AAB+changelog 18), push(모든 브랜치 로컬), Play Console IAP 상품 등록, release 머지+v1.4.0 태그(배포 통과 후), SimilarEvents raw key fix.
+- **v1.4.0에 광고 개선 3건 추가 통합 (2026-07-06, versionCode 18 유지 — 배포 전이라 흡수)**:
+  1. **광고 로드 실패 재시도**: `AdRetryPolicy`(core, iOS AdBannerView 스펙 1:1 — retryDelays [5s,15s,45s] 3회 + 최종 300s 1회, INVALID_REQUEST 제외). 배너 onAdFailedToLoad + 인터스티셜 onAdFailedToLoad에서 재요청. TDD 4케이스.
+  2. **배너 재생성 방지**: AdView를 `remember(adUnitId, adSize)`로 유지 + DisposableEffect destroy. 기존엔 탭(홈 세그먼트 when 분기)/바텀탭(NavHost dispose) 전환마다 AdView 재생성+요청 재발→직전 요청 낭비였음(사용자 "1~2초 지연" 원인). 이제 재진입 시 로드된 배너 즉시 표시.
+  3. **앱오픈 광고 신규**(iOS AppOpenAdCoordinator parity, Android 미구현이던 채널): `AppOpenAdPolicy`(core, 콜드스타트 최초 실행 제외=backgroundEnteredAt 없으면 자격 없음 / 최소 백그라운드 30s / 세션cap 2 / cooldown 600s, TDD 11케이스) + `AppOpenAdManager`(presentation, 4h 만료). FearIndexApp ProcessLifecycleOwner onStop→백그라운드 기록/onStart→복귀 시 노출, Activity 약참조 추적, MobileAds init 콜백 preload. MainActivity 스플래시/강제업데이트 중 isForegroundBlocked. RC 4키 신규(app_open_ads_enabled/session_cap/cooldown_sec/min_background_sec, 기본 OFF). 에뮬 검증: 백그라운드 왕복 복귀 시 앱오픈 노출 확인, 콜드스타트 미노출 확인.
+- **⚠️ 광고 정책 판단 (사용자 질문 대응)**: 일치율 95.5%는 정상(fill rate, 코드로 100% 불가). 스크린샷의 eCPM -56%/수입 -53%는 광고 단가 이슈(코드 무관). 인터스티셜 트리거 확대는 **안 함** — iOS도 KOSPI+위젯가이드 2개뿐이고 차트기간/화면전환 트리거는 과거 제거된 정책(bugs-fixed 1번), sessionCap=2는 상한이지 목표 아님(iOS parity 위반). 결제는 에뮬 Play Billing 미지원이라 실결제 불가, 실패 다이얼로그(문의 라벨 포함)+복원 실패 동작만 검증 완료.
+- **⚠️ Play Console/AdMob 사용자 작업 (v1.4.0 배포 시)**: (기존 IAP 항목 외) **앱오픈 광고 프로덕션 단위 ID를 AdMob Console에서 신규 발급**해 app/presentation build.gradle.kts release의 `ADMOB_APP_OPEN` 빈 값 교체. **Firebase RC에 app_open_ads_enabled 등 4키 게시** 안 하면 앱오픈 안 뜸(코드 default OFF). 배너/인터스티셜용 기존 ads 키(bugs-fixed 21번)도 게시 확인 필수.
+- **다음 세션 (선택)**: v1.4.0 Play Console 배포(AAB+changelog 18, 앱오픈 광고 포함), push(모든 브랜치 로컬), Play Console IAP 상품 등록 + AdMob 앱오픈 단위 발급 + RC 앱오픈 키 게시, release 머지+v1.4.0 태그(배포 통과 후), SimilarEvents raw key fix.
 
 ## 문서 인덱스
 

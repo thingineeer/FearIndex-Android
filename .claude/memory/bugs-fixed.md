@@ -4,6 +4,37 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-07-06 세션 (v1.4.0 광고 개선 3건 + 결제 검증)
+
+사용자 질문: "인터스티셜 광고 평소 잘 뜨나? 일치율 100% 도달하게 해줘. 결제 테스트도." + "탭 진입 1~2초 뒤 배너 떠서 일치율 낮은가?"
+
+### 39. 광고 진단 — 일치율 오해 정정 + 실제 노출 손실 3개 발견
+- **일치율 개념 정정**: 일치율(match rate) 95.5%는 AdMob이 요청에 광고를 채워준 fill rate로 **코드로 100% 불가**(인벤토리/지역/타겟팅이 결정, 억지 상향은 정책 위반). 배너가 1~2초 늦게 떠도 요청→응답 오면 일치로 집계돼 일치율과 무관. 스크린샷의 진짜 문제는 eCPM -56%/수입 -53%(광고 단가 이슈, 코드 무관).
+- **실제 코드 손실 3개**(explore 조사): ① 배너/인터스티셜 로드 실패 시 재시도 전무 → 첫 요청 실패=빈 슬롯 영구 ② 배너 AdView가 remember 안 됨 → 탭/세그먼트 전환마다 재생성+요청 재발, 직전 요청 낭비(사용자 "1~2초 지연" 원인) ③ 앱오픈 광고 미구현(iOS엔 있음).
+- **인터스티셜 트리거 확대는 하지 않기로 결정**: iOS도 트리거 KOSPI+위젯가이드 2개뿐, 차트기간/화면전환 트리거는 과거 제거된 정책(1번), sessionCap=2는 상한이지 목표 아님. Android가 트리거 늘리는 건 iOS parity 위반 + 과거 결정 되돌리기 → 스킵.
+
+### 40. 광고 로드 실패 재시도 + 배너 재생성 방지 (feature/v1.4.1-ad-retry)
+- **AdRetryPolicy**(core, 순수 로직, iOS AdBannerView 스펙 1:1): retryDelays [5s,15s,45s] 3회 → 최종 300s 1회 → 중단. `isRetryable(errorCode)`=INVALID_REQUEST(1) 제외. **처음 exponential(2/4/8)로 만들었다가 iOS 조사 후 [5,15,45]+300s로 정정**(iOS parity). TDD 4케이스.
+- **배너**: onAdFailedToLoad에서 no-fill/네트워크 실패 시 Handler.postDelayed 재요청. **AdView를 `remember(adUnitId, adSize)`로 유지 + DisposableEffect { onDispose { retryHandler 정리; adView.destroy() } }** → 리컴포지션/remount마다 재생성·요청 재발 방지. AndroidView(factory={remembered}). onAdLoaded 시 retryCount=0.
+  - ⚠️ **주의**: bugs-fixed 20/23번 프레임 크기 정책 재발 방지 위해 `resolveBannerHeightDp` 로직 유지(remember 리팩터에도 그대로).
+- **인터스티셜**(InterstitialAdManager): onAdFailedToLoad에서 재시도 스케줄(Handler). 로드 성공 시 retryCount 리셋. 새 로드 사이클(isRetry=false) 시작 시 이전 스케줄/카운터 정리.
+- **검증**: 에뮬 설정 화면 배너 정상 노출(재생성 리팩터 회귀 없음).
+
+### 41. 앱오픈 광고 신규 구현 (feature/v1.4.1-app-open-ad, iOS AppOpenAdCoordinator parity)
+- **AppOpenAdPolicy**(core, 순수 로직): iOS canAttemptForegroundShow 1:1. **콜드스타트 최초 실행 절대 제외** — `backgroundEnteredAt`(recordBackgroundEntry에서만 set)이 nil이면 자격 없음. 최소 백그라운드 체류(30s)/세션cap(2)/cooldown(600s). recordImpression 시 backgroundEnteredAt 소비(같은 포그라운드 중복 방지). 게이트 순서: isAdFree→enabled/canRequestAds→isReady→cap→cooldown→backgroundEnteredAt존재→체류시간. TDD 11케이스.
+- **AppOpenAdManager**(presentation): AppOpenAd SDK 로드/표시 + 4h 만료(iOS maxAdAge). 로드 실패 시 **자동 backoff 없음**(iOS 동일 — 다음 preloadIfNeeded 때 재시도). isForegroundBlocked 외부 가드. 정책은 AppOpenAdPolicy 위임.
+- **FearIndexApp lifecycle**: companion `appOpenAdManager` 단일 인스턴스. ProcessLifecycleOwner onStop→recordBackgroundEntry, onStart→showOnForegroundIfEligible. ActivityLifecycleCallbacks로 present 대상 Activity WeakReference 추적. MobileAds.initialize 콜백에서 preload.
+- **MainActivity**: `LaunchedEffect(showSplash, forceUpdate) { isForegroundBlocked = showSplash || forceUpdate }` — 스플래시/강제업데이트 중 앱오픈 겹침 방지(콜드스타트 제외로 원천 배타되지만 엣지 방어).
+- **RC 4키 신규**: `app_open_ads_enabled`/`app_open_session_cap`/`app_open_cooldown_sec`/`app_open_min_background_sec`. AdsRemoteConfig에 필드+`appOpenAdConfig()` 변환(enabled = ads_enabled && app_open_ads_enabled). **기본 OFF** — Firebase RC 게시로 활성화(iOS는 자체 서버 config app_open_*이지만 Android는 RC로 흡수).
+- **광고 단위 ID**: debug=Google 테스트 앱오픈(`ca-app-pub-3940256099942544/9257395921`), release=**빈 값**(AdMob Console 신규 발급 후 교체 필요, 빈 값이면 게이트 자동 차단). app+presentation 양쪽 buildConfigField.
+- **검증**(에뮬, RC 임시 켬 후 원복): `AppOpenAd loaded` preload 성공 → 홈으로 백그라운드 5초 후 복귀 시 **Google Ads 전체화면 앱오픈 노출 확인** → force-stop 콜드스타트 재실행 시 **미노출(스플래시만) 확인**. 노출 후 자동 재로드도 확인.
+- **교훈**: 앱오픈 콜드스타트 제외 = "백그라운드 진입 기록 nil이면 자격 없음" 플래그가 핵심(iOS backgroundEnteredAt). Android엔 scenePhase 대신 ProcessLifecycleOwner onStop/onStart. RC 임시 검증 시 반드시 원복(TEMP-VERIFY 마커로 추적).
+
+### 42. 결제 실패 다이얼로그 동작 검증 (에뮬레이터)
+- **제약**: 에뮬레이터 Play Store가 `In-app billing API version < 3` 미지원 + 상품 `remove_ads_lifetime` Play Console 미등록 → **실결제 테스트 불가**. 코드 동작만 검증 가능.
+- **검증 완료**: 설정→프리미엄 카드→Remove Ads 탭 → `[IAP] 연결 Error: 3` + `[IAP] 구매 실패 Error: -1 — 상품 정보를 불러오지 못함` 로그 + 화면에 **"Purchase failed. Please try again." + "Contact: dlaudwls1203@gmail.com"(작은 글씨) + Confirm"** 다이얼로그 정상. Restore Purchases 탭 → `[IAP] 복원 Error(연결 실패)` + Analytics `광고제거복원 성공여부=false` + "No purchases to restore." 다이얼로그 정상. 모든 IAP 로그에 "Error" 토큰 포함 확인.
+- **실결제 재검증**: Play Console 상품 등록 + AAB 트랙 업로드 + 라이선스 테스터 설정 후 실기기 필요.
+
 ## 2026-07-06 세션 (v1.4.0 — iOS v1.8.8 parity 5건, dev 통합)
 
 브랜치: dev←feature/v1.4.0←4개 worktree 피처 브랜치(kospi-short-availability / notification-sync / crypto-official-endpoint / iap) + version-bump. 모두 --no-ff, 분기/합류 그래프 유지. 총 701 테스트 GREEN. **아직 배포 전(로컬 dev만), push 미실행.**
