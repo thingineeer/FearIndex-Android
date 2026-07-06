@@ -23,7 +23,11 @@ class NotificationRepositoryImpl @Inject constructor(
 
     override suspend fun registerFCMToken(deviceId: String, fcmToken: String) {
         if (ScreenshotMode.isEnabled()) return
-        dataSource.registerFCMToken(deviceId, fcmToken, storage.load())
+        val settings = storage.load()
+        dataSource.registerFCMToken(deviceId, fcmToken, settings)
+        // 서버 registerFCMToken은 payload에 임계값이 없으면 신규 기기의 즉시 알림 체크를
+        // 보류하므로, 등록 직후 updateNotificationSettings가 즉시 체크를 트리거한다.
+        dataSource.updateSettings(deviceId, settings)
     }
 
     override suspend fun updateSettings(deviceId: String, settings: NotificationSettings) {
