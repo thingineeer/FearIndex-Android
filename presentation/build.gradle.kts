@@ -23,6 +23,8 @@ android {
             buildConfigField("String", "ADMOB_BANNER_VOTE", "\"ca-app-pub-3940256099942544/9214589741\"")
             buildConfigField("String", "ADMOB_BANNER_SETTINGS", "\"ca-app-pub-3940256099942544/9214589741\"")
             buildConfigField("String", "ADMOB_INTERSTITIAL", "\"ca-app-pub-3940256099942544/1033173712\"")
+            // AdMob App Open 테스트 ID (Google 공식).
+            buildConfigField("String", "ADMOB_APP_OPEN", "\"ca-app-pub-3940256099942544/9257395921\"")
         }
         release {
             // 화면별 AdMob 단위 (Adaptive Banner)
@@ -32,6 +34,9 @@ android {
             buildConfigField("String", "ADMOB_BANNER_VOTE", "\"ca-app-pub-5283496525222246/2417949811\"")
             buildConfigField("String", "ADMOB_BANNER_SETTINGS", "\"ca-app-pub-5283496525222246/4627498578\"")
             buildConfigField("String", "ADMOB_INTERSTITIAL", "\"ca-app-pub-5283496525222246/1522532479\"")
+            // ⚠️ App Open 프로덕션 단위 ID — AdMob Console에서 신규 발급 후 교체 필요.
+            // 빈 값이면 AppOpenAdManager 게이트에서 로드/노출이 자동 차단된다.
+            buildConfigField("String", "ADMOB_APP_OPEN", "\"\"")
         }
     }
 
