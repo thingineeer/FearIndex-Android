@@ -6,6 +6,7 @@ package th1ngjin.fearindex.domain.entity
 data class FearRSI(
     val value: Double,
     val signal: RSISignal,
+    val sourceMetadata: IndicatorSourceMetadata? = null,
 ) {
     enum class RSISignal {
         OVERSOLD,

@@ -18,6 +18,8 @@ import androidx.compose.material.icons.automirrored.filled.HelpOutline
 import androidx.compose.material.icons.automirrored.filled.TrendingDown
 import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.Speed
+import androidx.compose.material.icons.filled.Verified
+import androidx.compose.material.icons.filled.WarningAmber
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -32,6 +34,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import th1ngjin.fearindex.domain.entity.IndicatorSourceMetadata
 import th1ngjin.fearindex.presentation.R
 
 /**
@@ -46,6 +49,7 @@ private val ScaleRed = Color(0xFFE53935)
 fun RSIInfoSheet(
     assetLabel: String,
     onDismiss: () -> Unit,
+    sourceMetadata: IndicatorSourceMetadata? = null,
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     ModalBottomSheet(
@@ -105,6 +109,8 @@ fun RSIInfoSheet(
                 title = stringResource(R.string.indicator_rsi_info_support_title),
                 body = stringResource(R.string.indicator_rsi_info_support_body),
             )
+
+            SourceSection(sourceMetadata)
         }
     }
 }
@@ -114,6 +120,7 @@ fun RSIInfoSheet(
 fun ShortPressureInfoSheet(
     assetLabel: String,
     onDismiss: () -> Unit,
+    sourceMetadata: IndicatorSourceMetadata? = null,
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     ModalBottomSheet(
@@ -159,6 +166,8 @@ fun ShortPressureInfoSheet(
                 title = stringResource(R.string.indicator_short_info_support_title),
                 body = stringResource(R.string.indicator_short_info_support_body),
             )
+
+            SourceSection(sourceMetadata)
         }
     }
 }
@@ -166,6 +175,18 @@ fun ShortPressureInfoSheet(
 // ---------------------------------------------------------------------------
 // Building blocks
 // ---------------------------------------------------------------------------
+
+/** 데이터 출처 섹션 — iOS: 공식 소스=seal, 비공식=경고 아이콘. 본문은 locale-neutral 영문. */
+@Composable
+private fun SourceSection(sourceMetadata: IndicatorSourceMetadata?) {
+    if (sourceMetadata == null) return
+    SectionHeader(stringResource(R.string.indicator_source_section))
+    InfoRow(
+        icon = if (sourceMetadata.isOfficial) Icons.Default.Verified else Icons.Default.WarningAmber,
+        title = sourceMetadata.basisLabel,
+        body = sourceMetadata.sheetBody,
+    )
+}
 
 @Composable
 private fun SectionHeader(text: String) {
