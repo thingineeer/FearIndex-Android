@@ -1,25 +1,24 @@
 package th1ngjin.fearindex.core.ads
 
 /**
- * 광고 로드 실패 시 재시도 backoff 정책 — 순수 로직.
+ * 광고 로드 실패 시 재시도 backoff 정책 — 순수 로직. iOS `AdBannerView` 스펙 1:1 포팅.
  *
- * exponential backoff(base * 2^n)로 지연을 늘리되 [maxDelayMillis]로 상한 clamp,
- * [maxRetries] 초과 시 재시도를 중단한다. AdMob에 과도한 재요청을 던지지 않으면서
- * no-fill/네트워크 등 일시적 실패에서 회복해 "요청 대비 노출 손실"을 줄인다.
+ * 초기 [retryDelaysMillis]([5s, 15s, 45s])로 3회 재시도한 뒤, 그래도 실패하면
+ * [finalRetryDelayMillis](300s = 5분)로 최종 1회만 더 시도하고 중단한다. AdMob에 과도한
+ * 재요청을 던지지 않으면서 no-fill/네트워크 등 일시적 실패에서 회복해 노출 손실을 줄인다.
  */
 class AdRetryPolicy(
-    private val baseDelayMillis: Long = 2_000L,
-    private val maxDelayMillis: Long = 60_000L,
-    private val maxRetries: Int = 5,
+    private val retryDelaysMillis: List<Long> = listOf(5_000L, 15_000L, 45_000L),
+    private val finalRetryDelayMillis: Long = 300_000L,
 ) {
     /**
-     * 다음 재시도까지의 지연(ms). 이미 [maxRetries]만큼 재시도했으면 null(재시도 중단).
+     * 다음 재시도까지의 지연(ms). 모든 재시도(초기 배열 + 최종 1회)를 소진했으면 null(중단).
      * @param previousRetryCount 지금까지 수행한 재시도 횟수(0 = 최초 실패 직후 첫 재시도).
      */
-    fun nextDelayMillis(previousRetryCount: Int): Long? {
-        if (previousRetryCount >= maxRetries) return null
-        val exponential = baseDelayMillis shl previousRetryCount // base * 2^n
-        return exponential.coerceAtMost(maxDelayMillis)
+    fun nextDelayMillis(previousRetryCount: Int): Long? = when {
+        previousRetryCount < retryDelaysMillis.size -> retryDelaysMillis[previousRetryCount]
+        previousRetryCount == retryDelaysMillis.size -> finalRetryDelayMillis
+        else -> null
     }
 
     companion object {
