@@ -171,10 +171,15 @@ fun HomeScreen(
     val remoteConfig = remember(adsEntryPoint) {
         adsEntryPoint.remoteConfigManager()
     }
+    val purchaseManager = remember(adsEntryPoint) {
+        adsEntryPoint.purchaseManager()
+    }
+    // 광고 제거 IAP 구매자에게는 인터스티셜도 preload/show 하지 않는다 (AdBanner 게이트와 동일 정책).
+    val isAdFree by purchaseManager.isAdFree.collectAsStateWithLifecycle()
     val adsConfig by remoteConfig.adsConfig.collectAsStateWithLifecycle()
     val canRequestAds by AdRequestAvailability.canRequestAds.collectAsStateWithLifecycle()
-    val interstitialConfig = remember(adsConfig, canRequestAds) {
-        adsConfig.interstitialAdPolicyConfig(canRequestAds)
+    val interstitialConfig = remember(adsConfig, canRequestAds, isAdFree) {
+        adsConfig.interstitialAdPolicyConfig(canRequestAds && !isAdFree)
     }
     val interstitialReporter = remember(analytics) {
         AnalyticsInterstitialAdReporter(analytics)
