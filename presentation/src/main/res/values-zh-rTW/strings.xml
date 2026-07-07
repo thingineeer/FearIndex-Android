@@ -83,10 +83,7 @@
     <string name="back">返回</string>
     <string name="notification_push_title">推播通知</string>
     <string name="notification_push_description">當恐懼指數達到您設定的門檻時接收通知。</string>
-    <string name="notification_tab_market">市場</string>
-    <string name="notification_tab_crypto">加密貨幣</string>
     <string name="notification_weekly_title">每週報告提醒</string>
-    <string name="notification_market_title">市場恐懼指數提醒</string>
     <string name="notification_crypto_title">加密貨幣恐懼指數提醒</string>
     <string name="notification_lower_label">下限 (恐懼)</string>
     <string name="notification_upper_label">上限 (貪婪)</string>
@@ -94,6 +91,14 @@
     <string name="notification_upper_description">指數達到 %1$d 或以上時會通知您。</string>
     <string name="notification_info">通知每 15 分鐘檢查一次。每個門檻區間每天最多接收 1 則通知。</string>
     <string name="notification_sync_error">同步失敗: %1$s</string>
+    <string name="notification_global_title">全球恐懼指數警報</string>
+    <string name="notification_kospi_title">韓國綜合股價指數警報</string>
+    <string name="notification_lower_header">買入訊號提醒</string>
+    <string name="notification_upper_header">過熱警告</string>
+    <string name="notification_kospi_lower_description">當 KOSPI 指數跌至 %1$d 或以下時收到通知。</string>
+    <string name="notification_kospi_upper_description">當 KOSPI 指數升至 %1$d 或以上時收到通知。</string>
+    <string name="notification_crypto_lower_description">當加密貨幣指數下降至 %1$d 或以下時接收通知。</string>
+    <string name="notification_crypto_upper_description">當加密貨幣指數上升至 %1$d 或以上時接收通知。</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">目前被套牢的人</string>
@@ -225,7 +230,6 @@
     <string name="settings_kospi_methodology_summary">KOSPI 目前分數會在韓國常規交易時段每小時更新一次。歷史圖表只會在確認收盤後更新。 Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">隱私權政策</string>
     <string name="settings_menu_about">應用程式資訊</string>
-    <string name="settings_menu_ad_privacy">隱私選擇</string>
     <string name="settings_menu_rate">撰寫評論</string>
     <string name="settings_menu_share">分享應用程式</string>
     <string name="settings_about_version">Version %1$s</string>

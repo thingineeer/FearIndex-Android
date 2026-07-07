@@ -83,10 +83,7 @@
     <string name="back">بازگشت</string>
     <string name="notification_push_title">اعلان‌های فوری</string>
     <string name="notification_push_description">وقتی شاخص ترس به آستانه تعیین‌شده رسید به شما اطلاع داده می‌شود.</string>
-    <string name="notification_tab_market">بازار</string>
-    <string name="notification_tab_crypto">ارز دیجیتال</string>
     <string name="notification_weekly_title">هشدارهای گزارش هفتگی</string>
-    <string name="notification_market_title">هشدارهای شاخص ترس بازار</string>
     <string name="notification_crypto_title">هشدارهای شاخص ترس ارز دیجیتال</string>
     <string name="notification_lower_label">حد پایین (ترس)</string>
     <string name="notification_upper_label">حد بالا (طمع)</string>
@@ -94,6 +91,14 @@
     <string name="notification_upper_description">زمانی که شاخص به %1$d یا بیشتر برسد به شما اطلاع داده می‌شود.</string>
     <string name="notification_info">اعلان‌ها هر ۱۵ دقیقه بررسی می‌شوند. در هر ناحیه حداکثر یک اعلان در روز دریافت می‌کنید.</string>
     <string name="notification_sync_error">همگام‌سازی ناموفق: %1$s</string>
+    <string name="notification_global_title">هشدارهای شاخص جهانی ترس</string>
+    <string name="notification_kospi_title">هشدارهای KOSPI</string>
+    <string name="notification_lower_header">هشدار سیگنال خرید</string>
+    <string name="notification_upper_header">هشدار بیش از حد گرم شدن</string>
+    <string name="notification_kospi_lower_description">هنگامی که شاخص KOSPI به %1$d یا کمتر می‌رسد مطلع شوید.</string>
+    <string name="notification_kospi_upper_description">هنگامی که شاخص KOSPI به %1$d یا بالاتر می‌رود، مطلع شوید.</string>
+    <string name="notification_crypto_lower_description">هنگامی که شاخص رمزارز به %1$d یا پایین‌تر رسید اعلان دریافت کنید.</string>
+    <string name="notification_crypto_upper_description">هنگامی که شاخص رمزارز به %1$d یا بالاتر رسید اعلان دریافت کنید.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">افراد گیر افتاده در حال حاضر</string>
@@ -225,7 +230,6 @@
     <string name="settings_kospi_methodology_summary">امتیاز فعلی KOSPI در ساعات عادی بازار کره هر ساعت به‌روزرسانی می‌شود. نمودارهای تاریخچه فقط پس از بسته‌شدن تأییدشده به‌روزرسانی می‌شوند. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">سیاست حریم خصوصی</string>
     <string name="settings_menu_about">اطلاعات برنامه</string>
-    <string name="settings_menu_ad_privacy">گزینه‌های حریم خصوصی</string>
     <string name="settings_menu_rate">نوشتن بازبینی</string>
     <string name="settings_menu_share">اشتراک‌گذاری</string>
     <string name="settings_about_version">Version %1$s</string>

@@ -82,10 +82,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="back">Înapoi</string>
     <string name="notification_push_title">Notificări push</string>
     <string name="notification_push_description">Primești notificare când indicele fricii atinge pragul tău.</string>
-    <string name="notification_tab_market">Piață</string>
-    <string name="notification_tab_crypto">Cripto</string>
     <string name="notification_weekly_title">Alerte de rapoarte săptămânale</string>
-    <string name="notification_market_title">Alerte indice frică piață</string>
     <string name="notification_crypto_title">Alerte indice frică cripto</string>
     <string name="notification_lower_label">Inferior (Frică)</string>
     <string name="notification_upper_label">Superior (Lăcomie)</string>
@@ -93,6 +90,14 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="notification_upper_description">Vei fi notificat când indicele atinge %1$d sau mai sus.</string>
     <string name="notification_info">Notificările sunt verificate la fiecare 15 minute. Vei primi cel mult 1 notificare pe zonă de prag pe zi.</string>
     <string name="notification_sync_error">Sincronizare eșuată: %1$s</string>
+    <string name="notification_global_title">Alerte Global Fear Index</string>
+    <string name="notification_kospi_title">Alerte KOSPI</string>
+    <string name="notification_lower_header">Alertă Semnal de Cumpărare</string>
+    <string name="notification_upper_header">Avertisment Supraîncălzire</string>
+    <string name="notification_kospi_lower_description">Primiți notificări când indicele KOSPI scade la %1$d sau mai jos.</string>
+    <string name="notification_kospi_upper_description">Primiți notificări când indicele KOSPI crește la %1$d sau mai mult.</string>
+    <string name="notification_crypto_lower_description">Primiți notificări când indicele crypto scade la %1$d sau mai jos.</string>
+    <string name="notification_crypto_upper_description">Primiți notificări când indicele crypto crește la %1$d sau mai sus.</string>
 
     <string name="insight_similar_events_similar_section_title">Perioade similare</string>
 
@@ -226,7 +231,6 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="settings_kospi_methodology_summary">Scorul curent KOSPI se actualizează din oră în oră în timpul programului normal al pieței din Coreea. Graficele istorice se actualizează doar după închiderea confirmată. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Politica de Confidențialitate</string>
     <string name="settings_menu_about">Informații Aplicație</string>
-    <string name="settings_menu_ad_privacy">Opțiuni de confidențialitate</string>
     <string name="settings_menu_rate">Scrie o recenzie</string>
     <string name="settings_menu_share">Distribuie aplicația</string>
     <string name="settings_about_version">Version %1$s</string>

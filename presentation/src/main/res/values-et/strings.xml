@@ -82,10 +82,7 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="back">Tagasi</string>
     <string name="notification_push_title">Tõuketeavitused</string>
     <string name="notification_push_description">Saad teavituse, kui hirmuindeks jõuab sinu läveni.</string>
-    <string name="notification_tab_market">Turg</string>
-    <string name="notification_tab_crypto">Krüpto</string>
     <string name="notification_weekly_title">Iganädalased aruannete hoiatused</string>
-    <string name="notification_market_title">Turu hirmuindeksi hoiatused</string>
     <string name="notification_crypto_title">Krüpto hirmuindeksi hoiatused</string>
     <string name="notification_lower_label">Alumine (Hirm)</string>
     <string name="notification_upper_label">Ülemine (Ahnus)</string>
@@ -93,6 +90,14 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="notification_upper_description">Saad teavituse, kui indeks jõuab %1$d või kõrgemale.</string>
     <string name="notification_info">Teavitusi kontrollitakse iga 15 minuti järel. Saad ühe lävitsooni kohta kuni ühe teavituse päevas.</string>
     <string name="notification_sync_error">Sünkroonimine ebaõnnestus: %1$s</string>
+    <string name="notification_global_title">Globaalse hirmuindeksi hoiatused</string>
+    <string name="notification_kospi_title">KOSPI märguanded</string>
+    <string name="notification_lower_header">Ostusignaali teavitus</string>
+    <string name="notification_upper_header">Ülekuumenemise hoiatus</string>
+    <string name="notification_kospi_lower_description">Saate märguande, kui KOSPI indeks langeb %1$d või alla selle.</string>
+    <string name="notification_kospi_upper_description">Saate märguande, kui KOSPI indeks tõuseb %1$d või kõrgemale.</string>
+    <string name="notification_crypto_lower_description">Saate teavituse, kui krüptoindeks langeb %1$d-ni või alla selle.</string>
+    <string name="notification_crypto_upper_description">Saate teavituse, kui krüptoindeks tõuseb %1$d-ni või üle selle.</string>
 
     <string name="insight_similar_events_similar_section_title">Sarnased perioodid</string>
 
@@ -226,7 +231,6 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="settings_kospi_methodology_summary">Praegust KOSPI skoori uuendatakse Korea tavapärastel turuaegadel kord tunnis. Ajaloo graafikud uuenevad ainult pärast kinnitatud sulgemist. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privaatsuspoliitika</string>
     <string name="settings_menu_about">Rakenduse teave</string>
-    <string name="settings_menu_ad_privacy">Privaatsusvalikud</string>
     <string name="settings_menu_rate">Kirjuta arvustus</string>
     <string name="settings_menu_share">Jaga rakendust</string>
     <string name="settings_about_version">Version %1$s</string>

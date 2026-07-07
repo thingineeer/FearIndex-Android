@@ -82,10 +82,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="back">Vissza</string>
     <string name="notification_push_title">Push értesítések</string>
     <string name="notification_push_description">Értesítést kap, amikor a félelemindex eléri a küszöböt.</string>
-    <string name="notification_tab_market">Piac</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Heti jelentés figyelmeztetések</string>
-    <string name="notification_market_title">Piaci félelemindex figyelmeztetések</string>
     <string name="notification_crypto_title">Kripto félelemindex figyelmeztetések</string>
     <string name="notification_lower_label">Alsó (Félelem)</string>
     <string name="notification_upper_label">Felső (Mohóság)</string>
@@ -93,6 +90,14 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="notification_upper_description">Értesítést kap, amikor az index eléri a %1$d-et vagy afölé emelkedik.</string>
     <string name="notification_info">Az értesítéseket 15 percenként ellenőrizzük. Naponta legfeljebb 1 értesítést kap küszöbzónánként.</string>
     <string name="notification_sync_error">Szinkronizálás sikertelen: %1$s</string>
+    <string name="notification_global_title">Globális félelemindex figyelmeztetések</string>
+    <string name="notification_kospi_title">KOSPI figyelmeztetések</string>
+    <string name="notification_lower_header">Vételi jelzés riasztás</string>
+    <string name="notification_upper_header">Túlmelegedési figyelmeztetés</string>
+    <string name="notification_kospi_lower_description">Értesítést kap, ha a KOSPI index %1$d vagy az alá esik.</string>
+    <string name="notification_kospi_upper_description">Értesítést kap, ha a KOSPI index %1$d vagy magasabb értékre emelkedik.</string>
+    <string name="notification_crypto_lower_description">Értesítést kap, ha a kripto index %1$d-ra vagy alá esik.</string>
+    <string name="notification_crypto_upper_description">Értesítést kap, ha a kripto index %1$d-ra vagy fölé emelkedik.</string>
 
     <string name="insight_similar_events_similar_section_title">Hasonló időszakok</string>
 
@@ -226,7 +231,6 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="settings_kospi_methodology_summary">Az aktuális KOSPI-pontszám a koreai normál piaci órák alatt óránként frissül. Az előzménygrafikonok csak a megerősített zárás után frissülnek. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Adatvédelmi irányelvek</string>
     <string name="settings_menu_about">Alkalmazás információk</string>
-    <string name="settings_menu_ad_privacy">Adatvédelmi beállítások</string>
     <string name="settings_menu_rate">Vélemény írása</string>
     <string name="settings_menu_share">App megosztása</string>
     <string name="settings_about_version">Version %1$s</string>

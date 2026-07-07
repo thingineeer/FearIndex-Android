@@ -82,10 +82,7 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="back">Nazaj</string>
     <string name="notification_push_title">Potisna obvestila</string>
     <string name="notification_push_description">Prejmite obvestilo, ko indeks strahu doseže nastavljeni prag.</string>
-    <string name="notification_tab_market">Trg</string>
-    <string name="notification_tab_crypto">Kriptovalute</string>
     <string name="notification_weekly_title">Tedenska opozorila o poročilih</string>
-    <string name="notification_market_title">Opozorila indeksa strahu trga</string>
     <string name="notification_crypto_title">Opozorila indeksa strahu kriptovalut</string>
     <string name="notification_lower_label">Spodnji prag (Strah)</string>
     <string name="notification_upper_label">Zgornji prag (Pohlep)</string>
@@ -93,6 +90,14 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="notification_upper_description">Obveščeni boste, ko indeks doseže %1$d ali več.</string>
     <string name="notification_info">Obvestila se preverjajo vsakih 15 minut. Prejeli boste največ 1 obvestilo na pragovno območje na dan.</string>
     <string name="notification_sync_error">Sinhronizacija ni uspela: %1$s</string>
+    <string name="notification_global_title">Opozorila globalnega indeksa strahu</string>
+    <string name="notification_kospi_title">Opozorila KOSPI</string>
+    <string name="notification_lower_header">Opozorilo na Nakupni Signal</string>
+    <string name="notification_upper_header">Opozorilo Pred Pregretjem</string>
+    <string name="notification_kospi_lower_description">Prejmite obvestilo, ko indeks KOSPI pade na %1$d ali nižje.</string>
+    <string name="notification_kospi_upper_description">Prejmite obvestilo, ko se indeks KOSPI dvigne na %1$d ali več.</string>
+    <string name="notification_crypto_lower_description">Prejmete obvestilo, ko kripto indeks pade na %1$d ali manj.</string>
+    <string name="notification_crypto_upper_description">Prejmete obvestilo, ko kripto indeks naraste na %1$d ali več.</string>
 
     <string name="insight_similar_events_similar_section_title">Podobna obdobja</string>
 
@@ -226,7 +231,6 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="settings_kospi_methodology_summary">Trenutna ocena KOSPI se med rednimi korejskimi tržnimi urami posodablja vsako uro. Zgodovinski grafi se posodobijo šele po potrjenem zaprtju. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Politika Zasebnosti</string>
     <string name="settings_menu_about">Informacije o Aplikaciji</string>
-    <string name="settings_menu_ad_privacy">Izbire zasebnosti</string>
     <string name="settings_menu_rate">Napišite oceno</string>
     <string name="settings_menu_share">Deli aplikacijo</string>
     <string name="settings_about_version">Version %1$s</string>

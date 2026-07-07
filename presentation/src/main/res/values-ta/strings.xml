@@ -87,10 +87,7 @@
     <string name="back">பின்செல்</string>
     <string name="notification_push_title">புஷ் அறிவிப்புகள்</string>
     <string name="notification_push_description">பயக் குறியீடு உங்கள் வரம்பை அடையும்போது அறிவிப்பு பெறுங்கள்.</string>
-    <string name="notification_tab_market">சந்தை</string>
-    <string name="notification_tab_crypto">கிரிப்டோ</string>
     <string name="notification_weekly_title">வாராந்திர அறிக்கை எச்சரிக்கைகள்</string>
-    <string name="notification_market_title">சந்தை பயக் குறியீடு எச்சரிக்கைகள்</string>
     <string name="notification_crypto_title">கிரிப்டோ பயக் குறியீடு எச்சரிக்கைகள்</string>
     <string name="notification_lower_label">கீழ் வரம்பு (பயம்)</string>
     <string name="notification_upper_label">மேல் வரம்பு (பேராசை)</string>
@@ -98,6 +95,14 @@
     <string name="notification_upper_description">குறியீடு %1$d அல்லது அதற்கு மேல் சென்றால் உங்களுக்கு அறிவிக்கப்படும்.</string>
     <string name="notification_info">அறிவிப்புகள் ஒவ்வொரு 15 நிமிடங்களுக்கும் சரிபார்க்கப்படும். ஒரு வரம்பு மண்டலத்திற்கு ஒரு நாளில் அதிகபட்சம் 1 அறிவிப்பு கிடைக்கும்.</string>
     <string name="notification_sync_error">ஒத்திசைவு தோல்வி: %1$s</string>
+    <string name="notification_global_title">உலகளாவிய பயம் குறியீட்டு எச்சரிக்கைகள்</string>
+    <string name="notification_kospi_title">KOSPI விழிப்பூட்டல்கள்</string>
+    <string name="notification_lower_header">வாங்கும் சமிக்ஞை எச்சரிக்கை</string>
+    <string name="notification_upper_header">அதிக வெப்ப எச்சரிக்கை</string>
+    <string name="notification_kospi_lower_description">KOSPI இன்டெக்ஸ் %1$d அல்லது அதற்குக் கீழே குறையும் போது அறிவிப்பைப் பெறவும்.</string>
+    <string name="notification_kospi_upper_description">KOSPI இன்டெக்ஸ் %1$d அல்லது அதற்கு மேல் உயரும் போது அறிவிப்பைப் பெறவும்.</string>
+    <string name="notification_crypto_lower_description">கிரிப்டோ குறியீடு %1$d அல்லது அதற்கும் கீழே இறங்கும்போது அறிவிப்பு பெறுங்கள்.</string>
+    <string name="notification_crypto_upper_description">கிரிப்டோ குறியீடு %1$d அல்லது அதற்கும் மேலே உயரும்போது அறிவிப்பு பெறுங்கள்.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">இப்போது சிக்கியவர்கள்</string>
@@ -229,7 +234,6 @@
     <string name="settings_kospi_methodology_summary">கொரியாவின் வழக்கமான சந்தை நேரங்களில் தற்போதைய KOSPI மதிப்பெண் ஒவ்வொரு மணிநேரமும் புதுப்பிக்கப்படும். வரலாறு வரைபடங்கள் உறுதிசெய்யப்பட்ட முடிவிற்குப் பிறகே புதுப்பிக்கப்படும். Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">தனியுரிமைக் கொள்கை</string>
     <string name="settings_menu_about">செயலி தகவல்</string>
-    <string name="settings_menu_ad_privacy">தனியுரிமை தேர்வுகள்</string>
     <string name="settings_menu_rate">மதிப்புரை எழுதுங்கள்</string>
     <string name="settings_menu_share">பகிரவும்</string>
     <string name="settings_about_version">Version %1$s</string>

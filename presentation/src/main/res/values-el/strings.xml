@@ -82,10 +82,7 @@
     <string name="back">Πίσω</string>
     <string name="notification_push_title">Ειδοποιήσεις push</string>
     <string name="notification_push_description">Λάβετε ειδοποίηση όταν ο δείκτης φόβου φτάσει στο όριό σας.</string>
-    <string name="notification_tab_market">Αγορά</string>
-    <string name="notification_tab_crypto">Κρύπτο</string>
     <string name="notification_weekly_title">Ειδοποιήσεις εβδομαδιαίας αναφοράς</string>
-    <string name="notification_market_title">Ειδοποιήσεις δείκτη φόβου αγοράς</string>
     <string name="notification_crypto_title">Ειδοποιήσεις δείκτη φόβου κρύπτο</string>
     <string name="notification_lower_label">Κάτω όριο (Φόβος)</string>
     <string name="notification_upper_label">Άνω όριο (Απληστία)</string>
@@ -93,6 +90,14 @@
     <string name="notification_upper_description">Θα ειδοποιηθείτε όταν ο δείκτης φτάσει στο %1$d ή υψηλότερα.</string>
     <string name="notification_info">Οι ειδοποιήσεις ελέγχονται κάθε 15 λεπτά. Θα λαμβάνετε το πολύ 1 ειδοποίηση ανά ζώνη ορίου την ημέρα.</string>
     <string name="notification_sync_error">Ο συγχρονισμός απέτυχε: %1$s</string>
+    <string name="notification_global_title">Ειδοποιήσεις παγκόσμιου δείκτη φόβου</string>
+    <string name="notification_kospi_title">Ειδοποιήσεις ΚΟΣΠΗ</string>
+    <string name="notification_lower_header">Ειδοποίηση Σήματος Αγοράς</string>
+    <string name="notification_upper_header">Προειδοποίηση Υπερθέρμανσης</string>
+    <string name="notification_kospi_lower_description">Λάβετε ειδοποίηση όταν ο δείκτης KOSPI πέσει σε %1$d ή χαμηλότερο.</string>
+    <string name="notification_kospi_upper_description">Λάβετε ειδοποίηση όταν ο δείκτης KOSPI αυξάνεται σε %1$d ή υψηλότερο.</string>
+    <string name="notification_crypto_lower_description">Λαμβάνετε ειδοποίηση όταν ο δείκτης κρύπτο πέσει στο %1$d ή χαμηλότερα.</string>
+    <string name="notification_crypto_upper_description">Λαμβάνετε ειδοποίηση όταν ο δείκτης κρύπτο ανέβει στο %1$d ή υψηλότερα.</string>
 
     <string name="insight_similar_events_similar_section_title">Παρόμοιες περίοδοι</string>
 
@@ -226,7 +231,6 @@
     <string name="settings_kospi_methodology_summary">Η τρέχουσα βαθμολογία KOSPI ενημερώνεται ανά ώρα κατά τις κανονικές ώρες της κορεατικής αγοράς. Τα ιστορικά γραφήματα ενημερώνονται μόνο μετά το επιβεβαιωμένο κλείσιμο. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Πολιτική Απορρήτου</string>
     <string name="settings_menu_about">Πληροφορίες Εφαρμογής</string>
-    <string name="settings_menu_ad_privacy">Επιλογές απορρήτου</string>
     <string name="settings_menu_rate">Γράψτε κριτική</string>
     <string name="settings_menu_share">Κοινοποίηση</string>
     <string name="settings_about_version">Version %1$s</string>

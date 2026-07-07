@@ -87,10 +87,7 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="back">Quay lại</string>
     <string name="notification_push_title">Thông báo đẩy</string>
     <string name="notification_push_description">Nhận thông báo khi chỉ số sợ hãi đạt ngưỡng bạn đặt.</string>
-    <string name="notification_tab_market">Thị trường</string>
-    <string name="notification_tab_crypto">Crypto</string>
     <string name="notification_weekly_title">Cảnh báo báo cáo hàng tuần</string>
-    <string name="notification_market_title">Cảnh báo chỉ số sợ hãi thị trường</string>
     <string name="notification_crypto_title">Cảnh báo chỉ số sợ hãi crypto</string>
     <string name="notification_lower_label">Ngưỡng dưới (Sợ hãi)</string>
     <string name="notification_upper_label">Ngưỡng trên (Tham lam)</string>
@@ -98,6 +95,14 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="notification_upper_description">Bạn sẽ được thông báo khi chỉ số đạt %1$d hoặc cao hơn.</string>
     <string name="notification_info">Thông báo được kiểm tra mỗi 15 phút. Bạn sẽ nhận tối đa 1 thông báo mỗi vùng ngưỡng mỗi ngày.</string>
     <string name="notification_sync_error">Đồng bộ thất bại: %1$s</string>
+    <string name="notification_global_title">Cảnh báo chỉ số sợ hãi toàn cầu</string>
+    <string name="notification_kospi_title">Cảnh báo KOSPI</string>
+    <string name="notification_lower_header">Cảnh báo tín hiệu mua</string>
+    <string name="notification_upper_header">Cảnh báo quá nhiệt</string>
+    <string name="notification_kospi_lower_description">Nhận thông báo khi chỉ số KOSPI giảm xuống %1$d trở xuống.</string>
+    <string name="notification_kospi_upper_description">Nhận thông báo khi chỉ số KOSPI tăng lên %1$d trở lên.</string>
+    <string name="notification_crypto_lower_description">Nhận thông báo khi chỉ số tiền mã hóa giảm xuống %1$d hoặc thấp hơn.</string>
+    <string name="notification_crypto_upper_description">Nhận thông báo khi chỉ số tiền mã hóa tăng lên %1$d hoặc cao hơn.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">Người đang bị kẹt hàng lúc này</string>
@@ -229,7 +234,6 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="settings_kospi_methodology_summary">Điểm KOSPI hiện tại cập nhật mỗi giờ trong giờ giao dịch thường của Hàn Quốc. Biểu đồ lịch sử chỉ cập nhật sau khi đóng cửa được xác nhận. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Chính sách quyền riêng tư</string>
     <string name="settings_menu_about">Thông tin ứng dụng</string>
-    <string name="settings_menu_ad_privacy">Lựa chọn quyền riêng tư</string>
     <string name="settings_menu_rate">Viết đánh giá</string>
     <string name="settings_menu_share">Chia sẻ ứng dụng</string>
     <string name="settings_about_version">Version %1$s</string>

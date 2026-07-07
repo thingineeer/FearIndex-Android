@@ -82,10 +82,7 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="back">Tilbage</string>
     <string name="notification_push_title">Push-notifikationer</string>
     <string name="notification_push_description">Få besked, når frygtindekset når din tærskel.</string>
-    <string name="notification_tab_market">Marked</string>
-    <string name="notification_tab_crypto">Krypto</string>
     <string name="notification_weekly_title">Ugentlige rapportalarmer</string>
-    <string name="notification_market_title">Markedsfrygtindeks-alarmer</string>
     <string name="notification_crypto_title">Kryptofrygtindeks-alarmer</string>
     <string name="notification_lower_label">Nedre (Frygt)</string>
     <string name="notification_upper_label">Øvre (Grådighed)</string>
@@ -93,6 +90,14 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="notification_upper_description">Du får besked, når indekset når %1$d eller højere.</string>
     <string name="notification_info">Notifikationer tjekkes hvert 15. minut. Du får højst 1 notifikation pr. tærskelzone pr. dag.</string>
     <string name="notification_sync_error">Synkronisering mislykkedes: %1$s</string>
+    <string name="notification_global_title">Globale frygtindeks-advarsler</string>
+    <string name="notification_kospi_title">KOSPI-advarsler</string>
+    <string name="notification_lower_header">Købs-signalalarm</string>
+    <string name="notification_upper_header">Overheat-advarsel</string>
+    <string name="notification_kospi_lower_description">Få besked, når KOSPI-indekset falder til %1$d eller derunder.</string>
+    <string name="notification_kospi_upper_description">Få besked, når KOSPI-indekset stiger til %1$d eller derover.</string>
+    <string name="notification_crypto_lower_description">Få besked, når krypto-indekset falder til %1$d eller derunder.</string>
+    <string name="notification_crypto_upper_description">Få besked, når krypto-indekset stiger til %1$d eller derover.</string>
 
     <string name="insight_similar_events_similar_section_title">Lignende perioder</string>
 
@@ -226,7 +231,6 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="settings_kospi_methodology_summary">Den aktuelle KOSPI-score opdateres hver time i Koreas normale markedstid. Historikdiagrammer opdateres først efter den bekræftede lukning. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privatlivspolitik</string>
     <string name="settings_menu_about">App-info</string>
-    <string name="settings_menu_ad_privacy">Valg om privatliv</string>
     <string name="settings_menu_rate">Skriv en anmeldelse</string>
     <string name="settings_menu_share">Del app</string>
     <string name="settings_about_version">Version %1$s</string>

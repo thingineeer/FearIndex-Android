@@ -82,10 +82,7 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="back">Zurück</string>
     <string name="notification_push_title">Push-Benachrichtigungen</string>
     <string name="notification_push_description">Werden Sie benachrichtigt, wenn der Angstindex Ihren Schwellenwert erreicht.</string>
-    <string name="notification_tab_market">Markt</string>
-    <string name="notification_tab_crypto">Krypto</string>
     <string name="notification_weekly_title">Wöchentliche Berichtsbenachrichtigungen</string>
-    <string name="notification_market_title">Angstindex-Benachrichtigungen (Markt)</string>
     <string name="notification_crypto_title">Angstindex-Benachrichtigungen (Krypto)</string>
     <string name="notification_lower_label">Untergrenze (Angst)</string>
     <string name="notification_upper_label">Obergrenze (Gier)</string>
@@ -93,6 +90,14 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="notification_upper_description">Sie werden benachrichtigt, wenn der Index %1$d oder mehr erreicht.</string>
     <string name="notification_info">Benachrichtigungen werden alle 15 Minuten geprüft. Pro Schwellenwertbereich erhalten Sie höchstens 1 Benachrichtigung pro Tag.</string>
     <string name="notification_sync_error">Synchronisierung fehlgeschlagen: %1$s</string>
+    <string name="notification_global_title">Warnungen zum globalen Angstindex</string>
+    <string name="notification_kospi_title">KOSPI-Benachrichtigungen</string>
+    <string name="notification_lower_header">Kaufsignal-Alarm</string>
+    <string name="notification_upper_header">Überhitzungswarnung</string>
+    <string name="notification_kospi_lower_description">Lassen Sie sich benachrichtigen, wenn der KOSPI-Index auf %1$d oder darunter fällt.</string>
+    <string name="notification_kospi_upper_description">Lassen Sie sich benachrichtigen, wenn der KOSPI-Index auf %1$d oder höher steigt.</string>
+    <string name="notification_crypto_lower_description">Benachrichtigung, wenn der Krypto-Index auf %1$d oder darunter fällt.</string>
+    <string name="notification_crypto_upper_description">Benachrichtigung, wenn der Krypto-Index auf %1$d oder darüber steigt.</string>
 
     <string name="insight_similar_events_similar_section_title">Ähnliche Zeiträume</string>
 
@@ -226,7 +231,6 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="settings_kospi_methodology_summary">Der aktuelle KOSPI-Score wird während der regulären koreanischen Handelszeiten stündlich aktualisiert. Verlaufscharts werden erst nach dem bestätigten Schlusskurs aktualisiert. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Datenschutz</string>
     <string name="settings_menu_about">App-Info</string>
-    <string name="settings_menu_ad_privacy">Datenschutzauswahl</string>
     <string name="settings_menu_rate">Bewertung schreiben</string>
     <string name="settings_menu_share">App teilen</string>
     <string name="settings_about_version">Version %1$s</string>

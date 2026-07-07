@@ -83,10 +83,7 @@
     <string name="back">戻る</string>
     <string name="notification_push_title">プッシュ通知</string>
     <string name="notification_push_description">恐怖指数が設定したしきい値に達したときに通知を受け取ります。</string>
-    <string name="notification_tab_market">市場</string>
-    <string name="notification_tab_crypto">暗号資産</string>
     <string name="notification_weekly_title">週次レポートのアラート</string>
-    <string name="notification_market_title">市場恐怖指数アラート</string>
     <string name="notification_crypto_title">暗号資産恐怖指数アラート</string>
     <string name="notification_lower_label">下限 (恐怖)</string>
     <string name="notification_upper_label">上限 (貪欲)</string>
@@ -94,6 +91,14 @@
     <string name="notification_upper_description">指数が %1$d 以上になったときに通知されます。</string>
     <string name="notification_info">通知は15分ごとにチェックされます。同じ区間につき1日最大1回まで受信します。</string>
     <string name="notification_sync_error">同期に失敗しました: %1$s</string>
+    <string name="notification_global_title">世界的な恐怖指数のアラート</string>
+    <string name="notification_kospi_title">KOSPIアラート</string>
+    <string name="notification_lower_header">買いシグナル通知</string>
+    <string name="notification_upper_header">過熱警告通知</string>
+    <string name="notification_kospi_lower_description">KOSPI インデックスが %1$d 以下になったときに通知を受け取ります。</string>
+    <string name="notification_kospi_upper_description">KOSPI インデックスが %1$d 以上になったときに通知を受け取ります。</string>
+    <string name="notification_crypto_lower_description">暗号通貨指数が%1$d以下になると通知を受け取ります。</string>
+    <string name="notification_crypto_upper_description">暗号通貨指数が%1$d以上になると通知を受け取ります。</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">いま含み損を抱えている人</string>
@@ -225,7 +230,6 @@
     <string name="settings_kospi_methodology_summary">KOSPIの現在スコアは韓国の通常取引時間中に1時間ごとに更新されます。履歴チャートは確定した終値の後にのみ更新されます。 Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">プライバシーポリシー</string>
     <string name="settings_menu_about">アプリ情報</string>
-    <string name="settings_menu_ad_privacy">プライバシー設定</string>
     <string name="settings_menu_rate">レビューを書く</string>
     <string name="settings_menu_share">アプリを共有</string>
     <string name="settings_about_version">Version %1$s</string>

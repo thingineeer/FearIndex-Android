@@ -83,10 +83,7 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="back">Kembali</string>
     <string name="notification_push_title">Notifikasi Push</string>
     <string name="notification_push_description">Dapatkan notifikasi saat indeks ketakutan mencapai ambang batas Anda.</string>
-    <string name="notification_tab_market">Pasar</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Peringatan Laporan Mingguan</string>
-    <string name="notification_market_title">Peringatan Indeks Ketakutan Pasar</string>
     <string name="notification_crypto_title">Peringatan Indeks Ketakutan Kripto</string>
     <string name="notification_lower_label">Batas bawah (Ketakutan)</string>
     <string name="notification_upper_label">Batas atas (Keserakahan)</string>
@@ -94,6 +91,14 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="notification_upper_description">Anda akan diberi tahu saat indeks mencapai %1$d atau di atasnya.</string>
     <string name="notification_info">Notifikasi diperiksa setiap 15 menit. Anda akan menerima maksimal 1 notifikasi per zona ambang batas per hari.</string>
     <string name="notification_sync_error">Sinkronisasi gagal: %1$s</string>
+    <string name="notification_global_title">Peringatan Indeks Ketakutan Global</string>
+    <string name="notification_kospi_title">Peringatan KOSPI</string>
+    <string name="notification_lower_header">Peringatan Sinyal Beli</string>
+    <string name="notification_upper_header">Peringatan Kepanasan Pasar</string>
+    <string name="notification_kospi_lower_description">Dapatkan pemberitahuan ketika indeks KOSPI turun ke %1$d atau lebih rendah.</string>
+    <string name="notification_kospi_upper_description">Dapatkan pemberitahuan ketika indeks KOSPI naik ke %1$d atau lebih tinggi.</string>
+    <string name="notification_crypto_lower_description">Dapatkan notifikasi saat indeks kripto turun ke %1$d atau di bawahnya.</string>
+    <string name="notification_crypto_upper_description">Dapatkan notifikasi saat indeks kripto naik ke %1$d atau di atasnya.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">Orang yang terjebak saat ini</string>
@@ -225,7 +230,6 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="settings_kospi_methodology_summary">Skor KOSPI saat ini diperbarui setiap jam selama jam pasar reguler Korea. Grafik riwayat diperbarui hanya setelah penutupan terkonfirmasi. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Kebijakan Privasi</string>
     <string name="settings_menu_about">Info Aplikasi</string>
-    <string name="settings_menu_ad_privacy">Pilihan privasi</string>
     <string name="settings_menu_rate">Tulis Ulasan</string>
     <string name="settings_menu_share">Bagikan Aplikasi</string>
     <string name="settings_about_version">Version %1$s</string>
