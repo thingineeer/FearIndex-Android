@@ -26,10 +26,7 @@
     <string name="back">Back</string>
     <string name="notification_push_title">Push Notifications</string>
     <string name="notification_push_description">Get notified when the fear index reaches your threshold.</string>
-    <string name="notification_tab_market">Market</string>
-    <string name="notification_tab_crypto">Crypto</string>
     <string name="notification_weekly_title">Weekly Report Alerts</string>
-    <string name="notification_market_title">Market Fear Index Alerts</string>
     <string name="notification_crypto_title">Crypto Fear Index Alerts</string>
     <string name="notification_lower_label">Lower (Fear)</string>
     <string name="notification_upper_label">Upper (Greed)</string>
@@ -37,6 +34,14 @@
     <string name="notification_upper_description">You\'ll be notified when the index reaches %1$d or above.</string>
     <string name="notification_info">Notifications are checked every 15 minutes. You\'ll receive at most 1 notification per threshold zone per day.</string>
     <string name="notification_sync_error">Sync failed: %1$s</string>
+    <string name="notification_global_title">Global Fear Index Alerts</string>
+    <string name="notification_kospi_title">KOSPI Alerts</string>
+    <string name="notification_lower_header">Buy Signal Alert</string>
+    <string name="notification_upper_header">Overheat Warning</string>
+    <string name="notification_kospi_lower_description">Get notified when the KOSPI index falls to %1$d or below.</string>
+    <string name="notification_kospi_upper_description">Get notified when the KOSPI index rises to %1$d or above.</string>
+    <string name="notification_crypto_lower_description">Get notified when the crypto index falls to %1$d or below.</string>
+    <string name="notification_crypto_upper_description">Get notified when the crypto index rises to %1$d or above.</string>
 
     <!-- SimilarEvents card (v1.7.9 v2) -->
     <string name="insight_similar_events_title">Similar Past Periods</string>
@@ -311,7 +316,6 @@
     <string name="settings_menu_rate">Rate App</string>
     <string name="settings_menu_share">Share App</string>
     <string name="settings_menu_about">About</string>
-    <string name="settings_menu_ad_privacy">Privacy choices</string>
     <string name="settings_menu_kospi_methodology">How KOSPI is calculated</string>
     <string name="settings_kospi_methodology_summary">KOSPI current score updates hourly during Korea regular market hours. History charts update only after the confirmed close. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privacy Policy</string>

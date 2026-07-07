@@ -82,10 +82,7 @@
     <string name="back">Tillbaka</string>
     <string name="notification_push_title">Push-aviseringar</string>
     <string name="notification_push_description">Få avisering när rädslaindexet når din tröskel.</string>
-    <string name="notification_tab_market">Marknad</string>
-    <string name="notification_tab_crypto">Krypto</string>
     <string name="notification_weekly_title">Veckorapportvarningar</string>
-    <string name="notification_market_title">Marknadsrädslaindex-varningar</string>
     <string name="notification_crypto_title">Kryptorädslaindex-varningar</string>
     <string name="notification_lower_label">Lägre (Rädsla)</string>
     <string name="notification_upper_label">Högre (Girighet)</string>
@@ -93,6 +90,14 @@
     <string name="notification_upper_description">Du aviseras när indexet når %1$d eller högre.</string>
     <string name="notification_info">Aviseringar kontrolleras var 15:e minut. Du får högst 1 avisering per tröskelområde per dag.</string>
     <string name="notification_sync_error">Synkronisering misslyckades: %1$s</string>
+    <string name="notification_global_title">Globala rädsloindexvarningar</string>
+    <string name="notification_kospi_title">KOSPI-varningar</string>
+    <string name="notification_lower_header">Köpsignalavisering</string>
+    <string name="notification_upper_header">Överhettningsvarning</string>
+    <string name="notification_kospi_lower_description">Få ett meddelande när KOSPI-indexet faller till %1$d eller lägre.</string>
+    <string name="notification_kospi_upper_description">Få ett meddelande när KOSPI-indexet stiger till %1$d eller högre.</string>
+    <string name="notification_crypto_lower_description">Få en avisering när kryptoindexet faller till %1$d eller lägre.</string>
+    <string name="notification_crypto_upper_description">Få en avisering när kryptoindexet stiger till %1$d eller högre.</string>
 
     <string name="insight_similar_events_similar_section_title">Liknande perioder</string>
 
@@ -226,7 +231,6 @@
     <string name="settings_kospi_methodology_summary">Aktuell KOSPI-poäng uppdateras varje timme under Koreas ordinarie marknadstid. Historikdiagram uppdateras först efter bekräftad stängning. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Integritetspolicy</string>
     <string name="settings_menu_about">Appinformation</string>
-    <string name="settings_menu_ad_privacy">Integritetsval</string>
     <string name="settings_menu_rate">Lämna en recension</string>
     <string name="settings_menu_share">Dela appen</string>
     <string name="settings_about_version">Version %1$s</string>

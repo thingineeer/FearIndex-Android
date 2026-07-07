@@ -82,10 +82,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="back">Atpakaļ</string>
     <string name="notification_push_title">Tūlītējie paziņojumi</string>
     <string name="notification_push_description">Saņemiet paziņojumu, kad baiļu indekss sasniedz jūsu slieksni.</string>
-    <string name="notification_tab_market">Tirgus</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Iknedēļas ziņojumu brīdinājumi</string>
-    <string name="notification_market_title">Tirgus baiļu indeksa brīdinājumi</string>
     <string name="notification_crypto_title">Kripto baiļu indeksa brīdinājumi</string>
     <string name="notification_lower_label">Apakšējais (Bailes)</string>
     <string name="notification_upper_label">Augšējais (Alkatība)</string>
@@ -93,6 +90,14 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="notification_upper_description">Jūs saņemsiet paziņojumu, kad indekss sasniedz %1$d vai augstāk.</string>
     <string name="notification_info">Paziņojumi tiek pārbaudīti ik pēc 15 minūtēm. Jūs saņemsiet ne vairāk kā 1 paziņojumu par sliekšņa zonu dienā.</string>
     <string name="notification_sync_error">Sinhronizācija neizdevās: %1$s</string>
+    <string name="notification_global_title">Globālā baiļu indeksa brīdinājumi</string>
+    <string name="notification_kospi_title">KOSPI brīdinājumi</string>
+    <string name="notification_lower_header">Pirkšanas signāla brīdinājums</string>
+    <string name="notification_upper_header">Pārkaršanas brīdinājums</string>
+    <string name="notification_kospi_lower_description">Saņemiet paziņojumu, kad KOSPI indekss samazinās līdz %1$d vai zemākam.</string>
+    <string name="notification_kospi_upper_description">Saņemiet paziņojumu, kad KOSPI indekss palielinās līdz %1$d vai augstākam.</string>
+    <string name="notification_crypto_lower_description">Saņemiet paziņojumu, kad kripto indekss nokrīt līdz %1$d vai zemāk.</string>
+    <string name="notification_crypto_upper_description">Saņemiet paziņojumu, kad kripto indekss pieaug līdz %1$d vai augstāk.</string>
 
     <string name="insight_similar_events_similar_section_title">Līdzīgi periodi</string>
 
@@ -226,7 +231,6 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="settings_kospi_methodology_summary">Pašreizējais KOSPI rādītājs Korejas regulārajās tirgus stundās tiek atjaunināts reizi stundā. Vēstures grafiki tiek atjaunināti tikai pēc apstiprinātas slēgšanas. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privātuma politika</string>
     <string name="settings_menu_about">Lietotnes informācija</string>
-    <string name="settings_menu_ad_privacy">Privātuma izvēles</string>
     <string name="settings_menu_rate">Uzrakstīt atsauksmi</string>
     <string name="settings_menu_share">Kopīgot lietotni</string>
     <string name="settings_about_version">Version %1$s</string>

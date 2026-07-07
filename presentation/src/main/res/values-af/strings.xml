@@ -82,10 +82,7 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="back">Terug</string>
     <string name="notification_push_title">Duwkennisgewings</string>
     <string name="notification_push_description">Kry kennisgewing wanneer die vreesindeks jou drempel bereik.</string>
-    <string name="notification_tab_market">Mark</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Weeklikse Verslagwaarskuwings</string>
-    <string name="notification_market_title">Mark Vreesindeks-waarskuwings</string>
     <string name="notification_crypto_title">Kripto Vreesindeks-waarskuwings</string>
     <string name="notification_lower_label">Onderste (Vrees)</string>
     <string name="notification_upper_label">Boonste (Gierigheid)</string>
@@ -93,6 +90,14 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="notification_upper_description">Jy sal in kennis gestel word wanneer die indeks %1$d of hoër bereik.</string>
     <string name="notification_info">Kennisgewings word elke 15 minute nagegaan. Jy sal hoogstens 1 kennisgewing per drempelgebied per dag ontvang.</string>
     <string name="notification_sync_error">Sinchronisasie het misluk: %1$s</string>
+    <string name="notification_global_title">Globale vreesindekswaarskuwings</string>
+    <string name="notification_kospi_title">KOSPI-waarskuwings</string>
+    <string name="notification_lower_header">Koopseinwaarskuwing</string>
+    <string name="notification_upper_header">Ooritstingswaarskuwing</string>
+    <string name="notification_kospi_lower_description">Word in kennis gestel wanneer die KOSPI-indeks na %1$d of laer daal.</string>
+    <string name="notification_kospi_upper_description">Word in kennis gestel wanneer die KOSPI-indeks na %1$d of hoër styg.</string>
+    <string name="notification_crypto_lower_description">Kry \'n kennisgewing wanneer die kripto-indeks tot %1$d of laer daal.</string>
+    <string name="notification_crypto_upper_description">Kry \'n kennisgewing wanneer die kripto-indeks tot %1$d of hoër styg.</string>
 
     <string name="insight_similar_events_similar_section_title">Soortgelyke tydperke</string>
 
@@ -226,7 +231,6 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="settings_kospi_methodology_summary">Die huidige KOSPI-telling word uurliks tydens Korea se gewone markure opgedateer. Geskiedenisgrafieke word eers na die bevestigde sluiting opgedateer. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privaatsheidsbeleid</string>
     <string name="settings_menu_about">App-inligting</string>
-    <string name="settings_menu_ad_privacy">Privaatheidkeuses</string>
     <string name="settings_menu_rate">Skryf resensie</string>
     <string name="settings_menu_share">Deel app</string>
     <string name="settings_about_version">Version %1$s</string>

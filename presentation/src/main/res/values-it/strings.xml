@@ -82,10 +82,7 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="back">Indietro</string>
     <string name="notification_push_title">Notifiche push</string>
     <string name="notification_push_description">Ricevi una notifica quando l\'indice di paura raggiunge la tua soglia.</string>
-    <string name="notification_tab_market">Mercato</string>
-    <string name="notification_tab_crypto">Cripto</string>
     <string name="notification_weekly_title">Avvisi sui rapporti settimanali</string>
-    <string name="notification_market_title">Avvisi indice di paura (Mercato)</string>
     <string name="notification_crypto_title">Avvisi indice di paura (Cripto)</string>
     <string name="notification_lower_label">Soglia bassa (Paura)</string>
     <string name="notification_upper_label">Soglia alta (Avidità)</string>
@@ -93,6 +90,14 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="notification_upper_description">Riceverai una notifica quando l\'indice raggiunge %1$d o più.</string>
     <string name="notification_info">Le notifiche vengono controllate ogni 15 minuti. Riceverai al massimo 1 notifica per fascia di soglia al giorno.</string>
     <string name="notification_sync_error">Sincronizzazione non riuscita: %1$s</string>
+    <string name="notification_global_title">Avvisi sull’indice globale della paura</string>
+    <string name="notification_kospi_title">Avvisi KOSPI</string>
+    <string name="notification_lower_header">Avviso Segnale di Acquisto</string>
+    <string name="notification_upper_header">Avviso Surriscaldamento</string>
+    <string name="notification_kospi_lower_description">Ricevi una notifica quando l\'indice KOSPI scende a %1$d o al di sotto.</string>
+    <string name="notification_kospi_upper_description">Ricevi una notifica quando l\'indice KOSPI sale a %1$d o superiore.</string>
+    <string name="notification_crypto_lower_description">Ricevi notifiche quando l\'indice crypto scende a %1$d o sotto.</string>
+    <string name="notification_crypto_upper_description">Ricevi notifiche quando l\'indice crypto sale a %1$d o sopra.</string>
 
     <string name="insight_similar_events_similar_section_title">Periodi simili</string>
 
@@ -226,7 +231,6 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="settings_kospi_methodology_summary">Il punteggio KOSPI attuale si aggiorna ogni ora durante l\'orario regolare del mercato coreano. I grafici storici si aggiornano solo dopo la chiusura confermata. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Informativa sulla Privacy</string>
     <string name="settings_menu_about">Info App</string>
-    <string name="settings_menu_ad_privacy">Scelte sulla privacy</string>
     <string name="settings_menu_rate">Lascia una recensione</string>
     <string name="settings_menu_share">Condividi app</string>
     <string name="settings_about_version">Version %1$s</string>

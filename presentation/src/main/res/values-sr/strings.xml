@@ -82,10 +82,7 @@
     <string name="back">Назад</string>
     <string name="notification_push_title">Push обавештења</string>
     <string name="notification_push_description">Добијте обавештење када индекс страха достигне постављени праг.</string>
-    <string name="notification_tab_market">Тржиште</string>
-    <string name="notification_tab_crypto">Криптовалуте</string>
     <string name="notification_weekly_title">Обавештења о седмичним извештајима</string>
-    <string name="notification_market_title">Упозорења индекса страха тржишта</string>
     <string name="notification_crypto_title">Упозорења индекса страха криптовалута</string>
     <string name="notification_lower_label">Доњи праг (Страх)</string>
     <string name="notification_upper_label">Горњи праг (Похлепа)</string>
@@ -93,6 +90,14 @@
     <string name="notification_upper_description">Бићете обавештени када индекс достигне %1$d или више.</string>
     <string name="notification_info">Обавештења се проверавају сваких 15 минута. Примићете највише 1 обавештење по прагу дневно.</string>
     <string name="notification_sync_error">Синхронизација није успела: %1$s</string>
+    <string name="notification_global_title">Упозорења о глобалном индексу страха</string>
+    <string name="notification_kospi_title">KOSPI обавештења</string>
+    <string name="notification_lower_header">Упозорење на Сигнал Куповине</string>
+    <string name="notification_upper_header">Упозорење о Прегревању</string>
+    <string name="notification_kospi_lower_description">Добијте обавештење када KOSPI индекс падне на %1$d или ниже.</string>
+    <string name="notification_kospi_upper_description">Добијте обавештење када KOSPI индекс порасте на %1$d или више.</string>
+    <string name="notification_crypto_lower_description">Добићете обавештење када крипто индекс падне на %1$d или испод.</string>
+    <string name="notification_crypto_upper_description">Добићете обавештење када крипто индекс порасте на %1$d или изнад.</string>
 
     <string name="insight_similar_events_similar_section_title">Слични периоди</string>
 
@@ -226,7 +231,6 @@
     <string name="settings_kospi_methodology_summary">Тренутни KOSPI резултат ажурира се сваког сата током редовног радног времена корејског тржишта. Историјски графикони се ажурирају тек након потврђеног затварања. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Политика Приватности</string>
     <string name="settings_menu_about">Информације о Апликацији</string>
-    <string name="settings_menu_ad_privacy">Избори приватности</string>
     <string name="settings_menu_rate">Напишите рецензију</string>
     <string name="settings_menu_share">Podeli aplikaciju</string>
     <string name="settings_about_version">Version %1$s</string>

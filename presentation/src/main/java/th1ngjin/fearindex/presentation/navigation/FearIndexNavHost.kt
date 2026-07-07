@@ -39,6 +39,8 @@ import th1ngjin.fearindex.presentation.feature.chart.ChartScreen
 import th1ngjin.fearindex.presentation.feature.home.HomeScreen
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
 import th1ngjin.fearindex.presentation.feature.marketdetail.MarketDetailScreen
+import th1ngjin.fearindex.presentation.feature.notification.NotificationCategory
+import th1ngjin.fearindex.presentation.feature.notification.NotificationDetailScreen
 import th1ngjin.fearindex.presentation.feature.notification.NotificationSettingsScreen
 import th1ngjin.fearindex.presentation.feature.settings.SettingsScreen
 import th1ngjin.fearindex.presentation.feature.vote.VoteScreen
@@ -156,6 +158,20 @@ fun FearIndexNavHost() {
             }
             composable("notification_settings") {
                 NotificationSettingsScreen(
+                    onBackClick = { navController.popBackStack() },
+                    onCategoryClick = { category ->
+                        navController.navigate("notification_detail/${category.name}")
+                    },
+                )
+            }
+            composable("notification_detail/{category}") { backStackEntry ->
+                val category = runCatching {
+                    NotificationCategory.valueOf(
+                        backStackEntry.arguments?.getString("category").orEmpty(),
+                    )
+                }.getOrDefault(NotificationCategory.MARKET)
+                NotificationDetailScreen(
+                    category = category,
                     onBackClick = { navController.popBackStack() },
                 )
             }

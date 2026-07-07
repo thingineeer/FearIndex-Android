@@ -83,10 +83,7 @@
     <string name="back">رجوع</string>
     <string name="notification_push_title">الإشعارات الفورية</string>
     <string name="notification_push_description">تلقَّ إشعارًا عند وصول مؤشر الخوف إلى الحد الذي حددته.</string>
-    <string name="notification_tab_market">السوق</string>
-    <string name="notification_tab_crypto">العملات الرقمية</string>
     <string name="notification_weekly_title">تنبيهات التقرير الأسبوعي</string>
-    <string name="notification_market_title">تنبيهات مؤشر خوف السوق</string>
     <string name="notification_crypto_title">تنبيهات مؤشر خوف العملات الرقمية</string>
     <string name="notification_lower_label">الحد الأدنى (خوف)</string>
     <string name="notification_upper_label">الحد الأعلى (جشع)</string>
@@ -94,6 +91,14 @@
     <string name="notification_upper_description">سيتم إشعارك عندما يصل المؤشر إلى %1$d أو أعلى.</string>
     <string name="notification_info">تُفحص الإشعارات كل 15 دقيقة. ستتلقى إشعارًا واحدًا كحد أقصى لكل نطاق في اليوم.</string>
     <string name="notification_sync_error">فشل المزامنة: %1$s</string>
+    <string name="notification_global_title">تنبيهات مؤشر الخوف العالمي</string>
+    <string name="notification_kospi_title">تنبيهات كوسبي</string>
+    <string name="notification_lower_header">تنبيه إشارة الشراء</string>
+    <string name="notification_upper_header">تحذير فرط النشاط</string>
+    <string name="notification_kospi_lower_description">احصل على إشعار عندما ينخفض مؤشر KOSPI إلى %1$d أو أقل.</string>
+    <string name="notification_kospi_upper_description">احصل على إشعار عندما يرتفع مؤشر KOSPI إلى %1$d أو أعلى.</string>
+    <string name="notification_crypto_lower_description">احصل على إشعار عندما ينخفض مؤشر العملات المشفرة إلى %1$d أو أقل.</string>
+    <string name="notification_crypto_upper_description">احصل على إشعار عندما يرتفع مؤشر العملات المشفرة إلى %1$d أو أعلى.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">العالقون الآن</string>
@@ -225,7 +230,6 @@
     <string name="settings_kospi_methodology_summary">يتم تحديث نتيجة KOSPI الحالية كل ساعة أثناء ساعات السوق العادية في كوريا. يتم تحديث الرسوم البيانية التاريخية فقط بعد تأكيد الإغلاق. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">سياسة الخصوصية</string>
     <string name="settings_menu_about">معلومات التطبيق</string>
-    <string name="settings_menu_ad_privacy">خيارات الخصوصية</string>
     <string name="settings_menu_rate">اكتب مراجعة</string>
     <string name="settings_menu_share">مشاركة</string>
     <string name="settings_about_version">Version %1$s</string>

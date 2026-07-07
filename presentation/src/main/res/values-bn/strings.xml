@@ -87,10 +87,7 @@
     <string name="back">ফিরে যান</string>
     <string name="notification_push_title">পুশ বিজ্ঞপ্তি</string>
     <string name="notification_push_description">ভয় সূচক আপনার সীমা ছুঁলে বিজ্ঞপ্তি পান।</string>
-    <string name="notification_tab_market">বাজার</string>
-    <string name="notification_tab_crypto">ক্রিপ্টো</string>
     <string name="notification_weekly_title">সাপ্তাহিক রিপোর্ট সতর্কতা</string>
-    <string name="notification_market_title">বাজার ভয় সূচক সতর্কতা</string>
     <string name="notification_crypto_title">ক্রিপ্টো ভয় সূচক সতর্কতা</string>
     <string name="notification_lower_label">নিম্ন সীমা (ভয়)</string>
     <string name="notification_upper_label">ঊর্ধ্ব সীমা (লোভ)</string>
@@ -98,6 +95,14 @@
     <string name="notification_upper_description">সূচক %1$d বা তার উপরে পৌঁছালে আপনাকে জানানো হবে।</string>
     <string name="notification_info">প্রতি ১৫ মিনিটে বিজ্ঞপ্তি পরীক্ষা করা হয়। প্রতিটি সীমা অঞ্চলের জন্য প্রতিদিন সর্বোচ্চ ১টি বিজ্ঞপ্তি পাবেন।</string>
     <string name="notification_sync_error">সিঙ্ক ব্যর্থ: %1$s</string>
+    <string name="notification_global_title">গ্লোবাল ফিয়ার ইনডেক্স সতর্কতা</string>
+    <string name="notification_kospi_title">KOSPI সতর্কতা</string>
+    <string name="notification_lower_header">কেনার সংকেত</string>
+    <string name="notification_upper_header">অতিরিক্ত গরম সতর্কতা</string>
+    <string name="notification_kospi_lower_description">KOSPI সূচক %1$d বা তার নিচে নেমে গেলে বিজ্ঞপ্তি পান।</string>
+    <string name="notification_kospi_upper_description">KOSPI সূচক %1$d বা তার উপরে উঠলে বিজ্ঞপ্তি পান।</string>
+    <string name="notification_crypto_lower_description">ক্রিপ্টো সূচক %1$d বা তার নিচে নামলে বিজ্ঞপ্তি পান।</string>
+    <string name="notification_crypto_upper_description">ক্রিপ্টো সূচক %1$d বা তার উপরে উঠলে বিজ্ঞপ্তি পান।</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">এখন আটকে থাকা লোকজন</string>
@@ -229,7 +234,6 @@
     <string name="settings_kospi_methodology_summary">কোরিয়ার নিয়মিত বাজার সময়ে বর্তমান KOSPI স্কোর প্রতি ঘণ্টায় আপডেট হয়। ইতিহাস চার্ট কেবল নিশ্চিত ক্লোজের পরে আপডেট হয়। Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">গোপনীয়তা নীতি</string>
     <string name="settings_menu_about">অ্যাপ তথ্য</string>
-    <string name="settings_menu_ad_privacy">গোপনীয়তা পছন্দ</string>
     <string name="settings_menu_rate">রিভিউ লিখুন</string>
     <string name="settings_menu_share">অ্যাপ শেয়ার করুন</string>
     <string name="settings_about_version">Version %1$s</string>

@@ -82,10 +82,7 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="back">Rudi</string>
     <string name="notification_push_title">Arifa za kusukuma</string>
     <string name="notification_push_description">Pokea arifa wakati kiashiria cha hofu kinapofikia kizingiti chako.</string>
-    <string name="notification_tab_market">Soko</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Arifa za Ripoti ya Kila Wiki</string>
-    <string name="notification_market_title">Arifa za kiashiria cha hofu cha soko</string>
     <string name="notification_crypto_title">Arifa za kiashiria cha hofu cha kripto</string>
     <string name="notification_lower_label">Chini (Hofu)</string>
     <string name="notification_upper_label">Juu (Tamaa)</string>
@@ -93,6 +90,14 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="notification_upper_description">Utaarifiwa kiashiria kinapofikia %1$d au juu.</string>
     <string name="notification_info">Arifa huangaliwa kila dakika 15. Utapokea arifa 1 pekee kwa kila eneo la kizingiti kwa siku.</string>
     <string name="notification_sync_error">Usawazishaji umeshindwa: %1$s</string>
+    <string name="notification_global_title">Arifa za Kielezo cha Hofu Ulimwenguni</string>
+    <string name="notification_kospi_title">Tahadhari za KOSPI</string>
+    <string name="notification_lower_header">Arifa ya Ishara ya Kununua</string>
+    <string name="notification_upper_header">Onyo la Mzigo Kupita Kiasi</string>
+    <string name="notification_kospi_lower_description">Pata arifa wakati faharasa ya KOSPI inaanguka hadi %1$d au chini.</string>
+    <string name="notification_kospi_upper_description">Pata arifa wakati faharasa ya KOSPI inapanda hadi %1$d au zaidi.</string>
+    <string name="notification_crypto_lower_description">Pata arifa wakati kiashiria cha crypto kinaanguka hadi %1$d au chini.</string>
+    <string name="notification_crypto_upper_description">Pata arifa wakati kiashiria cha crypto kinapanda hadi %1$d au zaidi.</string>
 
     <string name="insight_similar_events_similar_section_title">Vipindi vinavyofanana</string>
 
@@ -226,7 +231,6 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="settings_kospi_methodology_summary">Alama ya sasa ya KOSPI husasishwa kila saa wakati wa saa za kawaida za soko la Korea. Chati za historia husasishwa tu baada ya kufungwa kuthibitishwa. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Sera ya Faragha</string>
     <string name="settings_menu_about">Maelezo ya Programu</string>
-    <string name="settings_menu_ad_privacy">Chaguo za faragha</string>
     <string name="settings_menu_rate">Andika hakiki</string>
     <string name="settings_menu_share">Shiriki Programu</string>
     <string name="settings_about_version">Version %1$s</string>

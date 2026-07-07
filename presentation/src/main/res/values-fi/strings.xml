@@ -82,10 +82,7 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="back">Takaisin</string>
     <string name="notification_push_title">Push-ilmoitukset</string>
     <string name="notification_push_description">Saat ilmoituksen, kun pelkoindeksi saavuttaa kynnyksesi.</string>
-    <string name="notification_tab_market">Markkina</string>
-    <string name="notification_tab_crypto">Krypto</string>
     <string name="notification_weekly_title">Viikoittaiset raporttihälytykset</string>
-    <string name="notification_market_title">Markkinoiden pelkoindeksi-hälytykset</string>
     <string name="notification_crypto_title">Krypton pelkoindeksi-hälytykset</string>
     <string name="notification_lower_label">Alaraja (Pelko)</string>
     <string name="notification_upper_label">Yläraja (Ahneus)</string>
@@ -93,6 +90,14 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="notification_upper_description">Saat ilmoituksen, kun indeksi saavuttaa %1$d tai enemmän.</string>
     <string name="notification_info">Ilmoituksia tarkistetaan 15 minuutin välein. Saat enintään yhden ilmoituksen per kynnysalue päivässä.</string>
     <string name="notification_sync_error">Synkronointi epäonnistui: %1$s</string>
+    <string name="notification_global_title">Globaalin pelkoindeksin varoitukset</string>
+    <string name="notification_kospi_title">KOSPI-hälytykset</string>
+    <string name="notification_lower_header">Ostosignaalin hälytys</string>
+    <string name="notification_upper_header">Ylikuumenemisvaroitus</string>
+    <string name="notification_kospi_lower_description">Saat ilmoituksen, kun KOSPI-indeksi laskee arvoon %1$d tai sen alle.</string>
+    <string name="notification_kospi_upper_description">Saat ilmoituksen, kun KOSPI-indeksi nousee arvoon %1$d tai yli.</string>
+    <string name="notification_crypto_lower_description">Saat ilmoituksen, kun krypto-indeksi laskee %1$d:een tai alle.</string>
+    <string name="notification_crypto_upper_description">Saat ilmoituksen, kun krypto-indeksi nousee %1$d:een tai yli.</string>
 
     <string name="insight_similar_events_similar_section_title">Samankaltaiset jaksot</string>
 
@@ -226,7 +231,6 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="settings_kospi_methodology_summary">Nykyinen KOSPI-pistemäärä päivittyy tunnin välein Korean normaalien markkinatuntien aikana. Historiakaaviot päivittyvät vasta vahvistetun sulun jälkeen. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Tietosuojakäytäntö</string>
     <string name="settings_menu_about">Sovelluksen tiedot</string>
-    <string name="settings_menu_ad_privacy">Tietosuojavalinnat</string>
     <string name="settings_menu_rate">Kirjoita arvostelu</string>
     <string name="settings_menu_share">Jaa sovellus</string>
     <string name="settings_about_version">Version %1$s</string>

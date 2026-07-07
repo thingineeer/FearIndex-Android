@@ -83,10 +83,7 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="back">Geri</string>
     <string name="notification_push_title">Anlık Bildirimler</string>
     <string name="notification_push_description">Korku endeksi eşiğinize ulaştığında bildirim alın.</string>
-    <string name="notification_tab_market">Piyasa</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Haftalık Rapor Uyarıları</string>
-    <string name="notification_market_title">Piyasa Korku Endeksi Uyarıları</string>
     <string name="notification_crypto_title">Kripto Korku Endeksi Uyarıları</string>
     <string name="notification_lower_label">Alt sınır (Korku)</string>
     <string name="notification_upper_label">Üst sınır (Açgözlülük)</string>
@@ -94,6 +91,14 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="notification_upper_description">Endeks %1$d veya üstüne çıktığında bildirim alırsınız.</string>
     <string name="notification_info">Bildirimler 15 dakikada bir kontrol edilir. Her eşik bölgesi için günde en fazla 1 bildirim alırsınız.</string>
     <string name="notification_sync_error">Senkronizasyon başarısız: %1$s</string>
+    <string name="notification_global_title">Küresel Korku Endeksi Uyarıları</string>
+    <string name="notification_kospi_title">KOSPI Uyarıları</string>
+    <string name="notification_lower_header">Alım Sinyali Uyarısı</string>
+    <string name="notification_upper_header">Aşırı Isınma Uyarısı</string>
+    <string name="notification_kospi_lower_description">KOSPI endeksi %1$d veya altına düştüğünde bildirim alın.</string>
+    <string name="notification_kospi_upper_description">KOSPI endeksi %1$d veya üzerine çıktığında bildirim alın.</string>
+    <string name="notification_crypto_lower_description">Kripto endeksi %1$d veya altına düştüğünde bildirim alın.</string>
+    <string name="notification_crypto_upper_description">Kripto endeksi %1$d veya üzerine çıktığında bildirim alın.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">Şu an sıkışanlar</string>
@@ -225,7 +230,6 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="settings_kospi_methodology_summary">Mevcut KOSPI skoru Kore normal piyasa saatleri içinde saat başı güncellenir. Geçmiş grafikleri yalnızca onaylanmış kapanıştan sonra güncellenir. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Gizlilik Politikası</string>
     <string name="settings_menu_about">Uygulama Bilgisi</string>
-    <string name="settings_menu_ad_privacy">Gizlilik tercihleri</string>
     <string name="settings_menu_rate">Yorum Yaz</string>
     <string name="settings_menu_share">Uygulamayı Paylaş</string>
     <string name="settings_about_version">Version %1$s</string>

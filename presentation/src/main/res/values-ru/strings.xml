@@ -82,10 +82,7 @@
     <string name="back">Назад</string>
     <string name="notification_push_title">Push-уведомления</string>
     <string name="notification_push_description">Получайте уведомления, когда индекс страха достигает установленного порога.</string>
-    <string name="notification_tab_market">Рынок</string>
-    <string name="notification_tab_crypto">Криптовалюта</string>
     <string name="notification_weekly_title">Еженедельные оповещения об отчетах</string>
-    <string name="notification_market_title">Уведомления об индексе страха рынка</string>
     <string name="notification_crypto_title">Уведомления об индексе страха криптовалют</string>
     <string name="notification_lower_label">Нижний предел (Страх)</string>
     <string name="notification_upper_label">Верхний предел (Жадность)</string>
@@ -93,6 +90,14 @@
     <string name="notification_upper_description">Вы получите уведомление, когда индекс достигнет %1$d или выше.</string>
     <string name="notification_info">Уведомления проверяются каждые 15 минут. Вы получите не более 1 уведомления на каждую пороговую зону в день.</string>
     <string name="notification_sync_error">Ошибка синхронизации: %1$s</string>
+    <string name="notification_global_title">Оповещения о глобальном индексе страха</string>
+    <string name="notification_kospi_title">Оповещения KOSPI</string>
+    <string name="notification_lower_header">Сигнал на покупку</string>
+    <string name="notification_upper_header">Предупреждение о перегреве</string>
+    <string name="notification_kospi_lower_description">Получите уведомление, когда индекс KOSPI упадет до %1$d или ниже.</string>
+    <string name="notification_kospi_upper_description">Получите уведомление, когда индекс KOSPI поднимется до %1$d или выше.</string>
+    <string name="notification_crypto_lower_description">Получать уведомление, когда крипто-индекс падает до %1$d или ниже.</string>
+    <string name="notification_crypto_upper_description">Получать уведомление, когда крипто-индекс поднимается до %1$d или выше.</string>
 
     <string name="insight_similar_events_similar_section_title">Похожие периоды</string>
 
@@ -226,7 +231,6 @@
     <string name="settings_kospi_methodology_summary">Текущий показатель KOSPI обновляется каждый час в обычные часы работы корейского рынка. Исторические графики обновляются только после подтвержденного закрытия. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Политика конфиденциальности</string>
     <string name="settings_menu_about">О приложении</string>
-    <string name="settings_menu_ad_privacy">Настройки конфиденциальности</string>
     <string name="settings_menu_rate">Оставить отзыв</string>
     <string name="settings_menu_share">Поделиться</string>
     <string name="settings_about_version">Version %1$s</string>

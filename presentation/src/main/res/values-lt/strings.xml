@@ -82,10 +82,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="back">Atgal</string>
     <string name="notification_push_title">Stumiamieji pranešimai</string>
     <string name="notification_push_description">Gaukite pranešimą, kai baimės indeksas pasieks jūsų ribą.</string>
-    <string name="notification_tab_market">Rinka</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Savaitės ataskaitų įspėjimai</string>
-    <string name="notification_market_title">Rinkos baimės indekso įspėjimai</string>
     <string name="notification_crypto_title">Kripto baimės indekso įspėjimai</string>
     <string name="notification_lower_label">Žemesnė riba (Baimė)</string>
     <string name="notification_upper_label">Aukštesnė riba (Godumas)</string>
@@ -93,6 +90,14 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="notification_upper_description">Gausite pranešimą, kai indeksas pasieks %1$d arba aukščiau.</string>
     <string name="notification_info">Pranešimai tikrinami kas 15 minučių. Per dieną gausite ne daugiau kaip 1 pranešimą vienai ribinei zonai.</string>
     <string name="notification_sync_error">Sinchronizavimas nepavyko: %1$s</string>
+    <string name="notification_global_title">Pasaulinio baimės indekso įspėjimai</string>
+    <string name="notification_kospi_title">KOSPI įspėjimai</string>
+    <string name="notification_lower_header">Pirkimo signalo įspėjimas</string>
+    <string name="notification_upper_header">Perkaitimo įspėjimas</string>
+    <string name="notification_kospi_lower_description">Gaukite pranešimą, kai KOSPI indeksas nukris iki %1$d arba žemiau.</string>
+    <string name="notification_kospi_upper_description">Gaukite pranešimą, kai KOSPI indeksas pakils iki %1$d ar daugiau.</string>
+    <string name="notification_crypto_lower_description">Gaukite pranešimą, kai kripto indeksas nukrenta iki %1$d ar žemiau.</string>
+    <string name="notification_crypto_upper_description">Gaukite pranešimą, kai kripto indeksas pakyla iki %1$d ar aukščiau.</string>
 
     <string name="insight_similar_events_similar_section_title">Panašūs laikotarpiai</string>
 
@@ -226,7 +231,6 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="settings_kospi_methodology_summary">Dabartinis KOSPI balas atnaujinamas kas valandą per įprastas Korėjos rinkos valandas. Istorijos grafikai atnaujinami tik po patvirtinto uždarymo. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privatumo politika</string>
     <string name="settings_menu_about">Programėlės informacija</string>
-    <string name="settings_menu_ad_privacy">Privatumo pasirinkimai</string>
     <string name="settings_menu_rate">Parašyti atsiliepimą</string>
     <string name="settings_menu_share">Dalintis programa</string>
     <string name="settings_about_version">Version %1$s</string>
