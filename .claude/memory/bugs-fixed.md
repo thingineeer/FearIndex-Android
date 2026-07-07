@@ -4,6 +4,41 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-07-07 세션 (v1.4.0 배포 차단 원인 규명 + IAP 제외 + 설정/알림 UX 정리)
+
+브랜치: dev ← feature/v1.4.0-no-iap, feature/v1.4.0-settings-ux (모두 --no-ff, 분기/합류 그래프). vc18/1.4.0 유지. **배포 전(로컬 dev만), push 미실행.** 703 테스트 GREEN, 실기기(Galaxy S23) 릴리즈 검증 완료.
+
+### 43. ⚠️ fastlane "Korean law / Account Details" 에러 = 계정 레벨 게이트 (코드 무관 확정)
+- **증상**: `bundle exec fastlane internal` 이 마지막 커밋 단계에서 `Google Api Error: Invalid request - To comply with Korean law, developers in Korea must provide additional information on the Account Details page.` 로 실패. 메타/스크린샷 업로드는 성공("Uploading all changes to Google Play..." 직후 실패) → **AAB 내용이 아니라 edit commit 단계의 계정 검증에서 차단**.
+- **원인 (확정)**: 어제(7/6) IAP(광고 제거) 위해 **결제 프로필("이매진" 3593-7323-4054)을 개발자 계정에 연결** → 계정이 "유료/수익 발생 개발자"로 분류 → 한국 전자상거래법상 개발자 계정 Account Details의 **"비즈니스 연락처 세부정보"에 통신판매업 신고번호(E-commerce license number) + 신고기관 입력 요구**. 이게 비어 있어 **모든 트랙 업로드(internal 포함) 차단**. Google 공식 문서(support.google.com/googleplay/android-developer/answer/3255733): 유료앱/IAP 있는 한국 사업자는 사업자등록번호+통신판매업신고번호+신고기관 필수, **무료·IAP 없는 앱은 불필요**.
+- **실증**: IAP를 코드에서 완전 제거(44번) 후 fastlane 재실행 → **동일 에러**. → 코드로 못 푼다 확정. iOS(Apple)는 통신판매업 안 물어봐서 문제없었음(스토어 정책 차이). 통신판매업 법적 면제(직전연도 50건 미만/간이과세자)가 있어도 **Google은 결제 프로필 연결 시 필드를 요구**. 사용자는 통신판매업을 발급받았다 환불(폐업)한 상태라 현재 신고번호 없음.
+- **해법(사용자 결정 대기)**: (A) 통신판매업 재신고(등록면허세 40,500원/년, 정부24) → Account Details 입력 → 통과, (B) 결제 프로필 연결 해제(IAP 영구 포기 근접). 세금정보(대한민국)는 이미 "수락됨"(7/6 제출)이라 무관 — 문제는 통신판매업 필드.
+- **교훈**: fastlane 업로드 실패 시 **어느 단계(빌드/업로드/commit)에서 나는지 로그로 구분**. "Uploading all changes" 이후 실패면 계정 레벨. AAB 코드 뜯기 전에 계정 상태부터 확인. Google Play는 결제 프로필 연결만으로 한국 통신판매업 게이트가 켜짐(앱 무료·IAP 미등록이어도).
+- **재확인 (같은 세션 후반)**: 사용자 "fastlane production으로 릴리즈 트랙 올려라" 지시 → `bundle exec fastlane production`(track production/rollout 1.0/completed) 실행 → **동일하게 "Uploading all changes" 직후 Korean law 에러**. IAP 제거 + changelog 정정분까지 다 올라갔으나 edit commit에서 차단. **게이트 해제 전엔 internal/production 어느 트랙도 불가 재확인.** 사용자 결정: **배포 보류, changelog(46번 아래 참조)만 dev 커밋.** 게이트 해제(통신판매업 입력 or 결제프로필 해제)는 사용자가 나중에 직접.
+- **changelog 정정 (배포 준비)**: 18.txt(vc18) 45 locale이 "광고 제거 옵션 추가"를 언급했으나 IAP 제거로 사실 불일치 → "알림 설정 개선 + 앱 안정성 향상"으로 교체(IAP 문구 완전 제거). 게이트 해제 후 이 changelog로 배포.
+
+### 44. 광고 제거 IAP(Play Billing) 전체 제거 — v1.4.0 무료 배포용 (feature/v1.4.0-no-iap)
+- **요청**: 사용자 "인앱결제 뺀 코드로 dev 1.4.0 배포", "광고제거는 나중에 넣자". 43번(통신판매업 미보유)로 IAP 활성화 불가 → v1.4.0에서 IAP 제외.
+- **제거**: core PurchaseManager/IapEntitlement/IapPurchaseOutcome + 테스트, billing-ktx 의존성 + libs.versions.toml billing 정의, AppOpenAdPolicy.canShowOnForeground의 isAdFree 파라미터, AdsEntryPoint.purchaseManager(), AdBanner/HomeScreen 게이트의 isAdFree(→canRequestAds+adsEnabled만), AppOpenAdManager isAdFree 파라미터, SettingsScreen 프리미엄 카드, SettingsViewModel(구매/복원 책임 소멸로 파일 삭제), FearIndexApp/MainActivity 배선, strings IAP 10키×45locale. **광고 개선 3건(AdRetryPolicy/배너 remember·DisposableEffect/AppOpen*)과 resolveBannerHeightDp는 보존.** grep 잔존 0, 703 테스트 GREEN. 실기기 릴리즈: 설정 프리미엄 카드 사라짐·배너 정상·크래시 없음.
+- **교훈**: IAP는 12파일에 얽혀 있으나 순수 로직(AppOpenAdPolicy isAdFree)까지 파라미터만 빼면 광고 게이트가 canRequestAds만으로 정상 동작. 나중에 IAP 재도입 시 이 커밋 revert 참고.
+
+### 45. 설정 '개인정보 선택' 메뉴 제거 — UMP 폼 미설정으로 죽은 버튼
+- **증상/원인**: 설정 '개인정보 선택' 탭 시 UMP `showPrivacyOptionsForm` 호출하나 실기기 로그 `Publisher misconfiguration: no form(s) configured for the input app ID (ca-app-pub-5283496525222246~1308884877)` → 항상 실패, 아무 동작 안 함. AdMob Console에 이 앱용 개인정보 동의 폼 미설정. 한국 사용자 대상이라 GDPR UMP 필수도 아님.
+- **해결**: SettingsScreen에서 항목+openAdPrivacyOptions+findActivity+UMP/ScreenshotMode import 제거, settings_menu_ad_privacy 45 locale 제거. (UMP 폼을 AdMob에 정식 설정하면 재도입 가능.)
+
+### 46. 알림 설정 UI 재설계 — 탭/토글 중복 제거, iOS parity 허브+상세 (feature/v1.4.0-settings-ux)
+- **문제**: 기존 알림설정이 탭바(시장/코스피/암호화폐)와 그 아래 자산 토글 3개가 이름 겹쳐 혼란(탭=슬라이더만 분기, 토글=자산 on/off, 항상 다 보임). 사용자 "iOS처럼 깔끔하게, 사용자가 이해할 UI로. Material Design 잘 맞게".
+- **재설계 (iOS NotificationSettingsView 대칭, 사용자가 '허브+상세화면' 방식 선택)**: 탭 제거. **허브**(NotificationSettingsScreen) = 마스터 토글 + 자산별 [아이콘+이름+Switch+화살표] 4행(글로벌🌐/코스피📈/암호화폐₿는 탭 시 상세 이동, 주간📅는 토글만) + Info footer. **상세**(NotificationDetailScreen 신규) = 자산별 하한(매수 기회,빨강 0xFFE53935)/상한(과열 경고,초록 0xFF00897B) 슬라이더 2섹션 + TopAppBar. ViewModel clamp+debounce 로직 그대로 재사용. NavHost에 notification_detail/{category} route.
+- **strings**: iOS xcstrings에서 notification_global_title/kospi_title/lower_header/upper_header + 자산별 lower/upper description 추출(%d→%1$d, zh-Hans→zh-rCN 등 매핑), 45 locale. 미사용 notification_market_title/tab_market/tab_crypto 제거.
+- **검증(실기기 릴리즈)**: 허브 4행 노출 → 글로벌 행 탭 → 상세(매수기회 30 빨강 / 과열경고 70 초록) → 하한 슬라이더 드래그 30→41 + 문구 실시간 갱신 → 뒤로 허브 복귀, 크래시 없음. 703 테스트 GREEN.
+- **교훈**: Android도 iOS Form+NavigationLink 구조를 Material 3(Card+ListItem+TopAppBar+Slider)로 자연 번역 가능. 탭이 슬라이더만 바꾸는데 토글과 이름 겹치면 UX 혼란 — 자산별 [토글+상세이동]을 한 행으로 합쳐 해소.
+
+### (참고) Play Console 사전출시 경고 3건(출시 1.3.0 기준) — 전부 라이브러리 내부, 코드 무관
+- **비트맵/BaseEncoding 이미지 최적화**: 시작위치 `com.google.common.io.BaseEncoding.<clinit>`(Guava 내부, 이미지 무관 오탐). 우리 코드에 BaseEncoding/수동 이미지 다운로드 0건.
+- **edge-to-edge 미처리**: MainActivity.kt:79 enableEdgeToEdge() 이미 호출 + themes.xml statusBarColor/navigationBarColor 이미 제거(19번) + EdgeToEdgePolicyTest 회귀테스트 존재 → 이미 해결됨.
+- **지원중단 API(setStatusBarColor 등)**: 시작위치 `com.google.android.gms.ads.OutOfContextTestingActivity`, 난독화 D2.S/c.q.b = AdMob/Compose 내부. 우리 코드 직접 호출 0건. AdMob SDK 업데이트로만 해결.
+
+
 ## 2026-07-06 세션 (v1.4.0 광고 개선 3건 + 결제 검증)
 
 사용자 질문: "인터스티셜 광고 평소 잘 뜨나? 일치율 100% 도달하게 해줘. 결제 테스트도." + "탭 진입 1~2초 뒤 배너 떠서 일치율 낮은가?"

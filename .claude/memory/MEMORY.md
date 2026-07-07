@@ -16,7 +16,17 @@
 
 ## 최신 상태 (2026-07-06, v1.4.0 dev 통합 — iOS v1.8.8 parity)
 
-- **현재 dev 기준**: Android `1.4.0` / `versionCode 18` / package `th1ngjin.fearindex`. **dev 머지 완료** (아직 배포 전 — Play Console 업로드/게시 미실행, push도 미실행: 모두 로컬 상태, 명시 요청 대기). 이전 배포본은 v1.3.0(vc17, release 태그).
+### ⚠️ 2026-07-07 업데이트 — v1.4.0에서 IAP 제외 + 설정/알림 UX 정리 (배포 차단 원인 규명)
+
+- **v1.4.0 배포 차단 원인 확정 (bugs-fixed 43번)**: fastlane internal이 `To comply with Korean law ... Account Details` 로 차단. **결제 프로필("이매진") 연결로 계정이 유료 개발자 분류 → 한국 통신판매업 신고번호(Account Details) 필수**가 원인. **코드 무관 (IAP 제거해도 동일 에러)**. 세금정보(대한민국)는 이미 수락됨(무관). 사용자는 통신판매업 발급→환불 상태라 신고번호 없음. 해법: (A) 통신판매업 재신고 40,500원/년, (B) 결제 프로필 연결 해제. **사용자 결정 대기.**
+- **IAP 제외 (bugs-fixed 44번)**: 사용자 지시로 광고 제거 IAP를 v1.4.0에서 **완전 제거**("광고제거는 나중에"). PurchaseManager/billing/프리미엄카드/isAdFree 게이트 전부 제거, 광고 개선 3건 보존. → 아래 "v1.4.0 = IAP 신규" 항목은 **철회됨**(IAP 다시 넣을 때 bugs-fixed 44 커밋 revert 참고).
+- **설정 '개인정보 선택' 제거 (bugs-fixed 45번)**: UMP 폼 AdMob 미설정으로 항상 실패하는 죽은 버튼 → 제거.
+- **알림 설정 UI 재설계 (bugs-fixed 46번)**: 탭/토글 중복 혼란 → iOS parity 허브+상세 구조로. 허브(마스터+자산별[아이콘+이름+Switch+화살표]4행) + 상세(NotificationDetailScreen 신규, 하한 빨강/상한 초록 슬라이더). Material 3. 실기기 릴리즈 검증 완료.
+- **현재 dev**: `1.4.0`/`vc18`. dev 머지 완료(feature/v1.4.0-no-iap + feature/v1.4.0-settings-ux, --no-ff). **703 테스트 GREEN, 실기기 릴리즈 검증 완료. 배포·push 미실행(로컬 dev만).** 다음: 통신판매업 정리 후 배포, 또는 IAP 없는 현 상태로 (통신판매업 게이트만 해제되면) 배포.
+
+---
+
+- **현재 dev 기준**: Android `1.4.0` / `versionCode 18` / package `th1ngjin.fearindex`. **dev 머지 완료** (아직 배포 전 — Play Console 업로드/게시 미실행, push도 미실행: 모두 로컬 상태, 명시 요청 대기). 이전 배포본은 v1.3.0(vc17, release 태그). **⚠️ 아래 "v1.4.0 = iOS v1.8.8 5건" 중 4번 IAP는 7/7에 철회됨(위 참조).**
 - **v1.4.0 = iOS v1.8.8 동기화 5건** (worktree 단위 분할, --no-ff 그래프 유지, 총 701 테스트 GREEN):
   1. **알림 온보딩 개선**: `NotificationPermissionSyncPolicy.initialAuthorizationAction`(iOS 1:1). 시스템 프롬프트 실표시 최초 결정에서 허용 → master toggle ON + 서버 동기화. 이미 결정된 기기/사용자 OFF 불가침. MainActivity 시작 시 POST_NOTIFICATIONS 요청. + registerFCMToken 직후 updateNotificationSettings 전체 동기화(서버 즉시체크 트리거 — 33번 서버 공백 클라측 대응).
   2. **BTC 지표 cryptoOfficialIndicatorsV1 전환**: CRYPTO RSI/공매도를 서버 official endpoint(`asia-northeast3-fear-index-a4f4b.cloudfunctions.net/cryptoOfficialIndicatorsV1`)로 전환(rsi.closes 180 → 클라 Wilder RSI, short.ratios 14). CoinGecko/Binance 직접 호출 제거. `IndicatorSourceMetadata` 엔티티 + 카드 출처 라벨("source·basis·asOf") + info 시트 "데이터 기준" 섹션. SPX(Yahoo·비공식)/KOSPI(KIS/KRX)는 클라 하드코딩 메타(locale-neutral 영문, 번역 금지). `indicator_source_section` 45 locale.
