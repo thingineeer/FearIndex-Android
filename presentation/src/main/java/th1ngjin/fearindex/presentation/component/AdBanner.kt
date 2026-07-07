@@ -63,14 +63,9 @@ fun AdBanner(
     val remoteConfig = remember(adsEntryPoint) {
         adsEntryPoint.remoteConfigManager()
     }
-    val purchaseManager = remember(adsEntryPoint) {
-        adsEntryPoint.purchaseManager()
-    }
-    // 광고 제거 IAP 구매자에게는 배너 자체를 렌더하지 않는다.
-    val isAdFree by purchaseManager.isAdFree.collectAsStateWithLifecycle()
     val adsConfig by remoteConfig.adsConfig.collectAsStateWithLifecycle()
     val canRequestAds by AdRequestAvailability.canRequestAds.collectAsStateWithLifecycle()
-    if (isAdFree || !canRequestAds || !adsConfig.adsEnabled || adUnitId.isBlank()) {
+    if (!canRequestAds || !adsConfig.adsEnabled || adUnitId.isBlank()) {
         return
     }
 

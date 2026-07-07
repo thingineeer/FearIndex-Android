@@ -45,9 +45,6 @@ userMessagingPlatform = "3.0.0"
 # Play In-App Update
 appUpdate = "2.1.0"
 
-# Play Billing (인앱결제 — 광고 제거)
-billing = "7.1.1"
-
 # Accompanist
 accompanistPermissions = "0.36.0"
 
@@ -126,9 +123,6 @@ user-messaging-platform = { group = "com.google.android.ump", name = "user-messa
 # Play In-App Update
 app-update = { group = "com.google.android.play", name = "app-update", version.ref = "appUpdate" }
 app-update-ktx = { group = "com.google.android.play", name = "app-update-ktx", version.ref = "appUpdate" }
-
-# Play Billing
-billing-ktx = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billing" }
 
 # Accompanist
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanistPermissions" }

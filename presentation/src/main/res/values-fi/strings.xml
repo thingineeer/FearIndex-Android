@@ -383,14 +383,4 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
-    <string name="settings_premium_header">Premium</string>
-    <string name="settings_remove_ads_title">Poista mainokset</string>
-    <string name="settings_remove_ads_description">Kertaosto. Poistaa kaikki mainokset pysyvästi.</string>
-    <string name="settings_remove_ads_purchased">Mainokset poistettu</string>
-    <string name="settings_remove_ads_purchase_failed">Osto epäonnistui. Yritä uudelleen.</string>
-    <string name="settings_restore_purchases">Palauta ostot</string>
-    <string name="settings_restore_success">Ostot palautettu.</string>
-    <string name="settings_restore_failure">Ei palautettavia ostoja.</string>
-    <string name="settings_support_contact">Yhteystiedot: %1$s</string>
-    <string name="common_confirm">Vahvista</string>
 </resources>

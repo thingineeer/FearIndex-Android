@@ -29,7 +29,6 @@ class AppOpenAdPolicyTest {
             p.canShowOnForeground(
                 nowMillis = 100_000L,
                 isReady = true,
-                isAdFree = false,
                 canRequestAds = true,
                 config = config,
             ),
@@ -44,7 +43,6 @@ class AppOpenAdPolicyTest {
             p.canShowOnForeground(
                 nowMillis = 30_000L, // 정확히 30초
                 isReady = true,
-                isAdFree = false,
                 canRequestAds = true,
                 config = config,
             ),
@@ -59,22 +57,6 @@ class AppOpenAdPolicyTest {
             p.canShowOnForeground(
                 nowMillis = 29_999L,
                 isReady = true,
-                isAdFree = false,
-                canRequestAds = true,
-                config = config,
-            ),
-        )
-    }
-
-    @Test
-    fun `광고 제거 구매자(isAdFree)는 노출 안 함`() {
-        val p = policy()
-        p.recordBackgroundEntry(nowMillis = 0L)
-        assertFalse(
-            p.canShowOnForeground(
-                nowMillis = 60_000L,
-                isReady = true,
-                isAdFree = true, // 광고 제거
                 canRequestAds = true,
                 config = config,
             ),
@@ -86,7 +68,7 @@ class AppOpenAdPolicyTest {
         val p = policy()
         p.recordBackgroundEntry(nowMillis = 0L)
         assertFalse(
-            p.canShowOnForeground(60_000L, isReady = true, isAdFree = false, canRequestAds = false, config = config),
+            p.canShowOnForeground(60_000L, isReady = true, canRequestAds = false, config = config),
         )
     }
 
@@ -95,7 +77,7 @@ class AppOpenAdPolicyTest {
         val p = policy()
         p.recordBackgroundEntry(nowMillis = 0L)
         assertFalse(
-            p.canShowOnForeground(60_000L, isReady = true, isAdFree = false, canRequestAds = true, config = config.copy(enabled = false)),
+            p.canShowOnForeground(60_000L, isReady = true, canRequestAds = true, config = config.copy(enabled = false)),
         )
     }
 
@@ -104,7 +86,7 @@ class AppOpenAdPolicyTest {
         val p = policy()
         p.recordBackgroundEntry(nowMillis = 0L)
         assertFalse(
-            p.canShowOnForeground(60_000L, isReady = false, isAdFree = false, canRequestAds = true, config = config),
+            p.canShowOnForeground(60_000L, isReady = false, canRequestAds = true, config = config),
         )
     }
 
@@ -119,7 +101,7 @@ class AppOpenAdPolicyTest {
         // 3번째 시도 (cap=2 도달)
         p.recordBackgroundEntry(1_400_000L)
         assertFalse(
-            p.canShowOnForeground(1_430_000L, isReady = true, isAdFree = false, canRequestAds = true, config = config),
+            p.canShowOnForeground(1_430_000L, isReady = true, canRequestAds = true, config = config),
         )
     }
 
@@ -131,7 +113,7 @@ class AppOpenAdPolicyTest {
         // cooldown 600s 이내에 다시 복귀
         p.recordBackgroundEntry(100_000L)
         assertFalse(
-            p.canShowOnForeground(130_000L, isReady = true, isAdFree = false, canRequestAds = true, config = config),
+            p.canShowOnForeground(130_000L, isReady = true, canRequestAds = true, config = config),
         )
     }
 
@@ -143,7 +125,7 @@ class AppOpenAdPolicyTest {
         // cooldown 600s 경과
         p.recordBackgroundEntry(700_000L)
         assertTrue(
-            p.canShowOnForeground(730_000L, isReady = true, isAdFree = false, canRequestAds = true, config = config),
+            p.canShowOnForeground(730_000L, isReady = true, canRequestAds = true, config = config),
         )
     }
 
@@ -154,7 +136,7 @@ class AppOpenAdPolicyTest {
         p.recordImpression(30_000L) // 이 안에서 backgroundEnteredAt 소비
         // 같은 포그라운드 세션에서 다시 판정 (백그라운드 재진입 없이) → 콜드스타트와 동일하게 차단
         assertFalse(
-            p.canShowOnForeground(40_000L, isReady = true, isAdFree = false, canRequestAds = true, config = config.copy(cooldownMillis = 0L)),
+            p.canShowOnForeground(40_000L, isReady = true, canRequestAds = true, config = config.copy(cooldownMillis = 0L)),
         )
     }
 }

@@ -383,14 +383,4 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
-    <string name="settings_premium_header">Premium</string>
-    <string name="settings_remove_ads_title">Elimina els anuncis</string>
-    <string name="settings_remove_ads_description">Compra única. Elimina tots els anuncis per sempre.</string>
-    <string name="settings_remove_ads_purchased">Anuncis eliminats</string>
-    <string name="settings_remove_ads_purchase_failed">La compra ha fallat. Torna-ho a provar.</string>
-    <string name="settings_restore_purchases">Restaura les compres</string>
-    <string name="settings_restore_success">S\'han restaurat les compres.</string>
-    <string name="settings_restore_failure">No hi ha compres per restaurar.</string>
-    <string name="settings_support_contact">Contacte: %1$s</string>
-    <string name="common_confirm">Confirmar</string>
 </resources>
