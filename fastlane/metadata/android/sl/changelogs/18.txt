@@ -1,1 +1,1 @@
-Izboljšave obvestil in nova možnost za odstranitev oglasov.
+Izboljšane nastavitve obvestil in večja stabilnost aplikacije.

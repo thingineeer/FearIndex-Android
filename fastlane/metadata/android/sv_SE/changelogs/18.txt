@@ -1,1 +1,1 @@
-Förbättringar av aviseringar och ett nytt alternativ för att ta bort annonser.
+Förbättrade aviseringsinställningar och stabilare app.

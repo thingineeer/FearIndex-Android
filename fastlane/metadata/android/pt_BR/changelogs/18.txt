@@ -1,1 +1,1 @@
-Melhorias nas notificações e uma nova opção para remover os anúncios.
+Configurações de notificação aprimoradas e maior estabilidade do app.

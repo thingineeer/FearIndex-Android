@@ -1,1 +1,1 @@
-Millores en les notificacions i una nova opció per eliminar els anuncis.
+S'han millorat la configuració de notificacions i l'estabilitat de l'aplicació.

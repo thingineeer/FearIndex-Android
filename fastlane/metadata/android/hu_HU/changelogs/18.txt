@@ -1,1 +1,1 @@
-Értesítési fejlesztések és új lehetőség a hirdetések eltávolítására.
+Továbbfejlesztett értesítési beállítások és nagyobb alkalmazásstabilitás.

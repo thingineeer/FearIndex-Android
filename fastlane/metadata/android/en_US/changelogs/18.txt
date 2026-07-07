@@ -1,1 +1,1 @@
-Notification improvements and a new option to remove ads.
+Improved notification settings and enhanced app stability.
