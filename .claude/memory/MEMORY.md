@@ -22,7 +22,9 @@
 - **IAP 제외 (bugs-fixed 44번)**: 사용자 지시로 광고 제거 IAP를 v1.4.0에서 **완전 제거**("광고제거는 나중에"). PurchaseManager/billing/프리미엄카드/isAdFree 게이트 전부 제거, 광고 개선 3건 보존. → 아래 "v1.4.0 = IAP 신규" 항목은 **철회됨**(IAP 다시 넣을 때 bugs-fixed 44 커밋 revert 참고).
 - **설정 '개인정보 선택' 제거 (bugs-fixed 45번)**: UMP 폼 AdMob 미설정으로 항상 실패하는 죽은 버튼 → 제거.
 - **알림 설정 UI 재설계 (bugs-fixed 46번)**: 탭/토글 중복 혼란 → iOS parity 허브+상세 구조로. 허브(마스터+자산별[아이콘+이름+Switch+화살표]4행) + 상세(NotificationDetailScreen 신규, 하한 빨강/상한 초록 슬라이더). Material 3. 실기기 릴리즈 검증 완료.
-- **현재 dev**: `1.4.0`/`vc18`. dev 머지 완료(feature/v1.4.0-no-iap + feature/v1.4.0-settings-ux, --no-ff). **703 테스트 GREEN, 실기기 릴리즈 검증 완료. 배포·push 미실행(로컬 dev만).** 다음: 통신판매업 정리 후 배포, 또는 IAP 없는 현 상태로 (통신판매업 게이트만 해제되면) 배포.
+- **현재 dev**: `1.4.0`/`vc18`. dev 머지 완료(feature/v1.4.0-no-iap + feature/v1.4.0-settings-ux, --no-ff). **703 테스트 GREEN, 실기기 릴리즈 검증 완료.** changelog 18(45 locale, IAP 문구 제거) 준비 완료. **push 완료(dev/release/v1.3.0 태그).**
+- **배포 대기 상태 (7/7 저녁 재확인)**: fastlane production 재시도(2회)도 동일 Korean law 게이트 차단 → 사용자 지시로 배포 보류. **다음 세션에서 배포하려면: 사용자가 통신판매업 신고 → Play Console 결제 프로필 "비즈니스 연락처 세부정보"에 신고번호 입력 → `bundle exec fastlane production` 재실행 → 게시·전파 확인 → RC로 Android 선택 업데이트(minimum_app_version) 1.4.0 게시.**
+- **브랜치 정리 완료 (7/7)**: dev에 머지된 로컬 피처 브랜치 11개(feature/v1.4.0*, v1.4.1*) 삭제. 남은 브랜치 = dev/main/release (로컬·리모트 동일).
 
 ---
 
