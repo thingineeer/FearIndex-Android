@@ -14,6 +14,14 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-07-18, v1.4.1 — 온보딩 코치마크 투어 + 위젯, iOS v1.9.3 parity)
+
+- **브랜치 `feature/v1.4.1-onboarding-tour`** (dev 기준, 5커밋, **미푸시·미머지·미배포** — 유저 승인 게이트). 상세: @memory/bugs-fixed.md 35·36번, @docs/checkpoints/ONBOARDING-WIDGET-PLAN.md.
+- **완료**: 8단계 첫실행 코치마크 투어(딤+컷아웃+마칭앤츠 링, Compose) + 신규설치 게이팅(`stuck_counter_prefs/deviceId` FCM 전 프로브 → `onboarding_prefs`) + Glance 위젯 4종(2×2 글로벌/코스피/암호화폐 + 4×2 대시보드) + 위젯 사용법 가이드 + 설정 "앱 사용법"(재생)/"위젯 사용법" 행. GA `onboarding_done/skip(step)`.
+- **검증**: build+테스트 GREEN, E2E 15/15(스크린샷 8단계·2단계 KOSPI 자동·3시나리오·재생·GA·광고 미노출), 일본어 로케일 렌더 확인. 20키 45 locale iOS-verbatim + 감수 패널 must-fix 0. 위젯 43 locale 번역.
+- **버그 fix**: 알림 권한 다이얼로그가 투어를 가리던 문제 → `notificationPromptResolved` 게이팅(bugs-fixed 35).
+- **남은 것 (유저 승인 후)**: 버전 확정(1.4.1/vc?), dev 머지 + push, 위젯 실기기 배치 시각 최종확인, 배포는 승인 게이트. **v1.4.0 자체가 아직 미배포**(아래 참조)라 버전/머지 순서 유저와 조율 필요.
+
 ## 최신 상태 (2026-07-06, v1.4.0 dev 통합 — iOS v1.8.8 parity)
 
 ### ⚠️ 2026-07-07 업데이트 — v1.4.0에서 IAP 제외 + 설정/알림 UX 정리 (배포 차단 원인 규명)

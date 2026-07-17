@@ -523,6 +523,24 @@ type: project
 - **배포**: versionCode 17 / 1.3.0. 버전 선택 근거 = 신규 기능(minor) + 강제 게이트가 major.minor 비교라 1.2.1은 1.2.0과 식별 불가. changelog 17 "투자 지표를 추가하였습니다."(45 locale). **AAB+changelog만 업로드**(fastlane run upload_to_play_store, 스크린샷/메타 skip). 업로드 후 **빠른 검사(pre-review scan) 통과 시 자동 검토 전송** 확인(이번엔 수동 "검토 전송" 불필요 — v1.2.0의 136개 대기와 달리 변경이 트랙+changelog뿐). 당일 심사 통과, 사용자가 관리형 게시 "게시" 클릭 → **2026-07-03 게시 완료**. release 머지 + v1.3.0 태그.
 - **Git**: dev → feature/v1.3.0 → worktree feature/v1.3.0-rsi-short-indicators(5커밋: domain/파서/data·DI/presentation/버전bump). --no-ff 머지 그래프 유지.
 
+## 2026-07-18 세션 (v1.4.1 — 온보딩 코치마크 투어 + 위젯)
+
+### 35. 온보딩 투어가 알림 권한 다이얼로그에 가려 안 뜸 (첫 실행)
+
+- **증상**: 신규 설치/QA 강제 모두 투어 카드가 화면에 안 나타남. E2E 12 FAIL. 하지만 `onboarding_prefs` 는 `onboardingTourEligibleV1=true` + `hasSeenOnboardingTourV1=true` — **투어는 정상 시작(자격 판별·마킹 정상)됐으나 보이지 않음**.
+- **근본원인 (로그로 확인, 추측수정 금지)**: `dumpsys window mCurrentFocus` = `GrantPermissionsActivity`. MainActivity 가 첫 실행에 POST_NOTIFICATIONS 시스템 다이얼로그(`maybeRunInitialNotificationAuthorization`, v1.4.0 알림 온보딩)를 띄우는데, 이게 투어 오버레이 **위에** 떠서 가림. 투어는 그 밑에서 활성 상태.
+- **해결**: `MainActivity.notificationPromptResolved: MutableState<Boolean>` 추가 → `readyForTour = !showSplash && !forceUpdate && notificationPromptResolved`. 권한 프롬프트 콜백/불필요(이미 결정·스크린샷모드) 시 true. 즉 **다이얼로그가 걷힌 뒤에만 투어 시작**.
+- **교훈**: 첫 실행 오버레이(투어)는 첫 실행 시스템 프롬프트(알림 권한)와 충돌한다. "안 뜬다" 진단 시 **prefs 상태 + mCurrentFocus 로 '시작됐지만 가려짐'과 '아예 안 시작됨' 구분**. E2E 에선 `pm grant POST_NOTIFICATIONS` 로 다이얼로그 회피.
+
+### 36. 온보딩 투어 + 위젯 구현·검증 (iOS v1.9.3 parity)
+
+- **범위**: 8단계 코치마크 투어(딤+컷아웃+마칭앤츠 링+카드, Compose 재작성) + Glance 위젯 4종(2×2 3 + 4×2 대시보드) + 위젯 사용법 가이드 + 설정 "앱 사용법"(재생)/"위젯 사용법" 행. iOS 라벨 20키 45 locale verbatim.
+- **게이팅**: `stuck_counter_prefs/deviceId`(v1.0.0부터 불변) raw 프로브(FCM 전) → 신규설치만 자동 노출. iOS `OnboardingEligibility`(fcm_device_id) 미러. `OnboardingStorage`(data) + `OnboardingEligibility`(domain, TDD).
+- **배선**: `OnboardingTourViewModel`(activity-scoped, NavHost 생성) + `LocalOnboardingTour` CompositionLocal. 앵커=`Modifier.onGloballyPositioned{boundsInWindow}`. NavHost LaunchedEffect 로 단계별 탭/세그먼트/스크롤 구동, 종료 시 홈 market 최상단. 투어 중 인터스티셜(HomeScreen effect)/앱오픈(MainActivity 전달)/배너(AdBanner LocalOnboardingTour 게이트) 억제. 스켈레톤은 HomeVM init eager load 로 미노출.
+- **위젯**: `WidgetEntryPoint`(Get(Fear/Kospi/Crypto)FearIndexUseCase), Glance 1.1.1, `actionStartActivity<MainActivity>`, `FearWidgetUpdateWorker`(3h)+포그라운드 updateAll. providers 4개 등록·픽커 노출 확인. **실기기 배치 시각 최종확인은 남음**(런처 자동화 flaky).
+- **검증**: E2E(`scripts/e2e/onboarding_tour_check.py`) 15/15 — 8단계 워크스루 스크린샷, 2단계 KOSPI 자동 세그먼트, 3시나리오(신규 노출/기존 미노출/강제종료 미노출), 설정 재생, GA `onboarding_done{8}`/`onboarding_skip{5}`, 광고/스켈레톤 미노출. 일본어 로케일 렌더 확인. 20키 감수 패널 must-fix 0.
+- **브랜치**: `feature/v1.4.1-onboarding-tour` (dev 기준, 5커밋). **미푸시·미머지·미배포** — 유저 승인 게이트. app ID `4973920645070208584`... (버전 확정/dev 머지는 다음).
+
 ## 주의사항
 
 버그는 **해결 후 반드시 이곳에 추가**. 같은 문제 반복 방지가 목적.
