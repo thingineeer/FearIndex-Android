@@ -83,6 +83,13 @@ class MainActivity : ComponentActivity() {
             FearIndexTheme {
                 var showSplash by remember { mutableStateOf(true) }
                 var forceUpdate by remember { mutableStateOf(false) }
+                var tourActive by remember { mutableStateOf(false) }
+                // QA: 첫 실행 여부 무관 투어 강제 (디버그 빌드 전용, 스크린샷/검증)
+                //   adb shell am start -n th1ngjin.fearindex.debug/th1ngjin.fearindex.MainActivity \
+                //     --ez qa_onboarding true --ei qa_onboarding_step 2
+                val qaForceTour = BuildConfig.DEBUG &&
+                    (intent?.getBooleanExtra("qa_onboarding", false) == true)
+                val qaStartStep = intent?.getIntExtra("qa_onboarding_step", 1) ?: 1
                 LaunchedEffect(Unit) {
                     // 강제 업데이트 판정을 위해 Remote Config 를 먼저 fetch.
                     runCatching { remoteConfig.fetchAndActivate() }
@@ -96,11 +103,17 @@ class MainActivity : ComponentActivity() {
                 }
                 // 스플래시/강제 업데이트 표시 중엔 앱오픈 광고가 그 위에 겹치지 않도록 차단.
                 // (앱오픈은 콜드스타트에 원래 안 뜨지만, 그 사이 백그라운드 왕복 등 엣지 케이스 방어.)
-                LaunchedEffect(showSplash, forceUpdate) {
-                    FearIndexApp.appOpenAdManager.isForegroundBlocked = showSplash || forceUpdate
+                LaunchedEffect(showSplash, forceUpdate, tourActive) {
+                    FearIndexApp.appOpenAdManager.isForegroundBlocked =
+                        showSplash || forceUpdate || tourActive
                 }
                 Box(modifier = Modifier.fillMaxSize()) {
-                    FearIndexNavHost()
+                    FearIndexNavHost(
+                        readyForTour = !showSplash && !forceUpdate,
+                        qaForceTour = qaForceTour,
+                        qaStartStep = qaStartStep,
+                        onTourActiveChange = { tourActive = it },
+                    )
                     if (forceUpdate) {
                         ForceUpdateView(onUpdate = ::startForceUpdateFlow)
                     }

@@ -20,6 +20,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -69,6 +72,9 @@ import th1ngjin.fearindex.domain.entity.StuckCounterResult
 import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
 import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
+import th1ngjin.fearindex.presentation.feature.onboarding.LocalOnboardingTour
+import th1ngjin.fearindex.presentation.feature.onboarding.OnboardingAnchor
+import th1ngjin.fearindex.presentation.feature.onboarding.tourAnchor
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.AnalyticsInterstitialAdReporter
@@ -106,6 +112,7 @@ private const val ANALYTICS_STUCK = "물렸어요"
 private const val ANALYTICS_NOT_STUCK = "안물렸어요"
 private const val ANALYTICS_CANCEL = "취소"
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
@@ -116,6 +123,11 @@ fun HomeScreen(
     val insightState by insightViewModel.uiState.collectAsState()
     val voteViewModel: VoteViewModel = hiltViewModel()
     val similarEventsViewModel: SimilarEventsViewModel = hiltViewModel()
+
+    // 온보딩 투어 핸들 + 하이라이트 스크롤 대상
+    val tour = LocalOnboardingTour.current
+    val scrollState = rememberScrollState()
+    val insightBringIntoView = remember { BringIntoViewRequester() }
 
     // InsightViewModel이 HomeViewModel을 관찰
     LaunchedEffect(Unit) {
@@ -198,6 +210,7 @@ fun HomeScreen(
     LaunchedEffect(selectedType, interstitialConfig) {
         val previousType = previousInterstitialType
         previousInterstitialType = selectedType
+        if (tour?.isActive == true) return@LaunchedEffect // 투어 중 지수 전환 인터스티셜 억제
         if (interstitialCoordinator.shouldScheduleKospiEntry(previousType, selectedType, interstitialConfig)) {
             delay(interstitialConfig.kospiEntryDelayMillis)
             val currentActivity = activity ?: return@LaunchedEffect
@@ -211,6 +224,14 @@ fun HomeScreen(
                     config = interstitialConfig,
                 )
             }
+        }
+    }
+
+    // 온보딩 투어 스크롤: 1~3·8단계는 최상단, 4단계는 인사이트 카드로.
+    LaunchedEffect(tour?.activeStepNumber) {
+        when (tour?.activeStepNumber) {
+            1, 2, 3, 8 -> scrollState.animateScrollTo(0)
+            4 -> runCatching { insightBringIntoView.bringIntoView() }
         }
     }
 
@@ -249,7 +270,7 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(scrollState)
             .padding(horizontal = 16.dp, vertical = 12.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -332,6 +353,7 @@ fun HomeScreen(
                     voteViewModel.toggleStuckStatus(selectedType, newStatus.toDomain())
                 },
                 onStuckInfoClick = { showStuckDetail = true },
+                insightBringIntoView = insightBringIntoView,
             )
             is FearIndexState.Error -> ErrorContent(
                 message = currentState.message,
@@ -518,6 +540,7 @@ private fun ErrorContent(message: String, onRetry: () -> Unit) {
 // (iOS 홈 화면 순서와 동일)
 // ---------------------------------------------------------------------------
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun LoadedContent(
     fearIndex: FearIndex,
@@ -533,11 +556,15 @@ private fun LoadedContent(
     myStuckStatus: UiStuckStatus = UiStuckStatus.NO_RESPONSE,
     onStuckToggle: (UiStuckStatus) -> Unit = {},
     onStuckInfoClick: () -> Unit = {},
+    insightBringIntoView: BringIntoViewRequester? = null,
 ) {
     val score = fearIndex.roundedScore
+    val tour = LocalOnboardingTour.current
 
-    // 1. Fear Gauge
-    FearGaugeView(score = score)
+    // 1. Fear Gauge (온보딩 1~3단계 하이라이트 앵커)
+    Box(modifier = Modifier.tourAnchor(tour, OnboardingAnchor.GAUGE)) {
+        FearGaugeView(score = score)
+    }
 
     Spacer(modifier = Modifier.height(20.dp))
 
@@ -578,14 +605,26 @@ private fun LoadedContent(
         )
     }
 
-    // 3.5. SimilarEvents 카드 — "지금과 비슷했던 시기" (v1.7.9)
+    // 3.5. SimilarEvents 카드 — "지금과 비슷했던 시기" (v1.7.9). 온보딩 4단계(과거 평균 수익률) 앵커.
     if (similarEventsResult.matches.isNotEmpty() || similarEventsResult.aggregateStats != null) {
         Spacer(modifier = Modifier.height(16.dp))
-        SimilarEventsCard(
-            result = similarEventsResult,
-            indexType = indexType,
-            displayedScore = score,
-        )
+        Box(
+            modifier = Modifier
+                .tourAnchor(tour, OnboardingAnchor.INSIGHT)
+                .then(
+                    if (insightBringIntoView != null) {
+                        Modifier.bringIntoViewRequester(insightBringIntoView)
+                    } else {
+                        Modifier
+                    },
+                ),
+        ) {
+            SimilarEventsCard(
+                result = similarEventsResult,
+                indexType = indexType,
+                displayedScore = score,
+            )
+        }
     }
 
     // 4. 인사이트 티저 카드 — 현재 점수 기준 통계(전 구간). 첫 번째 인사이트 1개.

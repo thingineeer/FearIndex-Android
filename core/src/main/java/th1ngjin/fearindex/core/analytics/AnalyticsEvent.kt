@@ -152,6 +152,13 @@ sealed class AnalyticsEvent(val name: String, val parameters: Map<String, Any>? 
     data class 인사이트상세조회(val 카드타입: String, val 점수: Int) :
         AnalyticsEvent("insight_detail_viewed", mapOf("card_type" to 카드타입, "score" to 점수))
 
+    // MARK: - 온보딩 투어 (iOS는 영문 GA 이름/키 사용 — 그대로 따름, v1.9.3 parity)
+    data class 온보딩완료(val 단계: Int) :
+        AnalyticsEvent("onboarding_done", mapOf("step" to 단계))
+
+    data class 온보딩건너뛰기(val 단계: Int) :
+        AnalyticsEvent("onboarding_skip", mapOf("step" to 단계))
+
     // MARK: - 인앱결제 (광고 제거)
     data object 광고제거구매시작 : AnalyticsEvent("광고제거구매시작")
     data object 광고제거구매완료 : AnalyticsEvent("광고제거구매완료")

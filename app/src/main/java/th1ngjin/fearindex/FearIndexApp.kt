@@ -32,6 +32,7 @@ import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.entity.NotificationPermissionSyncPolicy
 import th1ngjin.fearindex.domain.entity.NotificationSettings
 import th1ngjin.fearindex.domain.service.DeviceIdProvider
+import th1ngjin.fearindex.domain.service.OnboardingStore
 import th1ngjin.fearindex.notification.NotificationChannels
 import timber.log.Timber
 import java.util.Locale
@@ -46,6 +47,7 @@ class FearIndexApp : Application() {
     @Inject lateinit var appCheck: AppCheckInitializer
     @Inject lateinit var notificationRepository: Lazy<NotificationRepository>
     @Inject lateinit var deviceIdProvider: Lazy<DeviceIdProvider>
+    @Inject lateinit var onboardingStore: OnboardingStore
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
@@ -63,6 +65,8 @@ class FearIndexApp : Application() {
     override fun onCreate() {
         super.onCreate()
         setupTimber()
+        // 신규 설치 첫 실행 자격 판별 — FCM(deviceId 생성)보다 먼저 확정해야 한다.
+        onboardingStore.captureEligibilityIfNeeded()
         val screenshotMode = ScreenshotMode.isEnabled()
         initFirebase(screenshotMode)
         setupNotificationChannels()
