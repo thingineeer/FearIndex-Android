@@ -438,4 +438,8 @@
     <string name="widget_guide_step3">원하는 지수(글로벌·코스피·암호화폐) 또는 통합 위젯을 고르세요.</string>
     <string name="widget_guide_step4">홈 화면으로 끌어다 원하는 위치에 놓으세요.</string>
     <string name="widget_guide_step5">위젯을 탭하면 언제든 앱이 열려요.</string>
+    <string name="widget_market_description">글로벌(S&amp;P500) 공포·탐욕 지수</string>
+    <string name="widget_kospi_description">코스피 공포·탐욕 지수</string>
+    <string name="widget_crypto_description">암호화폐(BTC) 공포·탐욕 지수</string>
+    <string name="widget_dashboard_description">세 지수를 한 번에</string>
 </resources>

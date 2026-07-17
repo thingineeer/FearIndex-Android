@@ -443,4 +443,8 @@
     <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
     <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
     <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) Fear &amp; Greed</string>
+    <string name="widget_kospi_description">KOSPI Fear &amp; Greed</string>
+    <string name="widget_crypto_description">Crypto (BTC) Fear &amp; Greed</string>
+    <string name="widget_dashboard_description">All three fear &amp; greed indices</string>
 </resources>

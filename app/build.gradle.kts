@@ -153,6 +153,10 @@ dependencies {
     implementation(libs.app.update)
     implementation(libs.app.update.ktx)
 
+    // Glance (홈 화면 App Widget)
+    implementation(libs.glance.appwidget)
+    implementation(libs.glance.material3)
+
     // Logging
     implementation(libs.timber)
 
