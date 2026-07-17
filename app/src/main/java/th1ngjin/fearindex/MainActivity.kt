@@ -59,9 +59,13 @@ class MainActivity : ComponentActivity() {
         InAppUpdateManager(AppUpdateManagerFactory.create(this))
     }
 
+    // 알림 권한 프롬프트가 해소돼야 온보딩 투어를 띄운다(시스템 다이얼로그가 투어를 가리는 문제 방지).
+    private val notificationPromptResolved = mutableStateOf(false)
+
     private val notificationPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
             applyInitialNotificationAuthorization(granted, isFirstDecision = true)
+            notificationPromptResolved.value = true
         }
 
     private val updateLauncher =
@@ -109,7 +113,8 @@ class MainActivity : ComponentActivity() {
                 }
                 Box(modifier = Modifier.fillMaxSize()) {
                     FearIndexNavHost(
-                        readyForTour = !showSplash && !forceUpdate,
+                        readyForTour = !showSplash && !forceUpdate &&
+                            notificationPromptResolved.value,
                         qaForceTour = qaForceTour,
                         qaStartStep = qaStartStep,
                         onTourActiveChange = { tourActive = it },
@@ -142,7 +147,10 @@ class MainActivity : ComponentActivity() {
      * 이미 결정된 기기(저장값 존재)는 정책이 NoChange를 반환해 저장값 불가침.
      */
     private fun maybeRunInitialNotificationAuthorization() {
-        if (ScreenshotMode.isEnabled()) return
+        if (ScreenshotMode.isEnabled()) {
+            notificationPromptResolved.value = true
+            return
+        }
         lifecycleScope.launch {
             val granted = NotificationManagerCompat.from(this@MainActivity).areNotificationsEnabled()
             val repository = notificationRepository.get()
@@ -155,6 +163,7 @@ class MainActivity : ComponentActivity() {
                 notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             } else {
                 applyInitialNotificationAuthorization(granted, isFirstDecision = false)
+                notificationPromptResolved.value = true
             }
         }
     }
