@@ -416,9 +416,13 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="onboarding_step8_detail">El desenvolupador només compra a 15 o menys. Per sobre pot exigir molta paciència. És una regla personal, no un consell d\'inversió.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Mantén premuda una zona buida de la pantalla d\'inici i toca Widgets.</string>
+    <string name="widget_guide_step2">Cerca "Índex de Por &amp; Cobdícia" a la llista de widgets.</string>
+    <string name="widget_guide_step3">Tria l\'índex que vulguis (Global, KOSPI o Cripto) o el widget tot en un.</string>
+    <string name="widget_guide_step4">Arrossega\'l a la pantalla d\'inici i col·loca\'l on vulguis.</string>
+    <string name="widget_guide_step5">Toca el widget quan vulguis per obrir l\'app.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Por &amp; Cobdícia</string>
+    <string name="widget_kospi_description">KOSPI — Por &amp; Cobdícia</string>
+    <string name="widget_crypto_description">Cripto (BTC) — Por &amp; Cobdícia</string>
+    <string name="widget_dashboard_description">Els tres índexs de por &amp; cobdícia</string>
 </resources>

@@ -415,9 +415,13 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="onboarding_step8_detail">Pembangun hanya membeli pada 15 atau ke bawah. Lebih daripada itu mungkin memerlukan kesabaran panjang. Peraturan peribadi, bukan nasihat pelaburan.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Sentuh dan tahan kawasan kosong pada skrin utama, kemudian ketik Widget.</string>
+    <string name="widget_guide_step2">Cari "Indeks Ketakutan &amp; Ketamakan" dalam senarai widget.</string>
+    <string name="widget_guide_step3">Pilih indeks yang anda mahu — Global, KOSPI atau Kripto — atau widget semua-dalam-satu.</string>
+    <string name="widget_guide_step4">Seret ke skrin utama dan letakkan di tempat yang anda suka.</string>
+    <string name="widget_guide_step5">Ketik widget bila-bila masa untuk membuka aplikasi.</string>
+    <string name="widget_market_description">Ketakutan &amp; Ketamakan Global (S&amp;P 500)</string>
+    <string name="widget_kospi_description">Ketakutan &amp; Ketamakan KOSPI</string>
+    <string name="widget_crypto_description">Ketakutan &amp; Ketamakan Kripto (BTC)</string>
+    <string name="widget_dashboard_description">Ketiga-tiga indeks ketakutan &amp; ketamakan</string>
 </resources>

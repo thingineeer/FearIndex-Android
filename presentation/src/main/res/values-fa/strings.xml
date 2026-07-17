@@ -415,9 +415,13 @@
     <string name="onboarding_step8_detail">توسعه‌دهنده فقط در 15 یا پایین‌تر می‌خرد. بالاتر شاید صبری طولانی بخواهد. قاعده‌ای شخصی است، نه توصیه سرمایه‌گذاری.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">روی یک ناحیه خالی در صفحه اصلی خود لمس کرده و نگه دارید، سپس روی ویجت‌ها بزنید.</string>
+    <string name="widget_guide_step2">«شاخص ترس و طمع» را در فهرست ویجت‌ها پیدا کنید.</string>
+    <string name="widget_guide_step3">شاخص مورد نظر خود را انتخاب کنید — جهانی، KOSPI یا ارز دیجیتال — یا ویجت همه‌کاره.</string>
+    <string name="widget_guide_step4">آن را به صفحه اصلی بکشید و هرجا که دوست دارید قرار دهید.</string>
+    <string name="widget_guide_step5">هر زمان روی ویجت بزنید تا برنامه باز شود.</string>
+    <string name="widget_market_description">شاخص ترس و طمع جهانی (S&amp;P 500)</string>
+    <string name="widget_kospi_description">شاخص ترس و طمع KOSPI</string>
+    <string name="widget_crypto_description">شاخص ترس و طمع ارز دیجیتال (BTC)</string>
+    <string name="widget_dashboard_description">هر سه شاخص ترس و طمع</string>
 </resources>

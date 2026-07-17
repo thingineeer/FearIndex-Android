@@ -416,9 +416,15 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="onboarding_step8_detail">Kūrėjas perka tik esant 15 ar mažiau. Aukščiau gali prireikti ilgos kantrybės. Asmeninė taisyklė, ne investavimo patarimas.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Palieskite ir palaikykite tuščią vietą pradžios ekrane, tada bakstelėkite „Valdikliai“.</string>
+    <string name="widget_guide_step2">Valdiklių sąraše raskite „Baimės ir godumo indeksą“.</string>
+    <string name="widget_guide_step3">Pasirinkite norimą indeksą — pasaulinį, KOSPI ar kripto — arba universalų valdiklį.</string>
+    <string name="widget_guide_step4">Nutempkite jį į pradžios ekraną ir padėkite kur norite.</string>
+    <string name="widget_guide_step5">Bakstelėkite valdiklį bet kada, kad atidarytumėte programėlę.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Pasaulinis (S&amp;P 500) baimės ir godumo indeksas</string>
+    <string name="widget_kospi_description">KOSPI baimės ir godumo indeksas</string>
+    <string name="widget_crypto_description">Kripto (BTC) baimės ir godumo indeksas</string>
+    <string name="widget_dashboard_description">Visi trys baimės ir godumo indeksai</string>
 </resources>

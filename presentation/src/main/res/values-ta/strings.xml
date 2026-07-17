@@ -419,9 +419,13 @@
     <string name="onboarding_step8_detail">டெவலப்பர் 15 அல்லது அதற்குக் கீழ் மட்டுமே வாங்குவார். அதற்கு மேல் நீண்ட பொறுமை தேவைப்படலாம். இது தனிப்பட்ட விதி, முதலீட்டு ஆலோசனை அல்ல.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">உங்கள் முகப்புத் திரையில் காலி இடத்தை நீண்ட நேரம் அழுத்திப் பிடித்து, பிறகு விட்ஜெட்கள் என்பதைத் தட்டவும்.</string>
+    <string name="widget_guide_step2">விட்ஜெட் பட்டியலில் «அச்சம் மற்றும் பேராசை குறியீடு» என்பதைக் கண்டறியவும்.</string>
+    <string name="widget_guide_step3">நீங்கள் விரும்பும் குறியீட்டைத் தேர்ந்தெடுக்கவும் — குளோபல், KOSPI அல்லது கிரிப்டோ — அல்லது அனைத்தும் ஒன்றாக உள்ள விட்ஜெட்.</string>
+    <string name="widget_guide_step4">அதை உங்கள் முகப்புத் திரைக்கு இழுத்து, விரும்பிய இடத்தில் வைக்கவும்.</string>
+    <string name="widget_guide_step5">செயலியைத் திறக்க எந்த நேரத்திலும் விட்ஜெட்டைத் தட்டவும்.</string>
+    <string name="widget_market_description">குளோபல் (S&amp;P 500) அச்சம் மற்றும் பேராசை</string>
+    <string name="widget_kospi_description">KOSPI அச்சம் மற்றும் பேராசை</string>
+    <string name="widget_crypto_description">கிரிப்டோ (BTC) அச்சம் மற்றும் பேராசை</string>
+    <string name="widget_dashboard_description">மூன்று அச்சம் மற்றும் பேராசை குறியீடுகளும் ஒன்றாக</string>
 </resources>

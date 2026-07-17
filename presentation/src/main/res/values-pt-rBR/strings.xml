@@ -416,9 +416,13 @@ Considere junto com fundamentos, fluxo e macro.</string>
     <string name="onboarding_step8_detail">O desenvolvedor só compra a 15 ou menos. Acima disso pode exigir muita paciência. Regra pessoal, não é recomendação de investimento.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Toque e segure uma área vazia da tela inicial e toque em Widgets.</string>
+    <string name="widget_guide_step2">Encontre "Índice de Medo &amp; Ganância" na lista de widgets.</string>
+    <string name="widget_guide_step3">Escolha o índice que quiser — Global, KOSPI ou Cripto — ou o widget tudo em um.</string>
+    <string name="widget_guide_step4">Arraste para a tela inicial e coloque onde preferir.</string>
+    <string name="widget_guide_step5">Toque no widget quando quiser para abrir o app.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Medo &amp; Ganância</string>
+    <string name="widget_kospi_description">KOSPI — Medo &amp; Ganância</string>
+    <string name="widget_crypto_description">Cripto (BTC) — Medo &amp; Ganância</string>
+    <string name="widget_dashboard_description">Os três índices de medo &amp; ganância</string>
 </resources>

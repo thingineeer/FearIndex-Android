@@ -419,9 +419,13 @@
     <string name="onboarding_step8_detail">ผู้พัฒนาซื้อเฉพาะที่ 15 หรือต่ำกว่า สูงกว่านั้นอาจต้องอดทนนาน เป็นกฎส่วนตัว ไม่ใช่คำแนะนำการลงทุน</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">แตะค้างที่พื้นที่ว่างบนหน้าจอหลัก แล้วแตะวิดเจ็ต</string>
+    <string name="widget_guide_step2">ค้นหา "ดัชนีความกลัวและความโลภ" ในรายการวิดเจ็ต</string>
+    <string name="widget_guide_step3">เลือกดัชนีที่ต้องการ — ทั่วโลก, KOSPI หรือคริปโต — หรือวิดเจ็ตรวมทุกอย่างในหนึ่งเดียว</string>
+    <string name="widget_guide_step4">ลากไปที่หน้าจอหลักและวางในตำแหน่งที่ต้องการ</string>
+    <string name="widget_guide_step5">แตะวิดเจ็ตเมื่อใดก็ได้เพื่อเปิดแอป</string>
+    <string name="widget_market_description">ความกลัวและความโลภทั่วโลก (S&amp;P 500)</string>
+    <string name="widget_kospi_description">ความกลัวและความโลภ KOSPI</string>
+    <string name="widget_crypto_description">ความกลัวและความโลภคริปโต (BTC)</string>
+    <string name="widget_dashboard_description">ทั้งสามดัชนีความกลัวและความโลภ</string>
 </resources>

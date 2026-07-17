@@ -416,9 +416,15 @@
     <string name="onboarding_step8_detail">Програмер купује само на 15 или ниже. Изнад тога може бити потребно дуго стрпљење. Лично правило, не инвестициони савет.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Додирните и задржите празан простор на почетном екрану, па додирните „Виџети“.</string>
+    <string name="widget_guide_step2">Пронађите „Индекс страха и похлепе“ на листи виџета.</string>
+    <string name="widget_guide_step3">Изаберите жељени индекс — глобални, KOSPI или крипто — или свеобухватни виџет.</string>
+    <string name="widget_guide_step4">Превуците га на почетни екран и поставите где желите.</string>
+    <string name="widget_guide_step5">Додирните виџет у било ком тренутку да отворите апликацију.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Глобални (S&amp;P 500) индекс страха и похлепе</string>
+    <string name="widget_kospi_description">KOSPI индекс страха и похлепе</string>
+    <string name="widget_crypto_description">Крипто (BTC) индекс страха и похлепе</string>
+    <string name="widget_dashboard_description">Сва три индекса страха и похлепе</string>
 </resources>

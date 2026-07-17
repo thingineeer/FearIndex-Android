@@ -416,9 +416,13 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="onboarding_step8_detail">A fejlesztő csak 15-nél vagy az alatt vásárol. Felette hosszú türelem kellhet. Személyes szabály, nem befektetési tanács.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Érintsd meg és tartsd lenyomva a kezdőképernyő egy üres részét, majd koppints a Widgetek elemre.</string>
+    <string name="widget_guide_step2">Keresd meg a "Félelem és mohóság index" elemet a widgetlistában.</string>
+    <string name="widget_guide_step3">Válaszd ki a kívánt indexet — Globális, KOSPI vagy Kripto —, vagy a mindent egyben widgetet.</string>
+    <string name="widget_guide_step4">Húzd a kezdőképernyőre, és tedd oda, ahová szeretnéd.</string>
+    <string name="widget_guide_step5">Koppints a widgetre bármikor az alkalmazás megnyitásához.</string>
+    <string name="widget_market_description">Globális (S&amp;P 500) félelem és mohóság</string>
+    <string name="widget_kospi_description">KOSPI félelem és mohóság</string>
+    <string name="widget_crypto_description">Kripto (BTC) félelem és mohóság</string>
+    <string name="widget_dashboard_description">Mind a három félelem és mohóság index</string>
 </resources>

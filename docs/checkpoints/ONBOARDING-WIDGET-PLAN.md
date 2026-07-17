@@ -38,15 +38,27 @@ SSOT: `@/Users/imyeongjin/Desktop/FearIndex-iOS/docs/handoff/onboarding-parity-a
 
 ## 구현 단계
 1. [x] Discovery(§1) + 매핑 승인
-2. [ ] Analytics 이벤트 2개 (AnalyticsEvent.kt)
-3. [ ] 20 온보딩 라벨 + settings.appUsageGuide 45 locale (iOS xcstrings 그대로)
-4. [ ] Eligibility 저장/캡처 (TDD) + FearIndexApp 배선
-5. [ ] OnboardingTour 오버레이 Compose (dim/cutout/ring/card/anchor, 8-step config, TDD 로직)
-6. [ ] Tour controller + 배선(nav hoist, segment, scroll, ad suppress, preload)
-7. [ ] Widget: Glance 4 provider(2×2×3 + 4×2) + EntryPoint fetch + WorkManager + manifest
-8. [ ] Widget guide screen(HorizontalPager 5p) + settings 위젯사용법/앱사용법 행
-9. [ ] Widget/guide 문자열 45 locale + 감수 패널
-10. [ ] 검증: build, test, 에뮬 스크린샷 3+단계(2단계 KOSPI 자동), 3시나리오, 재생, GA, 광고 미노출
+2. [x] Analytics 이벤트 2개 (AnalyticsEvent.kt) — onboarding_done/skip(step)
+3. [x] 20 온보딩 라벨 + settings.appUsageGuide 45 locale (iOS xcstrings 그대로)
+4. [x] Eligibility 저장/캡처 (TDD) + FearIndexApp 배선 (deviceId 프로브)
+5. [x] OnboardingTour 오버레이 Compose (dim/cutout/ring/card/anchor, 8-step, TDD)
+6. [x] Tour controller + 배선(nav, segment, scroll, ad suppress; preload는 HomeVM eager load로 충족)
+7. [x] Widget: Glance 4 provider(2×2×3 + 4×2) + EntryPoint fetch + WorkManager + manifest
+8. [x] Widget guide screen(HorizontalPager 5p) + settings 위젯사용법/앱사용법 행
+9. [~] Widget/guide 문자열 43 locale 번역 + 20키 감수 패널 (workflow 진행 중)
+10. [x] 검증: build+585테스트 GREEN, E2E 15/15(3+단계 스크린샷·2단계 KOSPI 자동·3시나리오·재생·GA done/skip·광고 미노출)
+
+## 검증 결과 (E2E, 에뮬 API34)
+- 8단계 워크스루 스크린샷: step1~8 + after_finish (scripts/e2e/out/onboarding/)
+- 2단계 KOSPI 세그먼트 자동 전환 확인, 8단계 중앙 심볼 카드+면책, 종료 후 홈 market 최상단
+- 신규설치 노출 / 기존유저(deviceId) 미노출 / 강제종료 후 미노출 3/3
+- 설정 "앱 사용법" → 1단계 재생, "위젯 사용법" → 가이드 진입
+- GA: onboarding_done{step=8}, onboarding_skip{step=5} logcat 확인
+- 투어 중 인터스티셜/앱오픈/배너/스켈레톤 미노출 확인
+- 근본원인 fix: 알림 권한 다이얼로그가 투어 가리던 문제 → notificationPromptResolved 게이팅
+
+## 남은 작업(배포 전, 유저 승인 게이트)
+- 로케일 패널 결과 반영 확인 / dev 머지 + 버전 확정 / 위젯 실기기 배치 시각 최종확인
 
 ## 완료조건 (handoff §7)
 빌드 에러0 / 스크린샷 3+단계+랜딩 / 3시나리오(신규 노출·기존 미노출·강제종료후 미노출) / 재생 / GA / 20키 45locale iOS동일·감수0 / 광고·스켈레톤 미노출 / 배포는 승인 게이트.

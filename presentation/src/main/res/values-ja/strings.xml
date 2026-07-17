@@ -415,9 +415,13 @@
     <string name="onboarding_step8_detail">開発者は15以下でのみ買います。それ以上は長い忍耐が必要かもしれません。個人的な基準であり、投資助言ではありません。</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">ホーム画面の空いている場所を長押しして、「ウィジェット」をタップします。</string>
+    <string name="widget_guide_step2">ウィジェット一覧から「恐怖と貪欲指数」を探します。</string>
+    <string name="widget_guide_step3">お好みの指数(グローバル・KOSPI・暗号資産)または統合ウィジェットを選びます。</string>
+    <string name="widget_guide_step4">ホーム画面にドラッグして、好きな位置に置きます。</string>
+    <string name="widget_guide_step5">ウィジェットをタップすれば、いつでもアプリが開きます。</string>
+    <string name="widget_market_description">グローバル(S&amp;P 500) 恐怖と貪欲</string>
+    <string name="widget_kospi_description">KOSPI 恐怖と貪欲</string>
+    <string name="widget_crypto_description">暗号資産(BTC) 恐怖と貪欲</string>
+    <string name="widget_dashboard_description">3つの恐怖・貪欲指数をまとめて</string>
 </resources>

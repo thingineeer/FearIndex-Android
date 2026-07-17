@@ -415,9 +415,13 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="onboarding_step8_detail">Geliştirici yalnızca 15 ve altında alır. Üzeri uzun sabır gerektirebilir. Kişisel bir kuraldır, yatırım tavsiyesi değildir.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Ana ekranınızda boş bir alana dokunup basılı tutun, ardından Widget\'lara dokunun.</string>
+    <string name="widget_guide_step2">Widget listesinde «Korku ve Açgözlülük Endeksi»ni bulun.</string>
+    <string name="widget_guide_step3">İstediğiniz endeksi seçin — Global, KOSPI veya Kripto — ya da hepsi bir arada widget\'ı.</string>
+    <string name="widget_guide_step4">Ana ekranınıza sürükleyin ve istediğiniz yere yerleştirin.</string>
+    <string name="widget_guide_step5">Uygulamayı açmak için istediğiniz zaman widget\'a dokunun.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) Korku ve Açgözlülük</string>
+    <string name="widget_kospi_description">KOSPI Korku ve Açgözlülük</string>
+    <string name="widget_crypto_description">Kripto (BTC) Korku ve Açgözlülük</string>
+    <string name="widget_dashboard_description">Üç korku ve açgözlülük endeksinin tümü</string>
 </resources>

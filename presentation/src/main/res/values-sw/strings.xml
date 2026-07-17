@@ -416,9 +416,13 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="onboarding_step8_detail">Msanidi hununua tu kwa 15 au chini. Zaidi ya hapo huenda ikahitaji subira ndefu. Ni kanuni binafsi, si ushauri wa uwekezaji.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Gusa na ushikilie eneo tupu kwenye skrini yako ya mwanzo, kisha ugonge Wijeti.</string>
+    <string name="widget_guide_step2">Tafuta «Kipimo cha Hofu na Tamaa» kwenye orodha ya wijeti.</string>
+    <string name="widget_guide_step3">Chagua kipimo unachotaka — Global, KOSPI au Crypto — au wijeti ya yote kwa pamoja.</string>
+    <string name="widget_guide_step4">Iburute hadi kwenye skrini yako ya mwanzo na uiweke mahali unapopenda.</string>
+    <string name="widget_guide_step5">Gonga wijeti wakati wowote ili kufungua programu.</string>
+    <string name="widget_market_description">Kipimo cha Hofu na Tamaa cha Global (S&amp;P 500)</string>
+    <string name="widget_kospi_description">Kipimo cha Hofu na Tamaa cha KOSPI</string>
+    <string name="widget_crypto_description">Kipimo cha Hofu na Tamaa cha Crypto (BTC)</string>
+    <string name="widget_dashboard_description">Vipimo vyote vitatu vya hofu na tamaa</string>
 </resources>

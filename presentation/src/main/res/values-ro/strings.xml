@@ -416,9 +416,15 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="onboarding_step8_detail">Dezvoltatorul cumpără doar la 15 sau mai jos. Peste acest nivel, poate fi nevoie de multă răbdare. Este o regulă personală, nu un sfat de investiții.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Atinge și ține apăsat un loc gol de pe ecranul principal, apoi atinge „Widgeturi“.</string>
+    <string name="widget_guide_step2">Găsește „Indicele fricii și lăcomiei“ în lista de widgeturi.</string>
+    <string name="widget_guide_step3">Alege indicele dorit — global, KOSPI sau cripto — sau widgetul all-in-one.</string>
+    <string name="widget_guide_step4">Trage-l pe ecranul principal și așază-l unde îți place.</string>
+    <string name="widget_guide_step5">Atinge widgetul oricând pentru a deschide aplicația.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Indicele global (S&amp;P 500) al fricii și lăcomiei</string>
+    <string name="widget_kospi_description">Indicele KOSPI al fricii și lăcomiei</string>
+    <string name="widget_crypto_description">Indicele cripto (BTC) al fricii și lăcomiei</string>
+    <string name="widget_dashboard_description">Toți cei trei indici ai fricii și lăcomiei</string>
 </resources>

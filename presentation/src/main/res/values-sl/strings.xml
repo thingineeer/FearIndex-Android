@@ -416,9 +416,15 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="onboarding_step8_detail">Razvijalec kupuje le pri 15 ali manj. Nad tem je morda potrebna dolga potrpežljivost. Osebno pravilo, ne naložbeni nasvet.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Pritisnite in pridržite prazno mesto na začetnem zaslonu, nato tapnite „Pripomočki“.</string>
+    <string name="widget_guide_step2">Na seznamu pripomočkov poiščite „Indeks strahu in pohlepa“.</string>
+    <string name="widget_guide_step3">Izberite želeni indeks — globalni, KOSPI ali kripto — ali vsestranski pripomoček.</string>
+    <string name="widget_guide_step4">Povlecite ga na začetni zaslon in ga postavite, kamor želite.</string>
+    <string name="widget_guide_step5">Kadar koli tapnite pripomoček, da odprete aplikacijo.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Globalni (S&amp;P 500) indeks strahu in pohlepa</string>
+    <string name="widget_kospi_description">KOSPI indeks strahu in pohlepa</string>
+    <string name="widget_crypto_description">Kripto (BTC) indeks strahu in pohlepa</string>
+    <string name="widget_dashboard_description">Vsi trije indeksi strahu in pohlepa</string>
 </resources>

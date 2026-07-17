@@ -416,9 +416,15 @@
     <string name="onboarding_step8_detail">Разработчик покупает только при 15 и ниже. Выше может понадобиться долгое терпение. Это личное правило, а не инвестиционный совет.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Нажмите и удерживайте пустое место на главном экране, затем выберите «Виджеты».</string>
+    <string name="widget_guide_step2">Найдите «Индекс страха и жадности» в списке виджетов.</string>
+    <string name="widget_guide_step3">Выберите нужный индекс — глобальный, KOSPI или крипто — либо виджет «всё в одном».</string>
+    <string name="widget_guide_step4">Перетащите его на главный экран и разместите где хотите.</string>
+    <string name="widget_guide_step5">Нажмите на виджет в любой момент, чтобы открыть приложение.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Глобальный (S&amp;P 500) индекс страха и жадности</string>
+    <string name="widget_kospi_description">Индекс страха и жадности KOSPI</string>
+    <string name="widget_crypto_description">Криптовалютный (BTC) индекс страха и жадности</string>
+    <string name="widget_dashboard_description">Все три индекса страха и жадности</string>
 </resources>

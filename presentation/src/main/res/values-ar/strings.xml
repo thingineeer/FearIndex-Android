@@ -415,9 +415,13 @@
     <string name="onboarding_step8_detail">المطوّر يشتري فقط عند 15 أو أقل. فوق ذلك قد يتطلب صبرًا طويلًا. قاعدة شخصية وليست نصيحة استثمارية.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">المس مطولاً مكانًا فارغًا على شاشتك الرئيسية، ثم اضغط على الأدوات.</string>
+    <string name="widget_guide_step2">ابحث عن «مؤشر الخوف والطمع» في قائمة الأدوات.</string>
+    <string name="widget_guide_step3">اختر المؤشر الذي تريده — العالمي أو KOSPI أو العملات المشفّرة — أو الأداة الشاملة.</string>
+    <string name="widget_guide_step4">اسحبها إلى شاشتك الرئيسية وضعها حيث تشاء.</string>
+    <string name="widget_guide_step5">اضغط على الأداة في أي وقت لفتح التطبيق.</string>
+    <string name="widget_market_description">مؤشر الخوف والطمع العالمي (S&amp;P 500)</string>
+    <string name="widget_kospi_description">مؤشر الخوف والطمع لمؤشر KOSPI</string>
+    <string name="widget_crypto_description">مؤشر الخوف والطمع للعملات المشفّرة (BTC)</string>
+    <string name="widget_dashboard_description">مؤشرات الخوف والطمع الثلاثة معًا</string>
 </resources>

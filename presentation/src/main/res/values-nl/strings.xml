@@ -416,9 +416,13 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="onboarding_step8_detail">De ontwikkelaar koopt alleen bij 15 of lager. Daarboven kan veel geduld nodig zijn. Persoonlijke regel, geen beleggingsadvies.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Houd een lege plek op je startscherm ingedrukt en tik op Widgets.</string>
+    <string name="widget_guide_step2">Zoek "Angst &amp; Hebzucht-index" in de widgetlijst.</string>
+    <string name="widget_guide_step3">Kies de gewenste index — Global, KOSPI of Crypto — of het alles-in-één-widget.</string>
+    <string name="widget_guide_step4">Sleep het naar je startscherm en zet het waar je wilt.</string>
+    <string name="widget_guide_step5">Tik wanneer je wilt op de widget om de app te openen.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Angst &amp; Hebzucht</string>
+    <string name="widget_kospi_description">KOSPI — Angst &amp; Hebzucht</string>
+    <string name="widget_crypto_description">Crypto (BTC) — Angst &amp; Hebzucht</string>
+    <string name="widget_dashboard_description">Alle drie de angst-&amp;-hebzuchtindexen</string>
 </resources>

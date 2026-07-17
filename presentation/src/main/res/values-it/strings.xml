@@ -416,9 +416,13 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="onboarding_step8_detail">Lo sviluppatore compra solo a 15 o meno. Sopra può servire molta pazienza. Regola personale, non un consiglio di investimento.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Tocca e tieni premuta un\'area vuota della schermata Home, poi tocca Widget.</string>
+    <string name="widget_guide_step2">Trova "Indice Paura &amp; Avidità" nell\'elenco dei widget.</string>
+    <string name="widget_guide_step3">Scegli l\'indice che vuoi — Global, KOSPI o Crypto — oppure il widget tutto-in-uno.</string>
+    <string name="widget_guide_step4">Trascinalo sulla schermata Home e posizionalo dove preferisci.</string>
+    <string name="widget_guide_step5">Tocca il widget quando vuoi per aprire l\'app.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Paura &amp; Avidità</string>
+    <string name="widget_kospi_description">KOSPI — Paura &amp; Avidità</string>
+    <string name="widget_crypto_description">Crypto (BTC) — Paura &amp; Avidità</string>
+    <string name="widget_dashboard_description">Tutti e tre gli indici di paura &amp; avidità</string>
 </resources>

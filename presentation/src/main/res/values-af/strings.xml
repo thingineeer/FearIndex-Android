@@ -416,9 +416,13 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="onboarding_step8_detail">Die ontwikkelaar koop net teen 15 of laer. Daarbo kan dit baie geduld verg. \'n Persoonlike reël, nie beleggingsadvies nie.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Raak en hou \'n leë area op jou tuisskerm, tik dan Legstukke.</string>
+    <string name="widget_guide_step2">Vind «Vrees- en Gierigheidsindeks» in die legstuklys.</string>
+    <string name="widget_guide_step3">Kies die indeks wat jy wil hê — Globaal, KOSPI of Krypto — of die alles-in-een-legstuk.</string>
+    <string name="widget_guide_step4">Sleep dit op jou tuisskerm en plaas dit waar jy wil.</string>
+    <string name="widget_guide_step5">Tik enige tyd op die legstuk om die program oop te maak.</string>
+    <string name="widget_market_description">Globale (S&amp;P 500) Vrees en Gierigheid</string>
+    <string name="widget_kospi_description">KOSPI Vrees en Gierigheid</string>
+    <string name="widget_crypto_description">Krypto (BTC) Vrees en Gierigheid</string>
+    <string name="widget_dashboard_description">Al drie vrees-en-gierigheid-indekse</string>
 </resources>

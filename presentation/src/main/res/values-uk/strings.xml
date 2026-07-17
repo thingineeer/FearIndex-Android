@@ -416,9 +416,15 @@
     <string name="onboarding_step8_detail">Розробник купує лише при значенні 15 або нижче. Вище може знадобитися довге терпіння. Це особисте правило, а не інвестиційна порада.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Натисніть і утримуйте порожнє місце на головному екрані, потім торкніться «Віджети».</string>
+    <string name="widget_guide_step2">Знайдіть «Індекс страху та жадібності» у списку віджетів.</string>
+    <string name="widget_guide_step3">Виберіть потрібний індекс — глобальний, KOSPI чи крипто — або віджет «усе в одному».</string>
+    <string name="widget_guide_step4">Перетягніть його на головний екран і розмістіть, де зручно.</string>
+    <string name="widget_guide_step5">Торкніться віджета будь-коли, щоб відкрити застосунок.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Глобальний (S&amp;P 500) індекс страху та жадібності</string>
+    <string name="widget_kospi_description">Індекс страху та жадібності KOSPI</string>
+    <string name="widget_crypto_description">Криптовалютний (BTC) індекс страху та жадібності</string>
+    <string name="widget_dashboard_description">Усі три індекси страху та жадібності</string>
 </resources>

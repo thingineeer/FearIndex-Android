@@ -419,9 +419,13 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="onboarding_step8_detail">Nhà phát triển chỉ mua khi từ 15 trở xuống. Cao hơn có thể cần kiên nhẫn lâu dài. Là nguyên tắc cá nhân, không phải lời khuyên đầu tư.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Chạm và giữ vùng trống trên màn hình chính, rồi chạm Widget.</string>
+    <string name="widget_guide_step2">Tìm "Chỉ số sợ hãi &amp; tham lam" trong danh sách widget.</string>
+    <string name="widget_guide_step3">Chọn chỉ số bạn muốn — Toàn cầu, KOSPI hoặc Crypto — hoặc widget tất cả trong một.</string>
+    <string name="widget_guide_step4">Kéo vào màn hình chính và đặt ở vị trí bạn thích.</string>
+    <string name="widget_guide_step5">Chạm vào widget bất cứ lúc nào để mở ứng dụng.</string>
+    <string name="widget_market_description">Sợ hãi &amp; tham lam toàn cầu (S&amp;P 500)</string>
+    <string name="widget_kospi_description">Sợ hãi &amp; tham lam KOSPI</string>
+    <string name="widget_crypto_description">Sợ hãi &amp; tham lam crypto (BTC)</string>
+    <string name="widget_dashboard_description">Cả ba chỉ số sợ hãi &amp; tham lam</string>
 </resources>

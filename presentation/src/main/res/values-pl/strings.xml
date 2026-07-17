@@ -416,9 +416,13 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="onboarding_step8_detail">Deweloper kupuje tylko przy 15 lub niżej. Powyżej może być potrzebna długa cierpliwość. To osobista zasada, nie porada inwestycyjna.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Dotknij i przytrzymaj puste miejsce na ekranie głównym, a następnie dotknij Widżety.</string>
+    <string name="widget_guide_step2">Znajdź "Indeks Paniki i Chciwości" na liście widżetów.</string>
+    <string name="widget_guide_step3">Wybierz indeks, który chcesz — Globalny, KOSPI lub Krypto — albo widżet wszystko w jednym.</string>
+    <string name="widget_guide_step4">Przeciągnij go na ekran główny i umieść w wybranym miejscu.</string>
+    <string name="widget_guide_step5">Dotknij widżetu w dowolnej chwili, aby otworzyć aplikację.</string>
+    <string name="widget_market_description">Globalny (S&amp;P 500) strach i chciwość</string>
+    <string name="widget_kospi_description">KOSPI strach i chciwość</string>
+    <string name="widget_crypto_description">Krypto (BTC) strach i chciwość</string>
+    <string name="widget_dashboard_description">Wszystkie trzy indeksy strachu i chciwości</string>
 </resources>

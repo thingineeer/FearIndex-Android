@@ -416,9 +416,13 @@
     <string name="onboarding_step8_detail">Utvecklaren köper bara vid 15 eller lägre. Allt över det kan kräva stort tålamod. En personlig regel, inte investeringsråd.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Tryck och håll på en tom yta på startskärmen och tryck sedan på Widgetar.</string>
+    <string name="widget_guide_step2">Hitta "Rädsla &amp; Girighet Index" i widgetlistan.</string>
+    <string name="widget_guide_step3">Välj det index du vill ha — Global, KOSPI eller Krypto — eller allt-i-ett-widgeten.</string>
+    <string name="widget_guide_step4">Dra den till startskärmen och placera den där du vill.</string>
+    <string name="widget_guide_step5">Tryck på widgeten när som helst för att öppna appen.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) rädsla &amp; girighet</string>
+    <string name="widget_kospi_description">KOSPI rädsla &amp; girighet</string>
+    <string name="widget_crypto_description">Krypto (BTC) rädsla &amp; girighet</string>
+    <string name="widget_dashboard_description">Alla tre rädsla &amp; girighet-index</string>
 </resources>

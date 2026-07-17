@@ -416,9 +416,13 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="onboarding_step8_detail">Arendaja ostab ainult 15 või madalamal. Kõrgemal võib vaja minna pikka kannatlikkust. Isiklik reegel, mitte investeerimisnõuanne.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Puuduta ja hoia avakuval tühja kohta, seejärel puuduta Vidinad.</string>
+    <string name="widget_guide_step2">Leia vidinate loendist "Hirmu &amp; Ahnuse Indeks".</string>
+    <string name="widget_guide_step3">Vali soovitud indeks — Globaalne, KOSPI või Krüpto — või kõik ühes vidin.</string>
+    <string name="widget_guide_step4">Lohista see avakuvale ja aseta sinna, kuhu soovid.</string>
+    <string name="widget_guide_step5">Puuduta vidinat igal ajal, et rakendus avada.</string>
+    <string name="widget_market_description">Globaalne (S&amp;P 500) hirm ja ahnus</string>
+    <string name="widget_kospi_description">KOSPI hirm ja ahnus</string>
+    <string name="widget_crypto_description">Krüpto (BTC) hirm ja ahnus</string>
+    <string name="widget_dashboard_description">Kõik kolm hirmu ja ahnuse indeksit</string>
 </resources>

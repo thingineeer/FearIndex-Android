@@ -416,9 +416,13 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="onboarding_step8_detail">Der Entwickler kauft nur bei 15 oder darunter. Darüber kann viel Geduld nötig sein. Eine persönliche Regel, keine Anlageberatung.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Berühren und halten Sie eine freie Stelle auf dem Startbildschirm und tippen Sie dann auf Widgets.</string>
+    <string name="widget_guide_step2">Suchen Sie "Angst &amp; Gier Index" in der Widget-Liste.</string>
+    <string name="widget_guide_step3">Wählen Sie den gewünschten Index – Global, KOSPI oder Krypto – oder das Kombi-Widget.</string>
+    <string name="widget_guide_step4">Ziehen Sie es auf den Startbildschirm und platzieren Sie es nach Belieben.</string>
+    <string name="widget_guide_step5">Tippen Sie jederzeit auf das Widget, um die App zu öffnen.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) – Angst &amp; Gier</string>
+    <string name="widget_kospi_description">KOSPI – Angst &amp; Gier</string>
+    <string name="widget_crypto_description">Krypto (BTC) – Angst &amp; Gier</string>
+    <string name="widget_dashboard_description">Alle drei Angst-&amp;-Gier-Indizes</string>
 </resources>

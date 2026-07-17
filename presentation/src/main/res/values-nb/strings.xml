@@ -416,9 +416,13 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="onboarding_step8_detail">Utvikleren kjøper bare på 15 eller lavere. Over det kan det kreve stor tålmodighet. En personlig regel, ikke investeringsråd.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Trykk og hold på et tomt område på startskjermen, og trykk deretter på Widgeter.</string>
+    <string name="widget_guide_step2">Finn "Frykt- og Grådighetindeks" i widgetlisten.</string>
+    <string name="widget_guide_step3">Velg indeksen du vil ha — Global, KOSPI eller Krypto — eller alt-i-ett-widgeten.</string>
+    <string name="widget_guide_step4">Dra den til startskjermen, og plasser den der du vil.</string>
+    <string name="widget_guide_step5">Trykk på widgeten når som helst for å åpne appen.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) frykt og grådighet</string>
+    <string name="widget_kospi_description">KOSPI frykt og grådighet</string>
+    <string name="widget_crypto_description">Krypto (BTC) frykt og grådighet</string>
+    <string name="widget_dashboard_description">Alle tre frykt og grådighet-indekser</string>
 </resources>

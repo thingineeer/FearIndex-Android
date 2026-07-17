@@ -416,9 +416,13 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="onboarding_step8_detail">Kehittäjä ostaa vain lukemalla 15 tai alle. Sitä korkeammalla voi tarvita pitkää kärsivällisyyttä. Oma sääntö, ei sijoitusneuvo.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Kosketa ja pidä painettuna tyhjää kohtaa aloitusnäytöllä ja napauta sitten Widgetit.</string>
+    <string name="widget_guide_step2">Etsi "Pelko &amp; Ahneus Indeksi" widget-luettelosta.</string>
+    <string name="widget_guide_step3">Valitse haluamasi indeksi — Globaali, KOSPI tai Krypto — tai kaikki yhdessä -widget.</string>
+    <string name="widget_guide_step4">Vedä se aloitusnäytölle ja aseta se haluamaasi kohtaan.</string>
+    <string name="widget_guide_step5">Napauta widgetiä milloin tahansa avataksesi sovelluksen.</string>
+    <string name="widget_market_description">Globaali (S&amp;P 500) pelko &amp; ahneus</string>
+    <string name="widget_kospi_description">KOSPI pelko &amp; ahneus</string>
+    <string name="widget_crypto_description">Krypto (BTC) pelko &amp; ahneus</string>
+    <string name="widget_dashboard_description">Kaikki kolme pelko &amp; ahneus -indeksiä</string>
 </resources>

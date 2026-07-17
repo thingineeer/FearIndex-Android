@@ -416,9 +416,15 @@
     <string name="onboarding_step8_detail">Ο δημιουργός αγοράζει μόνο στο 15 ή χαμηλότερα. Πάνω από αυτό ίσως χρειαστεί μεγάλη υπομονή. Προσωπικός κανόνας, όχι επενδυτική συμβουλή.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Πατήστε παρατεταμένα σε ένα κενό σημείο της αρχικής οθόνης και μετά πατήστε «Widgets».</string>
+    <string name="widget_guide_step2">Βρείτε το «Δείκτης φόβου και απληστίας» στη λίστα των widgets.</string>
+    <string name="widget_guide_step3">Επιλέξτε τον δείκτη που θέλετε — παγκόσμιο, KOSPI ή κρύπτο — ή το all-in-one widget.</string>
+    <string name="widget_guide_step4">Σύρετέ το στην αρχική οθόνη και τοποθετήστε το όπου θέλετε.</string>
+    <string name="widget_guide_step5">Πατήστε το widget οποιαδήποτε στιγμή για να ανοίξετε την εφαρμογή.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Παγκόσμιος (S&amp;P 500) δείκτης φόβου και απληστίας</string>
+    <string name="widget_kospi_description">Δείκτης φόβου και απληστίας KOSPI</string>
+    <string name="widget_crypto_description">Δείκτης φόβου και απληστίας κρύπτο (BTC)</string>
+    <string name="widget_dashboard_description">Και οι τρεις δείκτες φόβου και απληστίας</string>
 </resources>

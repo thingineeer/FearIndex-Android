@@ -416,9 +416,13 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="onboarding_step8_detail">Vývojář nakupuje jen při 15 a níže. Nad tím může být potřeba dlouhá trpělivost. Osobní pravidlo, ne investiční rada.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Klepněte a podržte prázdné místo na ploše a poté klepněte na Widgety.</string>
+    <string name="widget_guide_step2">Najděte v seznamu widgetů "Index strachu a chamtivosti".</string>
+    <string name="widget_guide_step3">Vyberte požadovaný index — Globální, KOSPI nebo Krypto — nebo widget vše v jednom.</string>
+    <string name="widget_guide_step4">Přetáhněte jej na plochu a umístěte, kam chcete.</string>
+    <string name="widget_guide_step5">Kdykoli klepněte na widget a otevře se aplikace.</string>
+    <string name="widget_market_description">Globální (S&amp;P 500) strach a chamtivost</string>
+    <string name="widget_kospi_description">KOSPI strach a chamtivost</string>
+    <string name="widget_crypto_description">Krypto (BTC) strach a chamtivost</string>
+    <string name="widget_dashboard_description">Všechny tři indexy strachu a chamtivosti</string>
 </resources>

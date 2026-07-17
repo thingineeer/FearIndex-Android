@@ -416,9 +416,13 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="onboarding_step8_detail">El desarrollador solo compra a 15 o menos. Por encima puede exigir mucha paciencia. Es una regla personal, no un consejo de inversión.</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">Mantén pulsada una zona vacía de la pantalla de inicio y toca Widgets.</string>
+    <string name="widget_guide_step2">Busca "Índice de Miedo y Codicia" en la lista de widgets.</string>
+    <string name="widget_guide_step3">Elige el índice que quieras (Global, KOSPI o Cripto) o el widget todo en uno.</string>
+    <string name="widget_guide_step4">Arrástralo a la pantalla de inicio y colócalo donde prefieras.</string>
+    <string name="widget_guide_step5">Toca el widget cuando quieras para abrir la app.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Miedo y Codicia</string>
+    <string name="widget_kospi_description">KOSPI — Miedo y Codicia</string>
+    <string name="widget_crypto_description">Cripto (BTC) — Miedo y Codicia</string>
+    <string name="widget_dashboard_description">Los tres índices de miedo y codicia</string>
 </resources>

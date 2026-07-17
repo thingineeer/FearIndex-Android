@@ -419,9 +419,13 @@
     <string name="onboarding_step8_detail">डेवलपर सिर्फ़ 15 या उससे नीचे ही खरीदता है। इससे ऊपर लंबा धैर्य चाहिए हो सकता है। यह निजी नियम है, निवेश सलाह नहीं।</string>
 
     <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
-    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
-    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
-    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
-    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
-    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
+    <string name="widget_guide_step1">अपनी होम स्क्रीन पर किसी खाली जगह को दबाकर रखें, फिर विजेट पर टैप करें।</string>
+    <string name="widget_guide_step2">विजेट सूची में «डर और लालच सूचकांक» खोजें।</string>
+    <string name="widget_guide_step3">अपना मनचाहा सूचकांक चुनें — ग्लोबल, KOSPI या क्रिप्टो — या ऑल-इन-वन विजेट।</string>
+    <string name="widget_guide_step4">इसे अपनी होम स्क्रीन पर खींचें और जहाँ चाहें वहाँ रखें।</string>
+    <string name="widget_guide_step5">ऐप खोलने के लिए कभी भी विजेट पर टैप करें।</string>
+    <string name="widget_market_description">ग्लोबल (S&amp;P 500) डर और लालच</string>
+    <string name="widget_kospi_description">KOSPI डर और लालच</string>
+    <string name="widget_crypto_description">क्रिप्टो (BTC) डर और लालच</string>
+    <string name="widget_dashboard_description">तीनों डर और लालच सूचकांक एक साथ</string>
 </resources>
