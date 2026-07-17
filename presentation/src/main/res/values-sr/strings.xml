@@ -387,4 +387,38 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Даље</string>
+    <string name="onboarding_skip">Прескочи</string>
+    <string name="onboarding_start">Започни</string>
+    <string name="settings_menu_app_usage">Водич кроз апликацију</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Тржиште С&amp;П</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Крипто С&amp;П</string>
+    <string name="onboarding_step1_title">Овај индекс прати S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Приказује страх и похлепу америчког тржишта једним бројем од 0 до 100. Ниже значи страх, више значи похлепу.</string>
+    <string name="onboarding_step2_title">Овај индекс прати KOSPI</string>
+    <string name="onboarding_step2_detail">На исти начин пратите расположење корејског тржишта. Пребацујте било када сегментима горе.</string>
+    <string name="onboarding_step3_title">Овај индекс прати BTC</string>
+    <string name="onboarding_step3_detail">Страх и похлепа крипто тржишта су на истој скали.</string>
+    <string name="onboarding_step4_title">Шта би било да сте купили при овом резултату?</string>
+    <string name="onboarding_step4_detail">Историјски просечан принос при куповини на тренутном нивоу. Није загарантован — користите га опрезно.</string>
+    <string name="onboarding_step5_title">Гласајте о свом тренутном стању</string>
+    <string name="onboarding_step5_detail">Оставите свој статус једним додиром и пратите расположење инвеститора широм света у реалном времену.</string>
+    <string name="onboarding_step6_title">Јавићемо вам у правом тренутку</string>
+    <string name="onboarding_step6_detail">Подесите обавештење и јавићемо вам чим индекс достигне ваш ниво.</string>
+    <string name="onboarding_step7_title">Још брже уз виџете</string>
+    <string name="onboarding_step7_detail">Водич за виџете је увек на овом екрану.</string>
+    <string name="onboarding_step8_title">Лично правило програмера</string>
+    <string name="onboarding_step8_detail">Програмер купује само на 15 или ниже. Изнад тога може бити потребно дуго стрпљење. Лично правило, не инвестициони савет.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

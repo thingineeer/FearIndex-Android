@@ -387,4 +387,38 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Næste</string>
+    <string name="onboarding_skip">Spring over</string>
+    <string name="onboarding_start">Kom i gang</string>
+    <string name="settings_menu_app_usage">App-guide</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Marked F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krypto F&amp;G</string>
+    <string name="onboarding_step1_title">Dette indeks følger S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Det viser det amerikanske markeds frygt og grådighed som ét tal fra 0 til 100. Lavere betyder frygt, højere betyder grådighed.</string>
+    <string name="onboarding_step2_title">Dette indeks følger KOSPI</string>
+    <string name="onboarding_step2_detail">Se det koreanske markeds stemning på samme måde. Skift når som helst med segmenterne ovenfor.</string>
+    <string name="onboarding_step3_title">Dette indeks følger BTC</string>
+    <string name="onboarding_step3_detail">Kryptomarkedets frygt og grådighed vises på samme skala.</string>
+    <string name="onboarding_step4_title">Hvad hvis du havde købt ved denne score?</string>
+    <string name="onboarding_step4_detail">Historisk gennemsnitligt afkast ved køb på nuværende niveau. Ingen garanti — brug det med forsigtighed.</string>
+    <string name="onboarding_step5_title">Stem om din situation lige nu</string>
+    <string name="onboarding_step5_detail">Efterlad din status med ét tryk, og følg investorernes stemning verden over i realtid.</string>
+    <string name="onboarding_step6_title">Vi giver besked på det rette tidspunkt</string>
+    <string name="onboarding_step6_detail">Sæt en notifikation, så giver vi besked, når indekset når dit niveau.</string>
+    <string name="onboarding_step7_title">Endnu hurtigere med widgets</string>
+    <string name="onboarding_step7_detail">Widgetguiden findes altid på denne skærm.</string>
+    <string name="onboarding_step8_title">Udviklerens personlige regel</string>
+    <string name="onboarding_step8_detail">Udvikleren køber kun ved 15 eller lavere. Derover kan det kræve stor tålmodighed. En personlig regel, ikke investeringsrådgivning.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

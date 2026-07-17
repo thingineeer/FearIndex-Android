@@ -386,4 +386,38 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">İleri</string>
+    <string name="onboarding_skip">Atla</string>
+    <string name="onboarding_start">Başla</string>
+    <string name="settings_menu_app_usage">Uygulama kılavuzu</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Piyasa F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto F&amp;G</string>
+    <string name="onboarding_step1_title">Bu endeks S&amp;P 500\'ü takip eder</string>
+    <string name="onboarding_step1_detail">ABD piyasasının korku ve açgözlülüğünü 0-100 arası tek bir sayıyla gösterir. Düşük korku, yüksek açgözlülük demektir.</string>
+    <string name="onboarding_step2_title">Bu endeks KOSPI\'yi takip eder</string>
+    <string name="onboarding_step2_detail">Kore piyasasının psikolojisini de aynı şekilde görebilirsiniz. Üstteki bölümlerle istediğiniz an geçiş yapın.</string>
+    <string name="onboarding_step3_title">Bu endeks BTC\'yi takip eder</string>
+    <string name="onboarding_step3_detail">Kripto piyasasının korku ve açgözlülüğü de aynı ölçekte.</string>
+    <string name="onboarding_step4_title">Bu puanda alsaydınız ne olurdu?</string>
+    <string name="onboarding_step4_detail">Mevcut puan aralığında alım yapıldığında geçmiş ortalama getiridir. Garanti değildir; dikkatle referans alın.</string>
+    <string name="onboarding_step5_title">Şu anki durumunuz için oy verin</string>
+    <string name="onboarding_step5_detail">Tek dokunuşla durumunuzu bırakın, dünyadaki yatırımcıların psikolojisini gerçek zamanlı görün.</string>
+    <string name="onboarding_step6_title">Tam zamanında haber veririz</string>
+    <string name="onboarding_step6_detail">Bildirim kurun; endeks seviyenize ulaştığı an haber veririz.</string>
+    <string name="onboarding_step7_title">Widget\'larla daha da hızlı</string>
+    <string name="onboarding_step7_detail">Widget kullanımını bu ekrandan her zaman görebilirsiniz.</string>
+    <string name="onboarding_step8_title">Geliştiricinin kişisel kuralı</string>
+    <string name="onboarding_step8_detail">Geliştirici yalnızca 15 ve altında alır. Üzeri uzun sabır gerektirebilir. Kişisel bir kuraldır, yatırım tavsiyesi değildir.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

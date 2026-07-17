@@ -390,4 +390,38 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">அடுத்து</string>
+    <string name="onboarding_skip">தவிர்</string>
+    <string name="onboarding_start">தொடங்கு</string>
+    <string name="settings_menu_app_usage">ஆப் வழிகாட்டி</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">சந்தை F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">கிரிப்டோ F&amp;G</string>
+    <string name="onboarding_step1_title">இந்தக் குறியீடு S&amp;P 500-ஐப் பின்பற்றுகிறது</string>
+    <string name="onboarding_step1_detail">அமெரிக்கச் சந்தையின் அச்சத்தையும் பேராசையையும் 0 முதல் 100 வரை ஒரே எண்ணில் காட்டுகிறது. குறைவாக இருந்தால் அச்சம், அதிகமாக இருந்தால் பேராசை.</string>
+    <string name="onboarding_step2_title">இந்தக் குறியீடு KOSPI-ஐப் பின்பற்றுகிறது</string>
+    <string name="onboarding_step2_detail">அதே முறையில் கொரியச் சந்தையின் மனநிலையையும் பார்க்கலாம். மேலே உள்ள பிரிவுகளில் எப்போது வேண்டுமானாலும் மாற்றலாம்.</string>
+    <string name="onboarding_step3_title">இந்தக் குறியீடு BTC-ஐப் பின்பற்றுகிறது</string>
+    <string name="onboarding_step3_detail">கிரிப்டோ சந்தையின் அச்சத்தையும் பேராசையையும் அதே அளவுகோலில் பார்க்கலாம்.</string>
+    <string name="onboarding_step4_title">இந்த மதிப்பெண்ணில் வாங்கியிருந்தால் எப்படி இருந்திருக்கும்?</string>
+    <string name="onboarding_step4_detail">தற்போதைய மதிப்பெண்ணில் வாங்கியதற்கான வரலாற்று சராசரி வருவாய். உத்தரவாதம் இல்லை; கவனமாகப் பயன்படுத்தவும்.</string>
+    <string name="onboarding_step5_title">உங்கள் தற்போதைய நிலைக்கு வாக்களியுங்கள்</string>
+    <string name="onboarding_step5_detail">ஒரே தொடுதலில் உங்கள் நிலையைப் பதிவு செய்து, உலகெங்கும் முதலீட்டாளர்களின் மனநிலையை நேரலையில் காணுங்கள்.</string>
+    <string name="onboarding_step6_title">சரியான நேரத்தில் தெரிவிப்போம்</string>
+    <string name="onboarding_step6_detail">விழிப்பூட்டலை அமைத்தால், குறியீடு உங்கள் நிலையை எட்டியதும் உடனே தெரிவிப்போம்.</string>
+    <string name="onboarding_step7_title">விட்ஜெட்டுகளுடன் இன்னும் வேகமாக</string>
+    <string name="onboarding_step7_detail">விட்ஜெட் வழிகாட்டியை இந்தத் திரையில் எப்போதும் பார்க்கலாம்.</string>
+    <string name="onboarding_step8_title">டெவலப்பரின் தனிப்பட்ட விதி</string>
+    <string name="onboarding_step8_detail">டெவலப்பர் 15 அல்லது அதற்குக் கீழ் மட்டுமே வாங்குவார். அதற்கு மேல் நீண்ட பொறுமை தேவைப்படலாம். இது தனிப்பட்ட விதி, முதலீட்டு ஆலோசனை அல்ல.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

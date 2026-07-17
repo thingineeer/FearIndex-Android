@@ -386,4 +386,38 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">下一步</string>
+    <string name="onboarding_skip">跳过</string>
+    <string name="onboarding_start">开始使用</string>
+    <string name="settings_menu_app_usage">应用使用指南</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">市场 F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">加密货币 F&amp;G</string>
+    <string name="onboarding_step1_title">该指数追踪 S&amp;P 500</string>
+    <string name="onboarding_step1_detail">用0到100的一个数字展示美国市场的恐惧与贪婪。数字越低越恐惧，越高越贪婪。</string>
+    <string name="onboarding_step2_title">该指数追踪KOSPI</string>
+    <string name="onboarding_step2_detail">以同样的方式查看韩国市场情绪，随时可通过上方分段切换。</string>
+    <string name="onboarding_step3_title">该指数跟随BTC</string>
+    <string name="onboarding_step3_detail">加密货币市场的恐惧与贪婪也用同一刻度查看。</string>
+    <string name="onboarding_step4_title">如果在这个分数买入会怎样？</string>
+    <string name="onboarding_step4_detail">这是在当前分数区间买入的历史平均收益率。并非保证，请谨慎参考。</string>
+    <string name="onboarding_step5_title">投票记录你现在的状态</string>
+    <string name="onboarding_step5_detail">轻轻一点留下你的状态，实时了解全球投资者的心理。</string>
+    <string name="onboarding_step6_title">在关键时刻提醒你</string>
+    <string name="onboarding_step6_detail">设置提醒后，指数一到达该点位就立即通知你。</string>
+    <string name="onboarding_step7_title">用小组件更快查看</string>
+    <string name="onboarding_step7_detail">小组件使用方法随时可在此页面查看。</string>
+    <string name="onboarding_step8_title">开发者的个人标准</string>
+    <string name="onboarding_step8_detail">开发者只在15以下买入，高于此可能需要长久的耐心。这只是个人标准，并非投资建议。</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

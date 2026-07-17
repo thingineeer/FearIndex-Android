@@ -387,4 +387,38 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Επόμενο</string>
+    <string name="onboarding_skip">Παράλειψη</string>
+    <string name="onboarding_start">Έναρξη</string>
+    <string name="settings_menu_app_usage">Οδηγός εφαρμογής</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Αγορά Φ&amp;Α</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Κρύπτο Φ&amp;Α</string>
+    <string name="onboarding_step1_title">Ο δείκτης αυτός ακολουθεί τον S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Δείχνει τον φόβο και την απληστία της αμερικανικής αγοράς με έναν αριθμό από 0 έως 100. Όσο χαμηλότερα, τόσο περισσότερος φόβος· όσο ψηλότερα, τόσο περισσότερη απληστία.</string>
+    <string name="onboarding_step2_title">Ο δείκτης αυτός ακολουθεί τον KOSPI</string>
+    <string name="onboarding_step2_detail">Δείτε με τον ίδιο τρόπο το κλίμα της κορεατικής αγοράς. Αλλάξτε όποτε θέλετε από τα τμήματα επάνω.</string>
+    <string name="onboarding_step3_title">Ο δείκτης αυτός ακολουθεί το BTC</string>
+    <string name="onboarding_step3_detail">Ο φόβος και η απληστία της αγοράς κρύπτο στην ίδια κλίμακα.</string>
+    <string name="onboarding_step4_title">Κι αν είχατε αγοράσει σε αυτό το σκορ;</string>
+    <string name="onboarding_step4_detail">Η ιστορική μέση απόδοση όταν αγοράζετε στο τρέχον επίπεδο. Δεν είναι εγγυημένη — χρησιμοποιήστε τη με προσοχή.</string>
+    <string name="onboarding_step5_title">Ψηφίστε για την κατάστασή σας</string>
+    <string name="onboarding_step5_detail">Αφήστε την κατάστασή σας με ένα άγγιγμα και δείτε σε πραγματικό χρόνο το κλίμα των επενδυτών παγκοσμίως.</string>
+    <string name="onboarding_step6_title">Θα σας ειδοποιήσουμε την κατάλληλη στιγμή</string>
+    <string name="onboarding_step6_detail">Ορίστε ειδοποίηση και θα σας ενημερώσουμε μόλις ο δείκτης φτάσει στο επίπεδό σας.</string>
+    <string name="onboarding_step7_title">Ακόμα πιο γρήγορα με widgets</string>
+    <string name="onboarding_step7_detail">Ο οδηγός των widgets είναι πάντα σε αυτή την οθόνη.</string>
+    <string name="onboarding_step8_title">Ο προσωπικός κανόνας του δημιουργού</string>
+    <string name="onboarding_step8_detail">Ο δημιουργός αγοράζει μόνο στο 15 ή χαμηλότερα. Πάνω από αυτό ίσως χρειαστεί μεγάλη υπομονή. Προσωπικός κανόνας, όχι επενδυτική συμβουλή.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

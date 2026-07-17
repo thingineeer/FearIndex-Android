@@ -387,4 +387,38 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Toliau</string>
+    <string name="onboarding_skip">Praleisti</string>
+    <string name="onboarding_start">Pradėti</string>
+    <string name="settings_menu_app_usage">Programėlės gidas</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Rinka B&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto B&amp;G</string>
+    <string name="onboarding_step1_title">Šis indeksas seka S&amp;P 500</string>
+    <string name="onboarding_step1_detail">JAV rinkos baimę ir godumą rodo vienu skaičiumi nuo 0 iki 100. Kuo žemiau — tuo daugiau baimės, kuo aukščiau — tuo daugiau godumo.</string>
+    <string name="onboarding_step2_title">Šis indeksas seka KOSPI</string>
+    <string name="onboarding_step2_detail">Taip pat galite stebėti Korėjos rinkos nuotaikas. Perjunkite bet kada viršuje esančiais segmentais.</string>
+    <string name="onboarding_step3_title">Šis indeksas seka BTC</string>
+    <string name="onboarding_step3_detail">Kripto rinkos baimė ir godumas — toje pačioje skalėje.</string>
+    <string name="onboarding_step4_title">O jei būtumėte pirkę esant šiam balui?</string>
+    <string name="onboarding_step4_detail">Istorinė vidutinė grąža perkant dabartiniame lygyje. Ji negarantuota — vertinkite atsargiai.</string>
+    <string name="onboarding_step5_title">Balsuokite dėl savo dabartinės padėties</string>
+    <string name="onboarding_step5_detail">Vienu palietimu palikite savo būseną ir realiuoju laiku stebėkite investuotojų nuotaikas visame pasaulyje.</string>
+    <string name="onboarding_step6_title">Pranešime tinkamu momentu</string>
+    <string name="onboarding_step6_detail">Nustatykite įspėjimą — pranešime vos indeksui pasiekus jūsų lygį.</string>
+    <string name="onboarding_step7_title">Dar greičiau su valdikliais</string>
+    <string name="onboarding_step7_detail">Valdiklių gidą visada rasite šiame ekrane.</string>
+    <string name="onboarding_step8_title">Asmeninė kūrėjo taisyklė</string>
+    <string name="onboarding_step8_detail">Kūrėjas perka tik esant 15 ar mažiau. Aukščiau gali prireikti ilgos kantrybės. Asmeninė taisyklė, ne investavimo patarimas.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

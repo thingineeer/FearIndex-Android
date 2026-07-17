@@ -387,4 +387,38 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Tālāk</string>
+    <string name="onboarding_skip">Izlaist</string>
+    <string name="onboarding_start">Sākt</string>
+    <string name="settings_menu_app_usage">Lietotnes ceļvedis</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Tirgus B&amp;A</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto B&amp;A</string>
+    <string name="onboarding_step1_title">Šis indekss seko S&amp;P 500</string>
+    <string name="onboarding_step1_detail">ASV tirgus bailes un alkatību rāda ar vienu skaitli no 0 līdz 100. Jo zemāk, jo vairāk baiļu; jo augstāk, jo vairāk alkatības.</string>
+    <string name="onboarding_step2_title">Šis indekss seko KOSPI</string>
+    <string name="onboarding_step2_detail">Tāpat varat vērot Korejas tirgus noskaņojumu. Pārslēdzieties jebkurā brīdī ar segmentiem augšā.</string>
+    <string name="onboarding_step3_title">Šis indekss seko BTC</string>
+    <string name="onboarding_step3_detail">Kripto tirgus bailes un alkatība — tajā pašā skalā.</string>
+    <string name="onboarding_step4_title">Kā būtu, ja jūs būtu pirkuši pie šī rādītāja?</string>
+    <string name="onboarding_step4_detail">Vēsturiskā vidējā atdeve, pērkot pašreizējā līmenī. Tā nav garantēta — izmantojiet piesardzīgi.</string>
+    <string name="onboarding_step5_title">Balsojiet par savu pašreizējo stāvokli</string>
+    <string name="onboarding_step5_detail">Ar vienu pieskārienu atstājiet savu statusu un reāllaikā sekojiet investoru noskaņojumam visā pasaulē.</string>
+    <string name="onboarding_step6_title">Paziņosim īstajā brīdī</string>
+    <string name="onboarding_step6_detail">Iestatiet brīdinājumu, un paziņosim, tiklīdz indekss sasniegs jūsu līmeni.</string>
+    <string name="onboarding_step7_title">Vēl ātrāk ar logrīkiem</string>
+    <string name="onboarding_step7_detail">Logrīku ceļvedis vienmēr ir šajā ekrānā.</string>
+    <string name="onboarding_step8_title">Izstrādātāja personīgais noteikums</string>
+    <string name="onboarding_step8_detail">Izstrādātājs pērk tikai pie 15 vai zemāk. Virs tā var būt vajadzīga ilga pacietība. Personīgs noteikums, nevis ieguldījumu padoms.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

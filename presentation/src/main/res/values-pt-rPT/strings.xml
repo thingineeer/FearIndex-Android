@@ -387,4 +387,38 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Seguinte</string>
+    <string name="onboarding_skip">Ignorar</string>
+    <string name="onboarding_start">Começar</string>
+    <string name="settings_menu_app_usage">Guia da app</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Mercado M&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Cripto M&amp;G</string>
+    <string name="onboarding_step1_title">Este índice acompanha o S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Mostra o medo e a ganância do mercado dos EUA num único número de 0 a 100. Quanto mais baixo, mais medo; quanto mais alto, mais ganância.</string>
+    <string name="onboarding_step2_title">Este índice acompanha o KOSPI</string>
+    <string name="onboarding_step2_detail">Veja da mesma forma o sentimento do mercado coreano. Mude quando quiser nos segmentos acima.</string>
+    <string name="onboarding_step3_title">Este índice acompanha o BTC</string>
+    <string name="onboarding_step3_detail">O medo e a ganância do mercado cripto também aparecem na mesma escala.</string>
+    <string name="onboarding_step4_title">E se tivesse comprado nesta pontuação?</string>
+    <string name="onboarding_step4_detail">É o retorno médio histórico ao comprar nesta pontuação. Não é garantido; consulte com prudência.</string>
+    <string name="onboarding_step5_title">Vote na sua situação atual</string>
+    <string name="onboarding_step5_detail">Deixe o seu estado com um toque e acompanhe em tempo real o sentimento de investidores de todo o mundo.</string>
+    <string name="onboarding_step6_title">Avisamos no momento certo</string>
+    <string name="onboarding_step6_detail">Configure um alerta e avisamos assim que o índice atingir o seu nível.</string>
+    <string name="onboarding_step7_title">Ainda mais rápido com widgets</string>
+    <string name="onboarding_step7_detail">O guia de widgets está sempre disponível neste ecrã.</string>
+    <string name="onboarding_step8_title">A regra pessoal do programador</string>
+    <string name="onboarding_step8_detail">O programador só compra a 15 ou menos. Acima disso pode exigir muita paciência. Regra pessoal, não é conselho de investimento.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

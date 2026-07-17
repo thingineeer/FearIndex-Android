@@ -387,4 +387,38 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Tovább</string>
+    <string name="onboarding_skip">Kihagyás</string>
+    <string name="onboarding_start">Kezdés</string>
+    <string name="settings_menu_app_usage">Alkalmazás-útmutató</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Piaci F&amp;M</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto F&amp;M</string>
+    <string name="onboarding_step1_title">Ez az index az S&amp;P 500-at követi</string>
+    <string name="onboarding_step1_detail">Az amerikai piac félelmét és mohóságát egyetlen 0 és 100 közötti számmal mutatja. Minél alacsonyabb, annál nagyobb a félelem; minél magasabb, annál nagyobb a mohóság.</string>
+    <string name="onboarding_step2_title">Ez az index a KOSPI-t követi</string>
+    <string name="onboarding_step2_detail">Ugyanígy nézheted a koreai piac hangulatát is. Bármikor válthatsz a fenti szegmensekkel.</string>
+    <string name="onboarding_step3_title">Ez az index a BTC-t követi</string>
+    <string name="onboarding_step3_detail">A kriptopiac félelme és mohósága is ugyanezen a skálán látható.</string>
+    <string name="onboarding_step4_title">Mi lenne, ha ennél a pontszámnál vettél volna?</string>
+    <string name="onboarding_step4_detail">A jelenlegi pontszámnál történő vásárlás múltbeli átlagos hozama. Nem garantált — kezeld óvatosan.</string>
+    <string name="onboarding_step5_title">Szavazz a mostani helyzetedről</string>
+    <string name="onboarding_step5_detail">Egy koppintással hagyd ott az állapotod, és kövesd valós időben a befektetők hangulatát világszerte.</string>
+    <string name="onboarding_step6_title">A megfelelő pillanatban szólunk</string>
+    <string name="onboarding_step6_detail">Állíts be értesítést, és szólunk, amint az index eléri a szintedet.</string>
+    <string name="onboarding_step7_title">Widgetekkel még gyorsabb</string>
+    <string name="onboarding_step7_detail">A widget-útmutatót bármikor megtalálod ezen a képernyőn.</string>
+    <string name="onboarding_step8_title">A fejlesztő személyes szabálya</string>
+    <string name="onboarding_step8_detail">A fejlesztő csak 15-nél vagy az alatt vásárol. Felette hosszú türelem kellhet. Személyes szabály, nem befektetési tanács.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>

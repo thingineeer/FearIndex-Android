@@ -387,4 +387,38 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Edasi</string>
+    <string name="onboarding_skip">Jäta vahele</string>
+    <string name="onboarding_start">Alusta</string>
+    <string name="settings_menu_app_usage">Rakenduse juhend</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Turg H&amp;A</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krüpto H&amp;A</string>
+    <string name="onboarding_step1_title">See indeks järgib S&amp;P 500 indeksit</string>
+    <string name="onboarding_step1_detail">Näitab USA turu hirmu ja ahnust ühe arvuna 0–100. Mida madalam, seda rohkem hirmu; mida kõrgem, seda rohkem ahnust.</string>
+    <string name="onboarding_step2_title">See indeks järgib KOSPI-t</string>
+    <string name="onboarding_step2_detail">Samamoodi näed Korea turu meeleolu. Vaheta igal ajal ülal olevate segmentidega.</string>
+    <string name="onboarding_step3_title">See indeks järgib BTC-d</string>
+    <string name="onboarding_step3_detail">Krüptoturu hirm ja ahnus on samal skaalal.</string>
+    <string name="onboarding_step4_title">Aga kui oleksid ostnud selle skoori juures?</string>
+    <string name="onboarding_step4_detail">Ajalooline keskmine tootlus praegusel tasemel ostes. Pole garanteeritud — kasuta ettevaatlikult.</string>
+    <string name="onboarding_step5_title">Hääleta oma praeguse seisu üle</string>
+    <string name="onboarding_step5_detail">Jäta oma staatus ühe puudutusega ja jälgi reaalajas investorite meeleolu üle maailma.</string>
+    <string name="onboarding_step6_title">Anname teada õigel hetkel</string>
+    <string name="onboarding_step6_detail">Sea teavitus ja anname teada kohe, kui indeks jõuab sinu tasemele.</string>
+    <string name="onboarding_step7_title">Vidinatega veel kiiremini</string>
+    <string name="onboarding_step7_detail">Vidinate juhend on alati sellel ekraanil.</string>
+    <string name="onboarding_step8_title">Arendaja isiklik reegel</string>
+    <string name="onboarding_step8_detail">Arendaja ostab ainult 15 või madalamal. Kõrgemal võib vaja minna pikka kannatlikkust. Isiklik reegel, mitte investeerimisnõuanne.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touch and hold an empty area on your home screen, then tap Widgets.</string>
+    <string name="widget_guide_step2">Find "Fear &amp; Greed Index" in the widget list.</string>
+    <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
+    <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
+    <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
 </resources>
