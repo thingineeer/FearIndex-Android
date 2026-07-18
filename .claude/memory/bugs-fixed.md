@@ -524,6 +524,22 @@ type: project
 - **배포**: versionCode 17 / 1.3.0. 버전 선택 근거 = 신규 기능(minor) + 강제 게이트가 major.minor 비교라 1.2.1은 1.2.0과 식별 불가. changelog 17 "투자 지표를 추가하였습니다."(45 locale). **AAB+changelog만 업로드**(fastlane run upload_to_play_store, 스크린샷/메타 skip). 업로드 후 **빠른 검사(pre-review scan) 통과 시 자동 검토 전송** 확인(이번엔 수동 "검토 전송" 불필요 — v1.2.0의 136개 대기와 달리 변경이 트랙+changelog뿐). 당일 심사 통과, 사용자가 관리형 게시 "게시" 클릭 → **2026-07-03 게시 완료**. release 머지 + v1.3.0 태그.
 - **Git**: dev → feature/v1.3.0 → worktree feature/v1.3.0-rsi-short-indicators(5커밋: domain/파서/data·DI/presentation/버전bump). --no-ff 머지 그래프 유지.
 
+## 2026-07-18 세션 후반 (v1.4.1 vc19 production 업로드 — Korean law 게이트 해제 확정)
+
+### 37. v1.4.1(vc19) production 배포 — 게이트 해제 + IAP 재도입 + 관리형 게시 OFF
+
+- **Korean law 게이트 해제 확정**: 통신판매업(2026-서울영등포-1656) 계정 세부정보 저장 후 `bundle exec fastlane production` → **업로드+커밋 성공** (43번에서 막히던 "Uploading all changes" 지점 통과). 프로덕션 트랙 "활성 · 출시 버전 1.4.1 검토 중 · 177개국". ⚠️ 첫 실행 출력이 bundler 경고에 묻혀 실패로 오인 → 재실행에서 "Version code 19 has already been used" = 첫 실행이 성공했던 것. fastlane 성공 여부는 **Play Console 트랙 상태로 확인**할 것.
+- **관리형 게시 OFF**: 게시 개요에서 "관리형 게시 사용 중지" 전환 → 이후 승인 즉시 자동 게시. 전환 시 게시 준비돼 있던 데이터 보안 변경이 즉시 게시됨(7/18).
+- **데이터 보안 정책 위반(7/27 기한) 종결**: 위반="기기 또는 기타 ID 미선언"(vc17). 설문은 이미 수정돼 있었으나 **관리형 게시 때문에 검토 제출이 안 된 채 방치**가 진짜 원인. "검토를 위해 변경사항 전송" → 당일 승인 → 게시. 교훈: 관리형 게시 ON이면 앱 콘텐츠 선언 수정도 게시 개요에서 전송해야 반영.
+- **IAP 재도입**: `git revert 17e69432`(no-iap 커밋)로 복원 + 충돌 47파일 해소(온보딩/위젯/설정UX 보존, findActivity 수동 재추가). AdBanner 게이트 순서: inspection→screenshot→투어→isAdFree→canRequestAds. 전체 테스트 GREEN(771 실행).
+- **인앱 상품 등록**(Chrome MCP): `remove_ads_lifetime` / Remove Ads / 구매옵션 lifetime(구입·비소비성·디지털 콘텐츠) / ₩7,500 기준 173개국 환산 / **활성**. ⚠️ 상품 등록은 **BILLING 권한 포함 AAB 업로드가 선행 조건** ("새 APK 업로드" 안내가 뜨면 AAB부터).
+- **Crashlytics 점검**: crash-free 100%. 30일 미해결 2건 — ① SplashView.kt:69 Resources$NotFoundException(1건, 1.0.1~1.2.0, 앱 업데이트 중 리소스 교체) → **Drawable 직접 로드+실패 시 아이콘 생략 방어 적용**(painterResource는 try/catch 불가) ② FearIndexApp.initAdMob ANR(2건, SDK 내부, 이미 백그라운드 init 권장 패턴) → 관찰 유지.
+- **온보딩 투어 UX fix 2건**(유저 피드백): ① 대형 앵커(4단계 인사이트, 화면 55%+ 덮음)는 카드를 탭바 쪽 하단 배치(TDD 5케이스) ② 인터스티셜 5초 지연 중 투어 시작 엣지 방어 1줄.
+- **인터스티셜 실기+적대적 검증**: 정상 노출(KOSPI 진입 5s 후, 시각+이벤트) / 세션 1회 제한 / 투어 중 억제·탭 흡수 / 투어 후 기회 미소모 — 모두 확인. 코드 검증 3에이전트 확정 이슈 low 3건뿐.
+- **이 머신 최초 셋업**: `~/.gradle/gradle.properties` 부재로 signReleaseBundle NPE → `install.sh` 실행으로 해결. bundler 2.6.9 재설치 필요했음(`gem install bundler -v 2.6.9`).
+- **미검증**: IAP 실결제(라이선스 테스터 실기기 필요), 에뮬 최종 스모크(에뮬 불안정 — 프리미엄 카드 렌더는 v1.4.0 시절 동일 코드로 검증된 이력 44번).
+- **남은 것**: 심사 승인 → 자동 게시 확인 → release 머지+v1.4.1 태그. RC force_update=1.2 유지(조치 불필요). 앱인토스 "지금 공포지수 23" 배너 건은 별도 레포(유저 A/B 선택 대기).
+
 ## 2026-07-18 세션 (v1.4.1 — 온보딩 코치마크 투어 + 위젯)
 
 ### 35. 온보딩 투어가 알림 권한 다이얼로그에 가려 안 뜸 (첫 실행)

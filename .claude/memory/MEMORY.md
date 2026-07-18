@@ -14,7 +14,14 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
-## 최신 상태 (2026-07-18, v1.4.1 — 온보딩 코치마크 투어 + 위젯, iOS v1.9.3 parity)
+## 최신 상태 (2026-07-18 후반, v1.4.1 vc19 production 업로드 — 검토 중)
+
+- **v1.4.1(vc19) production 업로드 완료, "검토 중"** (fastlane production 성공 = **Korean law 게이트 해제 확정**, 43번 종결). **관리형 게시 OFF** → 승인 즉시 자동 게시. changelog 19 "홈 화면 위젯과 앱 사용법 안내, 광고 제거 옵션을 추가하고 알림 설정을 개선하였습니다."(45 locale). 상세: @memory/bugs-fixed.md 37번.
+- **v1.4.1 내용물**: 온보딩 코치마크 투어 8단계 + Glance 위젯 4종 + **광고 제거 IAP 재도입**(revert 17e69432, 상품 `remove_ads_lifetime` Play Console 등록·활성 ₩7,500) + 알림 허브/상세 UX + 스플래시 크래시 방어 + 광고 개선(v1.4.0분 흡수).
+- **데이터 보안 정책 위반(7/27 기한) 종결**: "기기 또는 기타 ID" 선언 검토 승인·게시(7/18). 원인은 관리형 게시 미전송 방치.
+- **push 완료**(dev). **남은 것**: 심사 승인·게시 확인 → release 머지 + v1.4.1 태그, IAP 실결제 실기기 검증(라이선스 테스터), 위젯 실기기 배치 확인. RC force_update=1.2 유지. 앱인토스 배너(글로벌 탭에 코스피 점수 노출) 건은 별도 레포 — 유저 A/B 선택 대기.
+
+## 이전 상태 (2026-07-18, v1.4.1 — 온보딩 코치마크 투어 + 위젯, iOS v1.9.3 parity)
 
 - **브랜치 `feature/v1.4.1-onboarding-tour`** (dev 기준, 5커밋, **미푸시·미머지·미배포** — 유저 승인 게이트). 상세: @memory/bugs-fixed.md 35·36번, @docs/checkpoints/ONBOARDING-WIDGET-PLAN.md.
 - **완료**: 8단계 첫실행 코치마크 투어(딤+컷아웃+마칭앤츠 링, Compose) + 신규설치 게이팅(`stuck_counter_prefs/deviceId` FCM 전 프로브 → `onboarding_prefs`) + Glance 위젯 4종(2×2 글로벌/코스피/암호화폐 + 4×2 대시보드) + 위젯 사용법 가이드 + 설정 "앱 사용법"(재생)/"위젯 사용법" 행. GA `onboarding_done/skip(step)`.
