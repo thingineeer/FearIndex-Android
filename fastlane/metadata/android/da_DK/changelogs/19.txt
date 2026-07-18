@@ -1,1 +1,1 @@
-Tilføjede widgets til startskærmen og en appguide og forbedrede notifikationsindstillingerne.
+Tilføjede widgets til startskærmen, en appguide og en mulighed for at fjerne annoncer og forbedrede notifikationsindstillingerne.

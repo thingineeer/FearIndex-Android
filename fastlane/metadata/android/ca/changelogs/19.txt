@@ -1,1 +1,1 @@
-Hem afegit widgets de pantalla d'inici i una guia de l'aplicació, i hem millorat la configuració de les notificacions.
+Hem afegit widgets de pantalla d'inici, una guia de l'aplicació i una opció per eliminar anuncis, i hem millorat la configuració de les notificacions.

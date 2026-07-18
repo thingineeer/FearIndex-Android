@@ -1,1 +1,1 @@
-Dodano widżety ekranu głównego i przewodnik po aplikacji oraz ulepszono ustawienia powiadomień.
+Dodano widżety ekranu głównego, przewodnik po aplikacji i opcję usunięcia reklam oraz ulepszono ustawienia powiadomień.

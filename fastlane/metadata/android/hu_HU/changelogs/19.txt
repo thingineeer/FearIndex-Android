@@ -1,1 +1,1 @@
-Kezdőképernyő-widgeteket és alkalmazás-útmutatót adtunk hozzá, és javítottuk az értesítési beállításokat.
+Kezdőképernyő-widgeteket, alkalmazás-útmutatót és reklámeltávolítási lehetőséget adtunk hozzá, és javítottuk az értesítési beállításokat.

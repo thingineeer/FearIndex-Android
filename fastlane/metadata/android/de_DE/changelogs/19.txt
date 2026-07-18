@@ -1,1 +1,1 @@
-Startbildschirm-Widgets und eine App-Anleitung hinzugefügt, Benachrichtigungseinstellungen verbessert.
+Startbildschirm-Widgets, eine App-Anleitung und eine Option zum Entfernen von Werbung hinzugefügt, Benachrichtigungseinstellungen verbessert.

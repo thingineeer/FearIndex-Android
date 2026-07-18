@@ -1,1 +1,1 @@
-Am adăugat widgeturi pentru ecranul principal și un ghid de utilizare și am îmbunătățit setările de notificare.
+Am adăugat widgeturi pentru ecranul principal, un ghid de utilizare și o opțiune de eliminare a reclamelor și am îmbunătățit setările de notificare.

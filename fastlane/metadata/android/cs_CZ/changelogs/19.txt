@@ -1,1 +1,1 @@
-Přidali jsme widgety na plochu a průvodce aplikací a vylepšili nastavení oznámení.
+Přidali jsme widgety na plochu, průvodce aplikací a možnost odstranění reklam a vylepšili nastavení oznámení.

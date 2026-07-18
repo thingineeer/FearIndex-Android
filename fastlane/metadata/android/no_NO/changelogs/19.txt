@@ -1,1 +1,1 @@
-La til widgeter for startskjermen og en appveiledning, og forbedret varslingsinnstillingene.
+La til widgeter for startskjermen, en appveiledning og et alternativ for å fjerne annonser, og forbedret varslingsinnstillingene.

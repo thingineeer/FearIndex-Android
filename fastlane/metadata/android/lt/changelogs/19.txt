@@ -1,1 +1,1 @@
-Pridėti pagrindinio ekrano valdikliai ir programos vadovas, patobulinti pranešimų nustatymai.
+Pridėti pagrindinio ekrano valdikliai, programos vadovas ir skelbimų šalinimo parinktis, patobulinti pranešimų nustatymai.
