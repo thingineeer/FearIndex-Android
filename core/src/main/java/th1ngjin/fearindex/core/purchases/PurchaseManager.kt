@@ -185,18 +185,6 @@ class PurchaseManager @Inject constructor(
     }
 
     private fun onPurchasesUpdated(result: BillingResult, purchases: List<Purchase>?) {
-        // 이미 소유한 상품 재구매 시도 — 실패가 아니라 entitlement 재평가로 grant 처리 (오류 다이얼로그 방지).
-        if (result.responseCode == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED) {
-            connectAndRun {
-                reevaluateEntitlements()
-                if (_isAdFree.value) {
-                    completePurchase()
-                } else {
-                    reportPurchaseFailure(result.responseCode, result.debugMessage)
-                }
-            }
-            return
-        }
         val snapshots = (purchases ?: emptyList()).map { it.toSnapshot() }
         when (val outcome = IapPurchaseOutcome.evaluate(result.responseCode, snapshots, REMOVE_ADS_PRODUCT_ID)) {
             is IapPurchaseOutcome.Outcome.Completed -> {
@@ -208,6 +196,15 @@ class PurchaseManager @Inject constructor(
                 if (!purchaseInFlight.compareAndSet(true, false)) return
                 Timber.tag(TAG).i("[IAP] 사용자 구매 취소")
                 _purchaseEvents.tryEmit(PurchaseEvent.Cancelled)
+            }
+            // 이미 소유한 상품 재구매 시도 — 실패가 아니라 entitlement 재평가로 grant 처리 (오류 다이얼로그 방지).
+            IapPurchaseOutcome.Outcome.AlreadyOwned -> connectAndRun {
+                reevaluateEntitlements()
+                if (_isAdFree.value) {
+                    completePurchase()
+                } else {
+                    reportPurchaseFailure(result.responseCode, result.debugMessage)
+                }
             }
             is IapPurchaseOutcome.Outcome.Failed ->
                 reportPurchaseFailure(outcome.code, result.debugMessage)
