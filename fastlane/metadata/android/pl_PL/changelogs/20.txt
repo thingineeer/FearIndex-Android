@@ -1,0 +1,1 @@
+Poprawiono niezawodność zakupów i stabilność aplikacji.
