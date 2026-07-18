@@ -1,0 +1,1 @@
+Añadimos widgets de pantalla de inicio y una guía de uso, y mejoramos los ajustes de notificaciones.

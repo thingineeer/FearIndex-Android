@@ -1,0 +1,1 @@
+Kezdőképernyő-widgeteket és alkalmazás-útmutatót adtunk hozzá, és javítottuk az értesítési beállításokat.

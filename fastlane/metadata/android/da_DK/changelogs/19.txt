@@ -1,0 +1,1 @@
+Tilføjede widgets til startskærmen og en appguide og forbedrede notifikationsindstillingerne.

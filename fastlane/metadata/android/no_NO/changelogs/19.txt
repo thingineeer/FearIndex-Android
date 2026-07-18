@@ -1,0 +1,1 @@
+La til widgeter for startskjermen og en appveiledning, og forbedret varslingsinnstillingene.

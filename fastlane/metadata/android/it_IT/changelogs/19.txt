@@ -1,0 +1,1 @@
+Aggiunti widget per la schermata Home e una guida all'uso, migliorate le impostazioni di notifica.

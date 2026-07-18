@@ -1,0 +1,1 @@
+Lisäsimme aloitusnäytön widgetit ja sovellusoppaan sekä paransimme ilmoitusasetuksia.

@@ -1,0 +1,1 @@
+Pridėti pagrindinio ekrano valdikliai ir programos vadovas, patobulinti pranešimų nustatymai.
