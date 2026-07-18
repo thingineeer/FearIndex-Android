@@ -427,4 +427,14 @@
     <string name="widget_kospi_description">Индекс на страха и алчността KOSPI</string>
     <string name="widget_crypto_description">Крипто (BTC) индекс на страха и алчността</string>
     <string name="widget_dashboard_description">И трите индекса на страха и алчността</string>
+    <string name="settings_premium_header">Премиум</string>
+    <string name="settings_remove_ads_title">Премахване на рекламите</string>
+    <string name="settings_remove_ads_description">Еднократна покупка. Премахва всички реклами завинаги.</string>
+    <string name="settings_remove_ads_purchased">Рекламите са премахнати</string>
+    <string name="settings_remove_ads_purchase_failed">Покупката беше неуспешна. Моля, опитайте отново.</string>
+    <string name="settings_restore_purchases">Възстановяване на покупките</string>
+    <string name="settings_restore_success">Покупките са възстановени.</string>
+    <string name="settings_restore_failure">Няма покупки за възстановяване.</string>
+    <string name="settings_support_contact">Контакт: %1$s</string>
+    <string name="common_confirm">Потвърди</string>
 </resources>

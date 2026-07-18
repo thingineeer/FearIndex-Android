@@ -33,6 +33,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
 import th1ngjin.fearindex.core.debug.ScreenshotMode
+import th1ngjin.fearindex.core.purchases.PurchaseManager
 import th1ngjin.fearindex.core.remoteconfig.RemoteConfigManager
 import th1ngjin.fearindex.core.update.UpdateStatus
 import th1ngjin.fearindex.domain.entity.NotificationPermissionSyncPolicy
@@ -52,6 +53,7 @@ private const val SPLASH_MIN_DURATION_MS = 1_500L
 class MainActivity : ComponentActivity() {
 
     @Inject lateinit var remoteConfig: RemoteConfigManager
+    @Inject lateinit var purchaseManager: PurchaseManager
     @Inject lateinit var notificationRepository: Lazy<NotificationRepository>
     @Inject lateinit var deviceIdProvider: Lazy<DeviceIdProvider>
 
@@ -138,6 +140,8 @@ class MainActivity : ComponentActivity() {
         super.onResume()
         // IMMEDIATE 업데이트가 진행 중이었다면 재개 (사용자가 잠깐 이탈한 경우).
         inAppUpdateManager.resumeIfInProgress(this, updateLauncher)
+        // 외부(다른 기기/환불 등) 구매 상태 변화를 반영하기 위해 entitlement 재평가.
+        purchaseManager.refreshEntitlements()
     }
 
     /**

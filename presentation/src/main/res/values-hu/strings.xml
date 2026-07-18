@@ -425,4 +425,14 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="widget_kospi_description">KOSPI félelem és mohóság</string>
     <string name="widget_crypto_description">Kripto (BTC) félelem és mohóság</string>
     <string name="widget_dashboard_description">Mind a három félelem és mohóság index</string>
+    <string name="settings_premium_header">Prémium</string>
+    <string name="settings_remove_ads_title">Hirdetések eltávolítása</string>
+    <string name="settings_remove_ads_description">Egyszeri vásárlás. Véglegesen eltávolít minden hirdetést.</string>
+    <string name="settings_remove_ads_purchased">Hirdetések eltávolítva</string>
+    <string name="settings_remove_ads_purchase_failed">A vásárlás sikertelen. Kérjük, próbálja újra.</string>
+    <string name="settings_restore_purchases">Vásárlások visszaállítása</string>
+    <string name="settings_restore_success">A vásárlások visszaállítva.</string>
+    <string name="settings_restore_failure">Nincs visszaállítható vásárlás.</string>
+    <string name="settings_support_contact">Kapcsolat: %1$s</string>
+    <string name="common_confirm">Megerősítés</string>
 </resources>

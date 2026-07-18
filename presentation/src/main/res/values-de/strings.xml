@@ -425,4 +425,14 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="widget_kospi_description">KOSPI – Angst &amp; Gier</string>
     <string name="widget_crypto_description">Krypto (BTC) – Angst &amp; Gier</string>
     <string name="widget_dashboard_description">Alle drei Angst-&amp;-Gier-Indizes</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Werbung entfernen</string>
+    <string name="settings_remove_ads_description">Einmaliger Kauf. Entfernt dauerhaft alle Werbung.</string>
+    <string name="settings_remove_ads_purchased">Werbung entfernt</string>
+    <string name="settings_remove_ads_purchase_failed">Kauf fehlgeschlagen. Bitte erneut versuchen.</string>
+    <string name="settings_restore_purchases">Käufe wiederherstellen</string>
+    <string name="settings_restore_success">Käufe wiederhergestellt.</string>
+    <string name="settings_restore_failure">Keine Käufe zum Wiederherstellen.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Bestätigen</string>
 </resources>

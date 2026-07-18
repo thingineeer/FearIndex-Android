@@ -425,4 +425,14 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="widget_kospi_description">KOSPI — Angst &amp; Hebzucht</string>
     <string name="widget_crypto_description">Crypto (BTC) — Angst &amp; Hebzucht</string>
     <string name="widget_dashboard_description">Alle drie de angst-&amp;-hebzuchtindexen</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Advertenties verwijderen</string>
+    <string name="settings_remove_ads_description">Eenmalige aankoop. Verwijdert alle advertenties voorgoed.</string>
+    <string name="settings_remove_ads_purchased">Advertenties verwijderd</string>
+    <string name="settings_remove_ads_purchase_failed">Aankoop mislukt. Probeer het opnieuw.</string>
+    <string name="settings_restore_purchases">Aankopen herstellen</string>
+    <string name="settings_restore_success">Aankopen hersteld.</string>
+    <string name="settings_restore_failure">Geen aankopen om te herstellen.</string>
+    <string name="settings_support_contact">Contact: %1$s</string>
+    <string name="common_confirm">Bevestigen</string>
 </resources>

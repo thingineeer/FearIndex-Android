@@ -27,6 +27,7 @@ import th1ngjin.fearindex.core.appcheck.AppCheckInitializer
 import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
+import th1ngjin.fearindex.core.purchases.PurchaseManager
 import th1ngjin.fearindex.core.remoteconfig.RemoteConfigManager
 import th1ngjin.fearindex.presentation.component.AppOpenAdManager
 import th1ngjin.fearindex.domain.repository.NotificationRepository
@@ -51,6 +52,7 @@ class FearIndexApp : Application() {
     @Inject lateinit var crashReporter: CrashReporter
     @Inject lateinit var remoteConfig: RemoteConfigManager
     @Inject lateinit var appCheck: AppCheckInitializer
+    @Inject lateinit var purchaseManager: PurchaseManager
     @Inject lateinit var notificationRepository: Lazy<NotificationRepository>
     @Inject lateinit var deviceIdProvider: Lazy<DeviceIdProvider>
     @Inject lateinit var onboardingStore: OnboardingStore
@@ -79,6 +81,7 @@ class FearIndexApp : Application() {
         if (!screenshotMode) {
             registerFCMToken()
             initAdMob()
+            purchaseManager.start()
             trackCurrentActivity()
             FearWidgetUpdateWorker.schedule(this)
         }
@@ -223,6 +226,7 @@ class FearIndexApp : Application() {
             activity = activity,
             adUnitId = BuildConfig.ADMOB_APP_OPEN,
             config = remoteConfig.adsConfig.value.appOpenAdConfig(),
+            isAdFree = purchaseManager.isAdFree.value,
             canRequestAds = AdRequestAvailability.canRequestAds.value,
         )
     }

@@ -428,4 +428,14 @@
     <string name="widget_kospi_description">KOSPI डर और लालच</string>
     <string name="widget_crypto_description">क्रिप्टो (BTC) डर और लालच</string>
     <string name="widget_dashboard_description">तीनों डर और लालच सूचकांक एक साथ</string>
+    <string name="settings_premium_header">प्रीमियम</string>
+    <string name="settings_remove_ads_title">विज्ञापन हटाएँ</string>
+    <string name="settings_remove_ads_description">एक बार की खरीदारी। सभी विज्ञापन हमेशा के लिए हटा देती है।</string>
+    <string name="settings_remove_ads_purchased">विज्ञापन हटा दिए गए</string>
+    <string name="settings_remove_ads_purchase_failed">खरीदारी विफल रही। कृपया फिर से प्रयास करें।</string>
+    <string name="settings_restore_purchases">खरीदारी बहाल करें</string>
+    <string name="settings_restore_success">खरीदारी बहाल कर दी गई।</string>
+    <string name="settings_restore_failure">बहाल करने के लिए कोई खरीदारी नहीं है।</string>
+    <string name="settings_support_contact">संपर्क: %1$s</string>
+    <string name="common_confirm">पुष्टि करें</string>
 </resources>

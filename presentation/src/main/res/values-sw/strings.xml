@@ -425,4 +425,14 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="widget_kospi_description">Kipimo cha Hofu na Tamaa cha KOSPI</string>
     <string name="widget_crypto_description">Kipimo cha Hofu na Tamaa cha Crypto (BTC)</string>
     <string name="widget_dashboard_description">Vipimo vyote vitatu vya hofu na tamaa</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Ondoa matangazo</string>
+    <string name="settings_remove_ads_description">Ununuzi wa mara moja. Huondoa matangazo yote milele.</string>
+    <string name="settings_remove_ads_purchased">Matangazo yameondolewa</string>
+    <string name="settings_remove_ads_purchase_failed">Ununuzi umeshindikana. Tafadhali jaribu tena.</string>
+    <string name="settings_restore_purchases">Rejesha ununuzi</string>
+    <string name="settings_restore_success">Ununuzi umerejeshwa.</string>
+    <string name="settings_restore_failure">Hakuna ununuzi wa kurejesha.</string>
+    <string name="settings_support_contact">Mawasiliano: %1$s</string>
+    <string name="common_confirm">Thibitisha</string>
 </resources>

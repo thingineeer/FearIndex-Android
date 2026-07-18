@@ -425,4 +425,14 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="widget_kospi_description">KOSPI hirm ja ahnus</string>
     <string name="widget_crypto_description">Krüpto (BTC) hirm ja ahnus</string>
     <string name="widget_dashboard_description">Kõik kolm hirmu ja ahnuse indeksit</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Eemalda reklaamid</string>
+    <string name="settings_remove_ads_description">Ühekordne ost. Eemaldab kõik reklaamid jäädavalt.</string>
+    <string name="settings_remove_ads_purchased">Reklaamid eemaldatud</string>
+    <string name="settings_remove_ads_purchase_failed">Ost ebaõnnestus. Palun proovi uuesti.</string>
+    <string name="settings_restore_purchases">Taasta ostud</string>
+    <string name="settings_restore_success">Ostud on taastatud.</string>
+    <string name="settings_restore_failure">Pole oste, mida taastada.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Kinnita</string>
 </resources>

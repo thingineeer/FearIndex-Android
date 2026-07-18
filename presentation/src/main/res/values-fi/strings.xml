@@ -425,4 +425,14 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="widget_kospi_description">KOSPI pelko &amp; ahneus</string>
     <string name="widget_crypto_description">Krypto (BTC) pelko &amp; ahneus</string>
     <string name="widget_dashboard_description">Kaikki kolme pelko &amp; ahneus -indeksiä</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Poista mainokset</string>
+    <string name="settings_remove_ads_description">Kertaosto. Poistaa kaikki mainokset pysyvästi.</string>
+    <string name="settings_remove_ads_purchased">Mainokset poistettu</string>
+    <string name="settings_remove_ads_purchase_failed">Osto epäonnistui. Yritä uudelleen.</string>
+    <string name="settings_restore_purchases">Palauta ostot</string>
+    <string name="settings_restore_success">Ostot palautettu.</string>
+    <string name="settings_restore_failure">Ei palautettavia ostoja.</string>
+    <string name="settings_support_contact">Yhteystiedot: %1$s</string>
+    <string name="common_confirm">Vahvista</string>
 </resources>

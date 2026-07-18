@@ -427,4 +427,14 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="widget_kospi_description">KOSPI indeks straha i pohlepe</string>
     <string name="widget_crypto_description">Kripto (BTC) indeks straha i pohlepe</string>
     <string name="widget_dashboard_description">Sva tri indeksa straha i pohlepe</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Ukloni oglase</string>
+    <string name="settings_remove_ads_description">Jednokratna kupnja. Trajno uklanja sve oglase.</string>
+    <string name="settings_remove_ads_purchased">Oglasi uklonjeni</string>
+    <string name="settings_remove_ads_purchase_failed">Kupnja nije uspjela. Pokušajte ponovno.</string>
+    <string name="settings_restore_purchases">Vrati kupnje</string>
+    <string name="settings_restore_success">Kupnje su vraćene.</string>
+    <string name="settings_restore_failure">Nema kupnji za vraćanje.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Potvrdi</string>
 </resources>

@@ -424,4 +424,14 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="widget_kospi_description">Ketakutan &amp; Keserakahan KOSPI</string>
     <string name="widget_crypto_description">Ketakutan &amp; Keserakahan Kripto (BTC)</string>
     <string name="widget_dashboard_description">Ketiga indeks ketakutan &amp; keserakahan</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Hapus Iklan</string>
+    <string name="settings_remove_ads_description">Pembelian sekali bayar. Menghapus semua iklan selamanya.</string>
+    <string name="settings_remove_ads_purchased">Iklan dihapus</string>
+    <string name="settings_remove_ads_purchase_failed">Pembelian gagal. Silakan coba lagi.</string>
+    <string name="settings_restore_purchases">Pulihkan Pembelian</string>
+    <string name="settings_restore_success">Pembelian dipulihkan.</string>
+    <string name="settings_restore_failure">Tidak ada pembelian untuk dipulihkan.</string>
+    <string name="settings_support_contact">Kontak: %1$s</string>
+    <string name="common_confirm">Konfirmasi</string>
 </resources>

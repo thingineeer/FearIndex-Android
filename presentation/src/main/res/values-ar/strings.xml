@@ -424,4 +424,14 @@
     <string name="widget_kospi_description">مؤشر الخوف والطمع لمؤشر KOSPI</string>
     <string name="widget_crypto_description">مؤشر الخوف والطمع للعملات المشفّرة (BTC)</string>
     <string name="widget_dashboard_description">مؤشرات الخوف والطمع الثلاثة معًا</string>
+    <string name="settings_premium_header">بريميوم</string>
+    <string name="settings_remove_ads_title">إزالة الإعلانات</string>
+    <string name="settings_remove_ads_description">شراء لمرة واحدة. يزيل جميع الإعلانات للأبد.</string>
+    <string name="settings_remove_ads_purchased">تمت إزالة الإعلانات</string>
+    <string name="settings_remove_ads_purchase_failed">فشلت عملية الشراء. يرجى المحاولة مرة أخرى.</string>
+    <string name="settings_restore_purchases">استعادة المشتريات</string>
+    <string name="settings_restore_success">تمت استعادة المشتريات.</string>
+    <string name="settings_restore_failure">لا توجد مشتريات لاستعادتها.</string>
+    <string name="settings_support_contact">للتواصل: %1$s</string>
+    <string name="common_confirm">تأكيد</string>
 </resources>

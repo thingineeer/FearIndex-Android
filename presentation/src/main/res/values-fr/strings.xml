@@ -425,4 +425,14 @@
     <string name="widget_kospi_description">KOSPI — Peur &amp; Avidité</string>
     <string name="widget_crypto_description">Crypto (BTC) — Peur &amp; Avidité</string>
     <string name="widget_dashboard_description">Les trois indices Peur &amp; Avidité</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Supprimer les publicités</string>
+    <string name="settings_remove_ads_description">Achat unique. Supprime toutes les publicités pour toujours.</string>
+    <string name="settings_remove_ads_purchased">Publicités supprimées</string>
+    <string name="settings_remove_ads_purchase_failed">Échec de l\'achat. Veuillez réessayer.</string>
+    <string name="settings_restore_purchases">Restaurer les achats</string>
+    <string name="settings_restore_success">Achats restaurés.</string>
+    <string name="settings_restore_failure">Aucun achat à restaurer.</string>
+    <string name="settings_support_contact">Contact : %1$s</string>
+    <string name="common_confirm">Confirmer</string>
 </resources>

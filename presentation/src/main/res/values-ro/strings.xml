@@ -427,4 +427,14 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="widget_kospi_description">Indicele KOSPI al fricii și lăcomiei</string>
     <string name="widget_crypto_description">Indicele cripto (BTC) al fricii și lăcomiei</string>
     <string name="widget_dashboard_description">Toți cei trei indici ai fricii și lăcomiei</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Elimină reclamele</string>
+    <string name="settings_remove_ads_description">Achiziție unică. Elimină definitiv toate reclamele.</string>
+    <string name="settings_remove_ads_purchased">Reclame eliminate</string>
+    <string name="settings_remove_ads_purchase_failed">Achiziția a eșuat. Încercați din nou.</string>
+    <string name="settings_restore_purchases">Restaurează achizițiile</string>
+    <string name="settings_restore_success">Achizițiile au fost restaurate.</string>
+    <string name="settings_restore_failure">Nu există achiziții de restaurat.</string>
+    <string name="settings_support_contact">Contact: %1$s</string>
+    <string name="common_confirm">Confirmare</string>
 </resources>

@@ -425,4 +425,14 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="widget_kospi_description">KOSPI strach a chamtivosť</string>
     <string name="widget_crypto_description">Krypto (BTC) strach a chamtivosť</string>
     <string name="widget_dashboard_description">Všetky tri indexy strachu a chamtivosti</string>
+    <string name="settings_premium_header">Prémium</string>
+    <string name="settings_remove_ads_title">Odstrániť reklamy</string>
+    <string name="settings_remove_ads_description">Jednorazový nákup. Natrvalo odstráni všetky reklamy.</string>
+    <string name="settings_remove_ads_purchased">Reklamy odstránené</string>
+    <string name="settings_remove_ads_purchase_failed">Nákup zlyhal. Skúste to znova.</string>
+    <string name="settings_restore_purchases">Obnoviť nákupy</string>
+    <string name="settings_restore_success">Nákupy boli obnovené.</string>
+    <string name="settings_restore_failure">Žiadne nákupy na obnovenie.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Potvrdiť</string>
 </resources>

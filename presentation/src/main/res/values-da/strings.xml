@@ -425,4 +425,14 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="widget_kospi_description">KOSPI frygt &amp; grådighed</string>
     <string name="widget_crypto_description">Krypto (BTC) frygt &amp; grådighed</string>
     <string name="widget_dashboard_description">Alle tre frygt &amp; grådighed-indeks</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Fjern reklamer</string>
+    <string name="settings_remove_ads_description">Engangskøb. Fjerner alle reklamer for altid.</string>
+    <string name="settings_remove_ads_purchased">Reklamer fjernet</string>
+    <string name="settings_remove_ads_purchase_failed">Købet mislykkedes. Prøv venligst igen.</string>
+    <string name="settings_restore_purchases">Gendan køb</string>
+    <string name="settings_restore_success">Køb gendannet.</string>
+    <string name="settings_restore_failure">Ingen køb at gendanne.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Bekræft</string>
 </resources>
