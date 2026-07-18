@@ -28,6 +28,7 @@ import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
 import th1ngjin.fearindex.core.ads.AdRetryPolicy
 import th1ngjin.fearindex.presentation.di.AdsEntryPoint
+import th1ngjin.fearindex.presentation.feature.onboarding.LocalOnboardingTour
 
 /**
  * AdMob Adaptive 배너 광고 컴포넌트.
@@ -49,6 +50,10 @@ fun AdBanner(
     // Play Store promo 스크린샷 촬영 모드 — `adb shell setprop debug.screenshot_mode 1` 으로 활성화.
     // 광고가 첨부된 promo 이미지는 AdMob 정책 위반 위험이 있어 명시적으로 숨긴다.
     if (isAdScreenshotMode()) {
+        return
+    }
+    // 온보딩 투어 중에는 배너를 숨긴다(카드/하이라이트 가림 + 불필요한 노출 방지).
+    if (LocalOnboardingTour.current?.isActive == true) {
         return
     }
 

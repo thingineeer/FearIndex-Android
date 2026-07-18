@@ -387,4 +387,42 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Endelea</string>
+    <string name="onboarding_skip">Ruka</string>
+    <string name="onboarding_start">Anza</string>
+    <string name="settings_menu_app_usage">Mwongozo wa programu</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Soko F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Crypto F&amp;G</string>
+    <string name="onboarding_step1_title">Kielezo hiki kinafuata S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Kinaonyesha hofu na tamaa ya soko la Marekani kwa nambari moja kutoka 0 hadi 100. Chini zaidi ni hofu, juu zaidi ni tamaa.</string>
+    <string name="onboarding_step2_title">Kielezo hiki kinafuata KOSPI</string>
+    <string name="onboarding_step2_detail">Ona hisia za soko la Korea kwa njia ile ile. Badilisha wakati wowote kwa sehemu zilizo juu.</string>
+    <string name="onboarding_step3_title">Kielezo hiki kinafuata BTC</string>
+    <string name="onboarding_step3_detail">Hofu na tamaa ya soko la sarafu za kidijitali pia ziko kwenye kipimo kile kile.</string>
+    <string name="onboarding_step4_title">Je, ingekuwaje kama ungenunua kwa alama hii?</string>
+    <string name="onboarding_step4_detail">Wastani wa faida ya kihistoria unaponunua katika kiwango cha sasa. Haihakikishwi — itumie kwa tahadhari.</string>
+    <string name="onboarding_step5_title">Piga kura kuhusu hali yako sasa</string>
+    <string name="onboarding_step5_detail">Acha hali yako kwa mguso mmoja na ufuatilie hisia za wawekezaji duniani kote papo hapo.</string>
+    <string name="onboarding_step6_title">Tutakujulisha wakati unaofaa</string>
+    <string name="onboarding_step6_detail">Weka arifa na tutakujulisha mara kielezo kitakapofikia kiwango chako.</string>
+    <string name="onboarding_step7_title">Haraka zaidi kwa wijeti</string>
+    <string name="onboarding_step7_detail">Mwongozo wa wijeti unapatikana kwenye skrini hii wakati wowote.</string>
+    <string name="onboarding_step8_title">Kanuni binafsi ya msanidi</string>
+    <string name="onboarding_step8_detail">Msanidi hununua tu kwa 15 au chini. Zaidi ya hapo huenda ikahitaji subira ndefu. Ni kanuni binafsi, si ushauri wa uwekezaji.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Gusa na ushikilie eneo tupu kwenye skrini yako ya mwanzo, kisha ugonge Wijeti.</string>
+    <string name="widget_guide_step2">Tafuta «Kipimo cha Hofu na Tamaa» kwenye orodha ya wijeti.</string>
+    <string name="widget_guide_step3">Chagua kipimo unachotaka — Global, KOSPI au Crypto — au wijeti ya yote kwa pamoja.</string>
+    <string name="widget_guide_step4">Iburute hadi kwenye skrini yako ya mwanzo na uiweke mahali unapopenda.</string>
+    <string name="widget_guide_step5">Gonga wijeti wakati wowote ili kufungua programu.</string>
+    <string name="widget_market_description">Kipimo cha Hofu na Tamaa cha Global (S&amp;P 500)</string>
+    <string name="widget_kospi_description">Kipimo cha Hofu na Tamaa cha KOSPI</string>
+    <string name="widget_crypto_description">Kipimo cha Hofu na Tamaa cha Crypto (BTC)</string>
+    <string name="widget_dashboard_description">Vipimo vyote vitatu vya hofu na tamaa</string>
 </resources>

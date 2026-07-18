@@ -2,6 +2,7 @@ package th1ngjin.fearindex.presentation.feature.vote
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -46,6 +47,9 @@ import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.RepresentativeIndexInfoSheet
 import th1ngjin.fearindex.presentation.component.StuckCounterCard
+import th1ngjin.fearindex.presentation.feature.onboarding.LocalOnboardingTour
+import th1ngjin.fearindex.presentation.feature.onboarding.OnboardingAnchor
+import th1ngjin.fearindex.presentation.feature.onboarding.tourAnchor
 import th1ngjin.fearindex.presentation.component.StuckDetailSheet
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
@@ -76,6 +80,7 @@ fun VoteScreen(
     val myStuckStatus by voteViewModel.myStatusFor(selectedType).collectAsState()
 
     var showStuckDetail by rememberSaveable { mutableStateOf(false) }
+    val tour = LocalOnboardingTour.current
 
     val context = LocalContext.current
     val analytics = remember(context) {
@@ -159,7 +164,8 @@ fun VoteScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Stuck Counter Card
+        // Stuck Counter Card — 온보딩 5단계(물렸어요) 앵커
+        Box(modifier = Modifier.tourAnchor(tour, OnboardingAnchor.VOTE)) {
         StuckCounterCard(
             stuckPercentage = stuckResult.stuckPercentage.toFloat(),
             myStatus = myStuckStatus.toUi(),
@@ -181,6 +187,7 @@ fun VoteScreen(
             onInfoClick = { showStuckDetail = true },
             totalResponded = stuckResult.totalResponded,
         )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 

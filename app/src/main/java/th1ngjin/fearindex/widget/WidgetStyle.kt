@@ -1,0 +1,36 @@
+package th1ngjin.fearindex.widget
+
+import androidx.compose.ui.graphics.Color
+
+/**
+ * 위젯 전용 색상/스타일 상수.
+ *
+ * presentation 모듈의 [th1ngjin.fearindex.presentation.theme.fearScoreColor] 와 값이 동일하지만,
+ * Glance 는 자체 ColorProvider 를 쓰므로 Compose-UI Color 로 로컬 사본을 유지한다
+ * (presentation 의존을 위젯 렌더 코드에 끌어들이지 않기 위함).
+ */
+
+// Fear score 색상 — presentation/theme/Color.kt 와 1:1 동일
+private val WidgetExtremeFear = Color(0xFFE53935) // 0-24
+private val WidgetFear = Color(0xFFFF9800)        // 25-44
+private val WidgetNeutral = Color(0xFFB59000)     // 45-55
+private val WidgetGreed = Color(0xFF4CAF50)       // 56-75
+private val WidgetExtremeGreed = Color(0xFF26A69A) // 76-100
+
+/** 데이터 로드 실패 시 중립 placeholder 배경. */
+val WidgetPlaceholderColor = Color(0xFF5A5A5A)
+
+/** 컬러 배경 위 텍스트 — 대비를 위해 흰색/근접 흰색. */
+val WidgetTextColor = Color(0xFFFFFFFF)
+val WidgetTextColorDim = Color(0xFFF2F2F2)
+
+/** 대시보드 위젯의 바깥 배경. */
+val WidgetDashboardBackground = Color(0xFF1E1E1E)
+
+fun widgetFearScoreColor(score: Int): Color = when {
+    score <= 24 -> WidgetExtremeFear
+    score <= 44 -> WidgetFear
+    score <= 55 -> WidgetNeutral
+    score <= 75 -> WidgetGreed
+    else -> WidgetExtremeGreed
+}

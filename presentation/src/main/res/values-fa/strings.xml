@@ -386,4 +386,42 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">بعدی</string>
+    <string name="onboarding_skip">رد شدن</string>
+    <string name="onboarding_start">شروع</string>
+    <string name="settings_menu_app_usage">راهنمای برنامه</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">بازار ت&amp;ط</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">رمزارز ت&amp;ط</string>
+    <string name="onboarding_step1_title">این شاخص S&amp;P 500 را دنبال می‌کند</string>
+    <string name="onboarding_step1_detail">ترس و طمع بازار آمریکا را با یک عدد از 0 تا 100 نشان می‌دهد. هرچه پایین‌تر ترس بیشتر، هرچه بالاتر طمع بیشتر.</string>
+    <string name="onboarding_step2_title">این شاخص KOSPI را دنبال می‌کند</string>
+    <string name="onboarding_step2_detail">به همین شکل می‌توانید احساسات بازار کره را ببینید. هر زمان خواستید از بخش‌های بالا تغییر دهید.</string>
+    <string name="onboarding_step3_title">این شاخص BTC را دنبال می‌کند</string>
+    <string name="onboarding_step3_detail">ترس و طمع بازار رمزارز هم در همین مقیاس است.</string>
+    <string name="onboarding_step4_title">اگر در این امتیاز خریده بودید چه می‌شد؟</string>
+    <string name="onboarding_step4_detail">میانگین بازده تاریخی هنگام خرید در محدوده امتیاز فعلی است. تضمینی نیست؛ با احتیاط به‌عنوان مرجع در نظر بگیرید.</string>
+    <string name="onboarding_step5_title">به وضعیت فعلی‌تان رأی دهید</string>
+    <string name="onboarding_step5_detail">با یک لمس وضعیت خود را ثبت کنید و احساسات سرمایه‌گذاران سراسر جهان را به‌صورت زنده ببینید.</string>
+    <string name="onboarding_step6_title">در لحظه مناسب خبر می‌دهیم</string>
+    <string name="onboarding_step6_detail">اعلان تنظیم کنید تا به محض رسیدن شاخص به سطح شما خبر دهیم.</string>
+    <string name="onboarding_step7_title">با ویجت‌ها سریع‌تر</string>
+    <string name="onboarding_step7_detail">راهنمای ویجت‌ها همیشه در این صفحه است.</string>
+    <string name="onboarding_step8_title">قاعده شخصی توسعه‌دهنده</string>
+    <string name="onboarding_step8_detail">توسعه‌دهنده فقط در 15 یا پایین‌تر می‌خرد. بالاتر شاید صبری طولانی بخواهد. قاعده‌ای شخصی است، نه توصیه سرمایه‌گذاری.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">روی یک ناحیه خالی در صفحه اصلی خود لمس کرده و نگه دارید، سپس روی ویجت‌ها بزنید.</string>
+    <string name="widget_guide_step2">«شاخص ترس و طمع» را در فهرست ویجت‌ها پیدا کنید.</string>
+    <string name="widget_guide_step3">شاخص مورد نظر خود را انتخاب کنید — جهانی، KOSPI یا ارز دیجیتال — یا ویجت همه‌کاره.</string>
+    <string name="widget_guide_step4">آن را به صفحه اصلی بکشید و هرجا که دوست دارید قرار دهید.</string>
+    <string name="widget_guide_step5">هر زمان روی ویجت بزنید تا برنامه باز شود.</string>
+    <string name="widget_market_description">شاخص ترس و طمع جهانی (S&amp;P 500)</string>
+    <string name="widget_kospi_description">شاخص ترس و طمع KOSPI</string>
+    <string name="widget_crypto_description">شاخص ترس و طمع ارز دیجیتال (BTC)</string>
+    <string name="widget_dashboard_description">هر سه شاخص ترس و طمع</string>
 </resources>

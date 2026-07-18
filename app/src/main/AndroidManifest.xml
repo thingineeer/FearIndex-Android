@@ -87,6 +87,51 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="fear_index_alerts" />
 
+        <!-- 홈 화면 App Widget (Glance) — 3개 단일 지수 + 1개 대시보드 -->
+        <receiver
+            android:name=".widget.MarketFearWidgetReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_market_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.KospiFearWidgetReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_kospi_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.CryptoFearWidgetReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_crypto_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.DashboardFearWidgetReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_dashboard_info" />
+        </receiver>
+
     </application>
 
 </manifest>

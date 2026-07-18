@@ -35,6 +35,7 @@ import th1ngjin.fearindex.data.repository.NotificationRepositoryImpl
 import th1ngjin.fearindex.data.repository.VoteRepositoryImpl
 import th1ngjin.fearindex.data.service.StuckStatusDebouncerImpl
 import th1ngjin.fearindex.domain.repository.CryptoFearIndexRepository
+import th1ngjin.fearindex.data.storage.OnboardingStorage
 import th1ngjin.fearindex.data.storage.StuckCounterStorage
 import th1ngjin.fearindex.domain.repository.FearIndexRepository
 import th1ngjin.fearindex.domain.repository.KospiFearIndexRepository
@@ -45,6 +46,7 @@ import th1ngjin.fearindex.domain.repository.SimilarEventsRepository
 import th1ngjin.fearindex.domain.repository.StuckCounterRepository
 import th1ngjin.fearindex.domain.repository.VoteRepository
 import th1ngjin.fearindex.domain.service.DeviceIdProvider
+import th1ngjin.fearindex.domain.service.OnboardingStore
 import th1ngjin.fearindex.domain.service.StuckStatusDebouncer
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
@@ -117,6 +119,10 @@ abstract class DataBindModule {
     @Binds
     @Singleton
     abstract fun bindDeviceIdProvider(impl: StuckCounterStorage): DeviceIdProvider
+
+    @Binds
+    @Singleton
+    abstract fun bindOnboardingStore(impl: OnboardingStorage): OnboardingStore
 
     @Binds
     @Singleton

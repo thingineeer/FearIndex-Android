@@ -1,0 +1,1 @@
+Adicionamos widgets de tela inicial e um guia do app, e melhoramos as configurações de notificação.

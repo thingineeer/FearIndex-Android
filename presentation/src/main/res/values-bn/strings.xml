@@ -390,4 +390,42 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">পরবর্তী</string>
+    <string name="onboarding_skip">এড়িয়ে যান</string>
+    <string name="onboarding_start">শুরু করুন</string>
+    <string name="settings_menu_app_usage">অ্যাপ গাইড</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">বাজার ভ&amp;ল</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">ক্রিপ্টো ভ&amp;ল</string>
+    <string name="onboarding_step1_title">এই সূচক S&amp;P 500 অনুসরণ করে</string>
+    <string name="onboarding_step1_detail">মার্কিন বাজারের ভয় ও লোভ 0 থেকে 100 পর্যন্ত একটি সংখ্যায় দেখায়। যত কম তত ভয়, যত বেশি তত লোভ।</string>
+    <string name="onboarding_step2_title">এই সূচক KOSPI অনুসরণ করে</string>
+    <string name="onboarding_step2_detail">একইভাবে কোরিয়ান বাজারের মনোভাবও দেখতে পারেন। উপরের সেগমেন্ট থেকে যেকোনো সময় বদলান।</string>
+    <string name="onboarding_step3_title">এই সূচক BTC অনুসরণ করে</string>
+    <string name="onboarding_step3_detail">ক্রিপ্টো বাজারের ভয় ও লোভও একই স্কেলে দেখুন।</string>
+    <string name="onboarding_step4_title">এই স্কোরে কিনলে কেমন হতো?</string>
+    <string name="onboarding_step4_detail">বর্তমান স্কোরে কেনার ঐতিহাসিক গড় রিটার্ন। নিশ্চিত নয়, সাবধানে রেফারেন্স হিসেবে দেখুন।</string>
+    <string name="onboarding_step5_title">আপনার এখনকার অবস্থায় ভোট দিন</string>
+    <string name="onboarding_step5_detail">এক ট্যাপে আপনার অবস্থা জানান এবং বিশ্বজুড়ে বিনিয়োগকারীদের মনোভাব রিয়েল-টাইমে দেখুন।</string>
+    <string name="onboarding_step6_title">সঠিক সময়ে জানিয়ে দেব</string>
+    <string name="onboarding_step6_detail">অ্যালার্ট সেট করুন, সূচক আপনার স্তরে পৌঁছালেই জানিয়ে দেব।</string>
+    <string name="onboarding_step7_title">উইজেটে আরও দ্রুত দেখুন</string>
+    <string name="onboarding_step7_detail">উইজেট গাইড এই স্ক্রিনে যেকোনো সময় দেখা যায়।</string>
+    <string name="onboarding_step8_title">ডেভেলপারের ব্যক্তিগত নিয়ম</string>
+    <string name="onboarding_step8_detail">ডেভেলপার শুধু 15 বা তার নিচে কেনেন। এর উপরে দীর্ঘ ধৈর্য লাগতে পারে। এটি ব্যক্তিগত নিয়ম, বিনিয়োগ পরামর্শ নয়।</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">আপনার হোম স্ক্রিনের ফাঁকা জায়গায় চেপে ধরে রাখুন, তারপর উইজেট-এ ট্যাপ করুন।</string>
+    <string name="widget_guide_step2">উইজেট তালিকায় «ভয় ও লোভ সূচক» খুঁজুন।</string>
+    <string name="widget_guide_step3">আপনার পছন্দের সূচক বেছে নিন — গ্লোবাল, KOSPI বা ক্রিপ্টো — অথবা অল-ইন-ওয়ান উইজেট।</string>
+    <string name="widget_guide_step4">এটি আপনার হোম স্ক্রিনে টেনে এনে পছন্দমতো জায়গায় রাখুন।</string>
+    <string name="widget_guide_step5">অ্যাপ খুলতে যেকোনো সময় উইজেটে ট্যাপ করুন।</string>
+    <string name="widget_market_description">গ্লোবাল (S&amp;P 500) ভয় ও লোভ</string>
+    <string name="widget_kospi_description">KOSPI ভয় ও লোভ</string>
+    <string name="widget_crypto_description">ক্রিপ্টো (BTC) ভয় ও লোভ</string>
+    <string name="widget_dashboard_description">তিনটি ভয় ও লোভ সূচক একসাথে</string>
 </resources>

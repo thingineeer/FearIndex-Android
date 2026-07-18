@@ -1,0 +1,1 @@
+Dodani su widgeti početnog zaslona i vodič kroz aplikaciju te su poboljšane postavke obavijesti.

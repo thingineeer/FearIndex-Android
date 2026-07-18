@@ -14,6 +14,14 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-07-18, v1.4.1 — 온보딩 코치마크 투어 + 위젯, iOS v1.9.3 parity)
+
+- **브랜치 `feature/v1.4.1-onboarding-tour`** (dev 기준, 5커밋, **미푸시·미머지·미배포** — 유저 승인 게이트). 상세: @memory/bugs-fixed.md 35·36번, @docs/checkpoints/ONBOARDING-WIDGET-PLAN.md.
+- **완료**: 8단계 첫실행 코치마크 투어(딤+컷아웃+마칭앤츠 링, Compose) + 신규설치 게이팅(`stuck_counter_prefs/deviceId` FCM 전 프로브 → `onboarding_prefs`) + Glance 위젯 4종(2×2 글로벌/코스피/암호화폐 + 4×2 대시보드) + 위젯 사용법 가이드 + 설정 "앱 사용법"(재생)/"위젯 사용법" 행. GA `onboarding_done/skip(step)`.
+- **검증**: build+테스트 GREEN, E2E 15/15(스크린샷 8단계·2단계 KOSPI 자동·3시나리오·재생·GA·광고 미노출), 일본어 로케일 렌더 확인. 20키 45 locale iOS-verbatim + 감수 패널 must-fix 0. 위젯 43 locale 번역.
+- **버그 fix**: 알림 권한 다이얼로그가 투어를 가리던 문제 → `notificationPromptResolved` 게이팅(bugs-fixed 35).
+- **남은 것 (유저 승인 후)**: 버전 확정(1.4.1/vc?), dev 머지 + push, 위젯 실기기 배치 시각 최종확인, 배포는 승인 게이트. **v1.4.0 자체가 아직 미배포**(아래 참조)라 버전/머지 순서 유저와 조율 필요.
+
 ## 최신 상태 (2026-07-06, v1.4.0 dev 통합 — iOS v1.8.8 parity)
 
 ### ⚠️ 2026-07-07 업데이트 — v1.4.0에서 IAP 제외 + 설정/알림 UX 정리 (배포 차단 원인 규명)
@@ -24,6 +32,7 @@
 - **알림 설정 UI 재설계 (bugs-fixed 46번)**: 탭/토글 중복 혼란 → iOS parity 허브+상세 구조로. 허브(마스터+자산별[아이콘+이름+Switch+화살표]4행) + 상세(NotificationDetailScreen 신규, 하한 빨강/상한 초록 슬라이더). Material 3. 실기기 릴리즈 검증 완료.
 - **현재 dev**: `1.4.0`/`vc18`. dev 머지 완료(feature/v1.4.0-no-iap + feature/v1.4.0-settings-ux, --no-ff). **703 테스트 GREEN, 실기기 릴리즈 검증 완료.** changelog 18(45 locale, IAP 문구 제거) 준비 완료. **push 완료(dev/release/v1.3.0 태그).**
 - **배포 대기 상태 (7/7 저녁 재확인)**: fastlane production 재시도(2회)도 동일 Korean law 게이트 차단 → 사용자 지시로 배포 보류. **다음 세션에서 배포하려면: 사용자가 통신판매업 신고 → Play Console 결제 프로필 "비즈니스 연락처 세부정보"에 신고번호 입력 → `bundle exec fastlane production` 재실행 → 게시·전파 확인 → RC로 Android 선택 업데이트(minimum_app_version) 1.4.0 게시.**
+- **⚠️ 2026-07-18 게이트 해제 요건 충족**: 통신판매업 재발급 완료(등록면허세 40,500원 납부, 면허번호 **`2026-서울영등포-1656`**, 신고기관 서울특별시 영등포구, 상호 이매진, 3종). Play Console 계정 세부정보 "한국 개발자의 경우 추가 정보 필요"에 사업자등록번호 `1263501870` + 전자상거래 라이선스 번호 + 대행사 **저장 확인**(새로고침 후 유지 검증, Chrome MCP). `.env`에 `ECOMMERCE_LICENSE_*` 키 추가·푸시. **남은 것: fastlane 재실행으로 게이트 실해제 검증(업로드=배포 행위라 유저 승인 게이트).** 계정은 조직 계정(이매진, DUNS 696610806) 전환 완료 상태 확인.
 - **브랜치 정리 완료 (7/7)**: dev에 머지된 로컬 피처 브랜치 11개(feature/v1.4.0*, v1.4.1*) 삭제. 남은 브랜치 = dev/main/release (로컬·리모트 동일).
 
 ---

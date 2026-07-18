@@ -386,4 +386,42 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">下一步</string>
+    <string name="onboarding_skip">略過</string>
+    <string name="onboarding_start">開始使用</string>
+    <string name="settings_menu_app_usage">App 使用指南</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">市場 F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">加密貨幣 F&amp;G</string>
+    <string name="onboarding_step1_title">此指數追蹤 S&amp;P 500</string>
+    <string name="onboarding_step1_detail">以0到100的一個數字呈現美國市場的恐懼與貪婪。數字越低越恐懼，越高越貪婪。</string>
+    <string name="onboarding_step2_title">此指數追蹤KOSPI</string>
+    <string name="onboarding_step2_detail">以同樣方式查看韓國市場情緒，隨時可用上方分段切換。</string>
+    <string name="onboarding_step3_title">此指數跟隨BTC</string>
+    <string name="onboarding_step3_detail">加密貨幣市場的恐懼與貪婪也用同一刻度查看。</string>
+    <string name="onboarding_step4_title">如果在這個分數買入會如何？</string>
+    <string name="onboarding_step4_detail">這是在目前分數區間買入的歷史平均報酬率。並非保證，請謹慎參考。</string>
+    <string name="onboarding_step5_title">投票記錄你現在的狀態</string>
+    <string name="onboarding_step5_detail">輕輕一點留下你的狀態，即時掌握全球投資人的心理。</string>
+    <string name="onboarding_step6_title">在關鍵時刻提醒你</string>
+    <string name="onboarding_step6_detail">設定提醒後，指數一到達該點位就立即通知你。</string>
+    <string name="onboarding_step7_title">用小工具更快查看</string>
+    <string name="onboarding_step7_detail">小工具使用方式隨時可在此頁面查看。</string>
+    <string name="onboarding_step8_title">開發者的個人標準</string>
+    <string name="onboarding_step8_detail">開發者只在15以下買入，高於此可能需要長久的耐心。這只是個人標準，並非投資建議。</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">長按主畫面的空白處，然後點選「小工具」。</string>
+    <string name="widget_guide_step2">在小工具清單中找到「恐懼與貪婪指數」。</string>
+    <string name="widget_guide_step3">選擇想要的指數（全球、KOSPI、加密貨幣）或整合小工具。</string>
+    <string name="widget_guide_step4">將它拖到主畫面，放在喜歡的位置。</string>
+    <string name="widget_guide_step5">隨時點選小工具即可開啟應用程式。</string>
+    <string name="widget_market_description">全球（S&amp;P 500）恐懼與貪婪</string>
+    <string name="widget_kospi_description">KOSPI 恐懼與貪婪</string>
+    <string name="widget_crypto_description">加密貨幣（BTC）恐懼與貪婪</string>
+    <string name="widget_dashboard_description">三大恐懼與貪婪指數一覽</string>
 </resources>

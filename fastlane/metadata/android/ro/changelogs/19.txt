@@ -1,0 +1,1 @@
+Am adăugat widgeturi pentru ecranul principal și un ghid de utilizare și am îmbunătățit setările de notificare.

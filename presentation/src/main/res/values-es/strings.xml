@@ -387,4 +387,42 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Siguiente</string>
+    <string name="onboarding_skip">Omitir</string>
+    <string name="onboarding_start">Empezar</string>
+    <string name="settings_menu_app_usage">Guía de la app</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Mercado F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Cripto F&amp;G</string>
+    <string name="onboarding_step1_title">Este índice sigue al S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Muestra el miedo y la codicia del mercado de EE. UU. en un solo número de 0 a 100. Cuanto más bajo, más miedo; cuanto más alto, más codicia.</string>
+    <string name="onboarding_step2_title">Este índice sigue al KOSPI</string>
+    <string name="onboarding_step2_detail">Consulta igual el sentimiento del mercado coreano. Cambia cuando quieras con los segmentos de arriba.</string>
+    <string name="onboarding_step3_title">Este índice sigue al BTC</string>
+    <string name="onboarding_step3_detail">El miedo y la codicia del mercado cripto también se ven en la misma escala.</string>
+    <string name="onboarding_step4_title">¿Y si hubieras comprado con esta puntuación?</string>
+    <string name="onboarding_step4_detail">Es el rendimiento medio histórico al comprar en esta puntuación. No está garantizado; úsalo con prudencia.</string>
+    <string name="onboarding_step5_title">Vota tu situación actual</string>
+    <string name="onboarding_step5_detail">Deja tu estado con un toque y conoce en tiempo real el sentimiento de inversores de todo el mundo.</string>
+    <string name="onboarding_step6_title">Te avisamos en el momento justo</string>
+    <string name="onboarding_step6_detail">Configura una alerta y te avisaremos en cuanto el índice llegue a tu nivel.</string>
+    <string name="onboarding_step7_title">Aún más rápido con widgets</string>
+    <string name="onboarding_step7_detail">Puedes ver la guía de widgets en esta pantalla cuando quieras.</string>
+    <string name="onboarding_step8_title">La regla personal del desarrollador</string>
+    <string name="onboarding_step8_detail">El desarrollador solo compra a 15 o menos. Por encima puede exigir mucha paciencia. Es una regla personal, no un consejo de inversión.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Mantén pulsada una zona vacía de la pantalla de inicio y toca Widgets.</string>
+    <string name="widget_guide_step2">Busca "Índice de Miedo y Codicia" en la lista de widgets.</string>
+    <string name="widget_guide_step3">Elige el índice que quieras (Global, KOSPI o Cripto) o el widget todo en uno.</string>
+    <string name="widget_guide_step4">Arrástralo a la pantalla de inicio y colócalo donde prefieras.</string>
+    <string name="widget_guide_step5">Toca el widget cuando quieras para abrir la app.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Miedo y Codicia</string>
+    <string name="widget_kospi_description">KOSPI — Miedo y Codicia</string>
+    <string name="widget_crypto_description">Cripto (BTC) — Miedo y Codicia</string>
+    <string name="widget_dashboard_description">Los tres índices de miedo y codicia</string>
 </resources>

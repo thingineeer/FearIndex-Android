@@ -390,4 +390,42 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">ถัดไป</string>
+    <string name="onboarding_skip">ข้าม</string>
+    <string name="onboarding_start">เริ่มต้น</string>
+    <string name="settings_menu_app_usage">วิธีใช้แอป</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">ตลาด F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">คริปโต F&amp;G</string>
+    <string name="onboarding_step1_title">ดัชนีนี้อิงตาม S&amp;P 500</string>
+    <string name="onboarding_step1_detail">แสดงความกลัวและความโลภของตลาดสหรัฐฯ ด้วยตัวเลขเดียวตั้งแต่ 0 ถึง 100 ยิ่งต่ำยิ่งกลัว ยิ่งสูงยิ่งโลภ</string>
+    <string name="onboarding_step2_title">ดัชนีนี้อิงตาม KOSPI</string>
+    <string name="onboarding_step2_detail">ดูอารมณ์ตลาดเกาหลีได้ในแบบเดียวกัน สลับได้ทุกเมื่อจากแถบด้านบน</string>
+    <string name="onboarding_step3_title">ดัชนีนี้อิงตาม BTC</string>
+    <string name="onboarding_step3_detail">ความกลัวและความโลภของตลาดคริปโตก็ดูได้ในสเกลเดียวกัน</string>
+    <string name="onboarding_step4_title">ถ้าซื้อที่คะแนนนี้จะเป็นอย่างไร?</string>
+    <string name="onboarding_step4_detail">คือผลตอบแทนเฉลี่ยในอดีตเมื่อซื้อที่ช่วงคะแนนปัจจุบัน ไม่ได้การันตี โปรดใช้อ้างอิงอย่างระมัดระวัง</string>
+    <string name="onboarding_step5_title">โหวตสถานะของคุณตอนนี้</string>
+    <string name="onboarding_step5_detail">บันทึกสถานะด้วยแตะเดียว แล้วดูอารมณ์นักลงทุนทั่วโลกแบบเรียลไทม์</string>
+    <string name="onboarding_step6_title">แจ้งเตือนในจังหวะที่ใช่</string>
+    <string name="onboarding_step6_detail">ตั้งการแจ้งเตือนไว้ เราจะแจ้งทันทีที่ดัชนีแตะระดับของคุณ</string>
+    <string name="onboarding_step7_title">เช็กเร็วขึ้นด้วยวิดเจ็ต</string>
+    <string name="onboarding_step7_detail">วิธีใช้วิดเจ็ตดูได้ทุกเมื่อในหน้านี้</string>
+    <string name="onboarding_step8_title">กฎส่วนตัวของผู้พัฒนา</string>
+    <string name="onboarding_step8_detail">ผู้พัฒนาซื้อเฉพาะที่ 15 หรือต่ำกว่า สูงกว่านั้นอาจต้องอดทนนาน เป็นกฎส่วนตัว ไม่ใช่คำแนะนำการลงทุน</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">แตะค้างที่พื้นที่ว่างบนหน้าจอหลัก แล้วแตะวิดเจ็ต</string>
+    <string name="widget_guide_step2">ค้นหา "ดัชนีความกลัวและความโลภ" ในรายการวิดเจ็ต</string>
+    <string name="widget_guide_step3">เลือกดัชนีที่ต้องการ — ทั่วโลก, KOSPI หรือคริปโต — หรือวิดเจ็ตรวมทุกอย่างในหนึ่งเดียว</string>
+    <string name="widget_guide_step4">ลากไปที่หน้าจอหลักและวางในตำแหน่งที่ต้องการ</string>
+    <string name="widget_guide_step5">แตะวิดเจ็ตเมื่อใดก็ได้เพื่อเปิดแอป</string>
+    <string name="widget_market_description">ความกลัวและความโลภทั่วโลก (S&amp;P 500)</string>
+    <string name="widget_kospi_description">ความกลัวและความโลภ KOSPI</string>
+    <string name="widget_crypto_description">ความกลัวและความโลภคริปโต (BTC)</string>
+    <string name="widget_dashboard_description">ทั้งสามดัชนีความกลัวและความโลภ</string>
 </resources>

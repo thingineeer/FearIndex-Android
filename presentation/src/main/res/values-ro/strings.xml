@@ -387,4 +387,44 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Înainte</string>
+    <string name="onboarding_skip">Omite</string>
+    <string name="onboarding_start">Începe</string>
+    <string name="settings_menu_app_usage">Ghidul aplicației</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Piață F&amp;L</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Crypto F&amp;L</string>
+    <string name="onboarding_step1_title">Acest indice urmărește S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Arată frica și lăcomia pieței americane printr-un singur număr de la 0 la 100. Mai mic înseamnă frică, mai mare înseamnă lăcomie.</string>
+    <string name="onboarding_step2_title">Acest indice urmărește KOSPI</string>
+    <string name="onboarding_step2_detail">Vezi în același mod sentimentul pieței coreene. Comută oricând din segmentele de sus.</string>
+    <string name="onboarding_step3_title">Acest indice urmărește BTC</string>
+    <string name="onboarding_step3_detail">Frica și lăcomia pieței cripto apar pe aceeași scală.</string>
+    <string name="onboarding_step4_title">Dacă ai fi cumpărat la acest scor?</string>
+    <string name="onboarding_step4_detail">Randamentul mediu istoric la cumpărarea în intervalul actual de scor. Nu este garantat — folosește-l cu prudență.</string>
+    <string name="onboarding_step5_title">Votează situația ta de acum</string>
+    <string name="onboarding_step5_detail">Lasă-ți statusul cu o atingere și urmărește în timp real sentimentul investitorilor din toată lumea.</string>
+    <string name="onboarding_step6_title">Te anunțăm la momentul potrivit</string>
+    <string name="onboarding_step6_detail">Setează o alertă și te anunțăm imediat ce indicele atinge nivelul tău.</string>
+    <string name="onboarding_step7_title">Și mai rapid cu widgeturi</string>
+    <string name="onboarding_step7_detail">Ghidul widgeturilor este mereu pe acest ecran.</string>
+    <string name="onboarding_step8_title">Regula personală a dezvoltatorului</string>
+    <string name="onboarding_step8_detail">Dezvoltatorul cumpără doar la 15 sau mai jos. Peste acest nivel, poate fi nevoie de multă răbdare. Este o regulă personală, nu un sfat de investiții.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Atinge și ține apăsat un loc gol de pe ecranul principal, apoi atinge „Widgeturi“.</string>
+    <string name="widget_guide_step2">Găsește „Indicele fricii și lăcomiei“ în lista de widgeturi.</string>
+    <string name="widget_guide_step3">Alege indicele dorit — global, KOSPI sau cripto — sau widgetul all-in-one.</string>
+    <string name="widget_guide_step4">Trage-l pe ecranul principal și așază-l unde îți place.</string>
+    <string name="widget_guide_step5">Atinge widgetul oricând pentru a deschide aplicația.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Indicele global (S&amp;P 500) al fricii și lăcomiei</string>
+    <string name="widget_kospi_description">Indicele KOSPI al fricii și lăcomiei</string>
+    <string name="widget_crypto_description">Indicele cripto (BTC) al fricii și lăcomiei</string>
+    <string name="widget_dashboard_description">Toți cei trei indici ai fricii și lăcomiei</string>
 </resources>

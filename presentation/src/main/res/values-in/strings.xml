@@ -386,4 +386,42 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Berikutnya</string>
+    <string name="onboarding_skip">Lewati</string>
+    <string name="onboarding_start">Mulai</string>
+    <string name="settings_menu_app_usage">Panduan aplikasi</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Pasar F&amp;K</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto F&amp;K</string>
+    <string name="onboarding_step1_title">Indeks ini mengikuti S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Menampilkan rasa takut dan serakah pasar AS dalam satu angka dari 0 sampai 100. Makin rendah makin takut, makin tinggi makin serakah.</string>
+    <string name="onboarding_step2_title">Indeks ini mengikuti KOSPI</string>
+    <string name="onboarding_step2_detail">Lihat sentimen pasar Korea dengan cara yang sama. Ganti kapan saja lewat segmen di atas.</string>
+    <string name="onboarding_step3_title">Indeks ini mengikuti BTC</string>
+    <string name="onboarding_step3_detail">Rasa takut dan serakah pasar kripto juga di skala yang sama.</string>
+    <string name="onboarding_step4_title">Bagaimana jika membeli di skor ini?</string>
+    <string name="onboarding_step4_detail">Rata-rata imbal hasil historis saat membeli di kisaran skor sekarang. Tidak dijamin, gunakan dengan hati-hati.</string>
+    <string name="onboarding_step5_title">Vote kondisimu sekarang</string>
+    <string name="onboarding_step5_detail">Tinggalkan statusmu dengan sekali ketuk dan pantau sentimen investor sedunia secara real-time.</string>
+    <string name="onboarding_step6_title">Kami beri tahu di saat yang tepat</string>
+    <string name="onboarding_step6_detail">Pasang notifikasi, kami kabari begitu indeks menyentuh level pilihanmu.</string>
+    <string name="onboarding_step7_title">Lebih cepat dengan widget</string>
+    <string name="onboarding_step7_detail">Panduan widget selalu bisa dilihat di layar ini.</string>
+    <string name="onboarding_step8_title">Aturan pribadi developer</string>
+    <string name="onboarding_step8_detail">Developer hanya membeli di 15 atau lebih rendah. Di atas itu mungkin butuh kesabaran panjang. Aturan pribadi, bukan saran investasi.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Sentuh dan tahan area kosong di layar utama, lalu ketuk Widget.</string>
+    <string name="widget_guide_step2">Temukan "Indeks Ketakutan &amp; Keserakahan" di daftar widget.</string>
+    <string name="widget_guide_step3">Pilih indeks yang Anda mau — Global, KOSPI, atau Kripto — atau widget lengkap semua-dalam-satu.</string>
+    <string name="widget_guide_step4">Seret ke layar utama dan letakkan di tempat yang Anda suka.</string>
+    <string name="widget_guide_step5">Ketuk widget kapan saja untuk membuka aplikasi.</string>
+    <string name="widget_market_description">Ketakutan &amp; Keserakahan Global (S&amp;P 500)</string>
+    <string name="widget_kospi_description">Ketakutan &amp; Keserakahan KOSPI</string>
+    <string name="widget_crypto_description">Ketakutan &amp; Keserakahan Kripto (BTC)</string>
+    <string name="widget_dashboard_description">Ketiga indeks ketakutan &amp; keserakahan</string>
 </resources>

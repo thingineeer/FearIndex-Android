@@ -387,4 +387,42 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Volgende</string>
+    <string name="onboarding_skip">Overslaan</string>
+    <string name="onboarding_start">Aan de slag</string>
+    <string name="settings_menu_app_usage">App-handleiding</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Markt A&amp;H</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Crypto A&amp;H</string>
+    <string name="onboarding_step1_title">Deze index volgt de S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Hij toont angst en hebzucht van de Amerikaanse markt als één getal van 0 tot 100. Lager is angst, hoger is hebzucht.</string>
+    <string name="onboarding_step2_title">Deze index volgt de KOSPI</string>
+    <string name="onboarding_step2_detail">Bekijk zo ook het sentiment van de Koreaanse markt. Wissel wanneer je wilt met de segmenten hierboven.</string>
+    <string name="onboarding_step3_title">Deze index volgt BTC</string>
+    <string name="onboarding_step3_detail">Ook angst en hebzucht van de cryptomarkt zie je op dezelfde schaal.</string>
+    <string name="onboarding_step4_title">Wat als je op deze score had gekocht?</string>
+    <string name="onboarding_step4_detail">Het historisch gemiddelde rendement bij kopen op deze score. Geen garantie, dus gebruik het voorzichtig.</string>
+    <string name="onboarding_step5_title">Stem over je huidige situatie</string>
+    <string name="onboarding_step5_detail">Laat met één tik je status achter en volg realtime het sentiment van beleggers wereldwijd.</string>
+    <string name="onboarding_step6_title">We waarschuwen je op het juiste moment</string>
+    <string name="onboarding_step6_detail">Stel een melding in en we laten het weten zodra de index jouw niveau bereikt.</string>
+    <string name="onboarding_step7_title">Nog sneller met widgets</string>
+    <string name="onboarding_step7_detail">De widgethandleiding vind je altijd op dit scherm.</string>
+    <string name="onboarding_step8_title">De persoonlijke regel van de ontwikkelaar</string>
+    <string name="onboarding_step8_detail">De ontwikkelaar koopt alleen bij 15 of lager. Daarboven kan veel geduld nodig zijn. Persoonlijke regel, geen beleggingsadvies.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Houd een lege plek op je startscherm ingedrukt en tik op Widgets.</string>
+    <string name="widget_guide_step2">Zoek "Angst &amp; Hebzucht-index" in de widgetlijst.</string>
+    <string name="widget_guide_step3">Kies de gewenste index — Global, KOSPI of Crypto — of het alles-in-één-widget.</string>
+    <string name="widget_guide_step4">Sleep het naar je startscherm en zet het waar je wilt.</string>
+    <string name="widget_guide_step5">Tik wanneer je wilt op de widget om de app te openen.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Angst &amp; Hebzucht</string>
+    <string name="widget_kospi_description">KOSPI — Angst &amp; Hebzucht</string>
+    <string name="widget_crypto_description">Crypto (BTC) — Angst &amp; Hebzucht</string>
+    <string name="widget_dashboard_description">Alle drie de angst-&amp;-hebzuchtindexen</string>
 </resources>

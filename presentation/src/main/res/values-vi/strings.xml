@@ -390,4 +390,42 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Tiếp theo</string>
+    <string name="onboarding_skip">Bỏ qua</string>
+    <string name="onboarding_start">Bắt đầu</string>
+    <string name="settings_menu_app_usage">Hướng dẫn dùng ứng dụng</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Thị trường F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Tiền mã hóa F&amp;G</string>
+    <string name="onboarding_step1_title">Chỉ số này bám theo S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Thể hiện nỗi sợ và lòng tham của thị trường Mỹ bằng một con số từ 0 đến 100. Càng thấp càng sợ hãi, càng cao càng tham lam.</string>
+    <string name="onboarding_step2_title">Chỉ số này bám theo KOSPI</string>
+    <string name="onboarding_step2_detail">Xem tâm lý thị trường Hàn Quốc theo cách tương tự. Chuyển bất cứ lúc nào bằng các phân đoạn phía trên.</string>
+    <string name="onboarding_step3_title">Chỉ số này bám theo BTC</string>
+    <string name="onboarding_step3_detail">Nỗi sợ và lòng tham của thị trường crypto cũng trên cùng một thang đo.</string>
+    <string name="onboarding_step4_title">Nếu mua ở mức điểm này thì sao?</string>
+    <string name="onboarding_step4_detail">Đây là lợi nhuận trung bình trong quá khứ khi mua ở vùng điểm hiện tại. Không được đảm bảo, hãy tham khảo thận trọng.</string>
+    <string name="onboarding_step5_title">Bình chọn tình trạng của bạn</string>
+    <string name="onboarding_step5_detail">Chạm một lần để lưu trạng thái và theo dõi tâm lý nhà đầu tư toàn cầu theo thời gian thực.</string>
+    <string name="onboarding_step6_title">Báo cho bạn đúng thời điểm</string>
+    <string name="onboarding_step6_detail">Đặt thông báo và chúng tôi sẽ báo ngay khi chỉ số chạm mức của bạn.</string>
+    <string name="onboarding_step7_title">Xem nhanh hơn với widget</string>
+    <string name="onboarding_step7_detail">Hướng dẫn dùng widget luôn có ở màn hình này.</string>
+    <string name="onboarding_step8_title">Nguyên tắc cá nhân của nhà phát triển</string>
+    <string name="onboarding_step8_detail">Nhà phát triển chỉ mua khi từ 15 trở xuống. Cao hơn có thể cần kiên nhẫn lâu dài. Là nguyên tắc cá nhân, không phải lời khuyên đầu tư.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Chạm và giữ vùng trống trên màn hình chính, rồi chạm Widget.</string>
+    <string name="widget_guide_step2">Tìm "Chỉ số sợ hãi &amp; tham lam" trong danh sách widget.</string>
+    <string name="widget_guide_step3">Chọn chỉ số bạn muốn — Toàn cầu, KOSPI hoặc Crypto — hoặc widget tất cả trong một.</string>
+    <string name="widget_guide_step4">Kéo vào màn hình chính và đặt ở vị trí bạn thích.</string>
+    <string name="widget_guide_step5">Chạm vào widget bất cứ lúc nào để mở ứng dụng.</string>
+    <string name="widget_market_description">Sợ hãi &amp; tham lam toàn cầu (S&amp;P 500)</string>
+    <string name="widget_kospi_description">Sợ hãi &amp; tham lam KOSPI</string>
+    <string name="widget_crypto_description">Sợ hãi &amp; tham lam crypto (BTC)</string>
+    <string name="widget_dashboard_description">Cả ba chỉ số sợ hãi &amp; tham lam</string>
 </resources>

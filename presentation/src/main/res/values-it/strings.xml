@@ -387,4 +387,42 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Avanti</string>
+    <string name="onboarding_skip">Salta</string>
+    <string name="onboarding_start">Inizia</string>
+    <string name="settings_menu_app_usage">Guida all\'app</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Mercato F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Crypto F&amp;G</string>
+    <string name="onboarding_step1_title">Questo indice segue l\'S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Mostra paura e avidità del mercato USA con un solo numero da 0 a 100. Più è basso, maggiore è la paura; più è alto, maggiore è l\'avidità.</string>
+    <string name="onboarding_step2_title">Questo indice segue il KOSPI</string>
+    <string name="onboarding_step2_detail">Guarda allo stesso modo il sentiment del mercato coreano. Cambia quando vuoi con i segmenti in alto.</string>
+    <string name="onboarding_step3_title">Questo indice segue BTC</string>
+    <string name="onboarding_step3_detail">Anche la paura e l\'avidità del mercato crypto si leggono sulla stessa scala.</string>
+    <string name="onboarding_step4_title">E se avessi comprato a questo punteggio?</string>
+    <string name="onboarding_step4_detail">Rendimento medio storico comprando a questo punteggio. Non è garantito: usalo con prudenza.</string>
+    <string name="onboarding_step5_title">Vota la tua situazione attuale</string>
+    <string name="onboarding_step5_detail">Lascia il tuo stato con un tocco e scopri in tempo reale il sentiment degli investitori nel mondo.</string>
+    <string name="onboarding_step6_title">Ti avvisiamo al momento giusto</string>
+    <string name="onboarding_step6_detail">Imposta un avviso: ti avvertiamo appena l\'indice tocca il tuo livello.</string>
+    <string name="onboarding_step7_title">Ancora più veloce con i widget</string>
+    <string name="onboarding_step7_detail">La guida ai widget è sempre disponibile in questa schermata.</string>
+    <string name="onboarding_step8_title">La regola personale dello sviluppatore</string>
+    <string name="onboarding_step8_detail">Lo sviluppatore compra solo a 15 o meno. Sopra può servire molta pazienza. Regola personale, non un consiglio di investimento.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Tocca e tieni premuta un\'area vuota della schermata Home, poi tocca Widget.</string>
+    <string name="widget_guide_step2">Trova "Indice Paura &amp; Avidità" nell\'elenco dei widget.</string>
+    <string name="widget_guide_step3">Scegli l\'indice che vuoi — Global, KOSPI o Crypto — oppure il widget tutto-in-uno.</string>
+    <string name="widget_guide_step4">Trascinalo sulla schermata Home e posizionalo dove preferisci.</string>
+    <string name="widget_guide_step5">Tocca il widget quando vuoi per aprire l\'app.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Paura &amp; Avidità</string>
+    <string name="widget_kospi_description">KOSPI — Paura &amp; Avidità</string>
+    <string name="widget_crypto_description">Crypto (BTC) — Paura &amp; Avidità</string>
+    <string name="widget_dashboard_description">Tutti e tre gli indici di paura &amp; avidità</string>
 </resources>

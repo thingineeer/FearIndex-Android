@@ -387,4 +387,42 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Další</string>
+    <string name="onboarding_skip">Přeskočit</string>
+    <string name="onboarding_start">Začít</string>
+    <string name="settings_menu_app_usage">Průvodce aplikací</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Trh S&amp;C</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krypto S&amp;C</string>
+    <string name="onboarding_step1_title">Tento index sleduje S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Ukazuje strach a chamtivost amerického trhu jedním číslem od 0 do 100. Čím níž, tím větší strach; čím výš, tím větší chamtivost.</string>
+    <string name="onboarding_step2_title">Tento index sleduje KOSPI</string>
+    <string name="onboarding_step2_detail">Stejně můžete sledovat i náladu korejského trhu. Přepínejte kdykoli segmenty nahoře.</string>
+    <string name="onboarding_step3_title">Tento index sleduje BTC</string>
+    <string name="onboarding_step3_detail">Strach a chamtivost kryptotrhu uvidíte na stejné škále.</string>
+    <string name="onboarding_step4_title">Co kdybyste koupili při tomto skóre?</string>
+    <string name="onboarding_step4_detail">Historický průměrný výnos při nákupu na aktuální úrovni. Není zaručený — berte jej s rezervou.</string>
+    <string name="onboarding_step5_title">Hlasujte o své aktuální situaci</string>
+    <string name="onboarding_step5_detail">Jedním klepnutím zanechte svůj stav a sledujte náladu investorů po celém světě v reálném čase.</string>
+    <string name="onboarding_step6_title">Dáme vědět ve správnou chvíli</string>
+    <string name="onboarding_step6_detail">Nastavte upozornění a ozveme se, jakmile index dosáhne vaší úrovně.</string>
+    <string name="onboarding_step7_title">S widgety ještě rychleji</string>
+    <string name="onboarding_step7_detail">Návod k widgetům najdete na této obrazovce kdykoli.</string>
+    <string name="onboarding_step8_title">Osobní pravidlo vývojáře</string>
+    <string name="onboarding_step8_detail">Vývojář nakupuje jen při 15 a níže. Nad tím může být potřeba dlouhá trpělivost. Osobní pravidlo, ne investiční rada.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Klepněte a podržte prázdné místo na ploše a poté klepněte na Widgety.</string>
+    <string name="widget_guide_step2">Najděte v seznamu widgetů "Index strachu a chamtivosti".</string>
+    <string name="widget_guide_step3">Vyberte požadovaný index — Globální, KOSPI nebo Krypto — nebo widget vše v jednom.</string>
+    <string name="widget_guide_step4">Přetáhněte jej na plochu a umístěte, kam chcete.</string>
+    <string name="widget_guide_step5">Kdykoli klepněte na widget a otevře se aplikace.</string>
+    <string name="widget_market_description">Globální (S&amp;P 500) strach a chamtivost</string>
+    <string name="widget_kospi_description">KOSPI strach a chamtivost</string>
+    <string name="widget_crypto_description">Krypto (BTC) strach a chamtivost</string>
+    <string name="widget_dashboard_description">Všechny tři indexy strachu a chamtivosti</string>
 </resources>

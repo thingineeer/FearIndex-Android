@@ -9,6 +9,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import androidx.glance.appwidget.updateAll
 import com.google.android.gms.ads.MobileAds
 import java.lang.ref.WeakReference
 import com.google.firebase.FirebaseApp
@@ -32,7 +33,13 @@ import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.entity.NotificationPermissionSyncPolicy
 import th1ngjin.fearindex.domain.entity.NotificationSettings
 import th1ngjin.fearindex.domain.service.DeviceIdProvider
+import th1ngjin.fearindex.domain.service.OnboardingStore
 import th1ngjin.fearindex.notification.NotificationChannels
+import th1ngjin.fearindex.widget.CryptoFearWidget
+import th1ngjin.fearindex.widget.DashboardFearWidget
+import th1ngjin.fearindex.widget.FearWidgetUpdateWorker
+import th1ngjin.fearindex.widget.KospiFearWidget
+import th1ngjin.fearindex.widget.MarketFearWidget
 import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
@@ -46,6 +53,7 @@ class FearIndexApp : Application() {
     @Inject lateinit var appCheck: AppCheckInitializer
     @Inject lateinit var notificationRepository: Lazy<NotificationRepository>
     @Inject lateinit var deviceIdProvider: Lazy<DeviceIdProvider>
+    @Inject lateinit var onboardingStore: OnboardingStore
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
@@ -63,6 +71,8 @@ class FearIndexApp : Application() {
     override fun onCreate() {
         super.onCreate()
         setupTimber()
+        // 신규 설치 첫 실행 자격 판별 — FCM(deviceId 생성)보다 먼저 확정해야 한다.
+        onboardingStore.captureEligibilityIfNeeded()
         val screenshotMode = ScreenshotMode.isEnabled()
         initFirebase(screenshotMode)
         setupNotificationChannels()
@@ -70,6 +80,7 @@ class FearIndexApp : Application() {
             registerFCMToken()
             initAdMob()
             trackCurrentActivity()
+            FearWidgetUpdateWorker.schedule(this)
         }
         registerLifecycle(screenshotMode)
     }
@@ -190,6 +201,7 @@ class FearIndexApp : Application() {
                     analytics.log(AnalyticsEvent.앱포그라운드)
                     syncNotificationPermissionState()
                     showAppOpenAdIfEligible()
+                    refreshWidgets()
                 }
 
                 override fun onStop(owner: LifecycleOwner) {
@@ -213,6 +225,20 @@ class FearIndexApp : Application() {
             config = remoteConfig.adsConfig.value.appOpenAdConfig(),
             canRequestAds = AdRequestAvailability.canRequestAds.value,
         )
+    }
+
+    /** 앱 포그라운드 진입 시 홈 화면 위젯을 즉시 최신 지수로 갱신. */
+    private fun refreshWidgets() {
+        appScope.launch {
+            try {
+                MarketFearWidget().updateAll(this@FearIndexApp)
+                KospiFearWidget().updateAll(this@FearIndexApp)
+                CryptoFearWidget().updateAll(this@FearIndexApp)
+                DashboardFearWidget().updateAll(this@FearIndexApp)
+            } catch (e: Exception) {
+                Timber.w(e, "Widget foreground refresh failed")
+            }
+        }
     }
 
     private fun syncNotificationPermissionState() {

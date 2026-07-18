@@ -59,9 +59,13 @@ class MainActivity : ComponentActivity() {
         InAppUpdateManager(AppUpdateManagerFactory.create(this))
     }
 
+    // 알림 권한 프롬프트가 해소돼야 온보딩 투어를 띄운다(시스템 다이얼로그가 투어를 가리는 문제 방지).
+    private val notificationPromptResolved = mutableStateOf(false)
+
     private val notificationPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
             applyInitialNotificationAuthorization(granted, isFirstDecision = true)
+            notificationPromptResolved.value = true
         }
 
     private val updateLauncher =
@@ -83,6 +87,13 @@ class MainActivity : ComponentActivity() {
             FearIndexTheme {
                 var showSplash by remember { mutableStateOf(true) }
                 var forceUpdate by remember { mutableStateOf(false) }
+                var tourActive by remember { mutableStateOf(false) }
+                // QA: 첫 실행 여부 무관 투어 강제 (디버그 빌드 전용, 스크린샷/검증)
+                //   adb shell am start -n th1ngjin.fearindex.debug/th1ngjin.fearindex.MainActivity \
+                //     --ez qa_onboarding true --ei qa_onboarding_step 2
+                val qaForceTour = BuildConfig.DEBUG &&
+                    (intent?.getBooleanExtra("qa_onboarding", false) == true)
+                val qaStartStep = intent?.getIntExtra("qa_onboarding_step", 1) ?: 1
                 LaunchedEffect(Unit) {
                     // 강제 업데이트 판정을 위해 Remote Config 를 먼저 fetch.
                     runCatching { remoteConfig.fetchAndActivate() }
@@ -96,11 +107,18 @@ class MainActivity : ComponentActivity() {
                 }
                 // 스플래시/강제 업데이트 표시 중엔 앱오픈 광고가 그 위에 겹치지 않도록 차단.
                 // (앱오픈은 콜드스타트에 원래 안 뜨지만, 그 사이 백그라운드 왕복 등 엣지 케이스 방어.)
-                LaunchedEffect(showSplash, forceUpdate) {
-                    FearIndexApp.appOpenAdManager.isForegroundBlocked = showSplash || forceUpdate
+                LaunchedEffect(showSplash, forceUpdate, tourActive) {
+                    FearIndexApp.appOpenAdManager.isForegroundBlocked =
+                        showSplash || forceUpdate || tourActive
                 }
                 Box(modifier = Modifier.fillMaxSize()) {
-                    FearIndexNavHost()
+                    FearIndexNavHost(
+                        readyForTour = !showSplash && !forceUpdate &&
+                            notificationPromptResolved.value,
+                        qaForceTour = qaForceTour,
+                        qaStartStep = qaStartStep,
+                        onTourActiveChange = { tourActive = it },
+                    )
                     if (forceUpdate) {
                         ForceUpdateView(onUpdate = ::startForceUpdateFlow)
                     }
@@ -129,7 +147,10 @@ class MainActivity : ComponentActivity() {
      * 이미 결정된 기기(저장값 존재)는 정책이 NoChange를 반환해 저장값 불가침.
      */
     private fun maybeRunInitialNotificationAuthorization() {
-        if (ScreenshotMode.isEnabled()) return
+        if (ScreenshotMode.isEnabled()) {
+            notificationPromptResolved.value = true
+            return
+        }
         lifecycleScope.launch {
             val granted = NotificationManagerCompat.from(this@MainActivity).areNotificationsEnabled()
             val repository = notificationRepository.get()
@@ -142,6 +163,7 @@ class MainActivity : ComponentActivity() {
                 notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             } else {
                 applyInitialNotificationAuthorization(granted, isFirstDecision = false)
+                notificationPromptResolved.value = true
             }
         }
     }

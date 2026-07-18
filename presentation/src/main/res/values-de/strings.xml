@@ -387,4 +387,42 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Weiter</string>
+    <string name="onboarding_skip">Überspringen</string>
+    <string name="onboarding_start">Los geht\'s</string>
+    <string name="settings_menu_app_usage">App-Anleitung</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Markt F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krypto F&amp;G</string>
+    <string name="onboarding_step1_title">Dieser Index folgt dem S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Er zeigt Angst und Gier des US-Markts als eine Zahl von 0 bis 100. Niedrig bedeutet Angst, hoch bedeutet Gier.</string>
+    <string name="onboarding_step2_title">Dieser Index folgt dem KOSPI</string>
+    <string name="onboarding_step2_detail">So sehen Sie auch die Stimmung des koreanischen Markts. Oben können Sie jederzeit wechseln.</string>
+    <string name="onboarding_step3_title">Dieser Index folgt BTC</string>
+    <string name="onboarding_step3_detail">Auch Angst und Gier des Kryptomarkts sehen Sie auf derselben Skala.</string>
+    <string name="onboarding_step4_title">Was wäre, wenn Sie bei diesem Wert gekauft hätten?</string>
+    <string name="onboarding_step4_detail">Die historische Durchschnittsrendite beim Kauf im aktuellen Bereich. Keine Garantie – bitte nur als Orientierung nutzen.</string>
+    <string name="onboarding_step5_title">Stimmen Sie über Ihre Lage ab</string>
+    <string name="onboarding_step5_detail">Hinterlassen Sie Ihren Status mit einem Tipp und sehen Sie die Stimmung von Anlegern weltweit in Echtzeit.</string>
+    <string name="onboarding_step6_title">Wir melden uns im richtigen Moment</string>
+    <string name="onboarding_step6_detail">Mit einer Benachrichtigung informieren wir Sie, sobald der Index Ihr Niveau erreicht.</string>
+    <string name="onboarding_step7_title">Mit Widgets noch schneller</string>
+    <string name="onboarding_step7_detail">Die Widget-Anleitung finden Sie jederzeit auf diesem Bildschirm.</string>
+    <string name="onboarding_step8_title">Die persönliche Regel des Entwicklers</string>
+    <string name="onboarding_step8_detail">Der Entwickler kauft nur bei 15 oder darunter. Darüber kann viel Geduld nötig sein. Eine persönliche Regel, keine Anlageberatung.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Berühren und halten Sie eine freie Stelle auf dem Startbildschirm und tippen Sie dann auf Widgets.</string>
+    <string name="widget_guide_step2">Suchen Sie "Angst &amp; Gier Index" in der Widget-Liste.</string>
+    <string name="widget_guide_step3">Wählen Sie den gewünschten Index – Global, KOSPI oder Krypto – oder das Kombi-Widget.</string>
+    <string name="widget_guide_step4">Ziehen Sie es auf den Startbildschirm und platzieren Sie es nach Belieben.</string>
+    <string name="widget_guide_step5">Tippen Sie jederzeit auf das Widget, um die App zu öffnen.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) – Angst &amp; Gier</string>
+    <string name="widget_kospi_description">KOSPI – Angst &amp; Gier</string>
+    <string name="widget_crypto_description">Krypto (BTC) – Angst &amp; Gier</string>
+    <string name="widget_dashboard_description">Alle drei Angst-&amp;-Gier-Indizes</string>
 </resources>

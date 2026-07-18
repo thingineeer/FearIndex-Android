@@ -8,6 +8,19 @@ type: project
 
 **핵심 원칙**: Android는 독자 프로덕트가 아니라 **iOS/macOS와 같은 제품의 플랫폼 변종**. 모든 대시보드, Firebase Analytics 이벤트, Crashlytics, 사용자 인사이트에서 일관되게 보여야 함.
 
+## 온보딩 코치마크 투어 (iOS v1.9.3 → Android v1.4.1, 이식 완료)
+
+iOS SSOT: `OnboardingTourView.swift` / `OnboardingEligibility.swift` / `FearIndexView.swift`(startTourIfNeeded/handleTourStep/finishTour/restartTour).
+
+- **GA 이벤트 파리티** (iOS AnalyticsEvent.swift ↔ Android AnalyticsEvent.kt, 이름·파라미터 1:1):
+  - `온보딩완료(단계:Int)` → GA `onboarding_done`, param `step`(1-based)
+  - `온보딩건너뛰기(단계:Int)` → GA `onboarding_skip`, param `step`
+  - (iOS `docs/ios-android-event-parity.md` 은 iOS 레포 소유 — Android는 AnalyticsEvent.kt 가 파리티 아티팩트)
+- **게이팅**: iOS `fcm_device_id`(App Group) ↔ Android `stuck_counter_prefs/deviceId`. FCM 초기화 전 판별 → `onboarding_prefs.onboardingTourEligibleV1`. 신규 설치 첫 실행만 자동 노출.
+- **8단계·문구**: iOS `Localizable.xcstrings` 의 onboarding.* 20키를 45 locale 그대로 이식(면책 포함). step8 면책 필수.
+- **위젯**: iOS는 풀 위젯 스위트, Android는 요청에 따라 2×2 3종 + 4×2 대시보드(Glance)만. 위젯 사용법 가이드는 Android 절차용 자체 문구.
+- ⚠️ Android 특이: 알림 권한 프롬프트가 투어를 가리지 않게 `notificationPromptResolved` 후 시작. 투어 중 인터스티셜/앱오픈/배너 억제.
+
 ## Bundle/Package ID 매핑
 
 | 플랫폼 | 식별자 |

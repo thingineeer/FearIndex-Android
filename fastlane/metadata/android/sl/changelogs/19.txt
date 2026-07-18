@@ -1,0 +1,1 @@
+Dodali smo pripomočke za začetni zaslon in vodnik po aplikaciji ter izboljšali nastavitve obvestil.

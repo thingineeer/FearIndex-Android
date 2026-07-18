@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -13,15 +14,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.HelpOutline
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.PrivacyTip
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Widgets
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
@@ -29,6 +34,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
@@ -40,16 +47,30 @@ import androidx.compose.ui.unit.dp
 import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.component.AdBanner
+import th1ngjin.fearindex.presentation.feature.onboarding.LocalOnboardingTour
+import th1ngjin.fearindex.presentation.feature.onboarding.OnboardingAnchor
+import th1ngjin.fearindex.presentation.feature.onboarding.tourAnchor
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SettingsScreen(
     onNotificationSettingsClick: () -> Unit = {},
     onPrivacyPolicyClick: () -> Unit = {},
+    onWidgetGuideClick: () -> Unit = {},
 ) {
     val context = LocalContext.current
     val versionName = rememberAppVersion(context)
     val shareMessage = stringResource(R.string.settings_share_app_message)
     val shareChooser = stringResource(R.string.settings_share_app_chooser)
+    val tour = LocalOnboardingTour.current
+    val widgetRowBringIntoView = remember { BringIntoViewRequester() }
+
+    // 온보딩 7단계: 위젯 사용법 행이 보이도록 스크롤
+    LaunchedEffect(tour?.activeStepNumber) {
+        if (tour?.activeStepNumber == 7) {
+            runCatching { widgetRowBringIntoView.bringIntoView() }
+        }
+    }
 
     Scaffold(
         bottomBar = {
@@ -78,6 +99,7 @@ fun SettingsScreen(
             SettingsItem(
                 icon = Icons.Default.Notifications,
                 title = stringResource(R.string.settings_menu_notification),
+                modifier = Modifier.tourAnchor(tour, OnboardingAnchor.NOTIFICATION),
                 onClick = onNotificationSettingsClick,
             )
             HorizontalDivider()
@@ -103,6 +125,25 @@ fun SettingsScreen(
             )
             HorizontalDivider()
 
+            // 앱 사용법 — 온보딩 투어 재생 (기존/신규 공통)
+            SettingsItem(
+                icon = Icons.AutoMirrored.Filled.HelpOutline,
+                title = stringResource(R.string.settings_menu_app_usage),
+                onClick = { tour?.restart() },
+            )
+            HorizontalDivider()
+
+            // 위젯 사용법 — 온보딩 7단계 앵커 + 가이드 진입
+            SettingsItem(
+                icon = Icons.Default.Widgets,
+                title = stringResource(R.string.settings_menu_widget_guide),
+                modifier = Modifier
+                    .tourAnchor(tour, OnboardingAnchor.WIDGET)
+                    .bringIntoViewRequester(widgetRowBringIntoView),
+                onClick = onWidgetGuideClick,
+            )
+            HorizontalDivider()
+
             SettingsItem(
                 icon = Icons.Default.Description,
                 title = stringResource(R.string.settings_menu_kospi_methodology),
@@ -124,6 +165,7 @@ private fun SettingsItem(
     icon: ImageVector,
     title: String,
     subtitle: String? = null,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
 ) {
     val haptic = LocalHapticFeedback.current
@@ -137,7 +179,7 @@ private fun SettingsItem(
                 tint = MaterialTheme.colorScheme.primary,
             )
         },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickable {
                 haptic.performHapticFeedback(HapticFeedbackType.LongPress)

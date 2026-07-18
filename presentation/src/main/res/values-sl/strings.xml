@@ -387,4 +387,44 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Naprej</string>
+    <string name="onboarding_skip">Preskoči</string>
+    <string name="onboarding_start">Začni</string>
+    <string name="settings_menu_app_usage">Vodnik po aplikaciji</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Trg S&amp;P</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto S&amp;P</string>
+    <string name="onboarding_step1_title">Ta indeks sledi S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Strah in pohlep ameriškega trga prikaže z enim številom od 0 do 100. Nižje pomeni strah, višje pohlep.</string>
+    <string name="onboarding_step2_title">Ta indeks sledi KOSPI</string>
+    <string name="onboarding_step2_detail">Enako lahko spremljate razpoloženje korejskega trga. Preklopite kadar koli s segmenti zgoraj.</string>
+    <string name="onboarding_step3_title">Ta indeks sledi BTC</string>
+    <string name="onboarding_step3_detail">Strah in pohlep kripto trga sta na isti lestvici.</string>
+    <string name="onboarding_step4_title">Kaj če bi kupili pri tem rezultatu?</string>
+    <string name="onboarding_step4_detail">Zgodovinski povprečni donos ob nakupu na trenutni ravni. Ni zajamčen — uporabljajte previdno.</string>
+    <string name="onboarding_step5_title">Glasujte o svojem trenutnem stanju</string>
+    <string name="onboarding_step5_detail">Z enim dotikom pustite svoj status in v realnem času spremljajte razpoloženje vlagateljev po svetu.</string>
+    <string name="onboarding_step6_title">Obvestimo vas ob pravem trenutku</string>
+    <string name="onboarding_step6_detail">Nastavite opozorilo in vam sporočimo, takoj ko indeks doseže vašo raven.</string>
+    <string name="onboarding_step7_title">Še hitreje s pripomočki</string>
+    <string name="onboarding_step7_detail">Vodnik za pripomočke je vedno na tem zaslonu.</string>
+    <string name="onboarding_step8_title">Osebno pravilo razvijalca</string>
+    <string name="onboarding_step8_detail">Razvijalec kupuje le pri 15 ali manj. Nad tem je morda potrebna dolga potrpežljivost. Osebno pravilo, ne naložbeni nasvet.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Pritisnite in pridržite prazno mesto na začetnem zaslonu, nato tapnite „Pripomočki“.</string>
+    <string name="widget_guide_step2">Na seznamu pripomočkov poiščite „Indeks strahu in pohlepa“.</string>
+    <string name="widget_guide_step3">Izberite želeni indeks — globalni, KOSPI ali kripto — ali vsestranski pripomoček.</string>
+    <string name="widget_guide_step4">Povlecite ga na začetni zaslon in ga postavite, kamor želite.</string>
+    <string name="widget_guide_step5">Kadar koli tapnite pripomoček, da odprete aplikacijo.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Globalni (S&amp;P 500) indeks strahu in pohlepa</string>
+    <string name="widget_kospi_description">KOSPI indeks strahu in pohlepa</string>
+    <string name="widget_crypto_description">Kripto (BTC) indeks strahu in pohlepa</string>
+    <string name="widget_dashboard_description">Vsi trije indeksi strahu in pohlepa</string>
 </resources>
