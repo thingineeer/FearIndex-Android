@@ -37,9 +37,11 @@ class AppOpenAdPolicy {
     fun canShowOnForeground(
         nowMillis: Long,
         isReady: Boolean,
+        isAdFree: Boolean,
         canRequestAds: Boolean,
         config: AppOpenAdConfig,
     ): Boolean {
+        if (isAdFree) return false
         if (!config.enabled || !canRequestAds) return false
         if (!isReady) return false
         if (impressionCount >= config.sessionCap) return false

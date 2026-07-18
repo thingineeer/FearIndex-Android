@@ -427,4 +427,14 @@
     <string name="widget_kospi_description">KOSPI индекс страха и похлепе</string>
     <string name="widget_crypto_description">Крипто (BTC) индекс страха и похлепе</string>
     <string name="widget_dashboard_description">Сва три индекса страха и похлепе</string>
+    <string name="settings_premium_header">Премијум</string>
+    <string name="settings_remove_ads_title">Уклони огласе</string>
+    <string name="settings_remove_ads_description">Једнократна куповина. Трајно уклања све огласе.</string>
+    <string name="settings_remove_ads_purchased">Огласи су уклоњени</string>
+    <string name="settings_remove_ads_purchase_failed">Куповина није успела. Покушајте поново.</string>
+    <string name="settings_restore_purchases">Врати куповине</string>
+    <string name="settings_restore_success">Куповине су враћене.</string>
+    <string name="settings_restore_failure">Нема куповина за враћање.</string>
+    <string name="settings_support_contact">Контакт: %1$s</string>
+    <string name="common_confirm">Потврди</string>
 </resources>

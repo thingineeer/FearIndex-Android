@@ -427,4 +427,14 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="widget_kospi_description">KOSPI baiļu un alkatības indekss</string>
     <string name="widget_crypto_description">Kripto (BTC) baiļu un alkatības indekss</string>
     <string name="widget_dashboard_description">Visi trīs baiļu un alkatības indeksi</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Noņemt reklāmas</string>
+    <string name="settings_remove_ads_description">Vienreizējs pirkums. Uz visiem laikiem noņem visas reklāmas.</string>
+    <string name="settings_remove_ads_purchased">Reklāmas noņemtas</string>
+    <string name="settings_remove_ads_purchase_failed">Pirkums neizdevās. Lūdzu, mēģiniet vēlreiz.</string>
+    <string name="settings_restore_purchases">Atjaunot pirkumus</string>
+    <string name="settings_restore_success">Pirkumi atjaunoti.</string>
+    <string name="settings_restore_failure">Nav pirkumu, ko atjaunot.</string>
+    <string name="settings_support_contact">Kontakti: %1$s</string>
+    <string name="common_confirm">Apstiprināt</string>
 </resources>

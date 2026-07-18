@@ -427,4 +427,14 @@
     <string name="widget_kospi_description">Індекс страху та жадібності KOSPI</string>
     <string name="widget_crypto_description">Криптовалютний (BTC) індекс страху та жадібності</string>
     <string name="widget_dashboard_description">Усі три індекси страху та жадібності</string>
+    <string name="settings_premium_header">Преміум</string>
+    <string name="settings_remove_ads_title">Прибрати рекламу</string>
+    <string name="settings_remove_ads_description">Одноразова покупка. Назавжди прибирає всю рекламу.</string>
+    <string name="settings_remove_ads_purchased">Рекламу прибрано</string>
+    <string name="settings_remove_ads_purchase_failed">Не вдалося здійснити покупку. Спробуйте ще раз.</string>
+    <string name="settings_restore_purchases">Відновити покупки</string>
+    <string name="settings_restore_success">Покупки відновлено.</string>
+    <string name="settings_restore_failure">Немає покупок для відновлення.</string>
+    <string name="settings_support_contact">Контакти: %1$s</string>
+    <string name="common_confirm">Підтвердити</string>
 </resources>

@@ -425,4 +425,14 @@
     <string name="widget_kospi_description">KOSPI rädsla &amp; girighet</string>
     <string name="widget_crypto_description">Krypto (BTC) rädsla &amp; girighet</string>
     <string name="widget_dashboard_description">Alla tre rädsla &amp; girighet-index</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Ta bort annonser</string>
+    <string name="settings_remove_ads_description">Engångsköp. Tar bort alla annonser för alltid.</string>
+    <string name="settings_remove_ads_purchased">Annonser borttagna</string>
+    <string name="settings_remove_ads_purchase_failed">Köpet misslyckades. Försök igen.</string>
+    <string name="settings_restore_purchases">Återställ köp</string>
+    <string name="settings_restore_success">Köp återställda.</string>
+    <string name="settings_restore_failure">Inga köp att återställa.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Bekräfta</string>
 </resources>

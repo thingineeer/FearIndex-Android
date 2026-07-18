@@ -424,4 +424,14 @@
     <string name="widget_kospi_description">מדד הפחד והחמדנות של KOSPI</string>
     <string name="widget_crypto_description">מדד הפחד והחמדנות של קריפטו (BTC)</string>
     <string name="widget_dashboard_description">שלושת מדדי הפחד והחמדנות יחד</string>
+    <string name="settings_premium_header">פרימיום</string>
+    <string name="settings_remove_ads_title">הסרת פרסומות</string>
+    <string name="settings_remove_ads_description">רכישה חד־פעמית. מסירה את כל הפרסומות לתמיד.</string>
+    <string name="settings_remove_ads_purchased">הפרסומות הוסרו</string>
+    <string name="settings_remove_ads_purchase_failed">הרכישה נכשלה. נסו שוב.</string>
+    <string name="settings_restore_purchases">שחזור רכישות</string>
+    <string name="settings_restore_success">הרכישות שוחזרו.</string>
+    <string name="settings_restore_failure">אין רכישות לשחזור.</string>
+    <string name="settings_support_contact">יצירת קשר: %1$s</string>
+    <string name="common_confirm">אישור</string>
 </resources>

@@ -83,12 +83,14 @@ class AppOpenAdManager(
         activity: Activity,
         adUnitId: String,
         config: AppOpenAdConfig,
+        isAdFree: Boolean,
         canRequestAds: Boolean,
     ) {
         if (isForegroundBlocked || isShowingAd) return
         val eligible = policy.canShowOnForeground(
             nowMillis = nowMillis(),
             isReady = isReady,
+            isAdFree = isAdFree,
             canRequestAds = canRequestAds,
             config = config,
         )

@@ -427,4 +427,14 @@
     <string name="widget_kospi_description">Δείκτης φόβου και απληστίας KOSPI</string>
     <string name="widget_crypto_description">Δείκτης φόβου και απληστίας κρύπτο (BTC)</string>
     <string name="widget_dashboard_description">Και οι τρεις δείκτες φόβου και απληστίας</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Αφαίρεση διαφημίσεων</string>
+    <string name="settings_remove_ads_description">Εφάπαξ αγορά. Αφαιρεί όλες τις διαφημίσεις για πάντα.</string>
+    <string name="settings_remove_ads_purchased">Οι διαφημίσεις αφαιρέθηκαν</string>
+    <string name="settings_remove_ads_purchase_failed">Η αγορά απέτυχε. Δοκιμάστε ξανά.</string>
+    <string name="settings_restore_purchases">Επαναφορά αγορών</string>
+    <string name="settings_restore_success">Οι αγορές επαναφέρθηκαν.</string>
+    <string name="settings_restore_failure">Δεν υπάρχουν αγορές για επαναφορά.</string>
+    <string name="settings_support_contact">Επικοινωνία: %1$s</string>
+    <string name="common_confirm">Επιβεβαίωση</string>
 </resources>

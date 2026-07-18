@@ -425,4 +425,14 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="widget_kospi_description">KOSPI — Paura &amp; Avidità</string>
     <string name="widget_crypto_description">Crypto (BTC) — Paura &amp; Avidità</string>
     <string name="widget_dashboard_description">Tutti e tre gli indici di paura &amp; avidità</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Rimuovi gli annunci</string>
+    <string name="settings_remove_ads_description">Acquisto unico. Rimuove tutti gli annunci per sempre.</string>
+    <string name="settings_remove_ads_purchased">Annunci rimossi</string>
+    <string name="settings_remove_ads_purchase_failed">Acquisto non riuscito. Riprova.</string>
+    <string name="settings_restore_purchases">Ripristina acquisti</string>
+    <string name="settings_restore_success">Acquisti ripristinati.</string>
+    <string name="settings_restore_failure">Nessun acquisto da ripristinare.</string>
+    <string name="settings_support_contact">Contatto: %1$s</string>
+    <string name="common_confirm">Conferma</string>
 </resources>

@@ -424,4 +424,14 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="widget_kospi_description">KOSPI Korku ve Açgözlülük</string>
     <string name="widget_crypto_description">Kripto (BTC) Korku ve Açgözlülük</string>
     <string name="widget_dashboard_description">Üç korku ve açgözlülük endeksinin tümü</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Reklamları Kaldır</string>
+    <string name="settings_remove_ads_description">Tek seferlik satın alma. Tüm reklamları kalıcı olarak kaldırır.</string>
+    <string name="settings_remove_ads_purchased">Reklamlar kaldırıldı</string>
+    <string name="settings_remove_ads_purchase_failed">Satın alma başarısız oldu. Lütfen tekrar deneyin.</string>
+    <string name="settings_restore_purchases">Satın Alımları Geri Yükle</string>
+    <string name="settings_restore_success">Satın alımlar geri yüklendi.</string>
+    <string name="settings_restore_failure">Geri yüklenecek satın alım yok.</string>
+    <string name="settings_support_contact">İletişim: %1$s</string>
+    <string name="common_confirm">Onayla</string>
 </resources>

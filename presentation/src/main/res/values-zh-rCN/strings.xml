@@ -424,4 +424,14 @@
     <string name="widget_kospi_description">KOSPI 恐惧与贪婪</string>
     <string name="widget_crypto_description">加密货币（BTC）恐惧与贪婪</string>
     <string name="widget_dashboard_description">三大恐惧与贪婪指数一览</string>
+    <string name="settings_premium_header">高级版</string>
+    <string name="settings_remove_ads_title">移除广告</string>
+    <string name="settings_remove_ads_description">一次购买，永久移除所有广告。</string>
+    <string name="settings_remove_ads_purchased">已移除广告</string>
+    <string name="settings_remove_ads_purchase_failed">购买失败，请重试。</string>
+    <string name="settings_restore_purchases">恢复购买</string>
+    <string name="settings_restore_success">已恢复购买。</string>
+    <string name="settings_restore_failure">没有可恢复的购买。</string>
+    <string name="settings_support_contact">联系：%1$s</string>
+    <string name="common_confirm">确认</string>
 </resources>

@@ -425,4 +425,14 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="widget_kospi_description">KOSPI — Medo &amp; Ganância</string>
     <string name="widget_crypto_description">Cripto (BTC) — Medo &amp; Ganância</string>
     <string name="widget_dashboard_description">Os três índices de medo &amp; ganância</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Remover anúncios</string>
+    <string name="settings_remove_ads_description">Compra única. Remove todos os anúncios para sempre.</string>
+    <string name="settings_remove_ads_purchased">Anúncios removidos</string>
+    <string name="settings_remove_ads_purchase_failed">A compra falhou. Tente novamente.</string>
+    <string name="settings_restore_purchases">Restaurar compras</string>
+    <string name="settings_restore_success">Compras restauradas.</string>
+    <string name="settings_restore_failure">Sem compras para restaurar.</string>
+    <string name="settings_support_contact">Contacto: %1$s</string>
+    <string name="common_confirm">Confirmar</string>
 </resources>

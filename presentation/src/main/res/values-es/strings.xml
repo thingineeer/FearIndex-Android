@@ -425,4 +425,14 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="widget_kospi_description">KOSPI — Miedo y Codicia</string>
     <string name="widget_crypto_description">Cripto (BTC) — Miedo y Codicia</string>
     <string name="widget_dashboard_description">Los tres índices de miedo y codicia</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Eliminar anuncios</string>
+    <string name="settings_remove_ads_description">Compra única. Elimina todos los anuncios para siempre.</string>
+    <string name="settings_remove_ads_purchased">Anuncios eliminados</string>
+    <string name="settings_remove_ads_purchase_failed">Error en la compra. Inténtalo de nuevo.</string>
+    <string name="settings_restore_purchases">Restaurar compras</string>
+    <string name="settings_restore_success">Compras restauradas.</string>
+    <string name="settings_restore_failure">No hay compras que restaurar.</string>
+    <string name="settings_support_contact">Contacto: %1$s</string>
+    <string name="common_confirm">Confirmar</string>
 </resources>

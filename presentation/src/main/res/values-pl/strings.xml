@@ -425,4 +425,14 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="widget_kospi_description">KOSPI strach i chciwość</string>
     <string name="widget_crypto_description">Krypto (BTC) strach i chciwość</string>
     <string name="widget_dashboard_description">Wszystkie trzy indeksy strachu i chciwości</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Usuń reklamy</string>
+    <string name="settings_remove_ads_description">Jednorazowy zakup. Trwale usuwa wszystkie reklamy.</string>
+    <string name="settings_remove_ads_purchased">Reklamy usunięte</string>
+    <string name="settings_remove_ads_purchase_failed">Zakup nie powiódł się. Spróbuj ponownie.</string>
+    <string name="settings_restore_purchases">Przywróć zakupy</string>
+    <string name="settings_restore_success">Zakupy zostały przywrócone.</string>
+    <string name="settings_restore_failure">Brak zakupów do przywrócenia.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Potwierdź</string>
 </resources>
