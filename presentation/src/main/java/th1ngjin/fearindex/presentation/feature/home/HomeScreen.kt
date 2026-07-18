@@ -213,6 +213,7 @@ fun HomeScreen(
         if (tour?.isActive == true) return@LaunchedEffect // 투어 중 지수 전환 인터스티셜 억제
         if (interstitialCoordinator.shouldScheduleKospiEntry(previousType, selectedType, interstitialConfig)) {
             delay(interstitialConfig.kospiEntryDelayMillis)
+            if (tour?.isActive == true) return@LaunchedEffect // 지연 중 투어가 시작된 경우 방어
             val currentActivity = activity ?: return@LaunchedEffect
             if (
                 lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED) &&
