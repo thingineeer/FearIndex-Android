@@ -1,0 +1,1 @@
+Javítottuk a vásárlások megbízhatóságát és az alkalmazás stabilitását.

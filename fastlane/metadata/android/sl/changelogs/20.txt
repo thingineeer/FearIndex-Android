@@ -1,0 +1,1 @@
+Izboljšali smo zanesljivost nakupov in stabilnost aplikacije.
