@@ -14,6 +14,12 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-07-18 밤, v1.4.2 vc20 업로드 — IAP 경화 hotfix)
+
+- **v1.4.2(vc20) production 업로드 완료** (fastlane exit 0, "Successfully finished the upload"). 내용 = IAP 플로우 경화 2건(AlreadyOwned 플래그 누수 fix + 조회/로드 10s timeout, 적대적 검증 발견) + TDD(AlreadyOwned 순수화). changelog 20 "결제 및 앱 안정성을 개선하였습니다."(45 locale). 관리형 게시 OFF → 승인 즉시 자동 게시. **다음 세션: 게시 확인 후 release 머지 + v1.4.2 태그.**
+- **푸시 검증**: FCM 토큰→서버등록(App Check 토큰 0bc9f220... 등록)→설정동기화 실측 성공, Firebase Console 테스트 푸시 발송 완료(수신 화면은 에뮬 adb 불안정으로 유저 육안 확인 요청 상태). 수신 경로 코드는 v1.4.x 무변경 — 7/03 실수신 검증 유효.
+- **결제 실검증(실기기)**: 여전히 대기 — 폰에서 1.4.1+ 업데이트 후 ₩7,500 표시+테스트 결제(라이선스 테스터 등록 완료).
+
 ## 최신 상태 (2026-07-18 후반, v1.4.1 vc19 production 업로드 — 검토 중)
 
 - **✅ v1.4.1(vc19) 게시 완료 (2026-07-18 당일 심사·자동 게시, 공개 리스팅 1.4.1/Updated Jul 18 확인)** + **release 머지 + v1.4.1 태그 push 완료**. (이전 기록: (fastlane production 성공 = **Korean law 게이트 해제 확정**, 43번 종결). **관리형 게시 OFF** → 승인 즉시 자동 게시. changelog 19 "홈 화면 위젯과 앱 사용법 안내, 광고 제거 옵션을 추가하고 알림 설정을 개선하였습니다."(45 locale). 상세: @memory/bugs-fixed.md 37번.)
