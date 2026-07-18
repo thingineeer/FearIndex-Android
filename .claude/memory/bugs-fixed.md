@@ -16,6 +16,7 @@ type: project
 - **교훈**: fastlane 업로드 실패 시 **어느 단계(빌드/업로드/commit)에서 나는지 로그로 구분**. "Uploading all changes" 이후 실패면 계정 레벨. AAB 코드 뜯기 전에 계정 상태부터 확인. Google Play는 결제 프로필 연결만으로 한국 통신판매업 게이트가 켜짐(앱 무료·IAP 미등록이어도).
 - **재확인 (같은 세션 후반)**: 사용자 "fastlane production으로 릴리즈 트랙 올려라" 지시 → `bundle exec fastlane production`(track production/rollout 1.0/completed) 실행 → **동일하게 "Uploading all changes" 직후 Korean law 에러**. IAP 제거 + changelog 정정분까지 다 올라갔으나 edit commit에서 차단. **게이트 해제 전엔 internal/production 어느 트랙도 불가 재확인.** 사용자 결정: **배포 보류, changelog(46번 아래 참조)만 dev 커밋.** 게이트 해제(통신판매업 입력 or 결제프로필 해제)는 사용자가 나중에 직접.
 - **changelog 정정 (배포 준비)**: 18.txt(vc18) 45 locale이 "광고 제거 옵션 추가"를 언급했으나 IAP 제거로 사실 불일치 → "알림 설정 개선 + 앱 안정성 향상"으로 교체(IAP 문구 완전 제거). 게이트 해제 후 이 changelog로 배포.
+- **✅ 해결 진행 (2026-07-18)**: 사용자가 (A)안 실행 — 통신판매업 재신고 완료(등록면허세 40,500원, 면허번호 `2026-서울영등포-1656`, 서울특별시 영등포구청, 상호 이매진, 3종). Play Console 계정 세부정보(`developer-details?tab=aboutYou`) "한국 개발자의 경우 추가 정보 필요"에 사업자등록번호 `1263501870`+라이선스 번호+대행사(서울특별시 영등포구) **저장 상태 확인**(PDF 대조 + 새로고침 유지 검증). 값은 `~/thingineeer-env/.../fearindex-android/.env`의 `ECOMMERCE_LICENSE_*`에도 기록. 게이트 실해제는 fastlane 업로드 재시도로 검증해야 함(승인 게이트). 참고: 계정이 조직 계정(이매진/DUNS)으로 전환 완료돼 있음.
 
 ### 44. 광고 제거 IAP(Play Billing) 전체 제거 — v1.4.0 무료 배포용 (feature/v1.4.0-no-iap)
 - **요청**: 사용자 "인앱결제 뺀 코드로 dev 1.4.0 배포", "광고제거는 나중에 넣자". 43번(통신판매업 미보유)로 IAP 활성화 불가 → v1.4.0에서 IAP 제외.
