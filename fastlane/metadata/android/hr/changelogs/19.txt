@@ -1,1 +1,1 @@
-Dodani su widgeti početnog zaslona i vodič kroz aplikaciju te su poboljšane postavke obavijesti.
+Dodani su widgeti početnog zaslona, vodič kroz aplikaciju i opcija uklanjanja oglasa te su poboljšane postavke obavijesti.

@@ -1,1 +1,1 @@
-Lade till widgetar för hemskärmen och en appguide samt förbättrade aviseringsinställningarna.
+Lade till widgetar för hemskärmen, en appguide och ett alternativ för att ta bort annonser samt förbättrade aviseringsinställningarna.

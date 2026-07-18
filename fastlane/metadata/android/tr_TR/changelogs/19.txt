@@ -1,1 +1,1 @@
-Ana ekran widget'ları ve uygulama kılavuzu eklendi, bildirim ayarları iyileştirildi.
+Ana ekran widget'ları, uygulama kılavuzu ve reklam kaldırma seçeneği eklendi, bildirim ayarları iyileştirildi.

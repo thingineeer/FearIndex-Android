@@ -1,1 +1,1 @@
-Lisäsimme aloitusnäytön widgetit ja sovellusoppaan sekä paransimme ilmoitusasetuksia.
+Lisäsimme aloitusnäytön widgetit, sovellusoppaan ja mainosten poistovaihtoehdon sekä paransimme ilmoitusasetuksia.

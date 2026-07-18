@@ -1,1 +1,1 @@
-Dodali smo pripomočke za začetni zaslon in vodnik po aplikaciji ter izboljšali nastavitve obvestil.
+Dodali smo pripomočke za začetni zaslon, vodnik po aplikaciji in možnost odstranitve oglasov ter izboljšali nastavitve obvestil.
