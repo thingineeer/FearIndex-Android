@@ -1,0 +1,1 @@
+Forbedrede notifikationsindstillinger og bedre appstabilitet.

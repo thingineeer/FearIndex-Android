@@ -83,10 +83,7 @@
     <string name="back">返回</string>
     <string name="notification_push_title">推送通知</string>
     <string name="notification_push_description">当恐惧指数达到您设置的阈值时接收通知。</string>
-    <string name="notification_tab_market">市场</string>
-    <string name="notification_tab_crypto">加密货币</string>
     <string name="notification_weekly_title">每周报告提醒</string>
-    <string name="notification_market_title">市场恐惧指数提醒</string>
     <string name="notification_crypto_title">加密货币恐惧指数提醒</string>
     <string name="notification_lower_label">下限 (恐惧)</string>
     <string name="notification_upper_label">上限 (贪婪)</string>
@@ -94,6 +91,14 @@
     <string name="notification_upper_description">当指数达到 %1$d 或以上时通知您。</string>
     <string name="notification_info">每 15 分钟检查一次通知。每个阈值区间每天最多接收 1 条通知。</string>
     <string name="notification_sync_error">同步失败: %1$s</string>
+    <string name="notification_global_title">全球恐惧指数警报</string>
+    <string name="notification_kospi_title">韩国综合股价指数警报</string>
+    <string name="notification_lower_header">买入信号提醒</string>
+    <string name="notification_upper_header">过热警告提醒</string>
+    <string name="notification_kospi_lower_description">当 KOSPI 指数跌至 %1$d 或以下时收到通知。</string>
+    <string name="notification_kospi_upper_description">当 KOSPI 指数升至 %1$d 或以上时收到通知。</string>
+    <string name="notification_crypto_lower_description">当加密货币指数降至%1$d或以下时接收通知。</string>
+    <string name="notification_crypto_upper_description">当加密货币指数升至%1$d或以上时接收通知。</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">当前被套牢的人</string>
@@ -225,7 +230,6 @@
     <string name="settings_kospi_methodology_summary">KOSPI 当前分数在韩国常规交易时段每小时更新一次。历史图表仅在确认收盘后更新。 Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">隐私政策</string>
     <string name="settings_menu_about">应用信息</string>
-    <string name="settings_menu_ad_privacy">隐私选择</string>
     <string name="settings_menu_rate">撰写评论</string>
     <string name="settings_menu_share">分享应用</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -362,6 +366,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">数据基准</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -381,4 +386,52 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">下一步</string>
+    <string name="onboarding_skip">跳过</string>
+    <string name="onboarding_start">开始使用</string>
+    <string name="settings_menu_app_usage">应用使用指南</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">市场 F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">加密货币 F&amp;G</string>
+    <string name="onboarding_step1_title">该指数追踪 S&amp;P 500</string>
+    <string name="onboarding_step1_detail">用0到100的一个数字展示美国市场的恐惧与贪婪。数字越低越恐惧，越高越贪婪。</string>
+    <string name="onboarding_step2_title">该指数追踪KOSPI</string>
+    <string name="onboarding_step2_detail">以同样的方式查看韩国市场情绪，随时可通过上方分段切换。</string>
+    <string name="onboarding_step3_title">该指数跟随BTC</string>
+    <string name="onboarding_step3_detail">加密货币市场的恐惧与贪婪也用同一刻度查看。</string>
+    <string name="onboarding_step4_title">如果在这个分数买入会怎样？</string>
+    <string name="onboarding_step4_detail">这是在当前分数区间买入的历史平均收益率。并非保证，请谨慎参考。</string>
+    <string name="onboarding_step5_title">投票记录你现在的状态</string>
+    <string name="onboarding_step5_detail">轻轻一点留下你的状态，实时了解全球投资者的心理。</string>
+    <string name="onboarding_step6_title">在关键时刻提醒你</string>
+    <string name="onboarding_step6_detail">设置提醒后，指数一到达该点位就立即通知你。</string>
+    <string name="onboarding_step7_title">用小组件更快查看</string>
+    <string name="onboarding_step7_detail">小组件使用方法随时可在此页面查看。</string>
+    <string name="onboarding_step8_title">开发者的个人标准</string>
+    <string name="onboarding_step8_detail">开发者只在15以下买入，高于此可能需要长久的耐心。这只是个人标准，并非投资建议。</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">长按主屏幕的空白处，然后点按“小部件”。</string>
+    <string name="widget_guide_step2">在小部件列表中找到“恐惧与贪婪指数”。</string>
+    <string name="widget_guide_step3">选择想要的指数（全球、KOSPI、加密货币）或一体化小部件。</string>
+    <string name="widget_guide_step4">将它拖到主屏幕，放在喜欢的位置。</string>
+    <string name="widget_guide_step5">随时点按小部件即可打开应用。</string>
+    <string name="widget_market_description">全球（S&amp;P 500）恐惧与贪婪</string>
+    <string name="widget_kospi_description">KOSPI 恐惧与贪婪</string>
+    <string name="widget_crypto_description">加密货币（BTC）恐惧与贪婪</string>
+    <string name="widget_dashboard_description">三大恐惧与贪婪指数一览</string>
+    <string name="settings_premium_header">高级版</string>
+    <string name="settings_remove_ads_title">移除广告</string>
+    <string name="settings_remove_ads_description">一次购买，永久移除所有广告。</string>
+    <string name="settings_remove_ads_purchased">已移除广告</string>
+    <string name="settings_remove_ads_purchase_failed">购买失败，请重试。</string>
+    <string name="settings_restore_purchases">恢复购买</string>
+    <string name="settings_restore_success">已恢复购买。</string>
+    <string name="settings_restore_failure">没有可恢复的购买。</string>
+    <string name="settings_support_contact">联系：%1$s</string>
+    <string name="common_confirm">确认</string>
 </resources>

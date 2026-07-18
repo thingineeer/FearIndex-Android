@@ -1,0 +1,1 @@
+S'han millorat la configuració de notificacions i l'estabilitat de l'aplicació.

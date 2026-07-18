@@ -82,10 +82,7 @@
     <string name="back">Retour</string>
     <string name="notification_push_title">Notifications push</string>
     <string name="notification_push_description">Recevez une notification lorsque l\'indice de peur atteint votre seuil.</string>
-    <string name="notification_tab_market">Marché</string>
-    <string name="notification_tab_crypto">Crypto</string>
     <string name="notification_weekly_title">Alertes de rapport hebdomadaires</string>
-    <string name="notification_market_title">Alertes indice de peur (Marché)</string>
     <string name="notification_crypto_title">Alertes indice de peur (Crypto)</string>
     <string name="notification_lower_label">Seuil bas (Peur)</string>
     <string name="notification_upper_label">Seuil haut (Avidité)</string>
@@ -93,6 +90,14 @@
     <string name="notification_upper_description">Vous serez notifié lorsque l\'indice atteindra %1$d ou plus.</string>
     <string name="notification_info">Les notifications sont vérifiées toutes les 15 minutes. Vous recevrez au maximum 1 notification par zone de seuil par jour.</string>
     <string name="notification_sync_error">Échec de la synchronisation : %1$s</string>
+    <string name="notification_global_title">Alertes de l’indice mondial de la peur</string>
+    <string name="notification_kospi_title">Alertes KOSPI</string>
+    <string name="notification_lower_header">Alerte signal d\'achat</string>
+    <string name="notification_upper_header">Alerte surchauffe</string>
+    <string name="notification_kospi_lower_description">Soyez averti lorsque l\'indice KOSPI tombe à %1$d ou en dessous.</string>
+    <string name="notification_kospi_upper_description">Soyez averti lorsque l\'indice KOSPI atteint %1$d ou supérieur.</string>
+    <string name="notification_crypto_lower_description">Notification quand l\'indice crypto tombe à %1$d ou moins.</string>
+    <string name="notification_crypto_upper_description">Notification quand l\'indice crypto monte à %1$d ou plus.</string>
 
     <string name="insight_similar_events_similar_section_title">Périodes similaires</string>
 
@@ -226,7 +231,6 @@
     <string name="settings_kospi_methodology_summary">Le score KOSPI actuel est mis à jour toutes les heures pendant les heures normales du marché coréen. Les graphiques d\'historique ne se mettent à jour qu\'après la clôture confirmée. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Politique de confidentialité</string>
     <string name="settings_menu_about">Infos App</string>
-    <string name="settings_menu_ad_privacy">Choix de confidentialité</string>
     <string name="settings_menu_rate">Laisser un avis</string>
     <string name="settings_menu_share">Partager l\'app</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Base des donnees</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Suivant</string>
+    <string name="onboarding_skip">Passer</string>
+    <string name="onboarding_start">Commencer</string>
+    <string name="settings_menu_app_usage">Guide de l\'app</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Marché F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Crypto F&amp;G</string>
+    <string name="onboarding_step1_title">Cet indice suit le S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Il montre la peur et l\'avidité du marché américain en un seul chiffre de 0 à 100. Plus bas, c\'est la peur ; plus haut, c\'est l\'avidité.</string>
+    <string name="onboarding_step2_title">Cet indice suit le KOSPI</string>
+    <string name="onboarding_step2_detail">Consultez de la même façon le sentiment du marché coréen. Changez à tout moment avec les segments ci-dessus.</string>
+    <string name="onboarding_step3_title">Cet indice suit le BTC</string>
+    <string name="onboarding_step3_detail">La peur et l\'avidité du marché crypto se lisent sur la même échelle.</string>
+    <string name="onboarding_step4_title">Et si vous aviez acheté à ce score ?</string>
+    <string name="onboarding_step4_detail">Rendement moyen historique en achetant à ce niveau de score. Ce n\'est pas garanti, à consulter avec prudence.</string>
+    <string name="onboarding_step5_title">Votez sur votre situation actuelle</string>
+    <string name="onboarding_step5_detail">Laissez votre statut d\'un geste et suivez en temps réel le sentiment des investisseurs du monde entier.</string>
+    <string name="onboarding_step6_title">Soyez averti au bon moment</string>
+    <string name="onboarding_step6_detail">Réglez une alerte : nous vous préviendrons dès que l\'indice atteindra votre niveau.</string>
+    <string name="onboarding_step7_title">Encore plus rapide avec les widgets</string>
+    <string name="onboarding_step7_detail">Le guide des widgets est disponible à tout moment sur cet écran.</string>
+    <string name="onboarding_step8_title">La règle personnelle du développeur</string>
+    <string name="onboarding_step8_detail">Le développeur n\'achète qu\'à 15 ou moins. Au-delà, il faut parfois beaucoup de patience. Règle personnelle, pas un conseil en investissement.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Touchez et maintenez une zone vide de votre écran d\'accueil, puis appuyez sur Widgets.</string>
+    <string name="widget_guide_step2">Trouvez "Indice Peur &amp; Avidité" dans la liste des widgets.</string>
+    <string name="widget_guide_step3">Choisissez l\'indice voulu — Global, KOSPI ou Crypto — ou le widget tout-en-un.</string>
+    <string name="widget_guide_step4">Faites-le glisser sur votre écran d\'accueil et placez-le où vous voulez.</string>
+    <string name="widget_guide_step5">Appuyez sur le widget à tout moment pour ouvrir l\'application.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Peur &amp; Avidité</string>
+    <string name="widget_kospi_description">KOSPI — Peur &amp; Avidité</string>
+    <string name="widget_crypto_description">Crypto (BTC) — Peur &amp; Avidité</string>
+    <string name="widget_dashboard_description">Les trois indices Peur &amp; Avidité</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Supprimer les publicités</string>
+    <string name="settings_remove_ads_description">Achat unique. Supprime toutes les publicités pour toujours.</string>
+    <string name="settings_remove_ads_purchased">Publicités supprimées</string>
+    <string name="settings_remove_ads_purchase_failed">Échec de l\'achat. Veuillez réessayer.</string>
+    <string name="settings_restore_purchases">Restaurer les achats</string>
+    <string name="settings_restore_success">Achats restaurés.</string>
+    <string name="settings_restore_failure">Aucun achat à restaurer.</string>
+    <string name="settings_support_contact">Contact : %1$s</string>
+    <string name="common_confirm">Confirmer</string>
 </resources>

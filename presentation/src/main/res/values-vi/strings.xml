@@ -87,10 +87,7 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="back">Quay lại</string>
     <string name="notification_push_title">Thông báo đẩy</string>
     <string name="notification_push_description">Nhận thông báo khi chỉ số sợ hãi đạt ngưỡng bạn đặt.</string>
-    <string name="notification_tab_market">Thị trường</string>
-    <string name="notification_tab_crypto">Crypto</string>
     <string name="notification_weekly_title">Cảnh báo báo cáo hàng tuần</string>
-    <string name="notification_market_title">Cảnh báo chỉ số sợ hãi thị trường</string>
     <string name="notification_crypto_title">Cảnh báo chỉ số sợ hãi crypto</string>
     <string name="notification_lower_label">Ngưỡng dưới (Sợ hãi)</string>
     <string name="notification_upper_label">Ngưỡng trên (Tham lam)</string>
@@ -98,6 +95,14 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="notification_upper_description">Bạn sẽ được thông báo khi chỉ số đạt %1$d hoặc cao hơn.</string>
     <string name="notification_info">Thông báo được kiểm tra mỗi 15 phút. Bạn sẽ nhận tối đa 1 thông báo mỗi vùng ngưỡng mỗi ngày.</string>
     <string name="notification_sync_error">Đồng bộ thất bại: %1$s</string>
+    <string name="notification_global_title">Cảnh báo chỉ số sợ hãi toàn cầu</string>
+    <string name="notification_kospi_title">Cảnh báo KOSPI</string>
+    <string name="notification_lower_header">Cảnh báo tín hiệu mua</string>
+    <string name="notification_upper_header">Cảnh báo quá nhiệt</string>
+    <string name="notification_kospi_lower_description">Nhận thông báo khi chỉ số KOSPI giảm xuống %1$d trở xuống.</string>
+    <string name="notification_kospi_upper_description">Nhận thông báo khi chỉ số KOSPI tăng lên %1$d trở lên.</string>
+    <string name="notification_crypto_lower_description">Nhận thông báo khi chỉ số tiền mã hóa giảm xuống %1$d hoặc thấp hơn.</string>
+    <string name="notification_crypto_upper_description">Nhận thông báo khi chỉ số tiền mã hóa tăng lên %1$d hoặc cao hơn.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">Người đang bị kẹt hàng lúc này</string>
@@ -229,7 +234,6 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="settings_kospi_methodology_summary">Điểm KOSPI hiện tại cập nhật mỗi giờ trong giờ giao dịch thường của Hàn Quốc. Biểu đồ lịch sử chỉ cập nhật sau khi đóng cửa được xác nhận. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Chính sách quyền riêng tư</string>
     <string name="settings_menu_about">Thông tin ứng dụng</string>
-    <string name="settings_menu_ad_privacy">Lựa chọn quyền riêng tư</string>
     <string name="settings_menu_rate">Viết đánh giá</string>
     <string name="settings_menu_share">Chia sẻ ứng dụng</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -366,6 +370,7 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -385,4 +390,52 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Tiếp theo</string>
+    <string name="onboarding_skip">Bỏ qua</string>
+    <string name="onboarding_start">Bắt đầu</string>
+    <string name="settings_menu_app_usage">Hướng dẫn dùng ứng dụng</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Thị trường F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Tiền mã hóa F&amp;G</string>
+    <string name="onboarding_step1_title">Chỉ số này bám theo S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Thể hiện nỗi sợ và lòng tham của thị trường Mỹ bằng một con số từ 0 đến 100. Càng thấp càng sợ hãi, càng cao càng tham lam.</string>
+    <string name="onboarding_step2_title">Chỉ số này bám theo KOSPI</string>
+    <string name="onboarding_step2_detail">Xem tâm lý thị trường Hàn Quốc theo cách tương tự. Chuyển bất cứ lúc nào bằng các phân đoạn phía trên.</string>
+    <string name="onboarding_step3_title">Chỉ số này bám theo BTC</string>
+    <string name="onboarding_step3_detail">Nỗi sợ và lòng tham của thị trường crypto cũng trên cùng một thang đo.</string>
+    <string name="onboarding_step4_title">Nếu mua ở mức điểm này thì sao?</string>
+    <string name="onboarding_step4_detail">Đây là lợi nhuận trung bình trong quá khứ khi mua ở vùng điểm hiện tại. Không được đảm bảo, hãy tham khảo thận trọng.</string>
+    <string name="onboarding_step5_title">Bình chọn tình trạng của bạn</string>
+    <string name="onboarding_step5_detail">Chạm một lần để lưu trạng thái và theo dõi tâm lý nhà đầu tư toàn cầu theo thời gian thực.</string>
+    <string name="onboarding_step6_title">Báo cho bạn đúng thời điểm</string>
+    <string name="onboarding_step6_detail">Đặt thông báo và chúng tôi sẽ báo ngay khi chỉ số chạm mức của bạn.</string>
+    <string name="onboarding_step7_title">Xem nhanh hơn với widget</string>
+    <string name="onboarding_step7_detail">Hướng dẫn dùng widget luôn có ở màn hình này.</string>
+    <string name="onboarding_step8_title">Nguyên tắc cá nhân của nhà phát triển</string>
+    <string name="onboarding_step8_detail">Nhà phát triển chỉ mua khi từ 15 trở xuống. Cao hơn có thể cần kiên nhẫn lâu dài. Là nguyên tắc cá nhân, không phải lời khuyên đầu tư.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Chạm và giữ vùng trống trên màn hình chính, rồi chạm Widget.</string>
+    <string name="widget_guide_step2">Tìm "Chỉ số sợ hãi &amp; tham lam" trong danh sách widget.</string>
+    <string name="widget_guide_step3">Chọn chỉ số bạn muốn — Toàn cầu, KOSPI hoặc Crypto — hoặc widget tất cả trong một.</string>
+    <string name="widget_guide_step4">Kéo vào màn hình chính và đặt ở vị trí bạn thích.</string>
+    <string name="widget_guide_step5">Chạm vào widget bất cứ lúc nào để mở ứng dụng.</string>
+    <string name="widget_market_description">Sợ hãi &amp; tham lam toàn cầu (S&amp;P 500)</string>
+    <string name="widget_kospi_description">Sợ hãi &amp; tham lam KOSPI</string>
+    <string name="widget_crypto_description">Sợ hãi &amp; tham lam crypto (BTC)</string>
+    <string name="widget_dashboard_description">Cả ba chỉ số sợ hãi &amp; tham lam</string>
+    <string name="settings_premium_header">Cao cấp</string>
+    <string name="settings_remove_ads_title">Xóa quảng cáo</string>
+    <string name="settings_remove_ads_description">Mua một lần. Xóa toàn bộ quảng cáo vĩnh viễn.</string>
+    <string name="settings_remove_ads_purchased">Đã xóa quảng cáo</string>
+    <string name="settings_remove_ads_purchase_failed">Mua không thành công. Vui lòng thử lại.</string>
+    <string name="settings_restore_purchases">Khôi phục giao dịch mua</string>
+    <string name="settings_restore_success">Đã khôi phục giao dịch mua.</string>
+    <string name="settings_restore_failure">Không có giao dịch mua nào để khôi phục.</string>
+    <string name="settings_support_contact">Liên hệ: %1$s</string>
+    <string name="common_confirm">Xác nhận</string>
 </resources>

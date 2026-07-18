@@ -123,6 +123,10 @@ class RemoteConfigManager @Inject constructor() {
                 interstitialSessionCap = config.getLong(Keys.INTERSTITIAL_SESSION_CAP).toInt().coerceAtLeast(0),
                 interstitialCooldownMillis = config.getLong(Keys.INTERSTITIAL_COOLDOWN_SEC).coerceAtLeast(0L) * 1_000L,
                 kospiInterstitialEnabled = config.getBoolean(Keys.KOSPI_INTERSTITIAL_ENABLED),
+                appOpenAdsEnabled = config.getBoolean(Keys.APP_OPEN_ADS_ENABLED),
+                appOpenSessionCap = config.getLong(Keys.APP_OPEN_SESSION_CAP).toInt().coerceAtLeast(0),
+                appOpenCooldownMillis = config.getLong(Keys.APP_OPEN_COOLDOWN_SEC).coerceAtLeast(0L) * 1_000L,
+                appOpenMinBackgroundMillis = config.getLong(Keys.APP_OPEN_MIN_BACKGROUND_SEC).coerceAtLeast(0L) * 1_000L,
             )
         }
 
@@ -133,6 +137,10 @@ class RemoteConfigManager @Inject constructor() {
             interstitialSessionCap = 0,
             interstitialCooldownMillis = 180_000L,
             kospiInterstitialEnabled = false,
+            appOpenAdsEnabled = false,
+            appOpenSessionCap = 2,
+            appOpenCooldownMillis = 600_000L,
+            appOpenMinBackgroundMillis = 30_000L,
         )
 
     private fun defaultValues(): Map<String, Any> =
@@ -142,6 +150,10 @@ class RemoteConfigManager @Inject constructor() {
             Keys.INTERSTITIAL_SESSION_CAP to 0,
             Keys.INTERSTITIAL_COOLDOWN_SEC to 180,
             Keys.KOSPI_INTERSTITIAL_ENABLED to false,
+            Keys.APP_OPEN_ADS_ENABLED to false,
+            Keys.APP_OPEN_SESSION_CAP to 2,
+            Keys.APP_OPEN_COOLDOWN_SEC to 600,
+            Keys.APP_OPEN_MIN_BACKGROUND_SEC to 30,
             Keys.VOTE_ENABLED to true,
             // 기본값은 "아무도 차단하지 않음". 실제 강제 트리거는 Firebase Console 에서 설정.
             Keys.FORCE_UPDATE_MINIMUM_VERSION to "",
@@ -154,6 +166,10 @@ class RemoteConfigManager @Inject constructor() {
         const val INTERSTITIAL_SESSION_CAP = "interstitial_session_cap"
         const val INTERSTITIAL_COOLDOWN_SEC = "interstitial_cooldown_sec"
         const val KOSPI_INTERSTITIAL_ENABLED = "kospi_interstitial_enabled"
+        const val APP_OPEN_ADS_ENABLED = "app_open_ads_enabled"
+        const val APP_OPEN_SESSION_CAP = "app_open_session_cap"
+        const val APP_OPEN_COOLDOWN_SEC = "app_open_cooldown_sec"
+        const val APP_OPEN_MIN_BACKGROUND_SEC = "app_open_min_background_sec"
         const val VOTE_ENABLED = "vote_enabled"
         const val FORCE_UPDATE_MINIMUM_VERSION = "force_update_minimum_version"
         const val MINIMUM_APP_VERSION = "minimum_app_version"

@@ -1,0 +1,1 @@
+Ajout de widgets d'écran d'accueil, d'un guide d'utilisation et d'une option de suppression des publicités, et amélioration des paramètres de notification.

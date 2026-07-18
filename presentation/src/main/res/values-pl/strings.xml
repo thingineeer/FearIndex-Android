@@ -82,10 +82,7 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="back">Wstecz</string>
     <string name="notification_push_title">Powiadomienia push</string>
     <string name="notification_push_description">Otrzymuj powiadomienia, gdy wskaźnik paniki osiągnie ustawiony próg.</string>
-    <string name="notification_tab_market">Rynek</string>
-    <string name="notification_tab_crypto">Kryptowaluty</string>
     <string name="notification_weekly_title">Cotygodniowe alerty raportu</string>
-    <string name="notification_market_title">Alerty wskaźnika paniki rynku</string>
     <string name="notification_crypto_title">Alerty wskaźnika paniki kryptowalut</string>
     <string name="notification_lower_label">Dolny próg (Panika)</string>
     <string name="notification_upper_label">Górny próg (Chciwość)</string>
@@ -93,6 +90,14 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="notification_upper_description">Powiadomimy Cię, gdy wskaźnik osiągnie %1$d lub wyżej.</string>
     <string name="notification_info">Powiadomienia są sprawdzane co 15 minut. Otrzymasz maksymalnie 1 powiadomienie na strefę progową dziennie.</string>
     <string name="notification_sync_error">Błąd synchronizacji: %1$s</string>
+    <string name="notification_global_title">Alerty Globalnego Wskaźnika Strachu</string>
+    <string name="notification_kospi_title">Alerty KOSPI</string>
+    <string name="notification_lower_header">Alert sygnału kupna</string>
+    <string name="notification_upper_header">Ostrzeżenie o przegrzaniu</string>
+    <string name="notification_kospi_lower_description">Otrzymuj powiadomienia, gdy indeks KOSPI spadnie do %1$d lub poniżej.</string>
+    <string name="notification_kospi_upper_description">Otrzymuj powiadomienia, gdy indeks KOSPI wzrośnie do %1$d lub powyżej.</string>
+    <string name="notification_crypto_lower_description">Otrzymaj powiadomienie, gdy indeks krypto spadnie do %1$d lub poniżej.</string>
+    <string name="notification_crypto_upper_description">Otrzymaj powiadomienie, gdy indeks krypto wzrośnie do %1$d lub powyżej.</string>
 
     <string name="insight_similar_events_similar_section_title">Podobne okresy</string>
 
@@ -226,7 +231,6 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="settings_kospi_methodology_summary">Bieżący wynik KOSPI aktualizuje się co godzinę w regularnych godzinach rynku koreańskiego. Wykresy historii aktualizują się dopiero po potwierdzonym zamknięciu. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Polityka prywatności</string>
     <string name="settings_menu_about">Informacje o aplikacji</string>
-    <string name="settings_menu_ad_privacy">Wybory dotyczące prywatności</string>
     <string name="settings_menu_rate">Napisz recenzję</string>
     <string name="settings_menu_share">Udostępnij aplikację</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Dalej</string>
+    <string name="onboarding_skip">Pomiń</string>
+    <string name="onboarding_start">Rozpocznij</string>
+    <string name="settings_menu_app_usage">Przewodnik po aplikacji</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Rynek P&amp;C</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krypto P&amp;C</string>
+    <string name="onboarding_step1_title">Ten indeks podąża za S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Pokazuje strach i chciwość rynku USA jedną liczbą od 0 do 100. Im niżej, tym większy strach; im wyżej, tym większa chciwość.</string>
+    <string name="onboarding_step2_title">Ten indeks podąża za KOSPI</string>
+    <string name="onboarding_step2_detail">Tak samo sprawdzisz nastroje rynku koreańskiego. Przełączaj w każdej chwili segmentami u góry.</string>
+    <string name="onboarding_step3_title">Ten indeks podąża za BTC</string>
+    <string name="onboarding_step3_detail">Strach i chciwość rynku krypto zobaczysz na tej samej skali.</string>
+    <string name="onboarding_step4_title">A gdyby kupić przy tym wyniku?</string>
+    <string name="onboarding_step4_detail">To historyczna średnia stopa zwrotu przy zakupie na obecnym poziomie. Nie jest gwarantowana — traktuj ją ostrożnie.</string>
+    <string name="onboarding_step5_title">Zagłosuj, jaka jest Twoja sytuacja</string>
+    <string name="onboarding_step5_detail">Zostaw swój status jednym dotknięciem i śledź na żywo nastroje inwestorów z całego świata.</string>
+    <string name="onboarding_step6_title">Powiadomimy we właściwym momencie</string>
+    <string name="onboarding_step6_detail">Ustaw alert, a damy znać, gdy indeks osiągnie Twój poziom.</string>
+    <string name="onboarding_step7_title">Jeszcze szybciej z widżetami</string>
+    <string name="onboarding_step7_detail">Instrukcję widżetów znajdziesz na tym ekranie w każdej chwili.</string>
+    <string name="onboarding_step8_title">Osobista zasada dewelopera</string>
+    <string name="onboarding_step8_detail">Deweloper kupuje tylko przy 15 lub niżej. Powyżej może być potrzebna długa cierpliwość. To osobista zasada, nie porada inwestycyjna.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Dotknij i przytrzymaj puste miejsce na ekranie głównym, a następnie dotknij Widżety.</string>
+    <string name="widget_guide_step2">Znajdź "Indeks Paniki i Chciwości" na liście widżetów.</string>
+    <string name="widget_guide_step3">Wybierz indeks, który chcesz — Globalny, KOSPI lub Krypto — albo widżet wszystko w jednym.</string>
+    <string name="widget_guide_step4">Przeciągnij go na ekran główny i umieść w wybranym miejscu.</string>
+    <string name="widget_guide_step5">Dotknij widżetu w dowolnej chwili, aby otworzyć aplikację.</string>
+    <string name="widget_market_description">Globalny (S&amp;P 500) strach i chciwość</string>
+    <string name="widget_kospi_description">KOSPI strach i chciwość</string>
+    <string name="widget_crypto_description">Krypto (BTC) strach i chciwość</string>
+    <string name="widget_dashboard_description">Wszystkie trzy indeksy strachu i chciwości</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Usuń reklamy</string>
+    <string name="settings_remove_ads_description">Jednorazowy zakup. Trwale usuwa wszystkie reklamy.</string>
+    <string name="settings_remove_ads_purchased">Reklamy usunięte</string>
+    <string name="settings_remove_ads_purchase_failed">Zakup nie powiódł się. Spróbuj ponownie.</string>
+    <string name="settings_restore_purchases">Przywróć zakupy</string>
+    <string name="settings_restore_success">Zakupy zostały przywrócone.</string>
+    <string name="settings_restore_failure">Brak zakupów do przywrócenia.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Potwierdź</string>
 </resources>

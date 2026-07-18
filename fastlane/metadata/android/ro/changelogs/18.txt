@@ -1,0 +1,1 @@
+Setări de notificare îmbunătățite și stabilitate sporită a aplicației.

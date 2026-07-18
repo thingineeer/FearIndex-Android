@@ -83,10 +83,7 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="back">Geri</string>
     <string name="notification_push_title">Anlık Bildirimler</string>
     <string name="notification_push_description">Korku endeksi eşiğinize ulaştığında bildirim alın.</string>
-    <string name="notification_tab_market">Piyasa</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Haftalık Rapor Uyarıları</string>
-    <string name="notification_market_title">Piyasa Korku Endeksi Uyarıları</string>
     <string name="notification_crypto_title">Kripto Korku Endeksi Uyarıları</string>
     <string name="notification_lower_label">Alt sınır (Korku)</string>
     <string name="notification_upper_label">Üst sınır (Açgözlülük)</string>
@@ -94,6 +91,14 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="notification_upper_description">Endeks %1$d veya üstüne çıktığında bildirim alırsınız.</string>
     <string name="notification_info">Bildirimler 15 dakikada bir kontrol edilir. Her eşik bölgesi için günde en fazla 1 bildirim alırsınız.</string>
     <string name="notification_sync_error">Senkronizasyon başarısız: %1$s</string>
+    <string name="notification_global_title">Küresel Korku Endeksi Uyarıları</string>
+    <string name="notification_kospi_title">KOSPI Uyarıları</string>
+    <string name="notification_lower_header">Alım Sinyali Uyarısı</string>
+    <string name="notification_upper_header">Aşırı Isınma Uyarısı</string>
+    <string name="notification_kospi_lower_description">KOSPI endeksi %1$d veya altına düştüğünde bildirim alın.</string>
+    <string name="notification_kospi_upper_description">KOSPI endeksi %1$d veya üzerine çıktığında bildirim alın.</string>
+    <string name="notification_crypto_lower_description">Kripto endeksi %1$d veya altına düştüğünde bildirim alın.</string>
+    <string name="notification_crypto_upper_description">Kripto endeksi %1$d veya üzerine çıktığında bildirim alın.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">Şu an sıkışanlar</string>
@@ -225,7 +230,6 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="settings_kospi_methodology_summary">Mevcut KOSPI skoru Kore normal piyasa saatleri içinde saat başı güncellenir. Geçmiş grafikleri yalnızca onaylanmış kapanıştan sonra güncellenir. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Gizlilik Politikası</string>
     <string name="settings_menu_about">Uygulama Bilgisi</string>
-    <string name="settings_menu_ad_privacy">Gizlilik tercihleri</string>
     <string name="settings_menu_rate">Yorum Yaz</string>
     <string name="settings_menu_share">Uygulamayı Paylaş</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -362,6 +366,7 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -381,4 +386,52 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">İleri</string>
+    <string name="onboarding_skip">Atla</string>
+    <string name="onboarding_start">Başla</string>
+    <string name="settings_menu_app_usage">Uygulama kılavuzu</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Piyasa F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto F&amp;G</string>
+    <string name="onboarding_step1_title">Bu endeks S&amp;P 500\'ü takip eder</string>
+    <string name="onboarding_step1_detail">ABD piyasasının korku ve açgözlülüğünü 0-100 arası tek bir sayıyla gösterir. Düşük korku, yüksek açgözlülük demektir.</string>
+    <string name="onboarding_step2_title">Bu endeks KOSPI\'yi takip eder</string>
+    <string name="onboarding_step2_detail">Kore piyasasının psikolojisini de aynı şekilde görebilirsiniz. Üstteki bölümlerle istediğiniz an geçiş yapın.</string>
+    <string name="onboarding_step3_title">Bu endeks BTC\'yi takip eder</string>
+    <string name="onboarding_step3_detail">Kripto piyasasının korku ve açgözlülüğü de aynı ölçekte.</string>
+    <string name="onboarding_step4_title">Bu puanda alsaydınız ne olurdu?</string>
+    <string name="onboarding_step4_detail">Mevcut puan aralığında alım yapıldığında geçmiş ortalama getiridir. Garanti değildir; dikkatle referans alın.</string>
+    <string name="onboarding_step5_title">Şu anki durumunuz için oy verin</string>
+    <string name="onboarding_step5_detail">Tek dokunuşla durumunuzu bırakın, dünyadaki yatırımcıların psikolojisini gerçek zamanlı görün.</string>
+    <string name="onboarding_step6_title">Tam zamanında haber veririz</string>
+    <string name="onboarding_step6_detail">Bildirim kurun; endeks seviyenize ulaştığı an haber veririz.</string>
+    <string name="onboarding_step7_title">Widget\'larla daha da hızlı</string>
+    <string name="onboarding_step7_detail">Widget kullanımını bu ekrandan her zaman görebilirsiniz.</string>
+    <string name="onboarding_step8_title">Geliştiricinin kişisel kuralı</string>
+    <string name="onboarding_step8_detail">Geliştirici yalnızca 15 ve altında alır. Üzeri uzun sabır gerektirebilir. Kişisel bir kuraldır, yatırım tavsiyesi değildir.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Ana ekranınızda boş bir alana dokunup basılı tutun, ardından Widget\'lara dokunun.</string>
+    <string name="widget_guide_step2">Widget listesinde «Korku ve Açgözlülük Endeksi»ni bulun.</string>
+    <string name="widget_guide_step3">İstediğiniz endeksi seçin — Global, KOSPI veya Kripto — ya da hepsi bir arada widget\'ı.</string>
+    <string name="widget_guide_step4">Ana ekranınıza sürükleyin ve istediğiniz yere yerleştirin.</string>
+    <string name="widget_guide_step5">Uygulamayı açmak için istediğiniz zaman widget\'a dokunun.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) Korku ve Açgözlülük</string>
+    <string name="widget_kospi_description">KOSPI Korku ve Açgözlülük</string>
+    <string name="widget_crypto_description">Kripto (BTC) Korku ve Açgözlülük</string>
+    <string name="widget_dashboard_description">Üç korku ve açgözlülük endeksinin tümü</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Reklamları Kaldır</string>
+    <string name="settings_remove_ads_description">Tek seferlik satın alma. Tüm reklamları kalıcı olarak kaldırır.</string>
+    <string name="settings_remove_ads_purchased">Reklamlar kaldırıldı</string>
+    <string name="settings_remove_ads_purchase_failed">Satın alma başarısız oldu. Lütfen tekrar deneyin.</string>
+    <string name="settings_restore_purchases">Satın Alımları Geri Yükle</string>
+    <string name="settings_restore_success">Satın alımlar geri yüklendi.</string>
+    <string name="settings_restore_failure">Geri yüklenecek satın alım yok.</string>
+    <string name="settings_support_contact">İletişim: %1$s</string>
+    <string name="common_confirm">Onayla</string>
 </resources>

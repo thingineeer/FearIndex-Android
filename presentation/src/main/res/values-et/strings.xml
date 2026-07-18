@@ -82,10 +82,7 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="back">Tagasi</string>
     <string name="notification_push_title">Tõuketeavitused</string>
     <string name="notification_push_description">Saad teavituse, kui hirmuindeks jõuab sinu läveni.</string>
-    <string name="notification_tab_market">Turg</string>
-    <string name="notification_tab_crypto">Krüpto</string>
     <string name="notification_weekly_title">Iganädalased aruannete hoiatused</string>
-    <string name="notification_market_title">Turu hirmuindeksi hoiatused</string>
     <string name="notification_crypto_title">Krüpto hirmuindeksi hoiatused</string>
     <string name="notification_lower_label">Alumine (Hirm)</string>
     <string name="notification_upper_label">Ülemine (Ahnus)</string>
@@ -93,6 +90,14 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="notification_upper_description">Saad teavituse, kui indeks jõuab %1$d või kõrgemale.</string>
     <string name="notification_info">Teavitusi kontrollitakse iga 15 minuti järel. Saad ühe lävitsooni kohta kuni ühe teavituse päevas.</string>
     <string name="notification_sync_error">Sünkroonimine ebaõnnestus: %1$s</string>
+    <string name="notification_global_title">Globaalse hirmuindeksi hoiatused</string>
+    <string name="notification_kospi_title">KOSPI märguanded</string>
+    <string name="notification_lower_header">Ostusignaali teavitus</string>
+    <string name="notification_upper_header">Ülekuumenemise hoiatus</string>
+    <string name="notification_kospi_lower_description">Saate märguande, kui KOSPI indeks langeb %1$d või alla selle.</string>
+    <string name="notification_kospi_upper_description">Saate märguande, kui KOSPI indeks tõuseb %1$d või kõrgemale.</string>
+    <string name="notification_crypto_lower_description">Saate teavituse, kui krüptoindeks langeb %1$d-ni või alla selle.</string>
+    <string name="notification_crypto_upper_description">Saate teavituse, kui krüptoindeks tõuseb %1$d-ni või üle selle.</string>
 
     <string name="insight_similar_events_similar_section_title">Sarnased perioodid</string>
 
@@ -226,7 +231,6 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="settings_kospi_methodology_summary">Praegust KOSPI skoori uuendatakse Korea tavapärastel turuaegadel kord tunnis. Ajaloo graafikud uuenevad ainult pärast kinnitatud sulgemist. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privaatsuspoliitika</string>
     <string name="settings_menu_about">Rakenduse teave</string>
-    <string name="settings_menu_ad_privacy">Privaatsusvalikud</string>
     <string name="settings_menu_rate">Kirjuta arvustus</string>
     <string name="settings_menu_share">Jaga rakendust</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Edasi</string>
+    <string name="onboarding_skip">Jäta vahele</string>
+    <string name="onboarding_start">Alusta</string>
+    <string name="settings_menu_app_usage">Rakenduse juhend</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Turg H&amp;A</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krüpto H&amp;A</string>
+    <string name="onboarding_step1_title">See indeks järgib S&amp;P 500 indeksit</string>
+    <string name="onboarding_step1_detail">Näitab USA turu hirmu ja ahnust ühe arvuna 0–100. Mida madalam, seda rohkem hirmu; mida kõrgem, seda rohkem ahnust.</string>
+    <string name="onboarding_step2_title">See indeks järgib KOSPI-t</string>
+    <string name="onboarding_step2_detail">Samamoodi näed Korea turu meeleolu. Vaheta igal ajal ülal olevate segmentidega.</string>
+    <string name="onboarding_step3_title">See indeks järgib BTC-d</string>
+    <string name="onboarding_step3_detail">Krüptoturu hirm ja ahnus on samal skaalal.</string>
+    <string name="onboarding_step4_title">Aga kui oleksid ostnud selle skoori juures?</string>
+    <string name="onboarding_step4_detail">Ajalooline keskmine tootlus praegusel tasemel ostes. Pole garanteeritud — kasuta ettevaatlikult.</string>
+    <string name="onboarding_step5_title">Hääleta oma praeguse seisu üle</string>
+    <string name="onboarding_step5_detail">Jäta oma staatus ühe puudutusega ja jälgi reaalajas investorite meeleolu üle maailma.</string>
+    <string name="onboarding_step6_title">Anname teada õigel hetkel</string>
+    <string name="onboarding_step6_detail">Sea teavitus ja anname teada kohe, kui indeks jõuab sinu tasemele.</string>
+    <string name="onboarding_step7_title">Vidinatega veel kiiremini</string>
+    <string name="onboarding_step7_detail">Vidinate juhend on alati sellel ekraanil.</string>
+    <string name="onboarding_step8_title">Arendaja isiklik reegel</string>
+    <string name="onboarding_step8_detail">Arendaja ostab ainult 15 või madalamal. Kõrgemal võib vaja minna pikka kannatlikkust. Isiklik reegel, mitte investeerimisnõuanne.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Puuduta ja hoia avakuval tühja kohta, seejärel puuduta Vidinad.</string>
+    <string name="widget_guide_step2">Leia vidinate loendist "Hirmu &amp; Ahnuse Indeks".</string>
+    <string name="widget_guide_step3">Vali soovitud indeks — Globaalne, KOSPI või Krüpto — või kõik ühes vidin.</string>
+    <string name="widget_guide_step4">Lohista see avakuvale ja aseta sinna, kuhu soovid.</string>
+    <string name="widget_guide_step5">Puuduta vidinat igal ajal, et rakendus avada.</string>
+    <string name="widget_market_description">Globaalne (S&amp;P 500) hirm ja ahnus</string>
+    <string name="widget_kospi_description">KOSPI hirm ja ahnus</string>
+    <string name="widget_crypto_description">Krüpto (BTC) hirm ja ahnus</string>
+    <string name="widget_dashboard_description">Kõik kolm hirmu ja ahnuse indeksit</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Eemalda reklaamid</string>
+    <string name="settings_remove_ads_description">Ühekordne ost. Eemaldab kõik reklaamid jäädavalt.</string>
+    <string name="settings_remove_ads_purchased">Reklaamid eemaldatud</string>
+    <string name="settings_remove_ads_purchase_failed">Ost ebaõnnestus. Palun proovi uuesti.</string>
+    <string name="settings_restore_purchases">Taasta ostud</string>
+    <string name="settings_restore_success">Ostud on taastatud.</string>
+    <string name="settings_restore_failure">Pole oste, mida taastada.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Kinnita</string>
 </resources>

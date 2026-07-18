@@ -64,9 +64,20 @@ class NotificationStorage @Inject constructor(
         )
     }
 
+    /** master toggle 값이 명시적으로 저장된 적 있는지 (기본값과 구분). */
+    fun hasStoredPreference(): Boolean = prefs.contains(KEY_ENABLED)
+
+    /** 시스템 알림 권한 프롬프트를 띄운 적 있는지 — Android엔 iOS notDetermined가 없어 플래그로 추적. */
+    fun hasRequestedPermission(): Boolean = prefs.getBoolean(KEY_PERMISSION_REQUESTED, false)
+
+    fun markPermissionRequested() {
+        prefs.edit().putBoolean(KEY_PERMISSION_REQUESTED, true).apply()
+    }
+
     companion object {
         private const val PREFS_NAME = "notification_settings_prefs"
         private const val KEY_ENABLED = "notificationEnabled"
+        private const val KEY_PERMISSION_REQUESTED = "notificationPermissionRequested"
         private const val KEY_GLOBAL_ENABLED = "globalNotificationEnabled"
         private const val KEY_MARKET_LOWER = "marketLowerThreshold"
         private const val KEY_MARKET_UPPER = "marketUpperThreshold"

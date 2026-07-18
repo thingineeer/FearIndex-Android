@@ -82,10 +82,7 @@
     <string name="back">Πίσω</string>
     <string name="notification_push_title">Ειδοποιήσεις push</string>
     <string name="notification_push_description">Λάβετε ειδοποίηση όταν ο δείκτης φόβου φτάσει στο όριό σας.</string>
-    <string name="notification_tab_market">Αγορά</string>
-    <string name="notification_tab_crypto">Κρύπτο</string>
     <string name="notification_weekly_title">Ειδοποιήσεις εβδομαδιαίας αναφοράς</string>
-    <string name="notification_market_title">Ειδοποιήσεις δείκτη φόβου αγοράς</string>
     <string name="notification_crypto_title">Ειδοποιήσεις δείκτη φόβου κρύπτο</string>
     <string name="notification_lower_label">Κάτω όριο (Φόβος)</string>
     <string name="notification_upper_label">Άνω όριο (Απληστία)</string>
@@ -93,6 +90,14 @@
     <string name="notification_upper_description">Θα ειδοποιηθείτε όταν ο δείκτης φτάσει στο %1$d ή υψηλότερα.</string>
     <string name="notification_info">Οι ειδοποιήσεις ελέγχονται κάθε 15 λεπτά. Θα λαμβάνετε το πολύ 1 ειδοποίηση ανά ζώνη ορίου την ημέρα.</string>
     <string name="notification_sync_error">Ο συγχρονισμός απέτυχε: %1$s</string>
+    <string name="notification_global_title">Ειδοποιήσεις παγκόσμιου δείκτη φόβου</string>
+    <string name="notification_kospi_title">Ειδοποιήσεις ΚΟΣΠΗ</string>
+    <string name="notification_lower_header">Ειδοποίηση Σήματος Αγοράς</string>
+    <string name="notification_upper_header">Προειδοποίηση Υπερθέρμανσης</string>
+    <string name="notification_kospi_lower_description">Λάβετε ειδοποίηση όταν ο δείκτης KOSPI πέσει σε %1$d ή χαμηλότερο.</string>
+    <string name="notification_kospi_upper_description">Λάβετε ειδοποίηση όταν ο δείκτης KOSPI αυξάνεται σε %1$d ή υψηλότερο.</string>
+    <string name="notification_crypto_lower_description">Λαμβάνετε ειδοποίηση όταν ο δείκτης κρύπτο πέσει στο %1$d ή χαμηλότερα.</string>
+    <string name="notification_crypto_upper_description">Λαμβάνετε ειδοποίηση όταν ο δείκτης κρύπτο ανέβει στο %1$d ή υψηλότερα.</string>
 
     <string name="insight_similar_events_similar_section_title">Παρόμοιες περίοδοι</string>
 
@@ -226,7 +231,6 @@
     <string name="settings_kospi_methodology_summary">Η τρέχουσα βαθμολογία KOSPI ενημερώνεται ανά ώρα κατά τις κανονικές ώρες της κορεατικής αγοράς. Τα ιστορικά γραφήματα ενημερώνονται μόνο μετά το επιβεβαιωμένο κλείσιμο. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Πολιτική Απορρήτου</string>
     <string name="settings_menu_about">Πληροφορίες Εφαρμογής</string>
-    <string name="settings_menu_ad_privacy">Επιλογές απορρήτου</string>
     <string name="settings_menu_rate">Γράψτε κριτική</string>
     <string name="settings_menu_share">Κοινοποίηση</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,54 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Επόμενο</string>
+    <string name="onboarding_skip">Παράλειψη</string>
+    <string name="onboarding_start">Έναρξη</string>
+    <string name="settings_menu_app_usage">Οδηγός εφαρμογής</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Αγορά Φ&amp;Α</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Κρύπτο Φ&amp;Α</string>
+    <string name="onboarding_step1_title">Ο δείκτης αυτός ακολουθεί τον S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Δείχνει τον φόβο και την απληστία της αμερικανικής αγοράς με έναν αριθμό από 0 έως 100. Όσο χαμηλότερα, τόσο περισσότερος φόβος· όσο ψηλότερα, τόσο περισσότερη απληστία.</string>
+    <string name="onboarding_step2_title">Ο δείκτης αυτός ακολουθεί τον KOSPI</string>
+    <string name="onboarding_step2_detail">Δείτε με τον ίδιο τρόπο το κλίμα της κορεατικής αγοράς. Αλλάξτε όποτε θέλετε από τα τμήματα επάνω.</string>
+    <string name="onboarding_step3_title">Ο δείκτης αυτός ακολουθεί το BTC</string>
+    <string name="onboarding_step3_detail">Ο φόβος και η απληστία της αγοράς κρύπτο στην ίδια κλίμακα.</string>
+    <string name="onboarding_step4_title">Κι αν είχατε αγοράσει σε αυτό το σκορ;</string>
+    <string name="onboarding_step4_detail">Η ιστορική μέση απόδοση όταν αγοράζετε στο τρέχον επίπεδο. Δεν είναι εγγυημένη — χρησιμοποιήστε τη με προσοχή.</string>
+    <string name="onboarding_step5_title">Ψηφίστε για την κατάστασή σας</string>
+    <string name="onboarding_step5_detail">Αφήστε την κατάστασή σας με ένα άγγιγμα και δείτε σε πραγματικό χρόνο το κλίμα των επενδυτών παγκοσμίως.</string>
+    <string name="onboarding_step6_title">Θα σας ειδοποιήσουμε την κατάλληλη στιγμή</string>
+    <string name="onboarding_step6_detail">Ορίστε ειδοποίηση και θα σας ενημερώσουμε μόλις ο δείκτης φτάσει στο επίπεδό σας.</string>
+    <string name="onboarding_step7_title">Ακόμα πιο γρήγορα με widgets</string>
+    <string name="onboarding_step7_detail">Ο οδηγός των widgets είναι πάντα σε αυτή την οθόνη.</string>
+    <string name="onboarding_step8_title">Ο προσωπικός κανόνας του δημιουργού</string>
+    <string name="onboarding_step8_detail">Ο δημιουργός αγοράζει μόνο στο 15 ή χαμηλότερα. Πάνω από αυτό ίσως χρειαστεί μεγάλη υπομονή. Προσωπικός κανόνας, όχι επενδυτική συμβουλή.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Πατήστε παρατεταμένα σε ένα κενό σημείο της αρχικής οθόνης και μετά πατήστε «Widgets».</string>
+    <string name="widget_guide_step2">Βρείτε το «Δείκτης φόβου και απληστίας» στη λίστα των widgets.</string>
+    <string name="widget_guide_step3">Επιλέξτε τον δείκτη που θέλετε — παγκόσμιο, KOSPI ή κρύπτο — ή το all-in-one widget.</string>
+    <string name="widget_guide_step4">Σύρετέ το στην αρχική οθόνη και τοποθετήστε το όπου θέλετε.</string>
+    <string name="widget_guide_step5">Πατήστε το widget οποιαδήποτε στιγμή για να ανοίξετε την εφαρμογή.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Παγκόσμιος (S&amp;P 500) δείκτης φόβου και απληστίας</string>
+    <string name="widget_kospi_description">Δείκτης φόβου και απληστίας KOSPI</string>
+    <string name="widget_crypto_description">Δείκτης φόβου και απληστίας κρύπτο (BTC)</string>
+    <string name="widget_dashboard_description">Και οι τρεις δείκτες φόβου και απληστίας</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Αφαίρεση διαφημίσεων</string>
+    <string name="settings_remove_ads_description">Εφάπαξ αγορά. Αφαιρεί όλες τις διαφημίσεις για πάντα.</string>
+    <string name="settings_remove_ads_purchased">Οι διαφημίσεις αφαιρέθηκαν</string>
+    <string name="settings_remove_ads_purchase_failed">Η αγορά απέτυχε. Δοκιμάστε ξανά.</string>
+    <string name="settings_restore_purchases">Επαναφορά αγορών</string>
+    <string name="settings_restore_success">Οι αγορές επαναφέρθηκαν.</string>
+    <string name="settings_restore_failure">Δεν υπάρχουν αγορές για επαναφορά.</string>
+    <string name="settings_support_contact">Επικοινωνία: %1$s</string>
+    <string name="common_confirm">Επιβεβαίωση</string>
 </resources>

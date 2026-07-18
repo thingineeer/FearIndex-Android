@@ -1,0 +1,1 @@
+Uzlaboti paziņojumu iestatījumi un labāka lietotnes stabilitāte.

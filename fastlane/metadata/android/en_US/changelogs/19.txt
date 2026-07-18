@@ -1,0 +1,1 @@
+Added home screen widgets, an in-app guide, and a remove-ads option, and improved notification settings.

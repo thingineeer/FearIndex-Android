@@ -87,10 +87,7 @@
     <string name="back">वापस</string>
     <string name="notification_push_title">पुश सूचनाएँ</string>
     <string name="notification_push_description">जब भय सूचकांक आपकी सीमा तक पहुँचे तो सूचना प्राप्त करें।</string>
-    <string name="notification_tab_market">बाज़ार</string>
-    <string name="notification_tab_crypto">क्रिप्टो</string>
     <string name="notification_weekly_title">साप्ताहिक रिपोर्ट अलर्ट</string>
-    <string name="notification_market_title">बाज़ार भय सूचकांक अलर्ट</string>
     <string name="notification_crypto_title">क्रिप्टो भय सूचकांक अलर्ट</string>
     <string name="notification_lower_label">निचली सीमा (भय)</string>
     <string name="notification_upper_label">ऊपरी सीमा (लालच)</string>
@@ -98,6 +95,14 @@
     <string name="notification_upper_description">सूचकांक %1$d या उससे ऊपर पहुँचने पर आपको सूचित किया जाएगा।</string>
     <string name="notification_info">सूचनाओं की हर 15 मिनट में जाँच होती है। प्रत्येक सीमा क्षेत्र के लिए प्रतिदिन अधिकतम 1 सूचना प्राप्त होगी।</string>
     <string name="notification_sync_error">सिंक विफल: %1$s</string>
+    <string name="notification_global_title">वैश्विक भय सूचकांक अलर्ट</string>
+    <string name="notification_kospi_title">KOSPI अलर्ट</string>
+    <string name="notification_lower_header">खरीद संकेत अलर्ट</string>
+    <string name="notification_upper_header">अत्यधिक गर्म होने की चेतावनी</string>
+    <string name="notification_kospi_lower_description">जब KOSPI सूचकांक %1$d या उससे नीचे गिर जाए तो सूचित करें।</string>
+    <string name="notification_kospi_upper_description">जब KOSPI सूचकांक %1$d या इससे ऊपर बढ़ जाए तो सूचित करें।</string>
+    <string name="notification_crypto_lower_description">जब क्रिप्टो सूचकांक %1$d या उससे नीचे जाए तब सूचना प्राप्त करें।</string>
+    <string name="notification_crypto_upper_description">जब क्रिप्टो सूचकांक %1$d या उससे ऊपर जाए तब सूचना प्राप्त करें।</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">अभी फँसे लोग</string>
@@ -229,7 +234,6 @@
     <string name="settings_kospi_methodology_summary">KOSPI का वर्तमान स्कोर कोरिया के नियमित बाज़ार समय में हर घंटे अपडेट होता है। इतिहास चार्ट केवल पुष्टि किए गए बंद के बाद अपडेट होते हैं। Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">गोपनीयता नीति</string>
     <string name="settings_menu_about">ऐप जानकारी</string>
-    <string name="settings_menu_ad_privacy">गोपनीयता विकल्प</string>
     <string name="settings_menu_rate">समीक्षा लिखें</string>
     <string name="settings_menu_share">ऐप शेयर करें</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -366,6 +370,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -385,4 +390,52 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">आगे</string>
+    <string name="onboarding_skip">छोड़ें</string>
+    <string name="onboarding_start">शुरू करें</string>
+    <string name="settings_menu_app_usage">ऐप गाइड</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">बाज़ार भ&amp;ल</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">क्रिप्टो भ&amp;ल</string>
+    <string name="onboarding_step1_title">यह सूचकांक S&amp;P 500 को ट्रैक करता है</string>
+    <string name="onboarding_step1_detail">यह अमेरिकी बाज़ार के डर और लालच को 0 से 100 तक के एक अंक में दिखाता है। जितना कम, उतना डर; जितना ज़्यादा, उतना लालच।</string>
+    <string name="onboarding_step2_title">यह सूचकांक KOSPI को ट्रैक करता है</string>
+    <string name="onboarding_step2_detail">इसी तरह कोरियाई बाज़ार का सेंटीमेंट भी देखें। ऊपर के सेगमेंट से कभी भी बदलें।</string>
+    <string name="onboarding_step3_title">यह सूचकांक BTC को फ़ॉलो करता है</string>
+    <string name="onboarding_step3_detail">क्रिप्टो बाज़ार का डर और लालच भी इसी पैमाने पर देखें।</string>
+    <string name="onboarding_step4_title">अगर इस स्कोर पर खरीदा होता तो?</string>
+    <string name="onboarding_step4_detail">मौजूदा स्कोर पर खरीदने का ऐतिहासिक औसत रिटर्न है। इसकी गारंटी नहीं है, इसे सावधानी से केवल संदर्भ के रूप में देखें।</string>
+    <string name="onboarding_step5_title">अपनी मौजूदा स्थिति पर वोट करें</string>
+    <string name="onboarding_step5_detail">एक टैप में अपनी स्थिति दर्ज करें और दुनिया भर के निवेशकों का सेंटीमेंट रीयल-टाइम देखें।</string>
+    <string name="onboarding_step6_title">सही समय पर सूचित करेंगे</string>
+    <string name="onboarding_step6_detail">अलर्ट सेट करें, सूचकांक आपके स्तर पर पहुँचते ही बता देंगे।</string>
+    <string name="onboarding_step7_title">विजेट से और भी तेज़</string>
+    <string name="onboarding_step7_detail">विजेट गाइड इस स्क्रीन पर कभी भी देख सकते हैं।</string>
+    <string name="onboarding_step8_title">डेवलपर का निजी नियम</string>
+    <string name="onboarding_step8_detail">डेवलपर सिर्फ़ 15 या उससे नीचे ही खरीदता है। इससे ऊपर लंबा धैर्य चाहिए हो सकता है। यह निजी नियम है, निवेश सलाह नहीं।</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">अपनी होम स्क्रीन पर किसी खाली जगह को दबाकर रखें, फिर विजेट पर टैप करें।</string>
+    <string name="widget_guide_step2">विजेट सूची में «डर और लालच सूचकांक» खोजें।</string>
+    <string name="widget_guide_step3">अपना मनचाहा सूचकांक चुनें — ग्लोबल, KOSPI या क्रिप्टो — या ऑल-इन-वन विजेट।</string>
+    <string name="widget_guide_step4">इसे अपनी होम स्क्रीन पर खींचें और जहाँ चाहें वहाँ रखें।</string>
+    <string name="widget_guide_step5">ऐप खोलने के लिए कभी भी विजेट पर टैप करें।</string>
+    <string name="widget_market_description">ग्लोबल (S&amp;P 500) डर और लालच</string>
+    <string name="widget_kospi_description">KOSPI डर और लालच</string>
+    <string name="widget_crypto_description">क्रिप्टो (BTC) डर और लालच</string>
+    <string name="widget_dashboard_description">तीनों डर और लालच सूचकांक एक साथ</string>
+    <string name="settings_premium_header">प्रीमियम</string>
+    <string name="settings_remove_ads_title">विज्ञापन हटाएँ</string>
+    <string name="settings_remove_ads_description">एक बार की खरीदारी। सभी विज्ञापन हमेशा के लिए हटा देती है।</string>
+    <string name="settings_remove_ads_purchased">विज्ञापन हटा दिए गए</string>
+    <string name="settings_remove_ads_purchase_failed">खरीदारी विफल रही। कृपया फिर से प्रयास करें।</string>
+    <string name="settings_restore_purchases">खरीदारी बहाल करें</string>
+    <string name="settings_restore_success">खरीदारी बहाल कर दी गई।</string>
+    <string name="settings_restore_failure">बहाल करने के लिए कोई खरीदारी नहीं है।</string>
+    <string name="settings_support_contact">संपर्क: %1$s</string>
+    <string name="common_confirm">पुष्टि करें</string>
 </resources>

@@ -82,10 +82,7 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="back">Späť</string>
     <string name="notification_push_title">Push oznámenia</string>
     <string name="notification_push_description">Získajte upozornenie, keď index strachu dosiahne nastavený prah.</string>
-    <string name="notification_tab_market">Trh</string>
-    <string name="notification_tab_crypto">Kryptomeny</string>
     <string name="notification_weekly_title">Upozornenia na týždenné správy</string>
-    <string name="notification_market_title">Upozornenia indexu strachu trhu</string>
     <string name="notification_crypto_title">Upozornenia indexu strachu kryptomien</string>
     <string name="notification_lower_label">Dolný prah (Strach)</string>
     <string name="notification_upper_label">Horný prah (Chamtivosť)</string>
@@ -93,6 +90,14 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="notification_upper_description">Dostanete oznámenie, keď index dosiahne %1$d alebo vyššie.</string>
     <string name="notification_info">Oznámenia sa kontrolujú každých 15 minút. Dostanete najviac 1 oznámenie na prahovú zónu denne.</string>
     <string name="notification_sync_error">Synchronizácia zlyhala: %1$s</string>
+    <string name="notification_global_title">Výstrahy globálneho indexu strachu</string>
+    <string name="notification_kospi_title">Výstrahy KOSPI</string>
+    <string name="notification_lower_header">Upozornenie na Nákupný Signál</string>
+    <string name="notification_upper_header">Varovanie Pred Prehriatím</string>
+    <string name="notification_kospi_lower_description">Získajte upozornenia, keď index KOSPI klesne na %1$d alebo nižšie.</string>
+    <string name="notification_kospi_upper_description">Získajte upozornenia, keď index KOSPI stúpne na %1$d alebo viac.</string>
+    <string name="notification_crypto_lower_description">Dostanete oznámenie, keď krypto index klesne na %1$d alebo nižšie.</string>
+    <string name="notification_crypto_upper_description">Dostanete oznámenie, keď krypto index stúpne na %1$d alebo vyššie.</string>
 
     <string name="insight_similar_events_similar_section_title">Podobné obdobia</string>
 
@@ -226,7 +231,6 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="settings_kospi_methodology_summary">Aktuálne skóre KOSPI sa počas bežných kórejských trhových hodín aktualizuje každú hodinu. Historické grafy sa aktualizujú až po potvrdenom zatvorení. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Zásady Ochrany Osobných Údajov</string>
     <string name="settings_menu_about">Informácie o Aplikácii</string>
-    <string name="settings_menu_ad_privacy">Voľby ochrany súkromia</string>
     <string name="settings_menu_rate">Napísať recenziu</string>
     <string name="settings_menu_share">Zdieľať aplikáciu</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Ďalej</string>
+    <string name="onboarding_skip">Preskočiť</string>
+    <string name="onboarding_start">Začať</string>
+    <string name="settings_menu_app_usage">Sprievodca aplikáciou</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Trh S&amp;C</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krypto S&amp;C</string>
+    <string name="onboarding_step1_title">Tento index sleduje S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Ukazuje strach a chamtivosť amerického trhu jedným číslom od 0 do 100. Čím nižšie, tým väčší strach; čím vyššie, tým väčšia chamtivosť.</string>
+    <string name="onboarding_step2_title">Tento index sleduje KOSPI</string>
+    <string name="onboarding_step2_detail">Rovnako môžete sledovať aj náladu kórejského trhu. Prepínajte kedykoľvek segmentmi hore.</string>
+    <string name="onboarding_step3_title">Tento index sleduje BTC</string>
+    <string name="onboarding_step3_detail">Strach a chamtivosť kryptotrhu uvidíte na rovnakej škále.</string>
+    <string name="onboarding_step4_title">Čo keby ste kúpili pri tomto skóre?</string>
+    <string name="onboarding_step4_detail">Historický priemerný výnos pri nákupe na aktuálnej úrovni. Nie je zaručený — berte ho opatrne.</string>
+    <string name="onboarding_step5_title">Hlasujte o svojej situácii</string>
+    <string name="onboarding_step5_detail">Jedným ťuknutím zanechajte svoj stav a sledujte náladu investorov po celom svete v reálnom čase.</string>
+    <string name="onboarding_step6_title">Dáme vedieť v správnej chvíli</string>
+    <string name="onboarding_step6_detail">Nastavte upozornenie a ozveme sa, len čo index dosiahne vašu úroveň.</string>
+    <string name="onboarding_step7_title">S widgetmi ešte rýchlejšie</string>
+    <string name="onboarding_step7_detail">Návod na widgety nájdete na tejto obrazovke kedykoľvek.</string>
+    <string name="onboarding_step8_title">Osobné pravidlo vývojára</string>
+    <string name="onboarding_step8_detail">Vývojár nakupuje len pri 15 a nižšie. Nad tým môže byť potrebná dlhá trpezlivosť. Osobné pravidlo, nie investičné poradenstvo.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Klepnite a podržte prázdne miesto na ploche a potom klepnite na Widgety.</string>
+    <string name="widget_guide_step2">Nájdite v zozname widgetov "Index Strachu &amp; Chamtivosti".</string>
+    <string name="widget_guide_step3">Vyberte požadovaný index — Globálny, KOSPI alebo Krypto — alebo widget všetko v jednom.</string>
+    <string name="widget_guide_step4">Presuňte ho na plochu a umiestnite, kam chcete.</string>
+    <string name="widget_guide_step5">Kedykoľvek klepnite na widget a aplikácia sa otvorí.</string>
+    <string name="widget_market_description">Globálny (S&amp;P 500) strach a chamtivosť</string>
+    <string name="widget_kospi_description">KOSPI strach a chamtivosť</string>
+    <string name="widget_crypto_description">Krypto (BTC) strach a chamtivosť</string>
+    <string name="widget_dashboard_description">Všetky tri indexy strachu a chamtivosti</string>
+    <string name="settings_premium_header">Prémium</string>
+    <string name="settings_remove_ads_title">Odstrániť reklamy</string>
+    <string name="settings_remove_ads_description">Jednorazový nákup. Natrvalo odstráni všetky reklamy.</string>
+    <string name="settings_remove_ads_purchased">Reklamy odstránené</string>
+    <string name="settings_remove_ads_purchase_failed">Nákup zlyhal. Skúste to znova.</string>
+    <string name="settings_restore_purchases">Obnoviť nákupy</string>
+    <string name="settings_restore_success">Nákupy boli obnovené.</string>
+    <string name="settings_restore_failure">Žiadne nákupy na obnovenie.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Potvrdiť</string>
 </resources>

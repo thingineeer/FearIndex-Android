@@ -82,10 +82,7 @@
     <string name="back">Назад</string>
     <string name="notification_push_title">Push-сповіщення</string>
     <string name="notification_push_description">Отримуйте сповіщення, коли індекс страху досягає встановленого порогу.</string>
-    <string name="notification_tab_market">Ринок</string>
-    <string name="notification_tab_crypto">Криптовалюта</string>
     <string name="notification_weekly_title">Сповіщення про щотижневі звіти</string>
-    <string name="notification_market_title">Сповіщення про індекс страху ринку</string>
     <string name="notification_crypto_title">Сповіщення про індекс страху криптовалют</string>
     <string name="notification_lower_label">Нижня межа (Страх)</string>
     <string name="notification_upper_label">Верхня межа (Жадібність)</string>
@@ -93,6 +90,14 @@
     <string name="notification_upper_description">Ви отримаєте сповіщення, коли індекс досягне %1$d або вище.</string>
     <string name="notification_info">Сповіщення перевіряються кожні 15 хвилин. Ви отримаєте не більше 1 сповіщення на кожну порогову зону на день.</string>
     <string name="notification_sync_error">Помилка синхронізації: %1$s</string>
+    <string name="notification_global_title">Сповіщення Глобального індексу страху</string>
+    <string name="notification_kospi_title">Сповіщення KOSPI</string>
+    <string name="notification_lower_header">Сигнал купівлі</string>
+    <string name="notification_upper_header">Попередження про перегрів</string>
+    <string name="notification_kospi_lower_description">Отримуйте сповіщення, коли індекс KOSPI падає до %1$d або нижче.</string>
+    <string name="notification_kospi_upper_description">Отримуйте сповіщення, коли індекс KOSPI піднімається до %1$d або вище.</string>
+    <string name="notification_crypto_lower_description">Отримайте сповіщення, коли крипто індекс падає до %1$d або нижче.</string>
+    <string name="notification_crypto_upper_description">Отримайте сповіщення, коли крипто індекс зростає до %1$d або вище.</string>
 
     <string name="insight_similar_events_similar_section_title">Схожі періоди</string>
 
@@ -226,7 +231,6 @@
     <string name="settings_kospi_methodology_summary">Поточний показник KOSPI оновлюється щогодини під час звичайних годин роботи корейського ринку. Історичні графіки оновлюються лише після підтвердженого закриття. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Політика конфіденційності</string>
     <string name="settings_menu_about">Інформація про додаток</string>
-    <string name="settings_menu_ad_privacy">Вибір конфіденційності</string>
     <string name="settings_menu_rate">Залишити відгук</string>
     <string name="settings_menu_share">Поділитися</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,54 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Далі</string>
+    <string name="onboarding_skip">Пропустити</string>
+    <string name="onboarding_start">Почати</string>
+    <string name="settings_menu_app_usage">Посібник із застосунку</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Ринок F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Крипто F&amp;G</string>
+    <string name="onboarding_step1_title">Цей індекс відстежує S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Показує страх і жадібність американського ринку одним числом від 0 до 100. Що нижче — то більший страх, що вище — то більша жадібність.</string>
+    <string name="onboarding_step2_title">Цей індекс відстежує KOSPI</string>
+    <string name="onboarding_step2_detail">Так само можна бачити настрій корейського ринку. Перемикайте будь-коли сегментами вгорі.</string>
+    <string name="onboarding_step3_title">Цей індекс відстежує BTC</string>
+    <string name="onboarding_step3_detail">Страх і жадібність криптовалютного ринку — на тій самій шкалі.</string>
+    <string name="onboarding_step4_title">А якби ви купили за цього значення?</string>
+    <string name="onboarding_step4_detail">Це середня історична дохідність при купівлі на поточному рівні. Вона не гарантована — використовуйте обережно.</string>
+    <string name="onboarding_step5_title">Проголосуйте, як у вас справи</string>
+    <string name="onboarding_step5_detail">Залиште свій статус одним дотиком і стежте в реальному часі за настроєм інвесторів у всьому світі.</string>
+    <string name="onboarding_step6_title">Повідомимо в потрібний момент</string>
+    <string name="onboarding_step6_detail">Налаштуйте сповіщення — повідомимо, щойно індекс сягне вашого рівня.</string>
+    <string name="onboarding_step7_title">Ще швидше з віджетами</string>
+    <string name="onboarding_step7_detail">Інструкція до віджетів завжди на цьому екрані.</string>
+    <string name="onboarding_step8_title">Особисте правило розробника</string>
+    <string name="onboarding_step8_detail">Розробник купує лише при значенні 15 або нижче. Вище може знадобитися довге терпіння. Це особисте правило, а не інвестиційна порада.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Натисніть і утримуйте порожнє місце на головному екрані, потім торкніться «Віджети».</string>
+    <string name="widget_guide_step2">Знайдіть «Індекс страху та жадібності» у списку віджетів.</string>
+    <string name="widget_guide_step3">Виберіть потрібний індекс — глобальний, KOSPI чи крипто — або віджет «усе в одному».</string>
+    <string name="widget_guide_step4">Перетягніть його на головний екран і розмістіть, де зручно.</string>
+    <string name="widget_guide_step5">Торкніться віджета будь-коли, щоб відкрити застосунок.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Глобальний (S&amp;P 500) індекс страху та жадібності</string>
+    <string name="widget_kospi_description">Індекс страху та жадібності KOSPI</string>
+    <string name="widget_crypto_description">Криптовалютний (BTC) індекс страху та жадібності</string>
+    <string name="widget_dashboard_description">Усі три індекси страху та жадібності</string>
+    <string name="settings_premium_header">Преміум</string>
+    <string name="settings_remove_ads_title">Прибрати рекламу</string>
+    <string name="settings_remove_ads_description">Одноразова покупка. Назавжди прибирає всю рекламу.</string>
+    <string name="settings_remove_ads_purchased">Рекламу прибрано</string>
+    <string name="settings_remove_ads_purchase_failed">Не вдалося здійснити покупку. Спробуйте ще раз.</string>
+    <string name="settings_restore_purchases">Відновити покупки</string>
+    <string name="settings_restore_success">Покупки відновлено.</string>
+    <string name="settings_restore_failure">Немає покупок для відновлення.</string>
+    <string name="settings_support_contact">Контакти: %1$s</string>
+    <string name="common_confirm">Підтвердити</string>
 </resources>

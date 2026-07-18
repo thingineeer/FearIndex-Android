@@ -82,10 +82,7 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="back">Zpět</string>
     <string name="notification_push_title">Push oznámení</string>
     <string name="notification_push_description">Získejte upozornění, když index strachu dosáhne nastaveného prahu.</string>
-    <string name="notification_tab_market">Trh</string>
-    <string name="notification_tab_crypto">Kryptoměny</string>
     <string name="notification_weekly_title">Upozornění na týdenní zprávy</string>
-    <string name="notification_market_title">Upozornění indexu strachu trhu</string>
     <string name="notification_crypto_title">Upozornění indexu strachu kryptoměn</string>
     <string name="notification_lower_label">Dolní práh (Strach)</string>
     <string name="notification_upper_label">Horní práh (Chamtivost)</string>
@@ -93,6 +90,14 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="notification_upper_description">Dostanete oznámení, když index dosáhne %1$d nebo výše.</string>
     <string name="notification_info">Oznámení se kontrolují každých 15 minut. Obdržíte nejvýše 1 oznámení na prahovou zónu denně.</string>
     <string name="notification_sync_error">Synchronizace selhala: %1$s</string>
+    <string name="notification_global_title">Upozornění na globální index strachu</string>
+    <string name="notification_kospi_title">Upozornění KOSPI</string>
+    <string name="notification_lower_header">Upozornění na nákupní signál</string>
+    <string name="notification_upper_header">Varování před přehřátím</string>
+    <string name="notification_kospi_lower_description">Získejte upozornění, když index KOSPI klesne na %1$d nebo nižší.</string>
+    <string name="notification_kospi_upper_description">Získejte upozornění, když index KOSPI vzroste na %1$d nebo vyšší.</string>
+    <string name="notification_crypto_lower_description">Dostanete oznámení, když krypto index klesne na %1$d nebo níže.</string>
+    <string name="notification_crypto_upper_description">Dostanete oznámení, když krypto index stoupne na %1$d nebo výše.</string>
 
     <string name="insight_similar_events_similar_section_title">Podobná období</string>
 
@@ -226,7 +231,6 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="settings_kospi_methodology_summary">Aktuální skóre KOSPI se během běžných korejských tržních hodin aktualizuje každou hodinu. Historické grafy se aktualizují až po potvrzeném uzavření. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Zásady ochrany osobních údajů</string>
     <string name="settings_menu_about">Informace o aplikaci</string>
-    <string name="settings_menu_ad_privacy">Volby soukromí</string>
     <string name="settings_menu_rate">Napsat recenzi</string>
     <string name="settings_menu_share">Sdílet aplikaci</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Další</string>
+    <string name="onboarding_skip">Přeskočit</string>
+    <string name="onboarding_start">Začít</string>
+    <string name="settings_menu_app_usage">Průvodce aplikací</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Trh S&amp;C</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krypto S&amp;C</string>
+    <string name="onboarding_step1_title">Tento index sleduje S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Ukazuje strach a chamtivost amerického trhu jedním číslem od 0 do 100. Čím níž, tím větší strach; čím výš, tím větší chamtivost.</string>
+    <string name="onboarding_step2_title">Tento index sleduje KOSPI</string>
+    <string name="onboarding_step2_detail">Stejně můžete sledovat i náladu korejského trhu. Přepínejte kdykoli segmenty nahoře.</string>
+    <string name="onboarding_step3_title">Tento index sleduje BTC</string>
+    <string name="onboarding_step3_detail">Strach a chamtivost kryptotrhu uvidíte na stejné škále.</string>
+    <string name="onboarding_step4_title">Co kdybyste koupili při tomto skóre?</string>
+    <string name="onboarding_step4_detail">Historický průměrný výnos při nákupu na aktuální úrovni. Není zaručený — berte jej s rezervou.</string>
+    <string name="onboarding_step5_title">Hlasujte o své aktuální situaci</string>
+    <string name="onboarding_step5_detail">Jedním klepnutím zanechte svůj stav a sledujte náladu investorů po celém světě v reálném čase.</string>
+    <string name="onboarding_step6_title">Dáme vědět ve správnou chvíli</string>
+    <string name="onboarding_step6_detail">Nastavte upozornění a ozveme se, jakmile index dosáhne vaší úrovně.</string>
+    <string name="onboarding_step7_title">S widgety ještě rychleji</string>
+    <string name="onboarding_step7_detail">Návod k widgetům najdete na této obrazovce kdykoli.</string>
+    <string name="onboarding_step8_title">Osobní pravidlo vývojáře</string>
+    <string name="onboarding_step8_detail">Vývojář nakupuje jen při 15 a níže. Nad tím může být potřeba dlouhá trpělivost. Osobní pravidlo, ne investiční rada.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Klepněte a podržte prázdné místo na ploše a poté klepněte na Widgety.</string>
+    <string name="widget_guide_step2">Najděte v seznamu widgetů "Index strachu a chamtivosti".</string>
+    <string name="widget_guide_step3">Vyberte požadovaný index — Globální, KOSPI nebo Krypto — nebo widget vše v jednom.</string>
+    <string name="widget_guide_step4">Přetáhněte jej na plochu a umístěte, kam chcete.</string>
+    <string name="widget_guide_step5">Kdykoli klepněte na widget a otevře se aplikace.</string>
+    <string name="widget_market_description">Globální (S&amp;P 500) strach a chamtivost</string>
+    <string name="widget_kospi_description">KOSPI strach a chamtivost</string>
+    <string name="widget_crypto_description">Krypto (BTC) strach a chamtivost</string>
+    <string name="widget_dashboard_description">Všechny tři indexy strachu a chamtivosti</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Odstranit reklamy</string>
+    <string name="settings_remove_ads_description">Jednorázový nákup. Navždy odstraní všechny reklamy.</string>
+    <string name="settings_remove_ads_purchased">Reklamy odstraněny</string>
+    <string name="settings_remove_ads_purchase_failed">Nákup se nezdařil. Zkuste to prosím znovu.</string>
+    <string name="settings_restore_purchases">Obnovit nákupy</string>
+    <string name="settings_restore_success">Nákupy byly obnoveny.</string>
+    <string name="settings_restore_failure">Žádné nákupy k obnovení.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Potvrdit</string>
 </resources>

@@ -26,10 +26,7 @@
     <string name="back">뒤로</string>
     <string name="notification_push_title">푸시 알림</string>
     <string name="notification_push_description">공포지수가 설정한 임계값에 도달하면 알림을 받습니다.</string>
-    <string name="notification_tab_market">시장</string>
-    <string name="notification_tab_crypto">암호화폐</string>
     <string name="notification_weekly_title">주간 리포트 알림</string>
-    <string name="notification_market_title">시장 공포지수 알림</string>
     <string name="notification_crypto_title">암호화폐 공포지수 알림</string>
     <string name="notification_lower_label">하한 (공포)</string>
     <string name="notification_upper_label">상한 (탐욕)</string>
@@ -37,6 +34,14 @@
     <string name="notification_upper_description">공포지수가 %1$d 이상일 때 알림을 받습니다.</string>
     <string name="notification_info">알림은 15분 간격으로 체크되며, 하루에 같은 구간 진입 시 최대 1회만 발송됩니다.</string>
     <string name="notification_sync_error">동기화 실패: %1$s</string>
+    <string name="notification_global_title">글로벌 공포지수 알림</string>
+    <string name="notification_kospi_title">코스피 알림</string>
+    <string name="notification_lower_header">매수 기회 알림</string>
+    <string name="notification_upper_header">과열 경고 알림</string>
+    <string name="notification_kospi_lower_description">코스피 공포지수가 %1$d 이하일 때 알림을 받습니다.</string>
+    <string name="notification_kospi_upper_description">코스피 공포지수가 %1$d 이상일 때 알림을 받습니다.</string>
+    <string name="notification_crypto_lower_description">암호화폐 공포지수가 %1$d 이하일 때 알림을 받습니다.</string>
+    <string name="notification_crypto_upper_description">암호화폐 공포지수가 %1$d 이상일 때 알림을 받습니다.</string>
 
     <!-- SimilarEvents 카드 (v1.7.9 v2) -->
     <string name="insight_similar_events_title">지금과 비슷했던 시기</string>
@@ -306,7 +311,6 @@
     <string name="settings_menu_rate">앱 평가하기</string>
     <string name="settings_menu_share">앱 공유하기</string>
     <string name="settings_menu_about">앱 정보</string>
-    <string name="settings_menu_ad_privacy">개인정보 선택</string>
     <string name="settings_menu_kospi_methodology">코스피 산출 방식</string>
     <string name="settings_kospi_methodology_summary">코스피 현재 지수는 한국 정규장 중 1시간마다 업데이트됩니다. 히스토리 차트는 종가 확정 후에만 업데이트됩니다. 점수 산출과 과거 비교에는 변동성, 수급, 모멘텀 등 보조 지표가 함께 반영될 수 있습니다.</string>
     <string name="settings_menu_privacy">개인정보 처리방침</string>
@@ -380,6 +384,7 @@
     <string name="indicator_rsi_support_neutral">가격 모멘텀은 중립 구간이에요.</string>
     <string name="indicator_rsi_support_overbought">가격도 기술적으로 과열 상태예요 — 탐욕 쪽을 거듭니다.</string>
     <string name="indicator_rsi_support_oversold">가격도 기술적으로 과매도 상태예요 — 공포 쪽을 거듭니다.</string>
+    <string name="indicator_source_section">데이터 기준</string>
     <string name="indicator_rsi_title">%1$s RSI (상대강도지수)</string>
     <string name="indicator_rsi_zone_neutral">중립</string>
     <string name="indicator_rsi_zone_overbought">과매수</string>
@@ -399,4 +404,52 @@
     <string name="indicator_short_support_heavy">공매도 비중이 늘고 있어요 — 하락에 베팅한 자금이 우세해요.</string>
     <string name="indicator_short_support_neutral">공매도 비중이 안정적이에요 — 뚜렷한 쏠림은 없어요.</string>
     <string name="indicator_short_title">%1$s 공매도 동향</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">다음</string>
+    <string name="onboarding_skip">건너뛰기</string>
+    <string name="onboarding_start">시작하기</string>
+    <string name="settings_menu_app_usage">앱 사용법</string>
+    <string name="settings_menu_widget_guide">위젯 사용법</string>
+    <string name="widget_guide_title">위젯 사용법</string>
+    <string name="widget_index_market">시장 F&amp;G</string>
+    <string name="widget_index_kospi">코스피 F&amp;G</string>
+    <string name="widget_index_crypto">암호화폐 F&amp;G</string>
+    <string name="onboarding_step1_title">이 지수는 S&amp;P500을 추종해요</string>
+    <string name="onboarding_step1_detail">미국 시장의 공포와 탐욕 심리를 0부터 100까지 숫자 하나로 보여드려요. 낮을수록 공포, 높을수록 탐욕이에요.</string>
+    <string name="onboarding_step2_title">이 지수는 KOSPI를 추종해요</string>
+    <string name="onboarding_step2_detail">같은 방식으로 한국 시장의 심리를 따로 볼 수 있어요. 위 세그먼트로 언제든 전환할 수 있어요.</string>
+    <string name="onboarding_step3_title">이 지수는 BTC를 따라가요</string>
+    <string name="onboarding_step3_detail">암호화폐 시장의 공포와 탐욕도 같은 눈금으로 확인할 수 있어요.</string>
+    <string name="onboarding_step4_title">그 점수에 샀다면 어땠을까요?</string>
+    <string name="onboarding_step4_detail">지금 점수대에 샀을 때의 과거 평균 수익률이에요. 항상 보장되는 건 아니니 주의해서 참고하세요.</string>
+    <string name="onboarding_step5_title">지금 상태를 투표해 보세요</string>
+    <string name="onboarding_step5_detail">물렸어요 버튼으로 내 상태를 남기면 전세계 사람들의 심리를 실시간으로 파악할 수 있어요.</string>
+    <string name="onboarding_step6_title">원하는 시점에 알려드려요</string>
+    <string name="onboarding_step6_detail">알림을 맞추면 지수가 그 지점에 닿는 순간 알려드려요.</string>
+    <string name="onboarding_step7_title">위젯으로 더 빠르게 확인해요</string>
+    <string name="onboarding_step7_detail">위젯 사용법은 이 화면에서 언제든 볼 수 있어요.</string>
+    <string name="onboarding_step8_title">개발자의 개인 기준이에요</string>
+    <string name="onboarding_step8_detail">개발자는 15 이하에서만 매수해요. 그 이상은 긴 인내가 필요할 수 있어요. 개인 기준이며 투자 조언이 아니에요.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">홈 화면 빈 곳을 길게 누른 뒤 위젯을 눌러주세요.</string>
+    <string name="widget_guide_step2">위젯 목록에서 \'공포·탐욕 지수\'를 찾아주세요.</string>
+    <string name="widget_guide_step3">원하는 지수(글로벌·코스피·암호화폐) 또는 통합 위젯을 고르세요.</string>
+    <string name="widget_guide_step4">홈 화면으로 끌어다 원하는 위치에 놓으세요.</string>
+    <string name="widget_guide_step5">위젯을 탭하면 언제든 앱이 열려요.</string>
+    <string name="widget_market_description">글로벌(S&amp;P500) 공포·탐욕 지수</string>
+    <string name="widget_kospi_description">코스피 공포·탐욕 지수</string>
+    <string name="widget_crypto_description">암호화폐(BTC) 공포·탐욕 지수</string>
+    <string name="widget_dashboard_description">세 지수를 한 번에</string>
+    <string name="settings_premium_header">프리미엄</string>
+    <string name="settings_remove_ads_title">광고 제거</string>
+    <string name="settings_remove_ads_description">한 번의 구매로 모든 광고가 영구 제거됩니다.</string>
+    <string name="settings_remove_ads_purchased">광고 제거됨</string>
+    <string name="settings_remove_ads_purchase_failed">구매에 실패했습니다. 다시 시도해 주세요.</string>
+    <string name="settings_restore_purchases">구매 항목 복원</string>
+    <string name="settings_restore_success">구매 내역이 복원되었습니다.</string>
+    <string name="settings_restore_failure">복원할 구매 내역이 없습니다.</string>
+    <string name="settings_support_contact">문의: %1$s</string>
+    <string name="common_confirm">확인</string>
 </resources>

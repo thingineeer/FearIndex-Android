@@ -82,10 +82,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="back">Atpakaļ</string>
     <string name="notification_push_title">Tūlītējie paziņojumi</string>
     <string name="notification_push_description">Saņemiet paziņojumu, kad baiļu indekss sasniedz jūsu slieksni.</string>
-    <string name="notification_tab_market">Tirgus</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Iknedēļas ziņojumu brīdinājumi</string>
-    <string name="notification_market_title">Tirgus baiļu indeksa brīdinājumi</string>
     <string name="notification_crypto_title">Kripto baiļu indeksa brīdinājumi</string>
     <string name="notification_lower_label">Apakšējais (Bailes)</string>
     <string name="notification_upper_label">Augšējais (Alkatība)</string>
@@ -93,6 +90,14 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="notification_upper_description">Jūs saņemsiet paziņojumu, kad indekss sasniedz %1$d vai augstāk.</string>
     <string name="notification_info">Paziņojumi tiek pārbaudīti ik pēc 15 minūtēm. Jūs saņemsiet ne vairāk kā 1 paziņojumu par sliekšņa zonu dienā.</string>
     <string name="notification_sync_error">Sinhronizācija neizdevās: %1$s</string>
+    <string name="notification_global_title">Globālā baiļu indeksa brīdinājumi</string>
+    <string name="notification_kospi_title">KOSPI brīdinājumi</string>
+    <string name="notification_lower_header">Pirkšanas signāla brīdinājums</string>
+    <string name="notification_upper_header">Pārkaršanas brīdinājums</string>
+    <string name="notification_kospi_lower_description">Saņemiet paziņojumu, kad KOSPI indekss samazinās līdz %1$d vai zemākam.</string>
+    <string name="notification_kospi_upper_description">Saņemiet paziņojumu, kad KOSPI indekss palielinās līdz %1$d vai augstākam.</string>
+    <string name="notification_crypto_lower_description">Saņemiet paziņojumu, kad kripto indekss nokrīt līdz %1$d vai zemāk.</string>
+    <string name="notification_crypto_upper_description">Saņemiet paziņojumu, kad kripto indekss pieaug līdz %1$d vai augstāk.</string>
 
     <string name="insight_similar_events_similar_section_title">Līdzīgi periodi</string>
 
@@ -226,7 +231,6 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="settings_kospi_methodology_summary">Pašreizējais KOSPI rādītājs Korejas regulārajās tirgus stundās tiek atjaunināts reizi stundā. Vēstures grafiki tiek atjaunināti tikai pēc apstiprinātas slēgšanas. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privātuma politika</string>
     <string name="settings_menu_about">Lietotnes informācija</string>
-    <string name="settings_menu_ad_privacy">Privātuma izvēles</string>
     <string name="settings_menu_rate">Uzrakstīt atsauksmi</string>
     <string name="settings_menu_share">Kopīgot lietotni</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,54 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Tālāk</string>
+    <string name="onboarding_skip">Izlaist</string>
+    <string name="onboarding_start">Sākt</string>
+    <string name="settings_menu_app_usage">Lietotnes ceļvedis</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Tirgus B&amp;A</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto B&amp;A</string>
+    <string name="onboarding_step1_title">Šis indekss seko S&amp;P 500</string>
+    <string name="onboarding_step1_detail">ASV tirgus bailes un alkatību rāda ar vienu skaitli no 0 līdz 100. Jo zemāk, jo vairāk baiļu; jo augstāk, jo vairāk alkatības.</string>
+    <string name="onboarding_step2_title">Šis indekss seko KOSPI</string>
+    <string name="onboarding_step2_detail">Tāpat varat vērot Korejas tirgus noskaņojumu. Pārslēdzieties jebkurā brīdī ar segmentiem augšā.</string>
+    <string name="onboarding_step3_title">Šis indekss seko BTC</string>
+    <string name="onboarding_step3_detail">Kripto tirgus bailes un alkatība — tajā pašā skalā.</string>
+    <string name="onboarding_step4_title">Kā būtu, ja jūs būtu pirkuši pie šī rādītāja?</string>
+    <string name="onboarding_step4_detail">Vēsturiskā vidējā atdeve, pērkot pašreizējā līmenī. Tā nav garantēta — izmantojiet piesardzīgi.</string>
+    <string name="onboarding_step5_title">Balsojiet par savu pašreizējo stāvokli</string>
+    <string name="onboarding_step5_detail">Ar vienu pieskārienu atstājiet savu statusu un reāllaikā sekojiet investoru noskaņojumam visā pasaulē.</string>
+    <string name="onboarding_step6_title">Paziņosim īstajā brīdī</string>
+    <string name="onboarding_step6_detail">Iestatiet brīdinājumu, un paziņosim, tiklīdz indekss sasniegs jūsu līmeni.</string>
+    <string name="onboarding_step7_title">Vēl ātrāk ar logrīkiem</string>
+    <string name="onboarding_step7_detail">Logrīku ceļvedis vienmēr ir šajā ekrānā.</string>
+    <string name="onboarding_step8_title">Izstrādātāja personīgais noteikums</string>
+    <string name="onboarding_step8_detail">Izstrādātājs pērk tikai pie 15 vai zemāk. Virs tā var būt vajadzīga ilga pacietība. Personīgs noteikums, nevis ieguldījumu padoms.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Pieskarieties un turiet tukšu vietu sākuma ekrānā, pēc tam pieskarieties „Logrīki“.</string>
+    <string name="widget_guide_step2">Logrīku sarakstā atrodiet „Baiļu un alkatības indekss“.</string>
+    <string name="widget_guide_step3">Izvēlieties vēlamo indeksu — globālo, KOSPI vai kripto — vai universālo logrīku.</string>
+    <string name="widget_guide_step4">Velciet to uz sākuma ekrānu un novietojiet, kur vēlaties.</string>
+    <string name="widget_guide_step5">Jebkurā laikā pieskarieties logrīkam, lai atvērtu lietotni.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Globālais (S&amp;P 500) baiļu un alkatības indekss</string>
+    <string name="widget_kospi_description">KOSPI baiļu un alkatības indekss</string>
+    <string name="widget_crypto_description">Kripto (BTC) baiļu un alkatības indekss</string>
+    <string name="widget_dashboard_description">Visi trīs baiļu un alkatības indeksi</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Noņemt reklāmas</string>
+    <string name="settings_remove_ads_description">Vienreizējs pirkums. Uz visiem laikiem noņem visas reklāmas.</string>
+    <string name="settings_remove_ads_purchased">Reklāmas noņemtas</string>
+    <string name="settings_remove_ads_purchase_failed">Pirkums neizdevās. Lūdzu, mēģiniet vēlreiz.</string>
+    <string name="settings_restore_purchases">Atjaunot pirkumus</string>
+    <string name="settings_restore_success">Pirkumi atjaunoti.</string>
+    <string name="settings_restore_failure">Nav pirkumu, ko atjaunot.</string>
+    <string name="settings_support_contact">Kontakti: %1$s</string>
+    <string name="common_confirm">Apstiprināt</string>
 </resources>

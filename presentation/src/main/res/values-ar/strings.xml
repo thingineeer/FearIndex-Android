@@ -83,10 +83,7 @@
     <string name="back">رجوع</string>
     <string name="notification_push_title">الإشعارات الفورية</string>
     <string name="notification_push_description">تلقَّ إشعارًا عند وصول مؤشر الخوف إلى الحد الذي حددته.</string>
-    <string name="notification_tab_market">السوق</string>
-    <string name="notification_tab_crypto">العملات الرقمية</string>
     <string name="notification_weekly_title">تنبيهات التقرير الأسبوعي</string>
-    <string name="notification_market_title">تنبيهات مؤشر خوف السوق</string>
     <string name="notification_crypto_title">تنبيهات مؤشر خوف العملات الرقمية</string>
     <string name="notification_lower_label">الحد الأدنى (خوف)</string>
     <string name="notification_upper_label">الحد الأعلى (جشع)</string>
@@ -94,6 +91,14 @@
     <string name="notification_upper_description">سيتم إشعارك عندما يصل المؤشر إلى %1$d أو أعلى.</string>
     <string name="notification_info">تُفحص الإشعارات كل 15 دقيقة. ستتلقى إشعارًا واحدًا كحد أقصى لكل نطاق في اليوم.</string>
     <string name="notification_sync_error">فشل المزامنة: %1$s</string>
+    <string name="notification_global_title">تنبيهات مؤشر الخوف العالمي</string>
+    <string name="notification_kospi_title">تنبيهات كوسبي</string>
+    <string name="notification_lower_header">تنبيه إشارة الشراء</string>
+    <string name="notification_upper_header">تحذير فرط النشاط</string>
+    <string name="notification_kospi_lower_description">احصل على إشعار عندما ينخفض مؤشر KOSPI إلى %1$d أو أقل.</string>
+    <string name="notification_kospi_upper_description">احصل على إشعار عندما يرتفع مؤشر KOSPI إلى %1$d أو أعلى.</string>
+    <string name="notification_crypto_lower_description">احصل على إشعار عندما ينخفض مؤشر العملات المشفرة إلى %1$d أو أقل.</string>
+    <string name="notification_crypto_upper_description">احصل على إشعار عندما يرتفع مؤشر العملات المشفرة إلى %1$d أو أعلى.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">العالقون الآن</string>
@@ -225,7 +230,6 @@
     <string name="settings_kospi_methodology_summary">يتم تحديث نتيجة KOSPI الحالية كل ساعة أثناء ساعات السوق العادية في كوريا. يتم تحديث الرسوم البيانية التاريخية فقط بعد تأكيد الإغلاق. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">سياسة الخصوصية</string>
     <string name="settings_menu_about">معلومات التطبيق</string>
-    <string name="settings_menu_ad_privacy">خيارات الخصوصية</string>
     <string name="settings_menu_rate">اكتب مراجعة</string>
     <string name="settings_menu_share">مشاركة</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -362,6 +366,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -381,4 +386,52 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">التالي</string>
+    <string name="onboarding_skip">تخطي</string>
+    <string name="onboarding_start">ابدأ</string>
+    <string name="settings_menu_app_usage">دليل استخدام التطبيق</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">سوق F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">كريبتو F&amp;G</string>
+    <string name="onboarding_step1_title">هذا المؤشر يتبع S&amp;P 500</string>
+    <string name="onboarding_step1_detail">يعرض خوف السوق الأمريكي وجشعه برقم واحد من 0 إلى 100. كلما انخفض زاد الخوف، وكلما ارتفع زاد الجشع.</string>
+    <string name="onboarding_step2_title">هذا المؤشر يتبع KOSPI</string>
+    <string name="onboarding_step2_detail">يمكنك بالطريقة نفسها متابعة معنويات السوق الكوري. بدّل متى شئت من الأقسام في الأعلى.</string>
+    <string name="onboarding_step3_title">هذا المؤشر يتبع BTC</string>
+    <string name="onboarding_step3_detail">يمكنك أيضًا متابعة خوف سوق العملات الرقمية وجشعه على المقياس نفسه.</string>
+    <string name="onboarding_step4_title">ماذا لو اشتريت عند هذه الدرجة؟</string>
+    <string name="onboarding_step4_detail">هذا متوسط العائد التاريخي عند الشراء في هذا النطاق. ليس مضمونًا، فاستخدمه بحذر كمرجع.</string>
+    <string name="onboarding_step5_title">صوّت عن حالتك الآن</string>
+    <string name="onboarding_step5_detail">سجّل حالتك بلمسة واحدة وتابع مباشرة معنويات المستثمرين حول العالم.</string>
+    <string name="onboarding_step6_title">نخبرك في اللحظة المناسبة</string>
+    <string name="onboarding_step6_detail">فعّل التنبيه وسنعلمك فور وصول المؤشر إلى مستواك.</string>
+    <string name="onboarding_step7_title">أسرع مع الودجات</string>
+    <string name="onboarding_step7_detail">يمكنك دائمًا العثور على دليل الودجات في هذه الشاشة.</string>
+    <string name="onboarding_step8_title">قاعدة المطوّر الشخصية</string>
+    <string name="onboarding_step8_detail">المطوّر يشتري فقط عند 15 أو أقل. فوق ذلك قد يتطلب صبرًا طويلًا. قاعدة شخصية وليست نصيحة استثمارية.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">المس مطولاً مكانًا فارغًا على شاشتك الرئيسية، ثم اضغط على الأدوات.</string>
+    <string name="widget_guide_step2">ابحث عن «مؤشر الخوف والطمع» في قائمة الأدوات.</string>
+    <string name="widget_guide_step3">اختر المؤشر الذي تريده — العالمي أو KOSPI أو العملات المشفّرة — أو الأداة الشاملة.</string>
+    <string name="widget_guide_step4">اسحبها إلى شاشتك الرئيسية وضعها حيث تشاء.</string>
+    <string name="widget_guide_step5">اضغط على الأداة في أي وقت لفتح التطبيق.</string>
+    <string name="widget_market_description">مؤشر الخوف والطمع العالمي (S&amp;P 500)</string>
+    <string name="widget_kospi_description">مؤشر الخوف والطمع لمؤشر KOSPI</string>
+    <string name="widget_crypto_description">مؤشر الخوف والطمع للعملات المشفّرة (BTC)</string>
+    <string name="widget_dashboard_description">مؤشرات الخوف والطمع الثلاثة معًا</string>
+    <string name="settings_premium_header">بريميوم</string>
+    <string name="settings_remove_ads_title">إزالة الإعلانات</string>
+    <string name="settings_remove_ads_description">شراء لمرة واحدة. يزيل جميع الإعلانات للأبد.</string>
+    <string name="settings_remove_ads_purchased">تمت إزالة الإعلانات</string>
+    <string name="settings_remove_ads_purchase_failed">فشلت عملية الشراء. يرجى المحاولة مرة أخرى.</string>
+    <string name="settings_restore_purchases">استعادة المشتريات</string>
+    <string name="settings_restore_success">تمت استعادة المشتريات.</string>
+    <string name="settings_restore_failure">لا توجد مشتريات لاستعادتها.</string>
+    <string name="settings_support_contact">للتواصل: %1$s</string>
+    <string name="common_confirm">تأكيد</string>
 </resources>

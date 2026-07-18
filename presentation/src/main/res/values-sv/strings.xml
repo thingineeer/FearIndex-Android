@@ -82,10 +82,7 @@
     <string name="back">Tillbaka</string>
     <string name="notification_push_title">Push-aviseringar</string>
     <string name="notification_push_description">Få avisering när rädslaindexet når din tröskel.</string>
-    <string name="notification_tab_market">Marknad</string>
-    <string name="notification_tab_crypto">Krypto</string>
     <string name="notification_weekly_title">Veckorapportvarningar</string>
-    <string name="notification_market_title">Marknadsrädslaindex-varningar</string>
     <string name="notification_crypto_title">Kryptorädslaindex-varningar</string>
     <string name="notification_lower_label">Lägre (Rädsla)</string>
     <string name="notification_upper_label">Högre (Girighet)</string>
@@ -93,6 +90,14 @@
     <string name="notification_upper_description">Du aviseras när indexet når %1$d eller högre.</string>
     <string name="notification_info">Aviseringar kontrolleras var 15:e minut. Du får högst 1 avisering per tröskelområde per dag.</string>
     <string name="notification_sync_error">Synkronisering misslyckades: %1$s</string>
+    <string name="notification_global_title">Globala rädsloindexvarningar</string>
+    <string name="notification_kospi_title">KOSPI-varningar</string>
+    <string name="notification_lower_header">Köpsignalavisering</string>
+    <string name="notification_upper_header">Överhettningsvarning</string>
+    <string name="notification_kospi_lower_description">Få ett meddelande när KOSPI-indexet faller till %1$d eller lägre.</string>
+    <string name="notification_kospi_upper_description">Få ett meddelande när KOSPI-indexet stiger till %1$d eller högre.</string>
+    <string name="notification_crypto_lower_description">Få en avisering när kryptoindexet faller till %1$d eller lägre.</string>
+    <string name="notification_crypto_upper_description">Få en avisering när kryptoindexet stiger till %1$d eller högre.</string>
 
     <string name="insight_similar_events_similar_section_title">Liknande perioder</string>
 
@@ -226,7 +231,6 @@
     <string name="settings_kospi_methodology_summary">Aktuell KOSPI-poäng uppdateras varje timme under Koreas ordinarie marknadstid. Historikdiagram uppdateras först efter bekräftad stängning. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Integritetspolicy</string>
     <string name="settings_menu_about">Appinformation</string>
-    <string name="settings_menu_ad_privacy">Integritetsval</string>
     <string name="settings_menu_rate">Lämna en recension</string>
     <string name="settings_menu_share">Dela appen</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Nästa</string>
+    <string name="onboarding_skip">Hoppa över</string>
+    <string name="onboarding_start">Kom igång</string>
+    <string name="settings_menu_app_usage">Appguide</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Marknad R&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krypto R&amp;G</string>
+    <string name="onboarding_step1_title">Det här indexet följer S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Det visar den amerikanska marknadens rädsla och girighet som ett tal från 0 till 100. Lägre betyder rädsla, högre betyder girighet.</string>
+    <string name="onboarding_step2_title">Det här indexet följer KOSPI</string>
+    <string name="onboarding_step2_detail">Se den koreanska marknadens sentiment på samma sätt. Byt när du vill med segmenten ovan.</string>
+    <string name="onboarding_step3_title">Det här indexet följer BTC</string>
+    <string name="onboarding_step3_detail">Kryptomarknadens rädsla och girighet visas på samma skala.</string>
+    <string name="onboarding_step4_title">Tänk om du hade köpt vid den här poängen?</string>
+    <string name="onboarding_step4_detail">Historisk genomsnittlig avkastning vid köp på nuvarande nivå. Ingen garanti — använd med försiktighet.</string>
+    <string name="onboarding_step5_title">Rösta om ditt läge just nu</string>
+    <string name="onboarding_step5_detail">Lämna din status med ett tryck och följ investerares sentiment världen över i realtid.</string>
+    <string name="onboarding_step6_title">Vi säger till i rätt ögonblick</string>
+    <string name="onboarding_step6_detail">Ställ in en avisering så meddelar vi när indexet når din nivå.</string>
+    <string name="onboarding_step7_title">Ännu snabbare med widgetar</string>
+    <string name="onboarding_step7_detail">Widgetguiden finns alltid på den här skärmen.</string>
+    <string name="onboarding_step8_title">Utvecklarens personliga regel</string>
+    <string name="onboarding_step8_detail">Utvecklaren köper bara vid 15 eller lägre. Allt över det kan kräva stort tålamod. En personlig regel, inte investeringsråd.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Tryck och håll på en tom yta på startskärmen och tryck sedan på Widgetar.</string>
+    <string name="widget_guide_step2">Hitta "Rädsla &amp; Girighet Index" i widgetlistan.</string>
+    <string name="widget_guide_step3">Välj det index du vill ha — Global, KOSPI eller Krypto — eller allt-i-ett-widgeten.</string>
+    <string name="widget_guide_step4">Dra den till startskärmen och placera den där du vill.</string>
+    <string name="widget_guide_step5">Tryck på widgeten när som helst för att öppna appen.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) rädsla &amp; girighet</string>
+    <string name="widget_kospi_description">KOSPI rädsla &amp; girighet</string>
+    <string name="widget_crypto_description">Krypto (BTC) rädsla &amp; girighet</string>
+    <string name="widget_dashboard_description">Alla tre rädsla &amp; girighet-index</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Ta bort annonser</string>
+    <string name="settings_remove_ads_description">Engångsköp. Tar bort alla annonser för alltid.</string>
+    <string name="settings_remove_ads_purchased">Annonser borttagna</string>
+    <string name="settings_remove_ads_purchase_failed">Köpet misslyckades. Försök igen.</string>
+    <string name="settings_restore_purchases">Återställ köp</string>
+    <string name="settings_restore_success">Köp återställda.</string>
+    <string name="settings_restore_failure">Inga köp att återställa.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Bekräfta</string>
 </resources>

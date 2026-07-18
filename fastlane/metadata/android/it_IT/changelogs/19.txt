@@ -1,0 +1,1 @@
+Aggiunti widget per la schermata Home, una guida all'uso e un'opzione per rimuovere gli annunci, migliorate le impostazioni di notifica.

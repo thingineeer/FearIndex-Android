@@ -1,0 +1,1 @@
+Továbbfejlesztett értesítési beállítások és nagyobb alkalmazásstabilitás.

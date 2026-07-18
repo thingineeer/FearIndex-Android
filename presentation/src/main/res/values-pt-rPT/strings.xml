@@ -82,10 +82,7 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="back">Voltar</string>
     <string name="notification_push_title">Notificações push</string>
     <string name="notification_push_description">Receba uma notificação quando o índice de medo atingir o seu limite.</string>
-    <string name="notification_tab_market">Mercado</string>
-    <string name="notification_tab_crypto">Cripto</string>
     <string name="notification_weekly_title">Alertas de relatórios semanais</string>
-    <string name="notification_market_title">Alertas do índice de medo (Mercado)</string>
     <string name="notification_crypto_title">Alertas do índice de medo (Cripto)</string>
     <string name="notification_lower_label">Limite inferior (Medo)</string>
     <string name="notification_upper_label">Limite superior (Ganância)</string>
@@ -93,6 +90,14 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="notification_upper_description">Será notificado quando o índice atingir %1$d ou mais.</string>
     <string name="notification_info">As notificações são verificadas a cada 15 minutos. Receberá no máximo 1 notificação por faixa de limite por dia.</string>
     <string name="notification_sync_error">Falha na sincronização: %1$s</string>
+    <string name="notification_global_title">Alertas globais do índice de medo</string>
+    <string name="notification_kospi_title">Alertas KOSPI</string>
+    <string name="notification_lower_header">Alerta de sinal de compra</string>
+    <string name="notification_upper_header">Aviso de sobreaquecimento</string>
+    <string name="notification_kospi_lower_description">Seja notificado quando o índice KOSPI descer para %1$d ou abaixo.</string>
+    <string name="notification_kospi_upper_description">Seja notificado quando o índice KOSPI subir para %1$d ou superior.</string>
+    <string name="notification_crypto_lower_description">Receba uma notificação quando o índice cripto descer para %1$d ou abaixo.</string>
+    <string name="notification_crypto_upper_description">Receba uma notificação quando o índice cripto subir para %1$d ou acima.</string>
 
     <string name="insight_similar_events_similar_section_title">Períodos semelhantes</string>
 
@@ -226,7 +231,6 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="settings_kospi_methodology_summary">A pontuação atual do KOSPI é atualizada de hora a hora durante o horário regular do mercado coreano. Os gráficos de histórico só são atualizados após o fecho confirmado. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Política de privacidade</string>
     <string name="settings_menu_about">Informações da app</string>
-    <string name="settings_menu_ad_privacy">Opções de privacidade</string>
     <string name="settings_menu_rate">Deixar avaliação</string>
     <string name="settings_menu_share">Partilhar app</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Seguinte</string>
+    <string name="onboarding_skip">Ignorar</string>
+    <string name="onboarding_start">Começar</string>
+    <string name="settings_menu_app_usage">Guia da app</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Mercado M&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Cripto M&amp;G</string>
+    <string name="onboarding_step1_title">Este índice acompanha o S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Mostra o medo e a ganância do mercado dos EUA num único número de 0 a 100. Quanto mais baixo, mais medo; quanto mais alto, mais ganância.</string>
+    <string name="onboarding_step2_title">Este índice acompanha o KOSPI</string>
+    <string name="onboarding_step2_detail">Veja da mesma forma o sentimento do mercado coreano. Mude quando quiser nos segmentos acima.</string>
+    <string name="onboarding_step3_title">Este índice acompanha o BTC</string>
+    <string name="onboarding_step3_detail">O medo e a ganância do mercado cripto também aparecem na mesma escala.</string>
+    <string name="onboarding_step4_title">E se tivesse comprado nesta pontuação?</string>
+    <string name="onboarding_step4_detail">É o retorno médio histórico ao comprar nesta pontuação. Não é garantido; consulte com prudência.</string>
+    <string name="onboarding_step5_title">Vote na sua situação atual</string>
+    <string name="onboarding_step5_detail">Deixe o seu estado com um toque e acompanhe em tempo real o sentimento de investidores de todo o mundo.</string>
+    <string name="onboarding_step6_title">Avisamos no momento certo</string>
+    <string name="onboarding_step6_detail">Configure um alerta e avisamos assim que o índice atingir o seu nível.</string>
+    <string name="onboarding_step7_title">Ainda mais rápido com widgets</string>
+    <string name="onboarding_step7_detail">O guia de widgets está sempre disponível neste ecrã.</string>
+    <string name="onboarding_step8_title">A regra pessoal do programador</string>
+    <string name="onboarding_step8_detail">O programador só compra a 15 ou menos. Acima disso pode exigir muita paciência. Regra pessoal, não é conselho de investimento.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Toque sem soltar numa área vazia do ecrã principal e toque em Widgets.</string>
+    <string name="widget_guide_step2">Encontre "Índice de Medo &amp; Ganância" na lista de widgets.</string>
+    <string name="widget_guide_step3">Escolha o índice que quiser — Global, KOSPI ou Cripto — ou o widget tudo-em-um.</string>
+    <string name="widget_guide_step4">Arraste para o ecrã principal e coloque onde preferir.</string>
+    <string name="widget_guide_step5">Toque no widget quando quiser para abrir a aplicação.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) — Medo &amp; Ganância</string>
+    <string name="widget_kospi_description">KOSPI — Medo &amp; Ganância</string>
+    <string name="widget_crypto_description">Cripto (BTC) — Medo &amp; Ganância</string>
+    <string name="widget_dashboard_description">Os três índices de medo &amp; ganância</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Remover anúncios</string>
+    <string name="settings_remove_ads_description">Compra única. Remove todos os anúncios para sempre.</string>
+    <string name="settings_remove_ads_purchased">Anúncios removidos</string>
+    <string name="settings_remove_ads_purchase_failed">A compra falhou. Tente novamente.</string>
+    <string name="settings_restore_purchases">Restaurar compras</string>
+    <string name="settings_restore_success">Compras restauradas.</string>
+    <string name="settings_restore_failure">Sem compras para restaurar.</string>
+    <string name="settings_support_contact">Contacto: %1$s</string>
+    <string name="common_confirm">Confirmar</string>
 </resources>

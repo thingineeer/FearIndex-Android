@@ -1,0 +1,1 @@
+Izboljšane nastavitve obvestil in večja stabilnost aplikacije.

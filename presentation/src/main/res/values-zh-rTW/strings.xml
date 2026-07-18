@@ -83,10 +83,7 @@
     <string name="back">返回</string>
     <string name="notification_push_title">推播通知</string>
     <string name="notification_push_description">當恐懼指數達到您設定的門檻時接收通知。</string>
-    <string name="notification_tab_market">市場</string>
-    <string name="notification_tab_crypto">加密貨幣</string>
     <string name="notification_weekly_title">每週報告提醒</string>
-    <string name="notification_market_title">市場恐懼指數提醒</string>
     <string name="notification_crypto_title">加密貨幣恐懼指數提醒</string>
     <string name="notification_lower_label">下限 (恐懼)</string>
     <string name="notification_upper_label">上限 (貪婪)</string>
@@ -94,6 +91,14 @@
     <string name="notification_upper_description">指數達到 %1$d 或以上時會通知您。</string>
     <string name="notification_info">通知每 15 分鐘檢查一次。每個門檻區間每天最多接收 1 則通知。</string>
     <string name="notification_sync_error">同步失敗: %1$s</string>
+    <string name="notification_global_title">全球恐懼指數警報</string>
+    <string name="notification_kospi_title">韓國綜合股價指數警報</string>
+    <string name="notification_lower_header">買入訊號提醒</string>
+    <string name="notification_upper_header">過熱警告</string>
+    <string name="notification_kospi_lower_description">當 KOSPI 指數跌至 %1$d 或以下時收到通知。</string>
+    <string name="notification_kospi_upper_description">當 KOSPI 指數升至 %1$d 或以上時收到通知。</string>
+    <string name="notification_crypto_lower_description">當加密貨幣指數下降至 %1$d 或以下時接收通知。</string>
+    <string name="notification_crypto_upper_description">當加密貨幣指數上升至 %1$d 或以上時接收通知。</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">目前被套牢的人</string>
@@ -225,7 +230,6 @@
     <string name="settings_kospi_methodology_summary">KOSPI 目前分數會在韓國常規交易時段每小時更新一次。歷史圖表只會在確認收盤後更新。 Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">隱私權政策</string>
     <string name="settings_menu_about">應用程式資訊</string>
-    <string name="settings_menu_ad_privacy">隱私選擇</string>
     <string name="settings_menu_rate">撰寫評論</string>
     <string name="settings_menu_share">分享應用程式</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -362,6 +366,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -381,4 +386,52 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">下一步</string>
+    <string name="onboarding_skip">略過</string>
+    <string name="onboarding_start">開始使用</string>
+    <string name="settings_menu_app_usage">App 使用指南</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">市場 F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">加密貨幣 F&amp;G</string>
+    <string name="onboarding_step1_title">此指數追蹤 S&amp;P 500</string>
+    <string name="onboarding_step1_detail">以0到100的一個數字呈現美國市場的恐懼與貪婪。數字越低越恐懼，越高越貪婪。</string>
+    <string name="onboarding_step2_title">此指數追蹤KOSPI</string>
+    <string name="onboarding_step2_detail">以同樣方式查看韓國市場情緒，隨時可用上方分段切換。</string>
+    <string name="onboarding_step3_title">此指數跟隨BTC</string>
+    <string name="onboarding_step3_detail">加密貨幣市場的恐懼與貪婪也用同一刻度查看。</string>
+    <string name="onboarding_step4_title">如果在這個分數買入會如何？</string>
+    <string name="onboarding_step4_detail">這是在目前分數區間買入的歷史平均報酬率。並非保證，請謹慎參考。</string>
+    <string name="onboarding_step5_title">投票記錄你現在的狀態</string>
+    <string name="onboarding_step5_detail">輕輕一點留下你的狀態，即時掌握全球投資人的心理。</string>
+    <string name="onboarding_step6_title">在關鍵時刻提醒你</string>
+    <string name="onboarding_step6_detail">設定提醒後，指數一到達該點位就立即通知你。</string>
+    <string name="onboarding_step7_title">用小工具更快查看</string>
+    <string name="onboarding_step7_detail">小工具使用方式隨時可在此頁面查看。</string>
+    <string name="onboarding_step8_title">開發者的個人標準</string>
+    <string name="onboarding_step8_detail">開發者只在15以下買入，高於此可能需要長久的耐心。這只是個人標準，並非投資建議。</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">長按主畫面的空白處，然後點選「小工具」。</string>
+    <string name="widget_guide_step2">在小工具清單中找到「恐懼與貪婪指數」。</string>
+    <string name="widget_guide_step3">選擇想要的指數（全球、KOSPI、加密貨幣）或整合小工具。</string>
+    <string name="widget_guide_step4">將它拖到主畫面，放在喜歡的位置。</string>
+    <string name="widget_guide_step5">隨時點選小工具即可開啟應用程式。</string>
+    <string name="widget_market_description">全球（S&amp;P 500）恐懼與貪婪</string>
+    <string name="widget_kospi_description">KOSPI 恐懼與貪婪</string>
+    <string name="widget_crypto_description">加密貨幣（BTC）恐懼與貪婪</string>
+    <string name="widget_dashboard_description">三大恐懼與貪婪指數一覽</string>
+    <string name="settings_premium_header">進階版</string>
+    <string name="settings_remove_ads_title">移除廣告</string>
+    <string name="settings_remove_ads_description">一次購買，永久移除所有廣告。</string>
+    <string name="settings_remove_ads_purchased">已移除廣告</string>
+    <string name="settings_remove_ads_purchase_failed">購買失敗，請再試一次。</string>
+    <string name="settings_restore_purchases">恢復購買</string>
+    <string name="settings_restore_success">已恢復購買。</string>
+    <string name="settings_restore_failure">沒有可恢復的購買項目。</string>
+    <string name="settings_support_contact">聯絡：%1$s</string>
+    <string name="common_confirm">確認</string>
 </resources>

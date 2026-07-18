@@ -1,0 +1,1 @@
+Menambah widget skrin utama, panduan aplikasi dan pilihan buang iklan, serta menambah baik tetapan pemberitahuan.

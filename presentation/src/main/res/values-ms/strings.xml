@@ -83,10 +83,7 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="back">Kembali</string>
     <string name="notification_push_title">Pemberitahuan Tolak</string>
     <string name="notification_push_description">Dapatkan pemberitahuan apabila indeks ketakutan mencapai ambang anda.</string>
-    <string name="notification_tab_market">Pasaran</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Makluman Laporan Mingguan</string>
-    <string name="notification_market_title">Makluman Indeks Ketakutan Pasaran</string>
     <string name="notification_crypto_title">Makluman Indeks Ketakutan Kripto</string>
     <string name="notification_lower_label">Bawah (Ketakutan)</string>
     <string name="notification_upper_label">Atas (Ketamakan)</string>
@@ -94,6 +91,14 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="notification_upper_description">Anda akan dimaklumkan apabila indeks mencapai %1$d atau ke atas.</string>
     <string name="notification_info">Pemberitahuan disemak setiap 15 minit. Anda akan menerima paling banyak 1 pemberitahuan setiap zon ambang setiap hari.</string>
     <string name="notification_sync_error">Penyegerakan gagal: %1$s</string>
+    <string name="notification_global_title">Makluman Indeks Ketakutan Global</string>
+    <string name="notification_kospi_title">Makluman KOSPI</string>
+    <string name="notification_lower_header">Isyarat Beli</string>
+    <string name="notification_upper_header">Amaran Terlampau Panas</string>
+    <string name="notification_kospi_lower_description">Dapatkan pemberitahuan apabila indeks KOSPI jatuh kepada %1$d atau lebih rendah.</string>
+    <string name="notification_kospi_upper_description">Dapatkan pemberitahuan apabila indeks KOSPI meningkat kepada %1$d atau ke atas.</string>
+    <string name="notification_crypto_lower_description">Dapatkan pemberitahuan apabila indeks kripto jatuh ke %1$d atau lebih rendah.</string>
+    <string name="notification_crypto_upper_description">Dapatkan pemberitahuan apabila indeks kripto naik ke %1$d atau lebih tinggi.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">Yang tersekat sekarang</string>
@@ -225,7 +230,6 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="settings_kospi_methodology_summary">Skor KOSPI semasa dikemas kini setiap jam semasa waktu pasaran biasa Korea. Carta sejarah hanya dikemas kini selepas penutupan disahkan. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Dasar Privasi</string>
     <string name="settings_menu_about">Maklumat Apl</string>
-    <string name="settings_menu_ad_privacy">Pilihan privasi</string>
     <string name="settings_menu_rate">Tulis Ulasan</string>
     <string name="settings_menu_share">Kongsi Apl</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -362,6 +366,7 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -381,4 +386,52 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Seterusnya</string>
+    <string name="onboarding_skip">Langkau</string>
+    <string name="onboarding_start">Mula</string>
+    <string name="settings_menu_app_usage">Panduan aplikasi</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Pasaran K&amp;T</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto K&amp;T</string>
+    <string name="onboarding_step1_title">Indeks ini mengikuti S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Memaparkan ketakutan dan ketamakan pasaran AS dalam satu angka dari 0 hingga 100. Semakin rendah semakin takut, semakin tinggi semakin tamak.</string>
+    <string name="onboarding_step2_title">Indeks ini mengikuti KOSPI</string>
+    <string name="onboarding_step2_detail">Lihat sentimen pasaran Korea dengan cara yang sama. Tukar bila-bila masa melalui segmen di atas.</string>
+    <string name="onboarding_step3_title">Indeks ini mengikuti BTC</string>
+    <string name="onboarding_step3_detail">Ketakutan dan ketamakan pasaran kripto juga pada skala yang sama.</string>
+    <string name="onboarding_step4_title">Bagaimana jika anda beli pada skor ini?</string>
+    <string name="onboarding_step4_detail">Purata pulangan sejarah apabila membeli pada julat skor semasa. Tidak dijamin, rujuk dengan berhati-hati.</string>
+    <string name="onboarding_step5_title">Undi keadaan anda sekarang</string>
+    <string name="onboarding_step5_detail">Tinggalkan status dengan satu ketukan dan pantau sentimen pelabur seluruh dunia secara masa nyata.</string>
+    <string name="onboarding_step6_title">Kami maklumkan pada masa yang sesuai</string>
+    <string name="onboarding_step6_detail">Tetapkan makluman dan kami beritahu sebaik indeks mencecah tahap anda.</string>
+    <string name="onboarding_step7_title">Lebih pantas dengan widget</string>
+    <string name="onboarding_step7_detail">Panduan widget sentiasa ada di skrin ini.</string>
+    <string name="onboarding_step8_title">Peraturan peribadi pembangun</string>
+    <string name="onboarding_step8_detail">Pembangun hanya membeli pada 15 atau ke bawah. Lebih daripada itu mungkin memerlukan kesabaran panjang. Peraturan peribadi, bukan nasihat pelaburan.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Sentuh dan tahan kawasan kosong pada skrin utama, kemudian ketik Widget.</string>
+    <string name="widget_guide_step2">Cari "Indeks Ketakutan &amp; Ketamakan" dalam senarai widget.</string>
+    <string name="widget_guide_step3">Pilih indeks yang anda mahu — Global, KOSPI atau Kripto — atau widget semua-dalam-satu.</string>
+    <string name="widget_guide_step4">Seret ke skrin utama dan letakkan di tempat yang anda suka.</string>
+    <string name="widget_guide_step5">Ketik widget bila-bila masa untuk membuka aplikasi.</string>
+    <string name="widget_market_description">Ketakutan &amp; Ketamakan Global (S&amp;P 500)</string>
+    <string name="widget_kospi_description">Ketakutan &amp; Ketamakan KOSPI</string>
+    <string name="widget_crypto_description">Ketakutan &amp; Ketamakan Kripto (BTC)</string>
+    <string name="widget_dashboard_description">Ketiga-tiga indeks ketakutan &amp; ketamakan</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Buang Iklan</string>
+    <string name="settings_remove_ads_description">Pembelian sekali sahaja. Membuang semua iklan selama-lamanya.</string>
+    <string name="settings_remove_ads_purchased">Iklan dibuang</string>
+    <string name="settings_remove_ads_purchase_failed">Pembelian gagal. Sila cuba lagi.</string>
+    <string name="settings_restore_purchases">Pulihkan Pembelian</string>
+    <string name="settings_restore_success">Pembelian dipulihkan.</string>
+    <string name="settings_restore_failure">Tiada pembelian untuk dipulihkan.</string>
+    <string name="settings_support_contact">Hubungi: %1$s</string>
+    <string name="common_confirm">Sahkan</string>
 </resources>

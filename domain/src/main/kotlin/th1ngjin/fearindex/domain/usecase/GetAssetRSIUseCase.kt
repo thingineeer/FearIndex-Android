@@ -12,6 +12,9 @@ class GetAssetRSIUseCase(
     private val repository: AssetPriceClosesRepository,
     private val calculator: RSICalculator = RSICalculator(),
 ) {
-    suspend operator fun invoke(type: FearIndexType): FearRSI? =
-        calculator.calculate(closes = repository.dailyCloses(type))
+    suspend operator fun invoke(type: FearIndexType): FearRSI? {
+        val series = repository.dailyCloses(type)
+        return calculator.calculate(closes = series.closes)
+            ?.copy(sourceMetadata = series.sourceMetadata)
+    }
 }

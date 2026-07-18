@@ -83,10 +83,7 @@
     <string name="back">חזרה</string>
     <string name="notification_push_title">התראות פוש</string>
     <string name="notification_push_description">קבל התראה כשמדד הפחד מגיע לסף שהגדרת.</string>
-    <string name="notification_tab_market">שוק</string>
-    <string name="notification_tab_crypto">קריפטו</string>
     <string name="notification_weekly_title">התראות דיווח שבועיות</string>
-    <string name="notification_market_title">התראות מדד פחד השוק</string>
     <string name="notification_crypto_title">התראות מדד פחד הקריפטו</string>
     <string name="notification_lower_label">תחתון (פחד)</string>
     <string name="notification_upper_label">עליון (חמדנות)</string>
@@ -94,6 +91,14 @@
     <string name="notification_upper_description">תקבל התראה כשהמדד מגיע ל-%1$d ומעלה.</string>
     <string name="notification_info">ההתראות נבדקות כל 15 דקות. תקבל התראה אחת לכל היותר לכל טווח ביום.</string>
     <string name="notification_sync_error">הסנכרון נכשל: %1$s</string>
+    <string name="notification_global_title">התראות אינדקס פחד גלובלי</string>
+    <string name="notification_kospi_title">התראות KOSPI</string>
+    <string name="notification_lower_header">התראת אות קנייה</string>
+    <string name="notification_upper_header">אזהרת התחממות יתר</string>
+    <string name="notification_kospi_lower_description">קבל הודעה כאשר מדד KOSPI יורד ל-%1$d ומטה.</string>
+    <string name="notification_kospi_upper_description">קבל הודעה כאשר מדד KOSPI עולה ל-%1$d ומעלה.</string>
+    <string name="notification_crypto_lower_description">קבל התראה כאשר מדד הקריפטו יורד ל-%1$d או פחות.</string>
+    <string name="notification_crypto_upper_description">קבל התראה כאשר מדד הקריפטו עולה ל-%1$d או יותר.</string>
 
     <!-- Stuck Counter Card -->
     <string name="stuck_card_title">תקועים כרגע</string>
@@ -225,7 +230,6 @@
     <string name="settings_kospi_methodology_summary">הציון הנוכחי של KOSPI מתעדכן מדי שעה במהלך שעות המסחר הרגילות בקוריאה. תרשימי ההיסטוריה מתעדכנים רק לאחר הסגירה המאושרת. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">מדיניות פרטיות</string>
     <string name="settings_menu_about">מידע על האפליקציה</string>
-    <string name="settings_menu_ad_privacy">אפשרויות פרטיות</string>
     <string name="settings_menu_rate">כתוב ביקורת</string>
     <string name="settings_menu_share">שתף אפליקציה</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -362,6 +366,7 @@
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -381,4 +386,52 @@
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">הבא</string>
+    <string name="onboarding_skip">דלג</string>
+    <string name="onboarding_start">להתחיל</string>
+    <string name="settings_menu_app_usage">מדריך לאפליקציה</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">שוק פ&amp;ח</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">קריפטו פ&amp;ח</string>
+    <string name="onboarding_step1_title">המדד הזה עוקב אחרי S&amp;P 500</string>
+    <string name="onboarding_step1_detail">הוא מציג את הפחד והחמדנות של השוק האמריקאי במספר אחד מ-0 עד 100. נמוך יותר = פחד, גבוה יותר = חמדנות.</string>
+    <string name="onboarding_step2_title">המדד הזה עוקב אחרי KOSPI</string>
+    <string name="onboarding_step2_detail">כך אפשר לראות גם את הסנטימנט של השוק הקוריאני. אפשר להחליף בכל רגע במקטעים למעלה.</string>
+    <string name="onboarding_step3_title">המדד הזה עוקב אחרי BTC</string>
+    <string name="onboarding_step3_detail">גם הפחד והחמדנות של שוק הקריפטו באותו סולם.</string>
+    <string name="onboarding_step4_title">מה אם הייתם קונים בציון הזה?</string>
+    <string name="onboarding_step4_detail">התשואה הממוצעת ההיסטורית בקנייה בטווח הציון הנוכחי. היא לא מובטחת — השתמשו בה בזהירות.</string>
+    <string name="onboarding_step5_title">הצביעו על המצב שלכם עכשיו</string>
+    <string name="onboarding_step5_detail">השאירו סטטוס בנגיעה אחת וראו בזמן אמת את הסנטימנט של משקיעים בכל העולם.</string>
+    <string name="onboarding_step6_title">נודיע ברגע הנכון</string>
+    <string name="onboarding_step6_detail">הגדירו התראה ונודיע ברגע שהמדד יגיע לרמה שלכם.</string>
+    <string name="onboarding_step7_title">מהיר עוד יותר עם ווידג\'טים</string>
+    <string name="onboarding_step7_detail">מדריך הווידג\'טים זמין תמיד במסך הזה.</string>
+    <string name="onboarding_step8_title">הכלל האישי של המפתח</string>
+    <string name="onboarding_step8_detail">המפתח קונה רק ב-15 ומטה. מעל זה ייתכן שיידרש אורך רוח. כלל אישי, לא ייעוץ השקעות.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">גע והחזק אזור ריק במסך הבית, ואז הקש על ווידג\'טים.</string>
+    <string name="widget_guide_step2">מצא את «מדד הפחד והחמדנות» ברשימת הווידג\'טים.</string>
+    <string name="widget_guide_step3">בחר את המדד הרצוי — גלובלי, KOSPI או קריפטו — או את הווידג\'ט הכולל.</string>
+    <string name="widget_guide_step4">גרור אותו אל מסך הבית ומקם אותו היכן שתרצה.</string>
+    <string name="widget_guide_step5">הקש על הווידג\'ט בכל עת כדי לפתוח את האפליקציה.</string>
+    <string name="widget_market_description">מדד הפחד והחמדנות הגלובלי (S&amp;P 500)</string>
+    <string name="widget_kospi_description">מדד הפחד והחמדנות של KOSPI</string>
+    <string name="widget_crypto_description">מדד הפחד והחמדנות של קריפטו (BTC)</string>
+    <string name="widget_dashboard_description">שלושת מדדי הפחד והחמדנות יחד</string>
+    <string name="settings_premium_header">פרימיום</string>
+    <string name="settings_remove_ads_title">הסרת פרסומות</string>
+    <string name="settings_remove_ads_description">רכישה חד־פעמית. מסירה את כל הפרסומות לתמיד.</string>
+    <string name="settings_remove_ads_purchased">הפרסומות הוסרו</string>
+    <string name="settings_remove_ads_purchase_failed">הרכישה נכשלה. נסו שוב.</string>
+    <string name="settings_restore_purchases">שחזור רכישות</string>
+    <string name="settings_restore_success">הרכישות שוחזרו.</string>
+    <string name="settings_restore_failure">אין רכישות לשחזור.</string>
+    <string name="settings_support_contact">יצירת קשר: %1$s</string>
+    <string name="common_confirm">אישור</string>
 </resources>

@@ -1,0 +1,1 @@
+Menambahkan widget layar utama, panduan aplikasi, dan opsi hapus iklan, serta menyempurnakan setelan notifikasi.

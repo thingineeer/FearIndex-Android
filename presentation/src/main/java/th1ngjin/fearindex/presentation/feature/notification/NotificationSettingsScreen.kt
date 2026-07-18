@@ -9,6 +9,7 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.filled.ShowChart
+import androidx.compose.material.icons.filled.CurrencyBitcoin
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -32,55 +38,51 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
-import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import th1ngjin.fearindex.domain.entity.NotificationSettings
 import th1ngjin.fearindex.presentation.R
 
 /**
- * 알림 설정 화면 — iOS NotificationSettingsView 대칭.
+ * 알림 설정 허브 화면 — iOS NotificationSettingsView 대칭.
  *
- * Material 3 settings 패턴:
- * - Master toggle: ListItem (headlineContent + supportingContent + trailingContent)
- * - Threshold 섹션: PrimaryTabRow + Card(surfaceContainer) + 연속 Slider (steps=0)
- * - Info footer: 카드 대신 인라인 Icon + Text (시각적 노이즈 감소)
+ * 구조 (iOS parity):
+ * - 마스터 토글 (푸시 알림 on/off)
+ * - 자산별 [아이콘 + 이름 + Switch + 화살표] 행 → 탭하면 임계값 상세 화면으로 이동
+ *   (글로벌 / 코스피 / 암호화폐). 주간 리포트는 토글만(상세 없음).
+ * - Info footer
  *
- * ViewModel 기반 서버 동기화 (debounce 0.5초).
- * Android 13+ POST_NOTIFICATIONS 권한 요청.
+ * 임계값 슬라이더는 자산별 상세 화면(NotificationDetailScreen)에서 편집한다.
+ * 탭바를 쓰지 않아 "탭 3개 + 토글 3개 중복" 혼란을 제거했다.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotificationSettingsScreen(
     onBackClick: () -> Unit,
+    onCategoryClick: (NotificationCategory) -> Unit,
     viewModel: NotificationSettingsViewModel = hiltViewModel(),
 ) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
     val syncError by viewModel.syncError.collectAsStateWithLifecycle()
-    var selectedTab by remember { mutableIntStateOf(0) }
     val snackbarHostState = remember { SnackbarHostState() }
     val context = LocalContext.current
 
@@ -93,7 +95,7 @@ fun NotificationSettingsScreen(
         }
     }
 
-    // 서버 동기화 에러 Snackbar (다국어 — LaunchedEffect는 non-Composable context이므로 Resources.getString 사용)
+    // 서버 동기화 에러 Snackbar (LaunchedEffect는 non-Composable context이므로 Resources.getString 사용)
     LaunchedEffect(syncError) {
         syncError?.let { err ->
             val message = context.getString(R.string.notification_sync_error, err)
@@ -150,60 +152,38 @@ fun NotificationSettingsScreen(
                 enter = fadeIn() + expandVertically(),
                 exit = fadeOut() + shrinkVertically(),
             ) {
-                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    PrimaryTabRow(selectedTabIndex = selectedTab) {
-                        Tab(
-                            selected = selectedTab == 0,
-                            onClick = { selectedTab = 0 },
-                            text = { Text(stringResource(R.string.tab_market)) },
-                        )
-                        Tab(
-                            selected = selectedTab == 1,
-                            onClick = { selectedTab = 1 },
-                            text = { Text(stringResource(R.string.tab_kospi)) },
-                        )
-                        Tab(
-                            selected = selectedTab == 2,
-                            onClick = { selectedTab = 2 },
-                            text = { Text(stringResource(R.string.tab_crypto)) },
-                        )
-                    }
-
-                    CategoryToggles(
-                        settings = settings,
-                        onGlobalToggle = viewModel::toggleGlobal,
-                        onKospiToggle = viewModel::toggleKospi,
-                        onCryptoToggle = viewModel::toggleCrypto,
-                        onWeeklyToggle = viewModel::toggleWeekly,
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    // 자산별 알림: 행 = [아이콘 + 이름 + 토글 + 화살표]. 탭하면 임계값 상세 화면.
+                    CategoryLinkItem(
+                        icon = Icons.Default.Public,
+                        title = stringResource(R.string.notification_global_title),
+                        checked = settings.globalNotificationEnabled,
+                        onCheckedChange = viewModel::toggleGlobal,
+                        onClick = { onCategoryClick(NotificationCategory.MARKET) },
+                    )
+                    CategoryLinkItem(
+                        icon = Icons.AutoMirrored.Filled.ShowChart,
+                        title = stringResource(R.string.notification_kospi_title),
+                        checked = settings.kospiNotificationEnabled,
+                        onCheckedChange = viewModel::toggleKospi,
+                        onClick = { onCategoryClick(NotificationCategory.KOSPI) },
+                    )
+                    CategoryLinkItem(
+                        icon = Icons.Default.CurrencyBitcoin,
+                        title = stringResource(R.string.notification_crypto_title),
+                        checked = settings.cryptoNotificationEnabled,
+                        onCheckedChange = viewModel::toggleCrypto,
+                        onClick = { onCategoryClick(NotificationCategory.CRYPTO) },
+                    )
+                    // 주간 리포트: 상세 화면 없이 토글만.
+                    CategoryToggleItem(
+                        icon = Icons.Default.DateRange,
+                        title = stringResource(R.string.notification_weekly_title),
+                        checked = settings.weeklyReportNotificationEnabled,
+                        onCheckedChange = viewModel::toggleWeekly,
                     )
 
-                    when (selectedTab) {
-                        0 -> ThresholdCard(
-                            title = stringResource(R.string.notification_market_title),
-                            lower = settings.marketLowerThreshold.toFloat(),
-                            upper = settings.marketUpperThreshold.toFloat(),
-                            onLowerChange = { viewModel.updateMarketLower(it.toInt()) },
-                            onUpperChange = { viewModel.updateMarketUpper(it.toInt()) },
-                            onValueChangeFinished = { viewModel.onMarketSliderFinished() },
-                        )
-                        1 -> ThresholdCard(
-                            title = stringResource(R.string.tab_kospi),
-                            lower = settings.kospiLowerThreshold.toFloat(),
-                            upper = settings.kospiUpperThreshold.toFloat(),
-                            onLowerChange = { viewModel.updateKospiLower(it.toInt()) },
-                            onUpperChange = { viewModel.updateKospiUpper(it.toInt()) },
-                            onValueChangeFinished = { viewModel.onKospiSliderFinished() },
-                        )
-                        2 -> ThresholdCard(
-                            title = stringResource(R.string.notification_crypto_title),
-                            lower = settings.cryptoLowerThreshold.toFloat(),
-                            upper = settings.cryptoUpperThreshold.toFloat(),
-                            onLowerChange = { viewModel.updateCryptoLower(it.toInt()) },
-                            onUpperChange = { viewModel.updateCryptoUpper(it.toInt()) },
-                            onValueChangeFinished = { viewModel.onCryptoSliderFinished() },
-                        )
-                    }
-
+                    Spacer(modifier = Modifier.height(8.dp))
                     InfoFooter()
                 }
             }
@@ -211,40 +191,71 @@ fun NotificationSettingsScreen(
     }
 }
 
+/**
+ * 자산별 알림 행 — 아이콘 + 이름 + on/off Switch + 상세 화면 진입 화살표.
+ * 행 본문(아이콘/이름/화살표 영역)을 탭하면 임계값 상세 화면으로 이동한다.
+ * Switch는 독립적으로 자산 알림 on/off.
+ */
 @Composable
-private fun CategoryToggles(
-    settings: th1ngjin.fearindex.domain.entity.NotificationSettings,
-    onGlobalToggle: (Boolean) -> Unit,
-    onKospiToggle: (Boolean) -> Unit,
-    onCryptoToggle: (Boolean) -> Unit,
-    onWeeklyToggle: (Boolean) -> Unit,
+private fun CategoryLinkItem(
+    icon: ImageVector,
+    title: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    onClick: () -> Unit,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        CategoryToggleItem(
-            title = stringResource(R.string.tab_market),
-            checked = settings.globalNotificationEnabled,
-            onCheckedChange = onGlobalToggle,
-        )
-        CategoryToggleItem(
-            title = stringResource(R.string.tab_kospi),
-            checked = settings.kospiNotificationEnabled,
-            onCheckedChange = onKospiToggle,
-        )
-        CategoryToggleItem(
-            title = stringResource(R.string.tab_crypto),
-            checked = settings.cryptoNotificationEnabled,
-            onCheckedChange = onCryptoToggle,
-        )
-        CategoryToggleItem(
-            title = stringResource(R.string.notification_weekly_title),
-            checked = settings.weeklyReportNotificationEnabled,
-            onCheckedChange = onWeeklyToggle,
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+        ),
+    ) {
+        ListItem(
+            modifier = Modifier.clickable(onClick = onClick),
+            leadingContent = {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            },
+            headlineContent = {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Medium,
+                )
+            },
+            trailingContent = {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Switch(
+                        checked = checked,
+                        onCheckedChange = onCheckedChange,
+                    )
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            },
+            colors = ListItemDefaults.colors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            ),
         )
     }
 }
 
+/**
+ * 토글 전용 행 — 아이콘 + 이름 + Switch (상세 화면 없음, 주간 리포트용).
+ */
 @Composable
 private fun CategoryToggleItem(
+    icon: ImageVector,
     title: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
@@ -257,6 +268,13 @@ private fun CategoryToggleItem(
         ),
     ) {
         ListItem(
+            leadingContent = {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            },
             headlineContent = {
                 Text(
                     text = title,
@@ -322,112 +340,7 @@ private fun MasterToggleItem(
 }
 
 /**
- * Threshold 카드 — 연속 슬라이더 (steps=0).
- * 99 스텝 점선 노이즈 제거, 값은 상단 텍스트로 표시.
- */
-@Composable
-private fun ThresholdCard(
-    title: String,
-    lower: Float,
-    upper: Float,
-    onLowerChange: (Float) -> Unit,
-    onUpperChange: (Float) -> Unit,
-    onValueChangeFinished: () -> Unit = {},
-) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
-        ),
-    ) {
-        Column(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-        ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold,
-            )
-
-            ThresholdRow(
-                label = stringResource(R.string.notification_lower_label),
-                value = lower,
-                onChange = { v -> onLowerChange(v.coerceAtMost(upper - 1)) },
-                onValueChangeFinished = onValueChangeFinished,
-                supportingText = stringResource(
-                    R.string.notification_lower_description,
-                    lower.toInt(),
-                ),
-            )
-
-            ThresholdRow(
-                label = stringResource(R.string.notification_upper_label),
-                value = upper,
-                onChange = { v -> onUpperChange(v.coerceAtLeast(lower + 1)) },
-                onValueChangeFinished = onValueChangeFinished,
-                supportingText = stringResource(
-                    R.string.notification_upper_description,
-                    upper.toInt(),
-                ),
-            )
-        }
-    }
-}
-
-/**
- * 슬라이더 + 값 표시 + supporting text.
- * steps = 0 (연속 슬라이더) — 99개 틱 마크 노이즈 제거.
- * 값은 상단 라벨 옆 타이틀 텍스트로 명확히 표시.
- */
-@Composable
-private fun ThresholdRow(
-    label: String,
-    value: Float,
-    onChange: (Float) -> Unit,
-    onValueChangeFinished: () -> Unit,
-    supportingText: String,
-) {
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                text = label,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-            Text(
-                text = value.toInt().toString(),
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-            )
-        }
-        Slider(
-            value = value,
-            onValueChange = onChange,
-            onValueChangeFinished = onValueChangeFinished,
-            valueRange = 0f..100f,
-            steps = 0,
-            modifier = Modifier.semantics {
-                contentDescription = "$label ${value.toInt()}"
-            },
-        )
-        Text(
-            text = supportingText,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-    }
-}
-
-/**
  * Info footer — 카드 제거, Icon + Text 인라인.
- * 시각적 밀도 완화 + Material 3 footer 패턴.
  */
 @Composable
 private fun InfoFooter() {
@@ -450,5 +363,4 @@ private fun InfoFooter() {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
-    Spacer(modifier = Modifier.height(8.dp))
 }

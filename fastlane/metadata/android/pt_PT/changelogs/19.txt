@@ -1,0 +1,1 @@
+Adicionámos widgets de ecrã inicial, um guia da app e uma opção para remover anúncios, e melhorámos as definições de notificações.

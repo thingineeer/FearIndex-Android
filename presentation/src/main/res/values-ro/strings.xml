@@ -82,10 +82,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="back">Înapoi</string>
     <string name="notification_push_title">Notificări push</string>
     <string name="notification_push_description">Primești notificare când indicele fricii atinge pragul tău.</string>
-    <string name="notification_tab_market">Piață</string>
-    <string name="notification_tab_crypto">Cripto</string>
     <string name="notification_weekly_title">Alerte de rapoarte săptămânale</string>
-    <string name="notification_market_title">Alerte indice frică piață</string>
     <string name="notification_crypto_title">Alerte indice frică cripto</string>
     <string name="notification_lower_label">Inferior (Frică)</string>
     <string name="notification_upper_label">Superior (Lăcomie)</string>
@@ -93,6 +90,14 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="notification_upper_description">Vei fi notificat când indicele atinge %1$d sau mai sus.</string>
     <string name="notification_info">Notificările sunt verificate la fiecare 15 minute. Vei primi cel mult 1 notificare pe zonă de prag pe zi.</string>
     <string name="notification_sync_error">Sincronizare eșuată: %1$s</string>
+    <string name="notification_global_title">Alerte Global Fear Index</string>
+    <string name="notification_kospi_title">Alerte KOSPI</string>
+    <string name="notification_lower_header">Alertă Semnal de Cumpărare</string>
+    <string name="notification_upper_header">Avertisment Supraîncălzire</string>
+    <string name="notification_kospi_lower_description">Primiți notificări când indicele KOSPI scade la %1$d sau mai jos.</string>
+    <string name="notification_kospi_upper_description">Primiți notificări când indicele KOSPI crește la %1$d sau mai mult.</string>
+    <string name="notification_crypto_lower_description">Primiți notificări când indicele crypto scade la %1$d sau mai jos.</string>
+    <string name="notification_crypto_upper_description">Primiți notificări când indicele crypto crește la %1$d sau mai sus.</string>
 
     <string name="insight_similar_events_similar_section_title">Perioade similare</string>
 
@@ -226,7 +231,6 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="settings_kospi_methodology_summary">Scorul curent KOSPI se actualizează din oră în oră în timpul programului normal al pieței din Coreea. Graficele istorice se actualizează doar după închiderea confirmată. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Politica de Confidențialitate</string>
     <string name="settings_menu_about">Informații Aplicație</string>
-    <string name="settings_menu_ad_privacy">Opțiuni de confidențialitate</string>
     <string name="settings_menu_rate">Scrie o recenzie</string>
     <string name="settings_menu_share">Distribuie aplicația</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,54 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Înainte</string>
+    <string name="onboarding_skip">Omite</string>
+    <string name="onboarding_start">Începe</string>
+    <string name="settings_menu_app_usage">Ghidul aplicației</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Piață F&amp;L</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Crypto F&amp;L</string>
+    <string name="onboarding_step1_title">Acest indice urmărește S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Arată frica și lăcomia pieței americane printr-un singur număr de la 0 la 100. Mai mic înseamnă frică, mai mare înseamnă lăcomie.</string>
+    <string name="onboarding_step2_title">Acest indice urmărește KOSPI</string>
+    <string name="onboarding_step2_detail">Vezi în același mod sentimentul pieței coreene. Comută oricând din segmentele de sus.</string>
+    <string name="onboarding_step3_title">Acest indice urmărește BTC</string>
+    <string name="onboarding_step3_detail">Frica și lăcomia pieței cripto apar pe aceeași scală.</string>
+    <string name="onboarding_step4_title">Dacă ai fi cumpărat la acest scor?</string>
+    <string name="onboarding_step4_detail">Randamentul mediu istoric la cumpărarea în intervalul actual de scor. Nu este garantat — folosește-l cu prudență.</string>
+    <string name="onboarding_step5_title">Votează situația ta de acum</string>
+    <string name="onboarding_step5_detail">Lasă-ți statusul cu o atingere și urmărește în timp real sentimentul investitorilor din toată lumea.</string>
+    <string name="onboarding_step6_title">Te anunțăm la momentul potrivit</string>
+    <string name="onboarding_step6_detail">Setează o alertă și te anunțăm imediat ce indicele atinge nivelul tău.</string>
+    <string name="onboarding_step7_title">Și mai rapid cu widgeturi</string>
+    <string name="onboarding_step7_detail">Ghidul widgeturilor este mereu pe acest ecran.</string>
+    <string name="onboarding_step8_title">Regula personală a dezvoltatorului</string>
+    <string name="onboarding_step8_detail">Dezvoltatorul cumpără doar la 15 sau mai jos. Peste acest nivel, poate fi nevoie de multă răbdare. Este o regulă personală, nu un sfat de investiții.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Atinge și ține apăsat un loc gol de pe ecranul principal, apoi atinge „Widgeturi“.</string>
+    <string name="widget_guide_step2">Găsește „Indicele fricii și lăcomiei“ în lista de widgeturi.</string>
+    <string name="widget_guide_step3">Alege indicele dorit — global, KOSPI sau cripto — sau widgetul all-in-one.</string>
+    <string name="widget_guide_step4">Trage-l pe ecranul principal și așază-l unde îți place.</string>
+    <string name="widget_guide_step5">Atinge widgetul oricând pentru a deschide aplicația.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Indicele global (S&amp;P 500) al fricii și lăcomiei</string>
+    <string name="widget_kospi_description">Indicele KOSPI al fricii și lăcomiei</string>
+    <string name="widget_crypto_description">Indicele cripto (BTC) al fricii și lăcomiei</string>
+    <string name="widget_dashboard_description">Toți cei trei indici ai fricii și lăcomiei</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Elimină reclamele</string>
+    <string name="settings_remove_ads_description">Achiziție unică. Elimină definitiv toate reclamele.</string>
+    <string name="settings_remove_ads_purchased">Reclame eliminate</string>
+    <string name="settings_remove_ads_purchase_failed">Achiziția a eșuat. Încercați din nou.</string>
+    <string name="settings_restore_purchases">Restaurează achizițiile</string>
+    <string name="settings_restore_success">Achizițiile au fost restaurate.</string>
+    <string name="settings_restore_failure">Nu există achiziții de restaurat.</string>
+    <string name="settings_support_contact">Contact: %1$s</string>
+    <string name="common_confirm">Confirmare</string>
 </resources>

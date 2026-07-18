@@ -82,10 +82,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="back">Atgal</string>
     <string name="notification_push_title">Stumiamieji pranešimai</string>
     <string name="notification_push_description">Gaukite pranešimą, kai baimės indeksas pasieks jūsų ribą.</string>
-    <string name="notification_tab_market">Rinka</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Savaitės ataskaitų įspėjimai</string>
-    <string name="notification_market_title">Rinkos baimės indekso įspėjimai</string>
     <string name="notification_crypto_title">Kripto baimės indekso įspėjimai</string>
     <string name="notification_lower_label">Žemesnė riba (Baimė)</string>
     <string name="notification_upper_label">Aukštesnė riba (Godumas)</string>
@@ -93,6 +90,14 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="notification_upper_description">Gausite pranešimą, kai indeksas pasieks %1$d arba aukščiau.</string>
     <string name="notification_info">Pranešimai tikrinami kas 15 minučių. Per dieną gausite ne daugiau kaip 1 pranešimą vienai ribinei zonai.</string>
     <string name="notification_sync_error">Sinchronizavimas nepavyko: %1$s</string>
+    <string name="notification_global_title">Pasaulinio baimės indekso įspėjimai</string>
+    <string name="notification_kospi_title">KOSPI įspėjimai</string>
+    <string name="notification_lower_header">Pirkimo signalo įspėjimas</string>
+    <string name="notification_upper_header">Perkaitimo įspėjimas</string>
+    <string name="notification_kospi_lower_description">Gaukite pranešimą, kai KOSPI indeksas nukris iki %1$d arba žemiau.</string>
+    <string name="notification_kospi_upper_description">Gaukite pranešimą, kai KOSPI indeksas pakils iki %1$d ar daugiau.</string>
+    <string name="notification_crypto_lower_description">Gaukite pranešimą, kai kripto indeksas nukrenta iki %1$d ar žemiau.</string>
+    <string name="notification_crypto_upper_description">Gaukite pranešimą, kai kripto indeksas pakyla iki %1$d ar aukščiau.</string>
 
     <string name="insight_similar_events_similar_section_title">Panašūs laikotarpiai</string>
 
@@ -226,7 +231,6 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="settings_kospi_methodology_summary">Dabartinis KOSPI balas atnaujinamas kas valandą per įprastas Korėjos rinkos valandas. Istorijos grafikai atnaujinami tik po patvirtinto uždarymo. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privatumo politika</string>
     <string name="settings_menu_about">Programėlės informacija</string>
-    <string name="settings_menu_ad_privacy">Privatumo pasirinkimai</string>
     <string name="settings_menu_rate">Parašyti atsiliepimą</string>
     <string name="settings_menu_share">Dalintis programa</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,54 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Toliau</string>
+    <string name="onboarding_skip">Praleisti</string>
+    <string name="onboarding_start">Pradėti</string>
+    <string name="settings_menu_app_usage">Programėlės gidas</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Rinka B&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto B&amp;G</string>
+    <string name="onboarding_step1_title">Šis indeksas seka S&amp;P 500</string>
+    <string name="onboarding_step1_detail">JAV rinkos baimę ir godumą rodo vienu skaičiumi nuo 0 iki 100. Kuo žemiau — tuo daugiau baimės, kuo aukščiau — tuo daugiau godumo.</string>
+    <string name="onboarding_step2_title">Šis indeksas seka KOSPI</string>
+    <string name="onboarding_step2_detail">Taip pat galite stebėti Korėjos rinkos nuotaikas. Perjunkite bet kada viršuje esančiais segmentais.</string>
+    <string name="onboarding_step3_title">Šis indeksas seka BTC</string>
+    <string name="onboarding_step3_detail">Kripto rinkos baimė ir godumas — toje pačioje skalėje.</string>
+    <string name="onboarding_step4_title">O jei būtumėte pirkę esant šiam balui?</string>
+    <string name="onboarding_step4_detail">Istorinė vidutinė grąža perkant dabartiniame lygyje. Ji negarantuota — vertinkite atsargiai.</string>
+    <string name="onboarding_step5_title">Balsuokite dėl savo dabartinės padėties</string>
+    <string name="onboarding_step5_detail">Vienu palietimu palikite savo būseną ir realiuoju laiku stebėkite investuotojų nuotaikas visame pasaulyje.</string>
+    <string name="onboarding_step6_title">Pranešime tinkamu momentu</string>
+    <string name="onboarding_step6_detail">Nustatykite įspėjimą — pranešime vos indeksui pasiekus jūsų lygį.</string>
+    <string name="onboarding_step7_title">Dar greičiau su valdikliais</string>
+    <string name="onboarding_step7_detail">Valdiklių gidą visada rasite šiame ekrane.</string>
+    <string name="onboarding_step8_title">Asmeninė kūrėjo taisyklė</string>
+    <string name="onboarding_step8_detail">Kūrėjas perka tik esant 15 ar mažiau. Aukščiau gali prireikti ilgos kantrybės. Asmeninė taisyklė, ne investavimo patarimas.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Palieskite ir palaikykite tuščią vietą pradžios ekrane, tada bakstelėkite „Valdikliai“.</string>
+    <string name="widget_guide_step2">Valdiklių sąraše raskite „Baimės ir godumo indeksą“.</string>
+    <string name="widget_guide_step3">Pasirinkite norimą indeksą — pasaulinį, KOSPI ar kripto — arba universalų valdiklį.</string>
+    <string name="widget_guide_step4">Nutempkite jį į pradžios ekraną ir padėkite kur norite.</string>
+    <string name="widget_guide_step5">Bakstelėkite valdiklį bet kada, kad atidarytumėte programėlę.</string>
+
+    <!-- 위젯 설명 (widget picker description) -->
+    <string name="widget_market_description">Pasaulinis (S&amp;P 500) baimės ir godumo indeksas</string>
+    <string name="widget_kospi_description">KOSPI baimės ir godumo indeksas</string>
+    <string name="widget_crypto_description">Kripto (BTC) baimės ir godumo indeksas</string>
+    <string name="widget_dashboard_description">Visi trys baimės ir godumo indeksai</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Pašalinti reklamas</string>
+    <string name="settings_remove_ads_description">Vienkartinis pirkinys. Visam laikui pašalina visas reklamas.</string>
+    <string name="settings_remove_ads_purchased">Reklamos pašalintos</string>
+    <string name="settings_remove_ads_purchase_failed">Pirkimas nepavyko. Bandykite dar kartą.</string>
+    <string name="settings_restore_purchases">Atkurti pirkinius</string>
+    <string name="settings_restore_success">Pirkiniai atkurti.</string>
+    <string name="settings_restore_failure">Nėra pirkinių, kuriuos būtų galima atkurti.</string>
+    <string name="settings_support_contact">Kontaktai: %1$s</string>
+    <string name="common_confirm">Patvirtinti</string>
 </resources>

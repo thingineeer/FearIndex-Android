@@ -4,6 +4,113 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-07-07 세션 (v1.4.0 배포 차단 원인 규명 + IAP 제외 + 설정/알림 UX 정리)
+
+브랜치: dev ← feature/v1.4.0-no-iap, feature/v1.4.0-settings-ux (모두 --no-ff, 분기/합류 그래프). vc18/1.4.0 유지. **배포 전(로컬 dev만), push 미실행.** 703 테스트 GREEN, 실기기(Galaxy S23) 릴리즈 검증 완료.
+
+### 43. ⚠️ fastlane "Korean law / Account Details" 에러 = 계정 레벨 게이트 (코드 무관 확정)
+- **증상**: `bundle exec fastlane internal` 이 마지막 커밋 단계에서 `Google Api Error: Invalid request - To comply with Korean law, developers in Korea must provide additional information on the Account Details page.` 로 실패. 메타/스크린샷 업로드는 성공("Uploading all changes to Google Play..." 직후 실패) → **AAB 내용이 아니라 edit commit 단계의 계정 검증에서 차단**.
+- **원인 (확정)**: 어제(7/6) IAP(광고 제거) 위해 **결제 프로필("이매진" 3593-7323-4054)을 개발자 계정에 연결** → 계정이 "유료/수익 발생 개발자"로 분류 → 한국 전자상거래법상 개발자 계정 Account Details의 **"비즈니스 연락처 세부정보"에 통신판매업 신고번호(E-commerce license number) + 신고기관 입력 요구**. 이게 비어 있어 **모든 트랙 업로드(internal 포함) 차단**. Google 공식 문서(support.google.com/googleplay/android-developer/answer/3255733): 유료앱/IAP 있는 한국 사업자는 사업자등록번호+통신판매업신고번호+신고기관 필수, **무료·IAP 없는 앱은 불필요**.
+- **실증**: IAP를 코드에서 완전 제거(44번) 후 fastlane 재실행 → **동일 에러**. → 코드로 못 푼다 확정. iOS(Apple)는 통신판매업 안 물어봐서 문제없었음(스토어 정책 차이). 통신판매업 법적 면제(직전연도 50건 미만/간이과세자)가 있어도 **Google은 결제 프로필 연결 시 필드를 요구**. 사용자는 통신판매업을 발급받았다 환불(폐업)한 상태라 현재 신고번호 없음.
+- **해법(사용자 결정 대기)**: (A) 통신판매업 재신고(등록면허세 40,500원/년, 정부24) → Account Details 입력 → 통과, (B) 결제 프로필 연결 해제(IAP 영구 포기 근접). 세금정보(대한민국)는 이미 "수락됨"(7/6 제출)이라 무관 — 문제는 통신판매업 필드.
+- **교훈**: fastlane 업로드 실패 시 **어느 단계(빌드/업로드/commit)에서 나는지 로그로 구분**. "Uploading all changes" 이후 실패면 계정 레벨. AAB 코드 뜯기 전에 계정 상태부터 확인. Google Play는 결제 프로필 연결만으로 한국 통신판매업 게이트가 켜짐(앱 무료·IAP 미등록이어도).
+- **재확인 (같은 세션 후반)**: 사용자 "fastlane production으로 릴리즈 트랙 올려라" 지시 → `bundle exec fastlane production`(track production/rollout 1.0/completed) 실행 → **동일하게 "Uploading all changes" 직후 Korean law 에러**. IAP 제거 + changelog 정정분까지 다 올라갔으나 edit commit에서 차단. **게이트 해제 전엔 internal/production 어느 트랙도 불가 재확인.** 사용자 결정: **배포 보류, changelog(46번 아래 참조)만 dev 커밋.** 게이트 해제(통신판매업 입력 or 결제프로필 해제)는 사용자가 나중에 직접.
+- **changelog 정정 (배포 준비)**: 18.txt(vc18) 45 locale이 "광고 제거 옵션 추가"를 언급했으나 IAP 제거로 사실 불일치 → "알림 설정 개선 + 앱 안정성 향상"으로 교체(IAP 문구 완전 제거). 게이트 해제 후 이 changelog로 배포.
+- **✅ 해결 진행 (2026-07-18)**: 사용자가 (A)안 실행 — 통신판매업 재신고 완료(등록면허세 40,500원, 면허번호 `2026-서울영등포-1656`, 서울특별시 영등포구청, 상호 이매진, 3종). Play Console 계정 세부정보(`developer-details?tab=aboutYou`) "한국 개발자의 경우 추가 정보 필요"에 사업자등록번호 `1263501870`+라이선스 번호+대행사(서울특별시 영등포구) **저장 상태 확인**(PDF 대조 + 새로고침 유지 검증). 값은 `~/thingineeer-env/.../fearindex-android/.env`의 `ECOMMERCE_LICENSE_*`에도 기록. 게이트 실해제는 fastlane 업로드 재시도로 검증해야 함(승인 게이트). 참고: 계정이 조직 계정(이매진/DUNS)으로 전환 완료돼 있음.
+
+### 44. 광고 제거 IAP(Play Billing) 전체 제거 — v1.4.0 무료 배포용 (feature/v1.4.0-no-iap)
+- **요청**: 사용자 "인앱결제 뺀 코드로 dev 1.4.0 배포", "광고제거는 나중에 넣자". 43번(통신판매업 미보유)로 IAP 활성화 불가 → v1.4.0에서 IAP 제외.
+- **제거**: core PurchaseManager/IapEntitlement/IapPurchaseOutcome + 테스트, billing-ktx 의존성 + libs.versions.toml billing 정의, AppOpenAdPolicy.canShowOnForeground의 isAdFree 파라미터, AdsEntryPoint.purchaseManager(), AdBanner/HomeScreen 게이트의 isAdFree(→canRequestAds+adsEnabled만), AppOpenAdManager isAdFree 파라미터, SettingsScreen 프리미엄 카드, SettingsViewModel(구매/복원 책임 소멸로 파일 삭제), FearIndexApp/MainActivity 배선, strings IAP 10키×45locale. **광고 개선 3건(AdRetryPolicy/배너 remember·DisposableEffect/AppOpen*)과 resolveBannerHeightDp는 보존.** grep 잔존 0, 703 테스트 GREEN. 실기기 릴리즈: 설정 프리미엄 카드 사라짐·배너 정상·크래시 없음.
+- **교훈**: IAP는 12파일에 얽혀 있으나 순수 로직(AppOpenAdPolicy isAdFree)까지 파라미터만 빼면 광고 게이트가 canRequestAds만으로 정상 동작. 나중에 IAP 재도입 시 이 커밋 revert 참고.
+
+### 45. 설정 '개인정보 선택' 메뉴 제거 — UMP 폼 미설정으로 죽은 버튼
+- **증상/원인**: 설정 '개인정보 선택' 탭 시 UMP `showPrivacyOptionsForm` 호출하나 실기기 로그 `Publisher misconfiguration: no form(s) configured for the input app ID (ca-app-pub-5283496525222246~1308884877)` → 항상 실패, 아무 동작 안 함. AdMob Console에 이 앱용 개인정보 동의 폼 미설정. 한국 사용자 대상이라 GDPR UMP 필수도 아님.
+- **해결**: SettingsScreen에서 항목+openAdPrivacyOptions+findActivity+UMP/ScreenshotMode import 제거, settings_menu_ad_privacy 45 locale 제거. (UMP 폼을 AdMob에 정식 설정하면 재도입 가능.)
+
+### 46. 알림 설정 UI 재설계 — 탭/토글 중복 제거, iOS parity 허브+상세 (feature/v1.4.0-settings-ux)
+- **문제**: 기존 알림설정이 탭바(시장/코스피/암호화폐)와 그 아래 자산 토글 3개가 이름 겹쳐 혼란(탭=슬라이더만 분기, 토글=자산 on/off, 항상 다 보임). 사용자 "iOS처럼 깔끔하게, 사용자가 이해할 UI로. Material Design 잘 맞게".
+- **재설계 (iOS NotificationSettingsView 대칭, 사용자가 '허브+상세화면' 방식 선택)**: 탭 제거. **허브**(NotificationSettingsScreen) = 마스터 토글 + 자산별 [아이콘+이름+Switch+화살표] 4행(글로벌🌐/코스피📈/암호화폐₿는 탭 시 상세 이동, 주간📅는 토글만) + Info footer. **상세**(NotificationDetailScreen 신규) = 자산별 하한(매수 기회,빨강 0xFFE53935)/상한(과열 경고,초록 0xFF00897B) 슬라이더 2섹션 + TopAppBar. ViewModel clamp+debounce 로직 그대로 재사용. NavHost에 notification_detail/{category} route.
+- **strings**: iOS xcstrings에서 notification_global_title/kospi_title/lower_header/upper_header + 자산별 lower/upper description 추출(%d→%1$d, zh-Hans→zh-rCN 등 매핑), 45 locale. 미사용 notification_market_title/tab_market/tab_crypto 제거.
+- **검증(실기기 릴리즈)**: 허브 4행 노출 → 글로벌 행 탭 → 상세(매수기회 30 빨강 / 과열경고 70 초록) → 하한 슬라이더 드래그 30→41 + 문구 실시간 갱신 → 뒤로 허브 복귀, 크래시 없음. 703 테스트 GREEN.
+- **교훈**: Android도 iOS Form+NavigationLink 구조를 Material 3(Card+ListItem+TopAppBar+Slider)로 자연 번역 가능. 탭이 슬라이더만 바꾸는데 토글과 이름 겹치면 UX 혼란 — 자산별 [토글+상세이동]을 한 행으로 합쳐 해소.
+
+### (참고) Play Console 사전출시 경고 3건(출시 1.3.0 기준) — 전부 라이브러리 내부, 코드 무관
+- **비트맵/BaseEncoding 이미지 최적화**: 시작위치 `com.google.common.io.BaseEncoding.<clinit>`(Guava 내부, 이미지 무관 오탐). 우리 코드에 BaseEncoding/수동 이미지 다운로드 0건.
+- **edge-to-edge 미처리**: MainActivity.kt:79 enableEdgeToEdge() 이미 호출 + themes.xml statusBarColor/navigationBarColor 이미 제거(19번) + EdgeToEdgePolicyTest 회귀테스트 존재 → 이미 해결됨.
+- **지원중단 API(setStatusBarColor 등)**: 시작위치 `com.google.android.gms.ads.OutOfContextTestingActivity`, 난독화 D2.S/c.q.b = AdMob/Compose 내부. 우리 코드 직접 호출 0건. AdMob SDK 업데이트로만 해결.
+
+
+## 2026-07-06 세션 (v1.4.0 광고 개선 3건 + 결제 검증)
+
+사용자 질문: "인터스티셜 광고 평소 잘 뜨나? 일치율 100% 도달하게 해줘. 결제 테스트도." + "탭 진입 1~2초 뒤 배너 떠서 일치율 낮은가?"
+
+### 39. 광고 진단 — 일치율 오해 정정 + 실제 노출 손실 3개 발견
+- **일치율 개념 정정**: 일치율(match rate) 95.5%는 AdMob이 요청에 광고를 채워준 fill rate로 **코드로 100% 불가**(인벤토리/지역/타겟팅이 결정, 억지 상향은 정책 위반). 배너가 1~2초 늦게 떠도 요청→응답 오면 일치로 집계돼 일치율과 무관. 스크린샷의 진짜 문제는 eCPM -56%/수입 -53%(광고 단가 이슈, 코드 무관).
+- **실제 코드 손실 3개**(explore 조사): ① 배너/인터스티셜 로드 실패 시 재시도 전무 → 첫 요청 실패=빈 슬롯 영구 ② 배너 AdView가 remember 안 됨 → 탭/세그먼트 전환마다 재생성+요청 재발, 직전 요청 낭비(사용자 "1~2초 지연" 원인) ③ 앱오픈 광고 미구현(iOS엔 있음).
+- **인터스티셜 트리거 확대는 하지 않기로 결정**: iOS도 트리거 KOSPI+위젯가이드 2개뿐, 차트기간/화면전환 트리거는 과거 제거된 정책(1번), sessionCap=2는 상한이지 목표 아님. Android가 트리거 늘리는 건 iOS parity 위반 + 과거 결정 되돌리기 → 스킵.
+
+### 40. 광고 로드 실패 재시도 + 배너 재생성 방지 (feature/v1.4.1-ad-retry)
+- **AdRetryPolicy**(core, 순수 로직, iOS AdBannerView 스펙 1:1): retryDelays [5s,15s,45s] 3회 → 최종 300s 1회 → 중단. `isRetryable(errorCode)`=INVALID_REQUEST(1) 제외. **처음 exponential(2/4/8)로 만들었다가 iOS 조사 후 [5,15,45]+300s로 정정**(iOS parity). TDD 4케이스.
+- **배너**: onAdFailedToLoad에서 no-fill/네트워크 실패 시 Handler.postDelayed 재요청. **AdView를 `remember(adUnitId, adSize)`로 유지 + DisposableEffect { onDispose { retryHandler 정리; adView.destroy() } }** → 리컴포지션/remount마다 재생성·요청 재발 방지. AndroidView(factory={remembered}). onAdLoaded 시 retryCount=0.
+  - ⚠️ **주의**: bugs-fixed 20/23번 프레임 크기 정책 재발 방지 위해 `resolveBannerHeightDp` 로직 유지(remember 리팩터에도 그대로).
+- **인터스티셜**(InterstitialAdManager): onAdFailedToLoad에서 재시도 스케줄(Handler). 로드 성공 시 retryCount 리셋. 새 로드 사이클(isRetry=false) 시작 시 이전 스케줄/카운터 정리.
+- **검증**: 에뮬 설정 화면 배너 정상 노출(재생성 리팩터 회귀 없음).
+
+### 41. 앱오픈 광고 신규 구현 (feature/v1.4.1-app-open-ad, iOS AppOpenAdCoordinator parity)
+- **AppOpenAdPolicy**(core, 순수 로직): iOS canAttemptForegroundShow 1:1. **콜드스타트 최초 실행 절대 제외** — `backgroundEnteredAt`(recordBackgroundEntry에서만 set)이 nil이면 자격 없음. 최소 백그라운드 체류(30s)/세션cap(2)/cooldown(600s). recordImpression 시 backgroundEnteredAt 소비(같은 포그라운드 중복 방지). 게이트 순서: isAdFree→enabled/canRequestAds→isReady→cap→cooldown→backgroundEnteredAt존재→체류시간. TDD 11케이스.
+- **AppOpenAdManager**(presentation): AppOpenAd SDK 로드/표시 + 4h 만료(iOS maxAdAge). 로드 실패 시 **자동 backoff 없음**(iOS 동일 — 다음 preloadIfNeeded 때 재시도). isForegroundBlocked 외부 가드. 정책은 AppOpenAdPolicy 위임.
+- **FearIndexApp lifecycle**: companion `appOpenAdManager` 단일 인스턴스. ProcessLifecycleOwner onStop→recordBackgroundEntry, onStart→showOnForegroundIfEligible. ActivityLifecycleCallbacks로 present 대상 Activity WeakReference 추적. MobileAds.initialize 콜백에서 preload.
+- **MainActivity**: `LaunchedEffect(showSplash, forceUpdate) { isForegroundBlocked = showSplash || forceUpdate }` — 스플래시/강제업데이트 중 앱오픈 겹침 방지(콜드스타트 제외로 원천 배타되지만 엣지 방어).
+- **RC 4키 신규**: `app_open_ads_enabled`/`app_open_session_cap`/`app_open_cooldown_sec`/`app_open_min_background_sec`. AdsRemoteConfig에 필드+`appOpenAdConfig()` 변환(enabled = ads_enabled && app_open_ads_enabled). **기본 OFF** — Firebase RC 게시로 활성화(iOS는 자체 서버 config app_open_*이지만 Android는 RC로 흡수).
+- **광고 단위 ID**: debug=Google 테스트 앱오픈(`ca-app-pub-3940256099942544/9257395921`), release=**빈 값**(AdMob Console 신규 발급 후 교체 필요, 빈 값이면 게이트 자동 차단). app+presentation 양쪽 buildConfigField.
+- **검증**(에뮬, RC 임시 켬 후 원복): `AppOpenAd loaded` preload 성공 → 홈으로 백그라운드 5초 후 복귀 시 **Google Ads 전체화면 앱오픈 노출 확인** → force-stop 콜드스타트 재실행 시 **미노출(스플래시만) 확인**. 노출 후 자동 재로드도 확인.
+- **교훈**: 앱오픈 콜드스타트 제외 = "백그라운드 진입 기록 nil이면 자격 없음" 플래그가 핵심(iOS backgroundEnteredAt). Android엔 scenePhase 대신 ProcessLifecycleOwner onStop/onStart. RC 임시 검증 시 반드시 원복(TEMP-VERIFY 마커로 추적).
+
+### 42. 결제 실패 다이얼로그 동작 검증 (에뮬레이터)
+- **제약**: 에뮬레이터 Play Store가 `In-app billing API version < 3` 미지원 + 상품 `remove_ads_lifetime` Play Console 미등록 → **실결제 테스트 불가**. 코드 동작만 검증 가능.
+- **검증 완료**: 설정→프리미엄 카드→Remove Ads 탭 → `[IAP] 연결 Error: 3` + `[IAP] 구매 실패 Error: -1 — 상품 정보를 불러오지 못함` 로그 + 화면에 **"Purchase failed. Please try again." + "Contact: dlaudwls1203@gmail.com"(작은 글씨) + Confirm"** 다이얼로그 정상. Restore Purchases 탭 → `[IAP] 복원 Error(연결 실패)` + Analytics `광고제거복원 성공여부=false` + "No purchases to restore." 다이얼로그 정상. 모든 IAP 로그에 "Error" 토큰 포함 확인.
+- **실결제 재검증**: Play Console 상품 등록 + AAB 트랙 업로드 + 라이선스 테스터 설정 후 실기기 필요.
+
+## 2026-07-06 세션 (v1.4.0 — iOS v1.8.8 parity 5건, dev 통합)
+
+브랜치: dev←feature/v1.4.0←4개 worktree 피처 브랜치(kospi-short-availability / notification-sync / crypto-official-endpoint / iap) + version-bump. 모두 --no-ff, 분기/합류 그래프 유지. 총 701 테스트 GREEN. **아직 배포 전(로컬 dev만), push 미실행.**
+
+### 35. 알림 온보딩 개선 — 최초 권한 허용 시 master toggle 디폴트 ON (리텐션) + FCM 등록 후 설정 동기화
+- **요청**: iOS v1.8.8 — 시스템 알림 프롬프트가 실제로 표시된 최초 결정에서 허용 시 앱 내 master toggle을 ON 저장+서버 동기화. 이미 결정된 기기(즉시 granted)는 저장값 불가침(사용자 OFF 존중).
+- **구현**: `domain/.../entity/NotificationPermissionSyncPolicy.kt`에 `initialAuthorizationAction(systemAuthorized, hasStoredPreference, isFirstAuthorizationDecision)` 순수 함수 추가 (iOS `NotificationAuthorizationSyncPolicy` 1:1). sealed `InitialAuthorizationAction`: NoChange / InitializeLocalOnly(enabled) / InitializeAndSyncServer(enabled). 로직: 최초결정+허용→ON+서버동기화(저장값 무시), hasStored→NoChange(불가침), 저장값X+허용→로컬만 ON, 저장값X+미허용→OFF+동기화. TDD 5케이스.
+  - **iOS "stale 저장값" 문제(App Group/iCloud 상속)는 Android에 없음** → `isFirstDecision` = "런타임 POST_NOTIFICATIONS를 지금 처음 요청해 허용됨"으로 매핑. `NotificationStorage`에 `hasStoredPreference()`(KEY_ENABLED 존재)/`hasRequestedPermission()`(신규 플래그 KEY_PERMISSION_REQUESTED) 추가.
+  - MainActivity: 시작 시(33+, 미허용, 미요청) `notificationPermissionLauncher.launch(POST_NOTIFICATIONS)` — launch 시점에 `markPermissionRequested()`로 회전/킬 재프롬프트 방지. 콜백/pre-33/기결정은 `applyInitialNotificationAuthorization(granted, isFirstDecision)` → 정책 액션대로 saveSettingsLocal 또는 updateSettings(서버).
+- **FCM 등록 직후 동기화**(같은 머지 단위): `NotificationRepositoryImpl.registerFCMToken`이 registerFCMToken 호출 **직후** `dataSource.updateSettings(deviceId, storage.load())` 추가. 서버 registerFCMToken이 payload에 임계값 없으면 신규 기기 즉시체크 보류 → updateNotificationSettings가 즉시체크 대신 트리거(33번 서버 공백 클라측 대응). 앱 시작+onNewToken 두 경로 모두 커버(repository 단일 지점). 등록 왕복 중 toggle 변경 반영 위해 최신 storage.load() 재조회.
+- **검증**(에뮬 debug): 최초 실행 → "Allow" → prefs `notificationEnabled=true` + `NotificationDataSource: Notification settings updated` 로그. 재실행 → 프롬프트 없음 + 값 불변(NoChange). **App Check debug token 미등록 시 서버 Callable이 Unauthenticated 거부**(코드 정상, 환경 문제) → Firebase Console App Check "공포지수 Android Debug"에 debug token 등록 후 registerFCMToken+updateNotificationSettings 서버 성공 확인.
+- **교훈**: 알림 초기화 정책은 순수 함수로 분리해 TDD. Android엔 iOS notDetermined 대응이 없으므로 "권한 요청 이력 플래그"로 최초 결정을 추적.
+
+### 36. BTC 지표 cryptoOfficialIndicatorsV1 서버 endpoint 전환 + 지표 카드 출처 라벨
+- **요청**: iOS v1.8.8 — CRYPTO RSI/공매도를 서버 official endpoint 경유로 전환(Binance 공식 소스), 지표 카드에 출처 라벨("source · basis · asOf") 작은 글씨 표시. SPX는 서버 endpoint 없음(FINRA/FRED가 GCP IP 차단) → 기기 직접 호출 유지.
+- **구현**: `GET https://asia-northeast3-fear-index-a4f4b.cloudfunctions.net/cryptoOfficialIndicatorsV1` → `OfficialIndicatorsResponse{rsi, short}`, 각 `OfficialIndicatorSeriesDTO{available, values, closes, ratios, dates, source, basis, asOf, official, methodology}`. 클라: `closes ?? values`(RSI), `ratios ?? values`(short), available=false면 빈 시계열(카드 숨김). Wilder RSI/ShortPressure 계산은 클라 유지(변경 없음).
+  - `domain/.../entity/IndicatorSourceMetadata.kt`(cardLabel="source·basis·asOf", sheetBody="source·asOf·methodology", 빈 값 제외) + `AssetCloseSeries`/`AssetShortRatioSeries`(closes/ratios + sourceMetadata). FearRSI/ShortPressure에 sourceMetadata 부착, UseCase가 `.copy(sourceMetadata=...)`.
+  - Repository: CRYPTO=officialApi, MARKET=Yahoo ^GSPC(하드코딩 메타 sourceName="Yahoo Finance ^GSPC"/basis="S&P 500"/**isOfficial=false**경고아이콘), MARKET 공매도=FINRA(하드코딩 "FINRA Daily Short Sale Volume"/"SPY ETF"/asOf=마지막 파일일), KOSPI RSI=KIS/KRX(asOf=마지막 종가일), KOSPI 공매도=서버 응답 메타. **CoinGecko market_chart/Binance globalLongShortAccountRatio 직접 호출·파서 제거**(DataModule에서 BinanceFuturesApi→OfficialIndicatorsApi 교체).
+  - UI: `IndicatorCards.kt` sourceLabel(labelSmall/onSurfaceVariant), `IndicatorInfoSheets.kt` SourceSection("데이터 기준" 헤더, 공식=Verified/비공식=WarningAmber 아이콘). HomeScreen이 uiState.currentRsi/currentShortPressure.sourceMetadata 주입.
+- **⚠️ 절대 규칙**: source/basis/methodology는 45 locale에 노출되지만 **번역 금지 — locale-neutral 영문 하드코딩**(서버 official endpoint + 클라 하드코딩 동일). l10n 키는 `indicator_source_section`("데이터 기준"/"Data basis") 하나만 45 locale.
+- **검증**(에뮬 debug 라이브): BTC RSI "Binance USD-M Futures · BTC · 2026-07-06", S&P500 RSI "Yahoo Finance ^GSPC · S&P 500", S&P500 공매도 "FINRA Daily Short Sale Volume · SPY ETF · 2026-07-02", KOSPI RSI "KIS/KRX KOSPI · KOSPI · 2026-06-30".
+
+### 37. KOSPI 공매도 available:false 처리 — 카드 숨김 (34번 오신호 해소)
+- **요청/원인**: 서버 `/api/kospi/short`가 KRX 공식 소스 확정 전까지 `{available:false, shortRatios:[]}` 반환(iOS 팀 변경). 기존 Android는 미집계 당일 `0` → "0.0% 숏커버링" 오신호(34번).
+- **구현**: `KospiShortResponse`에 `available: Boolean = true`(구버전 응답 default true) 필드 추가. repo에서 `getKospiShort().takeIf { it.available }?.shortRatios.orEmpty()` → available=false면 빈 배열 → ShortPressureCalculator `count>=3` 가드에서 null → 카드 숨김(기존 null 경로 재사용, 별도 hidden 분기 없음). unavailable 응답은 미캐시(소스 복구 시 즉시 반영). TDD 4개(DTO decode 2 + repo 2).
+- **검증**: 에뮬 KOSPI 탭에서 공매도 카드 미노출(RSI 카드만), 오신호 사라짐.
+
+### 38. Android IAP(광고 제거) 신규 구현 — Play Billing (iOS PurchaseManager 1:1)
+- **요청**: 사용자 지시 "안드로이드도 인앱결제 넣어". iOS는 광고 제거 non-consumable IAP(v1.6.0~). Android엔 billing 의존성 0건이었음(신규).
+- **구현**: `core/purchases/PurchaseManager.kt`(@Singleton, billing-ktx 7.1.1). 상품 ID `remove_ads_lifetime`(one-time INAPP non-consumable). `isAdFree: StateFlow`(SharedPreferences "iap_prefs"/"iap.adFree.cached" 캐시로 init 동기 복원 — 첫 프레임 깜빡임 방지), `priceText`(oneTimePurchaseOfferDetails.formattedPrice, 미로드 null→UI fallback "US$4.99"), `purchaseEvents: SharedFlow`(Completed/Failed/Cancelled).
+  - start()=FearIndexApp.onCreate 1회(screenshotMode 스킵): connect→queryPurchasesAsync(INAPP) entitlement 재평가→queryProductDetailsAsync 가격 로드. onResume=refreshEntitlements(외부 구매/환불 반영). purchaseRemoveAds=launchBillingFlow, 성공 PURCHASED→acknowledgePurchase(**consume 금지**, non-consumable). restorePurchases=queryPurchasesAsync 재평가.
+  - **순수 로직 분리 TDD 13개**: `IapEntitlement.evaluate`(구매목록→isAdFree+미ack 토큰), `IapPurchaseOutcome.evaluate`(responseCode→Completed/Cancelled/Failed). BillingClient 글루는 얇게.
+  - **코드리뷰(xhigh) 보강 5건**: purchaseInFlight AtomicBoolean 이벤트 1회 발행(launchBillingFlow 실패+onPurchasesUpdated 이중 방지), ITEM_ALREADY_OWNED→entitlement 재평가 grant(오류 다이얼로그 방지), ensureConnected 10s timeout(스피너 무한대기 방지), 상품 미로드 구매 경로 실패 시 반드시 실패 이벤트(스피너 해제), grantAdFree 중복 디스크 쓰기 제거.
+  - 광고 게이트: `AdBanner.kt:70`(`isAdFree || !canRequestAds || ...`→return), 인터스티셜 `HomeScreen.kt:181`(`interstitialAdPolicyConfig(canRequestAds && !isAdFree)`), 둘 다 `AdsEntryPoint.purchaseManager()` 경유. Analytics 한글 이벤트(광고제거구매시작/완료/실패/복원) parity.
+  - 설정 프리미엄 카드: SettingsScreen 최상단(Premium 헤더 + Remove Ads/가격 + Restore Purchases, 구매완료 시 초록 체크+"광고 제거됨"). SettingsViewModel(purchase/restore + isPurchasing/isRestoring + dialog). **구매 실패 다이얼로그에 "문의: dlaudwls1203@gmail.com" 작은 글씨(bodySmall)** + 복원 성공/실패 다이얼로그. **모든 IAP 로그에 "Error" 토큰**(콘솔 필터). 10키×45 locale(settings_premium_header 등, %@→%1$s).
+- **검증**(에뮬 debug): 설정 프리미엄 카드 정상(Premium/Remove Ads/US$4.99 fallback/Restore Purchases), 광고 게이트 배선 확인. **실결제는 에뮬 Play Billing 제약 → 실기기 라이선스 테스터로 재검증 필요**.
+- **⚠️ Play Console 사용자 작업**: 결제 프로필 연결(이매진), 상품 `remove_ads_lifetime` 등록(일회성/non-consumable/US$4.99 상당), 라이선스 테스터, 데이터 보안/앱 콘텐츠 선언.
+- **교훈**: Play Billing non-consumable은 consume 금지 acknowledge만. SharedPreferences 캐시로 async 쿼리 전 첫 프레임 광고 깜빡임 방지. 이벤트 1회 발행은 AtomicBoolean 게이트로 이중 콜백 방어.
+
+
 # Bugs Fixed
 
 ## 2026-04-14 세션
@@ -397,6 +504,59 @@ type: project
 - **결과 (라이브 재확인)**: `force_update_minimum_version` default=1.6.0 / [Android]=`1.2`. `UpdateChecker` major.minor 비교로 **1.0.x·1.1.x 강제 / 1.2.0 통과**(`compareMajorMinor([1,2,0],[1,2])=0`).
 - **기대 효과**: AdMob 배너 "적용 불가"(1.0.1 정책위반, 23번)는 구버전 트래픽이 0으로 수렴하며 자연 해소. AdMob 정책센터 상태는 수일 후 재확인.
 - **교훈**: RC 강제 게이트 상향 순서 = (1) **새 버전 Play 전파를 공개 리스팅 등으로 먼저 검증** → (2) **한 줄만 변경하는 diff 확인** → (3) deploy 후 **라이브 값 재조회**. firebase CLI deploy는 전체 템플릿을 publish하므로 get→최소수정→deploy로 기존 파라미터 보존.
+
+## 2026-07-03 세션 (FCM 정책 개편 검증 + v1.3.0 RSI/공매도 지표 배포)
+
+### 33. FCM 알림 정책 개편 검증 — Android 코드 무수정 확인 + 서버 즉시체크 공백 발견
+
+- **검증 3항목**: ① title/body 그대로 표시 (`FearIndexMessagingService.kt:37-38`, 가공/파싱 없음, Manifest 기본 채널 `fear_index_alerts` HIGH 일치) ② 클릭은 extras 없는 MainActivity Intent — 문구 파싱 의존 없음 ③ registerFCMToken 매 실행 + onNewToken 호출 확인.
+- **실수신 테스트**: admin SDK로 서버 `sendBatch`와 동일 payload(notification+data) 발송 → 새 포맷("글로벌 시장 지수가 25. 매수 기회가 될 수 있습니다.") 백그라운드/포그라운드/탭 진입 모두 정상 (에뮬레이터). App Check debug token(MacBook emulator, 2026-07-03) Firebase Console 등록.
+- **⚠️ 서버 공백 (iOS 팀 전달 필요)**: `dispatchInstantCheck`가 `registerFCMToken` **신규 유저 분기에만** 존재 (`device-callables.ts:245`). Android 신규 유저는 최초 실행 시 `notificationEnabled=false`로 등록 → 즉시체크 no-op. 알림 켜는 순간(권한 허용)은 `updateNotificationSettings` 호출인데 **여기엔 훅 없음** → Android 유저는 즉시 알림 혜택을 못 받고 30분 cron 폴백. `updateNotificationSettings`의 enabled false→true 전환 시 훅 추가 권장. instant-check.ts 주석은 양쪽 훅을 전제하나 실제 코드 미구현.
+- **비고**: 임계치 실발동(서버 cron) E2E는 서버 배포 후 재검증 필요.
+
+### 34. v1.3.0 — RSI(14)/공매도 동향 투자 지표 (iOS SSOT 포팅, TDD 45개)
+
+- **Domain**: `RSICalculator`(Wilder's smoothing, avgLoss 0→RSI 100, history 변형은 JVM 소거 충돌로 `calculateFromHistory`), `ShortPressureCalculator`(최신값 vs 직전 5개 평균 상대변화율 ±15%, scale-invariant, baseline 0→중립), `FearRSI`/`ShortPressure` 엔티티, `GetAssetRSIUseCase`/`GetAssetShortPressureUseCase`.
+- **Data**: MARKET=Yahoo `^GSPC` 6mo(기존 YahooChartApi에 getCloseChart 추가) / CRYPTO=CoinGecko market_chart 180d(getMarketChart 추가, ohlc 무료티어는 4일봉이라 부적합) / KOSPI 종가=**기존 스냅샷 `chartHistoryForDisplay[].kospiClose` 재사용**(KospiHistoryDTO에 nullable 필드 추가, 추가 API 0). 공매도: FINRA RegSHO(신규 FinraShortVolumeApi, NY 기준 주말 제외 후보 5일 병렬 fetch·부분실패 허용·suffix 3) / Binance globalLongShortAccountRatio(shortAccount×100) / 서버 `/api/kospi/short`. In-memory TTL 캐시(MARKET 12h/CRYPTO 30m/KOSPI 1h, **3개 미만 미캐시**) + `withTimeout(8s)`.
+- **Presentation**: 홈 비교카드/광고 다음에 RSI 카드+공매도 카드(iOS 순서), ⓘ→ModalBottomSheet 설명 시트(RSI 눈금 막대 0/30/70/100). 선택 탭만 로드(iOS 정책), 실패/부족 시 해당 카드만 숨김(null). `indicator.*` 35키 × 45 locale (iOS xcstrings 스크립트 추출, %@→%%1$s).
+- **검증**: 실기기(Galaxy S23) 3탭 육안 확인 — 시장 RSI 54.7 중립/공매도 50.2% 중립, KOSPI RSI 52.9(서버 kospiClose 1352/1355행 존재), BTC RSI 44.0/37.3% 공매도 증가(빨강). 에뮬레이터는 /data 400MB 부족으로 설치 실패(정리 필요).
+- **⚠️ 발견 이슈 (서버/기존)**: ① `/api/kospi/short` 미집계 당일 값이 `0` → latest=0 → "-100%" → **"0.0%% 숏커버링" 오신호** (iOS 동일 영향, 서버 kospi-market-short-flow에서 미집계일 제외 권장) ② KOSPI SimilarEvents 카드에 `insight.kospi.event.tradeWar2018` **raw key 노출** (기존 버그, 번역 키 누락 — 별도 fix 대상).
+- **배포**: versionCode 17 / 1.3.0. 버전 선택 근거 = 신규 기능(minor) + 강제 게이트가 major.minor 비교라 1.2.1은 1.2.0과 식별 불가. changelog 17 "투자 지표를 추가하였습니다."(45 locale). **AAB+changelog만 업로드**(fastlane run upload_to_play_store, 스크린샷/메타 skip). 업로드 후 **빠른 검사(pre-review scan) 통과 시 자동 검토 전송** 확인(이번엔 수동 "검토 전송" 불필요 — v1.2.0의 136개 대기와 달리 변경이 트랙+changelog뿐). 당일 심사 통과, 사용자가 관리형 게시 "게시" 클릭 → **2026-07-03 게시 완료**. release 머지 + v1.3.0 태그.
+- **Git**: dev → feature/v1.3.0 → worktree feature/v1.3.0-rsi-short-indicators(5커밋: domain/파서/data·DI/presentation/버전bump). --no-ff 머지 그래프 유지.
+
+## 2026-07-18 세션 후반 (v1.4.1 vc19 production 업로드 — Korean law 게이트 해제 확정)
+
+### 37. v1.4.1(vc19) production 배포 — 게이트 해제 + IAP 재도입 + 관리형 게시 OFF
+
+- **Korean law 게이트 해제 확정**: 통신판매업(2026-서울영등포-1656) 계정 세부정보 저장 후 `bundle exec fastlane production` → **업로드+커밋 성공** (43번에서 막히던 "Uploading all changes" 지점 통과). 프로덕션 트랙 "활성 · 출시 버전 1.4.1 검토 중 · 177개국". ⚠️ 첫 실행 출력이 bundler 경고에 묻혀 실패로 오인 → 재실행에서 "Version code 19 has already been used" = 첫 실행이 성공했던 것. fastlane 성공 여부는 **Play Console 트랙 상태로 확인**할 것.
+- **관리형 게시 OFF**: 게시 개요에서 "관리형 게시 사용 중지" 전환 → 이후 승인 즉시 자동 게시. 전환 시 게시 준비돼 있던 데이터 보안 변경이 즉시 게시됨(7/18).
+- **데이터 보안 정책 위반(7/27 기한) 종결**: 위반="기기 또는 기타 ID 미선언"(vc17). 설문은 이미 수정돼 있었으나 **관리형 게시 때문에 검토 제출이 안 된 채 방치**가 진짜 원인. "검토를 위해 변경사항 전송" → 당일 승인 → 게시. 교훈: 관리형 게시 ON이면 앱 콘텐츠 선언 수정도 게시 개요에서 전송해야 반영.
+- **IAP 재도입**: `git revert 17e69432`(no-iap 커밋)로 복원 + 충돌 47파일 해소(온보딩/위젯/설정UX 보존, findActivity 수동 재추가). AdBanner 게이트 순서: inspection→screenshot→투어→isAdFree→canRequestAds. 전체 테스트 GREEN(771 실행).
+- **인앱 상품 등록**(Chrome MCP): `remove_ads_lifetime` / Remove Ads / 구매옵션 lifetime(구입·비소비성·디지털 콘텐츠) / ₩7,500 기준 173개국 환산 / **활성**. ⚠️ 상품 등록은 **BILLING 권한 포함 AAB 업로드가 선행 조건** ("새 APK 업로드" 안내가 뜨면 AAB부터).
+- **Crashlytics 점검**: crash-free 100%. 30일 미해결 2건 — ① SplashView.kt:69 Resources$NotFoundException(1건, 1.0.1~1.2.0, 앱 업데이트 중 리소스 교체) → **Drawable 직접 로드+실패 시 아이콘 생략 방어 적용**(painterResource는 try/catch 불가) ② FearIndexApp.initAdMob ANR(2건, SDK 내부, 이미 백그라운드 init 권장 패턴) → 관찰 유지.
+- **온보딩 투어 UX fix 2건**(유저 피드백): ① 대형 앵커(4단계 인사이트, 화면 55%+ 덮음)는 카드를 탭바 쪽 하단 배치(TDD 5케이스) ② 인터스티셜 5초 지연 중 투어 시작 엣지 방어 1줄.
+- **인터스티셜 실기+적대적 검증**: 정상 노출(KOSPI 진입 5s 후, 시각+이벤트) / 세션 1회 제한 / 투어 중 억제·탭 흡수 / 투어 후 기회 미소모 — 모두 확인. 코드 검증 3에이전트 확정 이슈 low 3건뿐.
+- **이 머신 최초 셋업**: `~/.gradle/gradle.properties` 부재로 signReleaseBundle NPE → `install.sh` 실행으로 해결. bundler 2.6.9 재설치 필요했음(`gem install bundler -v 2.6.9`).
+- **미검증**: IAP 실결제(라이선스 테스터 실기기 필요), 에뮬 최종 스모크(에뮬 불안정 — 프리미엄 카드 렌더는 v1.4.0 시절 동일 코드로 검증된 이력 44번).
+- **남은 것**: 심사 승인 → 자동 게시 확인 → release 머지+v1.4.1 태그. RC force_update=1.2 유지(조치 불필요). 앱인토스 "지금 공포지수 23" 배너 건은 별도 레포(유저 A/B 선택 대기).
+
+## 2026-07-18 세션 (v1.4.1 — 온보딩 코치마크 투어 + 위젯)
+
+### 35. 온보딩 투어가 알림 권한 다이얼로그에 가려 안 뜸 (첫 실행)
+
+- **증상**: 신규 설치/QA 강제 모두 투어 카드가 화면에 안 나타남. E2E 12 FAIL. 하지만 `onboarding_prefs` 는 `onboardingTourEligibleV1=true` + `hasSeenOnboardingTourV1=true` — **투어는 정상 시작(자격 판별·마킹 정상)됐으나 보이지 않음**.
+- **근본원인 (로그로 확인, 추측수정 금지)**: `dumpsys window mCurrentFocus` = `GrantPermissionsActivity`. MainActivity 가 첫 실행에 POST_NOTIFICATIONS 시스템 다이얼로그(`maybeRunInitialNotificationAuthorization`, v1.4.0 알림 온보딩)를 띄우는데, 이게 투어 오버레이 **위에** 떠서 가림. 투어는 그 밑에서 활성 상태.
+- **해결**: `MainActivity.notificationPromptResolved: MutableState<Boolean>` 추가 → `readyForTour = !showSplash && !forceUpdate && notificationPromptResolved`. 권한 프롬프트 콜백/불필요(이미 결정·스크린샷모드) 시 true. 즉 **다이얼로그가 걷힌 뒤에만 투어 시작**.
+- **교훈**: 첫 실행 오버레이(투어)는 첫 실행 시스템 프롬프트(알림 권한)와 충돌한다. "안 뜬다" 진단 시 **prefs 상태 + mCurrentFocus 로 '시작됐지만 가려짐'과 '아예 안 시작됨' 구분**. E2E 에선 `pm grant POST_NOTIFICATIONS` 로 다이얼로그 회피.
+
+### 36. 온보딩 투어 + 위젯 구현·검증 (iOS v1.9.3 parity)
+
+- **범위**: 8단계 코치마크 투어(딤+컷아웃+마칭앤츠 링+카드, Compose 재작성) + Glance 위젯 4종(2×2 3 + 4×2 대시보드) + 위젯 사용법 가이드 + 설정 "앱 사용법"(재생)/"위젯 사용법" 행. iOS 라벨 20키 45 locale verbatim.
+- **게이팅**: `stuck_counter_prefs/deviceId`(v1.0.0부터 불변) raw 프로브(FCM 전) → 신규설치만 자동 노출. iOS `OnboardingEligibility`(fcm_device_id) 미러. `OnboardingStorage`(data) + `OnboardingEligibility`(domain, TDD).
+- **배선**: `OnboardingTourViewModel`(activity-scoped, NavHost 생성) + `LocalOnboardingTour` CompositionLocal. 앵커=`Modifier.onGloballyPositioned{boundsInWindow}`. NavHost LaunchedEffect 로 단계별 탭/세그먼트/스크롤 구동, 종료 시 홈 market 최상단. 투어 중 인터스티셜(HomeScreen effect)/앱오픈(MainActivity 전달)/배너(AdBanner LocalOnboardingTour 게이트) 억제. 스켈레톤은 HomeVM init eager load 로 미노출.
+- **위젯**: `WidgetEntryPoint`(Get(Fear/Kospi/Crypto)FearIndexUseCase), Glance 1.1.1, `actionStartActivity<MainActivity>`, `FearWidgetUpdateWorker`(3h)+포그라운드 updateAll. providers 4개 등록·픽커 노출 확인. **실기기 배치 시각 최종확인은 남음**(런처 자동화 flaky).
+- **검증**: E2E(`scripts/e2e/onboarding_tour_check.py`) 15/15 — 8단계 워크스루 스크린샷, 2단계 KOSPI 자동 세그먼트, 3시나리오(신규 노출/기존 미노출/강제종료 미노출), 설정 재생, GA `onboarding_done{8}`/`onboarding_skip{5}`, 광고/스켈레톤 미노출. 일본어 로케일 렌더 확인. 20키 감수 패널 must-fix 0.
+- **브랜치**: `feature/v1.4.1-onboarding-tour` (dev 기준, 5커밋). **미푸시·미머지·미배포** — 유저 승인 게이트. app ID `4973920645070208584`... (버전 확정/dev 머지는 다음).
 
 ## 주의사항
 

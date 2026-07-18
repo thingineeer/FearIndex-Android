@@ -82,10 +82,7 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="back">Tilbage</string>
     <string name="notification_push_title">Push-notifikationer</string>
     <string name="notification_push_description">Få besked, når frygtindekset når din tærskel.</string>
-    <string name="notification_tab_market">Marked</string>
-    <string name="notification_tab_crypto">Krypto</string>
     <string name="notification_weekly_title">Ugentlige rapportalarmer</string>
-    <string name="notification_market_title">Markedsfrygtindeks-alarmer</string>
     <string name="notification_crypto_title">Kryptofrygtindeks-alarmer</string>
     <string name="notification_lower_label">Nedre (Frygt)</string>
     <string name="notification_upper_label">Øvre (Grådighed)</string>
@@ -93,6 +90,14 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="notification_upper_description">Du får besked, når indekset når %1$d eller højere.</string>
     <string name="notification_info">Notifikationer tjekkes hvert 15. minut. Du får højst 1 notifikation pr. tærskelzone pr. dag.</string>
     <string name="notification_sync_error">Synkronisering mislykkedes: %1$s</string>
+    <string name="notification_global_title">Globale frygtindeks-advarsler</string>
+    <string name="notification_kospi_title">KOSPI-advarsler</string>
+    <string name="notification_lower_header">Købs-signalalarm</string>
+    <string name="notification_upper_header">Overheat-advarsel</string>
+    <string name="notification_kospi_lower_description">Få besked, når KOSPI-indekset falder til %1$d eller derunder.</string>
+    <string name="notification_kospi_upper_description">Få besked, når KOSPI-indekset stiger til %1$d eller derover.</string>
+    <string name="notification_crypto_lower_description">Få besked, når krypto-indekset falder til %1$d eller derunder.</string>
+    <string name="notification_crypto_upper_description">Få besked, når krypto-indekset stiger til %1$d eller derover.</string>
 
     <string name="insight_similar_events_similar_section_title">Lignende perioder</string>
 
@@ -226,7 +231,6 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="settings_kospi_methodology_summary">Den aktuelle KOSPI-score opdateres hver time i Koreas normale markedstid. Historikdiagrammer opdateres først efter den bekræftede lukning. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Privatlivspolitik</string>
     <string name="settings_menu_about">App-info</string>
-    <string name="settings_menu_ad_privacy">Valg om privatliv</string>
     <string name="settings_menu_rate">Skriv en anmeldelse</string>
     <string name="settings_menu_share">Del app</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Næste</string>
+    <string name="onboarding_skip">Spring over</string>
+    <string name="onboarding_start">Kom i gang</string>
+    <string name="settings_menu_app_usage">App-guide</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Marked F&amp;G</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krypto F&amp;G</string>
+    <string name="onboarding_step1_title">Dette indeks følger S&amp;P 500</string>
+    <string name="onboarding_step1_detail">Det viser det amerikanske markeds frygt og grådighed som ét tal fra 0 til 100. Lavere betyder frygt, højere betyder grådighed.</string>
+    <string name="onboarding_step2_title">Dette indeks følger KOSPI</string>
+    <string name="onboarding_step2_detail">Se det koreanske markeds stemning på samme måde. Skift når som helst med segmenterne ovenfor.</string>
+    <string name="onboarding_step3_title">Dette indeks følger BTC</string>
+    <string name="onboarding_step3_detail">Kryptomarkedets frygt og grådighed vises på samme skala.</string>
+    <string name="onboarding_step4_title">Hvad hvis du havde købt ved denne score?</string>
+    <string name="onboarding_step4_detail">Historisk gennemsnitligt afkast ved køb på nuværende niveau. Ingen garanti — brug det med forsigtighed.</string>
+    <string name="onboarding_step5_title">Stem om din situation lige nu</string>
+    <string name="onboarding_step5_detail">Efterlad din status med ét tryk, og følg investorernes stemning verden over i realtid.</string>
+    <string name="onboarding_step6_title">Vi giver besked på det rette tidspunkt</string>
+    <string name="onboarding_step6_detail">Sæt en notifikation, så giver vi besked, når indekset når dit niveau.</string>
+    <string name="onboarding_step7_title">Endnu hurtigere med widgets</string>
+    <string name="onboarding_step7_detail">Widgetguiden findes altid på denne skærm.</string>
+    <string name="onboarding_step8_title">Udviklerens personlige regel</string>
+    <string name="onboarding_step8_detail">Udvikleren køber kun ved 15 eller lavere. Derover kan det kræve stor tålmodighed. En personlig regel, ikke investeringsrådgivning.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Tryk og hold på et tomt område på din startskærm, og tryk derefter på Widgets.</string>
+    <string name="widget_guide_step2">Find "Frygt &amp; Grådighed Indeks" i widgetlisten.</string>
+    <string name="widget_guide_step3">Vælg det ønskede indeks — Global, KOSPI eller Krypto — eller den samlede widget.</string>
+    <string name="widget_guide_step4">Træk den ind på din startskærm, og placer den, hvor du vil.</string>
+    <string name="widget_guide_step5">Tryk på widgeten når som helst for at åbne appen.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) frygt &amp; grådighed</string>
+    <string name="widget_kospi_description">KOSPI frygt &amp; grådighed</string>
+    <string name="widget_crypto_description">Krypto (BTC) frygt &amp; grådighed</string>
+    <string name="widget_dashboard_description">Alle tre frygt &amp; grådighed-indeks</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Fjern reklamer</string>
+    <string name="settings_remove_ads_description">Engangskøb. Fjerner alle reklamer for altid.</string>
+    <string name="settings_remove_ads_purchased">Reklamer fjernet</string>
+    <string name="settings_remove_ads_purchase_failed">Købet mislykkedes. Prøv venligst igen.</string>
+    <string name="settings_restore_purchases">Gendan køb</string>
+    <string name="settings_restore_success">Køb gendannet.</string>
+    <string name="settings_restore_failure">Ingen køb at gendanne.</string>
+    <string name="settings_support_contact">Kontakt: %1$s</string>
+    <string name="common_confirm">Bekræft</string>
 </resources>

@@ -1,7 +1,5 @@
 package th1ngjin.fearindex.data.mapper
 
-import th1ngjin.fearindex.data.dto.BinanceLongShortRatioDTO
-import th1ngjin.fearindex.data.dto.CoinGeckoMarketChartResponse
 import th1ngjin.fearindex.data.dto.KospiHistoryDTO
 import th1ngjin.fearindex.data.dto.YahooCloseChartResponse
 
@@ -23,12 +21,6 @@ object YahooCloseParser {
             ?: emptyList()
 }
 
-/** CoinGecko market_chart(prices[][1]) → 일봉 종가. */
-object CoinGeckoCloseParser {
-    fun closes(response: CoinGeckoMarketChartResponse): List<Double> =
-        response.prices.mapNotNull { row -> row.getOrNull(1) }
-}
-
 /** FINRA CNMSshvol 일별 텍스트 → 심볼 공매도 비중(%) = ShortVolume/TotalVolume*100. */
 object FinraShortVolumeParser {
     /** 형식: `Date|Symbol|ShortVolume|ShortExemptVolume|TotalVolume|Market` */
@@ -45,15 +37,12 @@ object FinraShortVolumeParser {
     }
 }
 
-/** Binance globalLongShortAccountRatio → 순숏 계정 비율(%) 시계열(timestamp 오름차순). */
-object BinanceShortRatioParser {
-    fun shortRatios(rows: List<BinanceLongShortRatioDTO>): List<Double> =
-        rows.sortedBy { it.timestamp }
-            .mapNotNull { row -> row.shortAccount.toDoubleOrNull()?.times(100) }
-}
-
 /** KOSPI 스냅샷 chartHistoryForDisplay → kospiClose 종가(날짜 오름차순, null 제거). */
 object KospiCloseParser {
     fun closes(history: List<KospiHistoryDTO>): List<Double> =
         history.sortedBy { it.date }.mapNotNull { it.kospiClose }
+
+    /** RSI 출처 라벨 asOf용 — 종가가 존재하는 마지막 날짜(yyyy-MM-dd). */
+    fun lastCloseDate(history: List<KospiHistoryDTO>): String? =
+        history.filter { it.kospiClose != null }.maxOfOrNull { it.date }
 }

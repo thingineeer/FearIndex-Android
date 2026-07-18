@@ -82,10 +82,7 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="back">Takaisin</string>
     <string name="notification_push_title">Push-ilmoitukset</string>
     <string name="notification_push_description">Saat ilmoituksen, kun pelkoindeksi saavuttaa kynnyksesi.</string>
-    <string name="notification_tab_market">Markkina</string>
-    <string name="notification_tab_crypto">Krypto</string>
     <string name="notification_weekly_title">Viikoittaiset raporttihälytykset</string>
-    <string name="notification_market_title">Markkinoiden pelkoindeksi-hälytykset</string>
     <string name="notification_crypto_title">Krypton pelkoindeksi-hälytykset</string>
     <string name="notification_lower_label">Alaraja (Pelko)</string>
     <string name="notification_upper_label">Yläraja (Ahneus)</string>
@@ -93,6 +90,14 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="notification_upper_description">Saat ilmoituksen, kun indeksi saavuttaa %1$d tai enemmän.</string>
     <string name="notification_info">Ilmoituksia tarkistetaan 15 minuutin välein. Saat enintään yhden ilmoituksen per kynnysalue päivässä.</string>
     <string name="notification_sync_error">Synkronointi epäonnistui: %1$s</string>
+    <string name="notification_global_title">Globaalin pelkoindeksin varoitukset</string>
+    <string name="notification_kospi_title">KOSPI-hälytykset</string>
+    <string name="notification_lower_header">Ostosignaalin hälytys</string>
+    <string name="notification_upper_header">Ylikuumenemisvaroitus</string>
+    <string name="notification_kospi_lower_description">Saat ilmoituksen, kun KOSPI-indeksi laskee arvoon %1$d tai sen alle.</string>
+    <string name="notification_kospi_upper_description">Saat ilmoituksen, kun KOSPI-indeksi nousee arvoon %1$d tai yli.</string>
+    <string name="notification_crypto_lower_description">Saat ilmoituksen, kun krypto-indeksi laskee %1$d:een tai alle.</string>
+    <string name="notification_crypto_upper_description">Saat ilmoituksen, kun krypto-indeksi nousee %1$d:een tai yli.</string>
 
     <string name="insight_similar_events_similar_section_title">Samankaltaiset jaksot</string>
 
@@ -226,7 +231,6 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="settings_kospi_methodology_summary">Nykyinen KOSPI-pistemäärä päivittyy tunnin välein Korean normaalien markkinatuntien aikana. Historiakaaviot päivittyvät vasta vahvistetun sulun jälkeen. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Tietosuojakäytäntö</string>
     <string name="settings_menu_about">Sovelluksen tiedot</string>
-    <string name="settings_menu_ad_privacy">Tietosuojavalinnat</string>
     <string name="settings_menu_rate">Kirjoita arvostelu</string>
     <string name="settings_menu_share">Jaa sovellus</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Seuraava</string>
+    <string name="onboarding_skip">Ohita</string>
+    <string name="onboarding_start">Aloita</string>
+    <string name="settings_menu_app_usage">Sovelluksen opas</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Markkinat P&amp;A</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Krypto P&amp;A</string>
+    <string name="onboarding_step1_title">Tämä indeksi seuraa S&amp;P 500:aa</string>
+    <string name="onboarding_step1_detail">Se näyttää Yhdysvaltain markkinan pelon ja ahneuden yhtenä lukuna 0–100. Matala tarkoittaa pelkoa, korkea ahneutta.</string>
+    <string name="onboarding_step2_title">Tämä indeksi seuraa KOSPIa</string>
+    <string name="onboarding_step2_detail">Näet Korean markkinan tunnelman samalla tavalla. Vaihda milloin tahansa yllä olevista segmenteistä.</string>
+    <string name="onboarding_step3_title">Tämä indeksi seuraa BTC:tä</string>
+    <string name="onboarding_step3_detail">Kryptomarkkinan pelko ja ahneus näkyvät samalla asteikolla.</string>
+    <string name="onboarding_step4_title">Entä jos olisit ostanut tällä lukemalla?</string>
+    <string name="onboarding_step4_detail">Historiallinen keskimääräinen tuotto ostettaessa nykyisellä tasolla. Ei takuita — käytä varoen.</string>
+    <string name="onboarding_step5_title">Äänestä tilanteestasi</string>
+    <string name="onboarding_step5_detail">Jätä tilasi yhdellä napautuksella ja seuraa sijoittajien tunnelmaa maailmalla reaaliajassa.</string>
+    <string name="onboarding_step6_title">Ilmoitamme oikealla hetkellä</string>
+    <string name="onboarding_step6_detail">Aseta ilmoitus, niin kerromme heti kun indeksi saavuttaa tasosi.</string>
+    <string name="onboarding_step7_title">Vielä nopeammin widgeteillä</string>
+    <string name="onboarding_step7_detail">Widget-oppaan löydät tästä näkymästä milloin vain.</string>
+    <string name="onboarding_step8_title">Kehittäjän oma sääntö</string>
+    <string name="onboarding_step8_detail">Kehittäjä ostaa vain lukemalla 15 tai alle. Sitä korkeammalla voi tarvita pitkää kärsivällisyyttä. Oma sääntö, ei sijoitusneuvo.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Kosketa ja pidä painettuna tyhjää kohtaa aloitusnäytöllä ja napauta sitten Widgetit.</string>
+    <string name="widget_guide_step2">Etsi "Pelko &amp; Ahneus Indeksi" widget-luettelosta.</string>
+    <string name="widget_guide_step3">Valitse haluamasi indeksi — Globaali, KOSPI tai Krypto — tai kaikki yhdessä -widget.</string>
+    <string name="widget_guide_step4">Vedä se aloitusnäytölle ja aseta se haluamaasi kohtaan.</string>
+    <string name="widget_guide_step5">Napauta widgetiä milloin tahansa avataksesi sovelluksen.</string>
+    <string name="widget_market_description">Globaali (S&amp;P 500) pelko &amp; ahneus</string>
+    <string name="widget_kospi_description">KOSPI pelko &amp; ahneus</string>
+    <string name="widget_crypto_description">Krypto (BTC) pelko &amp; ahneus</string>
+    <string name="widget_dashboard_description">Kaikki kolme pelko &amp; ahneus -indeksiä</string>
+    <string name="settings_premium_header">Premium</string>
+    <string name="settings_remove_ads_title">Poista mainokset</string>
+    <string name="settings_remove_ads_description">Kertaosto. Poistaa kaikki mainokset pysyvästi.</string>
+    <string name="settings_remove_ads_purchased">Mainokset poistettu</string>
+    <string name="settings_remove_ads_purchase_failed">Osto epäonnistui. Yritä uudelleen.</string>
+    <string name="settings_restore_purchases">Palauta ostot</string>
+    <string name="settings_restore_success">Ostot palautettu.</string>
+    <string name="settings_restore_failure">Ei palautettavia ostoja.</string>
+    <string name="settings_support_contact">Yhteystiedot: %1$s</string>
+    <string name="common_confirm">Vahvista</string>
 </resources>

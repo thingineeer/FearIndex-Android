@@ -1,0 +1,1 @@
+Configurações de notificação aprimoradas e maior estabilidade do app.

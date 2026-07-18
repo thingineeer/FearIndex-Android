@@ -82,10 +82,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="back">Vissza</string>
     <string name="notification_push_title">Push értesítések</string>
     <string name="notification_push_description">Értesítést kap, amikor a félelemindex eléri a küszöböt.</string>
-    <string name="notification_tab_market">Piac</string>
-    <string name="notification_tab_crypto">Kripto</string>
     <string name="notification_weekly_title">Heti jelentés figyelmeztetések</string>
-    <string name="notification_market_title">Piaci félelemindex figyelmeztetések</string>
     <string name="notification_crypto_title">Kripto félelemindex figyelmeztetések</string>
     <string name="notification_lower_label">Alsó (Félelem)</string>
     <string name="notification_upper_label">Felső (Mohóság)</string>
@@ -93,6 +90,14 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="notification_upper_description">Értesítést kap, amikor az index eléri a %1$d-et vagy afölé emelkedik.</string>
     <string name="notification_info">Az értesítéseket 15 percenként ellenőrizzük. Naponta legfeljebb 1 értesítést kap küszöbzónánként.</string>
     <string name="notification_sync_error">Szinkronizálás sikertelen: %1$s</string>
+    <string name="notification_global_title">Globális félelemindex figyelmeztetések</string>
+    <string name="notification_kospi_title">KOSPI figyelmeztetések</string>
+    <string name="notification_lower_header">Vételi jelzés riasztás</string>
+    <string name="notification_upper_header">Túlmelegedési figyelmeztetés</string>
+    <string name="notification_kospi_lower_description">Értesítést kap, ha a KOSPI index %1$d vagy az alá esik.</string>
+    <string name="notification_kospi_upper_description">Értesítést kap, ha a KOSPI index %1$d vagy magasabb értékre emelkedik.</string>
+    <string name="notification_crypto_lower_description">Értesítést kap, ha a kripto index %1$d-ra vagy alá esik.</string>
+    <string name="notification_crypto_upper_description">Értesítést kap, ha a kripto index %1$d-ra vagy fölé emelkedik.</string>
 
     <string name="insight_similar_events_similar_section_title">Hasonló időszakok</string>
 
@@ -226,7 +231,6 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="settings_kospi_methodology_summary">Az aktuális KOSPI-pontszám a koreai normál piaci órák alatt óránként frissül. Az előzménygrafikonok csak a megerősített zárás után frissülnek. Scores and historical comparisons may also reflect supporting signals such as volatility, flows, and momentum.</string>
     <string name="settings_menu_privacy">Adatvédelmi irányelvek</string>
     <string name="settings_menu_about">Alkalmazás információk</string>
-    <string name="settings_menu_ad_privacy">Adatvédelmi beállítások</string>
     <string name="settings_menu_rate">Vélemény írása</string>
     <string name="settings_menu_share">App megosztása</string>
     <string name="settings_about_version">Version %1$s</string>
@@ -363,6 +367,7 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="indicator_rsi_support_neutral">Price momentum is in neutral territory.</string>
     <string name="indicator_rsi_support_overbought">Price is technically overheated too — leaning toward greed.</string>
     <string name="indicator_rsi_support_oversold">Price is technically oversold too — leaning toward fear.</string>
+    <string name="indicator_source_section">Data basis</string>
     <string name="indicator_rsi_title">%1$s RSI</string>
     <string name="indicator_rsi_zone_neutral">Neutral</string>
     <string name="indicator_rsi_zone_overbought">Overbought</string>
@@ -382,4 +387,52 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="indicator_short_support_heavy">Short selling is rising — bets on a decline are gaining.</string>
     <string name="indicator_short_support_neutral">Short interest is steady — no clear lean either way.</string>
     <string name="indicator_short_title">%1$s Short interest</string>
+
+    <!-- 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity, verbatim) -->
+    <string name="onboarding_next">Tovább</string>
+    <string name="onboarding_skip">Kihagyás</string>
+    <string name="onboarding_start">Kezdés</string>
+    <string name="settings_menu_app_usage">Alkalmazás-útmutató</string>
+    <string name="settings_menu_widget_guide">Widget Guide</string>
+    <string name="widget_guide_title">Widget Guide</string>
+    <string name="widget_index_market">Piaci F&amp;M</string>
+    <string name="widget_index_kospi">KOSPI F&amp;G</string>
+    <string name="widget_index_crypto">Kripto F&amp;M</string>
+    <string name="onboarding_step1_title">Ez az index az S&amp;P 500-at követi</string>
+    <string name="onboarding_step1_detail">Az amerikai piac félelmét és mohóságát egyetlen 0 és 100 közötti számmal mutatja. Minél alacsonyabb, annál nagyobb a félelem; minél magasabb, annál nagyobb a mohóság.</string>
+    <string name="onboarding_step2_title">Ez az index a KOSPI-t követi</string>
+    <string name="onboarding_step2_detail">Ugyanígy nézheted a koreai piac hangulatát is. Bármikor válthatsz a fenti szegmensekkel.</string>
+    <string name="onboarding_step3_title">Ez az index a BTC-t követi</string>
+    <string name="onboarding_step3_detail">A kriptopiac félelme és mohósága is ugyanezen a skálán látható.</string>
+    <string name="onboarding_step4_title">Mi lenne, ha ennél a pontszámnál vettél volna?</string>
+    <string name="onboarding_step4_detail">A jelenlegi pontszámnál történő vásárlás múltbeli átlagos hozama. Nem garantált — kezeld óvatosan.</string>
+    <string name="onboarding_step5_title">Szavazz a mostani helyzetedről</string>
+    <string name="onboarding_step5_detail">Egy koppintással hagyd ott az állapotod, és kövesd valós időben a befektetők hangulatát világszerte.</string>
+    <string name="onboarding_step6_title">A megfelelő pillanatban szólunk</string>
+    <string name="onboarding_step6_detail">Állíts be értesítést, és szólunk, amint az index eléri a szintedet.</string>
+    <string name="onboarding_step7_title">Widgetekkel még gyorsabb</string>
+    <string name="onboarding_step7_detail">A widget-útmutatót bármikor megtalálod ezen a képernyőn.</string>
+    <string name="onboarding_step8_title">A fejlesztő személyes szabálya</string>
+    <string name="onboarding_step8_detail">A fejlesztő csak 15-nél vagy az alatt vásárol. Felette hosszú türelem kellhet. Személyes szabály, nem befektetési tanács.</string>
+
+    <!-- 위젯 사용법 가이드 캡션 (Android 전용) -->
+    <string name="widget_guide_step1">Érintsd meg és tartsd lenyomva a kezdőképernyő egy üres részét, majd koppints a Widgetek elemre.</string>
+    <string name="widget_guide_step2">Keresd meg a "Félelem és mohóság index" elemet a widgetlistában.</string>
+    <string name="widget_guide_step3">Válaszd ki a kívánt indexet — Globális, KOSPI vagy Kripto —, vagy a mindent egyben widgetet.</string>
+    <string name="widget_guide_step4">Húzd a kezdőképernyőre, és tedd oda, ahová szeretnéd.</string>
+    <string name="widget_guide_step5">Koppints a widgetre bármikor az alkalmazás megnyitásához.</string>
+    <string name="widget_market_description">Globális (S&amp;P 500) félelem és mohóság</string>
+    <string name="widget_kospi_description">KOSPI félelem és mohóság</string>
+    <string name="widget_crypto_description">Kripto (BTC) félelem és mohóság</string>
+    <string name="widget_dashboard_description">Mind a három félelem és mohóság index</string>
+    <string name="settings_premium_header">Prémium</string>
+    <string name="settings_remove_ads_title">Hirdetések eltávolítása</string>
+    <string name="settings_remove_ads_description">Egyszeri vásárlás. Véglegesen eltávolít minden hirdetést.</string>
+    <string name="settings_remove_ads_purchased">Hirdetések eltávolítva</string>
+    <string name="settings_remove_ads_purchase_failed">A vásárlás sikertelen. Kérjük, próbálja újra.</string>
+    <string name="settings_restore_purchases">Vásárlások visszaállítása</string>
+    <string name="settings_restore_success">A vásárlások visszaállítva.</string>
+    <string name="settings_restore_failure">Nincs visszaállítható vásárlás.</string>
+    <string name="settings_support_contact">Kapcsolat: %1$s</string>
+    <string name="common_confirm">Megerősítés</string>
 </resources>

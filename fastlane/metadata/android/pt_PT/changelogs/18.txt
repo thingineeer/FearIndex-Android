@@ -1,0 +1,1 @@
+Definições de notificação melhoradas e maior estabilidade da aplicação.
