@@ -15,15 +15,19 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import th1ngjin.fearindex.presentation.R
 
 /**
@@ -65,11 +69,24 @@ fun SplashView() {
                 // `R.mipmap.ic_launcher`는 API 26+에서 adaptive-icon XML로 해석돼
                 // `painterResource`가 IllegalArgumentException을 던진다. 같은 아이콘의
                 // 래스터 PNG 버전(`ic_splash_icon`)을 사용해 모든 디바이스에서 안전하게 로드.
-                Image(
-                    painter = painterResource(id = R.drawable.ic_splash_icon),
-                    contentDescription = null,
-                    modifier = Modifier.size(112.dp),
-                )
+                // 앱 업데이트 직후 구버전 프로세스가 교체된 리소스 테이블을 참조하면
+                // Resources.NotFoundException 크래시가 난다(Crashlytics 1.0.1~1.2.0 이력).
+                // painterResource는 try/catch로 감쌀 수 없어 Drawable을 직접 로드하고,
+                // 실패 시 아이콘만 생략해 스플래시가 죽지 않게 방어한다.
+                val context = LocalContext.current
+                val splashIcon = remember {
+                    runCatching {
+                        ContextCompat.getDrawable(context, R.drawable.ic_splash_icon)
+                            ?.toBitmap()?.asImageBitmap()
+                    }.getOrNull()
+                }
+                if (splashIcon != null) {
+                    Image(
+                        bitmap = splashIcon,
+                        contentDescription = null,
+                        modifier = Modifier.size(112.dp),
+                    )
+                }
                 Text(
                     text = stringResource(R.string.splash_title),
                     style = MaterialTheme.typography.headlineSmall,
