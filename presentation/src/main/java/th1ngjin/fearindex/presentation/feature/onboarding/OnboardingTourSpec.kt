@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.presentation.feature.onboarding
 
 import androidx.annotation.StringRes
+import androidx.compose.ui.geometry.Rect
 import th1ngjin.fearindex.presentation.R
 
 /**
@@ -68,13 +69,18 @@ object OnboardingSteps {
 /** 카드 배치 위치 — 대상 위쪽이면 아래, 아래쪽이면 위, 대상 없으면 중앙. */
 enum class OnboardingCardPlacement { TOP, BOTTOM, CENTER }
 
+/** 이 비율 이상을 덮는 대상은 "대형 앵커" — 카드를 하단(탭바 쪽)에 붙인다. */
+private const val TALL_ANCHOR_FRACTION = 0.55f
+
 /**
- * 카드 배치 계산 (iOS 동일): 대상 중앙이 화면 하단 절반이면 카드는 TOP,
+ * 카드 배치 계산: 대상이 화면 높이 대부분을 덮으면(4단계 인사이트 카드 등) 카드 머리글
+ * 가림을 피해 하단(탭바 쪽)에 배치. 그 외엔 iOS 규칙 — 대상 중앙이 하단 절반이면 TOP,
  * 상단 절반이면 BOTTOM, 대상 없으면 CENTER.
  */
-fun onboardingCardPlacement(anchorCenterY: Float?, screenHeight: Float): OnboardingCardPlacement =
+fun onboardingCardPlacement(anchor: Rect?, screenHeight: Float): OnboardingCardPlacement =
     when {
-        anchorCenterY == null -> OnboardingCardPlacement.CENTER
-        anchorCenterY > screenHeight * 0.5f -> OnboardingCardPlacement.TOP
+        anchor == null -> OnboardingCardPlacement.CENTER
+        anchor.height > screenHeight * TALL_ANCHOR_FRACTION -> OnboardingCardPlacement.BOTTOM
+        anchor.center.y > screenHeight * 0.5f -> OnboardingCardPlacement.TOP
         else -> OnboardingCardPlacement.BOTTOM
     }

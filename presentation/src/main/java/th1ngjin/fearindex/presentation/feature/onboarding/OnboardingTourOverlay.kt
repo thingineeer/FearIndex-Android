@@ -83,7 +83,7 @@ fun OnboardingTourOverlay(
     val cutout = anchor?.let {
         Rect(it.left - insetPx, it.top - insetPx, it.right + insetPx, it.bottom + insetPx)
     }
-    val placement = onboardingCardPlacement(anchor?.center?.y, screenHeightPx)
+    val placement = onboardingCardPlacement(anchor, screenHeightPx)
 
     Box(
         modifier = modifier
