@@ -39,7 +39,10 @@ kotlinxSerialization = "1.7.3"
 coroutines = "1.9.0"
 
 # AdMob
-playServicesAds = "23.6.0"
+# Pangle 입찰 어댑터 7.8.0.8.0 이 play-services-ads 24.8.0 으로 빌드·검증된 버전이다 (딸깍 Android와 동일 조합).
+playServicesAds = "24.8.0"
+# Pangle(TikTok) 입찰 어댑터. AdMob 미디에이션 Pangle App ID 8867923 과 연동.
+pangleMediationAdapter = "7.8.0.8.0"
 userMessagingPlatform = "3.0.0"
 
 # Play In-App Update
@@ -124,6 +127,7 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 
 # AdMob
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+pangle-mediation-adapter = { group = "com.google.ads.mediation", name = "pangle", version.ref = "pangleMediationAdapter" }
 user-messaging-platform = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "userMessagingPlatform" }
 
 # Play In-App Update

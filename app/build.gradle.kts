@@ -147,6 +147,7 @@ dependencies {
 
     // AdMob
     implementation(libs.play.services.ads)
+    implementation(libs.pangle.mediation.adapter)
     implementation(libs.user.messaging.platform)
 
     // Play In-App Update (강제/선택 업데이트)

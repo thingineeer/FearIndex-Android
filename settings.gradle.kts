@@ -16,6 +16,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // Pangle SDK(com.pangle.global:pag-sdk)는 ByteDance 자체 maven 에서만 배포된다
+        maven { url = uri("https://artifact.bytedance.com/repository/pangle") }
     }
 }
 
