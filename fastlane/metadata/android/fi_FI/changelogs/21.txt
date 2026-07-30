@@ -1,0 +1,1 @@
+Katso, miten KOSPI-indeksi lasketaan. Sovelluksen vakautta on parannettu.

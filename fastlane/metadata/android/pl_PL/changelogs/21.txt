@@ -1,0 +1,1 @@
+Zobacz, jak obliczany jest indeks KOSPI. Poprawiona stabilność aplikacji.

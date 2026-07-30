@@ -14,6 +14,12 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-07-30 밤, v1.5.0 vc21 production 업로드 — 검토 중)
+
+- **v1.5.0(vc21) production 업로드 완료** (fastlane "Successfully finished the upload", Play Console 프로덕션 "활성 · 출시 버전 1.5.0 검토 중 · 177개국"). 내용 = 코스피 신호 분해 카드/산출 방식 시트 + **targetSdk 36**(Google Play 8/31 요건 대응, compileSdk는 기존 36) + Unity Ads SDK 본체 의존성 fix(48번, release R8 실패 해소). changelog 21 45 locale. **관리형 게시 OFF → 승인 즉시 자동 게시.**
+- **다음 세션**: 게시·전파 확인 → release 머지 + v1.5.0 태그, 대시보드 API 36 경고 자동 해제 확인, **"결제 계정 긴급 문제"(7/24 알림) 사용자 확인 필요**. push 미실행(로컬 dev만).
+- v1.4.2(vc20)는 7/18 게시 완료 상태였음(트랙에서 확인) — release 머지+v1.4.2 태그도 미처리 상태라 v1.5.0 태깅 시 함께 정리.
+
 ## 최신 상태 (2026-07-30, 코스피 신호 분해 카드 + 산출 방식 시트)
 
 - **feature/kospi-signal-breakdown → dev 머지(--no-ff) 완료, push 미실행.** iOS parity: 홈 KOSPI 탭에 "코스피 신호 분해" 카드(신호별 점수/가중치/클러스터 + USD/KRW 환율 행) + ⓘ→"코스피 산출 방식" 시트 7섹션. strings 46키×45 locale, `KospiSignalText` TDD, `HomeUiState.usdKrwRate`(GetUsdKrwRateUseCase 재사용). 781 테스트 GREEN, 에뮬(Ddalggak_Play_API_34) en/ko 실데이터 검증.

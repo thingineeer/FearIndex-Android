@@ -1,0 +1,1 @@
+Nézze meg, hogyan számítjuk a KOSPI indexet. Javított alkalmazásstabilitás.

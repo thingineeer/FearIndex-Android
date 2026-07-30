@@ -4,6 +4,21 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-07-30 세션 후반 (v1.5.0 vc21 production 업로드 — targetSdk 36 + 코스피 신호 분해)
+
+### 48. Unity 미디에이션 어댑터만 있고 SDK 본체 누락 — release R8 빌드 실패
+- **증상**: `:app:minifyReleaseWithR8` FAILED — `Missing class com.unity3d.ads.*` (IUnityAdsInitializationListener 등, com.google.ads.mediation.unity 참조). debug는 minify off라 통과 → **7/26 Unity 어댑터 커밋(67410b3) 이후 release 빌드가 한 번도 안 돌았던 것**.
+- **원인**: `com.google.ads.mediation:unity:4.13.1.0` 어댑터 POM이 `com.unity3d.ads:unity-ads`를 transitively 안 끌어옴 (`:app:dependencies`로 확인 — 어댑터 노드에 자식 없음). Google 미디에이션 가이드는 SDK+어댑터 둘 다 명시가 표준.
+- **해결**: `unity-ads = 4.13.1` (어댑터 4.13.1.0과 짝) 명시 추가. R8 통과.
+- **교훈**: 미디에이션 어댑터 추가 시 파트너 SDK 본체 동반 여부를 dependencies 트리로 확인하고, **의존성 변경 후엔 release 빌드까지 돌려볼 것** (debug만 돌리면 R8 실패가 배포 직전에 터짐).
+
+### 49. v1.5.0(vc21) production 업로드 — targetSdk 36 (Google Play 2026-08-31 요건)
+- **요건**: Play Console 경고 "앱이 Android 16(API 36) 이상을 타겟팅해야 함, 8/31부터 업데이트 불가". compileSdk는 이미 36, **targetSdk만 35→36** (libs.versions.toml 한 줄). 매니페스트에 API 36 차단 요소 없음(orientation 고정/엣지투엣지 opt-out/back opt-out 전무 — 19번에서 이미 대응).
+- **배포**: v1.5.0/vc21 (신규 기능 minor bump, 47번 코스피 신호 분해 포함). changelog 21 45 locale "코스피 지수의 산출 근거를 확인할 수 있습니다. 앱 안정성을 개선하였습니다." `bundle exec fastlane production` 성공("Successfully finished the upload to Google Play"). 검증: AAB SHA-1 `CE:08:B4:...` 일치 + merged manifest targetSdkVersion=36 + 에뮬 release 스모크(카드 상단 노출).
+- **Play Console 확인 (Chrome MCP)**: 프로덕션 트랙 "활성 · 출시 버전 1.5.0 검토 중 · 177개국". **관리형 게시 사용 중지 상태** → 빠른 검사 후 자동 검토 전송, 승인 즉시 자동 게시(수동 클릭 불필요). API 36 경고는 1.5.0 게시 후 자동 해제 예정.
+- **⚠️ 관찰**: 대시보드에 "결제 계정에 주의가 필요한 긴급한 문제"(7/24 알림) 존재 — 업로드는 차단 안 함(Korean law 게이트는 43번에서 종결). 사용자 확인 필요.
+- **⚠️ 에뮬 스모크 함정**: `adb install` 실패가 체인 중간에 묻혀 **7/18에 깔린 구버전 1.4.1을 신버전으로 착각**하고 "카드 안 보임" 오진할 뻔 — `dumpsys package | grep versionName`으로 설치본 버전 확인 후 재설치로 해소. 설치 검증은 반드시 버전 확인까지.
+
 ## 2026-07-30 세션 (코스피 신호 분해 카드 + 산출 방식 시트)
 
 ### 47. 코스피 신호 분해/산출 방식 UI — iOS parity 이식 (feature/kospi-signal-breakdown)

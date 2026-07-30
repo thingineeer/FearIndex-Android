@@ -1,0 +1,1 @@
+Vaadake, kuidas KOSPI indeksit arvutatakse. Rakenduse stabiilsus on paranenud.
