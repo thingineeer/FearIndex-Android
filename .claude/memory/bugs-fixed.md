@@ -4,6 +4,35 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-07-30 세션 후반 (v1.5.0 vc21 production 업로드 — targetSdk 36 + 코스피 신호 분해)
+
+### 48. Unity 미디에이션 어댑터만 있고 SDK 본체 누락 — release R8 빌드 실패
+- **증상**: `:app:minifyReleaseWithR8` FAILED — `Missing class com.unity3d.ads.*` (IUnityAdsInitializationListener 등, com.google.ads.mediation.unity 참조). debug는 minify off라 통과 → **7/26 Unity 어댑터 커밋(67410b3) 이후 release 빌드가 한 번도 안 돌았던 것**.
+- **원인**: `com.google.ads.mediation:unity:4.13.1.0` 어댑터 POM이 `com.unity3d.ads:unity-ads`를 transitively 안 끌어옴 (`:app:dependencies`로 확인 — 어댑터 노드에 자식 없음). Google 미디에이션 가이드는 SDK+어댑터 둘 다 명시가 표준.
+- **해결**: `unity-ads = 4.13.1` (어댑터 4.13.1.0과 짝) 명시 추가. R8 통과.
+- **교훈**: 미디에이션 어댑터 추가 시 파트너 SDK 본체 동반 여부를 dependencies 트리로 확인하고, **의존성 변경 후엔 release 빌드까지 돌려볼 것** (debug만 돌리면 R8 실패가 배포 직전에 터짐).
+
+### 49. v1.5.0(vc21) production 업로드 — targetSdk 36 (Google Play 2026-08-31 요건)
+- **요건**: Play Console 경고 "앱이 Android 16(API 36) 이상을 타겟팅해야 함, 8/31부터 업데이트 불가". compileSdk는 이미 36, **targetSdk만 35→36** (libs.versions.toml 한 줄). 매니페스트에 API 36 차단 요소 없음(orientation 고정/엣지투엣지 opt-out/back opt-out 전무 — 19번에서 이미 대응).
+- **배포**: v1.5.0/vc21 (신규 기능 minor bump, 47번 코스피 신호 분해 포함). changelog 21 45 locale "코스피 지수의 산출 근거를 확인할 수 있습니다. 앱 안정성을 개선하였습니다." `bundle exec fastlane production` 성공("Successfully finished the upload to Google Play"). 검증: AAB SHA-1 `CE:08:B4:...` 일치 + merged manifest targetSdkVersion=36 + 에뮬 release 스모크(카드 상단 노출).
+- **Play Console 확인 (Chrome MCP)**: 프로덕션 트랙 "활성 · 출시 버전 1.5.0 검토 중 · 177개국". **관리형 게시 사용 중지 상태** → 빠른 검사 후 자동 검토 전송, 승인 즉시 자동 게시(수동 클릭 불필요). API 36 경고는 1.5.0 게시 후 자동 해제 예정.
+- **⚠️ 관찰**: 대시보드에 "결제 계정에 주의가 필요한 긴급한 문제"(7/24 알림) 존재 — 업로드는 차단 안 함(Korean law 게이트는 43번에서 종결). 사용자 확인 필요.
+- **⚠️ 에뮬 스모크 함정**: `adb install` 실패가 체인 중간에 묻혀 **7/18에 깔린 구버전 1.4.1을 신버전으로 착각**하고 "카드 안 보임" 오진할 뻔 — `dumpsys package | grep versionName`으로 설치본 버전 확인 후 재설치로 해소. 설치 검증은 반드시 버전 확인까지.
+
+## 2026-07-30 세션 (코스피 신호 분해 카드 + 산출 방식 시트)
+
+### 47. 코스피 신호 분해/산출 방식 UI — iOS parity 이식 (feature/kospi-signal-breakdown)
+- **요청**: "코스피가 어떻게 산출되었는지 iOS처럼 안드로이드도 보여달라". 조사 결과 **데이터는 이미 완비** — `KospiLatestDTO`가 signals/clusterScores/confidence/missingSignals를 파싱해 `HomeUiState.kospiSnapshot`까지 올라와 있었으나 **UI가 안 쓰고 있었음** (설정 메뉴의 요약 텍스트만 존재).
+- **구현** (iOS SSOT: `FearIndexView.swift` kospiSignalBreakdownSection + KospiMethodInfoSheet):
+  - `KospiSignalBreakdownCard`: 신호별 [이름 + 점수(fearScoreColor) + 프로그레스바 + "클러스터 · 가중치 N%" 캡션] 최대 8행, USD/KRW 환율 행(갱신일 + 등락 배지, 한국식 상승빨강/하락파랑), 빈 상태/결측 신호 캡션.
+  - `KospiMethodInfoSheet`(ModalBottomSheet): 산출 방식(원천/종가확정/252일 백분위/분리 저장) + 데이터 품질(carry-forward 3일/가중치 재분배/원천 저장) + 현재 계산 정보(기준일/계산 시각 KST/신뢰도) + 환율 보조 지표 + 신호 분해 + 클러스터 점수(가격/시장 폭/심리/신용, 소수 1자리) + 결측 처리 7섹션.
+  - `KospiSignalText`(presentation/common): 서버 신호 이름 8종/클러스터/신뢰도 → 리소스 매핑, unknown 폴백. TDD 4케이스 (EventLocalizer 패턴).
+  - `HomeUiState.usdKrwRate` + `GetUsdKrwRateUseCase` 주입(기존 MarketDetail용 재사용, 실패 시 행만 숨김). KOSPI 탭 refresh 시 forceRefresh.
+  - strings 46키 × 45 locale — iOS xcstrings 스크립트 추출(%@→%n$s, ar 등 일부 locale은 iOS 원본이 영어값 그대로라 verbatim 유지).
+- **⚠️ 배치는 iOS와 다름 (사용자 결정)**: iOS는 인사이트 티저 아래지만, "산출 근거를 상단에 노출해 지수 신뢰도를 먼저 보여달라"는 사용자 지시로 **상단 배너 바로 아래** 배치. 배너 위치(매출 핵심)는 유지. ios-parity 체크 시 이 divergence 인지할 것.
+- **검증**: 781 테스트 GREEN. 에뮬(Ddalggak_Play_API_34) en/ko 실데이터 육안 — 신호 7개(서버가 현재 7개 게시: momentum 0/priceStrength 0/volatility 57/junkBond 1/safeHaven 2/foreignerFlow 13/marginBalance 12), 클러스터 점수(가격 0.2/폭 0.0/심리 27.2/신용 1.6), 신뢰도 높음, USD/KRW 1,444.8 ▼0.50%, 결측 "현재 제외된 신호가 없습니다".
+- **비고**: KOSPI 탭 진입 5초 후 인터스티셜 정상 발동 확인(기존 기능). priceBreadth 신호는 서버 응답에 현재 미포함(결측 목록에도 없음) — 클라 정상, 서버가 7개만 게시 중.
+
 ## 2026-07-07 세션 (v1.4.0 배포 차단 원인 규명 + IAP 제외 + 설정/알림 UX 정리)
 
 브랜치: dev ← feature/v1.4.0-no-iap, feature/v1.4.0-settings-ux (모두 --no-ff, 분기/합류 그래프). vc18/1.4.0 유지. **배포 전(로컬 dev만), push 미실행.** 703 테스트 GREEN, 실기기(Galaxy S23) 릴리즈 검증 완료.

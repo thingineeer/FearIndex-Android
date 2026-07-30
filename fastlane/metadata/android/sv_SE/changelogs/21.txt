@@ -1,0 +1,1 @@
+Se hur KOSPI-indexet beräknas. Förbättrad appstabilitet.

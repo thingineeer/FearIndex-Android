@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
+import th1ngjin.fearindex.domain.entity.ExchangeRateQuote
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.FearRSI
@@ -25,6 +26,7 @@ import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetMarketIndicesDetailUseCase
+import th1ngjin.fearindex.domain.usecase.GetUsdKrwRateUseCase
 import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
@@ -49,6 +51,8 @@ data class HomeUiState(
     val marketIndices: List<MarketIndex> = emptyList(),
     val rsiByType: Map<FearIndexType, FearRSI> = emptyMap(),
     val shortPressureByType: Map<FearIndexType, ShortPressure> = emptyMap(),
+    /** USD/KRW 환율 — KOSPI 신호 분해 카드의 보조 지표. 실패 시 null(행 숨김). */
+    val usdKrwRate: ExchangeRateQuote? = null,
 ) {
     /** 현재 홈에서 선택된 자산의 가격 RSI — iOS `currentRSI` 대응. null이면 카드 숨김. */
     val currentRsi: FearRSI? get() = rsiByType[selectedHomeType]
@@ -80,6 +84,7 @@ class HomeViewModel @Inject constructor(
     private val getMarketIndices: GetMarketIndicesDetailUseCase,
     private val getAssetRsi: GetAssetRSIUseCase,
     private val getAssetShortPressure: GetAssetShortPressureUseCase,
+    private val getUsdKrwRate: GetUsdKrwRateUseCase,
     private val analytics: AnalyticsManager,
 ) : ViewModel() {
     companion object {
@@ -104,6 +109,7 @@ class HomeViewModel @Inject constructor(
         loadCryptoHistory(HomeUiState.DEFAULT_CRYPTO_DAYS)
         loadMarketIndices()
         loadIndicators(FearIndexType.MARKET)
+        loadUsdKrwRate()
     }
 
     fun selectHomeIndexType(type: FearIndexType) =
@@ -135,6 +141,7 @@ class HomeViewModel @Inject constructor(
             FearIndexType.KOSPI -> {
                 loadKospiCurrent(forceRefresh = true)
                 loadKospiHistory(_uiState.value.kospiHistoryDays, forceRefresh = true)
+                loadUsdKrwRate(forceRefresh = true)
             }
             FearIndexType.CRYPTO -> {
                 loadCryptoCurrent(forceRefresh = true)
@@ -224,6 +231,16 @@ class HomeViewModel @Inject constructor(
                     if (shortPressure != null) put(type, shortPressure) else remove(type)
                 },
             )
+        }
+    }
+
+    /** USD/KRW 환율 로드 — 실패 시 기존 값 유지(행만 미갱신, 홈 화면 영향 없음). */
+    private fun loadUsdKrwRate(forceRefresh: Boolean = false) {
+        viewModelScope.launch {
+            runCatching { getUsdKrwRate(forceRefresh) }
+                .onFailure { Timber.w(it, "USD/KRW 환율 로드 실패") }
+                .getOrNull()
+                ?.let { _uiState.value = _uiState.value.copy(usdKrwRate = it) }
         }
     }
 

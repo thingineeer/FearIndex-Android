@@ -61,9 +61,11 @@ import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
 import th1ngjin.fearindex.core.remoteconfig.AdsRemoteConfig
 import th1ngjin.fearindex.core.util.ShareUrlBuilder
+import th1ngjin.fearindex.domain.entity.ExchangeRateQuote
 import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.FearRSI
+import th1ngjin.fearindex.domain.entity.KospiFearIndex
 import th1ngjin.fearindex.domain.entity.MarketIndex
 import th1ngjin.fearindex.domain.entity.MarketInsight
 import th1ngjin.fearindex.domain.entity.ShortPressure
@@ -90,6 +92,8 @@ import th1ngjin.fearindex.presentation.component.InsightTeaserCard
 import th1ngjin.fearindex.presentation.component.InterstitialAdCoordinator
 import th1ngjin.fearindex.presentation.component.InterstitialAdPolicyConfig
 import th1ngjin.fearindex.presentation.component.InterstitialAdSessionState
+import th1ngjin.fearindex.presentation.component.KospiMethodInfoSheet
+import th1ngjin.fearindex.presentation.component.KospiSignalBreakdownCard
 import th1ngjin.fearindex.presentation.component.SimilarEventsCard
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.component.StuckCounterCard
@@ -153,6 +157,7 @@ fun HomeScreen(
     var showStuckDetail by rememberSaveable { mutableStateOf(false) }
     var showRsiInfo by rememberSaveable { mutableStateOf(false) }
     var showShortInfo by rememberSaveable { mutableStateOf(false) }
+    var showKospiMethodInfo by rememberSaveable { mutableStateOf(false) }
 
     // SimilarEvents 실시간 구독
     val similarEventsResult by similarEventsViewModel.resultFor(selectedType).collectAsState()
@@ -272,6 +277,14 @@ fun HomeScreen(
         )
     }
 
+    if (showKospiMethodInfo) {
+        KospiMethodInfoSheet(
+            snapshot = uiState.kospiSnapshot,
+            exchangeRate = uiState.usdKrwRate,
+            onDismiss = { showKospiMethodInfo = false },
+        )
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -341,6 +354,9 @@ fun HomeScreen(
                 shortPressure = uiState.currentShortPressure,
                 onRsiInfoClick = { showRsiInfo = true },
                 onShortInfoClick = { showShortInfo = true },
+                kospiSnapshot = uiState.kospiSnapshot,
+                usdKrwRate = uiState.usdKrwRate,
+                onKospiMethodInfoClick = { showKospiMethodInfo = true },
                 stuckResult = stuckResult,
                 myStuckStatus = myStuckStatus.toUi(),
                 onStuckToggle = { newStatus ->
@@ -558,6 +574,9 @@ private fun LoadedContent(
     shortPressure: ShortPressure? = null,
     onRsiInfoClick: () -> Unit = {},
     onShortInfoClick: () -> Unit = {},
+    kospiSnapshot: KospiFearIndex? = null,
+    usdKrwRate: ExchangeRateQuote? = null,
+    onKospiMethodInfoClick: () -> Unit = {},
     stuckResult: StuckCounterResult = StuckCounterResult.EMPTY,
     myStuckStatus: UiStuckStatus = UiStuckStatus.NO_RESPONSE,
     onStuckToggle: (UiStuckStatus) -> Unit = {},
@@ -590,6 +609,17 @@ private fun LoadedContent(
         adUnitId = BuildConfig.ADMOB_BANNER_HOME,
         screenName = "홈_상단",
     )
+
+    // 3.1. KOSPI 신호 분해 카드 — iOS는 티저 아래지만, 산출 근거를 상단에 노출해
+    // 지수 신뢰도를 먼저 보여주자는 사용자 결정으로 배너 바로 아래 배치 (KOSPI 선택 시).
+    if (indexType == FearIndexType.KOSPI && kospiSnapshot != null) {
+        Spacer(modifier = Modifier.height(16.dp))
+        KospiSignalBreakdownCard(
+            snapshot = kospiSnapshot,
+            usdKrwRate = usdKrwRate,
+            onInfoClick = onKospiMethodInfoClick,
+        )
+    }
 
     // 3.2. 가격 RSI 카드 — 공포지수 보조 근거 (iOS rsiIndicatorSection). 계산 불가면 숨김.
     if (rsi != null) {

@@ -5,7 +5,7 @@ kotlin = "2.1.0"
 ksp = "2.1.0-1.0.29"
 compileSdk = "36"
 minSdk = "29"
-targetSdk = "35"
+targetSdk = "36"
 
 # AndroidX
 coreKtx = "1.15.0"
@@ -40,6 +40,10 @@ coroutines = "1.9.0"
 
 # AdMob
 playServicesAds = "23.6.0"
+# Unity Ads 입찰 어댑터. 4.13.1.0 은 play-services-ads 23.6.0 으로 빌드·검증된 버전이다.
+unityMediationAdapter = "4.13.1.0"
+# Unity Ads SDK 본체. 어댑터 POM 이 SDK 를 끌어오지 않으므로 명시 필요 (어댑터 4.13.1.0 = SDK 4.13.1).
+unityAds = "4.13.1"
 userMessagingPlatform = "3.0.0"
 
 # Play In-App Update
@@ -124,6 +128,8 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 
 # AdMob
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+unity-mediation-adapter = { group = "com.google.ads.mediation", name = "unity", version.ref = "unityMediationAdapter" }
+unity-ads = { group = "com.unity3d.ads", name = "unity-ads", version.ref = "unityAds" }
 user-messaging-platform = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "userMessagingPlatform" }
 
 # Play In-App Update

@@ -21,8 +21,8 @@ android {
         applicationId = "th1ngjin.fearindex"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 20
-        versionName = "1.4.2"
+        versionCode = 21
+        versionName = "1.5.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
@@ -147,6 +147,8 @@ dependencies {
 
     // AdMob
     implementation(libs.play.services.ads)
+    implementation(libs.unity.ads)
+    implementation(libs.unity.mediation.adapter)
     implementation(libs.user.messaging.platform)
 
     // Play In-App Update (강제/선택 업데이트)
