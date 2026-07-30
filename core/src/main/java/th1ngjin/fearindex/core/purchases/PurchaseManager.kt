@@ -83,8 +83,17 @@ class PurchaseManager @Inject constructor(
     /** 결제 콜백은 Main 스레드에서 오므로 Main.immediate 로 실행 (BillingClient 권장). */
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
+    /**
+     * 결제에 필요한 상품 + 오퍼 토큰 묶음.
+     * Play Billing 8+ 는 일회성 상품도 offerToken 이 필수라, 가격 표시와 결제가 어긋나지 않도록 함께 보관한다.
+     */
+    private data class RemoveAdsOffering(
+        val product: ProductDetails,
+        val offerToken: String,
+    )
+
     @Volatile
-    private var removeAdsProduct: ProductDetails? = null
+    private var removeAdsOffering: RemoveAdsOffering? = null
 
     private val purchasesListener = PurchasesUpdatedListener { result, purchases ->
         onPurchasesUpdated(result, purchases)
@@ -120,15 +129,15 @@ class PurchaseManager @Inject constructor(
     fun purchaseRemoveAds(activity: Activity) {
         if (!purchaseInFlight.compareAndSet(false, true)) return
         analytics.log(AnalyticsEvent.광고제거구매시작)
-        val product = removeAdsProduct
-        if (product == null) {
+        val offering = removeAdsOffering
+        if (offering == null) {
             // 상품 미로드 — 연결 후 로드 재시도하고, 로드되면 즉시 구매 시트를 띄운다.
             // 연결/로드 실패 시에도 반드시 실패 이벤트를 내 UI 스피너가 멈추도록 한다.
             scope.launch {
                 val loaded = runCatching {
                     if (ensureConnected()) {
                         loadProductsIfNeeded()
-                        removeAdsProduct
+                        removeAdsOffering
                     } else {
                         null
                     }
@@ -141,7 +150,7 @@ class PurchaseManager @Inject constructor(
             }
             return
         }
-        launchFlow(activity, product)
+        launchFlow(activity, offering)
     }
 
     /**
@@ -168,12 +177,14 @@ class PurchaseManager @Inject constructor(
 
     // MARK: - Billing Flow
 
-    private fun launchFlow(activity: Activity, product: ProductDetails) {
+    private fun launchFlow(activity: Activity, offering: RemoveAdsOffering) {
         val params = BillingFlowParams.newBuilder()
             .setProductDetailsParamsList(
                 listOf(
                     BillingFlowParams.ProductDetailsParams.newBuilder()
-                        .setProductDetails(product)
+                        .setProductDetails(offering.product)
+                        // Play Billing 8+ 는 일회성 상품도 offerToken 이 필수.
+                        .setOfferToken(offering.offerToken)
                         .build(),
                 ),
             )
@@ -297,7 +308,7 @@ class PurchaseManager @Inject constructor(
      * 빈 응답과 예외를 구분해 로그 — 콘솔에서 "Error" 로 필터 가능.
      */
     private suspend fun loadProductsIfNeeded() {
-        if (removeAdsProduct != null) return
+        if (removeAdsOffering != null) return
         val params = QueryProductDetailsParams.newBuilder()
             .setProductList(
                 listOf(
@@ -311,10 +322,11 @@ class PurchaseManager @Inject constructor(
         // 콜백 미도착 시 구매 스피너가 무한 대기하지 않도록 연결과 동일한 timeout.
         val details = withTimeoutOrNull(CONNECT_TIMEOUT_MILLIS) {
             suspendCancellableCoroutine { cont ->
-                billingClient.queryProductDetailsAsync(params) { result, productDetailsList ->
+                // Play Billing 8+ 콜백은 List<ProductDetails> 가 아니라 QueryProductDetailsResult 를 준다.
+                billingClient.queryProductDetailsAsync(params) { result, queryResult ->
                     if (!cont.isActive) return@queryProductDetailsAsync
                     if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                        cont.resume(productDetailsList.firstOrNull())
+                        cont.resume(queryResult.productDetailsList.firstOrNull())
                     } else {
                         Timber.tag(TAG).w("[IAP] 상품 로드 Error: %d — %s", result.responseCode, result.debugMessage)
                         cont.resume(null)
@@ -329,8 +341,25 @@ class PurchaseManager @Inject constructor(
             )
             return
         }
-        removeAdsProduct = details
-        _priceText.value = details.oneTimePurchaseOfferDetails?.formattedPrice
+        // v8 부터 일회성 상품도 구매 옵션(오퍼) 목록으로 내려온다. 가격과 결제 토큰을 같은 오퍼에서 취한다.
+        val offer = IapOfferSelection.select(
+            details.oneTimePurchaseOfferDetailsList.orEmpty().map {
+                // 토큰이 비면 select 가 걸러낸다(결제 불가 오퍼).
+                IapOfferSelection.Offer(
+                    offerToken = it.offerToken.orEmpty(),
+                    formattedPrice = it.formattedPrice,
+                )
+            },
+        )
+        if (offer == null) {
+            Timber.tag(TAG).w(
+                "[IAP] 상품 로드 Error(구매 옵션 없음 — Play Console 구매 옵션 미설정 가능): %s",
+                REMOVE_ADS_PRODUCT_ID,
+            )
+            return
+        }
+        removeAdsOffering = RemoveAdsOffering(product = details, offerToken = offer.offerToken)
+        _priceText.value = offer.formattedPrice
     }
 
     // MARK: - Connection
