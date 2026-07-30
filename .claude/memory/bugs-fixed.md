@@ -4,6 +4,20 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-07-30 세션 (코스피 신호 분해 카드 + 산출 방식 시트)
+
+### 47. 코스피 신호 분해/산출 방식 UI — iOS parity 이식 (feature/kospi-signal-breakdown)
+- **요청**: "코스피가 어떻게 산출되었는지 iOS처럼 안드로이드도 보여달라". 조사 결과 **데이터는 이미 완비** — `KospiLatestDTO`가 signals/clusterScores/confidence/missingSignals를 파싱해 `HomeUiState.kospiSnapshot`까지 올라와 있었으나 **UI가 안 쓰고 있었음** (설정 메뉴의 요약 텍스트만 존재).
+- **구현** (iOS SSOT: `FearIndexView.swift` kospiSignalBreakdownSection + KospiMethodInfoSheet):
+  - `KospiSignalBreakdownCard`: 신호별 [이름 + 점수(fearScoreColor) + 프로그레스바 + "클러스터 · 가중치 N%" 캡션] 최대 8행, USD/KRW 환율 행(갱신일 + 등락 배지, 한국식 상승빨강/하락파랑), 빈 상태/결측 신호 캡션.
+  - `KospiMethodInfoSheet`(ModalBottomSheet): 산출 방식(원천/종가확정/252일 백분위/분리 저장) + 데이터 품질(carry-forward 3일/가중치 재분배/원천 저장) + 현재 계산 정보(기준일/계산 시각 KST/신뢰도) + 환율 보조 지표 + 신호 분해 + 클러스터 점수(가격/시장 폭/심리/신용, 소수 1자리) + 결측 처리 7섹션.
+  - `KospiSignalText`(presentation/common): 서버 신호 이름 8종/클러스터/신뢰도 → 리소스 매핑, unknown 폴백. TDD 4케이스 (EventLocalizer 패턴).
+  - `HomeUiState.usdKrwRate` + `GetUsdKrwRateUseCase` 주입(기존 MarketDetail용 재사용, 실패 시 행만 숨김). KOSPI 탭 refresh 시 forceRefresh.
+  - strings 46키 × 45 locale — iOS xcstrings 스크립트 추출(%@→%n$s, ar 등 일부 locale은 iOS 원본이 영어값 그대로라 verbatim 유지).
+- **⚠️ 배치는 iOS와 다름 (사용자 결정)**: iOS는 인사이트 티저 아래지만, "산출 근거를 상단에 노출해 지수 신뢰도를 먼저 보여달라"는 사용자 지시로 **상단 배너 바로 아래** 배치. 배너 위치(매출 핵심)는 유지. ios-parity 체크 시 이 divergence 인지할 것.
+- **검증**: 781 테스트 GREEN. 에뮬(Ddalggak_Play_API_34) en/ko 실데이터 육안 — 신호 7개(서버가 현재 7개 게시: momentum 0/priceStrength 0/volatility 57/junkBond 1/safeHaven 2/foreignerFlow 13/marginBalance 12), 클러스터 점수(가격 0.2/폭 0.0/심리 27.2/신용 1.6), 신뢰도 높음, USD/KRW 1,444.8 ▼0.50%, 결측 "현재 제외된 신호가 없습니다".
+- **비고**: KOSPI 탭 진입 5초 후 인터스티셜 정상 발동 확인(기존 기능). priceBreadth 신호는 서버 응답에 현재 미포함(결측 목록에도 없음) — 클라 정상, 서버가 7개만 게시 중.
+
 ## 2026-07-07 세션 (v1.4.0 배포 차단 원인 규명 + IAP 제외 + 설정/알림 UX 정리)
 
 브랜치: dev ← feature/v1.4.0-no-iap, feature/v1.4.0-settings-ux (모두 --no-ff, 분기/합류 그래프). vc18/1.4.0 유지. **배포 전(로컬 dev만), push 미실행.** 703 테스트 GREEN, 실기기(Galaxy S23) 릴리즈 검증 완료.

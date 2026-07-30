@@ -14,6 +14,12 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-07-30, 코스피 신호 분해 카드 + 산출 방식 시트)
+
+- **feature/kospi-signal-breakdown → dev 머지(--no-ff) 완료, push 미실행.** iOS parity: 홈 KOSPI 탭에 "코스피 신호 분해" 카드(신호별 점수/가중치/클러스터 + USD/KRW 환율 행) + ⓘ→"코스피 산출 방식" 시트 7섹션. strings 46키×45 locale, `KospiSignalText` TDD, `HomeUiState.usdKrwRate`(GetUsdKrwRateUseCase 재사용). 781 테스트 GREEN, 에뮬(Ddalggak_Play_API_34) en/ko 실데이터 검증.
+- **⚠️ 배치 divergence (사용자 결정)**: iOS는 티저 아래, Android는 **상단 배너 바로 아래** — "산출 근거를 상단에 노출해 신뢰도 먼저" 지시. 상세: @memory/bugs-fixed.md 47번.
+- 데이터 계층은 원래 완비 상태였음(KospiLatestDTO signals/clusters 파싱) — UI만 없었음. 미배포(버전 bump 없음, dev 로컬).
+
 ## 최신 상태 (2026-07-18 밤, v1.4.2 vc20 업로드 — IAP 경화 hotfix)
 
 - **v1.4.2(vc20) production 업로드 완료** (fastlane exit 0, "Successfully finished the upload"). 내용 = IAP 플로우 경화 2건(AlreadyOwned 플래그 누수 fix + 조회/로드 10s timeout, 적대적 검증 발견) + TDD(AlreadyOwned 순수화). changelog 20 "결제 및 앱 안정성을 개선하였습니다."(45 locale). 관리형 게시 OFF → 승인 즉시 자동 게시. **다음 세션: 게시 확인 후 release 머지 + v1.4.2 태그.**
