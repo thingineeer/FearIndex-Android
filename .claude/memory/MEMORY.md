@@ -14,10 +14,23 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-07-31 새벽, v1.5.1 vc22 — Billing 8 마이그레이션 + 배포)
+
+- **v1.5.1(vc22) production 업로드** — 1.5.0(vc21)이 심사 중인 상태에서 **대체 업로드**. 내용 = 1.5.0 전부(코스피 신호 분해 + targetSdk 36) + **Play Billing 7.1.1→8.3.0**(정책 기한 8/31, 미준수 시 업데이트 거부). changelog 22 45 locale. 관리형 게시 OFF → 승인 즉시 자동 게시.
+- **⚠️ Billing 9.x 는 Kotlin 2.3 메타데이터 요구로 불가** (현재 2.1.0). 8.3.0 채택. 다음에 9.x 가려면 Kotlin/Compose/KSP 동반 업그레이드 필요. 상세: @memory/bugs-fixed.md 50번.
+- **API/푸시 전수 실측 정상** (11종 200, 푸시 경로 정상, targetSdk 36 영향 없음). BTC 공매도 복구됨. 상세: 52번. **오늘 시장 계획: @docs/checkpoints/MARKET-READINESS-20260731.md**
+- **✅ v1.5.0(vc21) 게시 완료** (2026-07-31, 공개 스토어 리스팅 1.5.0 확인). **v1.5.1(vc22)은 빠른 검사 → 검토 중** (관리형 게시 OFF라 승인 시 자동 게시).
+- **✅ 태그/브랜치 정리 완료**: 그동안 누락됐던 **v1.4.2**(vc20, 7/18 게시)와 **v1.5.0**(vc21, 7/31 게시)을 release 브랜치에 순차 --no-ff 머지 후 태깅. dev/release/태그 전부 origin push 완료. **v1.5.1 태그는 게시 확인 후** (게시 감시 중).
+- **💰 실결제 확인 (주문 관리)**: `remove_ads_lifetime` **실주문 1건 존재** — 주문 ID `GPA.3334-7862-8616-69040`, 2026-07-23 07:15 UTC, **HUF 1,999**(헝가리 사용자), 상태 **처리됨**. 즉 IAP 결제 경로는 **Billing 7.1.1 기준으로 실증됨**. ⚠️ 단 v1.5.1의 Billing 8.3.0은 offerToken 필수로 플로우가 바뀌었으므로 **게시 후 실기기 재검증 필수**(설정→Premium 가격 표시 + 구매 시트 진입).
+- **다음**: 1.5.1 게시 확인 → release 머지 + v1.5.1 태그 + push. 실기기 결제 확인.
+- **미해결(낮음)**: `KospiFearIndexApi.history` boolean 지뢰, Yahoo spark 死코드, 미사용 BOOT_COMPLETED 권한, 결제 프로필 지급 보류(신원 확인 — 사용자 직접 처리).
+
 ## 최신 상태 (2026-07-30 밤, v1.5.0 vc21 production 업로드 — 검토 중)
 
 - **v1.5.0(vc21) production 업로드 완료** (fastlane "Successfully finished the upload", Play Console 프로덕션 "활성 · 출시 버전 1.5.0 검토 중 · 177개국"). 내용 = 코스피 신호 분해 카드/산출 방식 시트 + **targetSdk 36**(Google Play 8/31 요건 대응, compileSdk는 기존 36) + Unity Ads SDK 본체 의존성 fix(48번, release R8 실패 해소). changelog 21 45 locale. **관리형 게시 OFF → 승인 즉시 자동 게시.**
-- **다음 세션**: 게시·전파 확인 → release 머지 + v1.5.0 태그, 대시보드 API 36 경고 자동 해제 확인, **"결제 계정 긴급 문제"(7/24 알림) 사용자 확인 필요**. push 미실행(로컬 dev만).
+- **다음 세션**: 게시·전파 확인 → release 머지 + v1.5.0 태그, 대시보드 API 36 경고 자동 해제 확인. push 미실행(로컬 dev만).
+- **7/31 확인 (Chrome MCP)**: 게시 개요 = 빠른 검사 통과 → "변경사항을 검토 중"(프로덕션 1.5.0 + 스토어 등록정보 45 locale, 승인 시 자동 게시). **결제 계정 긴급 문제(7/24) 정체 = Google payments 신원 확인 미완료 → 지급 보류**(결제 프로필 페이지: "지급을 받으려면 본인 확인을 완료하세요" + "Google 계정 관련 중요 정보" 제목 이메일 확인 안내). 신분증 제출이라 **사용자 본인만 가능**. 부가: 싱가포르 세금 정보 제공 경고(낮은 우선순위).
+- **⚠️ 신규 발견 (심각, 2026-08-31 기한)**: Play Console 알림(7/22) "곧 지원 중단될 Google Play 결제 라이브러리 사용 중 — 8/31까지 최신 버전으로 업데이트 안 하면 앱 업데이트 거부". 현재 billing-ktx **7.1.1** → **Billing Library 8.x 업그레이드 필요** (다음 릴리즈 필수 작업, PurchaseManager 마이그레이션 확인). 정책 이슈 ID 4989139547398182305.
 - v1.4.2(vc20)는 7/18 게시 완료 상태였음(트랙에서 확인) — release 머지+v1.4.2 태그도 미처리 상태라 v1.5.0 태깅 시 함께 정리.
 
 ## 최신 상태 (2026-07-30, 코스피 신호 분해 카드 + 산출 방식 시트)

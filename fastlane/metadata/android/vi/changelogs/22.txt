@@ -1,0 +1,1 @@
+Xem cách tính chỉ số KOSPI. Đã cải thiện thanh toán và độ ổn định của ứng dụng.

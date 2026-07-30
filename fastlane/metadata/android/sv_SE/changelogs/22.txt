@@ -1,0 +1,1 @@
+Se hur KOSPI-indexet beräknas. Förbättrade betalningar och appstabilitet.
