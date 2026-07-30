@@ -4,6 +4,32 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-07-31 새벽 (v1.5.1 vc22 — Play Billing 8 마이그레이션 + API/푸시 전수 검증)
+
+### 50. Play Billing 7.1.1 → 8.3.0 마이그레이션 (정책 기한 2026-08-31)
+- **요구사항 (정책센터 원문)**: "앱에서 Google Play 결제 라이브러리 버전 8.0.0 이상을 사용해야 합니다. 2026년 8월 31일부터 모든 앱은 8.0.0 버전 이상을 사용해야 합니다." 미준수 시 **앱 업데이트 자체가 거부**. 이슈 ID `4989139547398182305`.
+- **⚠️ 9.x 불가 (중요)**: `billing-ktx 9.1.0`은 **Kotlin 메타데이터 2.3.0**을 요구 → 현재 Kotlin 2.1.0에서 `Module was compiled with an incompatible version of Kotlin` 컴파일 실패. 9.x로 가려면 Kotlin 2.3 + Compose 컴파일러 + KSP 동반 업그레이드 필요. **8.3.0(8.x 최신)은 Kotlin 2.1과 호환** → 정책 요건 충족하면서 최소 변경으로 채택.
+- **breaking change 2건 (우리 코드 기준 전부)**:
+  1. `queryProductDetailsAsync` 콜백 2번째 인자가 `List<ProductDetails>` → **`QueryProductDetailsResult`** (`.productDetailsList` 로 접근).
+  2. **일회성(INAPP) 상품도 `launchBillingFlow` 에 `offerToken` 필수.** `ProductDetails.oneTimePurchaseOfferDetails`(단수)는 Kotlin에서 접근 불가(unresolved) → **`oneTimePurchaseOfferDetailsList`(복수)** 사용. 오퍼마다 `offerToken`/`formattedPrice` 보유. (공식 integrate 문서에 "For one-time products, call getOneTimePurchaseOfferDetailsList()" 명시)
+- **설계**: `IapOfferSelection`(core, 순수) 신규 — 토큰이 비지 않은 첫 오퍼 선택. **가격 표시와 결제에 같은 오퍼**를 쓰도록 `RemoveAdsOffering(product, offerToken)` 한 객체로 묶어 보관(둘이 어긋날 여지 제거). TDD 5케이스.
+- **검증**: 791 테스트 GREEN, release R8 빌드 성공, **merged manifest `com.google.android.play.billingclient.version = 8.3.0`** 확인(Play가 정책 판정에 읽는 바로 그 메타데이터). 에뮬 release 실행 — 크래시 0, 설정 Premium 카드 정상(가격은 `US$4.99` fallback = Play 서명 앱이 아니라 상품 조회 실패, v1.4.0 때와 동일 정상 동작). **실결제는 게시 후 실기기(라이선스 테스터)로만 검증 가능.**
+- **교훈**: 라이브러리 메이저 업그레이드는 **최신(9.x)이 항상 답이 아니다** — Kotlin 메타데이터 호환성을 먼저 확인하고 정책 요건을 만족하는 최소 버전을 고를 것. 마이그레이션 문서보다 **javap 로 api.jar 시그니처를 직접 확인**하는 게 빠르고 정확했다.
+
+### 51. 에뮬레이터 ANR = 환경 문제 (코드 무관, 오진 방지)
+- **증상**: v1.5.1 release 스모크 중 "Fear & Greed Index isn't responding" ANR.
+- **원인 (증거)**: ANR Reason = `Input dispatching timed out ... Waited 5005ms for MotionEvent`, **Load: 47.86 / 18.81 / 6.94**(이후 95.31까지 상승). 같은 시각 `com.google.android.gms.persistent` ANR 후 `am_kill bg anr`로 강제 종료, `gms.icing.AppIndexingService`/`android.process.media`도 ANR. `-wipe-data` 콜드부팅 직후 Play/GMS 동기화 폭주.
+- **판정 근거**: 부하 진정 후 재실행 시 앱이 포커스 보유(`mCurrentFocus=th1ngjin.fearindex/.MainActivity`)하고 설정 화면 정상 렌더. 최근 ANR은 전부 시스템 프로세스.
+- **교훈**: 에뮬 ANR은 **`uptime` load average + `am_anr` 이벤트의 동반 ANR 여부**를 먼저 볼 것. Play 이미지는 root 불가라 `/data/anr/` 트레이스를 못 읽으므로 `logcat -b events|system` 이 유일한 근거. 부하 40+ 에서의 스모크 결과는 신뢰하지 말 것.
+
+### 52. API/푸시 전수 실측 — 전 채널 정상 (2026-07-31 00:51 KST)
+- **API 11종 전부 HTTP 200 + 스키마 일치**: KOSPI v2(dataDate 2026-07-30, intScore 17, isFinal true, kospiClose 1374/1374), cryptoOfficialIndicatorsV1(**BTC 공매도 available:true 로 복구** — 37번 당시 미제공이었음), CNN 37.54, Alternative.me 28, Yahoo chart v8 8심볼, CoinGecko 5종, currency-api 1444.789, Naver KOSPI/KOSDAQ, FINRA 5일.
+- **KOSPI 공매도는 여전히 `available:false`** → 카드 숨김(37번 설계대로, 정상).
+- **푸시 경로 정상**: 채널 `fear_index_alerts` 일치, payload 중첩 구조 서버 기대치와 일치, deviceId UUID v4 정규식 통과. **33번 "Android 신규 유저 즉시체크 공백"은 해소됨** — registerFCMToken payload에 임계값이 실려 서버 신규 분기 조건을 충족하고, 이어지는 updateSettings가 별도 훅도 발동. 서버 크론 30분 주기.
+- **targetSdk 36 영향 없음**: notification trampoline/exact alarm/foreground service/BOOT_COMPLETED 수신자 전부 코드에 없음. POST_NOTIFICATIONS 런타임 요청 이미 구현.
+- **⚠️ 새로 발견한 지뢰**: `KospiFearIndexApi.history` 파라미터가 개수처럼 보이지만 **서버는 boolean 취급** — `history=1`/`true`는 1374건, **`history=365`는 history 필드 자체가 없는 응답**. 현재 코드는 `if (includeHistory) 1 else null`이라 정상이나, 누가 "기간 늘리자"고 숫자를 넣으면 **KOSPI 차트/RSI가 에러 없이 빈 화면**이 된다. Boolean 타입으로 교체 권장.
+- **정리 대상**: Yahoo **spark** API는 실제로 429 반환 중이나 참조 0건인 死코드(`MarketIndexApi`/`DataSource`/`RepositoryImpl` + DI 3곳). `RECEIVE_BOOT_COMPLETED` 권한도 수신자 0건.
+
 ## 2026-07-30 세션 후반 (v1.5.0 vc21 production 업로드 — targetSdk 36 + 코스피 신호 분해)
 
 ### 48. Unity 미디에이션 어댑터만 있고 SDK 본체 누락 — release R8 빌드 실패

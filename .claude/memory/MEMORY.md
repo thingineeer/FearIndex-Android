@@ -14,6 +14,14 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-07-31 새벽, v1.5.1 vc22 — Billing 8 마이그레이션 + 배포)
+
+- **v1.5.1(vc22) production 업로드** — 1.5.0(vc21)이 심사 중인 상태에서 **대체 업로드**. 내용 = 1.5.0 전부(코스피 신호 분해 + targetSdk 36) + **Play Billing 7.1.1→8.3.0**(정책 기한 8/31, 미준수 시 업데이트 거부). changelog 22 45 locale. 관리형 게시 OFF → 승인 즉시 자동 게시.
+- **⚠️ Billing 9.x 는 Kotlin 2.3 메타데이터 요구로 불가** (현재 2.1.0). 8.3.0 채택. 다음에 9.x 가려면 Kotlin/Compose/KSP 동반 업그레이드 필요. 상세: @memory/bugs-fixed.md 50번.
+- **API/푸시 전수 실측 정상** (11종 200, 푸시 경로 정상, targetSdk 36 영향 없음). BTC 공매도 복구됨. 상세: 52번. **오늘 시장 계획: @docs/checkpoints/MARKET-READINESS-20260731.md**
+- **다음**: 심사 승인·게시 확인 → release 머지 + v1.5.1 태그. 실기기에서 결제(₩7,500 표시 + 구매 시트) 1회 확인 — Billing 8 첫 배포라 필수. push 미실행(로컬 dev만).
+- **미해결(낮음)**: `KospiFearIndexApi.history` boolean 지뢰, Yahoo spark 死코드, 미사용 BOOT_COMPLETED 권한, 결제 프로필 지급 보류(신원 확인 — 사용자 직접 처리).
+
 ## 최신 상태 (2026-07-30 밤, v1.5.0 vc21 production 업로드 — 검토 중)
 
 - **v1.5.0(vc21) production 업로드 완료** (fastlane "Successfully finished the upload", Play Console 프로덕션 "활성 · 출시 버전 1.5.0 검토 중 · 177개국"). 내용 = 코스피 신호 분해 카드/산출 방식 시트 + **targetSdk 36**(Google Play 8/31 요건 대응, compileSdk는 기존 36) + Unity Ads SDK 본체 의존성 fix(48번, release R8 실패 해소). changelog 21 45 locale. **관리형 게시 OFF → 승인 즉시 자동 게시.**
