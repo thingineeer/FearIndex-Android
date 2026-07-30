@@ -185,18 +185,6 @@ class PurchaseManager @Inject constructor(
     }
 
     private fun onPurchasesUpdated(result: BillingResult, purchases: List<Purchase>?) {
-        // 이미 소유한 상품 재구매 시도 — 실패가 아니라 entitlement 재평가로 grant 처리 (오류 다이얼로그 방지).
-        if (result.responseCode == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED) {
-            connectAndRun {
-                reevaluateEntitlements()
-                if (_isAdFree.value) {
-                    completePurchase()
-                } else {
-                    reportPurchaseFailure(result.responseCode, result.debugMessage)
-                }
-            }
-            return
-        }
         val snapshots = (purchases ?: emptyList()).map { it.toSnapshot() }
         when (val outcome = IapPurchaseOutcome.evaluate(result.responseCode, snapshots, REMOVE_ADS_PRODUCT_ID)) {
             is IapPurchaseOutcome.Outcome.Completed -> {
@@ -208,6 +196,20 @@ class PurchaseManager @Inject constructor(
                 if (!purchaseInFlight.compareAndSet(true, false)) return
                 Timber.tag(TAG).i("[IAP] 사용자 구매 취소")
                 _purchaseEvents.tryEmit(PurchaseEvent.Cancelled)
+            }
+            // 이미 소유한 상품 재구매 시도 — 실패가 아니라 entitlement 재평가로 grant 처리 (오류 다이얼로그 방지).
+            // connectAndRun 은 연결 실패 시 조용히 스킵해 purchaseInFlight 가 영구 누수(스피너 행,
+            // 이후 구매 탭 무시)되므로, 여기서는 실패 경로까지 반드시 터미널 이벤트로 마감한다.
+            IapPurchaseOutcome.Outcome.AlreadyOwned -> scope.launch {
+                if (runCatching { ensureConnected() }.getOrDefault(false)) {
+                    runCatching { reevaluateEntitlements() }
+                        .onFailure { Timber.tag(TAG).w(it, "[IAP] 재평가 Error") }
+                }
+                if (_isAdFree.value) {
+                    completePurchase()
+                } else {
+                    reportPurchaseFailure(result.responseCode, result.debugMessage)
+                }
             }
             is IapPurchaseOutcome.Outcome.Failed ->
                 reportPurchaseFailure(outcome.code, result.debugMessage)
@@ -250,15 +252,22 @@ class PurchaseManager @Inject constructor(
         val params = QueryPurchasesParams.newBuilder()
             .setProductType(BillingClient.ProductType.INAPP)
             .build()
-        return suspendCancellableCoroutine { cont ->
-            billingClient.queryPurchasesAsync(params) { result, purchases ->
-                if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                    cont.resume(purchases)
-                } else {
-                    Timber.tag(TAG).w("[IAP] 구매 조회 Error: %d — %s", result.responseCode, result.debugMessage)
-                    cont.resume(null)
+        // Play 서비스가 콜백을 영영 안 주면 복원 스피너가 무한 대기하므로 연결과 동일한 timeout.
+        return withTimeoutOrNull(CONNECT_TIMEOUT_MILLIS) {
+            suspendCancellableCoroutine { cont ->
+                billingClient.queryPurchasesAsync(params) { result, purchases ->
+                    if (!cont.isActive) return@queryPurchasesAsync
+                    if (result.responseCode == BillingClient.BillingResponseCode.OK) {
+                        cont.resume(purchases)
+                    } else {
+                        Timber.tag(TAG).w("[IAP] 구매 조회 Error: %d — %s", result.responseCode, result.debugMessage)
+                        cont.resume(null)
+                    }
                 }
             }
+        } ?: run {
+            Timber.tag(TAG).w("[IAP] 구매 조회 Error(timeout)")
+            null
         }
     }
 
@@ -299,13 +308,17 @@ class PurchaseManager @Inject constructor(
                 ),
             )
             .build()
-        val details = suspendCancellableCoroutine { cont ->
-            billingClient.queryProductDetailsAsync(params) { result, productDetailsList ->
-                if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                    cont.resume(productDetailsList.firstOrNull())
-                } else {
-                    Timber.tag(TAG).w("[IAP] 상품 로드 Error: %d — %s", result.responseCode, result.debugMessage)
-                    cont.resume(null)
+        // 콜백 미도착 시 구매 스피너가 무한 대기하지 않도록 연결과 동일한 timeout.
+        val details = withTimeoutOrNull(CONNECT_TIMEOUT_MILLIS) {
+            suspendCancellableCoroutine { cont ->
+                billingClient.queryProductDetailsAsync(params) { result, productDetailsList ->
+                    if (!cont.isActive) return@queryProductDetailsAsync
+                    if (result.responseCode == BillingClient.BillingResponseCode.OK) {
+                        cont.resume(productDetailsList.firstOrNull())
+                    } else {
+                        Timber.tag(TAG).w("[IAP] 상품 로드 Error: %d — %s", result.responseCode, result.debugMessage)
+                        cont.resume(null)
+                    }
                 }
             }
         }

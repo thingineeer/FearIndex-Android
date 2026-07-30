@@ -58,6 +58,16 @@ class IapPurchaseOutcomeTest {
     }
 
     @Test
+    fun `ITEM_ALREADY_OWNED 는 AlreadyOwned - 실패가 아니라 재평가 grant 경로`() {
+        val outcome = IapPurchaseOutcome.evaluate(
+            responseCode = IapPurchaseOutcome.RESPONSE_ITEM_ALREADY_OWNED,
+            purchases = emptyList(),
+            productId = productId,
+        )
+        assertTrue(outcome is IapPurchaseOutcome.Outcome.AlreadyOwned)
+    }
+
+    @Test
     fun `그 외 에러 코드는 Failed 이며 코드를 보존`() {
         val outcome = IapPurchaseOutcome.evaluate(
             responseCode = 6, // ERROR

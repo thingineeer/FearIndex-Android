@@ -11,6 +11,7 @@ object IapPurchaseOutcome {
     // Play Billing `BillingClient.BillingResponseCode` 상수 (라이브러리 의존 없이 판정하기 위해 명시).
     const val RESPONSE_OK = 0
     const val RESPONSE_USER_CANCELED = 1
+    const val RESPONSE_ITEM_ALREADY_OWNED = 7
 
     sealed interface Outcome {
         /** 대상 상품이 구매 완료됨 — grant + acknowledge 진행. */
@@ -18,6 +19,9 @@ object IapPurchaseOutcome {
 
         /** 사용자가 결제 시트를 조용히 취소함. */
         data object Cancelled : Outcome
+
+        /** 이미 소유한 상품 재구매 시도 — 실패가 아니라 entitlement 재평가로 grant 처리. */
+        data object AlreadyOwned : Outcome
 
         /** 그 외 실패(오류/pending 등). `code` 로그/Analytics 용. */
         data class Failed(val code: Int) : Outcome
@@ -38,6 +42,7 @@ object IapPurchaseOutcome {
             }
         }
         RESPONSE_USER_CANCELED -> Outcome.Cancelled
+        RESPONSE_ITEM_ALREADY_OWNED -> Outcome.AlreadyOwned
         else -> Outcome.Failed(responseCode)
     }
 }
