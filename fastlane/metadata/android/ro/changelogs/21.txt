@@ -1,0 +1,1 @@
+Vedeți cum se calculează indicele KOSPI. Stabilitate îmbunătățită a aplicației.

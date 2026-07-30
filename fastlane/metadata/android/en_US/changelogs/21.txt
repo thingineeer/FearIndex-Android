@@ -1,0 +1,1 @@
+See how the KOSPI index is calculated. Improved app stability.
