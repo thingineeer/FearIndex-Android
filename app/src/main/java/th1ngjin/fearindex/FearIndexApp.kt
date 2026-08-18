@@ -4,13 +4,17 @@ import android.app.Activity
 import android.app.Application
 import android.app.NotificationManager
 import android.app.NotificationChannel
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.glance.appwidget.updateAll
-import com.google.android.gms.ads.MobileAds
+import com.google.android.libraries.ads.mobile.sdk.MobileAds
+import com.google.android.libraries.ads.mobile.sdk.initialization.InitializationConfig
 import java.lang.ref.WeakReference
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
@@ -58,10 +62,14 @@ class FearIndexApp : Application() {
     @Inject lateinit var onboardingStore: OnboardingStore
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    private val mainHandler = Handler(Looper.getMainLooper())
 
     private var currentActivity = WeakReference<Activity>(null)
 
     companion object {
+        private const val ADMOB_APP_ID_META_KEY = "com.google.android.gms.ads.APPLICATION_ID"
+        private const val ADMOB_APP_ID_FALLBACK = "ca-app-pub-5283496525222246~1308884877"
+
         /**
          * 앱오픈 광고 매니저 — Application 스코프 단일 인스턴스.
          * 강제 업데이트/스플래시 표시 중 노출 차단을 위해 MainActivity 가 [AppOpenAdManager.isForegroundBlocked]
@@ -163,22 +171,38 @@ class FearIndexApp : Application() {
     }
 
     private fun initAdMob() {
-        // AdMob 초기화는 background dispatcher 에서 — main thread 차단으로 cold start 1-2초 추가되어
-        // splash 체감 시간이 길어지던 이슈(QA#10 연결) 해결.
+        // GMA Next-Gen SDK: initialize 는 반드시 background thread 에서(메인 호출 시 ANR 위험, 공식 가이드).
+        // App ID 는 Manifest meta-data(com.google.android.gms.ads.APPLICATION_ID)를 단일 출처로 읽는다 —
+        // UMP SDK 도 같은 meta-data 를 요구하므로 Manifest 항목은 유지.
         appScope.launch {
             try {
-                MobileAds.initialize(this@FearIndexApp) {
-                    // SDK 초기화 완료 후 앱오픈 광고 preload (iOS: startAdMobSDK 콜백에서 preload).
-                    appOpenAdManager.preloadIfNeeded(
-                        this@FearIndexApp,
-                        BuildConfig.ADMOB_APP_OPEN,
-                        remoteConfig.adsConfig.value.appOpenAdConfig(),
-                    )
+                MobileAds.initialize(
+                    this@FearIndexApp,
+                    InitializationConfig.Builder(admobApplicationId()).build(),
+                ) {
+                    // 어댑터 초기화 완료 콜백은 백그라운드 스레드 → 앱오픈 preload 는 메인으로 디스패치
+                    // (iOS: startAdMobSDK 콜백에서 preload).
+                    mainHandler.post {
+                        appOpenAdManager.preloadIfNeeded(
+                            this@FearIndexApp,
+                            BuildConfig.ADMOB_APP_OPEN,
+                            remoteConfig.adsConfig.value.appOpenAdConfig(),
+                        )
+                    }
                 }
             } catch (e: Exception) {
                 Timber.w(e, "AdMob init failed — placeholder config")
             }
         }
+    }
+
+    /** Manifest `com.google.android.gms.ads.APPLICATION_ID` meta-data (manifestPlaceholders admobAppId). */
+    private fun admobApplicationId(): String {
+        val metaData = runCatching {
+            packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA).metaData
+        }.getOrNull()
+        return metaData?.getString(ADMOB_APP_ID_META_KEY)?.takeIf { it.isNotBlank() }
+            ?: ADMOB_APP_ID_FALLBACK.also { Timber.w("AdMob APPLICATION_ID meta-data missing; using fallback") }
     }
 
     /** 앱오픈 광고는 Activity present 가 필요하므로 최상단 Activity 를 약참조로 추적. */

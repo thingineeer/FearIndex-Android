@@ -34,10 +34,27 @@ class AdRetryPolicyTest {
 
     @Test
     fun `no-fill과 네트워크 오류는 재시도 대상, 잘못된 요청은 아님`() {
-        // AdMob LoadAdError code: 0=INTERNAL, 1=INVALID_REQUEST, 2=NETWORK, 3=NO_FILL
-        assertEquals(true, AdRetryPolicy.isRetryable(errorCode = 2)) // NETWORK_ERROR
-        assertEquals(true, AdRetryPolicy.isRetryable(errorCode = 3)) // NO_FILL
-        assertEquals(true, AdRetryPolicy.isRetryable(errorCode = 0)) // INTERNAL (일시적)
-        assertEquals(false, AdRetryPolicy.isRetryable(errorCode = 1)) // INVALID_REQUEST (설정 오류)
+        // GMA Next-Gen LoadAdError.ErrorCode 이름 기준 (SDK 비의존 순수 로직).
+        assertEquals(true, AdRetryPolicy.isRetryable(errorCodeName = "NETWORK_ERROR"))
+        assertEquals(true, AdRetryPolicy.isRetryable(errorCodeName = "NO_FILL"))
+        assertEquals(true, AdRetryPolicy.isRetryable(errorCodeName = "INTERNAL_ERROR")) // 일시적
+        assertEquals(true, AdRetryPolicy.isRetryable(errorCodeName = "TIMEOUT"))
+        assertEquals(false, AdRetryPolicy.isRetryable(errorCodeName = "INVALID_REQUEST")) // 설정 오류
+    }
+
+    @Test
+    fun `앱 ID 누락은 설정 오류라 재시도하지 않는다`() {
+        assertEquals(false, AdRetryPolicy.isRetryable(errorCodeName = "APP_ID_MISSING"))
+    }
+
+    @Test
+    fun `퍼블리셔가 취소한 요청(뷰 destroy 등)은 재시도하지 않는다`() {
+        // Next-Gen SDK 는 AdView.destroy() 시 onAdFailedToLoad(CANCELLED) 를 보낸다 — 우리가 끊은 요청이라 재시도 무의미.
+        assertEquals(false, AdRetryPolicy.isRetryable(errorCodeName = "CANCELLED"))
+    }
+
+    @Test
+    fun `알 수 없는 코드는 보수적으로 재시도 대상`() {
+        assertEquals(true, AdRetryPolicy.isRetryable(errorCodeName = "SOMETHING_NEW"))
     }
 }

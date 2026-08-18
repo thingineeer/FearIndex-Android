@@ -4,17 +4,20 @@ import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.FullScreenContentCallback
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.libraries.ads.mobile.sdk.common.AdLoadCallback
+import com.google.android.libraries.ads.mobile.sdk.common.AdRequest
+import com.google.android.libraries.ads.mobile.sdk.common.FullScreenContentError
+import com.google.android.libraries.ads.mobile.sdk.common.LoadAdError
+import com.google.android.libraries.ads.mobile.sdk.interstitial.InterstitialAd
+import com.google.android.libraries.ads.mobile.sdk.interstitial.InterstitialAdEventCallback
 import th1ngjin.fearindex.core.ads.AdRetryPolicy
 import timber.log.Timber
 
 /**
- * AdMob 인터스티셜 광고 매니저.
+ * AdMob 인터스티셜 광고 매니저 (GMA Next-Gen SDK).
+ *
+ * Next-Gen 콜백은 백그라운드 스레드에서 오므로 내부 상태 변경/재시도 스케줄/외부 콜백은 전부
+ * [mainHandler] 로 메인 스레드에 디스패치한다(단일 스레드 상태 머신 유지).
  *
  * 사용 패턴:
  *   1. [loadAd] 로 미리 로드
@@ -31,7 +34,7 @@ object InterstitialAdManager : InterstitialAdController {
 
     private val retryPolicy = AdRetryPolicy()
     private var retryCount: Int = 0
-    private val retryHandler = Handler(Looper.getMainLooper())
+    private val mainHandler = Handler(Looper.getMainLooper())
 
     override val isReady: Boolean
         get() = interstitialAd != null
@@ -56,28 +59,30 @@ object InterstitialAdManager : InterstitialAdController {
         isLoading = true
         if (!isRetry) {
             // 새 로드 사이클 시작 — 이전 재시도 스케줄/카운터 정리.
-            retryHandler.removeCallbacksAndMessages(null)
+            mainHandler.removeCallbacksAndMessages(null)
             retryCount = 0
         }
 
         val appContext = context.applicationContext
         InterstitialAd.load(
-            appContext,
-            adUnitId,
-            AdRequest.Builder().build(),
-            object : InterstitialAdLoadCallback() {
+            AdRequest.Builder(adUnitId).build(),
+            object : AdLoadCallback<InterstitialAd> {
                 override fun onAdLoaded(ad: InterstitialAd) {
-                    Timber.d("InterstitialAd loaded")
-                    interstitialAd = ad
-                    isLoading = false
-                    retryCount = 0
+                    mainHandler.post {
+                        Timber.d("InterstitialAd loaded")
+                        interstitialAd = ad
+                        isLoading = false
+                        retryCount = 0
+                    }
                 }
 
-                override fun onAdFailedToLoad(error: LoadAdError) {
-                    Timber.w("InterstitialAd failed: ${error.message}")
-                    interstitialAd = null
-                    isLoading = false
-                    scheduleRetry(appContext, adUnitId, error.code)
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    mainHandler.post {
+                        Timber.w("InterstitialAd failed: ${adError.message}")
+                        interstitialAd = null
+                        isLoading = false
+                        scheduleRetry(appContext, adUnitId, adError.code.name)
+                    }
                 }
             },
         )
@@ -87,11 +92,11 @@ object InterstitialAdManager : InterstitialAdController {
      * no-fill/네트워크 등 일시적 실패면 exponential backoff로 재로드 예약.
      * INVALID_REQUEST(설정 오류)나 최대 횟수 초과면 재시도하지 않는다.
      */
-    private fun scheduleRetry(context: Context, adUnitId: String, errorCode: Int) {
-        if (!AdRetryPolicy.isRetryable(errorCode)) return
+    private fun scheduleRetry(context: Context, adUnitId: String, errorCodeName: String) {
+        if (!AdRetryPolicy.isRetryable(errorCodeName)) return
         val delay = retryPolicy.nextDelayMillis(retryCount) ?: return
         retryCount += 1
-        retryHandler.postDelayed({ loadAd(context, adUnitId, isRetry = true) }, delay)
+        mainHandler.postDelayed({ loadAd(context, adUnitId, isRetry = true) }, delay)
         Timber.d("InterstitialAd retry #$retryCount in ${delay}ms")
     }
 
@@ -130,26 +135,30 @@ object InterstitialAdManager : InterstitialAdController {
         }
         currentAdUnitId = adUnitId.ifBlank { currentAdUnitId }
 
-        ad.fullScreenContentCallback = object : FullScreenContentCallback() {
+        ad.adEventCallback = object : InterstitialAdEventCallback {
             override fun onAdShowedFullScreenContent() {
-                callbacks.onShown()
+                mainHandler.post { callbacks.onShown() }
             }
 
             override fun onAdImpression() {
-                callbacks.onImpression()
+                mainHandler.post { callbacks.onImpression() }
             }
 
             override fun onAdDismissedFullScreenContent() {
-                interstitialAd = null
-                callbacks.onDismissed()
-                loadAd(activity, currentAdUnitId)
+                mainHandler.post {
+                    interstitialAd = null
+                    callbacks.onDismissed()
+                    loadAd(activity, currentAdUnitId)
+                }
             }
 
-            override fun onAdFailedToShowFullScreenContent(error: AdError) {
-                Timber.w("InterstitialAd show failed: ${error.message}")
-                interstitialAd = null
-                callbacks.onFailedToShow(error.message)
-                loadAd(activity, currentAdUnitId)
+            override fun onAdFailedToShowFullScreenContent(fullScreenContentError: FullScreenContentError) {
+                mainHandler.post {
+                    Timber.w("InterstitialAd show failed: ${fullScreenContentError.message}")
+                    interstitialAd = null
+                    callbacks.onFailedToShow(fullScreenContentError.message)
+                    loadAd(activity, currentAdUnitId)
+                }
             }
         }
         ad.show(activity)

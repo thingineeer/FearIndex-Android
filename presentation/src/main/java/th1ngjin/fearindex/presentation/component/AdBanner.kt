@@ -18,11 +18,13 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.LoadAdError
+import com.google.android.libraries.ads.mobile.sdk.banner.AdSize
+import com.google.android.libraries.ads.mobile.sdk.banner.AdView
+import com.google.android.libraries.ads.mobile.sdk.banner.BannerAd
+import com.google.android.libraries.ads.mobile.sdk.banner.BannerAdEventCallback
+import com.google.android.libraries.ads.mobile.sdk.banner.BannerAdRequest
+import com.google.android.libraries.ads.mobile.sdk.common.AdLoadCallback
+import com.google.android.libraries.ads.mobile.sdk.common.LoadAdError
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
@@ -31,9 +33,10 @@ import th1ngjin.fearindex.presentation.di.AdsEntryPoint
 import th1ngjin.fearindex.presentation.feature.onboarding.LocalOnboardingTour
 
 /**
- * AdMob Adaptive 배너 광고 컴포넌트.
+ * AdMob Adaptive 배너 광고 컴포넌트 (GMA Next-Gen SDK).
  *
  * - 스크롤 콘텐츠 안에 배치되므로 inline adaptive banner 사용.
+ * - Next-Gen SDK 콜백은 백그라운드 스레드에서 오므로 Compose state/Analytics 갱신은 메인 Handler 로 넘긴다.
  * - SDK에 전달하는 폭은 화면 전체가 아니라 실제 parent content 폭을 사용해 ad frame resize를 피한다.
  * - 단위 ID는 호출자가 명시 (`BuildConfig.ADMOB_BANNER_HOME` 등) — debug/release 분기는 BuildConfig가 담당
  * - Preview/스크린샷 모드에서는 빈 뷰 렌더링
@@ -97,49 +100,66 @@ fun AdBanner(
         // AdView와 재시도 스케줄을 (adUnitId, adSize) 키로 remember 해 리컴포지션마다 재생성되지
         // 않도록 유지한다. onAdFailedToLoad(no-fill/네트워크) 시 exponential backoff로 재요청해
         // 첫 요청 실패가 그대로 빈 슬롯으로 남지 않게 한다.
-        val retryHandler = remember { Handler(Looper.getMainLooper()) }
+        // Next-Gen SDK: 요청은 BannerAdRequest(단위 ID + 크기), 로드는 AdView.loadAd(request, callback),
+        // 이벤트는 로드된 BannerAd.adEventCallback. 모든 콜백은 백그라운드 스레드 → mainHandler 로 디스패치.
+        val mainHandler = remember { Handler(Looper.getMainLooper()) }
         val retryPolicy = remember { AdRetryPolicy() }
-        val adView = remember(adUnitId, adSize) {
-            AdView(context).apply {
-                setAdSize(adSize)
-                this.adUnitId = adUnitId
+        val slot = remember(adUnitId, adSize) {
+            val slot = BannerAdSlot(AdView(context))
+            slot.adView.apply {
                 layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                 )
                 var retryCount = 0
-                adListener = object : AdListener() {
-                    override fun onAdLoaded() {
+                lateinit var requestLoad: () -> Unit
+                val loadCallback = object : AdLoadCallback<BannerAd> {
+                    override fun onAdLoaded(ad: BannerAd) {
+                        // 뷰가 이미 destroy 된 뒤 도착한 콜백(취소/지연 응답)은 무시.
+                        if (slot.disposed) return
                         retryCount = 0
                         // iOS(AdBannerView.swift) 와 동일: 로드 후 SDK가 확정한 adSize 실제 높이
                         // 를 clamp 없이 컨테이너에 반영. (렌더 height 는 레이아웃 타이밍에 부정확)
-                        val loadedDp = this@apply.adSize?.height
-                            ?.takeIf { it > 0 }
-                            ?: adSize.height
-                        loadedHeightDp = loadedDp
-                        analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
+                        val loadedDp = ad.getAdSize().height.takeIf { it > 0 } ?: adSize.height
+                        ad.adEventCallback = object : BannerAdEventCallback {
+                            override fun onAdClicked() {
+                                mainHandler.post {
+                                    analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
+                                }
+                            }
+                        }
+                        mainHandler.post {
+                            loadedHeightDp = loadedDp
+                            analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
+                        }
                     }
 
-                    override fun onAdClicked() {
-                        analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
-                    }
-
-                    override fun onAdFailedToLoad(error: LoadAdError) {
-                        analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = error.message))
-                        if (!AdRetryPolicy.isRetryable(error.code)) return
-                        val delay = retryPolicy.nextDelayMillis(retryCount) ?: return
-                        retryCount += 1
-                        retryHandler.postDelayed({ loadAd(AdRequest.Builder().build()) }, delay)
+                    override fun onAdFailedToLoad(adError: LoadAdError) {
+                        // destroy 된 뷰에 재시도 loadAd 를 던지지 않도록 dispose 이후 콜백은 무시.
+                        if (slot.disposed) return
+                        mainHandler.post {
+                            if (slot.disposed) return@post
+                            analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = adError.message))
+                            if (!AdRetryPolicy.isRetryable(adError.code.name)) return@post
+                            val delay = retryPolicy.nextDelayMillis(retryCount) ?: return@post
+                            retryCount += 1
+                            mainHandler.postDelayed({ requestLoad() }, delay)
+                        }
                     }
                 }
-                loadAd(AdRequest.Builder().build())
+                requestLoad = {
+                    loadAd(BannerAdRequest.Builder(adUnitId, adSize).build(), loadCallback)
+                }
+                requestLoad()
             }
+            slot
         }
 
-        DisposableEffect(adView) {
+        DisposableEffect(slot) {
             onDispose {
-                retryHandler.removeCallbacksAndMessages(null)
-                adView.destroy()
+                slot.disposed = true
+                mainHandler.removeCallbacksAndMessages(null)
+                slot.adView.destroy()
             }
         }
 
@@ -147,7 +167,16 @@ fun AdBanner(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(containerHeightDp.dp),
-            factory = { adView },
+            factory = { slot.adView },
         )
     }
+}
+
+/**
+ * remember 로 유지되는 배너 슬롯 — AdView 와 dispose 플래그를 함께 들고 있어 백그라운드 스레드에서
+ * 늦게 도착한 SDK 콜백(예: destroy 시 CANCELLED)이 죽은 뷰에 재시도를 걸지 못하게 한다.
+ */
+private class BannerAdSlot(val adView: AdView) {
+    @Volatile
+    var disposed: Boolean = false
 }
