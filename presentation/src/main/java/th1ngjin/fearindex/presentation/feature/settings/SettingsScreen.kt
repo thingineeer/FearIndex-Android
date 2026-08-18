@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.rememberScrollState
@@ -26,13 +27,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.HelpOutline
+import androidx.compose.material.icons.filled.Block
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.PrivacyTip
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material.icons.filled.Widgets
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
@@ -83,6 +87,8 @@ fun SettingsScreen(
     onNotificationSettingsClick: () -> Unit = {},
     onPrivacyPolicyClick: () -> Unit = {},
     onWidgetGuideClick: () -> Unit = {},
+    /** debug 빌드 전용 섹션(예: 결제 테스트 카드). app 모듈 debug 소스셋이 주입, release 는 null. */
+    debugSection: (@Composable () -> Unit)? = null,
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
@@ -204,6 +210,11 @@ fun SettingsScreen(
                 title = stringResource(R.string.settings_menu_privacy),
                 onClick = onPrivacyPolicyClick,
             )
+
+            debugSection?.let { section ->
+                Spacer(modifier = Modifier.height(24.dp))
+                section()
+            }
         }
     }
 }
@@ -252,6 +263,12 @@ private fun PremiumSectionCard(
         text = stringResource(R.string.settings_premium_header),
         style = MaterialTheme.typography.labelLarge,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(start = 4.dp, bottom = 2.dp),
+    )
+    Text(
+        text = stringResource(R.string.settings_premium_subtitle),
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier.padding(start = 4.dp, bottom = 8.dp),
     )
     Card(
@@ -261,6 +278,8 @@ private fun PremiumSectionCard(
             containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f),
         ),
     ) {
+        PremiumBenefitsRows()
+        HorizontalDivider()
         if (isAdFree) {
             PremiumPurchasedRow()
         } else {
@@ -276,6 +295,30 @@ private fun PremiumSectionCard(
                 enabled = !isPurchasing && !isRestoring,
                 onRestore = onRestore,
             )
+        }
+    }
+}
+
+/** 프리미엄 혜택 3줄 — 광고 제거 / 점수별 과거 수익률 슬라이더 / 알림 내역 무제한 (iOS settings.premium.benefits.*). */
+@Composable
+private fun PremiumBenefitsRows() {
+    val benefits = listOf(
+        Icons.Default.Block to stringResource(R.string.settings_premium_benefits_ads),
+        Icons.Default.Tune to stringResource(R.string.settings_premium_benefits_score_explorer),
+        Icons.Default.NotificationsActive to stringResource(R.string.settings_premium_benefits_history),
+    )
+    Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+        benefits.forEach { (icon, label) ->
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 4.dp)) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(18.dp),
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(text = label, style = MaterialTheme.typography.bodyMedium)
+            }
         }
     }
 }

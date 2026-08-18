@@ -42,6 +42,7 @@ import th1ngjin.fearindex.domain.service.DeviceIdProvider
 import th1ngjin.fearindex.presentation.feature.splash.SplashView
 import th1ngjin.fearindex.presentation.feature.update.ForceUpdateView
 import th1ngjin.fearindex.presentation.navigation.FearIndexNavHost
+import th1ngjin.fearindex.variant.VariantHooks
 import th1ngjin.fearindex.presentation.theme.FearIndexTheme
 import th1ngjin.fearindex.update.InAppUpdateManager
 import timber.log.Timber
@@ -120,6 +121,7 @@ class MainActivity : ComponentActivity() {
                         qaForceTour = qaForceTour,
                         qaStartStep = qaStartStep,
                         onTourActiveChange = { tourActive = it },
+                        settingsDebugSection = VariantHooks.settingsDebugSection(purchaseManager),
                     )
                     if (forceUpdate) {
                         ForceUpdateView(onUpdate = ::startForceUpdateFlow)

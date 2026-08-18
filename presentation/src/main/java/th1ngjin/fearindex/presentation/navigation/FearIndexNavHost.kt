@@ -72,6 +72,8 @@ fun FearIndexNavHost(
     qaForceTour: Boolean = false,
     qaStartStep: Int = 1,
     onTourActiveChange: (Boolean) -> Unit = {},
+    /** 설정 화면 하단 debug 전용 섹션 (app debug 소스셋 주입, release null). */
+    settingsDebugSection: (@Composable () -> Unit)? = null,
 ) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -233,6 +235,7 @@ fun FearIndexNavHost(
                     onWidgetGuideClick = {
                         navController.navigate("widget_usage_guide")
                     },
+                    debugSection = settingsDebugSection,
                 )
             }
             composable("notification_settings") {

@@ -44,6 +44,7 @@ import th1ngjin.fearindex.notification.NotificationChannels
 import th1ngjin.fearindex.widget.CryptoFearWidget
 import th1ngjin.fearindex.widget.DashboardFearWidget
 import th1ngjin.fearindex.widget.FearWidgetUpdateWorker
+import th1ngjin.fearindex.variant.VariantHooks
 import th1ngjin.fearindex.widget.KospiFearWidget
 import th1ngjin.fearindex.widget.MarketFearWidget
 import timber.log.Timber
@@ -91,6 +92,8 @@ class FearIndexApp : Application() {
             registerFCMToken()
             initAdMob()
             purchaseManager.start()
+            // debug 빌드: 저장된 결제 테스트 오버라이드 재적용 (release 는 no-op)
+            VariantHooks.onApplicationCreate(this, purchaseManager)
             trackCurrentActivity()
             FearWidgetUpdateWorker.schedule(this)
         }
