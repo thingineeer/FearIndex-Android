@@ -2,6 +2,7 @@ package th1ngjin.fearindex.variant
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.purchases.DebugPremiumOverrideStore
 import th1ngjin.fearindex.core.purchases.PurchaseManager
 import th1ngjin.fearindex.debug.DebugPurchaseTestCard
@@ -20,6 +21,9 @@ object VariantHooks {
         overrideStore = store
         store.applyPersisted()
     }
+
+    /** debug: 로그캣(DebugTree)만 사용 — Crashlytics 트리 없음. */
+    fun plantLogging(crashReporter: CrashReporter) = Unit
 
     fun settingsDebugSection(purchaseManager: PurchaseManager): (@Composable () -> Unit)? {
         val store = overrideStore ?: return null
