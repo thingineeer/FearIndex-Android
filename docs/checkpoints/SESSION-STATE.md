@@ -30,10 +30,13 @@
 - [x] **push** — dev = origin/dev(78759074).
 - [x] **AdMob 실사** — 공포지수 Android 준비됨, 단위 6개(ID 코드 일치), 미디에이션 입찰 AdMob+Pangle+Unity 활성·매핑 6/6, 폭포식 0, AppLovin 미연결, 앱오프닝 단위 없음. 상세 bugs-fixed 56번.
 
+- [x] **앱오프닝 광고 단위 발급 + 코드 연결** — AdMob `AppOpen` `ca-app-pub-5283496525222246/6583206280`, release `ADMOB_APP_OPEN`(app+presentation) 반영, release compile OK. worktree `feature/v1.5.2-app-open-unit` → dev --no-ff.
+
 ## Remaining (다음 세션 우선순위)
 
 1. 알파 1.5.1 심사 통과 + 대시보드 "8월 31일까지 조치" 카드 소멸 확인(스캐너 갱신 지연 가능).
-2. Pangle 어댑터 포함 v1.5.2(vc23) 배포 여부 — 사용자 결정. 콘솔 Pangle 매핑은 이미 완료라 배포만 하면 입찰 실가동. (fastlane production 정상 동작 확인됨.)
+2. **v1.5.2(vc23) 배포는 사용자 지시 대기**(Pangle 어댑터 + 앱오프닝 ID 포함). 배포 시: versionCode 23 bump + changelog 23 + `bundle exec fastlane production` + **RC `app_open_ads_enabled` 등 4키 게시**(안 하면 앱오픈 안 뜸) + AdMob 앱오프닝 미디에이션 그룹(선택).
+3. AppLovin 연동 여부 — 사용자가 직접 검토 중.
 4. 실기기 Billing 8 결제 재검증(1.5.1, 미완), `KospiFearIndexApi.history` boolean 지뢰, Yahoo spark 死코드, BOOT_COMPLETED 권한 정리(이월).
 5. **결제 프로필/계정 삭제 예고(9/16)** — 사용자가 직접 진행 중. 관여 금지.
 6. (v1.6.0) GMA Next-Gen 이전 — Kotlin ≥2.2 bump 선행. 55번 체크리스트.
