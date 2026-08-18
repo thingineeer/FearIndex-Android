@@ -1,0 +1,1 @@
+KOSPI endeksinin nasıl hesaplandığını görün. Ödeme ve uygulama kararlılığı iyileştirildi.

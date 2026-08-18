@@ -1,0 +1,1 @@
+Skatiet, kā tiek aprēķināts KOSPI indekss. Uzlaboti maksājumi un lietotnes stabilitāte.

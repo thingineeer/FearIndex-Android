@@ -1,0 +1,1 @@
+Sužinokite, kaip apskaičiuojamas KOSPI indeksas. Patobulintas programos stabilumas.

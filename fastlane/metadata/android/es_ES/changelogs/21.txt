@@ -1,0 +1,1 @@
+Consulta cómo se calcula el índice KOSPI. Se ha mejorado la estabilidad de la aplicación.

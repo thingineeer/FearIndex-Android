@@ -4,6 +4,61 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-07-31 새벽 (v1.5.1 vc22 — Play Billing 8 마이그레이션 + API/푸시 전수 검증)
+
+### 50. Play Billing 7.1.1 → 8.3.0 마이그레이션 (정책 기한 2026-08-31)
+- **요구사항 (정책센터 원문)**: "앱에서 Google Play 결제 라이브러리 버전 8.0.0 이상을 사용해야 합니다. 2026년 8월 31일부터 모든 앱은 8.0.0 버전 이상을 사용해야 합니다." 미준수 시 **앱 업데이트 자체가 거부**. 이슈 ID `4989139547398182305`.
+- **⚠️ 9.x 불가 (중요)**: `billing-ktx 9.1.0`은 **Kotlin 메타데이터 2.3.0**을 요구 → 현재 Kotlin 2.1.0에서 `Module was compiled with an incompatible version of Kotlin` 컴파일 실패. 9.x로 가려면 Kotlin 2.3 + Compose 컴파일러 + KSP 동반 업그레이드 필요. **8.3.0(8.x 최신)은 Kotlin 2.1과 호환** → 정책 요건 충족하면서 최소 변경으로 채택.
+- **breaking change 2건 (우리 코드 기준 전부)**:
+  1. `queryProductDetailsAsync` 콜백 2번째 인자가 `List<ProductDetails>` → **`QueryProductDetailsResult`** (`.productDetailsList` 로 접근).
+  2. **일회성(INAPP) 상품도 `launchBillingFlow` 에 `offerToken` 필수.** `ProductDetails.oneTimePurchaseOfferDetails`(단수)는 Kotlin에서 접근 불가(unresolved) → **`oneTimePurchaseOfferDetailsList`(복수)** 사용. 오퍼마다 `offerToken`/`formattedPrice` 보유. (공식 integrate 문서에 "For one-time products, call getOneTimePurchaseOfferDetailsList()" 명시)
+- **설계**: `IapOfferSelection`(core, 순수) 신규 — 토큰이 비지 않은 첫 오퍼 선택. **가격 표시와 결제에 같은 오퍼**를 쓰도록 `RemoveAdsOffering(product, offerToken)` 한 객체로 묶어 보관(둘이 어긋날 여지 제거). TDD 5케이스.
+- **검증**: 791 테스트 GREEN, release R8 빌드 성공, **merged manifest `com.google.android.play.billingclient.version = 8.3.0`** 확인(Play가 정책 판정에 읽는 바로 그 메타데이터). 에뮬 release 실행 — 크래시 0, 설정 Premium 카드 정상(가격은 `US$4.99` fallback = Play 서명 앱이 아니라 상품 조회 실패, v1.4.0 때와 동일 정상 동작). **실결제는 게시 후 실기기(라이선스 테스터)로만 검증 가능.**
+- **교훈**: 라이브러리 메이저 업그레이드는 **최신(9.x)이 항상 답이 아니다** — Kotlin 메타데이터 호환성을 먼저 확인하고 정책 요건을 만족하는 최소 버전을 고를 것. 마이그레이션 문서보다 **javap 로 api.jar 시그니처를 직접 확인**하는 게 빠르고 정확했다.
+
+### 51. 에뮬레이터 ANR = 환경 문제 (코드 무관, 오진 방지)
+- **증상**: v1.5.1 release 스모크 중 "Fear & Greed Index isn't responding" ANR.
+- **원인 (증거)**: ANR Reason = `Input dispatching timed out ... Waited 5005ms for MotionEvent`, **Load: 47.86 / 18.81 / 6.94**(이후 95.31까지 상승). 같은 시각 `com.google.android.gms.persistent` ANR 후 `am_kill bg anr`로 강제 종료, `gms.icing.AppIndexingService`/`android.process.media`도 ANR. `-wipe-data` 콜드부팅 직후 Play/GMS 동기화 폭주.
+- **판정 근거**: 부하 진정 후 재실행 시 앱이 포커스 보유(`mCurrentFocus=th1ngjin.fearindex/.MainActivity`)하고 설정 화면 정상 렌더. 최근 ANR은 전부 시스템 프로세스.
+- **교훈**: 에뮬 ANR은 **`uptime` load average + `am_anr` 이벤트의 동반 ANR 여부**를 먼저 볼 것. Play 이미지는 root 불가라 `/data/anr/` 트레이스를 못 읽으므로 `logcat -b events|system` 이 유일한 근거. 부하 40+ 에서의 스모크 결과는 신뢰하지 말 것.
+
+### 52. API/푸시 전수 실측 — 전 채널 정상 (2026-07-31 00:51 KST)
+- **API 11종 전부 HTTP 200 + 스키마 일치**: KOSPI v2(dataDate 2026-07-30, intScore 17, isFinal true, kospiClose 1374/1374), cryptoOfficialIndicatorsV1(**BTC 공매도 available:true 로 복구** — 37번 당시 미제공이었음), CNN 37.54, Alternative.me 28, Yahoo chart v8 8심볼, CoinGecko 5종, currency-api 1444.789, Naver KOSPI/KOSDAQ, FINRA 5일.
+- **KOSPI 공매도는 여전히 `available:false`** → 카드 숨김(37번 설계대로, 정상).
+- **푸시 경로 정상**: 채널 `fear_index_alerts` 일치, payload 중첩 구조 서버 기대치와 일치, deviceId UUID v4 정규식 통과. **33번 "Android 신규 유저 즉시체크 공백"은 해소됨** — registerFCMToken payload에 임계값이 실려 서버 신규 분기 조건을 충족하고, 이어지는 updateSettings가 별도 훅도 발동. 서버 크론 30분 주기.
+- **targetSdk 36 영향 없음**: notification trampoline/exact alarm/foreground service/BOOT_COMPLETED 수신자 전부 코드에 없음. POST_NOTIFICATIONS 런타임 요청 이미 구현.
+- **⚠️ 새로 발견한 지뢰**: `KospiFearIndexApi.history` 파라미터가 개수처럼 보이지만 **서버는 boolean 취급** — `history=1`/`true`는 1374건, **`history=365`는 history 필드 자체가 없는 응답**. 현재 코드는 `if (includeHistory) 1 else null`이라 정상이나, 누가 "기간 늘리자"고 숫자를 넣으면 **KOSPI 차트/RSI가 에러 없이 빈 화면**이 된다. Boolean 타입으로 교체 권장.
+- **정리 대상**: Yahoo **spark** API는 실제로 429 반환 중이나 참조 0건인 死코드(`MarketIndexApi`/`DataSource`/`RepositoryImpl` + DI 3곳). `RECEIVE_BOOT_COMPLETED` 권한도 수신자 0건.
+
+## 2026-07-30 세션 후반 (v1.5.0 vc21 production 업로드 — targetSdk 36 + 코스피 신호 분해)
+
+### 48. Unity 미디에이션 어댑터만 있고 SDK 본체 누락 — release R8 빌드 실패
+- **증상**: `:app:minifyReleaseWithR8` FAILED — `Missing class com.unity3d.ads.*` (IUnityAdsInitializationListener 등, com.google.ads.mediation.unity 참조). debug는 minify off라 통과 → **7/26 Unity 어댑터 커밋(67410b3) 이후 release 빌드가 한 번도 안 돌았던 것**.
+- **원인**: `com.google.ads.mediation:unity:4.13.1.0` 어댑터 POM이 `com.unity3d.ads:unity-ads`를 transitively 안 끌어옴 (`:app:dependencies`로 확인 — 어댑터 노드에 자식 없음). Google 미디에이션 가이드는 SDK+어댑터 둘 다 명시가 표준.
+- **해결**: `unity-ads = 4.13.1` (어댑터 4.13.1.0과 짝) 명시 추가. R8 통과.
+- **교훈**: 미디에이션 어댑터 추가 시 파트너 SDK 본체 동반 여부를 dependencies 트리로 확인하고, **의존성 변경 후엔 release 빌드까지 돌려볼 것** (debug만 돌리면 R8 실패가 배포 직전에 터짐).
+
+### 49. v1.5.0(vc21) production 업로드 — targetSdk 36 (Google Play 2026-08-31 요건)
+- **요건**: Play Console 경고 "앱이 Android 16(API 36) 이상을 타겟팅해야 함, 8/31부터 업데이트 불가". compileSdk는 이미 36, **targetSdk만 35→36** (libs.versions.toml 한 줄). 매니페스트에 API 36 차단 요소 없음(orientation 고정/엣지투엣지 opt-out/back opt-out 전무 — 19번에서 이미 대응).
+- **배포**: v1.5.0/vc21 (신규 기능 minor bump, 47번 코스피 신호 분해 포함). changelog 21 45 locale "코스피 지수의 산출 근거를 확인할 수 있습니다. 앱 안정성을 개선하였습니다." `bundle exec fastlane production` 성공("Successfully finished the upload to Google Play"). 검증: AAB SHA-1 `CE:08:B4:...` 일치 + merged manifest targetSdkVersion=36 + 에뮬 release 스모크(카드 상단 노출).
+- **Play Console 확인 (Chrome MCP)**: 프로덕션 트랙 "활성 · 출시 버전 1.5.0 검토 중 · 177개국". **관리형 게시 사용 중지 상태** → 빠른 검사 후 자동 검토 전송, 승인 즉시 자동 게시(수동 클릭 불필요). API 36 경고는 1.5.0 게시 후 자동 해제 예정.
+- **⚠️ 관찰**: 대시보드에 "결제 계정에 주의가 필요한 긴급한 문제"(7/24 알림) 존재 — 업로드는 차단 안 함(Korean law 게이트는 43번에서 종결). 사용자 확인 필요.
+- **⚠️ 에뮬 스모크 함정**: `adb install` 실패가 체인 중간에 묻혀 **7/18에 깔린 구버전 1.4.1을 신버전으로 착각**하고 "카드 안 보임" 오진할 뻔 — `dumpsys package | grep versionName`으로 설치본 버전 확인 후 재설치로 해소. 설치 검증은 반드시 버전 확인까지.
+
+## 2026-07-30 세션 (코스피 신호 분해 카드 + 산출 방식 시트)
+
+### 47. 코스피 신호 분해/산출 방식 UI — iOS parity 이식 (feature/kospi-signal-breakdown)
+- **요청**: "코스피가 어떻게 산출되었는지 iOS처럼 안드로이드도 보여달라". 조사 결과 **데이터는 이미 완비** — `KospiLatestDTO`가 signals/clusterScores/confidence/missingSignals를 파싱해 `HomeUiState.kospiSnapshot`까지 올라와 있었으나 **UI가 안 쓰고 있었음** (설정 메뉴의 요약 텍스트만 존재).
+- **구현** (iOS SSOT: `FearIndexView.swift` kospiSignalBreakdownSection + KospiMethodInfoSheet):
+  - `KospiSignalBreakdownCard`: 신호별 [이름 + 점수(fearScoreColor) + 프로그레스바 + "클러스터 · 가중치 N%" 캡션] 최대 8행, USD/KRW 환율 행(갱신일 + 등락 배지, 한국식 상승빨강/하락파랑), 빈 상태/결측 신호 캡션.
+  - `KospiMethodInfoSheet`(ModalBottomSheet): 산출 방식(원천/종가확정/252일 백분위/분리 저장) + 데이터 품질(carry-forward 3일/가중치 재분배/원천 저장) + 현재 계산 정보(기준일/계산 시각 KST/신뢰도) + 환율 보조 지표 + 신호 분해 + 클러스터 점수(가격/시장 폭/심리/신용, 소수 1자리) + 결측 처리 7섹션.
+  - `KospiSignalText`(presentation/common): 서버 신호 이름 8종/클러스터/신뢰도 → 리소스 매핑, unknown 폴백. TDD 4케이스 (EventLocalizer 패턴).
+  - `HomeUiState.usdKrwRate` + `GetUsdKrwRateUseCase` 주입(기존 MarketDetail용 재사용, 실패 시 행만 숨김). KOSPI 탭 refresh 시 forceRefresh.
+  - strings 46키 × 45 locale — iOS xcstrings 스크립트 추출(%@→%n$s, ar 등 일부 locale은 iOS 원본이 영어값 그대로라 verbatim 유지).
+- **⚠️ 배치는 iOS와 다름 (사용자 결정)**: iOS는 인사이트 티저 아래지만, "산출 근거를 상단에 노출해 지수 신뢰도를 먼저 보여달라"는 사용자 지시로 **상단 배너 바로 아래** 배치. 배너 위치(매출 핵심)는 유지. ios-parity 체크 시 이 divergence 인지할 것.
+- **검증**: 781 테스트 GREEN. 에뮬(Ddalggak_Play_API_34) en/ko 실데이터 육안 — 신호 7개(서버가 현재 7개 게시: momentum 0/priceStrength 0/volatility 57/junkBond 1/safeHaven 2/foreignerFlow 13/marginBalance 12), 클러스터 점수(가격 0.2/폭 0.0/심리 27.2/신용 1.6), 신뢰도 높음, USD/KRW 1,444.8 ▼0.50%, 결측 "현재 제외된 신호가 없습니다".
+- **비고**: KOSPI 탭 진입 5초 후 인터스티셜 정상 발동 확인(기존 기능). priceBreadth 신호는 서버 응답에 현재 미포함(결측 목록에도 없음) — 클라 정상, 서버가 7개만 게시 중.
+
 ## 2026-07-07 세션 (v1.4.0 배포 차단 원인 규명 + IAP 제외 + 설정/알림 UX 정리)
 
 브랜치: dev ← feature/v1.4.0-no-iap, feature/v1.4.0-settings-ux (모두 --no-ff, 분기/합류 그래프). vc18/1.4.0 유지. **배포 전(로컬 dev만), push 미실행.** 703 테스트 GREEN, 실기기(Galaxy S23) 릴리즈 검증 완료.

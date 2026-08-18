@@ -39,6 +39,7 @@ import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetMarketIndicesDetailUseCase
+import th1ngjin.fearindex.domain.usecase.GetUsdKrwRateUseCase
 import java.io.IOException
 import java.time.Instant
 
@@ -56,6 +57,7 @@ class HomeViewModelTest {
     private val getMarketIndices = mockk<GetMarketIndicesDetailUseCase>()
     private val getAssetRsi = mockk<GetAssetRSIUseCase>()
     private val getAssetShortPressure = mockk<GetAssetShortPressureUseCase>()
+    private val getUsdKrwRate = mockk<GetUsdKrwRateUseCase>()
     private val analytics = mockk<AnalyticsManager>(relaxed = true)
 
     @Before
@@ -79,6 +81,7 @@ class HomeViewModelTest {
             getMarketIndices = getMarketIndices,
             getAssetRsi = getAssetRsi,
             getAssetShortPressure = getAssetShortPressure,
+            getUsdKrwRate = getUsdKrwRate,
             analytics = analytics,
         )
     }
@@ -455,6 +458,7 @@ class HomeViewModelTest {
         coEvery { getMarketIndices() } returns marketIndices
         coEvery { getAssetRsi(any()) } returns null
         coEvery { getAssetShortPressure(any()) } returns null
+        coEvery { getUsdKrwRate(any()) } returns null
     }
 
     private fun createFearIndex(score: Double) = FearIndex(
