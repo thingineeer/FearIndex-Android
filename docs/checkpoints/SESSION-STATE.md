@@ -28,14 +28,16 @@
 없음. (알파 심사 대기는 Google 측.)
 
 - [x] **push** — dev = origin/dev(78759074).
-- [x] **AdMob 실사** — 공포지수 Android 준비됨, 단위 6개(ID 코드 일치), 미디에이션 입찰 AdMob+Pangle+Unity 활성·매핑 6/6, 폭포식 0, AppLovin 미연결, 앱오프닝 단위 없음. 상세 bugs-fixed 56번.
+- [x] **AdMob 실사** — 공포지수 Android 준비됨, 단위 6개(ID 코드 일치), 미디에이션 입찰 AdMob+Pangle+Unity 활성·매핑 6/6, 폭포식 0, AppLovin 미연결. 상세 bugs-fixed 56번.
+- [x] **앱오프닝 단위 발급 + 코드 연결** — `AppOpen` `ca-app-pub-5283496525222246/6583206280`.
+- [x] **GMA Next-Gen SDK 1.3.1 마이그레이션** — 사용자 지시로 즉시 착수. Kotlin 2.2.21/KSP2/Hilt 2.58 + 어댑터 상향 + 광고 4파일 재작성 + AdSdkState 게이트. 803 테스트 GREEN, release AAB OK, 에뮬 배너/인터스티셜/앱오픈 실검증. 상세 bugs-fixed 57번.
 
 - [x] **앱오프닝 광고 단위 발급 + 코드 연결** — AdMob `AppOpen` `ca-app-pub-5283496525222246/6583206280`, release `ADMOB_APP_OPEN`(app+presentation) 반영, release compile OK. worktree `feature/v1.5.2-app-open-unit` → dev --no-ff.
 
 ## Remaining (다음 세션 우선순위)
 
 1. 알파 1.5.1 심사 통과 + 대시보드 "8월 31일까지 조치" 카드 소멸 확인(스캐너 갱신 지연 가능).
-2. **v1.5.2(vc23) 배포는 사용자 지시 대기**(Pangle 어댑터 + 앱오프닝 ID 포함). 배포 시: versionCode 23 bump + changelog 23 + `bundle exec fastlane production` + **RC `app_open_ads_enabled` 등 4키 게시**(안 하면 앱오픈 안 뜸) + AdMob 앱오프닝 미디에이션 그룹(선택).
+2. **v1.5.2(vc23) 배포는 사용자 지시 대기** — 내용물 = **GMA Next-Gen SDK 1.3.1** + Pangle/Unity 어댑터 상향 + 앱오프닝 ID. 배포 시: versionCode 23 bump + changelog 23 + `bundle exec fastlane production` + **RC `app_open_ads_enabled` 등 4키 게시**(안 하면 앱오픈 안 뜸) + AdMob 앱오프닝 미디에이션 그룹(선택). **배포 후 필수 감시**: Crashlytics `MotionEvent recycled twice`(NG 1.3.x #96)/App Open NPE(#85), AdMob 배너 match rate·eCPM 기준선 대비(#62). 문제 시 NG 1.2.1 다운그레이드 검토.
 3. AppLovin 연동 여부 — 사용자가 직접 검토 중.
 4. 실기기 Billing 8 결제 재검증(1.5.1, 미완), `KospiFearIndexApi.history` boolean 지뢰, Yahoo spark 死코드, BOOT_COMPLETED 권한 정리(이월).
 5. **결제 프로필/계정 삭제 예고(9/16)** — 사용자가 직접 진행 중. 관여 금지.

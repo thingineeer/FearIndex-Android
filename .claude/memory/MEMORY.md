@@ -24,6 +24,7 @@
 - **dev 머지 완료(로컬, push 미실행)**: origin/dev(1.5.1) ← Pangle 어댑터. GMA 23.6.0→**24.8.0**(23.x deprecated), Unity 4.13.1.0 + Pangle 7.8.0.8.0 공존. 791 테스트 GREEN + release AAB 빌드 OK. 버전은 아직 vc22/1.5.1(bump 안 함).
 - **✅ push 완료**(dev = origin/dev, 78759074).
 - **AdMob 실사(56번)**: 공포지수 Android 준비됨·게재 사용중, 단위 6개(배너5+전면1, ID 코드와 일치), 미디에이션 입찰 소스 = AdMob+**Pangle**+**Unity**(활성, 매핑 6/6), 폭포식 0, **AppLovin 미연결**(코드에도 없음). **앱오프닝 단위 없음**(코드만 있음). Pangle 매핑은 이미 완료 → v1.5.2(Pangle 어댑터 포함) 배포 시 실가동.
+- **✅ GMA Next-Gen SDK 1.3.1 마이그레이션 완료(8/18, dev 로컬)**: 레거시 play-services-ads 제거, Kotlin 2.2.21+KSP2+Hilt 2.58, Pangle 8.2.0.4.0/Unity 4.19.0.1/UMP 4.0.0, 광고 4파일 재작성(콜백 메인 디스패치 + AdSdkState 초기화 게이트 + BannerAdSlot dispose 가드). 803 테스트 GREEN + release AAB + 에뮬 배너/인터스티셜/앱오픈 전 경로 실검증. **배포 후 Crashlytics(#96 MotionEvent 크래시)·배너 match rate 감시 필수.** 상세 57번.
 - **✅ 앱오프닝 단위 발급(8/18)**: AdMob `AppOpen` = `ca-app-pub-5283496525222246/6583206280`. app/presentation release `ADMOB_APP_OPEN` 반영(feature/v1.5.2-app-open-unit → dev --no-ff). **실가동 조건**: (a) 이 커밋 포함 빌드 배포(v1.5.2) + (b) Firebase RC `app_open_ads_enabled=true`(+session_cap/cooldown/min_background 키, bugs-fixed 41번) 게시 — 둘 다 아직. 미디에이션 그룹(앱오프닝)은 미생성 — AdMob 네트워크만으로 우선 가동, 원하면 Pangle/Unity 앱오픈 매핑 추가.
 - **사용자 결정(8/18)**: v1.5.2(Pangle 포함) 배포는 **대기**. AppLovin은 사용자가 직접 검토.
 - **다음**: (1) 알파 심사 통과·대시보드 API 36 카드 소멸 확인 (2) 사용자 지시 시 v1.5.2(vc23) 배포 + RC 앱오픈 키 게시 (3) 실기기 Billing 8 결제 재검증(미완).
