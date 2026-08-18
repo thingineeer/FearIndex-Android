@@ -31,6 +31,7 @@ import th1ngjin.fearindex.core.appcheck.AppCheckInitializer
 import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.debug.ScreenshotMode
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
+import th1ngjin.fearindex.core.ads.AdSdkState
 import th1ngjin.fearindex.core.purchases.PurchaseManager
 import th1ngjin.fearindex.core.remoteconfig.RemoteConfigManager
 import th1ngjin.fearindex.presentation.component.AppOpenAdManager
@@ -182,6 +183,7 @@ class FearIndexApp : Application() {
                 ) {
                     // 어댑터 초기화 완료 콜백은 백그라운드 스레드 → 앱오픈 preload 는 메인으로 디스패치
                     // (iOS: startAdMobSDK 콜백에서 preload).
+                    AdSdkState.markInitialized()
                     mainHandler.post {
                         appOpenAdManager.preloadIfNeeded(
                             this@FearIndexApp,

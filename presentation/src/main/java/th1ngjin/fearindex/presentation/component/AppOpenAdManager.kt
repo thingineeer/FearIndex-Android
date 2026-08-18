@@ -12,6 +12,7 @@ import com.google.android.libraries.ads.mobile.sdk.common.AdLoadCallback
 import com.google.android.libraries.ads.mobile.sdk.common.AdRequest
 import com.google.android.libraries.ads.mobile.sdk.common.FullScreenContentError
 import com.google.android.libraries.ads.mobile.sdk.common.LoadAdError
+import th1ngjin.fearindex.core.ads.AdSdkState
 import th1ngjin.fearindex.core.ads.AppOpenAdConfig
 import th1ngjin.fearindex.core.ads.AppOpenAdPolicy
 import timber.log.Timber
@@ -55,6 +56,8 @@ class AppOpenAdManager(
      */
     fun preloadIfNeeded(context: Context, adUnitId: String, config: AppOpenAdConfig) {
         if (adUnitId.isBlank() || isAdScreenshotMode()) return
+        // Next-Gen SDK: initialize 완료 전 load 금지(UninitializedPropertyAccessException 위험).
+        if (!AdSdkState.isInitialized.value) return
         if (!config.enabled) return
         if (isLoading || isReady) return
         if (policy.impressionCount >= config.sessionCap) return

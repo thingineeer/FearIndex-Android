@@ -11,6 +11,7 @@ import com.google.android.libraries.ads.mobile.sdk.common.LoadAdError
 import com.google.android.libraries.ads.mobile.sdk.interstitial.InterstitialAd
 import com.google.android.libraries.ads.mobile.sdk.interstitial.InterstitialAdEventCallback
 import th1ngjin.fearindex.core.ads.AdRetryPolicy
+import th1ngjin.fearindex.core.ads.AdSdkState
 import timber.log.Timber
 
 /**
@@ -54,6 +55,8 @@ object InterstitialAdManager : InterstitialAdController {
         isRetry: Boolean = false,
     ) {
         if (adUnitId.isBlank() || isAdScreenshotMode()) return
+        // Next-Gen SDK: initialize 완료 전 load 금지(UninitializedPropertyAccessException 위험).
+        if (!AdSdkState.isInitialized.value) return
         if (isLoading || interstitialAd != null) return
         currentAdUnitId = adUnitId
         isLoading = true

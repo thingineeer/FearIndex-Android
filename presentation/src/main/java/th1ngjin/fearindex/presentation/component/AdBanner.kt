@@ -28,6 +28,7 @@ import com.google.android.libraries.ads.mobile.sdk.common.LoadAdError
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
+import th1ngjin.fearindex.core.ads.AdSdkState
 import th1ngjin.fearindex.core.ads.AdRetryPolicy
 import th1ngjin.fearindex.presentation.di.AdsEntryPoint
 import th1ngjin.fearindex.presentation.feature.onboarding.LocalOnboardingTour
@@ -78,7 +79,10 @@ fun AdBanner(
     val isAdFree by purchaseManager.isAdFree.collectAsStateWithLifecycle()
     val adsConfig by remoteConfig.adsConfig.collectAsStateWithLifecycle()
     val canRequestAds by AdRequestAvailability.canRequestAds.collectAsStateWithLifecycle()
-    if (isAdFree || !canRequestAds || !adsConfig.adsEnabled || adUnitId.isBlank()) {
+    // Next-Gen SDK 는 MobileAds.initialize 완료 전 load 시 UninitializedPropertyAccessException 위험 —
+    // 초기화가 끝난 뒤에만 AdView 를 만들고 로드한다(완료 시 리컴포지션으로 자연 진입).
+    val sdkInitialized by AdSdkState.isInitialized.collectAsStateWithLifecycle()
+    if (isAdFree || !canRequestAds || !adsConfig.adsEnabled || adUnitId.isBlank() || !sdkInitialized) {
         return
     }
 
