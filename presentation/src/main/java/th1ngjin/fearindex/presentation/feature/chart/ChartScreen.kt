@@ -20,18 +20,21 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -73,11 +76,14 @@ import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
+import th1ngjin.fearindex.presentation.common.findActivity
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.component.ChartSkeletonView
 import th1ngjin.fearindex.presentation.component.InsightDetailSheet
 import th1ngjin.fearindex.presentation.component.InsightFeedView
+import th1ngjin.fearindex.presentation.component.ScoreExplorerCard
+import th1ngjin.fearindex.presentation.component.ScoreExplorerInfoSheet
 import th1ngjin.fearindex.presentation.component.SegmentedPicker
 import th1ngjin.fearindex.presentation.di.AnalyticsEntryPoint
 import th1ngjin.fearindex.presentation.feature.home.FearIndexState
@@ -144,6 +150,8 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
     val insightViewModel: InsightViewModel = hiltViewModel()
     val insightState by insightViewModel.uiState.collectAsState()
+    val explorerViewModel: ScoreExplorerViewModel = hiltViewModel()
+    val explorerState by explorerViewModel.uiState.collectAsState()
 
     // InsightViewModel이 HomeViewModel을 관찰
     LaunchedEffect(Unit) {
@@ -164,6 +172,22 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
         FearIndexType.KOSPI -> uiState.kospiState
         FearIndexType.CRYPTO -> uiState.cryptoState
     }
+
+    // 점수별 과거 수익률(Score Explorer): 세그먼트/현재 점수 변경 시 그 자산으로 바인딩 (iOS 자산 전환 리셋)
+    val currentScore = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore
+    LaunchedEffect(selectedType, currentScore) {
+        explorerViewModel.bind(selectedType, currentScore)
+    }
+    var showExplorerInfo by rememberSaveable { mutableStateOf(false) }
+    if (showExplorerInfo) {
+        ScoreExplorerInfoSheet(
+            indexType = explorerState.indexType,
+            sourceRange = explorerState.sourceRange,
+            updatedAt = explorerState.updatedAt,
+            onDismiss = { showExplorerInfo = false },
+        )
+    }
+    ScoreExplorerResultDialog(dialog = explorerState.dialog, onDismiss = explorerViewModel::dismissDialog)
 
     // 기간 선택 상태는 ViewModel의 marketHistoryDays/cryptoHistoryDays에서 역산 (SSOT)
     // 탭 재진입 시 로컬 remember가 리셋되어도 ViewModel은 살아있어 UI/데이터 일치 유지
@@ -270,6 +294,17 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     insights = insightState.insights,
                     onInsightClick = insightViewModel::selectInsight,
                     onCardViewed = insightViewModel::logCardViewed,
+                    scoreExplorer = {
+                        ScoreExplorerCard(
+                            state = explorerState,
+                            onMove = explorerViewModel::move,
+                            onMoveEnded = explorerViewModel::moveEnded,
+                            onReset = explorerViewModel::reset,
+                            onUnlock = { context.findActivity()?.let(explorerViewModel::purchase) },
+                            onRestore = explorerViewModel::restore,
+                            onInfo = { showExplorerInfo = true },
+                        )
+                    },
                 )
             }
             is FearIndexState.Error -> {
@@ -282,6 +317,23 @@ fun ChartScreen(viewModel: HomeViewModel = hiltViewModel()) {
             }
         }
     }
+}
+
+/** 점수 탐색기 카드 안 구매/복원 실패 다이얼로그 (설정 화면 문구 재사용). */
+@Composable
+private fun ScoreExplorerResultDialog(dialog: ScoreExplorerDialog?, onDismiss: () -> Unit) {
+    val message = when (dialog) {
+        ScoreExplorerDialog.PurchaseFailed -> stringResource(R.string.settings_remove_ads_purchase_failed)
+        ScoreExplorerDialog.RestoreFailure -> stringResource(R.string.settings_restore_failure)
+        null -> return
+    }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_confirm)) }
+        },
+        text = { Text(message) },
+    )
 }
 
 private fun FearIndexType.analyticsLabel(): String = when (this) {
@@ -307,6 +359,7 @@ private fun ChartLoadedContent(
     insights: List<MarketInsight> = emptyList(),
     onInsightClick: (MarketInsight) -> Unit = {},
     onCardViewed: (MarketInsight) -> Unit = {},
+    scoreExplorer: @Composable () -> Unit = {},
 ) {
     val selectedDays = if (isCrypto) selectedCryptoPeriod.days else selectedMarketPeriod.days
     val chartData = remember(history, selectedDays) {
@@ -387,6 +440,10 @@ private fun ChartLoadedContent(
         adUnitId = BuildConfig.ADMOB_BANNER_CHART,
         screenName = "차트",
     )
+
+    // 6.7. 점수별 과거 수익률 (프리미엄 슬라이더 카드) — 배너 아래, 인사이트 피드 위 (v1.9.4 parity)
+    Spacer(modifier = Modifier.height(16.dp))
+    scoreExplorer()
 
     // 7. Insight Feed (iOS 차트 탭 순서: 기간 버튼 아래 → 인사이트 피드)
     if (insights.isNotEmpty()) {
