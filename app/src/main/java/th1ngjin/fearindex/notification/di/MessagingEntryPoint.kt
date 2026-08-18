@@ -5,6 +5,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.service.DeviceIdProvider
+import th1ngjin.fearindex.domain.usecase.NotificationHistoryUseCase
 
 /**
  * Hilt EntryPoint -- FirebaseMessagingService에서 DI 컴포넌트 접근용.
@@ -17,4 +18,5 @@ import th1ngjin.fearindex.domain.service.DeviceIdProvider
 interface MessagingEntryPoint {
     fun notificationRepository(): NotificationRepository
     fun deviceIdProvider(): DeviceIdProvider
+    fun notificationHistoryUseCase(): NotificationHistoryUseCase
 }

@@ -39,6 +39,8 @@ import th1ngjin.fearindex.core.update.UpdateStatus
 import th1ngjin.fearindex.domain.entity.NotificationPermissionSyncPolicy
 import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.service.DeviceIdProvider
+import th1ngjin.fearindex.domain.usecase.NotificationHistoryUseCase
+import th1ngjin.fearindex.notification.NotificationHistoryRecorder
 import th1ngjin.fearindex.presentation.feature.splash.SplashView
 import th1ngjin.fearindex.presentation.feature.update.ForceUpdateView
 import th1ngjin.fearindex.presentation.navigation.FearIndexNavHost
@@ -57,6 +59,10 @@ class MainActivity : ComponentActivity() {
     @Inject lateinit var purchaseManager: PurchaseManager
     @Inject lateinit var notificationRepository: Lazy<NotificationRepository>
     @Inject lateinit var deviceIdProvider: Lazy<DeviceIdProvider>
+    @Inject lateinit var notificationHistoryUseCase: Lazy<NotificationHistoryUseCase>
+
+    /** 알림 탭 인텐트 → 내역 기록 (경로 2). */
+    private val historyRecorder by lazy { NotificationHistoryRecorder(notificationHistoryUseCase.get()) }
 
     private val inAppUpdateManager by lazy {
         InAppUpdateManager(AppUpdateManagerFactory.create(this))
@@ -86,6 +92,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         requestAdsConsentInfo()
         maybeRunInitialNotificationAuthorization()
+        historyRecorder.recordLaunchIntent(intent?.extras)
         setContent {
             FearIndexTheme {
                 var showSplash by remember { mutableStateOf(true) }
@@ -136,6 +143,13 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        // 액티비티가 이미 떠 있는 상태에서 알림 탭 (singleTask/reorder 경로) — 내역 기록.
+        historyRecorder.recordLaunchIntent(intent.extras)
     }
 
     override fun onResume() {
