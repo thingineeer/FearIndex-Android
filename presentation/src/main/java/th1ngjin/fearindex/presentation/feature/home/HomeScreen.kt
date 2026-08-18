@@ -26,8 +26,10 @@ import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -47,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -100,6 +103,7 @@ import th1ngjin.fearindex.presentation.component.StuckCounterCard
 import th1ngjin.fearindex.presentation.component.StuckDetailSheet
 import th1ngjin.fearindex.presentation.component.StuckStatus as UiStuckStatus
 import th1ngjin.fearindex.presentation.di.AdsEntryPoint
+import th1ngjin.fearindex.presentation.feature.history.NotificationHistoryBadgeViewModel
 import th1ngjin.fearindex.presentation.feature.insight.InsightIndexScope
 import th1ngjin.fearindex.presentation.feature.insight.InsightViewModel
 import th1ngjin.fearindex.presentation.feature.similarevents.SimilarEventsViewModel
@@ -121,8 +125,13 @@ private const val ANALYTICS_CANCEL = "취소"
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     onTickerClick: () -> Unit = {},
+    onNotificationHistoryClick: () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    // 홈 🔔 미확인 배지 (iOS refreshUnreadBadge — 홈 진입 시 재계산)
+    val badgeViewModel: NotificationHistoryBadgeViewModel = hiltViewModel()
+    val hasUnreadNotifications by badgeViewModel.hasUnread.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) { badgeViewModel.refresh() }
     val insightViewModel: InsightViewModel = hiltViewModel()
     val insightState by insightViewModel.uiState.collectAsState()
     val voteViewModel: VoteViewModel = hiltViewModel()
@@ -299,6 +308,8 @@ fun HomeScreen(
         TitleBar(
             currentScore = loadedScore,
             ratingLabel = loadedRating,
+            hasUnreadNotifications = hasUnreadNotifications,
+            onNotificationHistoryClick = onNotificationHistoryClick,
             onShareClicked = {
                 if (loadedScore != null) {
                     analytics.log(
@@ -393,6 +404,8 @@ fun HomeScreen(
 private fun TitleBar(
     currentScore: Int? = null,
     ratingLabel: String? = null,
+    hasUnreadNotifications: Boolean = false,
+    onNotificationHistoryClick: () -> Unit = {},
     onShareClicked: () -> Unit = {},
 ) {
     // 공유 메시지의 제목/본문도 다국어. 점수와 등급은 호출부에서 ratingLabel(score)로 미리 주입.
@@ -405,6 +418,12 @@ private fun TitleBar(
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.Center),
+        )
+        // 🔔 알림 내역 진입점 — 공유 반대편(좌측), 미확인 시 빨간 점 (iOS notificationBellButton).
+        NotificationBellButton(
+            hasUnread = hasUnreadNotifications,
+            onClick = onNotificationHistoryClick,
+            modifier = Modifier.align(Alignment.CenterStart),
         )
         val chooserTitle = stringResource(R.string.share_chooser_title)
         IconButton(
@@ -432,6 +451,34 @@ private fun TitleBar(
                 contentDescription = stringResource(R.string.share_content_description),
                 tint = MaterialTheme.colorScheme.onBackground,
             )
+        }
+    }
+}
+
+@Composable
+private fun NotificationBellButton(
+    hasUnread: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    IconButton(
+        onClick = onClick,
+        modifier = modifier.testTag("home-notification-history-button"),
+    ) {
+        Box {
+            Icon(
+                imageVector = Icons.Outlined.Notifications,
+                contentDescription = stringResource(R.string.notification_history_title),
+                tint = MaterialTheme.colorScheme.onBackground,
+            )
+            if (hasUnread) {
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .size(7.dp)
+                        .background(Color.Red, CircleShape),
+                )
+            }
         }
     }
 }

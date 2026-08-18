@@ -44,6 +44,7 @@ import androidx.compose.ui.platform.LocalContext
 import th1ngjin.fearindex.presentation.feature.chart.ChartScreen
 import th1ngjin.fearindex.presentation.feature.home.HomeScreen
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
+import th1ngjin.fearindex.presentation.feature.history.NotificationHistoryScreen
 import th1ngjin.fearindex.presentation.feature.marketdetail.MarketDetailScreen
 import th1ngjin.fearindex.presentation.feature.onboarding.LocalOnboardingTour
 import th1ngjin.fearindex.presentation.feature.onboarding.OnboardingDestination
@@ -218,6 +219,7 @@ fun FearIndexNavHost(
                 HomeScreen(
                     viewModel = homeViewModel,
                     onTickerClick = { navController.navigate("market_detail") },
+                    onNotificationHistoryClick = { navController.navigate("notification_history") },
                 )
             }
             composable(BottomNavItem.Chart.route) {
@@ -271,6 +273,9 @@ fun FearIndexNavHost(
             }
             composable("market_detail") {
                 MarketDetailScreen(onBack = { navController.popBackStack() })
+            }
+            composable("notification_history") {
+                NotificationHistoryScreen(onBack = { navController.popBackStack() })
             }
         }
         }
