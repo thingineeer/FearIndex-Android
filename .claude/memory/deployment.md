@@ -27,6 +27,7 @@ type: reference
 | AdMob VoteBanner | `ca-app-pub-5283496525222246/2417949811` |
 | AdMob SettingsBanner | `ca-app-pub-5283496525222246/4627498578` |
 | AdMob KospiInterstitial | `ca-app-pub-5283496525222246/1522532479` |
+| AdMob AppOpen (2026-08-18 발급) | `ca-app-pub-5283496525222246/6583206280` |
 
 ### 키 이력 (폐기됨, Firebase 등록 정리 시 참고)
 

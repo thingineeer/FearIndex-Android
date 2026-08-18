@@ -81,7 +81,7 @@ android {
             buildConfigField("String", "ADMOB_INTERSTITIAL", "\"ca-app-pub-5283496525222246/1522532479\"")
             // ⚠️ App Open 프로덕션 단위 ID — AdMob Console에서 신규 발급 후 교체 필요.
             // 빈 값이면 AppOpenAdManager 게이트에서 로드/노출이 자동 차단된다.
-            buildConfigField("String", "ADMOB_APP_OPEN", "\"\"")
+            buildConfigField("String", "ADMOB_APP_OPEN", "\"ca-app-pub-5283496525222246/6583206280\"")
             signingConfig = signingConfigs.getByName("release")
         }
     }
