@@ -4,6 +4,26 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-08-18 세션 (Play 계정 이전 후속 — SA 403 / API 36 경고 원인 / GMA Next-Gen 판단)
+
+### 53. fastlane 서비스 계정 403 — 앱이 다른 개발자 계정으로 이전됐기 때문 (SA 재초대 필요)
+- **증상**: `bundle exec fastlane run google_play_track_version_codes` / `upload_to_play_store validate_only` 모두 `Google Api Error: Invalid request - The caller does not have permission`. `validate_play_store_json_key`는 성공(인증 OK, 권한만 없음).
+- **원인 (Play Console 실측)**: 8/4~8/6에 FearIndex·딸깍·그늘길 3개 앱이 조직 계정 **"Myeongjin Lee"(ID 5351376807423705889)** → 개인 계정 **"이명진"(ID 5573450681823453997)** 으로 **앱 이전 완료**. 새 계정 "사용자 및 권한"에는 `fastlane-deploy@fear-index-a4f4b.iam.gserviceaccount.com`이 **없음**(dlaudwls1203 / mjplist / shadewalk SA / compute SA 4명뿐). SA 권한은 계정에 귀속되므로 이전과 함께 사라짐.
+- **해결(사용자 작업)**: 새 계정 → 사용자 및 권한 → 신규 사용자 초대 → 이메일 `fastlane-deploy@fear-index-a4f4b.iam.gserviceaccount.com` → 앱 권한에서 Fear & Greed Index 추가 → 출시(프로덕션/테스트 트랙) + 스토어 등록정보 관리 권한 → 초대. (SA는 수락 절차 없이 즉시 활성.) Claude의 폼 입력은 harness 분류기가 차단(계정 권한 변경) → 사용자가 직접.
+- **접근 경로**: Play Console은 `mjplist@gmail.com`(또는 dlaudwls1203)으로 로그인 → 개발자 계정 선택에서 **"이명진"** 선택. "Myeongjin Lee" 조직 계정은 이제 앱 0개(껍데기). Chrome 프로필에 따라 `/u/N` 인덱스가 다름(오늘은 `/u/6`이 이명진 계정으로 리다이렉트).
+- **교훈**: fastlane 403이면 SA 키가 아니라 **앱이 어느 개발자 계정에 있는지**부터 확인. 앱 이전 시 SA/사용자 권한은 자동으로 따라오지 않는다.
+
+### 54. Play "API 36 타겟" 경고가 1.5.1 게시 후에도 남는 이유 = 내부/비공개 알파 트랙에 vc3(1.0.2) 활성
+- **실측** (최신 버전 및 번들): 프로덕션 1.5.1/vc22(7/31, targetSdk 36) 외에 **비공개 테스트 Alpha `3 (1.0.2)` vc3 "Google Play에서 테스터에게 제공"** + **내부 테스트 `3 (1.0.2)` vc3 "내부 테스터에게 제공됨"**(둘 다 2026-04-21) + 내부 테스트 1.0.1/vc8 임시. Play는 **모든 활성 트랙**의 targetSdk를 검사하므로 vc3(targetSdk 35 이하)이 경고를 유지시킴. 대시보드 카드 "8월 31일까지 조치"의 알림 날짜는 7/22(1.5.0 이전).
+- **해결(코드 무관)**: vc22를 내부 테스트 + 비공개 알파에 **라이브러리에서 새 버전 만들기**로 승격(재빌드/재업로드 불필요) 또는 두 트랙 일시중지. SA 복구 후 fastlane으로도 가능: `upload_to_play_store(track:"internal", version_code:22, skip_upload_aab:true, skip_upload_apk:true, skip_upload_metadata:true, skip_upload_changelogs:true, skip_upload_images:true, skip_upload_screenshots:true)` (알파는 track 이름 확인 필요).
+- **교훈**: 정책 경고는 프로덕션만이 아니라 **테스트 트랙의 옛 번들**도 본다. 배포 후 경고가 안 사라지면 "최신 버전 및 번들" 표부터 볼 것.
+
+### 55. GMA Next-Gen SDK 이전 — 지금은 보류, v1.6.0에서 계획적으로 (근거 기록)
+- **AdMob 메일(8/18)**: "GMA Next-Gen SDK가 Android 기본·권장, 레거시는 maintenance mode". 조사(공식 문서·POM·GitHub 이슈, 2026-08-18): Next-Gen **1.0.0 GA 2026-04-14 → 최신 1.3.1(7/29)**. **하드 데드라인 없음** — 레거시 v24/25는 2027-06-30 deprecated / 2028-06-30 sunset. v23.x는 이미 deprecated(2026-02-17, sunset 2027-06-30) → 이번 머지로 24.8.0.
+- **보류 근거**: ① 1.3.x에 `MotionEvent recycled twice` 랜덤 크래시(#96, 광고 밖 스크롤 중에도), App Open show() NPE(#85), 배너 fill 30~50% 하락 보고(#62) ② 최신 어댑터(Pangle 8.1.0.3.0+/Unity 4.18.1.0+)가 kotlin-stdlib 2.3.0 의존 → **Kotlin 2.1.0에선 빌드 실패 가능(Kotlin ≥2.2 bump 선행)** — Billing 9.x와 같은 벽 ③ Billing 8 첫 배포(1.5.1) 결제 실기기 검증도 아직인데 광고 SDK까지 갈면 변수 겹침.
+- **옮길 때 체크리스트**: Kotlin ≥2.2 → Pangle ≥8.0.0.5.0(권장 8.2.0.4.0)/Unity ≥4.18.0.0(권장 4.19.0.1+unity-ads 4.19.0) → 앱 전역 `exclude(group="com.google.android.gms", module="play-services-ads")`+`-lite`(어댑터 POM이 레거시를 끌어옴) → UMP 3.0.0→4.0.0(transitive) → `MobileAds.initialize(ctx, InitializationConfig.Builder(APP_ID))` **background thread 필수** → 모든 로드/이벤트 콜백이 background thread(메인 디스패치) → `AdRequest.Builder(adUnitId)`/`BannerAdRequest.Builder(id, adSize)`, `AdListener`→`BannerAdEventCallback`, `FullScreenContentCallback`→`InterstitialAdEventCallback`/`AppOpenAdEventCallback` → 인라인 adaptive는 `onAdLoaded`에서 `BannerAd.getAdSize()`로 실제 높이(22번 정책 유지) → 자체 `AdRetryPolicy`와 SDK 자동 재시도 중복 정리 → AdMob 배너 match rate/eCPM 기준선 A/B. 광고 코드 표면적: AdBanner/InterstitialAdManager/AppOpenAdManager/FearIndexApp 4파일 ~550줄. 공식 Claude Code skill: `npx skills add google/skills --skill google-mobile-ads-android-migrate-to-next-gen`.
+- **머지 결과**: dev = origin/dev(1.5.1) + Pangle 어댑터. libs: GMA **24.8.0**, Unity 어댑터 4.13.1.0(23.6.0 빌드지만 24.0.0 breaking change에 mediation API 없음, runtime classpath에서 23.6.0→24.8.0 승격 확인), Pangle 7.8.0.8.0. 791 테스트 GREEN + release AAB(R8) 빌드 성공(vc22 그대로, 미배포).
+
 ## 2026-07-31 새벽 (v1.5.1 vc22 — Play Billing 8 마이그레이션 + API/푸시 전수 검증)
 
 ### 50. Play Billing 7.1.1 → 8.3.0 마이그레이션 (정책 기한 2026-08-31)
