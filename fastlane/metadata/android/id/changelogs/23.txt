@@ -1,0 +1,1 @@
+Menambahkan penjelajah skor premium dan riwayat notifikasi. Stabilitas aplikasi ditingkatkan.

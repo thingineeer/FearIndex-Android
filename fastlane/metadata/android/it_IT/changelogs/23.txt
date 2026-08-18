@@ -1,0 +1,1 @@
+Aggiunti l'esploratore dei punteggi premium e la cronologia delle notifiche. Migliorata la stabilità dell'app.
