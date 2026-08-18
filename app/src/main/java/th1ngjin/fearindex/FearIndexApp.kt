@@ -95,6 +95,8 @@ class FearIndexApp : Application() {
         initFirebase(screenshotMode)
         setupNotificationChannels()
         if (!screenshotMode) {
+            // release: WARN+ Timber → Crashlytics (프리미엄 경로 실패를 Firebase 에서 확인 가능하게)
+            VariantHooks.plantLogging(crashReporter)
             registerFCMToken()
             initAdMob()
             purchaseManager.start()
