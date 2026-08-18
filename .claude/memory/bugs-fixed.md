@@ -6,6 +6,13 @@ type: project
 
 ## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
 
+### 60. v1.5.2 production 배포 (vc24) — fastlane internal 은 draft 로만 올린다 + release Crashlytics 트리
+- **⚠️ `fastlane internal` lane 은 `release_status` 미지정 → Play 에 "임시(draft) 버전"으로만 업로드**되고 테스터에게 안 나감. 콘솔 내부 테스트 트랙에 "비활성 · 임시 버전 1.5.2 / 버전 수정" 으로 표시됨. 그리고 **이미 업로드된 versionCode 는 다른 트랙에 재업로드 불가**("Version code 23 has already been used") → 승격은 `track:internal track_promote_to:production` 조합(54번)이거나, 새 vc 로 올려야 함. 이번엔 CrashlyticsTree 포함을 위해 **vc24 로 production 직접 업로드**(vc23 draft 는 그대로 방치, 무해).
+- **교훈**: 내부 테스트를 실제 테스터에게 내보내려면 Fastfile internal lane 에 `release_status: "completed"` 추가 필요(현재 미수정 — 다음에 internal 쓸 때 고칠 것). fastlane "Successfully" 만 믿지 말고 **콘솔 트랙 페이지의 상태 문구(임시/검토 중/제공됨)** 까지 볼 것(37번 교훈 재확인).
+- **API 36 경고 재확인**: vc23/vc24 AAB 의 proto manifest 에서 `targetSdkVersion "36"` 직접 파싱 확인. 1.5.1 도 36 이었으나 Google 안내문("새 버전을 프로덕션에 게시하면 해제")대로 스캐너가 프로덕션 게시 이벤트를 기다림 → vc24 게시 후 자동 해소 예상.
+- **release Timber → Crashlytics 트리 (사용자 지시 "안 되면 로그 남겨 Firebase 로 나중에 알 수 있게")**: release 에 Timber tree 가 전혀 없어 `Timber.w(t, ...)`(수익률 Firestore fallback, 알림내역 read/rewrite 실패 등)가 아무 데도 안 남던 갭 발견. `app/src/release/.../variant/CrashlyticsTree.kt`(WARN+ → Crashlytics log, Throwable → non-fatal recordException) + `VariantHooks.plantLogging(crashReporter)`(release 식재/debug no-op) + FearIndexApp initFirebase 직후 호출. mapping 에 `CrashlyticsTree -> K7.a` 로 포함 확인, DEBUG 결제 심볼은 여전히 0.
+- **게시 개요 실측**: "관리형 게시가 사용 중지됨" + "검토 중인 변경사항 · 빠른 검사 실행 중(최대 13분)" → 검사 통과 시 자동 검토 전송·승인 즉시 게시. production=[24].
+
 ### 59. 프리미엄 parity 4종 (iOS v1.9.4 → Android) — 점수 탐색기·알림 내역·프리미엄 게이트·DEBUG 결제 토글
 - **goal 문서**: `/Users/imyeongjin/Desktop/worktrees/fi-v194-design/docs/handoff/premium-parity-android.md` (iOS SSOT). 브랜치 `feature/v1.5.2-premium-parity`(통합) ← 4 sub-worktree(returndata/history/explorer-ui/history-ui) 전부 `--no-ff` → **dev 머지 완료(beebbe8)**. push 미실행.
 - **프리미엄 게이트**: 새 SKU 없음. `PurchaseManager.isPremium` = `isAdFree` 별칭. 게시값 = `entitlementOverride ?: realAdFree` — `setEntitlementOverride(Boolean?)`(QA/디버그 seam). `PremiumFeature{SCORE_EXPLORER, NOTIFICATION_HISTORY_UNLIMITED}` + `PremiumFeaturePolicy.canUse`(domain 순수). 공용 `PremiumLockRow`(잠금 제목/본문·"해제 CTA · 가격"·복원, testTag premium-lock-row/-cta) + `PremiumBadge`/`LowSampleWarningBadge`. 구매 이벤트 `source`(settings|score_explorer|notification_history) + GA `premium_lock_tapped{feature}`/`score_explorer_moved{index_type,score,period}`/`notification_history_viewed{count}` (iOS 이름 1:1).
