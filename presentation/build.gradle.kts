@@ -80,7 +80,7 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
 
     // AdMob (Compose 광고 컴포넌트용)
-    implementation(libs.play.services.ads)
+    implementation(libs.gma.next.gen)
     implementation(libs.user.messaging.platform)
 
     // Accompanist
