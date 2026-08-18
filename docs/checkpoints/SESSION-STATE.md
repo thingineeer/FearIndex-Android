@@ -31,6 +31,7 @@
 - [x] **AdMob 실사** — 공포지수 Android 준비됨, 단위 6개(ID 코드 일치), 미디에이션 입찰 AdMob+Pangle+Unity 활성·매핑 6/6, 폭포식 0, AppLovin 미연결. 상세 bugs-fixed 56번.
 - [x] **앱오프닝 단위 발급 + 코드 연결** — `AppOpen` `ca-app-pub-5283496525222246/6583206280`.
 - [x] **GMA Next-Gen SDK 1.3.1 마이그레이션** — 사용자 지시로 즉시 착수. Kotlin 2.2.21/KSP2/Hilt 2.58 + 어댑터 상향 + 광고 4파일 재작성 + AdSdkState 게이트. 803 테스트 GREEN, release AAB OK, 에뮬 배너/인터스티셜/앱오픈 실검증. 상세 bugs-fixed 57번.
+- [x] **Crashlytics 미해결 5건 종료** — Glance/Billing 크래시 = 동일 봇 세션(OnePlus8Pro) 액티비티 fuzzing(`exported=false`) 확정, ensureConnected ANR 은 startConnection IO 이동 fix, ART ANR/WebView 는 조치 불가 종료.
 - [x] **실기기(Galaxy S22) release E2E** — vc22 release APK 설치, 크래시 0, **프로덕션 실광고 fill**(홈/차트/투표/설정 배너, TikTok Lite=Pangle 계열 소재 포함), 코스피 신호 분해·RSI 정상, **Premium ₩7,500 실가격**(Billing 8 실기기 가격 검증). 인터스티셜은 세션 중 미노출(프로덕션 fill 타이밍, 에뮬 debug 검증 완료). SimilarEvents raw key(34번) 여전.
 
 - [x] **앱오프닝 광고 단위 발급 + 코드 연결** — AdMob `AppOpen` `ca-app-pub-5283496525222246/6583206280`, release `ADMOB_APP_OPEN`(app+presentation) 반영, release compile OK. worktree `feature/v1.5.2-app-open-unit` → dev --no-ff.
@@ -40,7 +41,8 @@
 1. 알파 1.5.1 심사 통과 + 대시보드 "8월 31일까지 조치" 카드 소멸 확인(스캐너 갱신 지연 가능).
 2. **v1.5.2(vc23) 배포는 사용자 지시 대기** — 내용물 = **GMA Next-Gen SDK 1.3.1** + Pangle/Unity 어댑터 상향 + 앱오프닝 ID. 배포 시: versionCode 23 bump + changelog 23 + `bundle exec fastlane production` + **RC `app_open_ads_enabled` 등 4키 게시**(안 하면 앱오픈 안 뜸) + AdMob 앱오프닝 미디에이션 그룹(선택). **배포 후 필수 감시**: Crashlytics `MotionEvent recycled twice`(NG 1.3.x #96)/App Open NPE(#85), AdMob 배너 match rate·eCPM 기준선 대비(#62). 문제 시 NG 1.2.1 다운그레이드 검토.
 3. AppLovin 연동 여부 — 사용자가 직접 검토 중.
-4. (v1.5.2 후보) **Glance 위젯 트램폴린 크래시 fix** — Crashlytics 3건/2명(1.4.2~1.5.1), bugs-fixed 58번. Billing ProxyBillingActivity NPE 는 봇 정황(RevenueCat 문서)이라 음소거 후보.
+4. ~~Glance 위젯 트램폴린 크래시 fix~~ → **봇 액티비티 fuzzing 확정(Billing Proxy 와 동일 세션), 코드 fix 불가·불필요 → 종료.** Crashlytics 미해결 5건 전부 종료 + ensureConnected ANR 은 코드 fix(startConnection IO 이동). 상세 58번.
+5. (낮음) IAP 비치명 "상품 정보를 불러오지 못함" 실사용자 2명 — 결제 미지원 환경 추정, 다이얼로그 문구 개선 후보.
 4. 실기기 Billing 8 결제 재검증(1.5.1, 미완), `KospiFearIndexApi.history` boolean 지뢰, Yahoo spark 死코드, BOOT_COMPLETED 권한 정리(이월).
 5. **결제 프로필/계정 삭제 예고(9/16)** — 사용자가 직접 진행 중. 관여 금지.
 6. (v1.6.0) GMA Next-Gen 이전 — Kotlin ≥2.2 bump 선행. 55번 체크리스트.

@@ -28,7 +28,12 @@ type: project
   3. ANR `art::ConditionVariable::WaitHoldingLocks` — 2건/1명, 1.5.0. 시스템/아트 내부, 관찰.
   4. ANR `PurchaseManager.kt:345 ensureConnected` binder 대기 — 1건/1명, **1.4.1**(Billing 7 시절 구버전). 8.3.0 마이그레이션에서 경로 변경됨 — 재발 시 재평가.
   5. WebView 이중 프로세스(crbug/558377) — 1건/1명, 1.4.2. chromium 내부, 관찰.
-- **결론**: 배포 차단 이슈 없음. v1.5.2 에 **Glance 트램폴린 fix 검토**만 후보로. Next-Gen #96(MotionEvent) 크래시는 현재 0건(아직 Next-Gen 배포 전이니 당연 — 배포 후 감시).
+- **✅ 처리(같은 날 후속, 사용자 지시 "5건 해결")**:
+  - **Glance 트램폴린(1) + Billing Proxy(2) = 동일 봇 세션 확정**: 두 이슈 모두 OnePlus8Pro/Android 11, 8/11 21:39:04 → 21:39:55 연속 발생 + LGE/Android 15(1 만). `ActionTrampolineActivity`/`ProxyBillingActivity` 둘 다 **`exported=false`** 라 다른 앱이 못 띄움 → 루트/계측 봇(Play 사전 출시 보고서식 액티비티 fuzzing)이 extras 없이 강제 기동한 것. Glance 트램폴린은 **lazy 리스트 fill-in intent 전용 경로**(ApplyActionKt `isLazyCollectionDescendant`)인데 우리 위젯은 Lazy 를 쓴 적 없음(git 이력 0) — 즉 우리 코드가 만든 인텐트가 아님. Glance 1.2.0-rc01 도 동일 코드(버전업 무효). **앱 코드 fix 불가/불필요 → Crashlytics 종료.**
+  - **ensureConnected ANR(4) → 코드 fix**: `startConnection` 내부 bindService 바인더 호출을 메인에서 하던 것을 **IO 스레드로 이동**(+CompletableDeferred 멱등 완료, timeout 10s 유지). S22 release 에서 가격 조회 정상 재확인. feature/v1.5.2-billing-connect-offmain → dev. Crashlytics 종료.
+  - ART ANR(3, Google/Android 14 = Pixel 봇 정황, "기본 잠금 경합" 통계만) / WebView 이중 프로세스(5, 1.4.2 1건) → 조치 불가, 종료(재발 시 회귀로 자동 재오픈).
+  - **추가 발견(비치명, 미종료)**: `PurchaseManager.reportPurchaseFailure` "[IAP] 구매 실패 -1 상품 정보를 불러오지 못함" 3건/2명(Samsung SM-A107F·Honor, 1.4.2~1.5.1) — **실사용자**. 구매 탭 시 상품 로드 재시도까지 하고도 실패(Play 결제 미지원 계정/지역, GMS 없는 Honor 추정). 의도된 진단 로그라 열어 둠. 반복 시 실패 다이얼로그 문구에 "Play 스토어 결제 가능 계정 필요" 안내 추가 검토.
+- **결론**: 배포 차단 이슈 없음, 미해결 5건 전부 종료. Next-Gen #96(MotionEvent) 크래시는 현재 0건(배포 전 — 배포 후 감시).
 
 ### 57. GMA Next-Gen SDK 1.3.1 마이그레이션 (사용자 지시 "지금 착수") — 레거시 SDK 완전 제거
 - **범위**: `play-services-ads` 24.8.0 → **`ads-mobile-sdk` 1.3.1**. 광고 4파일(AdBanner/InterstitialAdManager/AppOpenAdManager/FearIndexApp) 재작성. feature/v1.5.2-gma-next-gen 3커밋 → dev --no-ff.
