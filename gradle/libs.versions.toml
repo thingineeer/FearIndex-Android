@@ -1,8 +1,9 @@
 [versions]
 # Android
 agp = "8.7.3"
-kotlin = "2.1.0"
-ksp = "2.1.0-1.0.29"
+# Kotlin 2.2: 최신 GMA 미디에이션 어댑터(Pangle 8.1+/Unity 4.18.1+)가 kotlin-stdlib 2.3.0 메타데이터를 쓰므로 2.1로는 컴파일 불가.
+kotlin = "2.2.21"
+ksp = "2.2.21-2.0.5"
 compileSdk = "36"
 minSdk = "29"
 targetSdk = "36"
@@ -21,7 +22,8 @@ composeBom = "2024.12.01"
 composeCompiler = "1.5.15"
 
 # Hilt
-hilt = "2.53.1"
+# Hilt 2.55+ 부터 KSP2(Kotlin 2.2 KSP 기본) 지원 — 2.53.1 은 "@AndroidEntryPoint to have a value" 로 실패. 2.59+ 는 AGP 9 필수라 2.58 로 고정.
+hilt = "2.58"
 hiltCompose = "1.2.0"
 
 # Firebase
@@ -38,13 +40,17 @@ kotlinxSerialization = "1.7.3"
 # Coroutines
 coroutines = "1.9.0"
 
-# AdMob
-playServicesAds = "23.6.0"
-# Unity Ads 입찰 어댑터. 4.13.1.0 은 play-services-ads 23.6.0 으로 빌드·검증된 버전이다.
-unityMediationAdapter = "4.13.1.0"
-# Unity Ads SDK 본체. 어댑터 POM 이 SDK 를 끌어오지 않으므로 명시 필요 (어댑터 4.13.1.0 = SDK 4.13.1).
-unityAds = "4.13.1"
-userMessagingPlatform = "3.0.0"
+# AdMob — GMA Next-Gen SDK (2026-08-18 마이그레이션, 레거시 play-services-ads 는 maintenance mode)
+# 최신 확인: curl -sS https://dl.google.com/dl/android/maven2/com/google/android/libraries/ads/mobile/sdk/ads-mobile-sdk/maven-metadata.xml
+gmaNextGen = "1.3.1"
+# Pangle(TikTok) 입찰 어댑터. 8.2.0.4.0 은 Next-Gen 1.3.0 으로 검증된 버전. AdMob 미디에이션 Pangle App ID 8867923 과 연동.
+pangleMediationAdapter = "8.2.0.4.0"
+# Unity Ads 입찰 어댑터. 4.19.0.1 은 Next-Gen 1.3.1 로 검증된 버전.
+unityMediationAdapter = "4.19.0.1"
+# Unity Ads SDK 본체. 어댑터 POM 이 SDK 를 끌어오지 않으므로 명시 필요 (어댑터 4.19.0.1 = SDK 4.19.0).
+unityAds = "4.19.0"
+# UMP 4.0.0 은 Next-Gen SDK 의 transitive 의존성 — 명시 버전을 맞춘다.
+userMessagingPlatform = "4.0.0"
 
 # Play In-App Update
 appUpdate = "2.1.0"
@@ -66,8 +72,8 @@ timber = "5.0.1"
 
 # Test
 junit = "4.13.2"
-androidxJunit = "1.2.1"
-espresso = "3.6.1"
+androidxJunit = "1.3.0"
+espresso = "3.7.0"
 mockk = "1.13.14"
 turbine = "1.2.0"
 
@@ -126,10 +132,11 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 
-# AdMob
-play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+# AdMob (Next-Gen)
+gma-next-gen = { group = "com.google.android.libraries.ads.mobile.sdk", name = "ads-mobile-sdk", version.ref = "gmaNextGen" }
 unity-mediation-adapter = { group = "com.google.ads.mediation", name = "unity", version.ref = "unityMediationAdapter" }
 unity-ads = { group = "com.unity3d.ads", name = "unity-ads", version.ref = "unityAds" }
+pangle-mediation-adapter = { group = "com.google.ads.mediation", name = "pangle", version.ref = "pangleMediationAdapter" }
 user-messaging-platform = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "userMessagingPlatform" }
 
 # Play In-App Update
@@ -156,6 +163,8 @@ timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "tim
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+androidx-test-rules = { group = "androidx.test", name = "rules", version = "1.7.0" }
+androidx-test-core-ktx = { group = "androidx.test", name = "core-ktx", version = "1.7.0" }
 compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }

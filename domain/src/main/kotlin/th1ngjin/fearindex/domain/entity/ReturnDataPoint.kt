@@ -6,4 +6,8 @@ data class ReturnDataPoint(
     val worstCase: HistoricalReturns,
     val bestCase: HistoricalReturns,
     val sampleCount: Int,
+    /**
+     * horizon 별 표본 수 (v1.9.4). 서버 `horizonCounts` 가 없으면 [sampleCount] 를 모든 horizon 에 적용.
+     */
+    val horizonSampleCounts: HistoricalSampleCounts = HistoricalSampleCounts.same(sampleCount),
 )

@@ -4,6 +4,87 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
+
+### 60. v1.5.2 production 배포 (vc24) — fastlane internal 은 draft 로만 올린다 + release Crashlytics 트리
+- **⚠️ `fastlane internal` lane 은 `release_status` 미지정 → Play 에 "임시(draft) 버전"으로만 업로드**되고 테스터에게 안 나감. 콘솔 내부 테스트 트랙에 "비활성 · 임시 버전 1.5.2 / 버전 수정" 으로 표시됨. 그리고 **이미 업로드된 versionCode 는 다른 트랙에 재업로드 불가**("Version code 23 has already been used") → 승격은 `track:internal track_promote_to:production` 조합(54번)이거나, 새 vc 로 올려야 함. 이번엔 CrashlyticsTree 포함을 위해 **vc24 로 production 직접 업로드**(vc23 draft 는 그대로 방치, 무해).
+- **교훈**: 내부 테스트를 실제 테스터에게 내보내려면 Fastfile internal lane 에 `release_status: "completed"` 추가 필요(현재 미수정 — 다음에 internal 쓸 때 고칠 것). fastlane "Successfully" 만 믿지 말고 **콘솔 트랙 페이지의 상태 문구(임시/검토 중/제공됨)** 까지 볼 것(37번 교훈 재확인).
+- **API 36 경고 재확인**: vc23/vc24 AAB 의 proto manifest 에서 `targetSdkVersion "36"` 직접 파싱 확인. 1.5.1 도 36 이었으나 Google 안내문("새 버전을 프로덕션에 게시하면 해제")대로 스캐너가 프로덕션 게시 이벤트를 기다림 → vc24 게시 후 자동 해소 예상.
+- **release Timber → Crashlytics 트리 (사용자 지시 "안 되면 로그 남겨 Firebase 로 나중에 알 수 있게")**: release 에 Timber tree 가 전혀 없어 `Timber.w(t, ...)`(수익률 Firestore fallback, 알림내역 read/rewrite 실패 등)가 아무 데도 안 남던 갭 발견. `app/src/release/.../variant/CrashlyticsTree.kt`(WARN+ → Crashlytics log, Throwable → non-fatal recordException) + `VariantHooks.plantLogging(crashReporter)`(release 식재/debug no-op) + FearIndexApp initFirebase 직후 호출. mapping 에 `CrashlyticsTree -> K7.a` 로 포함 확인, DEBUG 결제 심볼은 여전히 0.
+- **게시 개요 실측**: "관리형 게시가 사용 중지됨" + "검토 중인 변경사항 · 빠른 검사 실행 중(최대 13분)" → 검사 통과 시 자동 검토 전송·승인 즉시 게시. production=[24].
+
+### 59. 프리미엄 parity 4종 (iOS v1.9.4 → Android) — 점수 탐색기·알림 내역·프리미엄 게이트·DEBUG 결제 토글
+- **goal 문서**: `/Users/imyeongjin/Desktop/worktrees/fi-v194-design/docs/handoff/premium-parity-android.md` (iOS SSOT). 브랜치 `feature/v1.5.2-premium-parity`(통합) ← 4 sub-worktree(returndata/history/explorer-ui/history-ui) 전부 `--no-ff` → **dev 머지 완료(beebbe8)**. push 미실행.
+- **프리미엄 게이트**: 새 SKU 없음. `PurchaseManager.isPremium` = `isAdFree` 별칭. 게시값 = `entitlementOverride ?: realAdFree` — `setEntitlementOverride(Boolean?)`(QA/디버그 seam). `PremiumFeature{SCORE_EXPLORER, NOTIFICATION_HISTORY_UNLIMITED}` + `PremiumFeaturePolicy.canUse`(domain 순수). 공용 `PremiumLockRow`(잠금 제목/본문·"해제 CTA · 가격"·복원, testTag premium-lock-row/-cta) + `PremiumBadge`/`LowSampleWarningBadge`. 구매 이벤트 `source`(settings|score_explorer|notification_history) + GA `premium_lock_tapped{feature}`/`score_explorer_moved{index_type,score,period}`/`notification_history_viewed{count}` (iOS 이름 1:1).
+- **점수 탐색기(차트 탭, AdBanner↔InsightFeed 사이)**: domain `ReturnHorizon`/`HistoricalSampleCounts`/`ReturnDataPoint.horizonSampleCounts`/`ReturnDataTable.sourceRange`/`ScoreExplorerStats`(정확 버킷만·보간 금지, LOW_SAMPLE_THRESHOLD=5). `DefaultReturnData` market/crypto 를 iOS 2026-08-18 집계에서 재생성(`scripts/gen-default-return-data.py`, 점수 20/48/75 iOS 값 일치 확인). UI `ScoreExplorerCard`/`InfoSheet`/`ScoreExplorerViewModel` + 순수 `ScoreExplorerSelection`(자산별 선택 보존·클램프·앵커 복귀=리셋, iOS Interactor 1:1).
+- **알림 내역(홈 🔔)**: `NotificationRecord/Kind/Mapper` + `NotificationHistoryPolicy`(무료 30일/프리미엄 무제한, HARD_CAP 5000, upsert: fallback id→±120s 동일 title/body message-id 승격) + UseCase. data `JsonlFileStore`(Mutex, temp→ATOMIC_MOVE) + Codec + RepositoryImpl(filesDir/notification_history/*.jsonl). 기록 3경로(onMessageReceived/알림 탭 인텐트/activeNotifications 동기화). **서버 변경 0, Firestore 0**. 무료 리스트 배너는 홈 유닛 fallback(전용 유닛 미발급 — 사용자 결정 대기).
+- **⚠️ 실결함 fix (클럭 스큐 무한루프)**: 알림내역 VM 이 updates 수신→markSeen→setLastSeenAt→updates 재발행 루프 — 레코드 receivedAt(FCM sentTime)이 markSeen 시각보다 미래면 영원히 unread. `lastMarkedNewest` 가드로 수정. **이 루프가 유닛테스트에서 test scheduler 큐 무한 증식 → -Xmx512m 힙 고갈 → GC livelock** — gradle 테스트 워커가 1시간 hang(잔존 고아 워커, jstack 으로 진단: 테스트 프레임 없음 + executor stop 대기 + GC 스레드 CPU 17분+). **교훈**: 워커 hang 은 jstack 부터 — "테스트 로직 hang"과 "종료 단계 GC 스래싱" 구분. TaskStop 은 gradle 런처만 죽이고 워커는 고아로 남는다.
+- **DEBUG 결제 테스트 토글**: `core/src/debug` `DebugPremiumOverride{REAL,PURCHASED,NOT_PURCHASED}`+`DebugPremiumOverrideStore`(iap_debug_prefs 영속), `app/src/debug` `DebugPurchaseTestCard`(설정 하단, testTag debug-iap-seg-*)+`VariantHooks`(release no-op). **release dex+mapping grep 0** (DebugPremiumOverride/DebugPurchaseTestCard/debug-iap/iap_debug_prefs/entitlementOverride).
+- **i18n**: `scripts/i18n/import_xcstrings_keys.py`+`check_locale_symmetry.py`, 55키×45 locale 이식, 대칭 495키 통과.
+- **검증**: 유닛 **1014 tests / 0 fail**(domain 202 포함). 계측 QA 3/3 GREEN(헤드리스 에뮬 API 36, `ANDROID_SERIAL=emulator-5554`): T1 잠금 7.1s / T2 해제·슬라이더 3.5s / T3 전환(구매 안 함→구매함→즉시 해제→재잠금) 5.1s. release 빌드 OK.
+- **⚠️ 계측 QA 함정 3개 (재발 방지)**:
+  1. **API 36 에뮬 + Espresso 3.6.1 = 전 테스트 즉사** `NoSuchMethodException: InputManager.getInstance` — API 36 에서 제거된 리플렉션. **espresso 3.7.0 + ext-junit 1.3.0 + rules/core 1.7.0** 으로 해결.
+  2. **INSTALL_FAILED_INSUFFICIENT_STORAGE**: 에뮬 /data 92%(496MB 여유)에서 100MB debug APK 설치 거부. 에뮬의 타 프로젝트 debug 앱(shadewalk·bamfiresurvive) 제거로 644MB 확보 후 통과. 에뮬 공유 시 주기 정리 필요.
+  3. **M3 Slider 는 `performTouchInput{swipeLeft()}` 가 flaky**(클립/터치슬롭) — `performSemanticsAction(SemanticsActions.SetProgress){it(target)}` 가 표준(onValueChange→VM→state 전체 체인 검증 + 목표값 assert 가능).
+- **남은 사용자 결정 2건**: ① 알림 내역 전용 AdMob 배너 유닛 발급(현재 홈 유닛 fallback) ② 스토어 IAP 표시명("광고 제거"→프리미엄 혜택 3종 반영 여부).
+
+## 2026-08-18 세션 (Play 계정 이전 후속 — SA 403 / API 36 경고 원인 / GMA Next-Gen 판단)
+
+### 53. fastlane 서비스 계정 403 — 앱이 다른 개발자 계정으로 이전됐기 때문 (SA 재초대 필요)
+- **증상**: `bundle exec fastlane run google_play_track_version_codes` / `upload_to_play_store validate_only` 모두 `Google Api Error: Invalid request - The caller does not have permission`. `validate_play_store_json_key`는 성공(인증 OK, 권한만 없음).
+- **원인 (Play Console 실측)**: 8/4~8/6에 FearIndex·딸깍·그늘길 3개 앱이 조직 계정 **"Myeongjin Lee"(ID 5351376807423705889)** → 개인 계정 **"이명진"(ID 5573450681823453997)** 으로 **앱 이전 완료**. 새 계정 "사용자 및 권한"에는 `fastlane-deploy@fear-index-a4f4b.iam.gserviceaccount.com`이 **없음**(dlaudwls1203 / mjplist / shadewalk SA / compute SA 4명뿐). SA 권한은 계정에 귀속되므로 이전과 함께 사라짐.
+- **해결(사용자 작업)**: 새 계정 → 사용자 및 권한 → 신규 사용자 초대 → 이메일 `fastlane-deploy@fear-index-a4f4b.iam.gserviceaccount.com` → 앱 권한에서 Fear & Greed Index 추가 → 출시(프로덕션/테스트 트랙) + 스토어 등록정보 관리 권한 → 초대. (SA는 수락 절차 없이 즉시 활성.) Claude의 폼 입력은 harness 분류기가 차단(계정 권한 변경) → 사용자가 직접.
+- **접근 경로**: Play Console은 `mjplist@gmail.com`(또는 dlaudwls1203)으로 로그인 → 개발자 계정 선택에서 **"이명진"** 선택. "Myeongjin Lee" 조직 계정은 이제 앱 0개(껍데기). Chrome 프로필에 따라 `/u/N` 인덱스가 다름(오늘은 `/u/6`이 이명진 계정으로 리다이렉트).
+- **교훈**: fastlane 403이면 SA 키가 아니라 **앱이 어느 개발자 계정에 있는지**부터 확인. 앱 이전 시 SA/사용자 권한은 자동으로 따라오지 않는다.
+- **✅ 해결(2026-08-18 11:01)**: 사용자가 이명진 계정에 SA 초대 완료 → `google_play_track_version_codes` production=[22]/internal=[8,3]/alpha=[3] 정상 조회 = 권한 복구 확인.
+
+### 54. Play "API 36 타겟" 경고가 1.5.1 게시 후에도 남는 이유 = 내부/비공개 알파 트랙에 vc3(1.0.2) 활성
+- **실측** (최신 버전 및 번들): 프로덕션 1.5.1/vc22(7/31, targetSdk 36) 외에 **비공개 테스트 Alpha `3 (1.0.2)` vc3 "Google Play에서 테스터에게 제공"** + **내부 테스트 `3 (1.0.2)` vc3 "내부 테스터에게 제공됨"**(둘 다 2026-04-21) + 내부 테스트 1.0.1/vc8 임시. Play는 **모든 활성 트랙**의 targetSdk를 검사하므로 vc3(targetSdk 35 이하)이 경고를 유지시킴. 대시보드 카드 "8월 31일까지 조치"의 알림 날짜는 7/22(1.5.0 이전).
+- **해결(코드 무관)**: vc22를 내부 테스트 + 비공개 알파에 **라이브러리에서 새 버전 만들기**로 승격(재빌드/재업로드 불필요) 또는 두 트랙 일시중지. SA 복구 후 fastlane으로도 가능: `upload_to_play_store(track:"internal", version_code:22, skip_upload_aab:true, skip_upload_apk:true, skip_upload_metadata:true, skip_upload_changelogs:true, skip_upload_images:true, skip_upload_screenshots:true)` (알파는 track 이름 확인 필요).
+- **✅ 실행(2026-08-18 11:03)**: `upload_to_play_store track:production track_promote_to:internal version_code:22 track_promote_release_status:completed skip_upload_*:true` (alpha도 동일) → internal=[22], alpha=[22], production=[22]. 콘솔: 내부 테스트 1.5.1 "내부 테스터에게 제공됨", 비공개 알파 1.5.1 "검토 중"(비공개 트랙은 심사 후 옛 vc3 대체). ⚠️ **첫 시도 `track:internal version_code:22 skip_upload_aab:true`는 "Successfully"라고 뜨지만 아무 변화 없음** — supply는 업로드가 없으면 update_track을 건너뛰므로 기존 번들 승격은 반드시 `track:<원본> track_promote_to:<대상>` 조합으로.
+- **교훈**: 정책 경고는 프로덕션만이 아니라 **테스트 트랙의 옛 번들**도 본다. 배포 후 경고가 안 사라지면 "최신 버전 및 번들" 표부터 볼 것. 알파 심사 통과 + 스캐너 갱신 후 대시보드 "8월 31일까지 조치" 카드 자동 소멸 예상.
+
+### 58. Crashlytics/서버 점검 (2026-08-18) — Android 미해결 5건 정리
+- **전체 상태**: Android crash-free 사용자/세션 **100%**(30일, 크래시 7건/사용자 4명). iOS도 100%. **Cloud Functions 서버 오류 0**(최근 로그의 유일한 경고는 오늘 에뮬 debug 테스트의 App Check 토큰 거부 — 환경 문제).
+- **미해결 이슈(30일, 전체 유형)**:
+  1. **Glance 위젯 크래시** `ActionTrampolineKt.launchTrampolineAction` IllegalArgumentException "List adapter activity trampoline invoked without specifying target intent" — 3건/2명, 1.4.2~1.5.1. **실사용자 위젯 탭 크래시로 추정 — v1.5.2 fix 후보 1순위**(Glance 1.1.1 트램폴린 인텐트 소실, Glance 버전업 or actionStartActivity 인텐트 명시 확인).
+  2. **Billing 8.3.0 `ProxyBillingActivity.onCreate` NPE**(PendingIntent.getIntentSender null) — 3건/1명, **1.5.1 신규**. RevenueCat 공식 문서: 자동화 테스트(Play 사전 출시 보고서 등)가 ProxyBillingActivity 를 인자 없이 기동해 발생, "실사용자 프로덕션 발생 근거 없음", **개발자가 못 고침 — crash 리포트 음소거 권장**. 1.5.1 게시(7/31) 직후 1명/3건 패턴도 봇 정황. 관찰 유지, 실사용자 발생 증거 나오면 재평가.
+  3. ANR `art::ConditionVariable::WaitHoldingLocks` — 2건/1명, 1.5.0. 시스템/아트 내부, 관찰.
+  4. ANR `PurchaseManager.kt:345 ensureConnected` binder 대기 — 1건/1명, **1.4.1**(Billing 7 시절 구버전). 8.3.0 마이그레이션에서 경로 변경됨 — 재발 시 재평가.
+  5. WebView 이중 프로세스(crbug/558377) — 1건/1명, 1.4.2. chromium 내부, 관찰.
+- **✅ 처리(같은 날 후속, 사용자 지시 "5건 해결")**:
+  - **Glance 트램폴린(1) + Billing Proxy(2) = 동일 봇 세션 확정**: 두 이슈 모두 OnePlus8Pro/Android 11, 8/11 21:39:04 → 21:39:55 연속 발생 + LGE/Android 15(1 만). `ActionTrampolineActivity`/`ProxyBillingActivity` 둘 다 **`exported=false`** 라 다른 앱이 못 띄움 → 루트/계측 봇(Play 사전 출시 보고서식 액티비티 fuzzing)이 extras 없이 강제 기동한 것. Glance 트램폴린은 **lazy 리스트 fill-in intent 전용 경로**(ApplyActionKt `isLazyCollectionDescendant`)인데 우리 위젯은 Lazy 를 쓴 적 없음(git 이력 0) — 즉 우리 코드가 만든 인텐트가 아님. Glance 1.2.0-rc01 도 동일 코드(버전업 무효). **앱 코드 fix 불가/불필요 → Crashlytics 종료.**
+  - **ensureConnected ANR(4) → 코드 fix**: `startConnection` 내부 bindService 바인더 호출을 메인에서 하던 것을 **IO 스레드로 이동**(+CompletableDeferred 멱등 완료, timeout 10s 유지). S22 release 에서 가격 조회 정상 재확인. feature/v1.5.2-billing-connect-offmain → dev. Crashlytics 종료.
+  - ART ANR(3, Google/Android 14 = Pixel 봇 정황, "기본 잠금 경합" 통계만) / WebView 이중 프로세스(5, 1.4.2 1건) → 조치 불가, 종료(재발 시 회귀로 자동 재오픈).
+  - **추가 발견(비치명, 미종료)**: `PurchaseManager.reportPurchaseFailure` "[IAP] 구매 실패 -1 상품 정보를 불러오지 못함" 3건/2명(Samsung SM-A107F·Honor, 1.4.2~1.5.1) — **실사용자**. 구매 탭 시 상품 로드 재시도까지 하고도 실패(Play 결제 미지원 계정/지역, GMS 없는 Honor 추정). 의도된 진단 로그라 열어 둠. 반복 시 실패 다이얼로그 문구에 "Play 스토어 결제 가능 계정 필요" 안내 추가 검토.
+- **결론**: 배포 차단 이슈 없음, 미해결 5건 전부 종료. Next-Gen #96(MotionEvent) 크래시는 현재 0건(배포 전 — 배포 후 감시).
+
+### 57. GMA Next-Gen SDK 1.3.1 마이그레이션 (사용자 지시 "지금 착수") — 레거시 SDK 완전 제거
+- **범위**: `play-services-ads` 24.8.0 → **`ads-mobile-sdk` 1.3.1**. 광고 4파일(AdBanner/InterstitialAdManager/AppOpenAdManager/FearIndexApp) 재작성. feature/v1.5.2-gma-next-gen 3커밋 → dev --no-ff.
+- **선행 툴체인**: Kotlin 2.1.0→**2.2.21** + KSP **2.2.21-2.0.5**(KSP2) + Hilt 2.53.1→**2.58**. 함정 2개: ① Hilt 2.53.1 은 KSP2 에서 `Expected @AndroidEntryPoint to have a value` 로 전멸 → 2.55+ 필요 ② **Hilt 2.59+ 는 AGP 9 필수**(우리 AGP 8.7.3) → 2.58 이 상한.
+- **어댑터**: Pangle 8.2.0.4.0(NG 1.3.0 검증)/Unity 4.19.0.1+unity-ads 4.19.0(NG 1.3.1 검증). 어댑터 POM 이 레거시 SDK 를 끌어오므로 app/build.gradle.kts 에 `configurations.configureEach { exclude(play-services-ads, -lite) }` **전역 exclude 필수**. UMP 3.0.0→4.0.0(NG transitive와 정렬). runtime classpath 에 kotlin-stdlib 2.3.0 승격 확인(Kotlin 2.2 컴파일러가 소화).
+- **API 변경 요점**: `MobileAds.initialize(ctx, InitializationConfig.Builder(APP_ID).build()) {}` — **background thread 필수**(ANR), App ID 는 Manifest meta-data 에서 읽음(UMP 도 그걸 요구해 meta-data 유지). 요청에 단위 ID: `AdRequest.Builder(adUnitId)` / 배너 `BannerAdRequest.Builder(id, adSize)` + `AdView.loadAd(request, AdLoadCallback<BannerAd>)`. 이벤트는 로드된 ad 객체의 `adEventCallback`(BannerAdEventCallback/InterstitialAdEventCallback/AppOpenAdEventCallback, 전부 open이라 필요한 것만 override). `FullScreenContentCallback`→각 EventCallback, `AdError`→`FullScreenContentError`. 인라인 adaptive 실제 높이는 `onAdLoaded(ad)` 의 **`ad.getAdSize()`**(22번 높이 정책 유지). `LoadAdError.code` 가 Int→**enum ErrorCode**.
+- **⚠️ 콜백 전부 백그라운드 스레드**: 상태/Analytics/재시도/Compose state 는 모두 메인 Handler 로 디스패치(3파일 공통 패턴). AdBanner 는 `BannerAdSlot(adView, @Volatile disposed)` 로 destroy 후 늦은 콜백이 죽은 뷰에 재시도 거는 것 차단.
+- **AdRetryPolicy SDK 비의존화**: `isRetryable(errorCode: Int)` → `isRetryable(errorCodeName: String)`. 비재시도 = INVALID_REQUEST/APP_ID_MISSING/**CANCELLED**(AdView.destroy 시 SDK 가 CANCELLED 로 콜백 — 우리가 끊은 요청). TDD 7케이스.
+- **초기화 게이트 신규(AdSdkState)**: NG 는 initialize 전 load 시 `UninitializedPropertyAccessException` 위험(공식 가이드 명시) → core `AdSdkState.isInitialized`(StateFlow, TDD 3) + init 콜백 `markInitialized()`. AdBanner 는 초기화 후에만 AdView 생성, 인터스티셜/앱오픈 preload 는 미초기화 시 스킵. **부수 효과: 게이트 전 로드→destroy 로 나던 "Ad request cancelled by publisher action" 배너 실패 로그 소멸.**
+- **검증**: 803 테스트 GREEN + release AAB(R8, consumer rules 에 protobuf keep 내장 — 구 #69 이슈 해결 확인) + 에뮬(Medium_Phone_API_36.1) debug: 배너 홈_상단/홈_인사이트/설정 노출, 인터스티셜 KOSPI 진입 노출→닫기→재로드, 앱오픈 백그라운드 복귀 노출→닫기→재로드(RC 기본값 TEMP-VERIFY 로 켰다 원복). afma-sdk-a-v1.3.1 UA 확인.
+- **✅ 실기기(Galaxy S22, Android 13) release E2E (8/18 오후)**: vc22 release APK(upload key 서명) 설치·콜드스타트 크래시 없음. **프로덕션 실광고 fill 확인** — 홈 배너(Saxonawyer)·차트/투표 배너(TikTok Lite — Pangle 계열 소재)·설정 배너(Pocket Option), Test Ad 라벨 없음, 인라인 adaptive 높이 정상. 4탭+코스피 신호 분해 카드+KOSPI RSI 정상. **설정 Premium ₩7,500 실가격 표시 = Billing 8.3.0 실기기 가격 조회 검증**(남은 건 구매 시트 진입만). 인터스티셜은 이 세션 미노출(프로덕션 fill/타이밍 — 에뮬 debug 에선 노출·닫기·재로드 완전 검증됨). 기존 이슈 재확인: SimilarEvents `insight.kospi.event.tradeWar2018/rateHikeBear2022` raw key 노출(34번, 이번 범위 밖).
+- **미검증/주의**: ① 실기기 프로덕션 인터스티셜 실노출(배포 후 AdMob 리포트로 확인) ② **1.3.x 알려진 이슈**: #96 MotionEvent recycled twice 랜덤 크래시(광고 밖 스크롤 중에도), #85 App Open show NPE — 배포 후 Crashlytics 감시, 재현 시 1.2.1 다운그레이드/1.3.2 대기 판단 ③ 배포 후 AdMob 배너 match rate/eCPM 을 마이그레이션 전 기준선과 비교(#62 fill 하락 보고) ④ NG lifecycle: v1.x Deprecation Q1 2028.
+
+### 56. AdMob 미디에이션/광고 단위 실사 (2026-08-18, Chrome MCP) — 공포지수 Android 현황 스냅샷
+- **앱**: `ca-app-pub-5283496525222246~1308884877` **준비됨 · 광고 게재 사용 설정됨**(6월 "배너 적용 불가/게재 제한" 상태는 해소된 상태로 표시). 광고 단위 6개 = HomeBanner/InsightBanner/ChartBanner/VoteBanner/SettingsBanner(배너 5) + KospiInterstitial(전면). ID 전부 `app/build.gradle.kts` release buildConfigField와 일치. **앱오프닝 단위 없음**(release `ADMOB_APP_OPEN=""` 그대로, RC `app_open_ads_enabled` 기본 OFF → 앱오픈 광고는 코드만 있고 미가동. iOS는 "공포지수 iOS 앱오프닝" 그룹 있음).
+- **미디에이션 그룹**(Android 2개): "공포지수 Android 배너"(ID 6680418598, 배너 5단위, Google 최적화 전체) / "공포지수 Android 전면"(ID 4054253992, KospiInterstitial). 둘 다 **입찰 소스 = AdMob Network + Pangle ROW SDK + Unity Ads(모두 활성)**, **폭포식 소스 0**.
+- **입찰 소스(계정)**: Pangle ROW SDK(직접적인 관계·활성 파트너 관계) — 공포지수 Android 매핑 6개(배너 5 → Placement 983442697, KospiInterstitial → 983442708), Unity Ads(직접적인 관계·활성) — 매핑 6개, AdMob 네트워크(승인된 구매자 407). **AppLovin은 입찰/폭포식 어디에도 없음(미연결)** — 앱 코드에도 AppLovin 어댑터 없음(Unity·Pangle만).
+- **7일 성과**(8/11~17, Android): 요청 2.35천 / 노출 1.01천 / 일치율 82.75% / eCPM $3.21 / 수입 $3.23. Pangle 배너 노출 887(eCPM $0.33, 계정 전체 기준).
+- **코드↔콘솔 정합**: 어댑터(Unity 4.13.1.0 + Pangle 7.8.0.8.0) ↔ 콘솔 입찰 소스(Unity, Pangle) 일치. Pangle은 로컬 머지 커밋에 이미 포함(1.5.1 배포본엔 Unity만) — 콘솔 매핑은 이미 되어 있으므로 Pangle 입찰은 **Pangle 어댑터 포함 빌드(v1.5.2) 배포 시 실가동**.
+- 부수 관찰: 그늘길 Android(구, `~6115131561`) "검토 필요·게재 제한(스토어 추가)" — 별도 레포 이슈.
+
+### 55. GMA Next-Gen SDK 이전 — 지금은 보류, v1.6.0에서 계획적으로 (근거 기록)
+- **AdMob 메일(8/18)**: "GMA Next-Gen SDK가 Android 기본·권장, 레거시는 maintenance mode". 조사(공식 문서·POM·GitHub 이슈, 2026-08-18): Next-Gen **1.0.0 GA 2026-04-14 → 최신 1.3.1(7/29)**. **하드 데드라인 없음** — 레거시 v24/25는 2027-06-30 deprecated / 2028-06-30 sunset. v23.x는 이미 deprecated(2026-02-17, sunset 2027-06-30) → 이번 머지로 24.8.0.
+- **보류 근거**: ① 1.3.x에 `MotionEvent recycled twice` 랜덤 크래시(#96, 광고 밖 스크롤 중에도), App Open show() NPE(#85), 배너 fill 30~50% 하락 보고(#62) ② 최신 어댑터(Pangle 8.1.0.3.0+/Unity 4.18.1.0+)가 kotlin-stdlib 2.3.0 의존 → **Kotlin 2.1.0에선 빌드 실패 가능(Kotlin ≥2.2 bump 선행)** — Billing 9.x와 같은 벽 ③ Billing 8 첫 배포(1.5.1) 결제 실기기 검증도 아직인데 광고 SDK까지 갈면 변수 겹침.
+- **옮길 때 체크리스트**: Kotlin ≥2.2 → Pangle ≥8.0.0.5.0(권장 8.2.0.4.0)/Unity ≥4.18.0.0(권장 4.19.0.1+unity-ads 4.19.0) → 앱 전역 `exclude(group="com.google.android.gms", module="play-services-ads")`+`-lite`(어댑터 POM이 레거시를 끌어옴) → UMP 3.0.0→4.0.0(transitive) → `MobileAds.initialize(ctx, InitializationConfig.Builder(APP_ID))` **background thread 필수** → 모든 로드/이벤트 콜백이 background thread(메인 디스패치) → `AdRequest.Builder(adUnitId)`/`BannerAdRequest.Builder(id, adSize)`, `AdListener`→`BannerAdEventCallback`, `FullScreenContentCallback`→`InterstitialAdEventCallback`/`AppOpenAdEventCallback` → 인라인 adaptive는 `onAdLoaded`에서 `BannerAd.getAdSize()`로 실제 높이(22번 정책 유지) → 자체 `AdRetryPolicy`와 SDK 자동 재시도 중복 정리 → AdMob 배너 match rate/eCPM 기준선 A/B. 광고 코드 표면적: AdBanner/InterstitialAdManager/AppOpenAdManager/FearIndexApp 4파일 ~550줄. 공식 Claude Code skill: `npx skills add google/skills --skill google-mobile-ads-android-migrate-to-next-gen`.
+- **머지 결과**: dev = origin/dev(1.5.1) + Pangle 어댑터. libs: GMA **24.8.0**, Unity 어댑터 4.13.1.0(23.6.0 빌드지만 24.0.0 breaking change에 mediation API 없음, runtime classpath에서 23.6.0→24.8.0 승격 확인), Pangle 7.8.0.8.0. 791 테스트 GREEN + release AAB(R8) 빌드 성공(vc22 그대로, 미배포).
+
 ## 2026-07-31 새벽 (v1.5.1 vc22 — Play Billing 8 마이그레이션 + API/푸시 전수 검증)
 
 ### 50. Play Billing 7.1.1 → 8.3.0 마이그레이션 (정책 기한 2026-08-31)

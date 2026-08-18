@@ -23,11 +23,13 @@ class AdRetryPolicy(
 
     companion object {
         /**
-         * 재시도할 가치가 있는 오류인지. INVALID_REQUEST(설정 오류)는 재요청해도 실패하므로 제외.
-         * AdMob LoadAdError code: 0=INTERNAL, 1=INVALID_REQUEST, 2=NETWORK_ERROR, 3=NO_FILL.
+         * 재시도할 가치가 있는 오류인지 — GMA Next-Gen `LoadAdError.ErrorCode.name` 기준(SDK 비의존).
+         * 설정 오류(INVALID_REQUEST: 잘못된 단위 ID / APP_ID_MISSING)와 퍼블리셔 취소(CANCELLED —
+         * AdView.destroy() 등 우리가 끊은 요청)는 재요청 무의미라 제외.
+         * NO_FILL / NETWORK_ERROR / TIMEOUT / INTERNAL_ERROR 등 일시적 실패와 미지 코드는 재시도.
          */
-        fun isRetryable(errorCode: Int): Boolean = errorCode != CODE_INVALID_REQUEST
+        fun isRetryable(errorCodeName: String): Boolean = errorCodeName !in NON_RETRYABLE_CODES
 
-        private const val CODE_INVALID_REQUEST = 1
+        private val NON_RETRYABLE_CODES = setOf("INVALID_REQUEST", "APP_ID_MISSING", "CANCELLED")
     }
 }

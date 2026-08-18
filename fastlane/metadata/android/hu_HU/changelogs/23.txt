@@ -1,0 +1,1 @@
+Hozzáadtuk a prémium pontszám-böngészőt és az értesítési előzményeket. Javítottuk az alkalmazás stabilitását.

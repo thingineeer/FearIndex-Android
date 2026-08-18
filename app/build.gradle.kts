@@ -21,8 +21,8 @@ android {
         applicationId = "th1ngjin.fearindex"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 22
-        versionName = "1.5.1"
+        versionCode = 24
+        versionName = "1.5.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
@@ -81,7 +81,7 @@ android {
             buildConfigField("String", "ADMOB_INTERSTITIAL", "\"ca-app-pub-5283496525222246/1522532479\"")
             // ⚠️ App Open 프로덕션 단위 ID — AdMob Console에서 신규 발급 후 교체 필요.
             // 빈 값이면 AppOpenAdManager 게이트에서 로드/노출이 자동 차단된다.
-            buildConfigField("String", "ADMOB_APP_OPEN", "\"\"")
+            buildConfigField("String", "ADMOB_APP_OPEN", "\"ca-app-pub-5283496525222246/6583206280\"")
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -105,6 +105,12 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+
+// GMA Next-Gen 마이그레이션 필수: 어댑터 POM 의 레거시 SDK 의존성 제거(공식 migration 가이드).
+configurations.configureEach {
+    exclude(group = "com.google.android.gms", module = "play-services-ads")
+    exclude(group = "com.google.android.gms", module = "play-services-ads-lite")
 }
 
 dependencies {
@@ -145,10 +151,12 @@ dependencies {
     implementation(libs.firebase.appcheck.playintegrity)
     debugImplementation(libs.firebase.appcheck.debug)
 
-    // AdMob
-    implementation(libs.play.services.ads)
+    // AdMob — GMA Next-Gen SDK. 미디에이션 어댑터는 좌표가 같고 POM 이 레거시 play-services-ads 를
+    // 끌어오므로 위 configurations 블록에서 전역 exclude 한다(Next-Gen SDK 가 mediation 클래스를 내장).
+    implementation(libs.gma.next.gen)
     implementation(libs.unity.ads)
     implementation(libs.unity.mediation.adapter)
+    implementation(libs.pangle.mediation.adapter)
     implementation(libs.user.messaging.platform)
 
     // Play In-App Update (강제/선택 업데이트)
@@ -171,5 +179,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.core.ktx)
     debugImplementation(libs.compose.ui.test.manifest)
 }

@@ -1,0 +1,1 @@
+Přidán prémiový průzkumník skóre a historie oznámení. Vylepšena stabilita aplikace.

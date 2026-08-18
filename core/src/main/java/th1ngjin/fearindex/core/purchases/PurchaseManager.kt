@@ -15,10 +15,12 @@ import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -29,6 +31,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
+import th1ngjin.fearindex.core.analytics.PremiumPurchaseSource
 import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.debug.ScreenshotMode
 import timber.log.Timber
@@ -60,10 +63,27 @@ class PurchaseManager @Inject constructor(
     private val prefs: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-    private val _isAdFree = MutableStateFlow(prefs.getBoolean(KEY_AD_FREE_CACHED, false))
+    /** 실제 entitlement/캐시 기준 광고 제거 여부 (오버라이드 이전 값). */
+    @Volatile
+    private var realAdFree: Boolean = prefs.getBoolean(KEY_AD_FREE_CACHED, false)
 
-    /** 광고 제거 권한. AdBanner/인터스티셜 게이트가 구독. */
+    /**
+     * QA/개발자 모드 강제값 (null = 강제 없음). 실제 entitlement 평가는 계속 [realAdFree] 에 반영되고,
+     * 게시값은 `override ?: real` — 강제 해제 시 즉시 실제 상태로 복귀한다.
+     */
+    @Volatile
+    private var entitlementOverride: Boolean? = null
+
+    private val _isAdFree = MutableStateFlow(realAdFree)
+
+    /**
+     * 광고 제거 권한 = 프리미엄 권한 (v1.9.4 parity: 새 SKU 없음, 광고 제거 구매자가 곧 프리미엄).
+     * AdBanner/인터스티셜 게이트·프리미엄 잠금 UI 가 구독.
+     */
     val isAdFree: StateFlow<Boolean> = _isAdFree.asStateFlow()
+
+    /** [isAdFree] 의 별칭 — 프리미엄 게이트 코드의 의도를 드러내기 위한 이름. */
+    val isPremium: StateFlow<Boolean> get() = isAdFree
 
     private val _priceText = MutableStateFlow<String?>(null)
 
@@ -79,6 +99,10 @@ class PurchaseManager @Inject constructor(
 
     /** 사용자 구매가 진행 중인지 — 완료/취소/실패 이벤트를 정확히 1회만 내기 위한 게이트. */
     private val purchaseInFlight = AtomicBoolean(false)
+
+    /** 진행 중 구매의 진입 경로 (완료/실패 이벤트 `source` 파라미터용). */
+    @Volatile
+    private var purchaseSource: String = PremiumPurchaseSource.SETTINGS
 
     /** 결제 콜백은 Main 스레드에서 오므로 Main.immediate 로 실행 (BillingClient 권장). */
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
@@ -126,9 +150,10 @@ class PurchaseManager @Inject constructor(
      * 구매 시작. 결과(완료/취소/실패)는 항상 [purchaseEvents] 로 정확히 1회 전달된다.
      * 이미 진행 중이면 무시한다(중복 탭 방어).
      */
-    fun purchaseRemoveAds(activity: Activity) {
+    fun purchaseRemoveAds(activity: Activity, source: String = PremiumPurchaseSource.SETTINGS) {
         if (!purchaseInFlight.compareAndSet(false, true)) return
-        analytics.log(AnalyticsEvent.광고제거구매시작)
+        purchaseSource = source
+        analytics.log(AnalyticsEvent.광고제거구매시작(source = source))
         val offering = removeAdsOffering
         if (offering == null) {
             // 상품 미로드 — 연결 후 로드 재시도하고, 로드되면 즉시 구매 시트를 띄운다.
@@ -157,16 +182,33 @@ class PurchaseManager @Inject constructor(
      * 구매 복원 (entitlement 재평가). 복원 성공 여부 반환.
      * iOS [PurchaseManager.restorePurchases] 대응.
      */
-    suspend fun restorePurchases(): Boolean {
+    suspend fun restorePurchases(source: String = PremiumPurchaseSource.SETTINGS): Boolean {
         if (!ensureConnected()) {
             Timber.tag(TAG).w("[IAP] 복원 Error(연결 실패)")
-            analytics.log(AnalyticsEvent.광고제거복원(성공여부 = _isAdFree.value))
+            analytics.log(AnalyticsEvent.광고제거복원(성공여부 = _isAdFree.value, source = source))
             return _isAdFree.value
         }
         reevaluateEntitlements()
         Timber.tag(TAG).i("[IAP] 복원 완료 — adFree=%b", _isAdFree.value)
-        analytics.log(AnalyticsEvent.광고제거복원(성공여부 = _isAdFree.value))
+        analytics.log(AnalyticsEvent.광고제거복원(성공여부 = _isAdFree.value, source = source))
         return _isAdFree.value
+    }
+
+    /**
+     * QA/개발자 모드용 entitlement 강제 (null = 해제 → 실제 상태로 즉시 복귀).
+     * 실제 결제/복원 로직은 건드리지 않고 게시값만 `override ?: real` 로 바꾼다.
+     * 프로덕션 코드 경로에서는 호출하지 않는다 (debug 소스셋 DebugPremiumOverride / 계측 테스트 전용).
+     */
+    fun setEntitlementOverride(forcedAdFree: Boolean?, reason: String = "override") {
+        entitlementOverride = forcedAdFree
+        publishAdFree()
+        Timber.tag(TAG).i("[IAP] entitlement override=%s (%s) → adFree=%b", forcedAdFree, reason, _isAdFree.value)
+    }
+
+    /** 게시값 갱신: 강제값이 있으면 그것, 없으면 실제 상태. */
+    private fun publishAdFree() {
+        val next = entitlementOverride ?: realAdFree
+        if (_isAdFree.value != next) _isAdFree.value = next
     }
 
     /** onResume 재평가용 (MainActivity.onResume). 조용히 entitlement 만 갱신. */
@@ -230,7 +272,7 @@ class PurchaseManager @Inject constructor(
     /** 구매 완료 처리 — 진행 중인 시도에 대해서만 1회 grant 로그 + Completed 이벤트를 낸다. */
     private fun completePurchase() {
         if (!purchaseInFlight.compareAndSet(true, false)) return
-        analytics.log(AnalyticsEvent.광고제거구매완료)
+        analytics.log(AnalyticsEvent.광고제거구매완료(source = purchaseSource))
         _purchaseEvents.tryEmit(PurchaseEvent.Completed)
     }
 
@@ -239,7 +281,7 @@ class PurchaseManager @Inject constructor(
         if (!purchaseInFlight.compareAndSet(true, false)) return
         Timber.tag(TAG).e("[IAP] 구매 실패 Error: %d — %s", code, message)
         crashReporter.recordException(IllegalStateException("[IAP] 구매 실패 Error: $code — $message"))
-        analytics.log(AnalyticsEvent.광고제거구매실패(에러메시지 = message))
+        analytics.log(AnalyticsEvent.광고제거구매실패(에러메시지 = message, source = purchaseSource))
         _purchaseEvents.tryEmit(PurchaseEvent.Failed(message))
     }
 
@@ -295,9 +337,10 @@ class PurchaseManager @Inject constructor(
 
     /** 광고 제거 권한 부여 + 캐시 저장. 이미 부여된 상태면 no-op (중복 디스크 쓰기 방지). */
     private fun grantAdFree(reason: String) {
-        if (_isAdFree.value) return
+        if (realAdFree) return
         prefs.edit().putBoolean(KEY_AD_FREE_CACHED, true).apply()
-        _isAdFree.value = true
+        realAdFree = true
+        publishAdFree()
         Timber.tag(TAG).i("[IAP] 광고 제거 활성화 (%s)", reason)
     }
 
@@ -381,27 +424,32 @@ class PurchaseManager @Inject constructor(
      */
     private suspend fun ensureConnected(): Boolean {
         if (billingClient.isReady) return true
-        return withTimeoutOrNull(CONNECT_TIMEOUT_MILLIS) {
-            suspendCancellableCoroutine { cont ->
-                val resumed = AtomicBoolean(false)
-                billingClient.startConnection(object : BillingClientStateListener {
-                    override fun onBillingSetupFinished(result: BillingResult) {
-                        if (!resumed.compareAndSet(false, true)) return
-                        val ok = result.responseCode == BillingClient.BillingResponseCode.OK
-                        if (!ok) {
-                            Timber.tag(TAG).w("[IAP] 연결 Error: %d — %s", result.responseCode, result.debugMessage)
-                        }
-                        cont.resume(ok)
-                    }
-
-                    override fun onBillingServiceDisconnected() {
-                        if (!resumed.compareAndSet(false, true)) return
-                        Timber.tag(TAG).w("[IAP] 연결 Error(서비스 끊김)")
-                        cont.resume(false)
-                    }
-                })
+        // CompletableDeferred.complete 는 멱등이라 setup/disconnected 이중 콜백에도 1회만 반영된다.
+        val connected = CompletableDeferred<Boolean>()
+        val listener = object : BillingClientStateListener {
+            override fun onBillingSetupFinished(result: BillingResult) {
+                val ok = result.responseCode == BillingClient.BillingResponseCode.OK
+                if (!ok) {
+                    Timber.tag(TAG).w("[IAP] 연결 Error: %d — %s", result.responseCode, result.debugMessage)
+                }
+                connected.complete(ok)
             }
-        } ?: run {
+
+            override fun onBillingServiceDisconnected() {
+                Timber.tag(TAG).w("[IAP] 연결 Error(서비스 끊김)")
+                connected.complete(false)
+            }
+        }
+        // startConnection 내부의 bindService 바인더 호출이 Play 서비스 지연 시 메인 스레드를 막아
+        // ANR 을 냈다(Crashlytics 1.4.1 "thread waiting for a binder transaction" @ensureConnected).
+        // 바인딩은 IO 스레드에서 시작하고 결과 콜백만 기다린다(콜백은 라이브러리가 메인으로 전달).
+        withContext(Dispatchers.IO) {
+            runCatching { billingClient.startConnection(listener) }.onFailure { e ->
+                Timber.tag(TAG).w(e, "[IAP] 연결 Error(startConnection 예외)")
+                connected.complete(false)
+            }
+        }
+        return withTimeoutOrNull(CONNECT_TIMEOUT_MILLIS) { connected.await() } ?: run {
             Timber.tag(TAG).w("[IAP] 연결 Error(timeout)")
             false
         }

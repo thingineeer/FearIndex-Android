@@ -1,0 +1,1 @@
+Added the premium Score Explorer and notification history. Improved app stability.

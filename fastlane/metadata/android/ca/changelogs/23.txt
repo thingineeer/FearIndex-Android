@@ -1,0 +1,1 @@
+S'ha afegit l'explorador de puntuacions prèmium i l'historial de notificacions. S'ha millorat l'estabilitat de l'aplicació.
