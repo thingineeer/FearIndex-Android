@@ -1,0 +1,1 @@
+Dodano eksplorator wyników premium i historię powiadomień. Poprawiono stabilność aplikacji.
