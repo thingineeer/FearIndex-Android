@@ -14,6 +14,14 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-08-18 저녁, 프리미엄 parity 4종 — iOS v1.9.4 이식 완료, dev 머지)
+
+- **✅ 프리미엄 parity 4종 dev 머지 완료(beebbe8, push 미실행)**: ①프리미엄 게이트(광고제거 구매=프리미엄, 새 SKU 없음, `isPremium=isAdFree`) ②점수별 과거 수익률 슬라이더(차트 탭, 정확 버킷·보간 금지·표본수·저표본 배지·프리미엄 잠금) ③알림 내역(홈 🔔, 무료 30일/프리미엄 무제한, JSONL 서버비 0) ④DEBUG 결제 테스트 토글(release 심볼 0). i18n 55키×45 locale. 상세: @memory/bugs-fixed.md 59번.
+- **검증 완료**: 유닛 1014/0 + 계측 QA 3시나리오 GREEN(헤드리스 에뮬 API 36) + release 빌드/심볼 0. **계측 QA 3함정**(Espresso 3.7.0 필수/에뮬 스토리지/M3 Slider SetProgress)은 59번 참조.
+- **실결함 fix**: 알림내역 markSeen 클럭 스큐 무한루프(FCM sentTime 미래 → 영원히 unread) — `lastMarkedNewest` 가드.
+- **에뮬 정리**: Medium_Phone_API_36.1 의 shadewalk/bamfiresurvive debug 앱 제거(스토리지 확보, 각 레포에서 재설치 가능).
+- **남은 사용자 결정**: ① 알림 내역 전용 AdMob 배너 유닛(현재 홈 유닛 fallback) ② 스토어 IAP 표시명 갱신 여부. **v1.5.2 배포는 계속 대기**(Next-Gen+Pangle+AppOpen+ANR fix+프리미엄 4종 누적).
+
 ## 최신 상태 (2026-08-18, Play 계정 이전 후속 — 배포 파이프라인 막힘 + API 36 경고 원인 + Next-Gen 보류)
 
 - **🚨 Play Console 개발자 계정이 바뀜**: 8/4~8/6 앱 3개(FearIndex·딸깍·그늘길)가 조직 계정 "Myeongjin Lee"(5351376807423705889) → **개인 계정 "이명진"(5573450681823453997)** 으로 이전 완료. 로그인은 `mjplist@gmail.com`(또는 dlaudwls1203) → 계정 선택 "이명진". FearIndex app ID `4973920645070208584`.

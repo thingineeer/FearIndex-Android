@@ -4,6 +4,23 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
+
+### 59. 프리미엄 parity 4종 (iOS v1.9.4 → Android) — 점수 탐색기·알림 내역·프리미엄 게이트·DEBUG 결제 토글
+- **goal 문서**: `/Users/imyeongjin/Desktop/worktrees/fi-v194-design/docs/handoff/premium-parity-android.md` (iOS SSOT). 브랜치 `feature/v1.5.2-premium-parity`(통합) ← 4 sub-worktree(returndata/history/explorer-ui/history-ui) 전부 `--no-ff` → **dev 머지 완료(beebbe8)**. push 미실행.
+- **프리미엄 게이트**: 새 SKU 없음. `PurchaseManager.isPremium` = `isAdFree` 별칭. 게시값 = `entitlementOverride ?: realAdFree` — `setEntitlementOverride(Boolean?)`(QA/디버그 seam). `PremiumFeature{SCORE_EXPLORER, NOTIFICATION_HISTORY_UNLIMITED}` + `PremiumFeaturePolicy.canUse`(domain 순수). 공용 `PremiumLockRow`(잠금 제목/본문·"해제 CTA · 가격"·복원, testTag premium-lock-row/-cta) + `PremiumBadge`/`LowSampleWarningBadge`. 구매 이벤트 `source`(settings|score_explorer|notification_history) + GA `premium_lock_tapped{feature}`/`score_explorer_moved{index_type,score,period}`/`notification_history_viewed{count}` (iOS 이름 1:1).
+- **점수 탐색기(차트 탭, AdBanner↔InsightFeed 사이)**: domain `ReturnHorizon`/`HistoricalSampleCounts`/`ReturnDataPoint.horizonSampleCounts`/`ReturnDataTable.sourceRange`/`ScoreExplorerStats`(정확 버킷만·보간 금지, LOW_SAMPLE_THRESHOLD=5). `DefaultReturnData` market/crypto 를 iOS 2026-08-18 집계에서 재생성(`scripts/gen-default-return-data.py`, 점수 20/48/75 iOS 값 일치 확인). UI `ScoreExplorerCard`/`InfoSheet`/`ScoreExplorerViewModel` + 순수 `ScoreExplorerSelection`(자산별 선택 보존·클램프·앵커 복귀=리셋, iOS Interactor 1:1).
+- **알림 내역(홈 🔔)**: `NotificationRecord/Kind/Mapper` + `NotificationHistoryPolicy`(무료 30일/프리미엄 무제한, HARD_CAP 5000, upsert: fallback id→±120s 동일 title/body message-id 승격) + UseCase. data `JsonlFileStore`(Mutex, temp→ATOMIC_MOVE) + Codec + RepositoryImpl(filesDir/notification_history/*.jsonl). 기록 3경로(onMessageReceived/알림 탭 인텐트/activeNotifications 동기화). **서버 변경 0, Firestore 0**. 무료 리스트 배너는 홈 유닛 fallback(전용 유닛 미발급 — 사용자 결정 대기).
+- **⚠️ 실결함 fix (클럭 스큐 무한루프)**: 알림내역 VM 이 updates 수신→markSeen→setLastSeenAt→updates 재발행 루프 — 레코드 receivedAt(FCM sentTime)이 markSeen 시각보다 미래면 영원히 unread. `lastMarkedNewest` 가드로 수정. **이 루프가 유닛테스트에서 test scheduler 큐 무한 증식 → -Xmx512m 힙 고갈 → GC livelock** — gradle 테스트 워커가 1시간 hang(잔존 고아 워커, jstack 으로 진단: 테스트 프레임 없음 + executor stop 대기 + GC 스레드 CPU 17분+). **교훈**: 워커 hang 은 jstack 부터 — "테스트 로직 hang"과 "종료 단계 GC 스래싱" 구분. TaskStop 은 gradle 런처만 죽이고 워커는 고아로 남는다.
+- **DEBUG 결제 테스트 토글**: `core/src/debug` `DebugPremiumOverride{REAL,PURCHASED,NOT_PURCHASED}`+`DebugPremiumOverrideStore`(iap_debug_prefs 영속), `app/src/debug` `DebugPurchaseTestCard`(설정 하단, testTag debug-iap-seg-*)+`VariantHooks`(release no-op). **release dex+mapping grep 0** (DebugPremiumOverride/DebugPurchaseTestCard/debug-iap/iap_debug_prefs/entitlementOverride).
+- **i18n**: `scripts/i18n/import_xcstrings_keys.py`+`check_locale_symmetry.py`, 55키×45 locale 이식, 대칭 495키 통과.
+- **검증**: 유닛 **1014 tests / 0 fail**(domain 202 포함). 계측 QA 3/3 GREEN(헤드리스 에뮬 API 36, `ANDROID_SERIAL=emulator-5554`): T1 잠금 7.1s / T2 해제·슬라이더 3.5s / T3 전환(구매 안 함→구매함→즉시 해제→재잠금) 5.1s. release 빌드 OK.
+- **⚠️ 계측 QA 함정 3개 (재발 방지)**:
+  1. **API 36 에뮬 + Espresso 3.6.1 = 전 테스트 즉사** `NoSuchMethodException: InputManager.getInstance` — API 36 에서 제거된 리플렉션. **espresso 3.7.0 + ext-junit 1.3.0 + rules/core 1.7.0** 으로 해결.
+  2. **INSTALL_FAILED_INSUFFICIENT_STORAGE**: 에뮬 /data 92%(496MB 여유)에서 100MB debug APK 설치 거부. 에뮬의 타 프로젝트 debug 앱(shadewalk·bamfiresurvive) 제거로 644MB 확보 후 통과. 에뮬 공유 시 주기 정리 필요.
+  3. **M3 Slider 는 `performTouchInput{swipeLeft()}` 가 flaky**(클립/터치슬롭) — `performSemanticsAction(SemanticsActions.SetProgress){it(target)}` 가 표준(onValueChange→VM→state 전체 체인 검증 + 목표값 assert 가능).
+- **남은 사용자 결정 2건**: ① 알림 내역 전용 AdMob 배너 유닛 발급(현재 홈 유닛 fallback) ② 스토어 IAP 표시명("광고 제거"→프리미엄 혜택 3종 반영 여부).
+
 ## 2026-08-18 세션 (Play 계정 이전 후속 — SA 403 / API 36 경고 원인 / GMA Next-Gen 판단)
 
 ### 53. fastlane 서비스 계정 403 — 앱이 다른 개발자 계정으로 이전됐기 때문 (SA 재초대 필요)

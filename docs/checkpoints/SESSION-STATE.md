@@ -1,91 +1,34 @@
 # Session State — FearIndex-Android
 
 ## Date
-2026-08-18 (오전 세션)
+2026-08-18 (저녁 세션 — 프리미엄 parity ultracode)
 
 ## Branch
-`dev` — origin/dev(v1.5.1 배포분) ← Pangle 어댑터 머지 완료(--no-ff, 충돌 2파일 해소) + **push 완료**. worktree 없음.
+`dev`(beebbe8) — `feature/v1.5.2-premium-parity` --no-ff 머지 완료. 트리 clean, worktree 없음. **push 미실행.**
 
 ## ⚡ 한 줄 요약
 
-**AdMob 메일 2건 판단 완료 + 배포 파이프라인 막힌 원인 규명.** API 36은 코드상 이미 해결(1.5.1)이고 남은 경고는 옛 테스트 트랙 번들 탓, Next-Gen SDK는 v1.6.0으로 보류. 진짜 문제는 **앱이 다른 Play 개발자 계정으로 이전되면서 fastlane SA 권한이 사라져 배포가 403**이라는 것.
+**iOS v1.9.4 프리미엄 parity 4종을 Android 로 이식 완료 + 전 검증 GREEN + dev 머지.** ①프리미엄 게이트(광고제거 구매=프리미엄) ②점수별 과거 수익률 슬라이더 ③알림 내역(홈 🔔) ④DEBUG 결제 토글. 유닛 1014/0 + 헤드리스 에뮬(API 36) 결제 QA 3/3 + release 심볼 0.
 
 ---
 
 ## Completed (이번 세션)
 
-- [x] **origin/dev 머지** — 로컬 Pangle 커밋(2) vs 원격 20커밋 diverge → `git merge --no-ff origin/dev`. 충돌: `app/build.gradle.kts`(어댑터 의존성 줄) + `libs.versions.toml`(GMA 버전/어댑터 항목) → 양쪽 유지, GMA **24.8.0**(23.6.0은 2026-02-17 deprecated). runtime classpath에서 Unity 어댑터의 23.6.0이 24.8.0으로 승격 확인.
-- [x] **791 테스트 GREEN + `:app:bundleRelease`(R8) 성공** — 머지 후 검증(48번 교훈대로 release까지).
-- [x] **Play Console 실측(Chrome MCP)** — 계정 이전 사실, SA 부재, 트랙별 활성 번들, 계정 삭제 예고 배너 확인. 상세 @.claude/memory/bugs-fixed.md 53~55번.
-- [x] **GMA Next-Gen SDK 조사** — 리서치 에이전트 + 공식 문서 검증. 결론 "보류". 체크리스트 55번.
-- [x] 메모리/세션 기록 갱신.
+- [x] **4 sub-worktree 병렬 구현** — returndata(도메인/기본 데이터 재생성)/history(도메인+data JSONL)/explorer-ui(카드/VM)/history-ui(화면/🔔/기록 3경로). 전부 `--no-ff` 통합 → dev.
+- [x] **i18n 55키 × 45 locale** — `scripts/i18n/import_xcstrings_keys.py`(iOS xcstrings 이식) + `check_locale_symmetry.py`(495키 대칭 통과).
+- [x] **결제 QA 3시나리오 계측 GREEN** — `PremiumQaTest`(잠금/해제+슬라이더 목표값·리셋/전환 즉시 해제·재잠금). 함정 3개 해결: Espresso 3.6.1→**3.7.0**(API 36 InputManager 제거), 에뮬 스토리지 확보(shadewalk·bamfiresurvive debug 앱 제거), M3 Slider 는 swipe 대신 **SetProgress semantics action**.
+- [x] **실결함 fix** — 알림내역 markSeen 클럭 스큐 무한루프(`lastMarkedNewest` 가드). 이 루프가 테스트 워커 GC livelock hang 의 원인이기도 했음(jstack 진단).
+- [x] **release 검증** — assembleRelease OK + dex/mapping 에 DEBUG 결제 심볼 0.
+- [x] 메모리 기록 — bugs-fixed **59번**, MEMORY.md 최신 상태.
 
-- [x] **fastlane SA 복구** — 사용자가 이명진 계정에 SA 초대(Claude 폼 입력은 분류기 차단) → `google_play_track_version_codes` 정상(11:01).
-- [x] **vc22 → internal/alpha 승격** — `upload_to_play_store track:production track_promote_to:{internal,alpha} version_code:22 track_promote_release_status:completed skip_upload_*:true` → 세 트랙 모두 [22]. 내부 "제공됨", 알파 "검토 중". API 36 경고의 원인(vc3) 제거 완료.
+## Next (다음 세션)
 
-## In Progress
+1. **push** (사용자 지시 시) — dev + feature 브랜치들.
+2. **사용자 결정 2건**: ① 알림 내역 전용 AdMob 배너 유닛 발급(현재 홈 유닛 fallback, `NotificationHistoryScreen` TODO) ② 스토어 IAP 표시명("광고 제거" → 프리미엄 혜택 3종 반영 여부).
+3. **v1.5.2 배포 대기 중** — 누적: GMA Next-Gen 1.3.1 + Pangle + AppOpen 유닛 + ensureConnected ANR fix + 프리미엄 parity 4종. 배포 시 vc23 bump + RC 앱오픈 키 게시 + 배포 후 Crashlytics(#96 MotionEvent)·배너 match rate 감시.
+4. 실기기 Billing 8 구매 시트 진입 재검증(미완).
 
-없음. (알파 심사 대기는 Google 측.)
+## 참조
 
-- [x] **push** — dev = origin/dev(78759074).
-- [x] **AdMob 실사** — 공포지수 Android 준비됨, 단위 6개(ID 코드 일치), 미디에이션 입찰 AdMob+Pangle+Unity 활성·매핑 6/6, 폭포식 0, AppLovin 미연결. 상세 bugs-fixed 56번.
-- [x] **앱오프닝 단위 발급 + 코드 연결** — `AppOpen` `ca-app-pub-5283496525222246/6583206280`.
-- [x] **GMA Next-Gen SDK 1.3.1 마이그레이션** — 사용자 지시로 즉시 착수. Kotlin 2.2.21/KSP2/Hilt 2.58 + 어댑터 상향 + 광고 4파일 재작성 + AdSdkState 게이트. 803 테스트 GREEN, release AAB OK, 에뮬 배너/인터스티셜/앱오픈 실검증. 상세 bugs-fixed 57번.
-- [x] **Crashlytics 미해결 5건 종료** — Glance/Billing 크래시 = 동일 봇 세션(OnePlus8Pro) 액티비티 fuzzing(`exported=false`) 확정, ensureConnected ANR 은 startConnection IO 이동 fix, ART ANR/WebView 는 조치 불가 종료.
-- [x] **실기기(Galaxy S22) release E2E** — vc22 release APK 설치, 크래시 0, **프로덕션 실광고 fill**(홈/차트/투표/설정 배너, TikTok Lite=Pangle 계열 소재 포함), 코스피 신호 분해·RSI 정상, **Premium ₩7,500 실가격**(Billing 8 실기기 가격 검증). 인터스티셜은 세션 중 미노출(프로덕션 fill 타이밍, 에뮬 debug 검증 완료). SimilarEvents raw key(34번) 여전.
-
-- [x] **앱오프닝 광고 단위 발급 + 코드 연결** — AdMob `AppOpen` `ca-app-pub-5283496525222246/6583206280`, release `ADMOB_APP_OPEN`(app+presentation) 반영, release compile OK. worktree `feature/v1.5.2-app-open-unit` → dev --no-ff.
-
-## Remaining (다음 세션 우선순위)
-
-1. 알파 1.5.1 심사 통과 + 대시보드 "8월 31일까지 조치" 카드 소멸 확인(스캐너 갱신 지연 가능).
-2. **v1.5.2(vc23) 배포는 사용자 지시 대기** — 내용물 = **GMA Next-Gen SDK 1.3.1** + Pangle/Unity 어댑터 상향 + 앱오프닝 ID. 배포 시: versionCode 23 bump + changelog 23 + `bundle exec fastlane production` + **RC `app_open_ads_enabled` 등 4키 게시**(안 하면 앱오픈 안 뜸) + AdMob 앱오프닝 미디에이션 그룹(선택). **배포 후 필수 감시**: Crashlytics `MotionEvent recycled twice`(NG 1.3.x #96)/App Open NPE(#85), AdMob 배너 match rate·eCPM 기준선 대비(#62). 문제 시 NG 1.2.1 다운그레이드 검토.
-3. AppLovin 연동 여부 — 사용자가 직접 검토 중.
-4. ~~Glance 위젯 트램폴린 크래시 fix~~ → **봇 액티비티 fuzzing 확정(Billing Proxy 와 동일 세션), 코드 fix 불가·불필요 → 종료.** Crashlytics 미해결 5건 전부 종료 + ensureConnected ANR 은 코드 fix(startConnection IO 이동). 상세 58번.
-5. (낮음) IAP 비치명 "상품 정보를 불러오지 못함" 실사용자 2명 — 결제 미지원 환경 추정, 다이얼로그 문구 개선 후보.
-4. 실기기 Billing 8 결제 재검증(1.5.1, 미완), `KospiFearIndexApi.history` boolean 지뢰, Yahoo spark 死코드, BOOT_COMPLETED 권한 정리(이월).
-5. **결제 프로필/계정 삭제 예고(9/16)** — 사용자가 직접 진행 중. 관여 금지.
-6. (v1.6.0) GMA Next-Gen 이전 — Kotlin ≥2.2 bump 선행. 55번 체크리스트.
-
-## Key Files
-
-- @gradle/libs.versions.toml — GMA 24.8.0 / Unity 4.13.1.0 / Pangle 7.8.0.8.0 / billing 8.3.0 / targetSdk 36
-- @app/build.gradle.kts — 어댑터 3줄(unity-ads, unity, pangle) 공존
-- @presentation/src/main/java/th1ngjin/fearindex/presentation/component/AdBanner.kt — Next-Gen 이전 시 1순위(인라인 adaptive 높이 정책 22번 유지)
-- @presentation/src/main/java/th1ngjin/fearindex/presentation/component/InterstitialAdManager.kt, AppOpenAdManager.kt, @app/src/main/java/th1ngjin/fearindex/FearIndexApp.kt — 나머지 광고 표면적
-- @fastlane/Appfile — SA json 경로(`~/fearindex-secrets/play-store-service-account.json`, `fastlane-deploy@fear-index-a4f4b`)
-- @.claude/memory/bugs-fixed.md — 53~55번 이번 세션
-
-## 대화 요약
-
-### 이번 세션에서 결정한 것
-
-- **Next-Gen SDK는 지금 안 옮긴다** — 이유: 하드 데드라인 없음(레거시 2027-06-30 deprecated/2028-06-30 sunset), 1.3.x 크래시 보고(#96/#85)와 배너 fill 하락 보고, Kotlin 2.1.0에선 최신 어댑터(stdlib 2.3.0) 빌드 불가 가능성, Billing 8 첫 배포 검증도 미완. v1.6.0에서 Kotlin bump와 함께.
-- **머지 충돌은 "둘 다 유지"** — GMA 24.8.0(Pangle 요구, 23.x deprecated), Unity 어댑터는 4.13.1.0 그대로(24.0.0 breaking change에 mediation API 없음 → 호환). 사용자 승인 후 진행.
-- **결제 프로필 건은 사용자 전담** — "신경 쓰지 마, 내가 진행 중".
-
-### 시도했다 접은 것
-
-- **Claude가 SA 초대 폼 입력** — harness 분류기 차단(계정 권한 변경). 우회하지 않고 사용자에게 절차 전달.
-- **`/u/0`,`/u/1`,`/u/2` 계정 인덱스 탐색** — `/u/1`은 무관 계정(satirepeople, 클릭 금지), `/u/0`은 dlaudwls1203, `/u/2`→`/u/6` 리다이렉트가 이명진 계정. Chrome 프로필마다 다르므로 URL 인덱스에 의존 말고 "개발자 계정 선택 → 이명진"으로.
-
-### 명시된 사용자 선호
-
-- Play Console은 `mjplist@gmail.com`으로 볼 것.
-- "제안 실행 순서 모두 진행" — 머지/검증/콘솔 확인/기록까지 승인. push는 별도.
-- 결제 프로필 문제 언급 불필요.
-
-### 다음 세션이 알아야 할 맥락
-
-- **AdMob 메일의 "API 36" 경고는 해결 완료** — 프로덕션 1.5.1 + 오늘 internal/alpha에도 vc22 승격. 카드가 남아 있으면 스캐너 지연/알파 심사 대기.
-- **fastlane 403은 종결**(SA 초대 완료). **기존 번들 승격은 `track:<원본> track_promote_to:<대상> version_code:N`** — `track:<대상> version_code:N skip_upload_aab`는 성공 메시지만 나오고 아무 것도 안 함.
-- "Myeongjin Lee" 조직 계정은 앱 0개 껍데기 — 여기서 뭔가 찾지 말 것.
-- Next-Gen 이전 시 UMP 4.0.0이 transitive로 오고 App ID를 Manifest(UMP용)+InitializationConfig 두 곳에 둬야 함.
-
-## Notes
-
-- 빌드/서명: `~/.gradle/gradle.properties`의 `FEARINDEX_*` 4개 필요. 없으면 `bash ~/thingineeer-env/android/fearindex/install.sh`.
-- 배포: `bundle exec fastlane production`. **관리형 게시 OFF** — 승인 즉시 자동 게시. (SA 복구 전엔 403.)
-- 릴리즈 서명 SHA-1 `CE:08:B4:8A:FA:1C:29:8B:51:22:AC:82:9F:B7:78:12:CF:DD:0F:16`.
-- 테스트 791개 GREEN 기준. `./gradlew test`.
-- 의존성 변경 후에는 **반드시 release 빌드까지** 돌릴 것 — debug는 minify가 없어 R8 실패를 못 잡는다(48번 교훈).
+- @../../.claude/memory/bugs-fixed.md 59번 — 이번 세션 상세
+- @../../.claude/memory/MEMORY.md — 최신 상태
