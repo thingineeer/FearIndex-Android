@@ -17,12 +17,12 @@
 ## 최신 상태 (2026-08-18, Play 계정 이전 후속 — 배포 파이프라인 막힘 + API 36 경고 원인 + Next-Gen 보류)
 
 - **🚨 Play Console 개발자 계정이 바뀜**: 8/4~8/6 앱 3개(FearIndex·딸깍·그늘길)가 조직 계정 "Myeongjin Lee"(5351376807423705889) → **개인 계정 "이명진"(5573450681823453997)** 으로 이전 완료. 로그인은 `mjplist@gmail.com`(또는 dlaudwls1203) → 계정 선택 "이명진". FearIndex app ID `4973920645070208584`.
-- **🚨 fastlane 배포 불가(403)**: SA `fastlane-deploy@fear-index-a4f4b.iam.gserviceaccount.com`이 새 계정에 미등록 → 트랙 조회/업로드 전부 `caller does not have permission`. **사용자가 사용자 및 권한에서 SA 초대(앱 권한: FearIndex 출시+스토어 등록정보) 해야 배포 재개.** 상세 53번.
-- **API 36 경고 원인**: 프로덕션(1.5.1/vc22, targetSdk 36)은 OK. **내부 테스트 + 비공개 알파 트랙에 vc3(1.0.2, 4/21) 활성**이 경고 유지. vc22 승격(라이브러리에서 새 버전) 또는 트랙 일시중지로 해소 — 코드 작업 없음. 상세 54번.
+- **✅ fastlane 복구(11:01)**: SA `fastlane-deploy@fear-index-a4f4b.iam.gserviceaccount.com`이 계정 이전으로 빠져 있어 403이었음 → 사용자가 이명진 계정에 SA 초대 → 트랙 조회 정상. 상세 53번.
+- **✅ API 36 경고 원인 제거(11:03)**: 원인 = 내부 테스트 + 비공개 알파 트랙의 vc3(1.0.2). fastlane `track:production track_promote_to:internal|alpha version_code:22`로 vc22 승격 → 세 트랙 모두 [22]. 알파는 "검토 중"(심사 후 vc3 대체). 경고 카드는 스캐너 갱신 후 자동 소멸 예상. 상세 54번.
 - **결제 프로필 문제(계정 삭제 예고 9/16, "판매자 결제 수단 인증 불가")**: **사용자가 직접 진행 중 — 관여하지 말 것.**
 - **GMA Next-Gen SDK**: 조사 완료, **v1.6.0으로 보류**(하드 데드라인 없음, 1.3.x 크래시 보고, Kotlin ≥2.2 선행). 체크리스트 55번.
 - **dev 머지 완료(로컬, push 미실행)**: origin/dev(1.5.1) ← Pangle 어댑터. GMA 23.6.0→**24.8.0**(23.x deprecated), Unity 4.13.1.0 + Pangle 7.8.0.8.0 공존. 791 테스트 GREEN + release AAB 빌드 OK. 버전은 아직 vc22/1.5.1(bump 안 함).
-- **다음**: (1) 사용자 SA 초대 → fastlane 검증(`google_play_track_version_codes`) (2) vc22 내부/알파 승격으로 API 36 경고 해소 (3) push (4) Pangle 포함 v1.5.2 배포 여부 결정 (5) 실기기 Billing 8 결제 재검증(미완).
+- **다음**: (1) push(dev, 로컬 ahead) (2) 알파 심사 통과·대시보드 API 36 카드 소멸 확인 (3) Pangle 포함 v1.5.2 배포 여부 결정 (4) 실기기 Billing 8 결제 재검증(미완).
 
 ## 최신 상태 (2026-07-31 새벽, v1.5.1 vc22 — Billing 8 마이그레이션 + 배포)
 

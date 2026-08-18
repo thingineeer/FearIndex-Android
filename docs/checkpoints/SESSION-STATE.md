@@ -20,15 +20,18 @@
 - [x] **GMA Next-Gen SDK 조사** — 리서치 에이전트 + 공식 문서 검증. 결론 "보류". 체크리스트 55번.
 - [x] 메모리/세션 기록 갱신.
 
+- [x] **fastlane SA 복구** — 사용자가 이명진 계정에 SA 초대(Claude 폼 입력은 분류기 차단) → `google_play_track_version_codes` 정상(11:01).
+- [x] **vc22 → internal/alpha 승격** — `upload_to_play_store track:production track_promote_to:{internal,alpha} version_code:22 track_promote_release_status:completed skip_upload_*:true` → 세 트랙 모두 [22]. 내부 "제공됨", 알파 "검토 중". API 36 경고의 원인(vc3) 제거 완료.
+
 ## In Progress
 
-- **fastlane SA 재초대 (사용자 작업 대기)** — Claude의 초대 폼 입력은 harness 분류기가 차단. 사용자가 Play Console(이명진 계정) → 사용자 및 권한 → 신규 사용자 초대 → `fastlane-deploy@fear-index-a4f4b.iam.gserviceaccount.com` → 앱 권한(Fear & Greed Index: 프로덕션/테스트 트랙 출시 + 스토어 등록정보 관리) → 초대.
+없음. (알파 심사 대기는 Google 측.)
 
 ## Remaining (다음 세션 우선순위)
 
-1. **SA 초대 후 검증**: `bundle exec fastlane run google_play_track_version_codes track:production package_name:th1ngjin.fearindex json_key:$HOME/fearindex-secrets/play-store-service-account.json` → `[22]` 나오면 복구.
-2. **API 36 경고 해소**: vc22를 내부 테스트 + 비공개 알파에 승격(라이브러리에서 새 버전, 재업로드 없음) 또는 트랙 일시중지. fastlane 예: `upload_to_play_store track:internal version_code:22 skip_upload_aab:true skip_upload_apk:true skip_upload_metadata:true skip_upload_changelogs:true skip_upload_images:true skip_upload_screenshots:true` (알파 트랙명 콘솔에서 확인).
-3. **push** (dev). 필요 시 Pangle 어댑터 포함 v1.5.2(vc23) 배포 — 사용자 결정.
+1. **push** (dev, 로컬 ahead 5) — 사용자 승인 대기.
+2. 알파 1.5.1 심사 통과 + 대시보드 "8월 31일까지 조치" 카드 소멸 확인(스캐너 갱신 지연 가능).
+3. Pangle 어댑터 포함 v1.5.2(vc23) 배포 여부 — 사용자 결정. (fastlane production 정상 동작 확인됨.)
 4. 실기기 Billing 8 결제 재검증(1.5.1, 미완), `KospiFearIndexApi.history` boolean 지뢰, Yahoo spark 死코드, BOOT_COMPLETED 권한 정리(이월).
 5. **결제 프로필/계정 삭제 예고(9/16)** — 사용자가 직접 진행 중. 관여 금지.
 6. (v1.6.0) GMA Next-Gen 이전 — Kotlin ≥2.2 bump 선행. 55번 체크리스트.
@@ -63,8 +66,8 @@
 
 ### 다음 세션이 알아야 할 맥락
 
-- **AdMob 메일의 "API 36" 경고는 이미 해결된 것**(1.5.1). 남은 표시는 내부/알파 트랙 vc3(1.0.2). 코드 재배포 아님.
-- **fastlane 403 = SA 미등록**(계정 이전 부작용). 키 재발급 아님. SA 초대만 하면 됨.
+- **AdMob 메일의 "API 36" 경고는 해결 완료** — 프로덕션 1.5.1 + 오늘 internal/alpha에도 vc22 승격. 카드가 남아 있으면 스캐너 지연/알파 심사 대기.
+- **fastlane 403은 종결**(SA 초대 완료). **기존 번들 승격은 `track:<원본> track_promote_to:<대상> version_code:N`** — `track:<대상> version_code:N skip_upload_aab`는 성공 메시지만 나오고 아무 것도 안 함.
 - "Myeongjin Lee" 조직 계정은 앱 0개 껍데기 — 여기서 뭔가 찾지 말 것.
 - Next-Gen 이전 시 UMP 4.0.0이 transitive로 오고 App ID를 Manifest(UMP용)+InitializationConfig 두 곳에 둬야 함.
 

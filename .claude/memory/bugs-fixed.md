@@ -12,11 +12,13 @@ type: project
 - **해결(사용자 작업)**: 새 계정 → 사용자 및 권한 → 신규 사용자 초대 → 이메일 `fastlane-deploy@fear-index-a4f4b.iam.gserviceaccount.com` → 앱 권한에서 Fear & Greed Index 추가 → 출시(프로덕션/테스트 트랙) + 스토어 등록정보 관리 권한 → 초대. (SA는 수락 절차 없이 즉시 활성.) Claude의 폼 입력은 harness 분류기가 차단(계정 권한 변경) → 사용자가 직접.
 - **접근 경로**: Play Console은 `mjplist@gmail.com`(또는 dlaudwls1203)으로 로그인 → 개발자 계정 선택에서 **"이명진"** 선택. "Myeongjin Lee" 조직 계정은 이제 앱 0개(껍데기). Chrome 프로필에 따라 `/u/N` 인덱스가 다름(오늘은 `/u/6`이 이명진 계정으로 리다이렉트).
 - **교훈**: fastlane 403이면 SA 키가 아니라 **앱이 어느 개발자 계정에 있는지**부터 확인. 앱 이전 시 SA/사용자 권한은 자동으로 따라오지 않는다.
+- **✅ 해결(2026-08-18 11:01)**: 사용자가 이명진 계정에 SA 초대 완료 → `google_play_track_version_codes` production=[22]/internal=[8,3]/alpha=[3] 정상 조회 = 권한 복구 확인.
 
 ### 54. Play "API 36 타겟" 경고가 1.5.1 게시 후에도 남는 이유 = 내부/비공개 알파 트랙에 vc3(1.0.2) 활성
 - **실측** (최신 버전 및 번들): 프로덕션 1.5.1/vc22(7/31, targetSdk 36) 외에 **비공개 테스트 Alpha `3 (1.0.2)` vc3 "Google Play에서 테스터에게 제공"** + **내부 테스트 `3 (1.0.2)` vc3 "내부 테스터에게 제공됨"**(둘 다 2026-04-21) + 내부 테스트 1.0.1/vc8 임시. Play는 **모든 활성 트랙**의 targetSdk를 검사하므로 vc3(targetSdk 35 이하)이 경고를 유지시킴. 대시보드 카드 "8월 31일까지 조치"의 알림 날짜는 7/22(1.5.0 이전).
 - **해결(코드 무관)**: vc22를 내부 테스트 + 비공개 알파에 **라이브러리에서 새 버전 만들기**로 승격(재빌드/재업로드 불필요) 또는 두 트랙 일시중지. SA 복구 후 fastlane으로도 가능: `upload_to_play_store(track:"internal", version_code:22, skip_upload_aab:true, skip_upload_apk:true, skip_upload_metadata:true, skip_upload_changelogs:true, skip_upload_images:true, skip_upload_screenshots:true)` (알파는 track 이름 확인 필요).
-- **교훈**: 정책 경고는 프로덕션만이 아니라 **테스트 트랙의 옛 번들**도 본다. 배포 후 경고가 안 사라지면 "최신 버전 및 번들" 표부터 볼 것.
+- **✅ 실행(2026-08-18 11:03)**: `upload_to_play_store track:production track_promote_to:internal version_code:22 track_promote_release_status:completed skip_upload_*:true` (alpha도 동일) → internal=[22], alpha=[22], production=[22]. 콘솔: 내부 테스트 1.5.1 "내부 테스터에게 제공됨", 비공개 알파 1.5.1 "검토 중"(비공개 트랙은 심사 후 옛 vc3 대체). ⚠️ **첫 시도 `track:internal version_code:22 skip_upload_aab:true`는 "Successfully"라고 뜨지만 아무 변화 없음** — supply는 업로드가 없으면 update_track을 건너뛰므로 기존 번들 승격은 반드시 `track:<원본> track_promote_to:<대상>` 조합으로.
+- **교훈**: 정책 경고는 프로덕션만이 아니라 **테스트 트랙의 옛 번들**도 본다. 배포 후 경고가 안 사라지면 "최신 버전 및 번들" 표부터 볼 것. 알파 심사 통과 + 스캐너 갱신 후 대시보드 "8월 31일까지 조치" 카드 자동 소멸 예상.
 
 ### 55. GMA Next-Gen SDK 이전 — 지금은 보류, v1.6.0에서 계획적으로 (근거 기록)
 - **AdMob 메일(8/18)**: "GMA Next-Gen SDK가 Android 기본·권장, 레거시는 maintenance mode". 조사(공식 문서·POM·GitHub 이슈, 2026-08-18): Next-Gen **1.0.0 GA 2026-04-14 → 최신 1.3.1(7/29)**. **하드 데드라인 없음** — 레거시 v24/25는 2027-06-30 deprecated / 2028-06-30 sunset. v23.x는 이미 deprecated(2026-02-17, sunset 2027-06-30) → 이번 머지로 24.8.0.
