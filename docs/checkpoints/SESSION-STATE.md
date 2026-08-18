@@ -40,6 +40,7 @@
 1. 알파 1.5.1 심사 통과 + 대시보드 "8월 31일까지 조치" 카드 소멸 확인(스캐너 갱신 지연 가능).
 2. **v1.5.2(vc23) 배포는 사용자 지시 대기** — 내용물 = **GMA Next-Gen SDK 1.3.1** + Pangle/Unity 어댑터 상향 + 앱오프닝 ID. 배포 시: versionCode 23 bump + changelog 23 + `bundle exec fastlane production` + **RC `app_open_ads_enabled` 등 4키 게시**(안 하면 앱오픈 안 뜸) + AdMob 앱오프닝 미디에이션 그룹(선택). **배포 후 필수 감시**: Crashlytics `MotionEvent recycled twice`(NG 1.3.x #96)/App Open NPE(#85), AdMob 배너 match rate·eCPM 기준선 대비(#62). 문제 시 NG 1.2.1 다운그레이드 검토.
 3. AppLovin 연동 여부 — 사용자가 직접 검토 중.
+4. (v1.5.2 후보) **Glance 위젯 트램폴린 크래시 fix** — Crashlytics 3건/2명(1.4.2~1.5.1), bugs-fixed 58번. Billing ProxyBillingActivity NPE 는 봇 정황(RevenueCat 문서)이라 음소거 후보.
 4. 실기기 Billing 8 결제 재검증(1.5.1, 미완), `KospiFearIndexApi.history` boolean 지뢰, Yahoo spark 死코드, BOOT_COMPLETED 권한 정리(이월).
 5. **결제 프로필/계정 삭제 예고(9/16)** — 사용자가 직접 진행 중. 관여 금지.
 6. (v1.6.0) GMA Next-Gen 이전 — Kotlin ≥2.2 bump 선행. 55번 체크리스트.

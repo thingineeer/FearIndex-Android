@@ -20,6 +20,16 @@ type: project
 - **✅ 실행(2026-08-18 11:03)**: `upload_to_play_store track:production track_promote_to:internal version_code:22 track_promote_release_status:completed skip_upload_*:true` (alpha도 동일) → internal=[22], alpha=[22], production=[22]. 콘솔: 내부 테스트 1.5.1 "내부 테스터에게 제공됨", 비공개 알파 1.5.1 "검토 중"(비공개 트랙은 심사 후 옛 vc3 대체). ⚠️ **첫 시도 `track:internal version_code:22 skip_upload_aab:true`는 "Successfully"라고 뜨지만 아무 변화 없음** — supply는 업로드가 없으면 update_track을 건너뛰므로 기존 번들 승격은 반드시 `track:<원본> track_promote_to:<대상>` 조합으로.
 - **교훈**: 정책 경고는 프로덕션만이 아니라 **테스트 트랙의 옛 번들**도 본다. 배포 후 경고가 안 사라지면 "최신 버전 및 번들" 표부터 볼 것. 알파 심사 통과 + 스캐너 갱신 후 대시보드 "8월 31일까지 조치" 카드 자동 소멸 예상.
 
+### 58. Crashlytics/서버 점검 (2026-08-18) — Android 미해결 5건 정리
+- **전체 상태**: Android crash-free 사용자/세션 **100%**(30일, 크래시 7건/사용자 4명). iOS도 100%. **Cloud Functions 서버 오류 0**(최근 로그의 유일한 경고는 오늘 에뮬 debug 테스트의 App Check 토큰 거부 — 환경 문제).
+- **미해결 이슈(30일, 전체 유형)**:
+  1. **Glance 위젯 크래시** `ActionTrampolineKt.launchTrampolineAction` IllegalArgumentException "List adapter activity trampoline invoked without specifying target intent" — 3건/2명, 1.4.2~1.5.1. **실사용자 위젯 탭 크래시로 추정 — v1.5.2 fix 후보 1순위**(Glance 1.1.1 트램폴린 인텐트 소실, Glance 버전업 or actionStartActivity 인텐트 명시 확인).
+  2. **Billing 8.3.0 `ProxyBillingActivity.onCreate` NPE**(PendingIntent.getIntentSender null) — 3건/1명, **1.5.1 신규**. RevenueCat 공식 문서: 자동화 테스트(Play 사전 출시 보고서 등)가 ProxyBillingActivity 를 인자 없이 기동해 발생, "실사용자 프로덕션 발생 근거 없음", **개발자가 못 고침 — crash 리포트 음소거 권장**. 1.5.1 게시(7/31) 직후 1명/3건 패턴도 봇 정황. 관찰 유지, 실사용자 발생 증거 나오면 재평가.
+  3. ANR `art::ConditionVariable::WaitHoldingLocks` — 2건/1명, 1.5.0. 시스템/아트 내부, 관찰.
+  4. ANR `PurchaseManager.kt:345 ensureConnected` binder 대기 — 1건/1명, **1.4.1**(Billing 7 시절 구버전). 8.3.0 마이그레이션에서 경로 변경됨 — 재발 시 재평가.
+  5. WebView 이중 프로세스(crbug/558377) — 1건/1명, 1.4.2. chromium 내부, 관찰.
+- **결론**: 배포 차단 이슈 없음. v1.5.2 에 **Glance 트램폴린 fix 검토**만 후보로. Next-Gen #96(MotionEvent) 크래시는 현재 0건(아직 Next-Gen 배포 전이니 당연 — 배포 후 감시).
+
 ### 57. GMA Next-Gen SDK 1.3.1 마이그레이션 (사용자 지시 "지금 착수") — 레거시 SDK 완전 제거
 - **범위**: `play-services-ads` 24.8.0 → **`ads-mobile-sdk` 1.3.1**. 광고 4파일(AdBanner/InterstitialAdManager/AppOpenAdManager/FearIndexApp) 재작성. feature/v1.5.2-gma-next-gen 3커밋 → dev --no-ff.
 - **선행 툴체인**: Kotlin 2.1.0→**2.2.21** + KSP **2.2.21-2.0.5**(KSP2) + Hilt 2.53.1→**2.58**. 함정 2개: ① Hilt 2.53.1 은 KSP2 에서 `Expected @AndroidEntryPoint to have a value` 로 전멸 → 2.55+ 필요 ② **Hilt 2.59+ 는 AGP 9 필수**(우리 AGP 8.7.3) → 2.58 이 상한.
