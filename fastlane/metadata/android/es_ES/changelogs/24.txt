@@ -1,0 +1,1 @@
+Se añadió el explorador de puntuaciones premium y el historial de notificaciones. Se mejoró la estabilidad de la aplicación.

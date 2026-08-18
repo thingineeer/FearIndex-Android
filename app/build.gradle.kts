@@ -21,7 +21,7 @@ android {
         applicationId = "th1ngjin.fearindex"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 23
+        versionCode = 24
         versionName = "1.5.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

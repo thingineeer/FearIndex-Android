@@ -1,0 +1,1 @@
+Premium-poängutforskare och aviseringshistorik har lagts till. Appstabiliteten har förbättrats.

@@ -1,0 +1,1 @@
+Ajout de l'explorateur de scores premium et de l'historique des notifications. Stabilité de l'application améliorée.
