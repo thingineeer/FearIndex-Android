@@ -15,10 +15,12 @@ import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -381,27 +383,32 @@ class PurchaseManager @Inject constructor(
      */
     private suspend fun ensureConnected(): Boolean {
         if (billingClient.isReady) return true
-        return withTimeoutOrNull(CONNECT_TIMEOUT_MILLIS) {
-            suspendCancellableCoroutine { cont ->
-                val resumed = AtomicBoolean(false)
-                billingClient.startConnection(object : BillingClientStateListener {
-                    override fun onBillingSetupFinished(result: BillingResult) {
-                        if (!resumed.compareAndSet(false, true)) return
-                        val ok = result.responseCode == BillingClient.BillingResponseCode.OK
-                        if (!ok) {
-                            Timber.tag(TAG).w("[IAP] 연결 Error: %d — %s", result.responseCode, result.debugMessage)
-                        }
-                        cont.resume(ok)
-                    }
-
-                    override fun onBillingServiceDisconnected() {
-                        if (!resumed.compareAndSet(false, true)) return
-                        Timber.tag(TAG).w("[IAP] 연결 Error(서비스 끊김)")
-                        cont.resume(false)
-                    }
-                })
+        // CompletableDeferred.complete 는 멱등이라 setup/disconnected 이중 콜백에도 1회만 반영된다.
+        val connected = CompletableDeferred<Boolean>()
+        val listener = object : BillingClientStateListener {
+            override fun onBillingSetupFinished(result: BillingResult) {
+                val ok = result.responseCode == BillingClient.BillingResponseCode.OK
+                if (!ok) {
+                    Timber.tag(TAG).w("[IAP] 연결 Error: %d — %s", result.responseCode, result.debugMessage)
+                }
+                connected.complete(ok)
             }
-        } ?: run {
+
+            override fun onBillingServiceDisconnected() {
+                Timber.tag(TAG).w("[IAP] 연결 Error(서비스 끊김)")
+                connected.complete(false)
+            }
+        }
+        // startConnection 내부의 bindService 바인더 호출이 Play 서비스 지연 시 메인 스레드를 막아
+        // ANR 을 냈다(Crashlytics 1.4.1 "thread waiting for a binder transaction" @ensureConnected).
+        // 바인딩은 IO 스레드에서 시작하고 결과 콜백만 기다린다(콜백은 라이브러리가 메인으로 전달).
+        withContext(Dispatchers.IO) {
+            runCatching { billingClient.startConnection(listener) }.onFailure { e ->
+                Timber.tag(TAG).w(e, "[IAP] 연결 Error(startConnection 예외)")
+                connected.complete(false)
+            }
+        }
+        return withTimeoutOrNull(CONNECT_TIMEOUT_MILLIS) { connected.await() } ?: run {
             Timber.tag(TAG).w("[IAP] 연결 Error(timeout)")
             false
         }
