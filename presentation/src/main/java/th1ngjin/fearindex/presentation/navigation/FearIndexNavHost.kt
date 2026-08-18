@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -174,6 +175,7 @@ fun FearIndexNavHost(
             ) {
                 BottomNavItem.entries.forEach { item ->
                     NavigationBarItem(
+                        modifier = Modifier.testTag("nav-${item.route}"),
                         icon = { Icon(item.icon, contentDescription = null) },
                         label = { Text(stringResource(item.labelResId)) },
                         colors = NavigationBarItemDefaults.colors(
