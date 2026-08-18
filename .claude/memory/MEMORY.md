@@ -20,7 +20,8 @@
 - **검증 완료**: 유닛 1014/0 + 계측 QA 3시나리오 GREEN(헤드리스 에뮬 API 36) + release 빌드/심볼 0. **계측 QA 3함정**(Espresso 3.7.0 필수/에뮬 스토리지/M3 Slider SetProgress)은 59번 참조.
 - **실결함 fix**: 알림내역 markSeen 클럭 스큐 무한루프(FCM sentTime 미래 → 영원히 unread) — `lastMarkedNewest` 가드.
 - **에뮬 정리**: Medium_Phone_API_36.1 의 shadewalk/bamfiresurvive debug 앱 제거(스토리지 확보, 각 레포에서 재설치 가능).
-- **남은 사용자 결정**: ① 알림 내역 전용 AdMob 배너 유닛(현재 홈 유닛 fallback) ② 스토어 IAP 표시명 갱신 여부. **v1.5.2 배포는 계속 대기**(Next-Gen+Pangle+AppOpen+ANR fix+프리미엄 4종 누적).
+- **✅ v1.5.2(vc23) 내부 테스트 트랙 업로드 완료(8/18 17:35, 사용자 승인)**: 버전 bump + changelog 23(45 locale) + docs/QA-PREMIUM.md('구매 안 함' 상태 내역 진입 시 30일 초과 기록 실삭제 주의). fastlane internal 성공, 트랙 검증 internal=[23,22]/production=[22](승격 없음). AAB 서명 CE:08:B4 일치, DEBUG 심볼 0. **다음**: 내부 테스터 검증 → Production 승격 판단(사용자), RC 앱오픈 키 게시, Crashlytics #96 MotionEvent·배너 match rate 감시, push 지시 대기.
+- **남은 사용자 결정**: ① 알림 내역 전용 AdMob 배너 유닛(현재 홈 유닛 fallback) ② 스토어 IAP 표시명 갱신 여부.
 
 ## 최신 상태 (2026-08-18, Play 계정 이전 후속 — 배포 파이프라인 막힘 + API 36 경고 원인 + Next-Gen 보류)
 
