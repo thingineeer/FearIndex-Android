@@ -31,6 +31,7 @@ import th1ngjin.fearindex.domain.usecase.GetUsdKrwRateUseCase
 import th1ngjin.fearindex.data.repository.ReturnDataRepositoryImpl
 import th1ngjin.fearindex.data.repository.SimilarEventsRepositoryImpl
 import th1ngjin.fearindex.data.repository.StuckCounterRepositoryImpl
+import th1ngjin.fearindex.data.repository.NotificationHistoryRepositoryImpl
 import th1ngjin.fearindex.data.repository.NotificationRepositoryImpl
 import th1ngjin.fearindex.data.repository.VoteRepositoryImpl
 import th1ngjin.fearindex.data.service.StuckStatusDebouncerImpl
@@ -40,6 +41,7 @@ import th1ngjin.fearindex.data.storage.StuckCounterStorage
 import th1ngjin.fearindex.domain.repository.FearIndexRepository
 import th1ngjin.fearindex.domain.repository.KospiFearIndexRepository
 import th1ngjin.fearindex.domain.repository.MarketIndexRepository
+import th1ngjin.fearindex.domain.repository.NotificationHistoryRepository
 import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.repository.ReturnDataRepository
 import th1ngjin.fearindex.domain.repository.SimilarEventsRepository
@@ -56,6 +58,7 @@ import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetMarketIndicesUseCase
 import th1ngjin.fearindex.domain.usecase.GetVoteResultUseCase
+import th1ngjin.fearindex.domain.usecase.NotificationHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.ObserveStuckCounterUseCase
 import th1ngjin.fearindex.domain.usecase.ObserveVoteResultUseCase
 import th1ngjin.fearindex.domain.usecase.SubmitStuckStatusUseCase
@@ -107,6 +110,12 @@ abstract class DataBindModule {
     @Binds
     @Singleton
     abstract fun bindNotificationRepository(impl: NotificationRepositoryImpl): NotificationRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindNotificationHistoryRepository(
+        impl: NotificationHistoryRepositoryImpl,
+    ): NotificationHistoryRepository
 
     @Binds
     @Singleton
@@ -361,6 +370,15 @@ object DataModule {
     @Singleton
     fun provideGetMarketIndicesUseCase(repository: MarketIndexRepository): GetMarketIndicesUseCase =
         GetMarketIndicesUseCase(repository)
+
+    // ============================================================
+    // 알림 내역 (로컬 JSONL, 서버비 0 — iOS v1.9.4 parity)
+    // ============================================================
+
+    @Provides
+    @Singleton
+    fun provideNotificationHistoryUseCase(repository: NotificationHistoryRepository): NotificationHistoryUseCase =
+        NotificationHistoryUseCase(repository)
 
     // ============================================================
     // Firebase (Stuck Counter)

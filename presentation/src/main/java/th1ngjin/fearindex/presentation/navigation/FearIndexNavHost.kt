@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -43,6 +44,7 @@ import androidx.compose.ui.platform.LocalContext
 import th1ngjin.fearindex.presentation.feature.chart.ChartScreen
 import th1ngjin.fearindex.presentation.feature.home.HomeScreen
 import th1ngjin.fearindex.presentation.feature.home.HomeViewModel
+import th1ngjin.fearindex.presentation.feature.history.NotificationHistoryScreen
 import th1ngjin.fearindex.presentation.feature.marketdetail.MarketDetailScreen
 import th1ngjin.fearindex.presentation.feature.onboarding.LocalOnboardingTour
 import th1ngjin.fearindex.presentation.feature.onboarding.OnboardingDestination
@@ -72,6 +74,8 @@ fun FearIndexNavHost(
     qaForceTour: Boolean = false,
     qaStartStep: Int = 1,
     onTourActiveChange: (Boolean) -> Unit = {},
+    /** 설정 화면 하단 debug 전용 섹션 (app debug 소스셋 주입, release null). */
+    settingsDebugSection: (@Composable () -> Unit)? = null,
 ) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -172,6 +176,7 @@ fun FearIndexNavHost(
             ) {
                 BottomNavItem.entries.forEach { item ->
                     NavigationBarItem(
+                        modifier = Modifier.testTag("nav-${item.route}"),
                         icon = { Icon(item.icon, contentDescription = null) },
                         label = { Text(stringResource(item.labelResId)) },
                         colors = NavigationBarItemDefaults.colors(
@@ -214,6 +219,7 @@ fun FearIndexNavHost(
                 HomeScreen(
                     viewModel = homeViewModel,
                     onTickerClick = { navController.navigate("market_detail") },
+                    onNotificationHistoryClick = { navController.navigate("notification_history") },
                 )
             }
             composable(BottomNavItem.Chart.route) {
@@ -233,6 +239,7 @@ fun FearIndexNavHost(
                     onWidgetGuideClick = {
                         navController.navigate("widget_usage_guide")
                     },
+                    debugSection = settingsDebugSection,
                 )
             }
             composable("notification_settings") {
@@ -266,6 +273,9 @@ fun FearIndexNavHost(
             }
             composable("market_detail") {
                 MarketDetailScreen(onBack = { navController.popBackStack() })
+            }
+            composable("notification_history") {
+                NotificationHistoryScreen(onBack = { navController.popBackStack() })
             }
         }
         }

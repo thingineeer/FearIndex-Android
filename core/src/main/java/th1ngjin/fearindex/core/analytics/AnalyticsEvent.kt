@@ -159,14 +159,33 @@ sealed class AnalyticsEvent(val name: String, val parameters: Map<String, Any>? 
     data class 온보딩건너뛰기(val 단계: Int) :
         AnalyticsEvent("onboarding_skip", mapOf("step" to 단계))
 
-    // MARK: - 인앱결제 (광고 제거)
-    data object 광고제거구매시작 : AnalyticsEvent("광고제거구매시작")
-    data object 광고제거구매완료 : AnalyticsEvent("광고제거구매완료")
-    data class 광고제거구매실패(val 에러메시지: String) :
-        AnalyticsEvent("광고제거구매실패", mapOf("에러메시지" to 에러메시지))
+    // MARK: - 인앱결제 (광고 제거 = 프리미엄)
+    // v1.9.4 parity: 진입 경로 구분용 `source` ("settings" | "score_explorer" | "notification_history").
+    // 기본값 settings 라 기존 호출처 무수정 (iOS AnalyticsEvent 동일).
+    data class 광고제거구매시작(val source: String = PremiumPurchaseSource.SETTINGS) :
+        AnalyticsEvent("광고제거구매시작", mapOf("source" to source))
 
-    data class 광고제거복원(val 성공여부: Boolean) :
-        AnalyticsEvent("광고제거복원", mapOf("성공여부" to 성공여부))
+    data class 광고제거구매완료(val source: String = PremiumPurchaseSource.SETTINGS) :
+        AnalyticsEvent("광고제거구매완료", mapOf("source" to source))
+
+    data class 광고제거구매실패(val 에러메시지: String, val source: String = PremiumPurchaseSource.SETTINGS) :
+        AnalyticsEvent("광고제거구매실패", mapOf("에러메시지" to 에러메시지, "source" to source))
+
+    data class 광고제거복원(val 성공여부: Boolean, val source: String = PremiumPurchaseSource.SETTINGS) :
+        AnalyticsEvent("광고제거복원", mapOf("성공여부" to 성공여부, "source" to source))
+
+    // MARK: - 프리미엄 (v1.9.4 parity, GA 이름은 iOS 와 동일한 영문 snake_case)
+    /** 잠금 row 탭. feature = PremiumFeature.analyticsKey ("score_explorer" | "notification_history_unlimited"). */
+    data class 프리미엄잠금탭(val feature: String) :
+        AnalyticsEvent("premium_lock_tapped", mapOf("feature" to feature))
+
+    /** 점수 탐색기 슬라이더 드래그 종료 시 1회. period = ReturnHorizon.analyticsKey ("oneMonth"…"oneYear"). */
+    data class 점수탐색기조작(val indexType: String, val score: Int, val period: String) :
+        AnalyticsEvent("score_explorer_moved", mapOf("index_type" to indexType, "score" to score, "period" to period))
+
+    /** 알림 내역 화면 진입 (보이는 건수). */
+    data class 알림내역조회(val 개수: Int) :
+        AnalyticsEvent("notification_history_viewed", mapOf("count" to 개수))
 
     // MARK: - 수익 최적화 이벤트
     data class 화면체류시간(val 화면: String, val 체류초: Int) :
@@ -191,4 +210,11 @@ enum class AnalyticsScreen(val screenName: String, val screenClass: String) {
     설정("설정", "SettingsScreen"),
     투표("투표", "VoteScreen"),
     알림설정("알림설정", "NotificationSettingsScreen");
+}
+
+/** 프리미엄(광고 제거) 구매 진입 경로 — iOS PremiumPurchaseSource 와 동일 문자열. */
+object PremiumPurchaseSource {
+    const val SETTINGS = "settings"
+    const val SCORE_EXPLORER = "score_explorer"
+    const val NOTIFICATION_HISTORY = "notification_history"
 }

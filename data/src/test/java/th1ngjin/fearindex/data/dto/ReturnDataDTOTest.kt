@@ -4,6 +4,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Test
+import th1ngjin.fearindex.domain.entity.DateRange
+import th1ngjin.fearindex.domain.entity.HistoricalSampleCounts
+import java.time.Instant
 
 /**
  * ReturnDataDTO 파싱 테스트.
@@ -73,6 +76,89 @@ class ReturnDataDTOTest {
         }
         val dto = ReturnDataDTO.fromMap(raw)!!
         assertNull(dto.historicalEvents.first().returnAfter)
+    }
+
+    // ---- v1.9.4: horizonCounts / sourceFngRange ----
+
+    @Test
+    fun `fromMap - horizonCounts 있으면 horizonSampleCounts 로 디코딩`() {
+        val pointMap = buildPointMap(0).toMutableMap().apply {
+            put("horizonCounts", mapOf("oneMonth" to 12L, "threeMonth" to 11, "sixMonth" to 9.0, "oneYear" to 4L))
+        }
+        val raw = buildValidRaw().toMutableMap().apply {
+            put("dataPoints", listOf(pointMap) + (1..100).map { buildPointMap(it) })
+        }
+        val point = ReturnDataDTO.fromMap(raw)!!.toDomain().dataPoints.first()
+        assertEquals(HistoricalSampleCounts(12, 11, 9, 4), point.horizonSampleCounts)
+        assertEquals(12, point.sampleCount)
+    }
+
+    @Test
+    fun `fromMap - horizonCounts 없으면 sampleCount 를 모든 horizon 에 적용`() {
+        val point = ReturnDataDTO.fromMap(buildValidRaw())!!.toDomain().dataPoints.first()
+        assertEquals(HistoricalSampleCounts.same(12), point.horizonSampleCounts)
+    }
+
+    @Test
+    fun `fromMap - horizonCounts 필드가 일부 누락이면 무시하고 sampleCount fallback`() {
+        val pointMap = buildPointMap(0).toMutableMap().apply {
+            put("horizonCounts", mapOf("oneMonth" to 12, "threeMonth" to 11))
+        }
+        val raw = buildValidRaw().toMutableMap().apply {
+            put("dataPoints", listOf(pointMap) + (1..100).map { buildPointMap(it) })
+        }
+        val point = ReturnDataDTO.fromMap(raw)!!.toDomain().dataPoints.first()
+        assertEquals(HistoricalSampleCounts.same(12), point.horizonSampleCounts)
+    }
+
+    @Test
+    fun `toDomain - sourceFngRange 있으면 sourceRange (UTC 자정)`() {
+        val raw = buildValidRaw().toMutableMap().apply {
+            put("sourceFngRange", mapOf("from" to "2011-01-03", "to" to "2026-08-17"))
+        }
+        val table = ReturnDataDTO.fromMap(raw)!!.toDomain()
+        assertEquals(
+            DateRange(Instant.parse("2011-01-03T00:00:00Z"), Instant.parse("2026-08-17T00:00:00Z")),
+            table.sourceRange,
+        )
+    }
+
+    @Test
+    fun `toDomain - sourceScoreRange (kospi) 도 sourceRange 로 매핑, sourceFngRange 가 우선`() {
+        val kospiRaw = buildValidRaw().toMutableMap().apply {
+            put("sourceScoreRange", mapOf("from" to "2020-01-02", "to" to "2026-04-27"))
+        }
+        assertEquals(
+            DateRange(Instant.parse("2020-01-02T00:00:00Z"), Instant.parse("2026-04-27T00:00:00Z")),
+            ReturnDataDTO.fromMap(kospiRaw)!!.toDomain().sourceRange,
+        )
+        val bothRaw = kospiRaw.toMutableMap().apply {
+            put("sourceFngRange", mapOf("from" to "2011-01-03", "to" to "2026-08-17"))
+        }
+        assertEquals(Instant.parse("2011-01-03T00:00:00Z"), ReturnDataDTO.fromMap(bothRaw)!!.toDomain().sourceRange?.start)
+    }
+
+    @Test
+    fun `toDomain - source range 없으면 sourceRange null (레거시 문서)`() {
+        assertNull(ReturnDataDTO.fromMap(buildValidRaw())!!.toDomain().sourceRange)
+    }
+
+    @Test
+    fun `toDomain - source range 날짜 파싱 실패 또는 from 이 to 보다 늦으면 null`() {
+        val badFormat = buildValidRaw().toMutableMap().apply {
+            put("sourceFngRange", mapOf("from" to "2011/01/03", "to" to "2026-08-17"))
+        }
+        assertNull(ReturnDataDTO.fromMap(badFormat)!!.toDomain().sourceRange)
+
+        val reversed = buildValidRaw().toMutableMap().apply {
+            put("sourceFngRange", mapOf("from" to "2026-08-17", "to" to "2011-01-03"))
+        }
+        assertNull(ReturnDataDTO.fromMap(reversed)!!.toDomain().sourceRange)
+
+        val missingTo = buildValidRaw().toMutableMap().apply {
+            put("sourceFngRange", mapOf("from" to "2011-01-03"))
+        }
+        assertNull(ReturnDataDTO.fromMap(missingTo)!!.toDomain().sourceRange)
     }
 
     // ---- helpers ----

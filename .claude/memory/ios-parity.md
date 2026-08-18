@@ -8,6 +8,18 @@ type: project
 
 **핵심 원칙**: Android는 독자 프로덕트가 아니라 **iOS/macOS와 같은 제품의 플랫폼 변종**. 모든 대시보드, Firebase Analytics 이벤트, Crashlytics, 사용자 인사이트에서 일관되게 보여야 함.
 
+## 프리미엄 parity (iOS v1.9.4 → Android, 2026-08-18 이식)
+
+iOS SSOT: `/Users/imyeongjin/Desktop/worktrees/fi-v194-design` (spec `docs/superpowers/specs/2026-08-18-v194-premium-score-explorer-notification-history-design.md`).
+
+- **프리미엄 = 광고 제거 구매**(새 SKU 없음): iOS `PremiumEntitlementProviding.isPremium == isAdFree` ↔ Android `PurchaseManager.isPremium`(=`isAdFree`). `PremiumFeature{SCORE_EXPLORER, NOTIFICATION_HISTORY_UNLIMITED}` + `PremiumFeaturePolicy.canUse` 동일.
+- **GA 이벤트 이름 동일**: `premium_lock_tapped{feature}`, `score_explorer_moved{index_type,score,period}`, `notification_history_viewed{count}`; 구매 이벤트(광고제거구매시작/완료/실패/복원)에 `source`(settings|score_explorer|notification_history).
+- **점수 탐색기 신뢰 정책 동일**: 정확 버킷만(보간 금지), 범위 = n>0 min..max, n==0 → "기록한 날 없음", horizon 별 n = `horizonCounts`, n<5 저표본 배지, 라벨 평균/비관(p10)/낙관(p90). 번들 fallback 수익률 = iOS `DefaultReturnData.swift` 2026-08-18 재생성분과 동일(같은 JSON에서 `scripts/gen-default-return-data.py`).
+- **위치 divergence**: iOS 는 인사이트 피드 아래·현재 점수 카드 위, Android 차트 탭은 현재 점수 카드가 최상단이라 **AdBanner 와 InsightFeed 사이**(배너 위치 불변).
+- **알림 내역**: 정책(무료 30일/프리미엄 무제한/하드캡 5000/dedup message_id→kind+초), 채널 판별(`data.type` 접두), 배너 3번째 뒤·7개마다, 하단 잠금 row, 홈 🔔+빨간 점 — 동일. 저장은 iOS App Group JSONL(main+spool) ↔ Android 내부 저장소 JSONL 1파일. **Android 추가 규칙**: 트레이 동기화(activeNotifications)는 data payload 가 없어 kind=OTHER·fallback id 로 기록 → 이후 탭(message id) 시 같은 title/body·±120s 레코드를 승격(`NotificationHistoryPolicy.upsert`).
+- **DEBUG 결제 테스트**: iOS `#if DEBUG DebugPremiumOverride` ↔ Android `core/src/debug` + `app/src/debug`(release 심볼 0). 카피는 양쪽 다 개발자용 한글 리터럴.
+- **라벨**: `scoreExplorer.*`/`notification.history.*`/`premium.*`/`settings.premium.*` 45키 + 보조 10키를 xcstrings 데이터로 이식(`scripts/i18n/import_xcstrings_keys.py`). Android 재사용 키: `insight_current_score_avg_return/max_drawdown/best_return`, `insight_detail_disclaimer_*`, `market_detail_updated_at`, `period_*`.
+
 ## 온보딩 코치마크 투어 (iOS v1.9.3 → Android v1.4.1, 이식 완료)
 
 iOS SSOT: `OnboardingTourView.swift` / `OnboardingEligibility.swift` / `FearIndexView.swift`(startTourIfNeeded/handleTourStep/finishTour/restartTour).
