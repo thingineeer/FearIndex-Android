@@ -3,6 +3,7 @@ package th1ngjin.fearindex.qa
 import android.Manifest
 import android.content.Context
 import android.os.Build
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.hasTestTag
@@ -14,15 +15,14 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
-import androidx.compose.ui.test.performTouchInput
-import androidx.compose.ui.test.swipeLeft
+import androidx.compose.ui.test.performSemanticsAction
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
 import dagger.hilt.android.EntryPointAccessors
 import org.junit.After
-import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -111,12 +111,18 @@ class PremiumQaTest {
         composeRule.waitUntilExists(hasTestTag(SCORE_EXPLORER_RESET))
         composeRule.waitUntilExists(hasTestTag(SCORE_EXPLORER_SLIDER))
 
-        val before = composeRule.scoreText()
-        composeRule.onNodeWithTag(SCORE_EXPLORER_SLIDER).performScrollTo().performTouchInput { swipeLeft() }
-        composeRule.waitForIdle()
-        val after = composeRule.scoreText()
-        assertNotEquals("슬라이더 조작 후 값 불변", before, after)
+        // 슬라이더 조작: SetProgress semantics action (M3 Slider 표준 테스트 경로 —
+        // onValueChange → VM.move → uiState → 점수 텍스트 전체 체인 검증. swipe 는 클립/슬롭으로 flaky)
+        val before = composeRule.scoreText().toInt()
+        val target = if (before >= 50) before - 15 else before + 15
+        composeRule.onNodeWithTag(SCORE_EXPLORER_SLIDER).performScrollTo()
+            .performSemanticsAction(SemanticsActions.SetProgress) { it(target.toFloat()) }
+        composeRule.waitUntil(10_000) { composeRule.scoreText() == target.toString() }
+        assertEquals("슬라이더 조작 후 목표값 미반영", target.toString(), composeRule.scoreText())
         composeRule.onNodeWithTag(SCORE_EXPLORER_RESET).assertIsEnabled()
+        // 리셋 → 앵커(현재 점수) 복귀
+        composeRule.onNodeWithTag(SCORE_EXPLORER_RESET).performClick()
+        composeRule.waitUntil(10_000) { composeRule.scoreText() == before.toString() }
 
         openTab("settings")
         composeRule.waitUntilExists(hasText(str(R.string.settings_remove_ads_purchased)))
