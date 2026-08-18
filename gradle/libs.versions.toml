@@ -1,8 +1,9 @@
 [versions]
 # Android
 agp = "8.7.3"
-kotlin = "2.1.0"
-ksp = "2.1.0-1.0.29"
+# Kotlin 2.2: 최신 GMA 미디에이션 어댑터(Pangle 8.1+/Unity 4.18.1+)가 kotlin-stdlib 2.3.0 메타데이터를 쓰므로 2.1로는 컴파일 불가.
+kotlin = "2.2.21"
+ksp = "2.2.21-2.0.5"
 compileSdk = "36"
 minSdk = "29"
 targetSdk = "36"
@@ -21,7 +22,8 @@ composeBom = "2024.12.01"
 composeCompiler = "1.5.15"
 
 # Hilt
-hilt = "2.53.1"
+# Hilt 2.55+ 부터 KSP2(Kotlin 2.2 KSP 기본) 지원 — 2.53.1 은 "@AndroidEntryPoint to have a value" 로 실패. 2.59+ 는 AGP 9 필수라 2.58 로 고정.
+hilt = "2.58"
 hiltCompose = "1.2.0"
 
 # Firebase
