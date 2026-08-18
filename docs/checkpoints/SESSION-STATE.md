@@ -31,6 +31,7 @@
 - [x] **AdMob 실사** — 공포지수 Android 준비됨, 단위 6개(ID 코드 일치), 미디에이션 입찰 AdMob+Pangle+Unity 활성·매핑 6/6, 폭포식 0, AppLovin 미연결. 상세 bugs-fixed 56번.
 - [x] **앱오프닝 단위 발급 + 코드 연결** — `AppOpen` `ca-app-pub-5283496525222246/6583206280`.
 - [x] **GMA Next-Gen SDK 1.3.1 마이그레이션** — 사용자 지시로 즉시 착수. Kotlin 2.2.21/KSP2/Hilt 2.58 + 어댑터 상향 + 광고 4파일 재작성 + AdSdkState 게이트. 803 테스트 GREEN, release AAB OK, 에뮬 배너/인터스티셜/앱오픈 실검증. 상세 bugs-fixed 57번.
+- [x] **실기기(Galaxy S22) release E2E** — vc22 release APK 설치, 크래시 0, **프로덕션 실광고 fill**(홈/차트/투표/설정 배너, TikTok Lite=Pangle 계열 소재 포함), 코스피 신호 분해·RSI 정상, **Premium ₩7,500 실가격**(Billing 8 실기기 가격 검증). 인터스티셜은 세션 중 미노출(프로덕션 fill 타이밍, 에뮬 debug 검증 완료). SimilarEvents raw key(34번) 여전.
 
 - [x] **앱오프닝 광고 단위 발급 + 코드 연결** — AdMob `AppOpen` `ca-app-pub-5283496525222246/6583206280`, release `ADMOB_APP_OPEN`(app+presentation) 반영, release compile OK. worktree `feature/v1.5.2-app-open-unit` → dev --no-ff.
 
