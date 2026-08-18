@@ -20,6 +20,14 @@ type: project
 - **✅ 실행(2026-08-18 11:03)**: `upload_to_play_store track:production track_promote_to:internal version_code:22 track_promote_release_status:completed skip_upload_*:true` (alpha도 동일) → internal=[22], alpha=[22], production=[22]. 콘솔: 내부 테스트 1.5.1 "내부 테스터에게 제공됨", 비공개 알파 1.5.1 "검토 중"(비공개 트랙은 심사 후 옛 vc3 대체). ⚠️ **첫 시도 `track:internal version_code:22 skip_upload_aab:true`는 "Successfully"라고 뜨지만 아무 변화 없음** — supply는 업로드가 없으면 update_track을 건너뛰므로 기존 번들 승격은 반드시 `track:<원본> track_promote_to:<대상>` 조합으로.
 - **교훈**: 정책 경고는 프로덕션만이 아니라 **테스트 트랙의 옛 번들**도 본다. 배포 후 경고가 안 사라지면 "최신 버전 및 번들" 표부터 볼 것. 알파 심사 통과 + 스캐너 갱신 후 대시보드 "8월 31일까지 조치" 카드 자동 소멸 예상.
 
+### 56. AdMob 미디에이션/광고 단위 실사 (2026-08-18, Chrome MCP) — 공포지수 Android 현황 스냅샷
+- **앱**: `ca-app-pub-5283496525222246~1308884877` **준비됨 · 광고 게재 사용 설정됨**(6월 "배너 적용 불가/게재 제한" 상태는 해소된 상태로 표시). 광고 단위 6개 = HomeBanner/InsightBanner/ChartBanner/VoteBanner/SettingsBanner(배너 5) + KospiInterstitial(전면). ID 전부 `app/build.gradle.kts` release buildConfigField와 일치. **앱오프닝 단위 없음**(release `ADMOB_APP_OPEN=""` 그대로, RC `app_open_ads_enabled` 기본 OFF → 앱오픈 광고는 코드만 있고 미가동. iOS는 "공포지수 iOS 앱오프닝" 그룹 있음).
+- **미디에이션 그룹**(Android 2개): "공포지수 Android 배너"(ID 6680418598, 배너 5단위, Google 최적화 전체) / "공포지수 Android 전면"(ID 4054253992, KospiInterstitial). 둘 다 **입찰 소스 = AdMob Network + Pangle ROW SDK + Unity Ads(모두 활성)**, **폭포식 소스 0**.
+- **입찰 소스(계정)**: Pangle ROW SDK(직접적인 관계·활성 파트너 관계) — 공포지수 Android 매핑 6개(배너 5 → Placement 983442697, KospiInterstitial → 983442708), Unity Ads(직접적인 관계·활성) — 매핑 6개, AdMob 네트워크(승인된 구매자 407). **AppLovin은 입찰/폭포식 어디에도 없음(미연결)** — 앱 코드에도 AppLovin 어댑터 없음(Unity·Pangle만).
+- **7일 성과**(8/11~17, Android): 요청 2.35천 / 노출 1.01천 / 일치율 82.75% / eCPM $3.21 / 수입 $3.23. Pangle 배너 노출 887(eCPM $0.33, 계정 전체 기준).
+- **코드↔콘솔 정합**: 어댑터(Unity 4.13.1.0 + Pangle 7.8.0.8.0) ↔ 콘솔 입찰 소스(Unity, Pangle) 일치. Pangle은 로컬 머지 커밋에 이미 포함(1.5.1 배포본엔 Unity만) — 콘솔 매핑은 이미 되어 있으므로 Pangle 입찰은 **Pangle 어댑터 포함 빌드(v1.5.2) 배포 시 실가동**.
+- 부수 관찰: 그늘길 Android(구, `~6115131561`) "검토 필요·게재 제한(스토어 추가)" — 별도 레포 이슈.
+
 ### 55. GMA Next-Gen SDK 이전 — 지금은 보류, v1.6.0에서 계획적으로 (근거 기록)
 - **AdMob 메일(8/18)**: "GMA Next-Gen SDK가 Android 기본·권장, 레거시는 maintenance mode". 조사(공식 문서·POM·GitHub 이슈, 2026-08-18): Next-Gen **1.0.0 GA 2026-04-14 → 최신 1.3.1(7/29)**. **하드 데드라인 없음** — 레거시 v24/25는 2027-06-30 deprecated / 2028-06-30 sunset. v23.x는 이미 deprecated(2026-02-17, sunset 2027-06-30) → 이번 머지로 24.8.0.
 - **보류 근거**: ① 1.3.x에 `MotionEvent recycled twice` 랜덤 크래시(#96, 광고 밖 스크롤 중에도), App Open show() NPE(#85), 배너 fill 30~50% 하락 보고(#62) ② 최신 어댑터(Pangle 8.1.0.3.0+/Unity 4.18.1.0+)가 kotlin-stdlib 2.3.0 의존 → **Kotlin 2.1.0에선 빌드 실패 가능(Kotlin ≥2.2 bump 선행)** — Billing 9.x와 같은 벽 ③ Billing 8 첫 배포(1.5.1) 결제 실기기 검증도 아직인데 광고 SDK까지 갈면 변수 겹침.

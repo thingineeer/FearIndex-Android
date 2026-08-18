@@ -4,7 +4,7 @@
 2026-08-18 (오전 세션)
 
 ## Branch
-`dev` — 로컬에서 origin/dev(v1.5.1 배포분) ← Pangle 어댑터 머지 완료(--no-ff, 충돌 2파일 해소). **push 미실행.** worktree 없음.
+`dev` — origin/dev(v1.5.1 배포분) ← Pangle 어댑터 머지 완료(--no-ff, 충돌 2파일 해소) + **push 완료**. worktree 없음.
 
 ## ⚡ 한 줄 요약
 
@@ -27,11 +27,13 @@
 
 없음. (알파 심사 대기는 Google 측.)
 
+- [x] **push** — dev = origin/dev(78759074).
+- [x] **AdMob 실사** — 공포지수 Android 준비됨, 단위 6개(ID 코드 일치), 미디에이션 입찰 AdMob+Pangle+Unity 활성·매핑 6/6, 폭포식 0, AppLovin 미연결, 앱오프닝 단위 없음. 상세 bugs-fixed 56번.
+
 ## Remaining (다음 세션 우선순위)
 
-1. **push** (dev, 로컬 ahead 5) — 사용자 승인 대기.
-2. 알파 1.5.1 심사 통과 + 대시보드 "8월 31일까지 조치" 카드 소멸 확인(스캐너 갱신 지연 가능).
-3. Pangle 어댑터 포함 v1.5.2(vc23) 배포 여부 — 사용자 결정. (fastlane production 정상 동작 확인됨.)
+1. 알파 1.5.1 심사 통과 + 대시보드 "8월 31일까지 조치" 카드 소멸 확인(스캐너 갱신 지연 가능).
+2. Pangle 어댑터 포함 v1.5.2(vc23) 배포 여부 — 사용자 결정. 콘솔 Pangle 매핑은 이미 완료라 배포만 하면 입찰 실가동. (fastlane production 정상 동작 확인됨.)
 4. 실기기 Billing 8 결제 재검증(1.5.1, 미완), `KospiFearIndexApi.history` boolean 지뢰, Yahoo spark 死코드, BOOT_COMPLETED 권한 정리(이월).
 5. **결제 프로필/계정 삭제 예고(9/16)** — 사용자가 직접 진행 중. 관여 금지.
 6. (v1.6.0) GMA Next-Gen 이전 — Kotlin ≥2.2 bump 선행. 55번 체크리스트.
