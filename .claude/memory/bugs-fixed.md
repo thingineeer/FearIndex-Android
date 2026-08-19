@@ -6,6 +6,15 @@ type: project
 
 ## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
 
+### 62. 미디에이션 어댑터 "파일 존재 ≠ 런타임 로드" — Android 는 정상(3/3 COMPLETE), iOS 는 미로드
+- **계기**: iOS 세션이 실기기 로그에서 `GADMediationAdapterUnity/Pangle = Not Ready; No such adapter in the application` 확인(프레임워크는 번들에 임베드됨). 같은 층위의 내 "AAB 에 Pangle 리소스·Unity .so 존재" 증거도 **런타임 로드를 보장하지 않는다**는 지적을 받아 Android 도 런타임 실측.
+- **진단 코드**(`FearIndexApp.logAdapterStatuses`): `MobileAds.initialize(ctx, config) { initializationStatus -> ... }` 3-arg 오버로드로 `initializationStatus.adapterStatusMap` 기록. **release 는 Timber tree 가 Crashlytics 전용(60번)이라 logcat 에 안 남으므로 `android.util.Log("FearIndexAdapters")` 로도 남긴다** — 배포 후 logcat/Firebase 양쪽 확인 가능.
+- **⚠️ Next-Gen enum 이름이 레거시와 다름**: 정상 상태는 `READY` 가 아니라 **`AdapterStatus.InitializationState.COMPLETE`**(NOT_STARTED/INITIALIZING/COMPLETE/TIMED_OUT/FAILED). READY 로 쓰면 컴파일 에러.
+- **실측 결과 (헤드리스 에뮬 API 36)**: debug = Pangle COMPLETE(262ms)/Unity COMPLETE(1156ms)/GMA COMPLETE(5659ms). **release(R8 minify) = Unity COMPLETE(690ms)/Pangle COMPLETE(196ms)/GMA COMPLETE(2983ms)** → **Android 는 어댑터 로드 정상, R8 shrink 도 없음.**
+- **수동 proguard keep 룰 불필요**: 우리 proguard-rules.pro 에 어댑터 keep 0건이지만 **GMA Next-Gen AAR 이 consumer proguard 룰 내장**(`-keep class * implements com.google.android.gms.ads.mediation.MediationAdapter`, `-keep class * extends ...Adapter`) → 어댑터가 자동 보존. release 실측이 이를 확인.
+- **결론**: Unity fill 6.12%(eCPM $14.30) 의 원인은 어댑터 미로드도, 콘솔 매핑도 아니다(61번에서 콘솔 정상 확인). 남은 후보는 Unity 대시보드 쪽 Game ID 상태/인벤토리. **iOS 는 별개 문제**(어댑터 자체가 런타임 미로드 — `-ObjC` linker flag 부재 의심, iOS 세션 수정 중).
+- **교훈**: 정적 증거(AAR 리소스/so, 프레임워크 임베드, nm/otool)는 런타임 로드의 근거가 못 된다. **유효한 증거는 `adapterStatusMap` 런타임 로그 하나뿐.** iOS 세션은 대조군(GoogleMobileAds) 없이 nm 으로 판정했다가 오판할 뻔했다.
+
 ### 61. 콘솔 실측 2건 — Pangle 수익 출처 오인 정정 + RC 앱오픈 키 게시 + iOS Unity 매핑 결론
 - **Pangle 수익 출처 = 딸깍(Android), 공포지수 아님** (AdMob 미디에이션 보고서 30일, 측정기준 앱×광고 소스). 25행 중 Pangle 행은 `딸깍 - 키보드 소리 ASMR(Android) | Pangle ROW SDK(입찰) | US$4.03 | eCPM US$1.38 | 요청 13,811 | 일치율 39.38%` **단 1개**. 공포지수 Android 에 Pangle 행이 없는 건 정상 — **vc24 가 Pangle 어댑터 최초 포함본**(같은 날 게시).
 - **공포지수 30일 실측**: Android AdMob Network US$21.21/eCPM 4.09/요청 11,330/일치율 86.66%, Android **Unity Ads US$0.67/eCPM 14.30/요청 5,389/일치율 6.12%**(eCPM 최고인데 fill 6% = 사실상 미가동 → Pangle 합류로 개선 기대). iOS AdMob US$44.89/eCPM 1.94/요청 154,876/일치율 96.61%(요청은 Android 13배인데 eCPM 절반). 계정 전체 US$363.84 중 미디에이션 파트너 기여 US$4.70(1.3%).
