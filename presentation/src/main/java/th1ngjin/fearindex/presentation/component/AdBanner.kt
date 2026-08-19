@@ -82,7 +82,23 @@ fun AdBanner(
     // Next-Gen SDK 는 MobileAds.initialize 완료 전 load 시 UninitializedPropertyAccessException 위험 —
     // 초기화가 끝난 뒤에만 AdView 를 만들고 로드한다(완료 시 리컴포지션으로 자연 진입).
     val sdkInitialized by AdSdkState.isInitialized.collectAsStateWithLifecycle()
-    if (isAdFree || !canRequestAds || !adsConfig.adsEnabled || adUnitId.isBlank() || !sdkInitialized) {
+    val blockedBy = buildString {
+        if (isAdFree) append("adFree ")
+        if (!canRequestAds) append("consent ")
+        if (!adsConfig.adsEnabled) append("rcOff ")
+        if (adUnitId.isBlank()) append("noUnit ")
+        if (!sdkInitialized) append("sdkInit ")
+    }.trim()
+    // 게이트 상태 변화를 release logcat 에서도 추적 (수익 직결 — 첫 진입 미노출 진단용)
+    var lastLoggedGate by remember(adUnitId) { mutableStateOf<String?>(null) }
+    if (lastLoggedGate != blockedBy) {
+        lastLoggedGate = blockedBy
+        android.util.Log.i(
+            AD_LOG_TAG,
+            if (blockedBy.isEmpty()) "[$screenName] 게이트 통과 → 배너 진입" else "[$screenName] 게이트 차단: $blockedBy",
+        )
+    }
+    if (blockedBy.isNotEmpty()) {
         return
     }
 
@@ -109,61 +125,118 @@ fun AdBanner(
         val mainHandler = remember { Handler(Looper.getMainLooper()) }
         val retryPolicy = remember { AdRetryPolicy() }
         val slot = remember(adUnitId, adSize) {
-            val slot = BannerAdSlot(AdView(context))
-            slot.adView.apply {
-                layoutParams = ViewGroup.LayoutParams(
+            BannerAdSlot(android.widget.FrameLayout(context)).also { slot ->
+                slot.container.layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                 )
-                var retryCount = 0
-                lateinit var requestLoad: () -> Unit
-                val loadCallback = object : AdLoadCallback<BannerAd> {
-                    override fun onAdLoaded(ad: BannerAd) {
-                        // 뷰가 이미 destroy 된 뒤 도착한 콜백(취소/지연 응답)은 무시.
-                        if (slot.disposed) return
-                        retryCount = 0
-                        // iOS(AdBannerView.swift) 와 동일: 로드 후 SDK가 확정한 adSize 실제 높이
-                        // 를 clamp 없이 컨테이너에 반영. (렌더 height 는 레이아웃 타이밍에 부정확)
-                        val loadedDp = ad.getAdSize().height.takeIf { it > 0 } ?: adSize.height
-                        ad.adEventCallback = object : BannerAdEventCallback {
-                            override fun onAdClicked() {
+                // ⚠️ 재시도는 반드시 "새 AdView" 로 — Next-Gen SDK 는 같은 AdView 에 loadAd 를
+                // 다시 호출하면 CANCELLED("publisher action")+NO_FILL 쌍으로 재경매가 무산된다
+                // (S22 콜드스타트 실측: 동일 뷰 재시도 연속 실패 vs 새 뷰 즉시 fill — bugs-fixed 66번).
+                lateinit var startLoad: (Int) -> Unit
+                startLoad = { retryCount ->
+                    if (!slot.disposed) {
+                        val adView = AdView(context).apply {
+                            layoutParams = ViewGroup.LayoutParams(
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                            )
+                        }
+                        slot.adView?.destroy()
+                        slot.adView = adView
+                        slot.container.removeAllViews()
+                        slot.container.addView(adView)
+                        val loadCallback = object : AdLoadCallback<BannerAd> {
+                            override fun onAdLoaded(ad: BannerAd) {
+                                // destroy 됐거나(늦은 콜백) 다른 재시도 뷰로 교체된 경우 무시.
+                                if (slot.disposed || slot.adView !== adView) return
+                                android.util.Log.i(AD_LOG_TAG, "[$screenName] onAdLoaded (retryCount=$retryCount)")
+                                slot.loaded = true
+                                slot.failedSinceLoad = false
+                                val loadedDp = ad.getAdSize().height.takeIf { it > 0 } ?: adSize.height
+                                ad.adEventCallback = object : BannerAdEventCallback {
+                                    override fun onAdClicked() {
+                                        mainHandler.post {
+                                            analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
+                                        }
+                                    }
+                                }
                                 mainHandler.post {
-                                    analytics.log(AnalyticsEvent.배너광고클릭(화면 = screenName))
+                                    loadedHeightDp = loadedDp
+                                    analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
+                                }
+                            }
+
+                            override fun onAdFailedToLoad(adError: LoadAdError) {
+                                if (slot.disposed || slot.adView !== adView) return
+                                mainHandler.post {
+                                    if (slot.disposed || slot.adView !== adView) return@post
+                                    analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = adError.message))
+                                    slot.failedSinceLoad = true
+                                    if (!AdRetryPolicy.isRetryable(adError.code.name)) {
+                                        android.util.Log.w(
+                                            AD_LOG_TAG,
+                                            "[$screenName] 로드 실패 code=${adError.code.name} msg=${adError.message} → 재시도 안 함(비재시도 코드)",
+                                        )
+                                        return@post
+                                    }
+                                    val delay = retryPolicy.nextDelayMillis(retryCount)
+                                    if (delay == null) {
+                                        android.util.Log.w(
+                                            AD_LOG_TAG,
+                                            "[$screenName] 로드 실패 code=${adError.code.name} msg=${adError.message} → 재시도 소진(retryCount=$retryCount)",
+                                        )
+                                        return@post
+                                    }
+                                    android.util.Log.w(
+                                        AD_LOG_TAG,
+                                        "[$screenName] 로드 실패 code=${adError.code.name} msg=${adError.message} → ${delay}ms 후 재시도(#${retryCount + 1})",
+                                    )
+                                    slot.retryPending = true
+                                    mainHandler.postDelayed({
+                                        slot.retryPending = false
+                                        startLoad(retryCount + 1)
+                                    }, delay)
                                 }
                             }
                         }
-                        mainHandler.post {
-                            loadedHeightDp = loadedDp
-                            analytics.log(AnalyticsEvent.배너광고노출(화면 = screenName))
-                        }
-                    }
-
-                    override fun onAdFailedToLoad(adError: LoadAdError) {
-                        // destroy 된 뷰에 재시도 loadAd 를 던지지 않도록 dispose 이후 콜백은 무시.
-                        if (slot.disposed) return
-                        mainHandler.post {
-                            if (slot.disposed) return@post
-                            analytics.log(AnalyticsEvent.배너광고실패(에러메시지 = adError.message))
-                            if (!AdRetryPolicy.isRetryable(adError.code.name)) return@post
-                            val delay = retryPolicy.nextDelayMillis(retryCount) ?: return@post
-                            retryCount += 1
-                            mainHandler.postDelayed({ requestLoad() }, delay)
-                        }
+                        android.util.Log.i(AD_LOG_TAG, "[$screenName] loadAd 요청 (unit=…${adUnitId.takeLast(6)}, retryCount=$retryCount)")
+                        adView.loadAd(BannerAdRequest.Builder(adUnitId, adSize).build(), loadCallback)
                     }
                 }
-                requestLoad = {
-                    loadAd(BannerAdRequest.Builder(adUnitId, adSize).build(), loadCallback)
-                }
-                requestLoad()
+                slot.restart = { startLoad(0) }
+                startLoad(0)
             }
-            slot
+        }
+
+        // 앱 복귀(ON_RESUME) 시 미로드+미예약 상태면 새 로드 사이클 시작 — backoff 소진(최대 300s 대기) 후
+        // 영구 빈 슬롯으로 남는 것을 방지한다. 이미 로드됐거나 재시도가 예약돼 있으면 아무것도 안 한다.
+        val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+        DisposableEffect(lifecycleOwner, slot) {
+            var firstResumeSeen = false
+            val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+                if (event == androidx.lifecycle.Lifecycle.Event.ON_RESUME) {
+                    // 첫 컴포지션 직후의 ON_RESUME 은 초기 로드와 중복이므로 건너뛴다.
+                    if (!firstResumeSeen) {
+                        firstResumeSeen = true
+                        return@LifecycleEventObserver
+                    }
+                    if (!slot.disposed && !slot.loaded && slot.failedSinceLoad && !slot.retryPending) {
+                        android.util.Log.i(AD_LOG_TAG, "[$screenName] 복귀 재시도 — 미로드 슬롯 새 사이클 시작")
+                        slot.restart?.invoke()
+                    }
+                }
+            }
+            lifecycleOwner.lifecycle.addObserver(observer)
+            onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
         }
 
         DisposableEffect(slot) {
             onDispose {
                 slot.disposed = true
                 mainHandler.removeCallbacksAndMessages(null)
-                slot.adView.destroy()
+                slot.adView?.destroy()
+                slot.adView = null
             }
         }
 
@@ -171,16 +244,39 @@ fun AdBanner(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(containerHeightDp.dp),
-            factory = { slot.adView },
+            factory = { slot.container },
         )
     }
 }
 
+/** 배너 진단 로그 태그 — release 에서도 logcat 확인 가능 (어댑터 진단 FearIndexAdapters 와 짝) */
+private const val AD_LOG_TAG = "FearIndexAds"
+
 /**
- * remember 로 유지되는 배너 슬롯 — AdView 와 dispose 플래그를 함께 들고 있어 백그라운드 스레드에서
- * 늦게 도착한 SDK 콜백(예: destroy 시 CANCELLED)이 죽은 뷰에 재시도를 걸지 못하게 한다.
+ * remember 로 유지되는 배너 슬롯 — 컨테이너와 "현재" AdView, dispose 플래그를 함께 들고 있어
+ * ① 백그라운드 스레드의 늦은 SDK 콜백(destroy 시 CANCELLED 등)이 죽은 뷰에 재시도를 걸지 못하게 하고
+ * ② 재시도마다 새 AdView 로 교체해도 (컨테이너 유지로) Compose AndroidView 는 재구성되지 않게 한다.
  */
-private class BannerAdSlot(val adView: AdView) {
+private class BannerAdSlot(val container: android.widget.FrameLayout) {
+    @Volatile
+    var adView: AdView? = null
+
     @Volatile
     var disposed: Boolean = false
+
+    /** 이 슬롯에서 광고가 한 번이라도 로드됐는가 (복귀 재시도 게이트) */
+    @Volatile
+    var loaded: Boolean = false
+
+    /** 마지막 시도가 실패로 끝났는가 (복귀 재시도 게이트) */
+    @Volatile
+    var failedSinceLoad: Boolean = false
+
+    /** backoff 재시도가 예약돼 있는가 (복귀 재시도와 중복 방지) */
+    @Volatile
+    var retryPending: Boolean = false
+
+    /** 복귀(ON_RESUME) 시 새 로드 사이클을 시작하는 훅 — remember 블록의 startLoad(0) */
+    @Volatile
+    var restart: (() -> Unit)? = null
 }
