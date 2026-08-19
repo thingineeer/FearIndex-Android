@@ -1,35 +1,37 @@
 # Session State — FearIndex-Android
 
+> 최신 진입점: @../../.claude/memory/resume-FearIndex-Android.md (이 파일과 동기, resume 스킬용)
+
 ## Date
-2026-08-18 (저녁 세션 — 프리미엄 parity ultracode)
+2026-08-19 (v1.5.3 배포 + 전수 검증 세션)
 
 ## Branch
-`dev` — 프리미엄 parity + release-prep(vc23) + release-observability + vc24 전부 --no-ff 머지. release 브랜치에 v1.5.2 머지 + 태그. **dev/release/태그/feature 브랜치 전부 push 완료.** 트리 clean, worktree 없음.
+`dev`(85b683e) = origin/dev. release 브랜치에 v1.5.2·v1.5.3 머지 + 태그 push 완료. 트리 clean, worktree 없음, 로컬 feature 브랜치 정리 완료(dev/main/release만 남음).
 
 ## ⚡ 한 줄 요약
 
-**iOS v1.9.4 프리미엄 parity 4종 이식 + v1.5.2(vc24) production 배포 완료(관리형 게시 OFF, 빠른 검사→자동 게시).** ①프리미엄 게이트(광고제거 구매=프리미엄) ②점수별 과거 수익률 슬라이더 ③알림 내역(홈 🔔) ④DEBUG 결제 토글. 유닛 1014/0 + 헤드리스 에뮬(API 36) 결제 QA 3/3 + release 심볼 0.
-
----
+**v1.5.3(vc25) production 업로드 완료 — Play 검토 중(관리형 게시 OFF → 자동 게시).** 내용 = 배너 콜드스타트 fix + 알림 보관 표시/영속 분리 + 어댑터 진단. API health·푸시 임계치(이상/이하 실수신)·결제 시트·광고(테스트 기기) 전수 검증 GREEN.
 
 ## Completed (이번 세션)
 
-- [x] **4 sub-worktree 병렬 구현** — returndata(도메인/기본 데이터 재생성)/history(도메인+data JSONL)/explorer-ui(카드/VM)/history-ui(화면/🔔/기록 3경로). 전부 `--no-ff` 통합 → dev.
-- [x] **i18n 55키 × 45 locale** — `scripts/i18n/import_xcstrings_keys.py`(iOS xcstrings 이식) + `check_locale_symmetry.py`(495키 대칭 통과).
-- [x] **결제 QA 3시나리오 계측 GREEN** — `PremiumQaTest`(잠금/해제+슬라이더 목표값·리셋/전환 즉시 해제·재잠금). 함정 3개 해결: Espresso 3.6.1→**3.7.0**(API 36 InputManager 제거), 에뮬 스토리지 확보(shadewalk·bamfiresurvive debug 앱 제거), M3 Slider 는 swipe 대신 **SetProgress semantics action**.
-- [x] **실결함 fix** — 알림내역 markSeen 클럭 스큐 무한루프(`lastMarkedNewest` 가드). 이 루프가 테스트 워커 GC livelock hang 의 원인이기도 했음(jstack 진단).
-- [x] **release 검증** — assembleRelease OK + dex/mapping 에 DEBUG 결제 심볼 0.
-- [x] 메모리 기록 — bugs-fixed **59번**, MEMORY.md 최신 상태.
+- [x] v1.5.2(vc24) → v1.5.3(vc25) 연속 배포. vc23은 fastlane internal draft로 소모(60번 함정)
+- [x] 홈 배너 콜드스타트 미노출 규명·수정 — Next-Gen 동일 AdView 재-loadAd 무산(CANCELLED+NO_FILL 쌍) → 재시도마다 새 AdView + ON_RESUME 복귀 재시도 + `FearIndexAds` 진단 로그(66번)
+- [x] 알림 내역 prune 표시/영속 분리 — 프리미엄 구매 즉시 복원 보장 + 시계 스큐 손실 해소, 회귀 7건(65번)
+- [x] 푸시 임계치 E2E — KOSPI 이상/Crypto 이하 실수신 + 내역 기록 + 서버 즉시체크 16초(67번)
+- [x] 결제 — Play 결제 시트 실진입까지 검증(사이드로드 거부는 환경 제약), TDD green(67번)
+- [x] AdMob 테스트 기기(S22) 등록 + 앱오픈 정책 실기기 검증 + RC app_open 4키 게시(61·66번)
+- [x] Unity/AdMob/Firebase 콘솔 실측 — Pangle 출처=딸깍, iOS Unity 매핑 정상(61·63번)
 
-## Next (다음 세션)
+## Next (다음 세션) — 상세는 resume 파일
 
-0. **게시 확인**: Play Console 프로덕션 1.5.2(vc24) "게시 완료" + 공개 리스팅 1.5.2 전파 → 대시보드 API 36 경고 카드 소멸 확인. 필요 시 RC `force_update_minimum_version` 상향은 하지 않음(정책 이슈 없음).
-1. **배포 후 감시**: Crashlytics #96 MotionEvent(Next-Gen 1.3.x), 프리미엄 경로 non-fatal(CrashlyticsTree W/*), AdMob 배너 match rate 기준선 비교. RC `app_open_ads_enabled` 게시 판단.
-2. **사용자 결정 2건**: ① 알림 내역 전용 AdMob 배너 유닛 발급(현재 홈 유닛 fallback, `NotificationHistoryScreen` TODO) ② 스토어 IAP 표시명("광고 제거" → 프리미엄 혜택 3종 반영 여부).
-3. Fastfile `internal` lane 에 `release_status: "completed"` 추가(현재 draft 로만 올라감 — 60번).
-4. 실기기 Billing 8 구매 시트 진입 재검증(미완).
+1. 1.5.3 게시 확인(콘솔 u/1 주의) → deployment.md 출시 이력 행 갱신
+2. 게시 후 Play 설치본 실결제 완주(사용자)
+3. 배포 후 감시: #96 MotionEvent·프리미엄 non-fatal·배너 match rate
+4. 사용자 결정 2건(알림내역 전용 유닛·IAP 표시명) + 1.5.4 후보(@docs/checkpoints/RELEASE-1.5.3-CHECKLIST.md A~H)
 
 ## 참조
 
-- @../../.claude/memory/bugs-fixed.md 59번 — 이번 세션 상세
-- @../../.claude/memory/MEMORY.md — 최신 상태
+- @../../.claude/memory/bugs-fixed.md 59~67번 — 세션 상세
+- @../../.claude/memory/deployment.md — 출시 이력·상수
+- @RELEASE-1.5.3-CHECKLIST.md — 잔여 이슈·게이트
+- @../QA-PREMIUM.md — 결제 QA 시나리오·주의
