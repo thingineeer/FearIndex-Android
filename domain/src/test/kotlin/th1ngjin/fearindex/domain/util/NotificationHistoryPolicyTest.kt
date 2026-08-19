@@ -193,4 +193,20 @@ class NotificationHistoryPolicyTest {
         assertEquals(0, NotificationHistoryPolicy.unreadCount(records, lastSeenAt = now))
         assertEquals(2, NotificationHistoryPolicy.unreadCount(records, lastSeenAt = records[2].receivedAt))
     }
+
+    @Test
+    fun `persistablePrune - 기간과 무관하게 하드캡만 적용(시계 의존 삭제 금지)`() {
+        val old = record("veryOld", daysAgo = 4000.0)
+        val recent = record("recent", daysAgo = 1.0)
+        val kept = NotificationHistoryPolicy.persistablePrune(listOf(old, recent))
+        assertEquals(listOf("recent", "veryOld"), kept.map { it.id })
+    }
+
+    @Test
+    fun `persistablePrune - 하드캡 초과분은 오래된 것부터 잘린다`() {
+        val records = (0 until NotificationHistoryPolicy.HARD_CAP + 2).map { record("r$it", daysAgo = it * 0.001) }
+        val kept = NotificationHistoryPolicy.persistablePrune(records)
+        assertEquals(NotificationHistoryPolicy.HARD_CAP, kept.size)
+        assertEquals("r0", kept.first().id)
+    }
 }

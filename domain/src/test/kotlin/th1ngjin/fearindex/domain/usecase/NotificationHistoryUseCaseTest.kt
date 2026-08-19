@@ -11,6 +11,7 @@ import org.junit.Test
 import th1ngjin.fearindex.domain.entity.NotificationKind
 import th1ngjin.fearindex.domain.entity.NotificationRecord
 import th1ngjin.fearindex.domain.repository.NotificationHistoryRepository
+import th1ngjin.fearindex.domain.util.NotificationHistoryPolicy
 import java.time.Instant
 
 /** iOS `NotificationHistoryUseCaseTests` 포팅. 인메모리 fake 저장소로 prune 영속/markSeen/unread 흐름 검증. */
@@ -49,18 +50,58 @@ class NotificationHistoryUseCaseTest {
     }
 
     @Test
-    fun `fetch(무료) - 30일 초과분 제거된 최신순 결과 + prune 결과를 저장소에 영속`() = runTest {
+    fun `fetch(무료) - 30일 초과분은 화면에서만 숨기고 저장소에는 그대로 남긴다`() = runTest {
         val (useCase, repository) = makeSut(
             listOf(record("old", 45.0), record("keep", 5.0), record("newest", 0.2)),
         )
         val result = useCase.fetch(isPremium = false)
         assertEquals(listOf("newest", "keep"), result.map { it.id })
-        assertEquals(listOf("newest", "keep"), repository.records.map { it.id })
+        // 저장소는 무손실 — 기간 필터는 표시 단계에서만 적용된다(순서는 저장소 원본 유지)
+        assertEquals(setOf("newest", "keep", "old"), repository.records.map { it.id }.toSet())
+        assertEquals(0, repository.replaceAllCalls)
+    }
+
+    @Test
+    fun `fetch - 무료로 숨겨졌던 30일 이전 내역이 프리미엄 구매 즉시 복원된다`() = runTest {
+        val (useCase, repository) = makeSut(
+            listOf(record("old", 45.0), record("newest", 0.2)),
+        )
+        // 무료: 숨김
+        assertEquals(listOf("newest"), useCase.fetch(isPremium = false).map { it.id })
+        // 구매 직후: 같은 저장소에서 과거 내역이 그대로 돌아온다 (잠금 카피가 성립하는 조건)
+        assertEquals(listOf("newest", "old"), useCase.fetch(isPremium = true).map { it.id })
+        assertEquals(0, repository.replaceAllCalls)
+    }
+
+    @Test
+    fun `fetch - 기기 시계가 미래로 튀어도 레코드는 삭제되지 않고 시계 복귀 시 복원된다`() = runTest {
+        val repository = FakeRepository(listOf(record("a", 5.0), record("b", 1.0)))
+        var clock = now
+        val useCase = NotificationHistoryUseCase(repository) { clock }
+
+        // 시계가 1년 미래로 튄 상태: 전부 기간 초과로 보이지만 삭제하지 않는다
+        clock = now.plusMillis(365L * 86_400_000)
+        assertEquals(emptyList<String>(), useCase.fetch(isPremium = false).map { it.id })
+        assertEquals(setOf("a", "b"), repository.records.map { it.id }.toSet())
+        assertEquals(0, repository.replaceAllCalls)
+
+        // 시계 복귀 → 자동 복원
+        clock = now
+        assertEquals(listOf("b", "a"), useCase.fetch(isPremium = false).map { it.id })
+    }
+
+    @Test
+    fun `fetch - 하드캡 초과분만 저장소에서 실제로 제거한다`() = runTest {
+        val over = (0 until NotificationHistoryPolicy.HARD_CAP + 3).map { record("r$it", it * 0.001) }
+        val (useCase, repository) = makeSut(over)
+        val result = useCase.fetch(isPremium = true)
+        assertEquals(NotificationHistoryPolicy.HARD_CAP, result.size)
+        assertEquals(NotificationHistoryPolicy.HARD_CAP, repository.records.size)
         assertEquals(1, repository.replaceAllCalls)
     }
 
     @Test
-    fun `fetch(프리미엄) - 기간 제거 없음, 이미 정리된 상태면 replaceAll 호출 안 함`() = runTest {
+    fun `fetch(프리미엄) - 기간 숨김 없음, 하드캡 이하면 replaceAll 호출 안 함`() = runTest {
         val (useCase, repository) = makeSut(listOf(record("newest", 0.2), record("old", 400.0)))
         val result = useCase.fetch(isPremium = true)
         assertEquals(listOf("newest", "old"), result.map { it.id })
@@ -68,7 +109,7 @@ class NotificationHistoryUseCaseTest {
     }
 
     @Test
-    fun `fetch - 저장소 순서가 최신순이 아니어도 제거된 게 없으면 replaceAll 호출 안 함`() = runTest {
+    fun `fetch - 저장소 순서가 최신순이 아니어도 하드캡 이하면 replaceAll 호출 안 함`() = runTest {
         val (useCase, repository) = makeSut(listOf(record("old", 20.0), record("newest", 0.2)))
         val result = useCase.fetch(isPremium = false)
         assertEquals(listOf("newest", "old"), result.map { it.id })

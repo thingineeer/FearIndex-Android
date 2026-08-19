@@ -173,13 +173,19 @@ class NotificationHistoryRepositoryImplTest {
     }
 
     @Test
-    fun `UseCase 결합 - 무료 fetch 가 30일 초과분을 파일에서도 제거, unread 흐름`() = runTest {
+    fun `UseCase 결합 - 무료 fetch 는 30일 초과분을 숨기되 파일에는 보존, 프리미엄이면 복원`() = runTest {
         val f = makeFixture()
         f.repository.append(record("old", daysAgo = 45.0))
         f.repository.append(record("keep", daysAgo = 5.0))
         val useCase = NotificationHistoryUseCase(f.repository, now = { now })
+
+        // 무료: 화면에서만 숨김
         assertEquals(listOf("keep"), useCase.fetch(isPremium = false).map { it.id })
-        assertEquals(listOf("keep"), storedIds(f))
+        // 파일은 무손실 — 잠금 카피("30일 이전 내역은 프리미엄에서")가 성립하는 조건
+        assertEquals(setOf("keep", "old"), storedIds(f).toSet())
+        // 프리미엄 구매 즉시 과거 내역 복원
+        assertEquals(listOf("keep", "old"), useCase.fetch(isPremium = true).map { it.id })
+
         assertTrue(useCase.hasUnread(isPremium = false))
         useCase.markSeen(now)
         assertFalse(useCase.hasUnread(isPremium = false))
