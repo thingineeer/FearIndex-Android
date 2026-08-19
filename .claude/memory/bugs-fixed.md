@@ -6,6 +6,13 @@ type: project
 
 ## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
 
+### 61. 콘솔 실측 2건 — Pangle 수익 출처 오인 정정 + RC 앱오픈 키 게시 + iOS Unity 매핑 결론
+- **Pangle 수익 출처 = 딸깍(Android), 공포지수 아님** (AdMob 미디에이션 보고서 30일, 측정기준 앱×광고 소스). 25행 중 Pangle 행은 `딸깍 - 키보드 소리 ASMR(Android) | Pangle ROW SDK(입찰) | US$4.03 | eCPM US$1.38 | 요청 13,811 | 일치율 39.38%` **단 1개**. 공포지수 Android 에 Pangle 행이 없는 건 정상 — **vc24 가 Pangle 어댑터 최초 포함본**(같은 날 게시).
+- **공포지수 30일 실측**: Android AdMob Network US$21.21/eCPM 4.09/요청 11,330/일치율 86.66%, Android **Unity Ads US$0.67/eCPM 14.30/요청 5,389/일치율 6.12%**(eCPM 최고인데 fill 6% = 사실상 미가동 → Pangle 합류로 개선 기대). iOS AdMob US$44.89/eCPM 1.94/요청 154,876/일치율 96.61%(요청은 Android 13배인데 eCPM 절반). 계정 전체 US$363.84 중 미디에이션 파트너 기여 US$4.70(1.3%).
+- **✅ RC 앱오픈 키 4개 게시**(get→최소수정→deploy, 32번 절차): `app_open_ads_enabled` default=false + **조건 "Android app users"=true**(iOS 는 자체 서버 config 사용하므로 default 는 fail-safe OFF 유지), `app_open_session_cap=2`, `app_open_cooldown_sec=600`, `app_open_min_background_sec=30` — 전부 코드 default(`AppOpenAdPolicy` sessionCap 2/cooldown 600_000ms/minBackground 30_000ms)와 일치. 파라미터 10→14, 기존 10개 무변경 assert 통과. 라이브 재조회로 반영 확인. **vc24 유저부터 앱오픈 광고 실가동.**
+- **⚠️ iOS Unity 미노출은 콘솔 갭이 아님 (가설 반증)**: "공포지수 iOS 배너"(그룹 5570621994) 입찰 소스 = AdMob/Pangle ROW SDK/**Unity Ads 3개 전부 활성**, 광고 단위 매핑도 배너 6개 전부 `Game ID 800107231 / Placement Banner_iOS` 로 채워져 있음. "공포지수 iOS 전면"(1619665507)도 3소스 활성. → **콘솔 설정은 정상, 수정 불필요**. iOS Unity row 부재 원인은 콘솔 밖(앱 측 어댑터 초기화/버전 또는 단순 fill 0)에서 찾아야 함.
+- **iOS 앱오프닝(7993500901)은 Unity 추가 자체가 불가**: 입찰 소스 2개(AdMob/Pangle)뿐이고, "입찰 광고 소스 추가" 다이얼로그의 선택지가 **Liftoff Monetize / Mintegral / Pangle ROW SDK 3개뿐 — Unity Ads 없음**. Unity 가 앱오프닝 형식 입찰을 지원하지 않는 구조적 제약. Android 앱오프닝 그룹도 동일 제약 예상(현재 미생성).
+
 ### 60. v1.5.2 production 배포 (vc24) — fastlane internal 은 draft 로만 올린다 + release Crashlytics 트리
 - **⚠️ `fastlane internal` lane 은 `release_status` 미지정 → Play 에 "임시(draft) 버전"으로만 업로드**되고 테스터에게 안 나감. 콘솔 내부 테스트 트랙에 "비활성 · 임시 버전 1.5.2 / 버전 수정" 으로 표시됨. 그리고 **이미 업로드된 versionCode 는 다른 트랙에 재업로드 불가**("Version code 23 has already been used") → 승격은 `track:internal track_promote_to:production` 조합(54번)이거나, 새 vc 로 올려야 함. 이번엔 CrashlyticsTree 포함을 위해 **vc24 로 production 직접 업로드**(vc23 draft 는 그대로 방치, 무해).
 - **교훈**: 내부 테스트를 실제 테스터에게 내보내려면 Fastfile internal lane 에 `release_status: "completed"` 추가 필요(현재 미수정 — 다음에 internal 쓸 때 고칠 것). fastlane "Successfully" 만 믿지 말고 **콘솔 트랙 페이지의 상태 문구(임시/검토 중/제공됨)** 까지 볼 것(37번 교훈 재확인).
