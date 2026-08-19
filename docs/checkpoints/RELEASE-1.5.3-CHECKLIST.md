@@ -21,7 +21,7 @@
 
 | # | 항목 | 위치 | 심각도 | 상태 |
 |---|---|---|---|---|
-| A | **알림 트레이 직행분 누락** | `NotificationHistoryRecorder.kt:78-90` | 중 | 서버가 `notification`+`data` 동시 발송 → 백그라운드에서 onMessageReceived 미호출. 트레이 알림 extras 에 data 가 없어 kind=OTHER 로 적재되고, **탭 없이 스와이프 삭제 시 영구 누락**. 완전 해결 = 서버 data-only 전환(클라 재배포 불필요). 서버 결정 대기 |
+| A | **알림 트레이 직행분 누락** | `NotificationHistoryRecorder.kt:78-90` | 중 | 서버가 `notification`+`data` 동시 발송 → 백그라운드에서 onMessageReceived 미호출. 트레이 알림 extras 에 data 가 없어 kind=OTHER 로 적재되고, **탭 없이 스와이프 삭제 시 영구 누락**. ⚠️ **FCM 은 최상위 `notification` 을 플랫폼별로 제거할 수 없다**(공식 문서: "All app instances, regardless of platform, can interpret … message.notification"; AndroidConfig 에 억제 필드 없음) → 유일한 해법은 **플랫폼별 이중 발송**(iOS=notification+data / Android=data-only). 비용 대비 효과 불명 → **1.5.3 보류 권장, 실사용 데이터 확인 후 판단**(63번) |
 | B | `KospiFearIndexApi.history` boolean 지뢰 | `KospiFearIndexDataSource.kt:34` | 낮음 | 서버가 boolean 취급인데 파라미터가 개수처럼 보임. 누가 `history=365` 넣으면 KOSPI 차트/RSI 가 조용히 빈 화면. Boolean 타입 교체 권장 |
 | C | Yahoo spark 死코드 | `YahooSparkDTO.kt` / `MarketIndexApi.kt` / `MarketIndexDataSource.kt` + DI 3곳 | 낮음 | 참조 0건, 서버는 429 반환 중. 제거 |
 | D | 미사용 `RECEIVE_BOOT_COMPLETED` 권한 | `AndroidManifest.xml:8` | 낮음 | 수신자 0건. 제거하면 권한 노출 축소 |
