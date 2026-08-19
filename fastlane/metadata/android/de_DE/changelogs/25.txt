@@ -1,0 +1,1 @@
+Stabilität der Anzeigenanzeige und Aufbewahrung des Benachrichtigungsverlaufs verbessert.

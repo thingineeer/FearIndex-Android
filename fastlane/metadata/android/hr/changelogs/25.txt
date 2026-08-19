@@ -1,0 +1,1 @@
+Poboljšana stabilnost prikaza oglasa i čuvanje povijesti obavijesti.

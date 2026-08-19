@@ -1,0 +1,1 @@
+Uzlabota reklāmu rādīšanas stabilitāte un paziņojumu vēstures saglabāšana.
