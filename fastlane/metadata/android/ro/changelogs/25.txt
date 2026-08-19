@@ -1,0 +1,1 @@
+Stabilitatea afișării anunțurilor și păstrarea istoricului notificărilor au fost îmbunătățite.

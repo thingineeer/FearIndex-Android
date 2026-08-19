@@ -1,0 +1,1 @@
+Javítottuk a hirdetésmegjelenítés stabilitását és az értesítési előzmények megőrzését.

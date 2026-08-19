@@ -1,0 +1,1 @@
+Amélioration de la stabilité de l'affichage des annonces et de la conservation de l'historique des notifications.
