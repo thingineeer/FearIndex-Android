@@ -6,6 +6,15 @@ type: project
 
 ## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
 
+### 64. v1.5.2(vc24) 배포 후 검증 — 실기기 GREEN + 적대적 감사 2건(높음 0) + KOSPI fallback 밀도 함정
+- **동기**: vc24 는 224파일 9,511줄이 나간 대형 릴리스인데 Crashlytics 활성 사용자가 2명뿐이라 실사용 데이터로는 검증 불가 → 실기기 + 코드 적대적 감사 병행.
+- **Crashlytics(7일)**: 크래시 **0건**, crash-free 사용자/세션 **100%**. 단 표본 2명이라 "문제 없음"의 근거로는 약함(그래서 아래 검증 수행).
+- **✅ S22(SM-S901N, Android 13) 실기기 — 1.5.1 위에 vc24 업데이트 설치 경로로 검증**(clean install 아님 = 실사용자 시나리오): 콜드스타트 크래시 0, `FATAL EXCEPTION`/ANR **0건**, 프로세스 생존. 홈 실데이터(54 중립, 비교카드 전일/1주/1개월/1년 정상), **알림 내역 진입 정상**(빈 상태 "아직 받은 알림이 없어요"), **점수 탐색기 정상 렌더**(시장/코스피 양쪽, 프리미엄 잠금 카드 + 실가격 **₩7,500** + 구매 복원), **프로덕션 실광고 노출 확인**("제우스/언리얼 엔진5" 사전등록 광고).
+- **⚠️ KOSPI 점수 탐색기 fallback 밀도 함정 (감사 발견 → 실측으로 영향 범위 확정)**: `DefaultReturnData.kospiVerifiedDataPoints()` 는 검증 버킷이 **11개뿐**(8/10/13/17/18/24/25/29/32/50/64)이라 fallback 사용 시 범위 8..64 중 **46개(80.7%)가 n=0 빈 화면**. **그러나 실서버 데이터는 건전**(Firestore `returnData/kospi` = 범위 8..88, 빈칸 **1개(1%)**; market 0..97 빈칸 1개, crypto 5..95 빈칸 1개) → **이 함정은 Firestore 실패/미도달 시에만 발현**. 프리미엄 결제 후 KOSPI 빈 화면 = CS 리스크이므로 1.5.3 에서 KOSPI 번들 fallback 보강 권장.
+- **감사 결과 요약(심각도 높음 0건)**: ①알림내역 — 동시성 안전(@Singleton + Mutex 이중, 프로세스 분리 없음), HARD_CAP 최신순 take 정상, temp→ATOMIC_MOVE 로 rewrite 실패 시 원본 보존, 크래시 경로 0. **유일 위험 = prune 시계 의존**(기기 시계가 미래로 튀면 30일 초과 판정으로 **정상 레코드 물리 삭제**, 무료 사용자 한정, 복구 불가) → 조회 시점 필터링으로 바꾸는 것 검토. ②프리미엄/탐색기 — `entitlementOverride` release 격리 코드로 확정(호출자 debug/androidTest 뿐, release VariantHooks no-op), 결제 종료 경로 9종 전부 터미널 이벤트 보장(timeout 3곳 포함), 보간 금지·n/라벨 정합·클램프 경계 정상, **M3 Slider steps 축퇴 크래시 부재를 Material3 1.3.1 바이트코드로 실증**(calcFraction 이 b-a==0 시 0f 반환, stepsToTickFractions 가 steps=0 시 빈 배열).
+- **낮음 2건**: `purchaseEvents`(replay=0 SharedFlow)를 3개 VM 이 source 구분 없이 소비 — 현재 VM 생명주기상 영구 행 재현 불가하나 진입점 증가 시 부채. KOSPI fallback 은 `HistoricalSampleCounts.same(count)` 라 1Y 표본이 1M 과 같게 과대 표시(임계 5 근처만 영향).
+- **교훈**: 표본이 작은 배포 직후엔 Crashlytics 100% 를 근거로 삼지 말 것. **실기기 업데이트 경로 + 서버 실데이터 대조 + 코드 감사** 삼중으로 봐야 fallback 전용 함정(KOSPI 80.7%)처럼 실사용자 데이터엔 안 잡히는 결함이 드러난다.
+
 ### 63. Unity 대시보드 실사(Android) + FCM 플랫폼별 notification 제거 불가 확인
 - **Unity 대시보드 Android 실측**(org 14569783411652): 공포지수 Android **Game ID `800107232`**(iOS 는 800107231 — 다른 값), Store ID `th1ngjin.fearindex` 정확 일치, Google Designed for Families=Disabled, child-directed=general audience. **경고 0건** — iOS 에서 나온 "Missing SKAdNetwork IDs" 는 Android 엔 해당 없음(SKAdNetwork 는 Apple 전용 항목이라 설정 화면에 존재조차 안 함).
 - **Placements 4개 전부 Active(초록)**: `Banner_iOS`/`Interstitial_iOS`(800107231), `Banner_Android`/`Interstitial_Android`(800107232). AdMob 유닛 매핑(61번)의 Placement ID 와 1:1 일치.
