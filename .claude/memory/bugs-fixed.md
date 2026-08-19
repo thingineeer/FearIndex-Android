@@ -6,6 +6,18 @@ type: project
 
 ## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
 
+### 66. 홈 배너 콜드스타트 미노출 — Next-Gen 동일 AdView 재-loadAd 무산 (실측 규명) + 테스트 기기 검증 체계
+- **증상(사용자 보고)**: "광고 안 뜨는 것 같다". S22 재현 — 콜드스타트 후 홈 배너 슬롯이 수 분간 빈 공간(설정/재진입 배너는 정상).
+- **진단 방법**: release 에서도 보이는 `android.util.Log("FearIndexAds")` 진단 로그를 심어 게이트 차단 사유/로드/실패코드/재시도를 추적. 실측 타임라인: 게이트(consent→sdkInit) 통과 후 loadAd → `NO_FILL` → 5s 재시도 → **`CANCELLED "Ad request cancelled by publisher action"` + `NO_FILL` 쌍** → 이후 재시도 전부 동일 무산.
+- **원인 2건**:
+  1. **Next-Gen SDK 는 같은 AdView 에 loadAd 재호출 시 재경매가 무산된다**(CANCELLED+NO_FILL 쌍). 같은 시각 새 AdView(홈_인사이트, 탭 재진입 홈)는 즉시 fill — 동일 뷰 재시도만 실패.
+  2. backoff([5,15,45]→300s) 소진/대기 중 홈에 머물면 영구 빈 슬롯(회복 트리거 없음).
+- **수정(feature/v1.5.3-banner-first-load → dev a502180)**: ① 재시도마다 **새 AdView 생성** — FrameLayout 컨테이너(remember)에 교체 장착, 콜백은 자기 AdView 캡처로 식별(교체/파기 후 늦은 콜백 무시) ② **ON_RESUME 복귀 재시도** — 미로드+미예약이면 새 사이클(로드됐으면 no-op, 첫 컴포지션 ON_RESUME 스킵) ③ 진단 로그 유지(수익 직결 상시 관측). 수정 후 실측: 재시도 클린 경매(CANCELLED 소멸), 유닛 1019 GREEN.
+- **✅ AdMob 테스트 기기 등록(S22)**: 오늘 테스트로 기기 트래픽이 죄여 실광고 no-fill 이 반복되자, iOS AdInspector 대응 표준 절차로 **AdMob 콘솔 → 설정 → 기기 테스트 → S22 등록**(GAID `e8625b30-…14c0`, 광고 검사기 동작=흔들기). 등록 후 홈_상단/홈_인사이트 **onAdLoaded(retryCount=0) 즉시 fill** + "Test Ad" 라벨. GAID 는 GMS 광고 설정 화면(`am start -a com.google.android.gms.settings.ADS_PRIVACY`) uiautomator 덤프로 획득.
+- **✅ 앱오픈 광고 정책 실기기 검증**(오늘 RC 로 첫 실가동): ① 콜드스타트+무입력 35s → **미노출**(topResumed=MainActivity, preload 만) ② 백그라운드 35s→복귀 → **노출**(topResumed=AdActivity, "공포지수 | Test Ad" 헤더). 41번 정책(콜드 제외/30s 체류) 실전 확인.
+- **⚠️ 함정들**: ① 전면 광고 헤더의 앱 이름은 **퍼블리셔 앱**(같은 계정 타 앱 그늘길의 앱오픈을 우리 것으로 오인 — 같은 AdMob 계정은 테스트 모드 공유) ② 좌표 탭 자동화 중 전면 광고가 뜨면 **광고를 클릭해버림**(그늘길 열림) — 전면 노출 가능 시점엔 uiautomator 로 상태 확인 후 입력 ③ 반복 테스트로 기기 트래픽이 죄이면 실광고 no-fill 만 나옴 — **판단은 테스트 기기 등록 후에** ④ AdMob 콘솔 URL 이 다른 Google 계정으로 열리면 **signup 페이지**가 뜬다 — 절대 진행 말고 `?authuser=<email>` 로 재진입.
+- **⚠️ S22 는 이제 테스트 광고만 나옴**(수익 발생 안 함) — 실광고 확인이 필요하면 AdMob 콘솔에서 기기 등록 해제.
+
 ### 65. 알림 내역 prune — 표시/영속 분리 (카피 과약속 + 시계 스큐 데이터 손실 동시 해소)
 - **발단**: 64번 감사가 "prune 이 기기 시계 기준 물리 삭제"를 지적 → iOS 세션이 같은 구조를 먼저 고치고(dev_1.9.5 6dd603ce5) **"잠금 카피가 과약속"** 이라는 더 큰 함의를 짚어줌.
 - **결함 2개(같은 코드 한 줄에서 파생)**: 옛 `fetch` 는 `prune`(기간+하드캡) 결과를 그대로 `replaceAll` 로 영속했다.
