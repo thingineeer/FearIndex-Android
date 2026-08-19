@@ -14,6 +14,13 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-08-19, v1.5.3 배포 + 전수 검증) ← 최신 진입점: @memory/resume-FearIndex-Android.md
+
+- **✅ v1.5.3(vc25) production 업로드 — Play 검토 중**(관리형 게시 OFF → 승인 즉시 자동 게시). 내용 = 배너 콜드스타트 fix(66) + 알림 보관 표시/영속 분리(65) + 어댑터 진단(62). 게이트 전부 통과(1019/0, SHA-1 일치, 심볼 0). release 머지 + v1.5.3 태그 + 전체 push 완료.
+- **✅ 전수 검증 GREEN(67번)**: API health 9종 / 푸시 임계치 **이상(KOSPI 51)+이하(Crypto 46) 실수신** + 알림 내역 기록 / 결제 Play 시트 실진입(사이드로드 거부는 환경 제약) / 앱오픈 정책 실기기(콜드 제외·복귀 노출).
+- **⚠️ 핵심 함정**: 사이드로드 release=App Check 403(E2E는 에뮬 debug), S22=AdMob 테스트 기기(테스트 광고만), 콘솔 URL 기본 계정 수시 변경(u/1 또는 ?authuser=), 다음 배포 vc26부터.
+- **다음**: 게시 확인 → 실결제 완주(사용자) → 배포 후 감시(#96·배너 match rate·프리미엄 non-fatal). 사용자 결정 2건(알림내역 전용 유닛·IAP 표시명).
+
 ## 최신 상태 (2026-08-18 저녁, 프리미엄 parity 4종 — iOS v1.9.4 이식 완료, dev 머지)
 
 - **✅ 프리미엄 parity 4종 dev 머지 완료(beebbe8, push 미실행)**: ①프리미엄 게이트(광고제거 구매=프리미엄, 새 SKU 없음, `isPremium=isAdFree`) ②점수별 과거 수익률 슬라이더(차트 탭, 정확 버킷·보간 금지·표본수·저표본 배지·프리미엄 잠금) ③알림 내역(홈 🔔, 무료 30일/프리미엄 무제한, JSONL 서버비 0) ④DEBUG 결제 테스트 토글(release 심볼 0). i18n 55키×45 locale. 상세: @memory/bugs-fixed.md 59번.
