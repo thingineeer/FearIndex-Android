@@ -6,6 +6,15 @@ type: project
 
 ## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
 
+### 67. v1.5.3(vc25) 배포 + API/푸시 임계치/결제 전수 검증 (2026-08-19)
+- **배포**: v1.5.3(vc25) = 배너 콜드스타트 fix(66) + 알림 보관 분리(65) + 어댑터 진단(62). 게이트 전부 통과(1019 tests/0, AAB 19MB, SHA-1 CE:08:B4 일치, DEBUG 심볼 0, versionName 1.5.3, locale 대칭). `fastlane production` 성공, **production=[25]**, 관리형 게시 OFF.
+- **✅ API health 전수 GREEN**: KOSPI v2(50.7 neutral)·KOSPI short(available=false 설계대로)·CNN(53.6)·Alternative.me(46)·Yahoo ^GSPC·CoinGecko(BTC 64299)·currency-api·Naver KOSPI·cryptoOfficialIndicators 모두 200+스키마 정상. **⚠️ 함정**: KOSPI 는 `fear-index-a4f4b.web.app/api/kospi/*`(호스팅 rewrite), CNN 은 브라우저 UA+Referer/Origin 헤더 필수 — 아무 URL/UA 로 치면 404/418 이 나와 오진한다.
+- **✅ 푸시 임계치 E2E 완전 검증(이상+이하 실수신)**: 에뮬 debug + App Check debug token 신규 등록(`Claude push E2E emulator 2026-08-19`). ①KOSPI 상한 하향 → 즉시체크 발송 → **"KOSPI 51 · selling opportunity"(이상)** 수신 ②crypto 하한 상향 → **"Crypto 46 · buying opportunity"(이하)** 수신. 트레이 표시 + **알림 내역 화면에 채널/점수 정확 기록**(vc25 신규 기능 동시 검증). 서버 Firestore 에 lastCryptoNotifiedScore=46/lower/16:37:31 발송 기록 확정. 서버측 clamp 도 확인(클라 74→서버 50).
+- **서버 지식(오진 방지)**: ①`updateNotificationSettings` 는 **기존 기기에도 dispatchInstantCheck 발동**(v1.8.8+, 33번 공백 해소 확인) ②글로벌(시장) 채널은 `isUsMarketPushAllowed`(오늘 ET 거래일 데이터만), KOSPI 는 `isKospiPushAllowed`(장시간/스냅샷) 게이트 — **미국 장외/KOSPI 장외엔 market=null·kospi skip 이 정상**(크론 로그의 market=null 은 버그 아님) ③크론 30분 주기, total_users 2,217, failed=0.
+- **⚠️ E2E 함정**: ①사이드로드 release 는 **App Check(Play Integrity) 403** → Callable 전부 거부 — 서버 연동 E2E 는 에뮬 debug+debug token 으로 ②에뮬 화면 잠김 상태면 시스템이 "locked user" 로 알림 표시 보류 — `input keyevent KEYCODE_WAKEUP`+`wm dismiss-keyguard` 선행 ③Firebase 콘솔도 u/0 계정 주의(`?authuser=` 지정).
+- **✅ 결제(광고 제거) 검증**: ①TDD — IapEntitlement/IapPurchaseOutcome/IapOfferSelection 유닛 + PremiumQaTest 계측 3종(1019 green 포함) ②S22 release 실기기 — ₩7,500 실가격 조회(Billing 8 쿼리) → 구매 탭 → **launchBillingFlow → ProxyBillingActivity → Google Play 결제 시트 실진입** ③Play 가 "이 버전의 앱에서는 결제 불가" 거부 = **사이드로드 제약**(Play 에 없는 vc25 로컬 빌드, 앱 결함 아님) ④거부 후 앱 실패 처리 정상(다이얼로그+문의 이메일+스피너 해제). 실결제 완주는 vc25 게시 후 Play 설치본으로만 가능 — 참고로 실주문 1건(7/23 HUF 1,999) 존재, vc24(Billing 8) 프로덕션 결제 크래시 0.
+- **기기 정리**: S22 임계값 원복(상한 69), 그늘길 re-enable, 에뮬 종료. S22 는 AdMob 테스트 기기(66번) 유지.
+
 ### 66. 홈 배너 콜드스타트 미노출 — Next-Gen 동일 AdView 재-loadAd 무산 (실측 규명) + 테스트 기기 검증 체계
 - **증상(사용자 보고)**: "광고 안 뜨는 것 같다". S22 재현 — 콜드스타트 후 홈 배너 슬롯이 수 분간 빈 공간(설정/재진입 배너는 정상).
 - **진단 방법**: release 에서도 보이는 `android.util.Log("FearIndexAds")` 진단 로그를 심어 게이트 차단 사유/로드/실패코드/재시도를 추적. 실측 타임라인: 게이트(consent→sdkInit) 통과 후 loadAd → `NO_FILL` → 5s 재시도 → **`CANCELLED "Ad request cancelled by publisher action"` + `NO_FILL` 쌍** → 이후 재시도 전부 동일 무산.
