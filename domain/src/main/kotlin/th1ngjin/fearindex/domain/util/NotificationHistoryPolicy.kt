@@ -20,13 +20,30 @@ object NotificationHistoryPolicy {
     /** 보관 일수 — 프리미엄은 null(무제한) */
     fun retentionDays(isPremium: Boolean): Int? = if (isPremium) null else FREE_RETENTION_DAYS
 
-    /** 보관 정책 적용: 최신순 정렬 → 기간 초과 제거(무료) → 하드캡 */
+    /**
+     * **표시용** 보관 정책: 최신순 정렬 → 기간 초과 숨김(무료) → 하드캡.
+     *
+     * 기간 필터는 **화면에서 가리기만 할 뿐 저장소에서 지우지 않는다**. 두 가지 이유:
+     * 1. 잠금 카피("30일 이전 내역은 프리미엄에서")가 성립하려면 프리미엄 구매 즉시 과거 내역이
+     *    다시 보여야 한다 — 물리 삭제였다면 결제해도 복원 불가라 과약속이 된다.
+     * 2. `now` 는 기기 시계다. 시계가 미래로 튀면 정상 레코드가 기간 초과로 오판되는데,
+     *    삭제였다면 복구 불가. 숨김이면 시계 복귀 시 자동 복원된다.
+     */
     fun prune(records: List<NotificationRecord>, isPremium: Boolean, now: Instant): List<NotificationRecord> {
         val sorted = records.sortedByDescending { it.receivedAt }
         val days = retentionDays(isPremium) ?: return sorted.take(HARD_CAP)
         val cutoff = now.minus(Duration.ofDays(days.toLong()))
         return sorted.filter { !it.receivedAt.isBefore(cutoff) }.take(HARD_CAP)
     }
+
+    /**
+     * **영속용** 보관 정책: 최신순 정렬 → 하드캡만 적용.
+     *
+     * 저장소에서 실제로 지우는 건 **시계와 무관한 하드캡 초과분뿐**이다(파일 비대 방어).
+     * 기간 필터는 [prune] 의 표시 단계에서만 적용한다 — 위 주석의 두 이유 참조.
+     */
+    fun persistablePrune(records: List<NotificationRecord>): List<NotificationRecord> =
+        records.sortedByDescending { it.receivedAt }.take(HARD_CAP)
 
     /** 병합 + id dedup(base 우선) + 최신순 정렬 */
     fun merge(base: List<NotificationRecord>, incoming: List<NotificationRecord>): List<NotificationRecord> {
