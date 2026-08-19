@@ -6,6 +6,13 @@ type: project
 
 ## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
 
+### 63. Unity 대시보드 실사(Android) + FCM 플랫폼별 notification 제거 불가 확인
+- **Unity 대시보드 Android 실측**(org 14569783411652): 공포지수 Android **Game ID `800107232`**(iOS 는 800107231 — 다른 값), Store ID `th1ngjin.fearindex` 정확 일치, Google Designed for Families=Disabled, child-directed=general audience. **경고 0건** — iOS 에서 나온 "Missing SKAdNetwork IDs" 는 Android 엔 해당 없음(SKAdNetwork 는 Apple 전용 항목이라 설정 화면에 존재조차 안 함).
+- **Placements 4개 전부 Active(초록)**: `Banner_iOS`/`Interstitial_iOS`(800107231), `Banner_Android`/`Interstitial_Android`(800107232). AdMob 유닛 매핑(61번)의 Placement ID 와 1:1 일치.
+- **⚠️ Unity payout profile 미설정 배너 있으나 우리 수익엔 무관**: Payments 페이지 원문 "Payments for impressions served by Unity with **Bidding Placement Type in AdMob** and Google Ad Manager are **handled by Google**". 우리는 전부 입찰(bidding) 방식 → 수익은 AdMob 정산. payout profile 은 Unity 직접 폭포식 때만 필요.
+- **Unity 7일 실적**: 공포지수 Android $0.17/노출 14, iOS $0.00, 딸깍 iOS/Android 둘 다 $0.00. → **Unity 자체가 계정 전반에서 fill 이 거의 없다**(우리 앱만의 문제가 아님). 낙찰률 6.12% 는 설정 결함이 아니라 Unity 인벤토리 문제로 결론.
+- **FCM 플랫폼별 notification 제거 — 공식 문서상 불가**: cross-platform 문서 원문 "All app instances, **regardless of platform**, can interpret the following common fields: message.notification.title, message.notification.body" + "Whenever you want to send values only to particular platforms, use platform-specific fields"(추가용이지 최상위 제거용 아님). `AndroidConfig` 에 notification 억제/데이터 전용 전환 필드 **없음**. → **iOS 는 notification 유지, Android 만 data-only** 로 만들려면 **같은 payload 를 플랫폼별로 두 번 발송**(iOS 토큰엔 notification+data, Android 토큰엔 data-only)하는 방법뿐. 서버 분기 비용이 있으므로 A 항목(트레이 직행 누락) 해결은 이 트레이드오프를 감안해 결정해야 한다.
+
 ### 62. 미디에이션 어댑터 "파일 존재 ≠ 런타임 로드" — Android 는 정상(3/3 COMPLETE), iOS 는 미로드
 - **계기**: iOS 세션이 실기기 로그에서 `GADMediationAdapterUnity/Pangle = Not Ready; No such adapter in the application` 확인(프레임워크는 번들에 임베드됨). 같은 층위의 내 "AAB 에 Pangle 리소스·Unity .so 존재" 증거도 **런타임 로드를 보장하지 않는다**는 지적을 받아 Android 도 런타임 실측.
 - **진단 코드**(`FearIndexApp.logAdapterStatuses`): `MobileAds.initialize(ctx, config) { initializationStatus -> ... }` 3-arg 오버로드로 `initializationStatus.adapterStatusMap` 기록. **release 는 Timber tree 가 Crashlytics 전용(60번)이라 logcat 에 안 남으므로 `android.util.Log("FearIndexAdapters")` 로도 남긴다** — 배포 후 logcat/Firebase 양쪽 확인 가능.
