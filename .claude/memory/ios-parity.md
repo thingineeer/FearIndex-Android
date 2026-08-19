@@ -33,6 +33,22 @@ iOS SSOT: `OnboardingTourView.swift` / `OnboardingEligibility.swift` / `FearInde
 - **위젯**: iOS는 풀 위젯 스위트, Android는 요청에 따라 2×2 3종 + 4×2 대시보드(Glance)만. 위젯 사용법 가이드는 Android 절차용 자체 문구.
 - ⚠️ Android 특이: 알림 권한 프롬프트가 투어를 가리지 않게 `notificationPromptResolved` 후 시작. 투어 중 인터스티셜/앱오픈/배너 억제.
 
+## 미디에이션 어댑터 링크 — 플랫폼별 메커니즘 차이 (2026-08-19 규명)
+
+**같은 어댑터(Unity/Pangle)를 붙여도 "번들에 파일이 있다"가 런타임 로드를 보장하지 않는다.** 양 플랫폼의 보존 메커니즘이 다르다.
+
+| | Android | iOS |
+|---|---|---|
+| 위험 | R8 minify 가 미참조 클래스 shrink | 링커가 정적 아카이브에서 미참조 오브젝트를 안 뽑음 |
+| 보호 | **GMA AAR 이 consumer proguard 룰 내장**(`-keep class * implements ...MediationAdapter`) → 자동 보존 | **대응 메커니즘 없음** → 앱 타겟에 `OTHER_LDFLAGS = "-ObjC"` 필수 |
+| 실측 결과 | debug/release(R8) 모두 3/3 **COMPLETE** — 수동 keep 룰 불필요 | 수정 전 "No such adapter"(33KB 스텁), Xcode 26.2 + GMA 13.8 + `-ObjC` 로 3/3 **Ready** |
+| 정상 상태값 | `AdapterStatus.InitializationState.**COMPLETE**` (NOT_STARTED/INITIALIZING/COMPLETE/TIMED_OUT/FAILED) | `AdapterStatus.state = **Ready**` |
+
+- **양쪽 공통 교훈**: 정적 증거(AAR 리소스·.so, 프레임워크 임베드, nm/otool)는 근거가 못 된다. **유효한 증거는 런타임 `adapterStatusMap`(Android) / `adapterStatusesByClassName`(iOS) 로그뿐.** 그래서 양 플랫폼 모두 상시 진단 로깅을 심었다(Android `FearIndexAdapters` 태그 + Crashlytics / iOS Logger.error + Crashlytics non-fatal `FearIndex.adMediation`).
+- **iOS 전용 함정**: `-force_load`(어댑터만)로는 Unity 는 되지만 Pangle 이 ObjC 카테고리 미로드로 죽는다(`SKStoreProductViewController pagConfig` unrecognized selector) → 광고 SDK 는 `-ObjC` 가 표준.
+- **iOS 전용 함정 2**: pbxproj 빌드 설정은 **Debug/Release 블록 각각**에 넣어야 한다. 한쪽만 넣고 다른 스킴으로 검증하면 "수정해도 안 됨"으로 오판한다 → 빌드 로그의 실제 링크 커맨드에서 플래그 존재를 확인할 것.
+- 상세: `@bugs-fixed.md` 62·64번.
+
 ## Bundle/Package ID 매핑
 
 | 플랫폼 | 식별자 |
