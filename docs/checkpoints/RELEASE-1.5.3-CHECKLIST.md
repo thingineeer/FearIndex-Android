@@ -10,6 +10,7 @@
 
 ## 2. 배포 후 확인해야 할 것 (vc24 관찰)
 
+- [x] **실기기(S22) vc24 업데이트 경로 검증 완료** — 크래시/ANR 0, 알림내역·점수탐색기·실광고 정상(64번)
 - [ ] **Crashlytics #96 MotionEvent** (GMA Next-Gen 1.3.x 알려진 이슈) — 실사용자 발생 여부
 - [ ] **프리미엄 경로 non-fatal** — CrashlyticsTree 가 올리는 `W/` 로그(수익률 Firestore fallback, 알림내역 read/rewrite 실패)
 - [ ] **배너 match rate / eCPM** — Next-Gen 마이그레이션 전 기준선(AdMob Network eCPM $4.09, 일치율 86.66%) 대비 회귀 여부
@@ -28,6 +29,8 @@
 | E | Fastfile `internal` lane 에 `release_status` 없음 | `fastlane/Fastfile:40-52` | 중 | draft(임시)로만 올라가 테스터에게 안 감. vc23 이 이 함정으로 소모됨(bugs-fixed 60번). `release_status: "completed"` 추가 |
 | F | 알림 내역 전용 AdMob 배너 유닛 미발급 | `NotificationHistoryScreen.kt:232` | 낮음 | 현재 홈 유닛 fallback. 리포트에서 홈과 합산돼 구분 불가. **사용자 결정 대기** |
 | G | 스토어 IAP 표시명 | Play Console | 낮음 | "광고 제거" → 프리미엄 혜택 3종 반영 여부. **사용자 결정 대기** |
+| H | **KOSPI 번들 fallback 데이터 빈약** | `DefaultReturnData.kt:166-178` | 중 | 검증 버킷 11개뿐 → Firestore 실패 시 KOSPI 탐색기 범위의 **80.7%가 빈 화면**. 실서버는 건전(빈칸 1%)이라 평시엔 미발현하나, 프리미엄 결제 후 빈 화면은 CS 리스크. market/crypto 처럼 스크립트 생성으로 보강 권장(64번) |
+| I | 알림내역 prune 시계 의존 | `NotificationHistoryPolicy.kt:27-28` | 중 | 기기 시계가 미래로 튀면 30일 초과 판정 → **정상 레코드 물리 삭제**(무료 사용자, 복구 불가). 조회 시점 필터링으로 변경 검토(64번) |
 
 ## 4. 미검증 (실기기 필요)
 
