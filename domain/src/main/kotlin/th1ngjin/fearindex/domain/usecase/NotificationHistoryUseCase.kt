@@ -16,14 +16,17 @@ class NotificationHistoryUseCase(
         get() = repository.updates
 
     /**
-     * 보관 정책(무료 30일 / 프리미엄 무제한, 하드캡) 적용된 최신순 내역.
-     * prune 은 제거만 하므로 건수가 줄었을 때만 저장소를 다시 쓴다.
+     * 보관 정책 적용된 최신순 내역.
+     *
+     * **표시(무료 30일 숨김)와 영속(하드캡 초과분 삭제)을 분리한다.** 저장소에서 실제로 지우는 건
+     * 시계와 무관한 하드캡 초과분뿐이라, ① 프리미엄 구매 즉시 30일 이전 내역이 복원되고
+     * ② 기기 시계가 튀어도 레코드가 영구 소실되지 않는다. (iOS 와 동일 패턴)
      */
     suspend fun fetch(isPremium: Boolean): List<NotificationRecord> {
         val all = repository.fetchAll()
-        val pruned = NotificationHistoryPolicy.prune(all, isPremium, now())
-        if (pruned.size != all.size) repository.replaceAll(pruned)
-        return pruned
+        val persistable = NotificationHistoryPolicy.persistablePrune(all)
+        if (persistable.size != all.size) repository.replaceAll(persistable)
+        return NotificationHistoryPolicy.prune(persistable, isPremium, now())
     }
 
     /** 수신 알림 기록 (저장소가 id dedup / fallback 승격) */

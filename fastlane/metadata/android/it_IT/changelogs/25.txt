@@ -1,0 +1,1 @@
+Migliorata la stabilità degli annunci e la conservazione della cronologia delle notifiche.

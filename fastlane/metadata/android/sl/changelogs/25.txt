@@ -1,0 +1,1 @@
+Izboljšana stabilnost prikazovanja oglasov in hramba zgodovine obvestil.

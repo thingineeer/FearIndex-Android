@@ -6,6 +6,70 @@ type: project
 
 ## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
 
+### 67. v1.5.3(vc25) 배포 + API/푸시 임계치/결제 전수 검증 (2026-08-19)
+- **배포**: v1.5.3(vc25) = 배너 콜드스타트 fix(66) + 알림 보관 분리(65) + 어댑터 진단(62). 게이트 전부 통과(1019 tests/0, AAB 19MB, SHA-1 CE:08:B4 일치, DEBUG 심볼 0, versionName 1.5.3, locale 대칭). `fastlane production` 성공, **production=[25]**, 관리형 게시 OFF.
+- **✅ API health 전수 GREEN**: KOSPI v2(50.7 neutral)·KOSPI short(available=false 설계대로)·CNN(53.6)·Alternative.me(46)·Yahoo ^GSPC·CoinGecko(BTC 64299)·currency-api·Naver KOSPI·cryptoOfficialIndicators 모두 200+스키마 정상. **⚠️ 함정**: KOSPI 는 `fear-index-a4f4b.web.app/api/kospi/*`(호스팅 rewrite), CNN 은 브라우저 UA+Referer/Origin 헤더 필수 — 아무 URL/UA 로 치면 404/418 이 나와 오진한다.
+- **✅ 푸시 임계치 E2E 완전 검증(이상+이하 실수신)**: 에뮬 debug + App Check debug token 신규 등록(`Claude push E2E emulator 2026-08-19`). ①KOSPI 상한 하향 → 즉시체크 발송 → **"KOSPI 51 · selling opportunity"(이상)** 수신 ②crypto 하한 상향 → **"Crypto 46 · buying opportunity"(이하)** 수신. 트레이 표시 + **알림 내역 화면에 채널/점수 정확 기록**(vc25 신규 기능 동시 검증). 서버 Firestore 에 lastCryptoNotifiedScore=46/lower/16:37:31 발송 기록 확정. 서버측 clamp 도 확인(클라 74→서버 50).
+- **서버 지식(오진 방지)**: ①`updateNotificationSettings` 는 **기존 기기에도 dispatchInstantCheck 발동**(v1.8.8+, 33번 공백 해소 확인) ②글로벌(시장) 채널은 `isUsMarketPushAllowed`(오늘 ET 거래일 데이터만), KOSPI 는 `isKospiPushAllowed`(장시간/스냅샷) 게이트 — **미국 장외/KOSPI 장외엔 market=null·kospi skip 이 정상**(크론 로그의 market=null 은 버그 아님) ③크론 30분 주기, total_users 2,217, failed=0.
+- **⚠️ E2E 함정**: ①사이드로드 release 는 **App Check(Play Integrity) 403** → Callable 전부 거부 — 서버 연동 E2E 는 에뮬 debug+debug token 으로 ②에뮬 화면 잠김 상태면 시스템이 "locked user" 로 알림 표시 보류 — `input keyevent KEYCODE_WAKEUP`+`wm dismiss-keyguard` 선행 ③Firebase 콘솔도 u/0 계정 주의(`?authuser=` 지정).
+- **✅ 결제(광고 제거) 검증**: ①TDD — IapEntitlement/IapPurchaseOutcome/IapOfferSelection 유닛 + PremiumQaTest 계측 3종(1019 green 포함) ②S22 release 실기기 — ₩7,500 실가격 조회(Billing 8 쿼리) → 구매 탭 → **launchBillingFlow → ProxyBillingActivity → Google Play 결제 시트 실진입** ③Play 가 "이 버전의 앱에서는 결제 불가" 거부 = **사이드로드 제약**(Play 에 없는 vc25 로컬 빌드, 앱 결함 아님) ④거부 후 앱 실패 처리 정상(다이얼로그+문의 이메일+스피너 해제). 실결제 완주는 vc25 게시 후 Play 설치본으로만 가능 — 참고로 실주문 1건(7/23 HUF 1,999) 존재, vc24(Billing 8) 프로덕션 결제 크래시 0.
+- **기기 정리**: S22 임계값 원복(상한 69), 그늘길 re-enable, 에뮬 종료. S22 는 AdMob 테스트 기기(66번) 유지.
+
+### 66. 홈 배너 콜드스타트 미노출 — Next-Gen 동일 AdView 재-loadAd 무산 (실측 규명) + 테스트 기기 검증 체계
+- **증상(사용자 보고)**: "광고 안 뜨는 것 같다". S22 재현 — 콜드스타트 후 홈 배너 슬롯이 수 분간 빈 공간(설정/재진입 배너는 정상).
+- **진단 방법**: release 에서도 보이는 `android.util.Log("FearIndexAds")` 진단 로그를 심어 게이트 차단 사유/로드/실패코드/재시도를 추적. 실측 타임라인: 게이트(consent→sdkInit) 통과 후 loadAd → `NO_FILL` → 5s 재시도 → **`CANCELLED "Ad request cancelled by publisher action"` + `NO_FILL` 쌍** → 이후 재시도 전부 동일 무산.
+- **원인 2건**:
+  1. **Next-Gen SDK 는 같은 AdView 에 loadAd 재호출 시 재경매가 무산된다**(CANCELLED+NO_FILL 쌍). 같은 시각 새 AdView(홈_인사이트, 탭 재진입 홈)는 즉시 fill — 동일 뷰 재시도만 실패.
+  2. backoff([5,15,45]→300s) 소진/대기 중 홈에 머물면 영구 빈 슬롯(회복 트리거 없음).
+- **수정(feature/v1.5.3-banner-first-load → dev a502180)**: ① 재시도마다 **새 AdView 생성** — FrameLayout 컨테이너(remember)에 교체 장착, 콜백은 자기 AdView 캡처로 식별(교체/파기 후 늦은 콜백 무시) ② **ON_RESUME 복귀 재시도** — 미로드+미예약이면 새 사이클(로드됐으면 no-op, 첫 컴포지션 ON_RESUME 스킵) ③ 진단 로그 유지(수익 직결 상시 관측). 수정 후 실측: 재시도 클린 경매(CANCELLED 소멸), 유닛 1019 GREEN.
+- **✅ AdMob 테스트 기기 등록(S22)**: 오늘 테스트로 기기 트래픽이 죄여 실광고 no-fill 이 반복되자, iOS AdInspector 대응 표준 절차로 **AdMob 콘솔 → 설정 → 기기 테스트 → S22 등록**(GAID `e8625b30-…14c0`, 광고 검사기 동작=흔들기). 등록 후 홈_상단/홈_인사이트 **onAdLoaded(retryCount=0) 즉시 fill** + "Test Ad" 라벨. GAID 는 GMS 광고 설정 화면(`am start -a com.google.android.gms.settings.ADS_PRIVACY`) uiautomator 덤프로 획득.
+- **✅ 앱오픈 광고 정책 실기기 검증**(오늘 RC 로 첫 실가동): ① 콜드스타트+무입력 35s → **미노출**(topResumed=MainActivity, preload 만) ② 백그라운드 35s→복귀 → **노출**(topResumed=AdActivity, "공포지수 | Test Ad" 헤더). 41번 정책(콜드 제외/30s 체류) 실전 확인.
+- **⚠️ 함정들**: ① 전면 광고 헤더의 앱 이름은 **퍼블리셔 앱**(같은 계정 타 앱 그늘길의 앱오픈을 우리 것으로 오인 — 같은 AdMob 계정은 테스트 모드 공유) ② 좌표 탭 자동화 중 전면 광고가 뜨면 **광고를 클릭해버림**(그늘길 열림) — 전면 노출 가능 시점엔 uiautomator 로 상태 확인 후 입력 ③ 반복 테스트로 기기 트래픽이 죄이면 실광고 no-fill 만 나옴 — **판단은 테스트 기기 등록 후에** ④ AdMob 콘솔 URL 이 다른 Google 계정으로 열리면 **signup 페이지**가 뜬다 — 절대 진행 말고 `?authuser=<email>` 로 재진입.
+- **⚠️ S22 는 이제 테스트 광고만 나옴**(수익 발생 안 함) — 실광고 확인이 필요하면 AdMob 콘솔에서 기기 등록 해제.
+
+### 65. 알림 내역 prune — 표시/영속 분리 (카피 과약속 + 시계 스큐 데이터 손실 동시 해소)
+- **발단**: 64번 감사가 "prune 이 기기 시계 기준 물리 삭제"를 지적 → iOS 세션이 같은 구조를 먼저 고치고(dev_1.9.5 6dd603ce5) **"잠금 카피가 과약속"** 이라는 더 큰 함의를 짚어줌.
+- **결함 2개(같은 코드 한 줄에서 파생)**: 옛 `fetch` 는 `prune`(기간+하드캡) 결과를 그대로 `replaceAll` 로 영속했다.
+  1. **카피 과약속**: `notification_history_lock_title` = "30일 이전 내역은 프리미엄에서"(45 locale 동일)인데 실제로는 이미 물리 삭제라 **결제해도 복원 불가**. 환불 사유가 될 수 있었다.
+  2. **시계 스큐 손실**: cutoff 가 기기 시계 기준이라 시계가 미래로 튀면 정상 레코드가 기간 초과로 오판 → 영구 삭제(무료 사용자, 복구 불가).
+- **수정(iOS 와 동일 계약)**: `prune(records, isPremium, now)` = **표시용**(기간 숨김+하드캡, 시그니처 유지) / `persistablePrune(records)` = **영속용**(하드캡만, 시계 무관) 신규. `UseCase.fetch` 는 `persistablePrune` 결과만 `replaceAll` 하고 반환은 `prune` 으로 필터 → **저장소 무손실**.
+- **회귀 테스트 7건**: 무료 숨김 시 저장소 보존(replaceAll 0), **프리미엄 fetch 즉시 복원**(카피 성립 조건을 테스트로 고정), 1년 시계 스큐 후 복귀 시 자동 복원, 하드캡 초과분만 삭제(replaceAll 1), `persistablePrune` 단위 2건, data/presentation 통합 테스트 갱신.
+- **⚠️ 부작용 주의**: `replaceAll` 을 안 하게 되면서 **저장소 레코드 순서가 더 이상 정렬 보장되지 않는다**(원본 삽입 순서 유지). 표시 경로는 `prune` 이 정렬하므로 무관하나, 저장소를 직접 읽는 경로가 생기면 정렬을 가정하지 말 것. 기존 테스트 3건이 순서를 기대하고 있었고 집합 비교로 교체했다.
+- **교훈**: 기존 테스트가 **결함을 "정상"으로 고정**하고 있었다 — `NotificationHistoryViewModelTest` 주석에 "무료 fetch 시 prune 된 레코드는 저장소에서도 제거됐으므로 a 만 남는다 (정책상 정상)"이라고 적혀 있었다. 테스트가 녹색이어도 그 기대값이 제품 약속(카피)과 어긋나는지 별도로 봐야 한다.
+- **검증**: 전체 **1019 tests / 0 fail** + release 빌드 OK. (`:data` StuckStatusDebouncerImplTest 는 `runBlocking`+실 delay 기반이라 부하 시 flaky — 재실행 통과, 이 변경과 무관.)
+
+### 64. v1.5.2(vc24) 배포 후 검증 — 실기기 GREEN + 적대적 감사 2건(높음 0) + KOSPI fallback 밀도 함정
+- **동기**: vc24 는 224파일 9,511줄이 나간 대형 릴리스인데 Crashlytics 활성 사용자가 2명뿐이라 실사용 데이터로는 검증 불가 → 실기기 + 코드 적대적 감사 병행.
+- **Crashlytics(7일)**: 크래시 **0건**, crash-free 사용자/세션 **100%**. 단 표본 2명이라 "문제 없음"의 근거로는 약함(그래서 아래 검증 수행).
+- **✅ S22(SM-S901N, Android 13) 실기기 — 1.5.1 위에 vc24 업데이트 설치 경로로 검증**(clean install 아님 = 실사용자 시나리오): 콜드스타트 크래시 0, `FATAL EXCEPTION`/ANR **0건**, 프로세스 생존. 홈 실데이터(54 중립, 비교카드 전일/1주/1개월/1년 정상), **알림 내역 진입 정상**(빈 상태 "아직 받은 알림이 없어요"), **점수 탐색기 정상 렌더**(시장/코스피 양쪽, 프리미엄 잠금 카드 + 실가격 **₩7,500** + 구매 복원), **프로덕션 실광고 노출 확인**("제우스/언리얼 엔진5" 사전등록 광고).
+- **⚠️ KOSPI 점수 탐색기 fallback 밀도 함정 (감사 발견 → 실측으로 영향 범위 확정)**: `DefaultReturnData.kospiVerifiedDataPoints()` 는 검증 버킷이 **11개뿐**(8/10/13/17/18/24/25/29/32/50/64)이라 fallback 사용 시 범위 8..64 중 **46개(80.7%)가 n=0 빈 화면**. **그러나 실서버 데이터는 건전**(Firestore `returnData/kospi` = 범위 8..88, 빈칸 **1개(1%)**; market 0..97 빈칸 1개, crypto 5..95 빈칸 1개) → **이 함정은 Firestore 실패/미도달 시에만 발현**. 프리미엄 결제 후 KOSPI 빈 화면 = CS 리스크이므로 1.5.3 에서 KOSPI 번들 fallback 보강 권장.
+- **감사 결과 요약(심각도 높음 0건)**: ①알림내역 — 동시성 안전(@Singleton + Mutex 이중, 프로세스 분리 없음), HARD_CAP 최신순 take 정상, temp→ATOMIC_MOVE 로 rewrite 실패 시 원본 보존, 크래시 경로 0. **유일 위험 = prune 시계 의존**(기기 시계가 미래로 튀면 30일 초과 판정으로 **정상 레코드 물리 삭제**, 무료 사용자 한정, 복구 불가) → 조회 시점 필터링으로 바꾸는 것 검토. ②프리미엄/탐색기 — `entitlementOverride` release 격리 코드로 확정(호출자 debug/androidTest 뿐, release VariantHooks no-op), 결제 종료 경로 9종 전부 터미널 이벤트 보장(timeout 3곳 포함), 보간 금지·n/라벨 정합·클램프 경계 정상, **M3 Slider steps 축퇴 크래시 부재를 Material3 1.3.1 바이트코드로 실증**(calcFraction 이 b-a==0 시 0f 반환, stepsToTickFractions 가 steps=0 시 빈 배열).
+- **낮음 2건**: `purchaseEvents`(replay=0 SharedFlow)를 3개 VM 이 source 구분 없이 소비 — 현재 VM 생명주기상 영구 행 재현 불가하나 진입점 증가 시 부채. KOSPI fallback 은 `HistoricalSampleCounts.same(count)` 라 1Y 표본이 1M 과 같게 과대 표시(임계 5 근처만 영향).
+- **교훈**: 표본이 작은 배포 직후엔 Crashlytics 100% 를 근거로 삼지 말 것. **실기기 업데이트 경로 + 서버 실데이터 대조 + 코드 감사** 삼중으로 봐야 fallback 전용 함정(KOSPI 80.7%)처럼 실사용자 데이터엔 안 잡히는 결함이 드러난다.
+
+### 63. Unity 대시보드 실사(Android) + FCM 플랫폼별 notification 제거 불가 확인
+- **Unity 대시보드 Android 실측**(org 14569783411652): 공포지수 Android **Game ID `800107232`**(iOS 는 800107231 — 다른 값), Store ID `th1ngjin.fearindex` 정확 일치, Google Designed for Families=Disabled, child-directed=general audience. **경고 0건** — iOS 에서 나온 "Missing SKAdNetwork IDs" 는 Android 엔 해당 없음(SKAdNetwork 는 Apple 전용 항목이라 설정 화면에 존재조차 안 함).
+- **Placements 4개 전부 Active(초록)**: `Banner_iOS`/`Interstitial_iOS`(800107231), `Banner_Android`/`Interstitial_Android`(800107232). AdMob 유닛 매핑(61번)의 Placement ID 와 1:1 일치.
+- **⚠️ Unity payout profile 미설정 배너 있으나 우리 수익엔 무관**: Payments 페이지 원문 "Payments for impressions served by Unity with **Bidding Placement Type in AdMob** and Google Ad Manager are **handled by Google**". 우리는 전부 입찰(bidding) 방식 → 수익은 AdMob 정산. payout profile 은 Unity 직접 폭포식 때만 필요.
+- **Unity 7일 실적**: 공포지수 Android $0.17/노출 14, iOS $0.00, 딸깍 iOS/Android 둘 다 $0.00. → **Unity 자체가 계정 전반에서 fill 이 거의 없다**(우리 앱만의 문제가 아님). 낙찰률 6.12% 는 설정 결함이 아니라 Unity 인벤토리 문제로 결론.
+- **FCM 플랫폼별 notification 제거 — 공식 문서상 불가**: cross-platform 문서 원문 "All app instances, **regardless of platform**, can interpret the following common fields: message.notification.title, message.notification.body" + "Whenever you want to send values only to particular platforms, use platform-specific fields"(추가용이지 최상위 제거용 아님). `AndroidConfig` 에 notification 억제/데이터 전용 전환 필드 **없음**. → **iOS 는 notification 유지, Android 만 data-only** 로 만들려면 **같은 payload 를 플랫폼별로 두 번 발송**(iOS 토큰엔 notification+data, Android 토큰엔 data-only)하는 방법뿐. 서버 분기 비용이 있으므로 A 항목(트레이 직행 누락) 해결은 이 트레이드오프를 감안해 결정해야 한다.
+
+### 62. 미디에이션 어댑터 "파일 존재 ≠ 런타임 로드" — Android 는 정상(3/3 COMPLETE), iOS 는 미로드
+- **계기**: iOS 세션이 실기기 로그에서 `GADMediationAdapterUnity/Pangle = Not Ready; No such adapter in the application` 확인(프레임워크는 번들에 임베드됨). 같은 층위의 내 "AAB 에 Pangle 리소스·Unity .so 존재" 증거도 **런타임 로드를 보장하지 않는다**는 지적을 받아 Android 도 런타임 실측.
+- **진단 코드**(`FearIndexApp.logAdapterStatuses`): `MobileAds.initialize(ctx, config) { initializationStatus -> ... }` 3-arg 오버로드로 `initializationStatus.adapterStatusMap` 기록. **release 는 Timber tree 가 Crashlytics 전용(60번)이라 logcat 에 안 남으므로 `android.util.Log("FearIndexAdapters")` 로도 남긴다** — 배포 후 logcat/Firebase 양쪽 확인 가능.
+- **⚠️ Next-Gen enum 이름이 레거시와 다름**: 정상 상태는 `READY` 가 아니라 **`AdapterStatus.InitializationState.COMPLETE`**(NOT_STARTED/INITIALIZING/COMPLETE/TIMED_OUT/FAILED). READY 로 쓰면 컴파일 에러.
+- **실측 결과 (헤드리스 에뮬 API 36)**: debug = Pangle COMPLETE(262ms)/Unity COMPLETE(1156ms)/GMA COMPLETE(5659ms). **release(R8 minify) = Unity COMPLETE(690ms)/Pangle COMPLETE(196ms)/GMA COMPLETE(2983ms)** → **Android 는 어댑터 로드 정상, R8 shrink 도 없음.**
+- **수동 proguard keep 룰 불필요**: 우리 proguard-rules.pro 에 어댑터 keep 0건이지만 **GMA Next-Gen AAR 이 consumer proguard 룰 내장**(`-keep class * implements com.google.android.gms.ads.mediation.MediationAdapter`, `-keep class * extends ...Adapter`) → 어댑터가 자동 보존. release 실측이 이를 확인.
+- **결론**: Unity fill 6.12%(eCPM $14.30) 의 원인은 어댑터 미로드도, 콘솔 매핑도 아니다(61번에서 콘솔 정상 확인). 남은 후보는 Unity 대시보드 쪽 Game ID 상태/인벤토리. **iOS 는 별개 문제**(어댑터 자체가 런타임 미로드 — `-ObjC` linker flag 부재 의심, iOS 세션 수정 중).
+- **교훈**: 정적 증거(AAR 리소스/so, 프레임워크 임베드, nm/otool)는 런타임 로드의 근거가 못 된다. **유효한 증거는 `adapterStatusMap` 런타임 로그 하나뿐.** iOS 세션은 대조군(GoogleMobileAds) 없이 nm 으로 판정했다가 오판할 뻔했다.
+
+### 61. 콘솔 실측 2건 — Pangle 수익 출처 오인 정정 + RC 앱오픈 키 게시 + iOS Unity 매핑 결론
+- **Pangle 수익 출처 = 딸깍(Android), 공포지수 아님** (AdMob 미디에이션 보고서 30일, 측정기준 앱×광고 소스). 25행 중 Pangle 행은 `딸깍 - 키보드 소리 ASMR(Android) | Pangle ROW SDK(입찰) | US$4.03 | eCPM US$1.38 | 요청 13,811 | 일치율 39.38%` **단 1개**. 공포지수 Android 에 Pangle 행이 없는 건 정상 — **vc24 가 Pangle 어댑터 최초 포함본**(같은 날 게시).
+- **공포지수 30일 실측**: Android AdMob Network US$21.21/eCPM 4.09/요청 11,330/일치율 86.66%, Android **Unity Ads US$0.67/eCPM 14.30/요청 5,389/일치율 6.12%**(eCPM 최고인데 fill 6% = 사실상 미가동 → Pangle 합류로 개선 기대). iOS AdMob US$44.89/eCPM 1.94/요청 154,876/일치율 96.61%(요청은 Android 13배인데 eCPM 절반). 계정 전체 US$363.84 중 미디에이션 파트너 기여 US$4.70(1.3%).
+- **✅ RC 앱오픈 키 4개 게시**(get→최소수정→deploy, 32번 절차): `app_open_ads_enabled` default=false + **조건 "Android app users"=true**(iOS 는 자체 서버 config 사용하므로 default 는 fail-safe OFF 유지), `app_open_session_cap=2`, `app_open_cooldown_sec=600`, `app_open_min_background_sec=30` — 전부 코드 default(`AppOpenAdPolicy` sessionCap 2/cooldown 600_000ms/minBackground 30_000ms)와 일치. 파라미터 10→14, 기존 10개 무변경 assert 통과. 라이브 재조회로 반영 확인. **vc24 유저부터 앱오픈 광고 실가동.**
+- **⚠️ iOS Unity 미노출은 콘솔 갭이 아님 (가설 반증)**: "공포지수 iOS 배너"(그룹 5570621994) 입찰 소스 = AdMob/Pangle ROW SDK/**Unity Ads 3개 전부 활성**, 광고 단위 매핑도 배너 6개 전부 `Game ID 800107231 / Placement Banner_iOS` 로 채워져 있음. "공포지수 iOS 전면"(1619665507)도 3소스 활성. → **콘솔 설정은 정상, 수정 불필요**. iOS Unity row 부재 원인은 콘솔 밖(앱 측 어댑터 초기화/버전 또는 단순 fill 0)에서 찾아야 함.
+- **iOS 앱오프닝(7993500901)은 Unity 추가 자체가 불가**: 입찰 소스 2개(AdMob/Pangle)뿐이고, "입찰 광고 소스 추가" 다이얼로그의 선택지가 **Liftoff Monetize / Mintegral / Pangle ROW SDK 3개뿐 — Unity Ads 없음**. Unity 가 앱오프닝 형식 입찰을 지원하지 않는 구조적 제약. Android 앱오프닝 그룹도 동일 제약 예상(현재 미생성).
+
 ### 60. v1.5.2 production 배포 (vc24) — fastlane internal 은 draft 로만 올린다 + release Crashlytics 트리
 - **⚠️ `fastlane internal` lane 은 `release_status` 미지정 → Play 에 "임시(draft) 버전"으로만 업로드**되고 테스터에게 안 나감. 콘솔 내부 테스트 트랙에 "비활성 · 임시 버전 1.5.2 / 버전 수정" 으로 표시됨. 그리고 **이미 업로드된 versionCode 는 다른 트랙에 재업로드 불가**("Version code 23 has already been used") → 승격은 `track:internal track_promote_to:production` 조합(54번)이거나, 새 vc 로 올려야 함. 이번엔 CrashlyticsTree 포함을 위해 **vc24 로 production 직접 업로드**(vc23 draft 는 그대로 방치, 무해).
 - **교훈**: 내부 테스트를 실제 테스터에게 내보내려면 Fastfile internal lane 에 `release_status: "completed"` 추가 필요(현재 미수정 — 다음에 internal 쓸 때 고칠 것). fastlane "Successfully" 만 믿지 말고 **콘솔 트랙 페이지의 상태 문구(임시/검토 중/제공됨)** 까지 볼 것(37번 교훈 재확인).

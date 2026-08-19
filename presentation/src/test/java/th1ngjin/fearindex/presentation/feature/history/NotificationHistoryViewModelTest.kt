@@ -78,16 +78,17 @@ class NotificationHistoryViewModelTest {
     }
 
     @Test
-    fun `프리미엄 전환 시 재로드 - 아무것도 숨기지 않는다`() = runTest {
+    fun `프리미엄 전환 시 재로드 - 무료에서 숨겨졌던 30일 이전 내역이 복원된다`() = runTest {
         val vm = viewModel(listOf(record("a", 1), record("old", 45)))
         advanceUntilIdle()
-        // 무료 fetch 가 prune 결과를 영속하기 전 프리미엄 상태로 재로드하는 시나리오는
-        // 저장소가 이미 잘렸을 수 있으므로, 프리미엄부터 시작하는 케이스로 검증한다.
+        // 무료 상태: 30일 초과분은 화면에서만 숨겨진다(저장소는 무손실)
+        assertEquals(listOf("a"), vm.uiState.value.records.map { it.id })
+
         premiumFlow.value = true
         advanceUntilIdle()
         assertTrue(vm.uiState.value.isPremium)
-        // 무료 fetch 시 prune 된 레코드는 저장소에서도 제거됐으므로 a 만 남는다 (정책상 정상).
-        assertEquals(listOf("a"), vm.uiState.value.records.map { it.id })
+        // 구매 즉시 과거 내역이 그대로 돌아온다 — 잠금 카피가 성립하는 조건
+        assertEquals(listOf("a", "old"), vm.uiState.value.records.map { it.id })
     }
 
     @Test

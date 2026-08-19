@@ -1,0 +1,1 @@
+Melhorada a estabilidade dos anúncios e a conservação do histórico de notificações.

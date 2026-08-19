@@ -1,0 +1,1 @@
+Cải thiện độ ổn định hiển thị quảng cáo và lưu trữ lịch sử thông báo.
