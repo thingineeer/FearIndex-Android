@@ -14,7 +14,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.glance.appwidget.updateAll
 import com.google.android.libraries.ads.mobile.sdk.MobileAds
+import com.google.android.libraries.ads.mobile.sdk.initialization.AdapterStatus
 import com.google.android.libraries.ads.mobile.sdk.initialization.InitializationConfig
+import com.google.android.libraries.ads.mobile.sdk.initialization.InitializationStatus
 import java.lang.ref.WeakReference
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
@@ -75,6 +77,9 @@ class FearIndexApp : Application() {
     private var currentActivity = WeakReference<Activity>(null)
 
     companion object {
+        /** 미디에이션 어댑터 진단 로그 태그 (release 에서도 logcat 확인 가능) */
+        private const val ADAPTER_LOG_TAG = "FearIndexAdapters"
+
         private const val ADMOB_APP_ID_META_KEY = "com.google.android.gms.ads.APPLICATION_ID"
         private const val ADMOB_APP_ID_FALLBACK = "ca-app-pub-5283496525222246~1308884877"
 
@@ -191,9 +196,10 @@ class FearIndexApp : Application() {
                 MobileAds.initialize(
                     this@FearIndexApp,
                     InitializationConfig.Builder(admobApplicationId()).build(),
-                ) {
+                ) { initializationStatus ->
                     // 어댑터 초기화 완료 콜백은 백그라운드 스레드 → 앱오픈 preload 는 메인으로 디스패치
                     // (iOS: startAdMobSDK 콜백에서 preload).
+                    logAdapterStatuses(initializationStatus)
                     AdSdkState.markInitialized()
                     mainHandler.post {
                         appOpenAdManager.preloadIfNeeded(
@@ -205,6 +211,32 @@ class FearIndexApp : Application() {
                 }
             } catch (e: Exception) {
                 Timber.w(e, "AdMob init failed — placeholder config")
+            }
+        }
+    }
+
+    /**
+     * 미디에이션 어댑터 런타임 로드 상태 — "AAR 에 파일이 있다"는 로드를 보장하지 않는다(iOS 반례).
+     * NOT_READY 면 R8 shrink 또는 어댑터 의존성 누락. release 는 CrashlyticsTree 로 Firebase 에 남는다.
+     */
+    private fun logAdapterStatuses(status: InitializationStatus) {
+        val statuses = runCatching { status.adapterStatusMap }.getOrNull().orEmpty()
+        if (statuses.isEmpty()) {
+            Timber.w("[AdMob] 어댑터 상태 없음 — 미디에이션 어댑터가 하나도 로드되지 않았다")
+            return
+        }
+        statuses.forEach { (name, adapter) ->
+            val state = adapter.initializationState
+            val line = "[AdMob] adapter=%s state=%s latency=%dms desc=%s"
+                .format(name, state, adapter.latency, adapter.description)
+            // release 는 Timber tree 가 Crashlytics 전용이라 logcat 에 안 남는다 —
+            // 어댑터 로드 여부는 배포 후에도 확인해야 하므로 android.util.Log 로도 직접 남긴다.
+            if (state == AdapterStatus.InitializationState.COMPLETE) {
+                Timber.i(line)
+                android.util.Log.i(ADAPTER_LOG_TAG, line)
+            } else {
+                Timber.w(line)
+                android.util.Log.w(ADAPTER_LOG_TAG, line)
             }
         }
     }
