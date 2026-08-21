@@ -1,12 +1,13 @@
 # Resume — FearIndex-Android
 
 ## Date / Branch
-2026-08-21 / `dev` (feature/v1.5.4-appcheck-resilience --no-ff 머지, push 미실행)
+2026-08-21 / `dev` (feature/v1.5.4-appcheck-resilience · v1.6.0-force-update-patch-level · v1.6.0-version-bump · v1.6.0-release-docs --no-ff 머지, push 미실행)
 
 ## ⚡ 한 줄 상태
-**v1.5.3(vc25) 게시 완료 + Android App Check 전수 실패(68번)를 콘솔 수정으로 8/21 06:05Z 복구.** 1.5.4 클라이언트 보강 코드는 dev 에 머지됨(미배포). 다음 배포 vc26.
+**v1.5.3 게시 완료 → Android App Check 전수 실패(68번) 콘솔 복구(06:05Z) → v1.6.0(vc26) production 업로드(15:35, 검토 중).** ⏳ 게시·전파 확인 후 RC Android force `1.6`/minimum `1.6.0` 상향(1.5.x 전원 강제) 남음. 다음 배포 vc27.
 
 ## Completed (이번 세션, 2026-08-21)
+- [x] **v1.6.0(vc26) production 업로드** — App Check 보강 + BoM 33.16.0 + 강제 업데이트 patch 단위 비교(TDD 17/17). 게이트: 1054 tests/0, SHA-1 `CE:08:B4`, DEBUG 심볼 0, 에뮬 release 스모크. production=[26]. 1.5.4 가 아닌 1.6.0 인 이유는 69번. 상세: @.claude/memory/bugs-fixed.md 69번
 - [x] **v1.5.3 게시 모니터링** — Play "Google Play에 제공됨"(8/19 16:58), 설치 403, Crashlytics crash-free 100%/ANR 0/미해결 크래시 0, 정책 위반 해소(API 36 카드 소멸), AdMob 신규 이슈 0·공포지수 Android 7일 노출 +52%/eCPM +34%. 상세: @.claude/memory/deployment.md v1.5.3 행
 - [x] **🚨 App Check 401 근본 원인 규명** — Android 보호 Callable 401 ~1,000/일 vs 200 ≈ 0(30일), Firestore android 신규 등록 6/22 이후 0. 원인 = Firebase 지문이 v1.0.0 폐기 키(`AD:48…`)뿐 + Play Integrity API Cloud 프로젝트 미연결. 상세: @.claude/memory/bugs-fixed.md 68번
 - [x] **콘솔 복구(A)** — Firebase Management API 로 Play 앱 서명 키 `EF:5D:B8:C8…` + 업로드 키 `91:47…` SHA-256 등록 / Play Console Play Integrity API ↔ fear-index(8243517543) 연결 / App Check `requireLicensed=false`. 06:05:44Z 부터 Android 200 재개, 신규 android 등록 5건(15분). @.claude/memory/secrets-env.md 지문 표 갱신
@@ -15,7 +16,7 @@
 
 ## 미해결 / 다음 할 일 (우선순위순)
 1. **복구 추세 검증(C 계속)** — 하루 뒤 재측정: `gcloud logging read 'resource.type="cloud_run_revision" logName="projects/fear-index-a4f4b/logs/run.googleapis.com%2Frequests" httpRequest.userAgent:"okhttp" resource.labels.service_name="registerfcmtoken"' --project=fear-index-a4f4b --account=dlaudwls1203@gmail.com --freshness=24h --limit=5000 --format="value(httpRequest.status)" | sort | uniq -c` → 200 ≫ 401 이어야 함. Firestore `users` android createdAt 오늘 이후 증가, Crashlytics `Unauthenticated` 비치명 감소 확인
-2. **1.5.4 배포 판단** — dev 의 App Check 보강 + BoM 33.16.0 을 vc26 으로. 배포 전 **Play 내부 테스트 트랙 설치본으로 App Check 실측**(사이드로드로 검증 금지, 68번 교훈). Fastfile internal lane 에 `release_status: "completed"` 추가(60번) 같이 처리
+2. **⏳ 1.6.0 게시·전파 확인 → RC 강제 게이트 상향** — 공개 리스팅(`https://play.google.com/store/apps/details?id=th1ngjin.fearindex&hl=en&gl=US`)에 1.6.0 보이면: `firebase remoteconfig:get --project fear-index-a4f4b -o rc.json` → `force_update_minimum_version`[Android app users] `1.2`→`1.6`, `minimum_app_version`[Android app users] `1.2.0`→`1.6.0` **2줄만** 수정 → firebase.json(`{"remoteconfig":{"template":"rc.json"}}`)+.firebaserc 로 `firebase deploy --only remoteconfig` → `remoteconfig:get` 재조회. **전파 전 올리면 사용자가 강제창에 갇힘(23·31번)**. 이후 Play 설치본 1.6.0 으로 App Check 실측(사이드로드 금지) + Crashlytics `AppCheckUnavailableException` kind 분포 확인. Fastfile internal `release_status: "completed"`(60번)는 다음 기회에
 3. **iOS 팀 전달** — 서버 App Check soft→hard 전환 시 Android verified 메트릭도 확인할 것 + macOS 1.8.0 registerFCMToken 401 소수 존재
 4. 실결제 완주(사용자, Play 설치본 1.5.3) / 사용자 결정 2건(알림 내역 전용 AdMob 유닛, IAP 표시명) / 1.5.4 잔여 후보(@docs/checkpoints/RELEASE-1.5.3-CHECKLIST.md B·C·D·H)
 5. (선택) Firebase 지문에서 폐기 키 `AD:48…` 제거, App Check 토큰 TTL/기기 무결성 수준 재검토

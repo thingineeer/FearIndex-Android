@@ -19,7 +19,8 @@
 - **✅ v1.5.3(vc25) 게시 완료(8/19 16:58)** — 설치 403, crash-free 100%, ANR 0, API 36 경고 해소, AdMob 정책 신규 이슈 0·노출 +52%/eCPM +34%(배너 fix 효과).
 - **🚨 68번: Android 프로덕션 App Check 가 6/22 hard mode 배포 이후 ~100% 실패**(401 매일 ~1,000건, Firestore android 신규 등록 6/22 이후 0건 = 1.3.0~1.5.3 사용자 전원 푸시 미등록). 원인 = Firebase 등록 지문이 v1.0.0 폐기 키 1개뿐(Play 앱 서명 키 `EF:5D…` 미등록) + **Play Console Play Integrity API Cloud 프로젝트 미연결**. **콘솔 수정만으로 8/21 06:05Z 즉시 복구**(Android 200 재개, 신규 android 등록 5건/첫 15분). 기존 설치본은 다음 실행에 자동 복구.
 - **1.5.4 보강(feature/v1.5.4-appcheck-resilience, dev 머지)**: App Check 토큰 선취득+실패 사유 Crashlytics 기록, 등록 정책(24h/변경 시만)+WorkManager 재시도, BoM 33.16.0. 1044 tests GREEN.
-- **⚠️ 교훈**: "사이드로드 403 = 사이드로드 탓" 오진. **App Check 는 Play 설치본으로 실측**(서버 로그 okhttp 200 / Firestore android createdAt). iOS 팀에 "서버 App Check 모드 전환 시 Android verified 메트릭도 확인" 전달 필요.
+- **⚠️ 교훈**: "사이드로드 403 = 사이드로드 탓" 오진. **App Check 는 Play 설치본으로 실측**(서버 로그 okhttp 200 / Firestore android createdAt). iOS 팀 전달은 @docs/handoff/ios-appcheck-401-handoff-2026-08-21.md(SendMessage unreachable).
+- **✅ v1.6.0(vc26) production 업로드(8/21 15:35, 69번)** — App Check 보강 + BoM 33.16.0 + **강제 업데이트 patch 단위 비교**(TDD 17/17). 1.5.4 가 아닌 1.6.0 인 이유: 배포된 1.5.x 는 major.minor 만 비교라 RC `1.6` 으로만 강제 가능. production=[26]. **⏳ 게시·전파 확인 후 RC Android force `1.2`→`1.6`, minimum `1.2.0`→`1.6.0` 상향**(템플릿 준비됨, 전파 전 금지). 다음 배포 vc27.
 
 ## 최신 상태 (2026-08-19, v1.5.3 배포 + 전수 검증)
 
