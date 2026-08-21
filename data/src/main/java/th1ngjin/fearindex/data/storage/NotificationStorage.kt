@@ -3,6 +3,7 @@ package th1ngjin.fearindex.data.storage
 import android.content.Context
 import android.content.SharedPreferences
 import dagger.hilt.android.qualifiers.ApplicationContext
+import th1ngjin.fearindex.domain.entity.FcmRegistrationRecord
 import th1ngjin.fearindex.domain.entity.NotificationSettings
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -74,6 +75,26 @@ class NotificationStorage @Inject constructor(
         prefs.edit().putBoolean(KEY_PERMISSION_REQUESTED, true).apply()
     }
 
+    /** 마지막 서버 등록 성공 스냅샷 — 없으면 null (한 번도 성공한 적 없음). */
+    fun loadLastRegistration(): FcmRegistrationRecord? {
+        val tokenHash = prefs.getString(KEY_REG_TOKEN_HASH, null) ?: return null
+        return FcmRegistrationRecord(
+            tokenHash = tokenHash,
+            settingsHash = prefs.getInt(KEY_REG_SETTINGS_HASH, 0),
+            buildNumber = prefs.getString(KEY_REG_BUILD, "") ?: "",
+            registeredAtMillis = prefs.getLong(KEY_REG_AT, 0L),
+        )
+    }
+
+    fun saveLastRegistration(record: FcmRegistrationRecord) {
+        prefs.edit()
+            .putString(KEY_REG_TOKEN_HASH, record.tokenHash)
+            .putInt(KEY_REG_SETTINGS_HASH, record.settingsHash)
+            .putString(KEY_REG_BUILD, record.buildNumber)
+            .putLong(KEY_REG_AT, record.registeredAtMillis)
+            .apply()
+    }
+
     companion object {
         private const val PREFS_NAME = "notification_settings_prefs"
         private const val KEY_ENABLED = "notificationEnabled"
@@ -88,5 +109,9 @@ class NotificationStorage @Inject constructor(
         private const val KEY_CRYPTO_LOWER = "cryptoLowerThreshold"
         private const val KEY_CRYPTO_UPPER = "cryptoUpperThreshold"
         private const val KEY_WEEKLY_ENABLED = "weeklyReportNotificationEnabled"
+        private const val KEY_REG_TOKEN_HASH = "lastRegistrationTokenHash"
+        private const val KEY_REG_SETTINGS_HASH = "lastRegistrationSettingsHash"
+        private const val KEY_REG_BUILD = "lastRegistrationBuildNumber"
+        private const val KEY_REG_AT = "lastRegistrationAtMillis"
     }
 }
