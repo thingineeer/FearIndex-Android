@@ -1,40 +1,36 @@
 # Resume — FearIndex-Android
 
 ## Date / Branch
-2026-08-19 / `dev` (=origin/dev, 트리 clean, worktree 없음)
+2026-08-21 / `dev` (feature/v1.5.4-appcheck-resilience --no-ff 머지, push 미실행)
 
 ## ⚡ 한 줄 상태
-**v1.5.3(vc25) production 업로드 완료 — Play 검토 중**(관리형 게시 OFF → 승인 즉시 자동 게시). API/푸시 임계치/결제/광고 전수 검증 GREEN.
+**v1.5.3(vc25) 게시 완료 + Android App Check 전수 실패(68번)를 콘솔 수정으로 8/21 06:05Z 복구.** 1.5.4 클라이언트 보강 코드는 dev 에 머지됨(미배포). 다음 배포 vc26.
 
-## Completed (이번 세션, 2026-08-18~19)
-- [x] **v1.5.2(vc24) production 배포·게시** — 프리미엄 parity 4종(점수 탐색기·알림 내역·프리미엄 게이트·DEBUG 토글) + GMA Next-Gen + Pangle. 상세: @.claude/memory/bugs-fixed.md 59~60번
-- [x] **v1.5.3(vc25) production 업로드** — 배너 콜드스타트 fix(66번) + 알림 보관 표시/영속 분리(65번) + 어댑터 진단 로그(62번). production=[25] 트랙 API 확인, 콘솔 "검토 중" 실측. 게이트: 1019 tests/0, SHA-1 `CE:08:B4` 일치, DEBUG 심볼 0, 45 locale 대칭
-- [x] **푸시 임계치 E2E 실수신 검증** — 에뮬 debug + App Check 토큰(`Claude push E2E emulator 2026-08-19`) 등록. "이상"=KOSPI 51 selling opportunity / "이하"=Crypto 46 buying opportunity 실수신 + 알림 내역 화면 기록 확인. 상세: @.claude/memory/bugs-fixed.md 67번
-- [x] **API health 전수 GREEN** — KOSPI v2/short·CNN·Alternative.me·Yahoo·CoinGecko·환율·Naver (67번에 정확한 URL/헤더)
-- [x] **결제 검증** — S22 release에서 ₩7,500 조회→Play 결제 시트 실진입→사이드로드 거부→앱 실패 처리 정상. TDD(IAP 유닛+계측 QA 3종) green
-- [x] **AdMob 테스트 기기 등록(S22)** + 앱오픈 광고 정책 실기기 검증(콜드 제외/복귀 노출). RC `app_open_*` 4키 게시 완료(61번)
-- [x] Unity 대시보드/AdMob 콘솔 실측 — Pangle 수익 출처=딸깍, iOS Unity 매핑 정상, Android Game ID `800107232`(63번)
+## Completed (이번 세션, 2026-08-21)
+- [x] **v1.5.3 게시 모니터링** — Play "Google Play에 제공됨"(8/19 16:58), 설치 403, Crashlytics crash-free 100%/ANR 0/미해결 크래시 0, 정책 위반 해소(API 36 카드 소멸), AdMob 신규 이슈 0·공포지수 Android 7일 노출 +52%/eCPM +34%. 상세: @.claude/memory/deployment.md v1.5.3 행
+- [x] **🚨 App Check 401 근본 원인 규명** — Android 보호 Callable 401 ~1,000/일 vs 200 ≈ 0(30일), Firestore android 신규 등록 6/22 이후 0. 원인 = Firebase 지문이 v1.0.0 폐기 키(`AD:48…`)뿐 + Play Integrity API Cloud 프로젝트 미연결. 상세: @.claude/memory/bugs-fixed.md 68번
+- [x] **콘솔 복구(A)** — Firebase Management API 로 Play 앱 서명 키 `EF:5D:B8:C8…` + 업로드 키 `91:47…` SHA-256 등록 / Play Console Play Integrity API ↔ fear-index(8243517543) 연결 / App Check `requireLicensed=false`. 06:05:44Z 부터 Android 200 재개, 신규 android 등록 5건(15분). @.claude/memory/secrets-env.md 지문 표 갱신
+- [x] **클라이언트 보강(B)** — `AppCheckTokenProbe`+`AppCheckFailureClassifier`(core, TDD), `FcmRegistrationPolicy`(domain, TDD), Repository 게이트+스냅샷, `FcmRegistrationWorker` 재시도, BoM 33.16.0. 1044 tests/0 fail + release AAB 빌드 확인
+- [x] 메모리/문서 갱신 (68번, deployment v1.5.3 행, secrets-env, MEMORY, 이 파일)
 
 ## 미해결 / 다음 할 일 (우선순위순)
-1. **1.5.3 게시 확인** — Play Console 게시 개요(`play.google.com/console/u/1/...` ⚠️ u/0은 타 계정) "검토 중"→게시 완료, 공개 리스팅 1.5.3 전파 확인. 게시되면 대시보드 API 36 경고 카드 소멸도 확인
-2. **실결제 완주** — 게시 후 Play 설치본(1.5.3)으로 광고 제거 ₩7,500 결제 1회 (사이드로드는 Play가 거부, 67번). 사용자 직접
-3. **배포 후 감시** — Crashlytics #96 MotionEvent(Next-Gen), 프리미엄 non-fatal(CrashlyticsTree W/*), 배너 match rate(수정 효과), `FearIndexAds`/`FearIndexAdapters` logcat 태그로 실기기 진단 가능
-4. **사용자 결정 2건** — ① 알림 내역 전용 AdMob 배너 유닛(현재 홈 유닛 fallback) ② 스토어 IAP 표시명("광고 제거"→프리미엄 3종)
-5. **1.5.4 후보** — @docs/checkpoints/RELEASE-1.5.3-CHECKLIST.md 잔여 항목: A(트레이 직행 누락, 보류 권고)·B(KOSPI history boolean)·C(Yahoo spark 死코드)·D(BOOT_COMPLETED 권한)·E(**Fastfile internal lane `release_status: "completed"` 추가** — vc23 소모 원인)·H(KOSPI 번들 fallback 보강)
+1. **복구 추세 검증(C 계속)** — 하루 뒤 재측정: `gcloud logging read 'resource.type="cloud_run_revision" logName="projects/fear-index-a4f4b/logs/run.googleapis.com%2Frequests" httpRequest.userAgent:"okhttp" resource.labels.service_name="registerfcmtoken"' --project=fear-index-a4f4b --account=dlaudwls1203@gmail.com --freshness=24h --limit=5000 --format="value(httpRequest.status)" | sort | uniq -c` → 200 ≫ 401 이어야 함. Firestore `users` android createdAt 오늘 이후 증가, Crashlytics `Unauthenticated` 비치명 감소 확인
+2. **1.5.4 배포 판단** — dev 의 App Check 보강 + BoM 33.16.0 을 vc26 으로. 배포 전 **Play 내부 테스트 트랙 설치본으로 App Check 실측**(사이드로드로 검증 금지, 68번 교훈). Fastfile internal lane 에 `release_status: "completed"` 추가(60번) 같이 처리
+3. **iOS 팀 전달** — 서버 App Check soft→hard 전환 시 Android verified 메트릭도 확인할 것 + macOS 1.8.0 registerFCMToken 401 소수 존재
+4. 실결제 완주(사용자, Play 설치본 1.5.3) / 사용자 결정 2건(알림 내역 전용 AdMob 유닛, IAP 표시명) / 1.5.4 잔여 후보(@docs/checkpoints/RELEASE-1.5.3-CHECKLIST.md B·C·D·H)
+5. (선택) Firebase 지문에서 폐기 키 `AD:48…` 제거, App Check 토큰 TTL/기기 무결성 수준 재검토
 
 ## 주의 (다음 세션이 밟을 함정)
-- **사이드로드 release = App Check(Play Integrity) 403** → 서버 Callable 전부 거부. 서버 연동 E2E는 에뮬 debug + 콘솔 debug token으로 (67번)
-- **S22(R5CT21LBABH)는 AdMob 테스트 기기** — 테스트 광고만 나옴(수익 없음). 실광고 확인하려면 콘솔에서 등록 해제. 광고 검사기=기기 흔들기
-- **크론 로그 market=null은 버그 아님** — 미국 장외 ET 거래일 게이트. KOSPI도 장외(15:30 이후) skip 정상 (67번)
-- **Play/Firebase/AdMob 콘솔 URL은 기본 계정이 수시로 바뀜** — signup/약관/MFA 화면 뜨면 절대 진행 말고 `u/1` 또는 `?authuser=dlaudwls1203@gmail.com`
-- **같은 versionCode 재업로드 불가** — vc23은 draft로 소모됨. fastlane internal은 draft로만 올림(60번)
-- **다음 배포는 vc26부터**
-- 알림 내역 저장소는 이제 **정렬 비보장**(원본 삽입 순서) — 직접 읽는 코드 추가 시 정렬 가정 금지 (65번)
+- **App Check 검증은 Play 설치본으로만** — 사이드로드 release 403 은 정상(Play Integrity 는 Play 배포본 전용). 서버 연동 E2E 는 에뮬 debug + 콘솔 debug token(67번)
+- **Firebase 지문 확인 API 는 `x-goog-user-project: fear-index-a4f4b` 헤더 필수**(없으면 SERVICE_DISABLED 403 오진)
+- Play Console 은 `u/1`(dlaudwls1203) — `u/0`/다른 계정 약관·signup 화면 뜨면 진행 금지. Chrome MCP 끊기면 Aside 는 Google 로그아웃 상태(사용자 로그인 필요)
+- gcloud 기본 계정은 회사(isenssw2023) — FearIndex 는 항상 `--account=dlaudwls1203@gmail.com`
+- worktree 새로 만들면 `app/google-services.json` 이 없다 — `~/fearindex-secrets/` 에도 없으므로 본 레포 `app/google-services.json` 을 복사(심볼릭 링크 대상 부재)
+- S22 는 AdMob 테스트 기기 / 다음 배포 vc26 / 알림 내역 저장소 정렬 비보장(65번)
 
 ## 참조
-- @.claude/memory/bugs-fixed.md — 59~67번: 이번 세션 전체 상세(프리미엄 parity/배포/검증/함정)
-- @.claude/memory/deployment.md — 출시 이력(v1.5.2 vc24 게시·v1.5.3 vc25는 게시 확인 후 행 갱신 필요), 상수/게이트
-- @docs/checkpoints/RELEASE-1.5.3-CHECKLIST.md — 잔여 이슈 A~H 표 + 릴리스 게이트 명령어
-- @docs/QA-PREMIUM.md — 결제 QA 3시나리오 + '구매 안 함' 상태 30일 초과 기록 실삭제 주의
-- @docs/checkpoints/SESSION-STATE.md — 세션 상태(이 파일과 동기)
-- @.claude/memory/ios-parity.md — 어댑터 링크 메커니즘 표, 프리미엄 parity 대칭 항목
+- @.claude/memory/bugs-fixed.md — 68번(이번 세션 핵심), 59~67번(직전 배포 세션)
+- @.claude/memory/deployment.md — 출시 이력 v1.5.3 행, 상수
+- @.claude/memory/secrets-env.md — 키 지문 표(Play 앱 서명 키 추가) + Firebase 등록 지문 확인 명령
+- @docs/checkpoints/RELEASE-1.5.3-CHECKLIST.md — 1.5.4 잔여 이슈 표
+- @.claude/memory/ios-parity.md — App Check 플랫폼 차이(App Attest vs Play Integrity)
