@@ -1,0 +1,1 @@
+Poprawiono niezawodność rejestracji powiadomień i weryfikację bezpieczeństwa.
