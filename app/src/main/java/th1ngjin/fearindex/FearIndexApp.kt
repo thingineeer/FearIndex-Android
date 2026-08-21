@@ -43,6 +43,7 @@ import th1ngjin.fearindex.domain.entity.NotificationSettings
 import th1ngjin.fearindex.domain.service.DeviceIdProvider
 import th1ngjin.fearindex.domain.service.OnboardingStore
 import th1ngjin.fearindex.domain.usecase.NotificationHistoryUseCase
+import th1ngjin.fearindex.notification.FcmRegistrationWorker
 import th1ngjin.fearindex.notification.NotificationChannels
 import th1ngjin.fearindex.notification.NotificationHistoryRecorder
 import th1ngjin.fearindex.widget.CryptoFearWidget
@@ -182,6 +183,7 @@ class FearIndexApp : Application() {
                     Timber.d("FCM token registered on startup")
                 } catch (e: Exception) {
                     Timber.e(e, "FCM token registration failed on startup")
+                    FcmRegistrationWorker.enqueue(this@FearIndexApp)
                 }
             }
         }

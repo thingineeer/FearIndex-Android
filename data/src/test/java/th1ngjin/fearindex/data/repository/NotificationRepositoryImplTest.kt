@@ -4,22 +4,100 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.slot
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import th1ngjin.fearindex.core.appcheck.AppCheckFailureKind
+import th1ngjin.fearindex.core.appcheck.AppCheckTokenProbe
+import th1ngjin.fearindex.core.appcheck.AppCheckUnavailableException
 import th1ngjin.fearindex.core.debug.ScreenshotMode
+import th1ngjin.fearindex.data.datasource.NotificationClientMetadata
+import th1ngjin.fearindex.data.datasource.NotificationClientMetadataProvider
 import th1ngjin.fearindex.data.datasource.NotificationDataSource
 import th1ngjin.fearindex.data.storage.NotificationStorage
+import th1ngjin.fearindex.domain.entity.FcmRegistrationRecord
 import th1ngjin.fearindex.domain.entity.NotificationSettings
 
 class NotificationRepositoryImplTest {
 
     private val dataSource = mockk<NotificationDataSource>(relaxed = true)
-    private val storage = mockk<NotificationStorage>(relaxed = true)
-    private val repository = NotificationRepositoryImpl(dataSource, storage)
+    private val storage = mockk<NotificationStorage>(relaxed = true) {
+        every { loadLastRegistration() } returns null
+    }
+    private val metadataProvider = mockk<NotificationClientMetadataProvider> {
+        every { current() } returns NotificationClientMetadata(
+            language = "ko", platform = "android", appVersion = "1.5.4",
+            buildNumber = "26", notificationSchemaVersion = 180,
+        )
+    }
+    private val appCheckProbe = mockk<AppCheckTokenProbe>(relaxed = true)
+    private val now = 1_700_000_000_000L
+    private val repository = NotificationRepositoryImpl(dataSource, storage, metadataProvider, appCheckProbe)
+        .apply { clock = { now } }
 
     private val deviceId = "550e8400-e29b-41d4-a716-446655440000"
+
+    @Test
+    fun `registerFCMToken - App Check 토큰 선취득 후 서버 호출, 성공 시 등록 스냅샷 저장`() = runTest {
+        val localSettings = NotificationSettings.DEFAULT
+        every { storage.load() } returns localSettings
+
+        repository.registerFCMToken(deviceId, "token-x")
+
+        io.mockk.coVerifyOrder {
+            appCheckProbe.ensureToken()
+            dataSource.registerFCMToken(deviceId, "token-x", localSettings)
+            dataSource.updateSettings(deviceId, localSettings)
+        }
+        val saved = slot<FcmRegistrationRecord>()
+        verify(exactly = 1) { storage.saveLastRegistration(capture(saved)) }
+        assertEquals(localSettings.hashCode(), saved.captured.settingsHash)
+        assertEquals("26", saved.captured.buildNumber)
+        assertEquals(now, saved.captured.registeredAtMillis)
+        assertEquals(64, saved.captured.tokenHash.length) // sha-256 hex — 원문 토큰은 저장하지 않음
+    }
+
+    @Test
+    fun `registerFCMToken - App Check 토큰 발급 실패면 서버 호출 없이 예외 전파(재시도 워커가 받음)`() = runTest {
+        every { storage.load() } returns NotificationSettings.DEFAULT
+        coEvery { appCheckProbe.ensureToken() } throws AppCheckUnavailableException(
+            AppCheckFailureKind.ATTESTATION_REJECTED, IllegalStateException("code: 403"),
+        )
+
+        val thrown = runCatching { repository.registerFCMToken(deviceId, "token-x") }.exceptionOrNull()
+
+        assertEquals(true, thrown is AppCheckUnavailableException)
+        coVerify(exactly = 0) { dataSource.registerFCMToken(any(), any(), any()) }
+        verify(exactly = 0) { storage.saveLastRegistration(any()) }
+    }
+
+    @Test
+    fun `registerFCMToken - 토큰·설정·빌드가 같고 24시간 이내면 서버 호출을 건너뛴다`() = runTest {
+        val localSettings = NotificationSettings.DEFAULT
+        every { storage.load() } returns localSettings
+        // 같은 토큰으로 한 번 등록해 저장된 스냅샷을 그대로 재사용
+        repository.registerFCMToken(deviceId, "token-x")
+        val saved = slot<FcmRegistrationRecord>()
+        verify { storage.saveLastRegistration(capture(saved)) }
+        every { storage.loadLastRegistration() } returns saved.captured.copy(registeredAtMillis = now - 60_000L)
+
+        repository.registerFCMToken(deviceId, "token-x")
+
+        coVerify(exactly = 1) { dataSource.registerFCMToken(any(), any(), any()) }
+        coVerify(exactly = 1) { appCheckProbe.ensureToken() }
+    }
+
+    @Test
+    fun `registerFCMToken - 서버 호출이 실패하면 등록 스냅샷을 저장하지 않는다`() = runTest {
+        every { storage.load() } returns NotificationSettings.DEFAULT
+        coEvery { dataSource.registerFCMToken(any(), any(), any()) } throws IllegalStateException("401")
+
+        runCatching { repository.registerFCMToken(deviceId, "token-x") }
+
+        verify(exactly = 0) { storage.saveLastRegistration(any()) }
+    }
 
     @Test
     fun `registerFCMToken - DataSource에 deviceId+token 그대로 위임`() = runTest {

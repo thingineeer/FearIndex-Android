@@ -14,7 +14,14 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
-## 최신 상태 (2026-08-19, v1.5.3 배포 + 전수 검증) ← 최신 진입점: @memory/resume-FearIndex-Android.md
+## 최신 상태 (2026-08-21, v1.5.3 게시 확인 + 🚨 Android App Check 전수 실패 복구) ← 최신 진입점: @memory/resume-FearIndex-Android.md
+
+- **✅ v1.5.3(vc25) 게시 완료(8/19 16:58)** — 설치 403, crash-free 100%, ANR 0, API 36 경고 해소, AdMob 정책 신규 이슈 0·노출 +52%/eCPM +34%(배너 fix 효과).
+- **🚨 68번: Android 프로덕션 App Check 가 6/22 hard mode 배포 이후 ~100% 실패**(401 매일 ~1,000건, Firestore android 신규 등록 6/22 이후 0건 = 1.3.0~1.5.3 사용자 전원 푸시 미등록). 원인 = Firebase 등록 지문이 v1.0.0 폐기 키 1개뿐(Play 앱 서명 키 `EF:5D…` 미등록) + **Play Console Play Integrity API Cloud 프로젝트 미연결**. **콘솔 수정만으로 8/21 06:05Z 즉시 복구**(Android 200 재개, 신규 android 등록 5건/첫 15분). 기존 설치본은 다음 실행에 자동 복구.
+- **1.5.4 보강(feature/v1.5.4-appcheck-resilience, dev 머지)**: App Check 토큰 선취득+실패 사유 Crashlytics 기록, 등록 정책(24h/변경 시만)+WorkManager 재시도, BoM 33.16.0. 1044 tests GREEN.
+- **⚠️ 교훈**: "사이드로드 403 = 사이드로드 탓" 오진. **App Check 는 Play 설치본으로 실측**(서버 로그 okhttp 200 / Firestore android createdAt). iOS 팀에 "서버 App Check 모드 전환 시 Android verified 메트릭도 확인" 전달 필요.
+
+## 최신 상태 (2026-08-19, v1.5.3 배포 + 전수 검증)
 
 - **✅ v1.5.3(vc25) production 업로드 — Play 검토 중**(관리형 게시 OFF → 승인 즉시 자동 게시). 내용 = 배너 콜드스타트 fix(66) + 알림 보관 표시/영속 분리(65) + 어댑터 진단(62). 게이트 전부 통과(1019/0, SHA-1 일치, 심볼 0). release 머지 + v1.5.3 태그 + 전체 push 완료.
 - **✅ 전수 검증 GREEN(67번)**: API health 9종 / 푸시 임계치 **이상(KOSPI 51)+이하(Crypto 46) 실수신** + 알림 내역 기록 / 결제 Play 시트 실진입(사이드로드 거부는 환경 제약) / 앱오픈 정책 실기기(콜드 제외·복귀 노출).

@@ -4,6 +4,26 @@ description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지�
 type: project
 ---
 
+## 2026-08-21 세션 (v1.5.3 게시 모니터링 → App Check 401 근본 원인 규명·복구)
+
+### 68. 🚨 Android 프로덕션 App Check 전수 실패(~2개월) — Firebase 인증서 미등록 + Play Integrity API 미연결 (콘솔 수정으로 즉시 복구)
+- **발단**: v1.5.3 모니터링 중 Crashlytics 비치명 1위 `FirebaseFunctionsException: Unauthenticated` 1,701건/167명(1.5.2~1.5.3). 로그는 `E/App: FCM token registration failed on startup`. vc24 부터 보인 이유는 **CrashlyticsTree(60번) 신규 계측**이지 신규 문제가 아니었다.
+- **규모 실측 (gcloud Cloud Run 요청 로그, 30일)**: Android(okhttp UA) 보호 Callable = **401 매일 ~1,000건 vs 200 ≈ 0**(성공은 공개 endpoint `kospipublicsnapshotv2`/`cryptoofficialindicatorsv1` 뿐, 7/22~30·8/19·8/21 의 1~5건은 내 테스트 기기). 24h 기준 registerfcmtoken 401 905 / getsimilarevents 336 / getstuckcount 258 / submitstuckstatus 70. **Firestore `users`(createdAt≥6/1) android 주간 생성 29/67/53 → 6/22(1.2.0 vc16) 이후 0**(7월 이후 3건은 전부 `-debug`). 즉 **1.3.0~1.5.3 프로덕션 Android 사용자는 단 1명도 푸시 등록·물림 카운터·유사 이벤트 Callable 을 성공한 적이 없었다.** 시점은 서버 "App Check hard mode 복구"(iOS repo 403a40b3a, 6/10 커밋 → 6/22경 S5 리팩터와 실배포)와 일치 — 그 전엔 4/30 soft mode 가 Android 토큰 실패를 가려주고 있었다.
+- **원인 2개 (둘 다 콘솔, 앱 코드 무관)**:
+  1. **Firebase 프로젝트 설정 → Android 앱 `th1ngjin.fearindex` 등록 지문이 SHA-256 `AD:48:68:DA…` 1개뿐** = `.env` `KEYSTORE_SHA256_V100`(**v1.0.0 폐기 키**, 4/15 앱 재등록 당시). 현재 업로드 키(`91:47:9A…`)도, **Play 설치본에 실제 찍히는 Play App Signing 키(`EF:5D:B8:C8:92:1A:9B:DC:CB:FB:AA:E1:E6:EC:A3:AE:95:22:E9:6C:0A:41:FC:84:00:0B:A2:B5:15:7C:B4:AA`)도 미등록**. Play Integrity App Check 는 verdict 의 인증서 digest 를 등록 지문과 대조 → 항상 403 "App attestation failed" → 토큰 없음 → Functions SDK 는 토큰 없이 요청 → 서버 `enforceAppCheck:true` 가 핸들러 진입 전 401(latency 2ms).
+  2. **Play Console → Google Play로 보호됨 → Play Integrity API: Cloud 프로젝트 미연결("서비스 7개 중 0개 활성")**. Firebase App Check Play Integrity 의 필수 선행 조건(Play Console 에서 Firebase 프로젝트 8243517543 연결)을 앱 출시 후 한 번도 한 적이 없었다. 첫 Android 200 이 정확히 **연결 완료 시각 06:05:44Z** 에 터져 나온 걸 보면 이게 결정적 제약이었고, SHA 등록(05:58Z)만으로는 즉시 회복되지 않았다.
+  - 부수: App Check Play Integrity 설정 `accountDetails.requireLicensed:true`(Play 라이선스 필수) → `false` 로 완화(정상 사용자 오탈락 방지). `deviceIntegrity.minDeviceRecognitionLevel` 은 NO_INTEGRITY(최대 관용) 그대로.
+- **조치 (A, 콘솔·API — 앱 배포 불필요)**: ① Firebase Management API `POST androidApps/{app}/sha` 로 **Play 앱 서명 키 `EF:5D…` + 업로드 키 `91:47…` SHA-256 등록**(`AD:48…` 는 남겨둠, 무해) ② Play Console 앱 무결성 → Play Integrity API 설정 → **Cloud 프로젝트 연결 = fear-index(8243517543)** (응답: 앱 라이선스/애플리케이션 무결성/기기 무결성 사용) ③ App Check `requireLicensed=false`(PATCH `playIntegrityConfig?updateMask=accountDetails`).
+- **복구 증거**: 수정 직후 15분 내 Android 200 — registerfcmtoken 06:05:44Z 부터 연속, getsimilarevents/getstuckcount/updatenotificationsettings 동반 성공(스페인·홍콩·멕시코 등 실사용자 IP). **Firestore 오늘 신규 android 5건(1.5.1/1.5.2/1.5.3)** — 6/22 이후 처음. 기존 1.3.0~1.5.3 설치본은 앱이 매 시작마다 등록을 시도하므로 **다음 실행에서 자동 복구**(앱 업데이트 불필요).
+- **조치 (B, 1.5.4 클라이언트 보강 — feature/v1.5.4-appcheck-resilience)**: ① `core/appcheck/AppCheckTokenProbe` — 보호 Callable 전 `getAppCheckToken(false)` 선취득, 실패 시 `AppCheckFailureClassifier`(ATTESTATION_REJECTED/PLAY_INTEGRITY_UNAVAILABLE/THROTTLED/NETWORK/UNKNOWN, TDD 5)로 분류해 `Timber.w(AppCheckUnavailableException)` → Crashlytics non-fatal 에 **원인이 남는다**(기존엔 Unauthenticated 만 남아 두 달간 원인을 못 봤음) + 확정 401 호출은 보내지 않음 ② `domain/util/FcmRegistrationPolicy`(TDD 7) — 토큰 해시·설정 해시·빌드 동일 + 24h 이내면 재등록 skip(프로세스 기동마다 Play Integrity 호출·401 노이즈 억제; 시계 역행은 skip) + `NotificationStorage.lastRegistration` 스냅샷(원문 토큰 대신 SHA-256) ③ `app/notification/FcmRegistrationWorker` — 즉시 등록 실패 시 WorkManager 지수 백오프(1분~, 최대 8회, 네트워크 제약, unique KEEP) ④ Firebase BoM 33.7.0→**33.16.0**(ktx 유지 마지막 33.x; 34.x 는 ktx 제거라 별도 마이그레이션). 유닛 **1044 tests / 0 fail**.
+- **⚠️ 교훈 / 재발 방지**:
+  - **"사이드로드 release 403 = 사이드로드 탓"(67번)은 오진이었다.** Play 설치본도 똑같이 실패 중이었는데 사이드로드로만 검증해 놓쳤다. **App Check 는 반드시 Play 설치본(내부 테스트 트랙)으로 1회 실측**해야 한다 — 서버 로그 `httpRequest.userAgent:"okhttp" status=200` 또는 Firestore android 신규 createdAt 이 유일한 증거.
+  - Firebase Android 앱 지문은 **Play 앱 서명 키 SHA-256(Play Console 앱 무결성 → 앱 서명 키)** 이 핵심. 업로드 키·로컬 keystore 지문은 사이드로드에만 해당. 키 재설정/앱 재등록 때마다 `firebase.googleapis.com/v1beta1/projects/fear-index-a4f4b/androidApps/{app}/sha` 로 실등록 값을 확인할 것(`x-goog-user-project` 헤더 필수).
+  - Play Integrity API 는 **Play Console 에서 Cloud 프로젝트 연결이 없으면 토큰 자체가 안 나온다** — Firebase 쪽 설정만 보고 "됐다"고 판단 금지.
+  - 서버 App Check 모드 전환(soft→hard)은 **플랫폼별 verified 메트릭을 둘 다** 확인하고 배포해야 한다(6/10 커밋 메모는 "App Attest verified 메트릭 확인"만 — iOS 만 봤다). iOS 세션에 전달 필요.
+  - Crashlytics 비치명 "+9.8만%" 같은 급증이 **신규 계측 때문인지 신규 결함인지** 먼저 구분. 이번엔 계측 덕에 두 달 된 결함이 드러났다.
+- **미해결/관찰**: 남은 401 은 (a) 백오프 중인 기존 기기(다음 시작에 회복) (b) 진짜 미인증 기기(사이드로드/커스텀 ROM/GMS 없음) — 1.5.4 배포 후 `AppCheckUnavailableException` kind 분포로 비율 확정. macOS 1.8.0 의 registerFCMToken 401 소수는 iOS 팀 영역.
+
 ## 2026-08-18 세션 후반 (프리미엄 parity 4종 — iOS v1.9.4 이식, ultracode)
 
 ### 67. v1.5.3(vc25) 배포 + API/푸시 임계치/결제 전수 검증 (2026-08-19)
