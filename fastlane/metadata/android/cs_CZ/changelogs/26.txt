@@ -1,0 +1,1 @@
+Vylepšena spolehlivost registrace oznámení a bezpečnostní ověření.

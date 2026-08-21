@@ -1,0 +1,1 @@
+Amélioration de la fiabilité de l'enregistrement des notifications et de la vérification de sécurité.

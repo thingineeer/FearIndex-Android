@@ -1,0 +1,1 @@
+Migliorata l’affidabilità della registrazione delle notifiche e la verifica di sicurezza.

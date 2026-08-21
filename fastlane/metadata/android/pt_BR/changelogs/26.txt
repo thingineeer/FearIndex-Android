@@ -1,0 +1,1 @@
+Melhoramos a confiabilidade do registro de notificações e a verificação de segurança.

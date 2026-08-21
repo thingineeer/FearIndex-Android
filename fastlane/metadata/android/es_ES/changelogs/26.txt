@@ -1,0 +1,1 @@
+Se mejoró la fiabilidad del registro de notificaciones y la verificación de seguridad.
