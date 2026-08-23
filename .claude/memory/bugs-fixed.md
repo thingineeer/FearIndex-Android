@@ -22,7 +22,14 @@
   - 차트 탭의 코스피 세그먼트엔 원래 트리거 없음(1번에서 제거, 홈 `selectedHomeType` 변경만 트리거) — 설계.
   - **iOS 는 v1.9.2(7/13, 커밋 1795d9e84)에서 동일 결함 수정**: `InterstitialForegroundGate.shouldResetSession(backgroundDuration ≥ 30분)` → `resetSession()`, `handleForegroundEntry` 에서 `preloadIfNeeded()`, `showIfAvailable` 에서 `isReady` false 면 `preloadIfNeeded()`. **Android 미포팅.** ios-parity 누락.
   - 수정안 A(권장, iOS parity): 30분+ 백그라운드 후 복귀 시 세션 리셋 + 복귀 preload + show 시 미준비면 재로드. B: 세션 개념 없이 쿨다운만(iOS 와 갈라짐, 방해성 광고 리스크). **사용자 선택 대기.**
-- **다음**: (1) **1.6.0 소스 push(다른 맥)** (2) 결함 ②③ 수정(A/B 선택 후) + ① 320dp 하한 완화 → 1.6.1 (3) AppCheck PLAY_INTEGRITY_UNAVAILABLE 추이 감시.
+- **✅ 결함 ②③ 수정 완료(A안 = iOS v1.9.2 parity, TDD, dev ba21b53)** — `feature/v1.6.1-interstitial-session-reset` 3커밋 --no-ff:
+  - `InterstitialForegroundGate`(신규, 순수): 백그라운드 ≥30분이면 새 세션. `InterstitialAdPolicy.recordBackgroundEntry/handleForegroundEntry`: 기록 1회 소비 → `resetSession()`(cap·쿨다운·KOSPI 플래그). 콜드스타트(기록 없음)는 리셋 없음.
+  - `InterstitialAdCoordinator`: ① `showKospiEntryIfAvailable` 에서 광고 미준비면 `preloadIfNeeded` 로 재장전(재시도 소진 후 영구 0 해소) ② `recordBackgroundEntry/handleForegroundEntry(context, unit, config)` ③ `preloadIfNeeded` 는 cap 도달 시 생략(iOS 동일). `InterstitialAdSessionState.lifecycleCoordinator`(reporter 없음, policy 공유) 신설.
+  - `FearIndexApp` ProcessLifecycle onStop→recordBackgroundEntry / onStart→handleForegroundEntry(RC·UMP·광고제거 반영). `interstitialAdPolicyConfig` 확장은 HomeScreen private → 공용 이동.
+  - **검증**: RED(새 API 3개 Unresolved) → GREEN 19/19 → 전체 유닛 **1,037/0** + 서명 release APK 빌드 OK. `:data` StuckStatusDebouncerImplTest 1회 flaky(65번 기록된 실 delay 기반) → 단독 재실행 통과.
+  - **⚠️ 배포 전제**: dev 는 아직 1.5.3 베이스 — **1.6.0 소스 push 후 그 위에 이 머지를 올려 1.6.1 로**. 이 맥에는 `~/.gradle/gradle.properties` 가 없어 release 서명은 `-PFEARINDEX_*`(`~/fearindex-secrets/gradle.properties` 값) 주입으로 빌드했음 → 배포 전 `install.sh` 재실행 권장.
+  - 실기기 E2E(30분 백그라운드 후 KOSPI 재진입 노출)는 **미검증** — 에뮬/실기기에서 `adb shell am set-inactive` 또는 시계 조작 없이 30분 대기 필요. 유닛으로 정책 경계(29:59/30:00)는 고정됨.
+- **다음**: (1) **1.6.0 소스 push(다른 맥)** → dev 리베이스/머지 (2) 실기기 30분 시나리오 1회 확인 (3) ① 320dp 하한 완화(별건) (4) AppCheck PLAY_INTEGRITY_UNAVAILABLE 추이 감시.
 
 ---
 name: Bugs Fixed
