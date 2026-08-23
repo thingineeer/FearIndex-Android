@@ -6,7 +6,7 @@
 2026-08-23 (광고 미노출 제보 분석 + 요금 점검 세션)
 
 ## Branch
-`dev`(ba21b53, origin/dev +5 머지, push 미실행). worktree 없음. **⚠️ Play production 은 v1.6.0(vc26)인데 이 레포엔 없음 — 다른 맥에서 push 필요.**
+`dev`(ab1e31a = origin/dev, 전 브랜치·태그 동기화 완료). worktree 없음. **⚠️ Play production 은 v1.6.0(vc26)인데 이 레포엔 없음 — 다른 맥에서 push 필요.**
 
 ## ⚡ 한 줄 요약
 
@@ -28,7 +28,7 @@ v1.5.3(vc25) production 업로드 → 게시 완료(이후 1.6.0 으로 대체�
 
 ## Next (다음 세션) — 상세는 resume 파일
 
-0. **v1.6.0(vc26) 소스 push(다른 맥)** → release 머지·태그·deployment.md 행 추가
+0. **다른 맥에서 1.6.0 빌드 커밋 `7ca2711` push**(사용자) → v1.6.0 태그 → dev 머지 → `fastlane production` 게시(승인됨) → v1.6.1 태그. 상세 절차 resume 파일 '재개 시 첫 행동'
 0-1. 1.6.0 위에 인터스티셜 fix 합쳐 1.6.1 빌드 → 실기기 30분 시나리오 확인 / 배너 결함 2건(68번 ①) 별건 수정
 1. ~~1.5.3 게시 확인~~ 완료(1.6.0 으로 대체)
 2. 게시 후 Play 설치본 실결제 완주(사용자)
