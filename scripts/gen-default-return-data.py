@@ -32,7 +32,7 @@ KOTLIN_PATH = os.path.join(
     ROOT, "domain/src/main/kotlin/th1ngjin/fearindex/domain/defaults/DefaultReturnData.kt"
 )
 DEFAULT_OUTPUT_DIR = (
-    "/Users/imyeongjin/Desktop/worktrees/fi-v194-design/firebase-functions/src/data-aggregation/output"
+    "/Users/imyeongjin/Desktop/APP/worktrees/FearIndex-iOS/fi-v194-design/firebase-functions/src/data-aggregation/output"
 )
 HORIZON_KEYS = ("oneMonth", "threeMonth", "sixMonth", "oneYear")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
