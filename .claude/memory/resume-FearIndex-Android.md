@@ -24,7 +24,7 @@
 
 ## 미해결 / 다음 할 일 (우선순위순)
 0. **🚨 v1.6.0(vc26) 소스 확보** — 1.6.0 을 빌드한 맥에서 dev/release push + v1.6.0 태그. 그 전까지 핫픽스/롤백 불가. deployment.md 출시 이력에 v1.5.3(게시 완료)·v1.6.0 행 추가 필요
-0-2. **배너 결함 2건 수정**(68번) — `bannerAdWidthDp` 320dp 하한 완화 + `AndroidView` update/key 로 컨테이너 stale 해소. Crashlytics `AppCheckTokenProbe` PLAY_INTEGRITY_UNAVAILABLE 추이 감시
+0-2. **배너 결함 2건 수정**(68번) — 제보자(아버지) 기기 Galaxy A35 SM-A356N: 화면 확대 540dpi 이상이면 홈/차트/투표 배너 0 → 설정 확인 요청 중 — `bannerAdWidthDp` 320dp 하한 완화 + `AndroidView` update/key 로 컨테이너 stale 해소. Crashlytics `AppCheckTokenProbe` PLAY_INTEGRITY_UNAVAILABLE 추이 감시
 1. ~~1.5.3 게시 확인~~ → 1.5.3 은 게시됐고 이미 1.6.0 으로 대체됨 — Play Console 게시 개요(`play.google.com/console/u/1/...` ⚠️ u/0은 타 계정) "검토 중"→게시 완료, 공개 리스팅 1.5.3 전파 확인. 게시되면 대시보드 API 36 경고 카드 소멸도 확인
 2. **실결제 완주** — 게시 후 Play 설치본(1.5.3)으로 광고 제거 ₩7,500 결제 1회 (사이드로드는 Play가 거부, 67번). 사용자 직접
 3. **배포 후 감시** — Crashlytics #96 MotionEvent(Next-Gen), 프리미엄 non-fatal(CrashlyticsTree W/*), 배너 match rate(수정 효과), `FearIndexAds`/`FearIndexAdapters` logcat 태그로 실기기 진단 가능
