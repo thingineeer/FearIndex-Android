@@ -64,7 +64,27 @@ class InterstitialAdCoordinator(
     ) {
         if (!config.adsEnabled || !config.canRequestAds || !config.interstitialEnabled) return
         if (screenshotMode || adUnitId.isBlank()) return
+        // 세션 cap 도달 = 이 세션에서 더 표시될 수 없음 → 로드해도 폐기 확정이라 요청 생략 (iOS 동일).
+        if (policy.impressionCount >= config.sessionCap) return
         adController.preload(context, adUnitId)
+    }
+
+    /** 백그라운드 진입 기록 — Application onStop 에서 호출. */
+    fun recordBackgroundEntry() {
+        policy.recordBackgroundEntry(nowMillis())
+    }
+
+    /**
+     * 포그라운드 복귀 — ① 30분+ 백그라운드였으면 새 세션(cap/쿨다운/KOSPI 플래그 리셋)
+     * ② preload 재시도(최초 로드 실패가 프로세스 수명 동안 고착되던 결함 해소). iOS `handleForegroundEntry` 1:1.
+     */
+    fun handleForegroundEntry(
+        context: Context,
+        adUnitId: String,
+        config: InterstitialAdPolicyConfig,
+    ) {
+        policy.handleForegroundEntry(nowMillis())
+        preloadIfNeeded(context, adUnitId, config)
     }
 
     fun shouldScheduleKospiEntry(
@@ -79,7 +99,12 @@ class InterstitialAdCoordinator(
         config: InterstitialAdPolicyConfig,
     ): Boolean {
         if (adUnitId.isBlank()) return false
-        if (!policy.canShowKospiEntry(adController.isReady, nowMillis(), config)) return false
+        if (!policy.canShowKospiEntry(adController.isReady, nowMillis(), config)) {
+            // 준비된 광고가 없으면 이번 트리거는 놓치되 다음 트리거를 위해 재장전.
+            // 재시도 소진 후 재로드 경로가 없어 프로세스 수명 동안 인터스티셜이 0 이 되던 결함 해소.
+            if (!adController.isReady) preloadIfNeeded(activity, adUnitId, config)
+            return false
+        }
         return showIfAvailable(activity, adUnitId, config, kospiEntry = true)
     }
 
