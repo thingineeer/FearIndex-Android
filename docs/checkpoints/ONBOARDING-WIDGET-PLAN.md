@@ -1,7 +1,7 @@
 # v1.4.1 — 온보딩 코치마크 투어 + 위젯 (iOS v1.9.3 parity)
 
 브랜치: `feature/v1.4.1-onboarding-tour` (dev 기준). 배포 금지 — 검증까지만.
-SSOT: `@/Users/imyeongjin/Desktop/APP/FearIndex-iOS/docs/handoff/onboarding-parity-android.md`
+SSOT: `@FearIndex-iOS/docs/handoff/onboarding-parity-android.md`
 
 ## 유저 승인 결정 (확정)
 - 8단계 투어 전부 유지, iOS 라벨 100% 동일.

@@ -67,7 +67,7 @@ Package name 변경 시 건드려야 하는 곳:
 
 ```bash
 # 구 package 참조가 소스 코드에 남아있는지 확인 (결과는 비어있어야 함)
-cd /Users/imyeongjin/Desktop/side/FearIndex-Android
+cd FearIndex-Android   # 레포 루트
 grep -rE "com\.thingineer\.fearindex|com\.thingineeer\.fearindex" \
   --include="*.kt" --include="*.kts" --include="*.xml" . \
   | grep -v "/build/"

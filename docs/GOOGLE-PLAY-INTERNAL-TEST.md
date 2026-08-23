@@ -146,7 +146,7 @@ android {
 ### 4.1 빌드 실행
 
 ```bash
-cd /Users/imyeongjin/Desktop/side/FearIndex-Android
+cd FearIndex-Android   # 레포 루트
 ./gradlew clean :app:bundleRelease
 ```
 
@@ -309,7 +309,7 @@ defaultConfig {
 ### 8.2 Fastlane으로 자동 업로드 (사전 세팅 필요)
 
 ```bash
-cd /Users/imyeongjin/Desktop/side/FearIndex-Android
+cd FearIndex-Android   # 레포 루트
 bundle exec fastlane android internal
 ```
 

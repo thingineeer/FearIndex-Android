@@ -67,7 +67,7 @@ Firebase 관련 모든 작업 (iOS와 공유하는 `fear-index-a4f4b` 프로젝�
 - App Check 토큰 누락 가능성
 
 ### Functions 배포 실패
-- iOS 프로젝트(`/Users/imyeongjin/Desktop/side/FearIndex-iOS/firebase-functions/`) 에서 `firebase deploy --only functions`
+- iOS 프로젝트(`FearIndex-iOS/firebase-functions/`) 에서 `firebase deploy --only functions`
 - Android 프로젝트에는 Functions 소스 **없음** (iOS가 원본)
 
 ## 협업
