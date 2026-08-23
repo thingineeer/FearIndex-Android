@@ -90,7 +90,7 @@ class InterstitialAdCoordinatorTest {
     }
 
     @Test
-    fun `포그라운드 복귀는 30분 이상 백그라운드였으면 세션을 리셋하고 항상 preload를 건다`() {
+    fun `포그라운드 복귀는 10분 이상 백그라운드였으면 세션을 리셋하고 항상 preload를 건다`() {
         val controller = FakeInterstitialAdController(isReady = true)
         var nowMillis = 10_000L
         val coordinator = InterstitialAdCoordinator(adController = controller, nowMillis = { nowMillis })
@@ -103,13 +103,13 @@ class InterstitialAdCoordinatorTest {
         val preloadsBefore = controller.preloadCalls
 
         coordinator.recordBackgroundEntry()
-        nowMillis += 10L * 60L * 1_000L
+        nowMillis += 5L * 60L * 1_000L
         coordinator.handleForegroundEntry(context, "unit-id", config)
         assertEquals(preloadsBefore + 1, controller.preloadCalls)
         assertFalse(coordinator.showKospiEntryIfAvailable(mockk(relaxed = true), "unit-id", config))
 
         coordinator.recordBackgroundEntry()
-        nowMillis += 30L * 60L * 1_000L
+        nowMillis += 10L * 60L * 1_000L
         coordinator.handleForegroundEntry(context, "unit-id", config)
         assertEquals(preloadsBefore + 2, controller.preloadCalls)
         assertEquals(0, coordinator.impressionCount)
