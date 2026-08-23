@@ -1,0 +1,1 @@
+v1.6.1: Parandatud reklaamide kuvamist KOSPI ekraanil ja rakenduse stabiilsust.

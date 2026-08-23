@@ -1,0 +1,1 @@
+v1.6.1 : Amélioration de l'affichage des publicités sur l'écran KOSPI et de la stabilité de l'application.

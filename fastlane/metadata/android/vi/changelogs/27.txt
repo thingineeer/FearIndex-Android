@@ -1,0 +1,1 @@
+v1.6.1: Cải thiện hiển thị quảng cáo trên màn hình KOSPI và độ ổn định của ứng dụng.

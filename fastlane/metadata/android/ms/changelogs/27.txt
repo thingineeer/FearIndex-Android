@@ -1,0 +1,1 @@
+v1.6.1: Paparan iklan pada skrin KOSPI dan kestabilan aplikasi dipertingkatkan.
