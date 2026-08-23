@@ -1,3 +1,20 @@
+## 2026-08-23 세션 (광고 미노출 제보 분석 + 4계정 요금 점검)
+
+### 68. "광고 안 뜬다" 제보 — 실측 재현 불가 + 배포본(v1.6.0) 소스 부재 발견 + 배너 잠재 결함 2건
+- **발단**: 사용자 "ea09ed7(1.5.3)까지 배포돼 있는데 광고가 안 뜬다" → 코드·RC·GA·Crashlytics·서버·Play 트랙 전수 점검.
+- **🚨 최대 발견 — 저장소 ≠ 배포본**: Play Developer API(`edits/tracks/production`) 직접 조회 = **name 1.6.0 / vc26 / status completed / userFraction 없음(100%)**, 공개 리스팅 "Updated Aug 21, 2026", 릴리즈노트 "Improved notification registration reliability and security verification". 이 레포(origin 포함)는 v1.5.3(vc25)이 끝. Crashlytics 에도 `1.6.0 (26)` 이벤트 128건 존재. → **다른 맥에서 1.6.0 을 빌드·업로드하고 push 를 안 한 상태.** 핫픽스·롤백 불가. 이 맥 reflog 마지막 작업은 v1.5.1 시절(7/31).
+- **RC 오판 주의(반증 과정 기록)**: RC v49(8/21 REST_API) 에서 `force_update_minimum_version`[Android] `1.2`→`1.6`, `minimum_app_version` `1.2.0`→`1.6.0`. 처음엔 "1.5.3 유저 전원 강제업데이트 화면 락아웃 → 광고 안 보임"으로 추정했으나 **Play 라이브가 1.6.0 이라 정합** — 락아웃 아님. 교훈: RC 게이트 의심 시 **Play 라이브 버전을 먼저 대조**.
+- **✅ 광고 실측(GA Events, Android)**: 28일 배너광고노출 58,529/2,001명(전체 2,514명의 79.6%). 단일일 비교 8/18(1.5.x) vs 8/22(1.6.0): 사용자당 배너 8.18→**8.43**, 배너광고실패 481/25명→**80/9명**(66번 새-AdView 재시도 fix 실효 증거), 배너 노출 사용자 비율 91.9%→87.9%. **인터스티셜 fill 약함**: 8/22 노출 27 vs 실패 136(≈17%, 8/18 은 32%) — 인벤토리/no-fill 문제(코드 무관). AdMob 콘솔 수익/일치율은 **미실측**(Chrome 확장 `apps.admob.com` 권한 거부 + `/login` 계정 교체로 확장 연결 끊김).
+- **Crashlytics 1.6.0(8/21~)**: FATAL 0. ① 신규 `AppCheckTokenProbe.ensureToken` → `PLAY_INTEGRITY_UNAVAILABLE(-9)` 42건/12명(1.6.0 신규 코드, firstSeen 1.6.0) — 구형 Play 스토어 기기, Callable 거부로 이어질 수 있어 관찰 ② RC fetch DNS(EAI_NODATA)/소켓 실패 41건 — 사용자 네트워크. **첫 실행이 오프라인이면 RC 캐시가 없어 `ads_enabled` 코드 default(false) → 배너 fail-safe OFF**(이후 fetch 성공 시 복구).
+- **서버**: Cloud Functions 3일 ERROR 1건(8/19 crypto FNG API 502, 일시). 크론 30분 정상, failed=0, total_users 2,359→2,365.
+- **💰 요금(8/1~8/21 MTD, gcloud billing + 콘솔 reports)**: 공포지수푸시알림(fear-index·runnect-ios·pumpwater) ₩2,009(App Engine=Firestore Read Seoul ₩1,179, Scheduler ₩801, Functions 절감 후 ₩25) / 비트코인매매 ₩4,360(**7월 ₩43,572 → -100%**: ddalggak Cloud Run min-instance CPU 제거. App Engine ₩3,811 +1197% 신규 증가) / Firebase결제 ₩2,005(Hosting ₩1,512 +171%, **Vertex AI ₩986 신규**) / 세번째 ₩0. 합 ≈₩8.4k, 예상 월 ≈₩10.7k — **과다 아님**. 결제 목록의 "최근 30일 ₩49,334"는 7월 말 ddalggak 잔여분. `gcloud billing budgets` 는 Budget API 미활성으로 조회 불가.
+- **코드 잠재 결함(1.5.3 기준 정적 분석 — 1.6.0 소스 미확보라 적용 여부 미확인)**:
+  1. `AdBannerLayout.bannerAdWidthDp` 가 **320dp 미만이면 null → 배너 컴포저블 자체가 렌더 안 됨**. 홈은 좌우 16dp 패딩이라 **화면 폭 352dp 미만 기기(소형/분할화면)는 배너 영구 0** — "내 폰에서 안 뜬다"의 유력 후보. 재시도/로그 없음.
+  2. `AndroidView(factory = { slot.container })` — factory 는 최초 1회만 호출. 회전/폴더블/분할화면으로 `maxWidth` 변경 → `adSize`→`slot` 재생성 시 **화면엔 옛 컨테이너 잔류, 새 AdView 는 미장착 컨테이너에 들어감 → 영구 빈 배너**. `update` 람다 또는 `key(slot)` 로 해소 필요.
+  3. 컴포지션 중 `lastLoggedGate` state write(경미, 수렴함).
+- **도구 함정**: ① Chrome MCP 도메인 권한은 사이트별 — AdMob 은 `apps.admob.com` 허용 필요 ② 확장은 Claude Code 와 **같은 claude.ai 계정**이어야 연결됨(`/login` 교체 후 끊김) ③ GCP 결제 리포트는 `console.cloud.google.com/billing/<ACCOUNT_ID>/reports?authuser=0` + `get_page_text` 로 표까지 읽힘 ④ Play 트랙 상태는 `~/fearindex-secrets/play-store-service-account.json` 으로 JWT 발급 → androidpublisher v3 `edits.insert` + `tracks.get` 직접 호출이 fastlane(`google_play_track_version_codes`)보다 status/userFraction 까지 보여 정확 ⑤ `firebaseremoteconfig.googleapis.com` 은 ADC 로 치면 quota project 오류 → `x-goog-user-project: fear-index-a4f4b` 헤더 필요.
+- **다음**: (1) **1.6.0 소스 push(다른 맥)** (2) AdMob 콘솔 실측(권한 허용 후) (3) 결함 1·2 수정 → 1.6.1 후보 (4) AppCheck PLAY_INTEGRITY_UNAVAILABLE 추이 감시.
+
 ---
 name: Bugs Fixed
 description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지용.
