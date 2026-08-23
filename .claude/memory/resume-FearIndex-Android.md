@@ -1,7 +1,7 @@
 # Resume — FearIndex-Android
 
 ## Date / Branch
-2026-08-23 / `dev` (=origin/dev ea09ed7, worktree 없음)
+2026-08-23 / `dev` (ba21b53, origin/dev 보다 5 머지 앞섬 — push 미실행, worktree 없음)
 
 ## ⚡ 한 줄 상태
 **Play production 은 v1.6.0(vc26, 8/21 게시 100%)인데 이 레포엔 v1.5.3(vc25)까지만 있음 — 1.6.0 소스 push 누락(다른 맥).** 광고 "안 뜬다" 제보는 GA 실측으로 재현 안 됨(배너 실패 481→80 급감, 사용자당 노출 증가). 4계정 8월 요금 ≈₩8.4k 정상. 상세: @.claude/memory/bugs-fixed.md 68번.
@@ -12,6 +12,7 @@
 - [x] 배너 잠재 결함 2건 발견(320dp 하한 → 폭 352dp 미만 기기 배너 0 / AndroidView factory 1회 → 폭 변경 시 빈 배너) — 미수정, 1.6.1 후보
 - [x] AdMob 콘솔 실측 — 7일 수입 US$5.74(+80%)/노출 +40%/일치율 84.7% 전 지표 상승, 앱오픈 첫 가동. 정책 제한은 구버전 잔존만(68번)
 - [x] MEMORY.md stash 충돌 마커 정리(08-04 앱 이전 기록 보존)
+- [x] **인터스티셜 세션 리셋·재로드 수정(A안, TDD)** — `feature/v1.6.1-interstitial-session-reset` → dev ba21b53. 유닛 1,037/0 + 서명 release APK OK. 실기기 30분 시나리오 미검증
 
 ## Completed (이번 세션, 2026-08-18~19)
 - [x] **v1.5.2(vc24) production 배포·게시** — 프리미엄 parity 4종(점수 탐색기·알림 내역·프리미엄 게이트·DEBUG 토글) + GMA Next-Gen + Pangle. 상세: @.claude/memory/bugs-fixed.md 59~60번
@@ -24,7 +25,8 @@
 
 ## 미해결 / 다음 할 일 (우선순위순)
 0. **🚨 v1.6.0(vc26) 소스 확보** — 1.6.0 을 빌드한 맥에서 dev/release push + v1.6.0 태그. 그 전까지 핫픽스/롤백 불가. deployment.md 출시 이력에 v1.5.3(게시 완료)·v1.6.0 행 추가 필요
-0-2. **인터스티셜 세션 리셋 부재 수정(68번 결함 ②③, iOS v1.9.2 parity)** — 아버지 A35 증상 원인 확정. 수정안 A/B 사용자 선택 대기. 배너 320dp 하한(①)은 별건으로 같이 처리 — `bannerAdWidthDp` 320dp 하한 완화 + `AndroidView` update/key 로 컨테이너 stale 해소. Crashlytics `AppCheckTokenProbe` PLAY_INTEGRITY_UNAVAILABLE 추이 감시
+0-2. ~~인터스티셜 세션 리셋 수정~~ 완료(dev ba21b53). **1.6.0 push 후 dev 에 합쳐 1.6.1 빌드** → 실기기 30분 백그라운드 후 KOSPI 재진입 노출 1회 확인. 배너 320dp 하한(①)은 별건
+0-3. 이 맥 `~/.gradle/gradle.properties` 부재 — 배포 전 `bash ~/thingineeer-env/android/fearindex/install.sh` — `bannerAdWidthDp` 320dp 하한 완화 + `AndroidView` update/key 로 컨테이너 stale 해소. Crashlytics `AppCheckTokenProbe` PLAY_INTEGRITY_UNAVAILABLE 추이 감시
 1. ~~1.5.3 게시 확인~~ → 1.5.3 은 게시됐고 이미 1.6.0 으로 대체됨 — Play Console 게시 개요(`play.google.com/console/u/1/...` ⚠️ u/0은 타 계정) "검토 중"→게시 완료, 공개 리스팅 1.5.3 전파 확인. 게시되면 대시보드 API 36 경고 카드 소멸도 확인
 2. **실결제 완주** — 게시 후 Play 설치본(1.5.3)으로 광고 제거 ₩7,500 결제 1회 (사이드로드는 Play가 거부, 67번). 사용자 직접
 3. **배포 후 감시** — Crashlytics #96 MotionEvent(Next-Gen), 프리미엄 non-fatal(CrashlyticsTree W/*), 배너 match rate(수정 효과), `FearIndexAds`/`FearIndexAdapters` logcat 태그로 실기기 진단 가능
