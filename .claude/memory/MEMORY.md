@@ -14,6 +14,16 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-08-23, 광고 미노출 제보 분석 + 요금 점검) ← 최신 진입점: @memory/resume-FearIndex-Android.md
+
+- **🚨 저장소 ≠ 배포본**: Play production = **v1.6.0(vc26)**, 8/21 게시, 100% completed(Play API 직접 조회). 이 레포 최대는 v1.5.3(vc25, 8/19). **1.6.0 소스가 어디에도 없음**(origin/dev·release·태그·worktree 전부) → 다른 맥에서 빌드·업로드 후 push 누락 추정. 핫픽스/롤백 불가 상태. **최우선: 그 맥에서 push.** RC `force_update_minimum_version`[Android]=`1.6`/`minimum_app_version`=`1.6.0`(v49, 8/21) 은 1.6.0 게시와 정합 — 락아웃 아님.
+- **✅ 광고 "안 뜬다" 재현 안 됨(GA 실측)**: 28일 배너노출 58,529/2,001명. 8/18(1.5.x) vs 8/22(1.6.0): 사용자당 배너 8.18→**8.43**, 배너실패 481→**80**(66번 fix 실효 증거). 약점은 **인터스티셜 fill ~17%**(노출 27/실패 136) — 인벤토리 문제. AdMob 콘솔은 Chrome 권한/연결 문제로 미실측.
+- **Crashlytics 1.6.0**: FATAL 0. 신규 non-fatal `AppCheckTokenProbe.ensureToken` PLAY_INTEGRITY_UNAVAILABLE(-9) 42건/12명 — 1.6.0 신규 코드, Callable 거부 가능성 관찰. RC fetch DNS 실패 40건(네트워크) — 첫 실행 오프라인이면 `ads_enabled` 캐시 없음 → 배너 fail-safe OFF.
+- **서버 정상**: Functions 3일 ERROR 1건(crypto FNG 502 일시), 크론 failed=0, total_users 2,365.
+- **💰 요금(8월 MTD, 4계정 합 ≈₩8.4k, 과다 아님)**: 공포지수푸시알림(fear-index) ₩2,009(Firestore Read ₩1,179 최대) / 비트코인매매 ₩4,360(7월 ddalggak Cloud Run min-instance ₩43k 제거로 -100%, App Engine ₩3,811 신규 증가) / Firebase결제 ₩2,005(Hosting ₩1,512+Vertex AI ₩986 신규) / 세번째 ₩0. 결제 목록 "30일 ₩49k"는 7월 잔여분.
+- **코드 잠재 결함(1.5.3 기준, 1.6.0 미확인)**: ① `bannerAdWidthDp` 320dp 하한 — 홈 패딩 16dp 고려 시 **폭 352dp 미만 기기 배너 영구 0** ② `AndroidView(factory=slot.container)` — 폭 변경(회전/폴더블)으로 slot 재생성 시 옛 컨테이너 잔류 → 빈 배너. 1.6.1 후보. 상세: @memory/bugs-fixed.md 68번.
+- **⚠️ 도구 함정**: Chrome MCP 는 `apps.admob.com` 도메인 권한 없으면 읽기/스크린샷 전부 거부. `/login` 으로 계정 바꾸면 확장 연결 끊김(같은 계정 필요). GCP 결제는 `console.cloud.google.com/billing/<ACCOUNT_ID>/reports?authuser=0` + get_page_text 로 읽힘. Play 트랙 상태는 SA JSON 으로 androidpublisher API 직접 호출이 fastlane 보다 정확(status/userFraction).
+
 ## 최신 상태 (2026-08-19, v1.5.3 배포 + 전수 검증) ← 최신 진입점: @memory/resume-FearIndex-Android.md
 
 - **✅ v1.5.3(vc25) production 업로드 — Play 검토 중**(관리형 게시 OFF → 승인 즉시 자동 게시). 내용 = 배너 콜드스타트 fix(66) + 알림 보관 표시/영속 분리(65) + 어댑터 진단(62). 게이트 전부 통과(1019/0, SHA-1 일치, 심볼 0). release 머지 + v1.5.3 태그 + 전체 push 완료.
@@ -45,6 +55,12 @@
 - **✅ 앱오프닝 단위 발급(8/18)**: AdMob `AppOpen` = `ca-app-pub-5283496525222246/6583206280`. app/presentation release `ADMOB_APP_OPEN` 반영(feature/v1.5.2-app-open-unit → dev --no-ff). **실가동 조건**: (a) 이 커밋 포함 빌드 배포(v1.5.2) + (b) Firebase RC `app_open_ads_enabled=true`(+session_cap/cooldown/min_background 키, bugs-fixed 41번) 게시 — 둘 다 아직. 미디에이션 그룹(앱오프닝)은 미생성 — AdMob 네트워크만으로 우선 가동, 원하면 Pangle/Unity 앱오픈 매핑 추가.
 - **사용자 결정(8/18)**: v1.5.2(Pangle 포함) 배포는 **대기**. AppLovin은 사용자가 직접 검토.
 - **다음**: (1) 알파 심사 통과·대시보드 API 36 카드 소멸 확인 (2) 사용자 지시 시 v1.5.2(vc23) 배포 + RC 앱오픈 키 게시 (3) 실기기 Billing 8 결제 재검증(미완).
+## 최신 상태 (2026-08-04, 앱 이전 진행 중 — 보고서 백업 완료 + 15% 수수료 미등록 발견)
+
+- **앱 이전 대기 중** (Play Console 설정→앱 이전, 2026-08-04 요청·수락 완료): 기존 계정 **Myeongjin Lee `5351376807423705889`** (구글 로그인 dlaudwls1203@gmail.com) → 새 계정 **이명진 `5573450681823453997`** (구글 로그인 **mjplist** 계정). 이전 앱 3개 = FearIndex + 그늘길 + 딸깍 (전부). 이전 이유 = 결제 프로필 문제(지급 보류/신원 확인). Google 안내: 취소 없으면 영업일 2일 후 진행, 처리 영업일 2일.
+- **✅ 이전 전 보고서 백업 완료** → `~/Desktop/FearIndex-Play보고서-이전전백업-20260804/`. GCS 버킷 `gs://pubsite_prod_5351376807423705889/` 전체 미러(gsutil, dlaudwls1203 gcloud 인증): stats(installs 35/crashes 16/ratings 21/store_performance 20) + reviews 3 + sales 2(202607·202608) + play_balance_krw. **실주문 GPA.3334-7862-8616-69040(HUF 1,999) salesreport_202607.csv에 포함 확인.** 딸깍 앱 신규 주문도 발견(8/3, 코인550 ₩1,100). ⚠️ **7월 수익(earnings) 보고서는 아직 미생성** — 재무 데이터는 기존 결제 프로필에 남으므로 이전 후에도 기존 계정에서 다운로드 가능(생성되면 받을 것).
+- **✅ 15% 서비스 수수료 프로그램 등록 완료** (2026-08-04, 새 계정 u/2에서 진행): 절차 = ① 새 계정에서 계정 그룹(이명진)에 기존 계정(Myeongjin Lee `5351376807423705889`, "법인 소유") 추가 요청 → ② 기존 계정(u/1)이 자기 단독 그룹('Myeongjin Lee' 그룹) **삭제** 후 요청 수락(기존 그룹의 기본 계정이면 수락 불가라 삭제가 선행 필수) → ③ 새 계정에서 "검토 및 등록" → 약관(연 첫 $1M 15%, 초과분 30%, 그룹 합산) 수락. 결과: **그룹(이명진+Myeongjin Lee) 전체에 15% 적용, 등록일부터** (소급 없음 — 7월 HUF 주문은 30% 시절). 새 계정 알림에 "본인 인증이 완료되었습니다" = 새 계정 결제 프로필은 지급 보류 없음.
+- **기존 계정 잔여 이슈**: 지급 보류(신원 확인 미완, ₩6,211 잔액) + 싱가포르 세금 정보 경고 — 기존 결제 프로필에 남는 문제이므로 잔액 수령하려면 신원 확인은 여전히 필요(사용자 직접).
 
 ## 최신 상태 (2026-07-31 새벽, v1.5.1 vc22 — Billing 8 마이그레이션 + 배포)
 
