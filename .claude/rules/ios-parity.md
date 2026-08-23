@@ -65,10 +65,10 @@ iOS에서 X 변경 → Android 개발자에게 알림 + 아래 체크:
 
 ```bash
 # iOS 원본
-grep -h "^\"rating\." /Users/imyeongjin/Desktop/side/FearIndex-iOS/FearIndex-iOS/Resources/ko.lproj/Localizable.strings
+grep -h "^\"rating\." FearIndex-iOS/FearIndex-iOS/Resources/ko.lproj/Localizable.strings
 
 # Android 번역
-grep "rating_" /Users/imyeongjin/Desktop/side/FearIndex-Android/presentation/src/main/res/values-ko/strings.xml
+grep "rating_" FearIndex-Android/presentation/src/main/res/values-ko/strings.xml
 ```
 
 값이 같은지 육안 비교. 다르면 iOS 기준으로 Android 수정.
@@ -76,8 +76,8 @@ grep "rating_" /Users/imyeongjin/Desktop/side/FearIndex-Android/presentation/src
 ### Firestore 규칙 동기화
 
 ```bash
-diff /Users/imyeongjin/Desktop/side/FearIndex-iOS/firebase-functions/firestore.rules \
-     /Users/imyeongjin/Desktop/side/FearIndex-Android/firebase-functions/firestore.rules
+diff FearIndex-iOS/firebase-functions/firestore.rules \
+     FearIndex-Android/firebase-functions/firestore.rules
 # 아무것도 출력 안되면 동기화 OK (Android 디렉토리가 없다면 문제없음 - iOS가 원본)
 ```
 

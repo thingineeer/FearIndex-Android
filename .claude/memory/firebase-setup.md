@@ -43,10 +43,10 @@ type: reference
 
 iOS/Android 공유 백엔드.
 
-- **Source**: `/Users/imyeongjin/Desktop/side/FearIndex-iOS/firebase-functions/` (iOS 프로젝트 내 관리)
+- **Source**: `FearIndex-iOS/firebase-functions/` (iOS 프로젝트 내 관리)
 - **배포 명령**:
   ```bash
-  cd /Users/imyeongjin/Desktop/side/FearIndex-iOS/firebase-functions
+  cd FearIndex-iOS/firebase-functions
   firebase deploy --only functions
   ```
 
