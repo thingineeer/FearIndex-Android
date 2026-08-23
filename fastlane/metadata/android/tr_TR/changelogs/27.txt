@@ -1,0 +1,1 @@
+v1.6.1: KOSPI ekranında reklam gösterimi ve uygulama kararlılığı iyileştirildi.

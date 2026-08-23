@@ -1,0 +1,1 @@
+v1.6.1: Javítottuk a hirdetések megjelenítését a KOSPI képernyőn és az alkalmazás stabilitását.

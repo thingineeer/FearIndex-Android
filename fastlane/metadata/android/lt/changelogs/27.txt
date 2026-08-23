@@ -1,0 +1,1 @@
+v1.6.1: Patobulintas reklamų rodymas KOSPI ekrane ir programos stabilumas.

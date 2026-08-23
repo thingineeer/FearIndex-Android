@@ -1,0 +1,1 @@
+v1.6.1: Förbättrad annonsvisning på KOSPI-skärmen och appstabilitet.
