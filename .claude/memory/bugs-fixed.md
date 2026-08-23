@@ -29,7 +29,9 @@
   - **검증**: RED(새 API 3개 Unresolved) → GREEN 19/19 → 전체 유닛 **1,037/0** + 서명 release APK 빌드 OK. `:data` StuckStatusDebouncerImplTest 1회 flaky(65번 기록된 실 delay 기반) → 단독 재실행 통과.
   - **⚠️ 배포 전제**: dev 는 아직 1.5.3 베이스 — **1.6.0 소스 push 후 그 위에 이 머지를 올려 1.6.1 로**. 이 맥에는 `~/.gradle/gradle.properties` 가 없어 release 서명은 `-PFEARINDEX_*`(`~/fearindex-secrets/gradle.properties` 값) 주입으로 빌드했음 → 배포 전 `install.sh` 재실행 권장.
   - 실기기 E2E(30분 백그라운드 후 KOSPI 재진입 노출)는 **미검증** — 에뮬/실기기에서 `adb shell am set-inactive` 또는 시계 조작 없이 30분 대기 필요. 유닛으로 정책 경계(29:59/30:00)는 고정됨.
-- **다음**: (1) **1.6.0 소스 push(다른 맥)** → dev 리베이스/머지 (2) 실기기 30분 시나리오 1회 확인 (3) ① 320dp 하한 완화(별건) (4) AppCheck PLAY_INTEGRITY_UNAVAILABLE 추이 감시.
+- **후속(같은 날 저녁)**: ① 세션 리셋 기준 **30분 → 10분**(사용자 결정, iOS 와 divergence — `InterstitialForegroundGate` 주석에 명시) TDD dev 8442f5b ② **v1.6.1(vc27) bump + changelog 27 45 locale**(첫머리 `v1.6.1:` 버전 명시, 사용자 요청) dev ab1e31a ③ **1.6.0 빌드 커밋 = `7ca2711`** 확정(Crashlytics 1.6.0 이벤트 buildStamp.revision) — 로컬·GitHub 모두 부재(gh API 422) → 다른 맥에서 push 대기. 사용자 A 선택: **1.6.0 소스 합친 뒤 게시**(이 맥 코드로 바로 1.6.1 내면 1.6.0 의 AppCheckTokenProbe 등 수정이 퇴보). ④ 스테이징의 `docs/play-reports-backup-20260804/` 는 앱 이전 전 Play 보고서 **유일본**이라 삭제 금지 → 레포 PUBLIC 이므로 `thingineeer-env` 로 이관.
+- **도구 함정**: Crashlytics 이벤트의 `buildStamp.repositories.revision` 이 빌드 커밋 SHA — "배포본이 어느 커밋인가"는 이걸로 확정한다(Play 콘솔엔 없음).
+- **다음**: (1) 다른 맥에서 `7ca2711` push → v1.6.0 태그 → dev 머지 → `fastlane production`(게시 승인 완료) (2) 게시 후 실기기 10분 시나리오 1회 확인 (3) ① 320dp 하한 완화(별건) (4) AppCheck PLAY_INTEGRITY_UNAVAILABLE 추이 감시.
 
 ---
 name: Bugs Fixed
