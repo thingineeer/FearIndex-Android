@@ -95,7 +95,7 @@ class InterstitialAdPolicyTest {
     }
 
     @Test
-    fun `백그라운드 30분 이상 후 복귀하면 세션이 리셋돼 KOSPI 진입 광고를 다시 노출할 수 있다`() {
+    fun `백그라운드 10분 이상 후 복귀하면 세션이 리셋돼 KOSPI 진입 광고를 다시 노출할 수 있다`() {
         val policy = InterstitialAdPolicy()
         val config = InterstitialAdPolicyConfig(cooldownMillis = 0L)
         policy.markShowing()
@@ -104,16 +104,16 @@ class InterstitialAdPolicyTest {
         assertFalse(policy.canShowKospiEntry(isReady = true, nowMillis = 2_000L, config = config))
 
         policy.recordBackgroundEntry(nowMillis = 10_000L)
-        val didReset = policy.handleForegroundEntry(nowMillis = 10_000L + 30L * 60L * 1_000L)
+        val didReset = policy.handleForegroundEntry(nowMillis = 10_000L + 10L * 60L * 1_000L)
 
         assertTrue(didReset)
         assertEquals(0, policy.impressionCount)
-        assertTrue(policy.canShowKospiEntry(isReady = true, nowMillis = 10_000L + 30L * 60L * 1_000L, config = config))
+        assertTrue(policy.canShowKospiEntry(isReady = true, nowMillis = 10_000L + 10L * 60L * 1_000L, config = config))
         assertTrue(policy.shouldScheduleKospiEntry(FearIndexType.MARKET, FearIndexType.KOSPI, config))
     }
 
     @Test
-    fun `백그라운드 30분 미만 복귀는 같은 세션이라 리셋하지 않는다`() {
+    fun `백그라운드 10분 미만 복귀는 같은 세션이라 리셋하지 않는다`() {
         val policy = InterstitialAdPolicy()
         val config = InterstitialAdPolicyConfig(cooldownMillis = 0L)
         policy.markShowing()
@@ -121,7 +121,7 @@ class InterstitialAdPolicyTest {
         policy.recordDismissed()
 
         policy.recordBackgroundEntry(nowMillis = 10_000L)
-        val didReset = policy.handleForegroundEntry(nowMillis = 10_000L + 10L * 60L * 1_000L)
+        val didReset = policy.handleForegroundEntry(nowMillis = 10_000L + 5L * 60L * 1_000L)
 
         assertFalse(didReset)
         assertEquals(1, policy.impressionCount)
@@ -139,7 +139,7 @@ class InterstitialAdPolicyTest {
         assertEquals(1, policy.impressionCount)
 
         policy.recordBackgroundEntry(nowMillis = 10_000L)
-        assertTrue(policy.handleForegroundEntry(nowMillis = 10_000L + 31L * 60L * 1_000L))
+        assertTrue(policy.handleForegroundEntry(nowMillis = 10_000L + 11L * 60L * 1_000L))
         // 같은 백그라운드 기록으로 두 번 리셋되지 않는다
         policy.markShowing()
         policy.recordShown(nowMillis = 20_000L, kospiEntry = true)
