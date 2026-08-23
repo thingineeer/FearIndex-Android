@@ -13,7 +13,9 @@
   2. `AndroidView(factory = { slot.container })` — factory 는 최초 1회만 호출. 회전/폴더블/분할화면으로 `maxWidth` 변경 → `adSize`→`slot` 재생성 시 **화면엔 옛 컨테이너 잔류, 새 AdView 는 미장착 컨테이너에 들어감 → 영구 빈 배너**. `update` 람다 또는 `key(slot)` 로 해소 필요.
   3. 컴포지션 중 `lastLoggedGate` state write(경미, 수렴함).
 - **도구 함정**: ① Chrome MCP 도메인 권한은 사이트별 — AdMob 은 `apps.admob.com` 허용 필요 ② 확장은 Claude Code 와 **같은 claude.ai 계정**이어야 연결됨(`/login` 교체 후 끊김) ③ GCP 결제 리포트는 `console.cloud.google.com/billing/<ACCOUNT_ID>/reports?authuser=0` + `get_page_text` 로 표까지 읽힘 ④ Play 트랙 상태는 `~/fearindex-secrets/play-store-service-account.json` 으로 JWT 발급 → androidpublisher v3 `edits.insert` + `tracks.get` 직접 호출이 fastlane(`google_play_track_version_codes`)보다 status/userFraction 까지 보여 정확 ⑤ `firebaseremoteconfig.googleapis.com` 은 ADC 로 치면 quota project 오류 → `x-goog-user-project: fear-index-a4f4b` 헤더 필요.
-- **다음**: (1) **1.6.0 소스 push(다른 맥)** (2) AdMob 콘솔 실측(권한 허용 후) (3) 결함 1·2 수정 → 1.6.1 후보 (4) AppCheck PLAY_INTEGRITY_UNAVAILABLE 추이 감시.
+- **✅ AdMob 콘솔 실측(같은 세션 후속, 공포지수 Android 7일 8/16~22 vs 이전 7일)**: 예상수입 **US$5.74(+80%)**, 노출 **1.42천(+40%)**, 요청 7.02천(+186%), 일치율 **84.72%(+5%p)**, eCPM US$4.05(+28%). 이번 달 US$13.54 / 지난달 US$28.30. 네트워크별: AdMob 배너 1.24천(eCPM 2.26)/전면 66(eCPM 33.24)/**앱오픈 13(eCPM 28.55, 신규 가동)**/Pangle 배너 86(신규)/Unity 배너 10. 광고 단위별: KospiInterstitial $2.41 > HomeBanner $1.96(+344%) > InsightBanner $0.74 > AppOpen $0.37(신규) > ChartBanner $0.14. 사용자 측정(GA): AU 198(+26%), 세션당 광고 노출 58%. → **광고 정상 가동, 전주 대비 전 지표 상승.** 정책 센터: 앱 "광고 게재 제한됨 — 이전 버전만 해당(1.0.1 프레임 크기, 6/9)" 1건 잔존, 최근 7일 제한 요청 284회(0%) vs 일반 게재 6.59만회(100%) — 실질 영향 없음(23번 항목, 구버전 트래픽 소멸 대기).
+- **도구 함정 추가**: `apps.admob.com` 으로 navigate 하면 `admob.google.com` 으로 리다이렉트되는데 **그 직후 첫 액션만 "Permission denied"** 가 난다(도메인 전환 타이밍). 확장 권한은 "모든 사이트"로 이미 충분 — 몇 초 뒤 재시도하면 된다. 권한 문제로 오진하지 말 것.
+- **다음**: (1) **1.6.0 소스 push(다른 맥)** (2) 결함 1·2 수정 → 1.6.1 후보 (3) AppCheck PLAY_INTEGRITY_UNAVAILABLE 추이 감시.
 
 ---
 name: Bugs Fixed

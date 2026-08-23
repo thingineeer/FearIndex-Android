@@ -17,12 +17,12 @@
 ## 최신 상태 (2026-08-23, 광고 미노출 제보 분석 + 요금 점검) ← 최신 진입점: @memory/resume-FearIndex-Android.md
 
 - **🚨 저장소 ≠ 배포본**: Play production = **v1.6.0(vc26)**, 8/21 게시, 100% completed(Play API 직접 조회). 이 레포 최대는 v1.5.3(vc25, 8/19). **1.6.0 소스가 어디에도 없음**(origin/dev·release·태그·worktree 전부) → 다른 맥에서 빌드·업로드 후 push 누락 추정. 핫픽스/롤백 불가 상태. **최우선: 그 맥에서 push.** RC `force_update_minimum_version`[Android]=`1.6`/`minimum_app_version`=`1.6.0`(v49, 8/21) 은 1.6.0 게시와 정합 — 락아웃 아님.
-- **✅ 광고 "안 뜬다" 재현 안 됨(GA 실측)**: 28일 배너노출 58,529/2,001명. 8/18(1.5.x) vs 8/22(1.6.0): 사용자당 배너 8.18→**8.43**, 배너실패 481→**80**(66번 fix 실효 증거). 약점은 **인터스티셜 fill ~17%**(노출 27/실패 136) — 인벤토리 문제. AdMob 콘솔은 Chrome 권한/연결 문제로 미실측.
+- **✅ 광고 "안 뜬다" 재현 안 됨(GA 실측)**: 28일 배너노출 58,529/2,001명. 8/18(1.5.x) vs 8/22(1.6.0): 사용자당 배너 8.18→**8.43**, 배너실패 481→**80**(66번 fix 실효 증거). 약점은 **인터스티셜 fill ~17%**(노출 27/실패 136) — 인벤토리 문제. **AdMob 콘솔 실측(7일)**: 수입 US$5.74(+80%)/노출 1.42천(+40%)/일치율 84.7%/eCPM 4.05 — 전 지표 상승, 앱오픈 단위 첫 가동(13 노출, eCPM 28.55). 정책 제한은 구버전(1.0.1) 잔존 284요청(0%)뿐.
 - **Crashlytics 1.6.0**: FATAL 0. 신규 non-fatal `AppCheckTokenProbe.ensureToken` PLAY_INTEGRITY_UNAVAILABLE(-9) 42건/12명 — 1.6.0 신규 코드, Callable 거부 가능성 관찰. RC fetch DNS 실패 40건(네트워크) — 첫 실행 오프라인이면 `ads_enabled` 캐시 없음 → 배너 fail-safe OFF.
 - **서버 정상**: Functions 3일 ERROR 1건(crypto FNG 502 일시), 크론 failed=0, total_users 2,365.
 - **💰 요금(8월 MTD, 4계정 합 ≈₩8.4k, 과다 아님)**: 공포지수푸시알림(fear-index) ₩2,009(Firestore Read ₩1,179 최대) / 비트코인매매 ₩4,360(7월 ddalggak Cloud Run min-instance ₩43k 제거로 -100%, App Engine ₩3,811 신규 증가) / Firebase결제 ₩2,005(Hosting ₩1,512+Vertex AI ₩986 신규) / 세번째 ₩0. 결제 목록 "30일 ₩49k"는 7월 잔여분.
 - **코드 잠재 결함(1.5.3 기준, 1.6.0 미확인)**: ① `bannerAdWidthDp` 320dp 하한 — 홈 패딩 16dp 고려 시 **폭 352dp 미만 기기 배너 영구 0** ② `AndroidView(factory=slot.container)` — 폭 변경(회전/폴더블)으로 slot 재생성 시 옛 컨테이너 잔류 → 빈 배너. 1.6.1 후보. 상세: @memory/bugs-fixed.md 68번.
-- **⚠️ 도구 함정**: Chrome MCP 는 `apps.admob.com` 도메인 권한 없으면 읽기/스크린샷 전부 거부. `/login` 으로 계정 바꾸면 확장 연결 끊김(같은 계정 필요). GCP 결제는 `console.cloud.google.com/billing/<ACCOUNT_ID>/reports?authuser=0` + get_page_text 로 읽힘. Play 트랙 상태는 SA JSON 으로 androidpublisher API 직접 호출이 fastlane 보다 정확(status/userFraction).
+- **⚠️ 도구 함정**: Chrome MCP 로 `apps.admob.com` 진입 시 `admob.google.com` 리다이렉트 직후 첫 액션만 Permission denied — 권한 문제 아님, 재시도하면 됨. `/login` 으로 계정 바꾸면 확장 연결 끊김(확장 팝업에서 같은 계정 재로그인 + `/chrome` 으로 브라우저 재선택). GCP 결제는 `console.cloud.google.com/billing/<ACCOUNT_ID>/reports?authuser=0` + get_page_text 로 읽힘. Play 트랙 상태는 SA JSON 으로 androidpublisher API 직접 호출이 fastlane 보다 정확(status/userFraction).
 
 ## 최신 상태 (2026-08-19, v1.5.3 배포 + 전수 검증) ← 최신 진입점: @memory/resume-FearIndex-Android.md
 
