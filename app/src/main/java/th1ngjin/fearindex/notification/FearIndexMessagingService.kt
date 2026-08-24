@@ -66,6 +66,7 @@ class FearIndexMessagingService : FirebaseMessagingService() {
                 Timber.d("FCM token registered to server")
             } catch (e: Exception) {
                 Timber.e(e, "FCM token registration failed")
+                FcmRegistrationWorker.enqueue(applicationContext)
             }
         }
     }

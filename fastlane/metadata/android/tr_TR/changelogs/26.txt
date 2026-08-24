@@ -1,0 +1,1 @@
+Bildirim kaydı güvenilirliği ve güvenlik doğrulaması iyileştirildi.

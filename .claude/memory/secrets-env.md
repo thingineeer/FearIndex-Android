@@ -60,6 +60,10 @@ Firebase Console → App Check → 공포지수 Android Debug → 디버그 토�
 | `KEYSTORE_SHA256_V101` | `15:8F:BB:0F:...` (v1.0.1~v1.0.2, 폐기) |
 | `KEYSTORE_SHA1_V100` | `A1:54:8A:92:...` (v1.0.0, 폐기) |
 | `KEYSTORE_SHA256_V100` | `AD:48:68:DA:...` (v1.0.0, 폐기) |
+| `PLAY_APP_SIGNING_SHA256` | `EF:5D:B8:C8:92:1A:9B:DC:CB:FB:AA:E1:E6:EC:A3:AE:95:22:E9:6C:0A:41:FC:84:00:0B:A2:B5:15:7C:B4:AA` (**Play App Signing 키 — Play 설치본 실제 서명, App Check/Play Integrity 대조 대상**, 2026-08-21 등록) |
+
+> **Firebase 프로젝트 설정에 등록된 `th1ngjin.fearindex` 지문(2026-08-21 기준)**: `AD:48…`(v1.0.0 폐기, 잔존) + **`EF:5D…`(Play 앱 서명 키)** + `91:47…`(업로드 키). 2026-08-21 까지는 `AD:48…` 하나뿐이어서 Android App Check 가 전수 실패했다(`@bugs-fixed.md` 68번). 확인 명령:
+> `curl -H "Authorization: Bearer $(gcloud auth print-access-token --account=dlaudwls1203@gmail.com)" -H "x-goog-user-project: fear-index-a4f4b" https://firebase.googleapis.com/v1beta1/projects/fear-index-a4f4b/androidApps/1:8243517543:android:4a16add6d8688aea131cc2/sha`
 
 > 2026-05-09 사고 이력: `~/fearindex-secrets/` 옛 keystore 와 thingineeer-env 진짜 활성 키가 평행 존재해 v1.0.3 AAB 업로드 거부. 자세한 내용은 `@bugs-fixed.md` 17번.
 

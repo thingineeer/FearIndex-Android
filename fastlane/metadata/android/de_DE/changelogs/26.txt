@@ -1,0 +1,1 @@
+Zuverlässigkeit der Benachrichtigungsregistrierung und Sicherheitsprüfung verbessert.

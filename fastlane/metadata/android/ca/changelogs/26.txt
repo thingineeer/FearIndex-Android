@@ -1,0 +1,1 @@
+S'ha millorat la fiabilitat del registre de notificacions i la verificació de seguretat.

@@ -134,4 +134,62 @@ class UpdateCheckerTest {
         )
         assertEquals(UpdateStatus.UP_TO_DATE, status)
     }
+
+    // --- v1.5.4 배포 시나리오: force_update_minimum_version = "1.5.4" (patch 단위 강제) ---
+    // RC 값이 3컴포넌트면 patch 까지 비교한다. 2컴포넌트("1.2")는 기존처럼 major.minor 만.
+
+    @Test
+    fun `v1_5_4 배포 - 1_5_3 사용자는 강제 업데이트 (patch 단위 비교)`() {
+        val status = UpdateChecker.evaluate(
+            currentVersion = "1.5.3",
+            forceUpdateMinimumVersion = "1.5.4",
+            minimumAppVersion = "1.5.4",
+        )
+        assertEquals(UpdateStatus.FORCE_UPDATE_REQUIRED, status)
+    }
+
+    @Test
+    fun `v1_5_4 배포 - 1_4_x·1_5_0 사용자도 강제 업데이트`() {
+        listOf("1.4.2", "1.5.0", "1.5.2").forEach { current ->
+            val status = UpdateChecker.evaluate(
+                currentVersion = current,
+                forceUpdateMinimumVersion = "1.5.4",
+                minimumAppVersion = "1.5.4",
+            )
+            assertEquals(current, UpdateStatus.FORCE_UPDATE_REQUIRED, status)
+        }
+    }
+
+    @Test
+    fun `v1_5_4 배포 - 1_5_4 사용자는 강제 제외되고 최신`() {
+        val status = UpdateChecker.evaluate(
+            currentVersion = "1.5.4",
+            forceUpdateMinimumVersion = "1.5.4",
+            minimumAppVersion = "1.5.4",
+        )
+        assertEquals(UpdateStatus.UP_TO_DATE, status)
+    }
+
+    @Test
+    fun `v1_5_4 배포 - 1_5_10·1_6_0 등 상위 버전은 최신 (수치 비교)`() {
+        listOf("1.5.10", "1.6.0", "2.0.0").forEach { current ->
+            val status = UpdateChecker.evaluate(
+                currentVersion = current,
+                forceUpdateMinimumVersion = "1.5.4",
+                minimumAppVersion = "1.5.4",
+            )
+            assertEquals(current, UpdateStatus.UP_TO_DATE, status)
+        }
+    }
+
+    @Test
+    fun `debug suffix 가 제거된 현재 버전만 비교 대상 - 2컴포넌트 force 는 patch 를 무시한다`() {
+        // 기존 계약 보존: force "1.5" 는 1.5.0~1.5.x 전부 통과
+        val status = UpdateChecker.evaluate(
+            currentVersion = "1.5.0",
+            forceUpdateMinimumVersion = "1.5",
+            minimumAppVersion = "",
+        )
+        assertEquals(UpdateStatus.UP_TO_DATE, status)
+    }
 }

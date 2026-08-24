@@ -1,0 +1,1 @@
+Izboljšana zanesljivost registracije obvestil in varnostno preverjanje.

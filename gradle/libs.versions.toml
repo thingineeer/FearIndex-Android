@@ -27,7 +27,7 @@ hilt = "2.58"
 hiltCompose = "1.2.0"
 
 # Firebase
-firebaseBom = "33.7.0"
+firebaseBom = "33.16.0"
 googleServices = "4.4.2"
 crashlyticsPlugin = "3.0.2"
 
