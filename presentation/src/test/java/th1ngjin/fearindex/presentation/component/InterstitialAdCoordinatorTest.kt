@@ -76,6 +76,62 @@ class InterstitialAdCoordinatorTest {
         assertEquals(1, controller.preloadCalls)
     }
 
+
+    @Test
+    fun `KOSPI 진입 시 광고가 준비돼 있지 않으면 노출 대신 재로드를 건다`() {
+        val controller = FakeInterstitialAdController(isReady = false)
+        val coordinator = InterstitialAdCoordinator(adController = controller, nowMillis = { 10_000L })
+        val config = InterstitialAdPolicyConfig(cooldownMillis = 0L)
+
+        assertFalse(coordinator.showKospiEntryIfAvailable(mockk(relaxed = true), "unit-id", config))
+
+        assertEquals(1, controller.preloadCalls)
+        assertEquals(null, controller.lastShownAdUnitId)
+    }
+
+    @Test
+    fun `포그라운드 복귀는 10분 이상 백그라운드였으면 세션을 리셋하고 항상 preload를 건다`() {
+        val controller = FakeInterstitialAdController(isReady = true)
+        var nowMillis = 10_000L
+        val coordinator = InterstitialAdCoordinator(adController = controller, nowMillis = { nowMillis })
+        val config = InterstitialAdPolicyConfig(cooldownMillis = 0L)
+        val context = mockk<Context>(relaxed = true)
+
+        assertTrue(coordinator.showKospiEntryIfAvailable(mockk(relaxed = true), "unit-id", config))
+        controller.showAd(); controller.recordImpression(); controller.dismiss()
+        assertFalse(coordinator.showKospiEntryIfAvailable(mockk(relaxed = true), "unit-id", config))
+        val preloadsBefore = controller.preloadCalls
+
+        coordinator.recordBackgroundEntry()
+        nowMillis += 5L * 60L * 1_000L
+        coordinator.handleForegroundEntry(context, "unit-id", config)
+        assertEquals(preloadsBefore + 1, controller.preloadCalls)
+        assertFalse(coordinator.showKospiEntryIfAvailable(mockk(relaxed = true), "unit-id", config))
+
+        coordinator.recordBackgroundEntry()
+        nowMillis += 10L * 60L * 1_000L
+        coordinator.handleForegroundEntry(context, "unit-id", config)
+        assertEquals(preloadsBefore + 2, controller.preloadCalls)
+        assertEquals(0, coordinator.impressionCount)
+        assertTrue(coordinator.showKospiEntryIfAvailable(mockk(relaxed = true), "unit-id", config))
+    }
+
+    @Test
+    fun `세션 cap에 도달했으면 preload를 생략한다`() {
+        val controller = FakeInterstitialAdController(isReady = true)
+        val coordinator = InterstitialAdCoordinator(adController = controller, nowMillis = { 10_000L })
+        val config = InterstitialAdPolicyConfig(cooldownMillis = 0L, sessionCap = 1)
+        val context = mockk<Context>(relaxed = true)
+
+        assertTrue(coordinator.showKospiEntryIfAvailable(mockk(relaxed = true), "unit-id", config))
+        controller.showAd(); controller.recordImpression(); controller.dismiss()
+        val preloadsAfterDismiss = controller.preloadCalls
+
+        coordinator.preloadIfNeeded(context, "unit-id", config)
+
+        assertEquals(preloadsAfterDismiss, controller.preloadCalls)
+    }
+
     private class FakeInterstitialAdController(
         override var isReady: Boolean,
     ) : InterstitialAdController {

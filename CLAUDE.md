@@ -9,11 +9,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 작업 범위 (절대 규칙)
 
-**이 저장소는 `FearIndex-Android` 전용. iOS 프로젝트(`../FearIndex-iOS/`) 파일은 수정 금지 — 단, 읽기는 허용.**
+**이 저장소는 `FearIndex-Android` 전용. iOS 프로젝트(`FearIndex-iOS/`) 파일은 수정 금지 — 단, 읽기는 허용.**
 
-- `/Users/imyeongjin/Desktop/side/FearIndex-iOS/` 경로의 모든 파일은 **읽기 전용**
+- `FearIndex-iOS/` 경로의 모든 파일은 **읽기 전용**
   - `firebase-functions/`, `LocalPackages/`, `FearIndex-iOS/`, `fastlane/` 등 포함
   - Firestore rules, Cloud Functions, Swift 소스 전부 해당
+- **경로 표기 관례**: 문서·메모리·대화에서는 절대경로 대신 `<레포명>/경로`(예: `FearIndex-Android/app/build.gradle.kts`, `FearIndex-iOS/firebase-functions/`)로 쓴다. 맥마다 상위 폴더가 달라서 절대경로는 금지. 두 레포는 같은 부모 폴더(`APP/`)의 형제로 둔다.
 - **읽기는 명시적으로 허용** (iOS 대칭성 / fastlane metadata 참조 등). Write/Edit/Bash로 수정/생성/삭제 금지.
 - Firebase Console에서 공유하는 프로젝트(`fear-index-a4f4b`)이지만 **Cloud Functions/Firestore rules 배포는 iOS 팀 책임**.
 - 사용자가 "iOS"를 말해도 Android 작업 세션이면 → Android 쪽 이슈 맥락으로 재해석하고 확인 요청.

@@ -10,7 +10,7 @@ type: project
 
 ## 프리미엄 parity (iOS v1.9.4 → Android, 2026-08-18 이식)
 
-iOS SSOT: `/Users/imyeongjin/Desktop/worktrees/fi-v194-design` (spec `docs/superpowers/specs/2026-08-18-v194-premium-score-explorer-notification-history-design.md`).
+iOS SSOT: `worktrees/FearIndex-iOS/fi-v194-design`(iOS worktree) (spec `docs/superpowers/specs/2026-08-18-v194-premium-score-explorer-notification-history-design.md`).
 
 - **프리미엄 = 광고 제거 구매**(새 SKU 없음): iOS `PremiumEntitlementProviding.isPremium == isAdFree` ↔ Android `PurchaseManager.isPremium`(=`isAdFree`). `PremiumFeature{SCORE_EXPLORER, NOTIFICATION_HISTORY_UNLIMITED}` + `PremiumFeaturePolicy.canUse` 동일.
 - **GA 이벤트 이름 동일**: `premium_lock_tapped{feature}`, `score_explorer_moved{index_type,score,period}`, `notification_history_viewed{count}`; 구매 이벤트(광고제거구매시작/완료/실패/복원)에 `source`(settings|score_explorer|notification_history).
@@ -117,10 +117,10 @@ iOS에서 다음이 바뀌면 Android도 바로 맞춤:
 
 ```bash
 # iOS의 공식 rating 문자열 조회
-grep -h "rating\." /Users/imyeongjin/Desktop/side/FearIndex-iOS/FearIndex-iOS/Resources/ko.lproj/Localizable.strings
+grep -h "rating\." FearIndex-iOS/FearIndex-iOS/Resources/ko.lproj/Localizable.strings
 
 # Android의 동등 rating 문자열 조회
-grep "rating_" /Users/imyeongjin/Desktop/side/FearIndex-Android/presentation/src/main/res/values-ko/strings.xml
+grep "rating_" FearIndex-Android/presentation/src/main/res/values-ko/strings.xml
 ```
 
 양쪽 값이 같은지 육안 비교. 다르면 iOS 기준으로 Android 수정.

@@ -3,14 +3,18 @@
 > 최신 진입점: @../../.claude/memory/resume-FearIndex-Android.md (이 파일과 동기, resume 스킬용)
 
 ## Date
-2026-08-19 (v1.5.3 배포 + 전수 검증 세션)
+2026-08-23 (광고 미노출 제보 분석 + 요금 점검 세션)
 
 ## Branch
-`dev`(85b683e) = origin/dev. release 브랜치에 v1.5.2·v1.5.3 머지 + 태그 push 완료. 트리 clean, worktree 없음, 로컬 feature 브랜치 정리 완료(dev/main/release만 남음).
+`dev`(ab1e31a = origin/dev, 전 브랜치·태그 동기화 완료). worktree 없음. **⚠️ Play production 은 v1.6.0(vc26)인데 이 레포엔 없음 — 다른 맥에서 push 필요.**
 
 ## ⚡ 한 줄 요약
 
-**v1.5.3(vc25) production 업로드 완료 — Play 검토 중(관리형 게시 OFF → 자동 게시).** 내용 = 배너 콜드스타트 fix + 알림 보관 표시/영속 분리 + 어댑터 진단. API health·푸시 임계치(이상/이하 실수신)·결제 시트·광고(테스트 기기) 전수 검증 GREEN.
+**광고 "안 뜬다"는 GA/Crashlytics/서버 실측으로 재현 안 됨(배너 실패 481→80 급감).** 진짜 문제는 v1.6.0 소스 부재(✅ 8/24 두 맥 dev 머지로 해소). 4계정 요금 8월 ≈₩8.4k 정상. 제보 원인 = 인터스티셜 세션 미리셋(iOS v1.9.2 미포팅) → **A안 TDD 수정 완료(dev ba21b53, 유닛 1,037/0)**. 배너 결함 2건(320dp 하한, AndroidView stale)은 별건. 상세 @../../.claude/memory/bugs-fixed.md 70번(재번호).
+
+## 이전 세션 요약 (2026-08-19)
+
+v1.5.3(vc25) production 업로드 → 게시 완료(이후 1.6.0 으로 대체됨). API health·푸시 임계치·결제 시트·광고 전수 검증 GREEN.
 
 ## Completed (이번 세션)
 
@@ -24,7 +28,9 @@
 
 ## Next (다음 세션) — 상세는 resume 파일
 
-1. 1.5.3 게시 확인(콘솔 u/1 주의) → deployment.md 출시 이력 행 갱신
+0. **다른 맥에서 1.6.0 빌드 커밋 `7ca2711` push**(사용자) → v1.6.0 태그 → dev 머지 → `fastlane production` 게시(승인됨) → v1.6.1 태그. 상세 절차 resume 파일 '재개 시 첫 행동'
+0-1. 1.6.0 위에 인터스티셜 fix 합쳐 1.6.1 빌드 → 실기기 30분 시나리오 확인 / 배너 결함 2건(70번 ①) 별건 수정
+1. ~~1.5.3 게시 확인~~ 완료(1.6.0 으로 대체)
 2. 게시 후 Play 설치본 실결제 완주(사용자)
 3. 배포 후 감시: #96 MotionEvent·프리미엄 non-fatal·배너 match rate
 4. 사용자 결정 2건(알림내역 전용 유닛·IAP 표시명) + 1.5.4 후보(@docs/checkpoints/RELEASE-1.5.3-CHECKLIST.md A~H)

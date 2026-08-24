@@ -58,7 +58,7 @@ type: reference
 ## AAB 빌드 (Release)
 
 ```bash
-cd /Users/imyeongjin/Desktop/side/FearIndex-Android
+cd FearIndex-Android   # 레포 루트
 ./gradlew :app:bundleRelease
 # 출력: app/build/outputs/bundle/release/app-release.aab
 ```
@@ -82,7 +82,7 @@ cd /Users/imyeongjin/Desktop/side/FearIndex-Android
 `fastlane/` 구조 존재. `supply` 기반.
 
 ```bash
-cd /Users/imyeongjin/Desktop/side/FearIndex-Android
+cd FearIndex-Android   # 레포 루트
 bundle exec fastlane internal
 ```
 

@@ -26,7 +26,7 @@ fastlane --version        # 2.232.0+ 확인
 rbenv install 3.2.0
 rbenv local 3.2.0
 
-cd /Users/imyeongjin/Desktop/FearIndex-Android
+cd FearIndex-Android   # 레포 루트
 bundle install
 ```
 
@@ -69,7 +69,7 @@ chmod 600 ~/fearindex-secrets/play-store-service-account.json
 ### 2.3 검증
 
 ```bash
-cd /Users/imyeongjin/Desktop/FearIndex-Android
+cd FearIndex-Android   # 레포 루트
 bundle exec fastlane run validate_play_store_json_key json_key:~/fearindex-secrets/play-store-service-account.json
 ```
 
@@ -80,7 +80,7 @@ bundle exec fastlane run validate_play_store_json_key json_key:~/fearindex-secre
 이미 Play Console 에 등록된 모든 자산 (icon, featureGraphic, 메타, 스크린샷, changelog) 을 `fastlane/metadata/android/` 하위에 다운로드.
 
 ```bash
-cd /Users/imyeongjin/Desktop/FearIndex-Android
+cd FearIndex-Android   # 레포 루트
 bundle exec fastlane supply init --json_key ~/fearindex-secrets/play-store-service-account.json --package_name th1ngjin.fearindex
 ```
 

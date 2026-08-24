@@ -62,7 +62,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
-import th1ngjin.fearindex.core.remoteconfig.AdsRemoteConfig
 import th1ngjin.fearindex.core.util.ShareUrlBuilder
 import th1ngjin.fearindex.domain.entity.ExchangeRateQuote
 import th1ngjin.fearindex.domain.entity.FearIndex
@@ -95,6 +94,7 @@ import th1ngjin.fearindex.presentation.component.InsightTeaserCard
 import th1ngjin.fearindex.presentation.component.InterstitialAdCoordinator
 import th1ngjin.fearindex.presentation.component.InterstitialAdPolicyConfig
 import th1ngjin.fearindex.presentation.component.InterstitialAdSessionState
+import th1ngjin.fearindex.presentation.component.interstitialAdPolicyConfig
 import th1ngjin.fearindex.presentation.component.KospiMethodInfoSheet
 import th1ngjin.fearindex.presentation.component.KospiSignalBreakdownCard
 import th1ngjin.fearindex.presentation.component.SimilarEventsCard
@@ -783,15 +783,6 @@ private fun FearIndexType.assetTickerLabel(): String = when (this) {
     FearIndexType.CRYPTO -> "BTC"
 }
 
-private fun AdsRemoteConfig.interstitialAdPolicyConfig(canRequestAds: Boolean): InterstitialAdPolicyConfig =
-    InterstitialAdPolicyConfig(
-        canRequestAds = canRequestAds,
-        adsEnabled = adsEnabled,
-        interstitialEnabled = interstitialAdsEnabled,
-        kospiEntryEnabled = kospiInterstitialEnabled,
-        sessionCap = interstitialSessionCap,
-        cooldownMillis = interstitialCooldownMillis,
-    )
 
 private tailrec fun Context.findActivity(): Activity? = when (this) {
     is Activity -> this
