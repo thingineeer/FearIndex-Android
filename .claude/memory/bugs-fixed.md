@@ -1,3 +1,14 @@
+## 2026-08-25 세션 (마케팅 급증 대비 점검 + 서버 레이트리밋 협업 + ASO)
+
+### 71. 마케팅 급증 대비 Android 점검 GREEN + 공유 레이트리밋 60→300/min 협업 검증 + '줍줍' ASO
+- **맥락**: 메인 세션(iOS) 요청 "오늘 마케팅으로 신규 유저 급증 예정 — Android 점검". 서버 변경은 메인 세션 담당(회장님 지시: 3플랫폼 무장애·무부수효과·TDD 검증 1순위 — 메인 세션에 전달).
+- **✅ 점검 결과(전부 정상)**: ① FCM 등록 — 24h Android registerFCMToken **200=656/401=4**(99.4%, 8/21 App Check 복구 유지) ② 신규 android 등록 8/23~ **123건**, 버전 1.6.0=117, **임계값 포함 123/123**(registerFCMToken payload 에 항상 실림 → hasExplicitThresholdSettings 게이트 충족·즉시체크 정상) + 8/24~ crypto 임계치 서버 발송 android 6건(최신 8/25 00:00Z score 74) ③ 스토어 = production **[26]=1.6.0**(v1.6.1 은 준비만, 미게시).
+- **429 발견 → 서버(메인 세션) 조정 협업**: 6h 429=35건 = callable-security 공유 per-IP 60/min — 마케팅 피크 시 CGNAT(같은 IP 다수 유저) 리스크 전달. 메인 세션이 TDD(red→green, 921/921)로 **SHARED_RATE_LIMIT_MAX_PER_IP 60→300/min** 배포(1차 4함수 06:5xZ, 2차 stuck/similar 3함수 08:1xZ — **1차 배포 목록에 없던 함수는 구 코드로 남는다**는 것을 전후 대조로 발견해 재배포 유도).
+- **전후 대조(Android 담당)**: 배포 전 12h Android 429=51 → 재배포 후 **공유 IP 리밋발 429 소멸**, 5xx 0, 401 노이즈 불변(App Check 회귀 없음). **잔여 429 는 전부 getsimilarevents 의 자체 per-device `checkRateLimit(deviceId)`**(한 기기 22초 8연타 패턴) — 공유 IP 리밋과 별개의 설계된 어뷰즈 보호, 클라는 카드 숨김/캐시로 우아 처리 → 조치 불필요, 종결.
+- **⚠️ 교훈**: ① Functions 는 공유 모듈 상수를 바꿔도 **재배포한 함수만 새 값** — 한도류 변경 시 대상 함수 전수 재배포 확인 ② 429 원인은 공유 IP 리밋 vs 함수별 per-device 리밋을 로그의 IP/연타 패턴으로 구분 ③ 플랫폼별 대조는 UA 필터(okhttp=Android, FearIndex-iOS=iOS/macOS)로.
+- **✅ ASO '줍줍'(회장님 요청, dev 3bbd530b push)**: Play 는 키워드 필드가 없어 ko_KR 설명문에 자연 삽입 — short(44자) "하락장 줍줍 타이밍" + full 도입부·푸시 알림 불릿, 총 3회. **스토어 실반영은 다음 fastlane production(v1.6.1) 업로드 시**. iOS/macOS 는 keywords.txt 반영됨(iOS main 4c0cdf336).
+- **기타**: 장시간 `sleep` 백그라운드 태스크가 2회 kill 됨 — 지연 재측정은 대기 없이 경과 후 즉시 실행이 안전. 레포에 untracked `.claude/settings.json` 생김(이 세션 산출물 아님, 미커밋).
+
 ## 2026-08-23 세션 (광고 미노출 제보 분석 + 4계정 요금 점검)
 
 ### 70. "광고 안 뜬다" 제보 — 실측 재현 불가 + 배포본(v1.6.0) 소스 부재 발견 + 배너 잠재 결함 2건

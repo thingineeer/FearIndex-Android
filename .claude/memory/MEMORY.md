@@ -14,7 +14,13 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
-## 최신 상태 (2026-08-24, 두 맥 dev 통합 — 1.6.0 소스 합류) ← 최신 진입점: @memory/resume-FearIndex-Android.md
+## 최신 상태 (2026-08-25, 마케팅 급증 대비 점검 + 레이트리밋 협업 + '줍줍' ASO) ← 최신 진입점: @memory/resume-FearIndex-Android.md
+
+- **점검 GREEN(71번)**: FCM 등록 24h 200=656/401=4, 신규 android 123건(8/23~) **임계값 123/123 포함**(즉시체크 게이트 OK), crypto 임계치 발송 실적 확인. 스토어 production=[26]=1.6.0 — **다음 작업 = v1.6.1(vc27) 게시**(@docs/checkpoints/HANDOFF-v1.6.1.md, ASO '줍줍' 포함됨).
+- **서버 공유 레이트리밋 60→300/min**(메인 세션 TDD 배포, CGNAT 대비) 전후 대조 종결 — 공유 IP 429 소멸·무부수효과. 잔여 429 = getSimilarEvents per-device 리밋(설계 동작). ⚠️ **공유 모듈 상수는 재배포한 함수만 반영**.
+- **ASO '줍줍'**: ko_KR short/full 설명문 3회 자연 삽입(dev 3bbd530b) — v1.6.1 업로드 시 스토어 반영.
+
+## 최신 상태 (2026-08-24, 두 맥 dev 통합 — 1.6.0 소스 합류)
 
 - **8/24 머지로 "1.6.0 소스 부재" 해소**: 로컬(이 맥) 1.6.0 소스 16커밋(빌드 커밋 `7ca2711` 포함, App Check 보강+patch 단위 강제 업데이트) ⟷ origin/dev v1.6.1 준비 26커밋(인터스티셜 세션 리셋 10분, vc27 bump, changelog 27)을 merge. 버전은 **1.6.1(vc27)** 채택. `release` 에 1.6.0 머지 + **v1.6.0 태그** 완료. bugs-fixed 번호 재정리: 광고 세션 항목 68→**70**(68=App Check, 69=1.6.0 배포).
 - **다음: v1.6.1(vc27) 게시** — @docs/checkpoints/HANDOFF-v1.6.1.md 절차 (게시 승인됨).
