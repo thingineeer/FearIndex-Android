@@ -81,4 +81,107 @@ class OnboardingTourSpecTest {
         val tall = Rect(0f, 450f, 100f, 1720f) // height 1270 = 63.5% of 2000
         assertEquals(OnboardingCardPlacement.BOTTOM, onboardingCardPlacement(tall, 2000f))
     }
+
+    // ── 카드 y 위치: 하이라이트에 밀착 (사용자 요청 2026-08-27) ──────────────
+
+    @Test
+    fun `앵커 아래 배치면 카드 상단이 앵커 바로 아래에 붙는다`() {
+        val anchor = Rect(0f, 300f, 1080f, 900f)
+        val top = onboardingCardTopPx(
+            placement = OnboardingCardPlacement.BOTTOM,
+            anchor = anchor,
+            cardHeightPx = 700f,
+            screenHeightPx = 2400f,
+            gapPx = 24f,
+            minTopPx = 100f,
+            maxBottomPx = 2200f,
+        )
+        assertEquals(924f, top, 0.01f)
+    }
+
+    @Test
+    fun `앵커 위 배치면 카드 하단이 앵커 바로 위에 붙는다`() {
+        val anchor = Rect(0f, 1800f, 1080f, 2000f)
+        val top = onboardingCardTopPx(
+            placement = OnboardingCardPlacement.TOP,
+            anchor = anchor,
+            cardHeightPx = 700f,
+            screenHeightPx = 2400f,
+            gapPx = 24f,
+            minTopPx = 100f,
+            maxBottomPx = 2200f,
+        )
+        assertEquals(1076f, top, 0.01f) // 1800 - 24 - 700
+    }
+
+    @Test
+    fun `아래 공간이 부족하면 하단 한계 안으로 당겨진다`() {
+        val anchor = Rect(0f, 300f, 1080f, 1900f) // 아래 붙이면 1924 + 700 = 2624 > 2200
+        val top = onboardingCardTopPx(
+            placement = OnboardingCardPlacement.BOTTOM,
+            anchor = anchor,
+            cardHeightPx = 700f,
+            screenHeightPx = 2400f,
+            gapPx = 24f,
+            minTopPx = 100f,
+            maxBottomPx = 2200f,
+        )
+        assertEquals(1500f, top, 0.01f) // 2200 - 700
+    }
+
+    @Test
+    fun `위 공간이 부족하면 상단 한계 아래로 밀린다`() {
+        val anchor = Rect(0f, 400f, 1080f, 700f) // 위에 붙이면 400 - 24 - 700 = -324
+        val top = onboardingCardTopPx(
+            placement = OnboardingCardPlacement.TOP,
+            anchor = anchor,
+            cardHeightPx = 700f,
+            screenHeightPx = 2400f,
+            gapPx = 24f,
+            minTopPx = 100f,
+            maxBottomPx = 2200f,
+        )
+        assertEquals(100f, top, 0.01f)
+    }
+
+    @Test
+    fun `앵커가 없으면 화면 중앙`() {
+        val top = onboardingCardTopPx(
+            placement = OnboardingCardPlacement.CENTER,
+            anchor = null,
+            cardHeightPx = 700f,
+            screenHeightPx = 2400f,
+            gapPx = 24f,
+            minTopPx = 100f,
+            maxBottomPx = 2200f,
+        )
+        assertEquals(850f, top, 0.01f)
+    }
+
+    @Test
+    fun `카드가 가용 높이보다 크면 상단 한계에 고정`() {
+        val anchor = Rect(0f, 300f, 1080f, 900f)
+        val top = onboardingCardTopPx(
+            placement = OnboardingCardPlacement.BOTTOM,
+            anchor = anchor,
+            cardHeightPx = 2400f,
+            screenHeightPx = 2400f,
+            gapPx = 24f,
+            minTopPx = 100f,
+            maxBottomPx = 2200f,
+        )
+        assertEquals(100f, top, 0.01f)
+    }
+
+    // ── 5단계 투표는 하이라이트 안쪽을 직접 누를 수 있어야 한다 ──────────────
+
+    @Test
+    fun `투표 단계만 하이라이트 상호작용 허용`() {
+        val steps = OnboardingSteps.ALL
+        assertTrue(steps[4].interactiveAnchor)
+        assertEquals(
+            listOf(false, false, false, false, true, false, false, false),
+            steps.map { it.interactiveAnchor },
+        )
+    }
 }
