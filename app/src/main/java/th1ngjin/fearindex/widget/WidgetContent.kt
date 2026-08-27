@@ -314,7 +314,7 @@ fun ChartWidgetContent(
                 Text(
                     text = data?.score?.toString() ?: "—",
                     maxLines = 1,
-                    style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = (if (large) 21 else 16).sp, fontWeight = FontWeight.Bold),
+                    style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = (if (large) 18 else 15).sp, fontWeight = FontWeight.Bold),
                 )
                 Spacer(GlanceModifier.defaultWeight())
                 // 기간 세그먼트 — 탭하면 이 위젯만 해당 기간으로 재렌더 (2026-08-28, A안)
@@ -325,10 +325,10 @@ fun ChartWidgetContent(
                         maxLines = 1,
                         modifier = GlanceModifier
                             .clickable(actionRunCallback<SetChartPeriodAction>(SetChartPeriodAction.params(p)))
-                            .padding(horizontal = if (large) 8.dp else 6.dp, vertical = 12.dp),
+                            .padding(horizontal = if (large) 6.dp else 4.dp, vertical = 12.dp),
                         style = TextStyle(
                             color = ColorProvider(if (selected) WidgetTextColor else WidgetChangeFlatColor),
-                            fontSize = (if (large) 11 else 9).sp,
+                            fontSize = (if (large) 14 else 11).sp,
                             fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
                         ),
                     )
