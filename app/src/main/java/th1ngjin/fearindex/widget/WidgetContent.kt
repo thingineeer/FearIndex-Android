@@ -165,3 +165,47 @@ private fun DashboardRow(
         )
     }
 }
+
+/**
+ * 1×1 컴팩트 단일 지수 위젯. 점수만 크게 — 등급/라벨 생략(공간 부족), 배경색이 등급을 전달한다.
+ * 데이터가 null 이면 중립 placeholder("—").
+ */
+@Composable
+fun CompactFearIndexWidgetContent(
+    context: Context,
+    indexType: FearIndexType,
+    data: WidgetIndexData?,
+) {
+    val background = data?.let { widgetFearScoreColor(it.score) } ?: WidgetPlaceholderColor
+    Column(
+        modifier = GlanceModifier
+            .fillMaxSize()
+            .cornerRadius(16.dp)
+            .background(ColorProvider(background))
+            .clickable(actionStartActivity<MainActivity>())
+            .padding(4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = indexLabel(context, indexType),
+            maxLines = 1,
+            style = TextStyle(
+                color = ColorProvider(WidgetTextColorDim),
+                fontSize = 10.sp,
+                fontWeight = FontWeight.Medium,
+                textAlign = TextAlign.Center,
+            ),
+        )
+        Text(
+            text = data?.score?.toString() ?: "—",
+            maxLines = 1,
+            style = TextStyle(
+                color = ColorProvider(WidgetTextColor),
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+            ),
+        )
+    }
+}

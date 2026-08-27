@@ -19,6 +19,7 @@ class DashboardFearWidget : GlanceAppWidget() {
         val market = loadWidgetIndex(context, FearIndexType.MARKET)
         val kospi = loadWidgetIndex(context, FearIndexType.KOSPI)
         val crypto = loadWidgetIndex(context, FearIndexType.CRYPTO)
+        if (market == null || kospi == null || crypto == null) FearWidgetUpdateWorker.enqueueRetry(context)
         provideContent {
             DashboardWidgetContent(context, market, kospi, crypto)
         }
