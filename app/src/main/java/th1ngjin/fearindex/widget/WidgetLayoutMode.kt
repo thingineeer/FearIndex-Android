@@ -19,5 +19,14 @@ enum class WidgetLayoutMode {
 
         fun from(widthDp: Float, heightDp: Float): WidgetLayoutMode =
             if (widthDp < COMPACT_THRESHOLD_DP || heightDp < COMPACT_THRESHOLD_DP) COMPACT else FULL
+
+        /**
+         * 1×1 카드 한 변(dp) — One UI 셀은 세로가 길어 카드가 셀을 그대로 채우면 길쭉해 보인다.
+         * 짧은 변 기준 정사각으로 잘라 다른 앱 1×1 위젯과 같은 실루엣을 만든다.
+         */
+        fun squareCardSideDp(widthDp: Float, heightDp: Float): Float = minOf(widthDp, heightDp)
+
+        /** 대시보드 상세(등급·전일변화·갱신시각) 표시 여부 — 2×1 기본 크기에선 게이지+이름만. */
+        fun showsDashboardDetails(heightDp: Float): Boolean = heightDp >= COMPACT_THRESHOLD_DP
     }
 }

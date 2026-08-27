@@ -7,7 +7,9 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceModifier
+import androidx.glance.LocalSize
 import androidx.glance.Image
+import androidx.glance.layout.ContentScale
 import androidx.glance.ImageProvider
 import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
@@ -49,15 +51,29 @@ private fun cardModifier(radius: Int) = GlanceModifier
     .background(ColorProvider(WidgetCardBackground))
     .clickable(actionStartActivity<MainActivity>())
 
-/** 단일 지수 — 1×1(기본): 게이지 + 점수 + 풀네임. */
+/** 단일 지수 — 1×1(기본): 게이지 + 점수 + 풀네임. One UI 셀은 세로가 길어 짧은 변 정사각으로 중앙 배치. */
 @Composable
 fun CompactFearIndexWidgetContent(
     context: Context,
     indexType: FearIndexType,
     data: WidgetIndexData?,
 ) {
+    val size = LocalSize.current
+    val side = WidgetLayoutMode.squareCardSideDp(size.width.value, size.height.value)
+    Box(modifier = GlanceModifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        SquareCompactCard(indexType, data, side)
+    }
+}
+
+@Composable
+private fun SquareCompactCard(indexType: FearIndexType, data: WidgetIndexData?, sideDp: Float) {
     Column(
-        modifier = cardModifier(16).padding(3.dp),
+        modifier = GlanceModifier
+            .size(sideDp.dp)
+            .cornerRadius(16.dp)
+            .background(ColorProvider(WidgetCardBackground))
+            .clickable(actionStartActivity<MainActivity>())
+            .padding(3.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -102,6 +118,8 @@ fun CombinedWidgetContent(
     crypto: WidgetIndexData?,
     large: Boolean,
 ) {
+    val size = LocalSize.current
+    val showDetails = WidgetLayoutMode.showsDashboardDetails(size.height.value)
     val gaugePx = if (large) 280 else 170
     val scoreSp = if (large) 24 else 15
     val nameSp = if (large) 10 else 8
@@ -131,13 +149,15 @@ fun CombinedWidgetContent(
                             maxLines = 1,
                             style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = nameSp.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Center),
                         )
-                        RatingChangeRow(context, data, fontSp = ratingSp, dotDp = if (large) 7 else 5)
+                        if (showDetails) {
+                            RatingChangeRow(context, data, fontSp = ratingSp, dotDp = if (large) 7 else 5)
+                        }
                     }
                 }
             }
         }
         RefreshButton(modifier = GlanceModifier.padding(top = 4.dp, end = 6.dp), alignTopEnd = true)
-        UpdatedAt(context, large)
+        if (showDetails) UpdatedAt(context, large)
     }
 }
 
@@ -176,11 +196,17 @@ fun ChartWidgetContent(
             }
             Spacer(GlanceModifier.height(4.dp))
             if (history.size >= 2) {
+                // 위젯 실측 크기(헤더·패딩 제외)에 맞춰 렌더 — Fit 스케일 letterbox 로 생기던 빈 공간 제거
+                val widgetSize = LocalSize.current
+                val density = context.resources.displayMetrics.density
+                val chartWidthPx = ((widgetSize.width.value - 24f) * density).toInt().coerceAtLeast(120)
+                val chartHeightPx = ((widgetSize.height.value - (if (large) 52f else 44f)) * density).toInt().coerceAtLeast(80)
                 Image(
                     provider = ImageProvider(
-                        WidgetChartRenderer.render(history, xLabels, if (large) 640 else 340, if (large) 200 else 150, ratingColor.toArgb()),
+                        WidgetChartRenderer.render(history, xLabels, chartWidthPx, chartHeightPx, ratingColor.toArgb()),
                     ),
                     contentDescription = null,
+                    contentScale = ContentScale.FillBounds,
                     modifier = GlanceModifier.defaultWeight().fillMaxWidth(),
                 )
             } else {

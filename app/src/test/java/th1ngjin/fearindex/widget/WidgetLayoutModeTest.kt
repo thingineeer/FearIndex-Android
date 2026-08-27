@@ -28,4 +28,20 @@ class WidgetLayoutModeTest {
         assertEquals(WidgetLayoutMode.FULL, WidgetLayoutMode.from(100f, 100f))
         assertEquals(WidgetLayoutMode.COMPACT, WidgetLayoutMode.from(99.9f, 100f))
     }
+
+    // ── 카드가 셀을 그대로 채우면 One UI 의 세로로 긴 셀에서 길쭉해 보인다 ──
+
+    @Test
+    fun `1x1 카드는 짧은 변 기준 정사각`() {
+        assertEquals(57f, WidgetLayoutMode.squareCardSideDp(57f, 92f), 0.01f)
+        assertEquals(60f, WidgetLayoutMode.squareCardSideDp(80f, 60f), 0.01f)
+    }
+
+    @Test
+    fun `대시보드 상세(등급·갱신시각)는 높이 100dp 이상에서만`() {
+        assertEquals(false, WidgetLayoutMode.showsDashboardDetails(57f))
+        assertEquals(false, WidgetLayoutMode.showsDashboardDetails(99.9f))
+        assertEquals(true, WidgetLayoutMode.showsDashboardDetails(100f))
+        assertEquals(true, WidgetLayoutMode.showsDashboardDetails(180f))
+    }
 }
