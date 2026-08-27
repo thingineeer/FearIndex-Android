@@ -307,7 +307,7 @@ fun ChartWidgetContent(
                     maxLines = 1,
                     modifier = GlanceModifier
                         .clickable(actionRunCallback<CycleChartIndexAction>())
-                        .padding(top = 4.dp, bottom = 4.dp, end = 4.dp),
+                        .padding(top = 12.dp, bottom = 12.dp, end = 6.dp),
                     style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = (if (large) 11 else 9).sp, fontWeight = FontWeight.Medium),
                 )
                 Spacer(GlanceModifier.width(6.dp))
@@ -325,7 +325,7 @@ fun ChartWidgetContent(
                         maxLines = 1,
                         modifier = GlanceModifier
                             .clickable(actionRunCallback<SetChartPeriodAction>(SetChartPeriodAction.params(p)))
-                            .padding(horizontal = if (large) 5.dp else 3.dp, vertical = 6.dp),
+                            .padding(horizontal = if (large) 8.dp else 6.dp, vertical = 12.dp),
                         style = TextStyle(
                             color = ColorProvider(if (selected) WidgetTextColor else WidgetChangeFlatColor),
                             fontSize = (if (large) 11 else 9).sp,
