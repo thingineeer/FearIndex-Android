@@ -540,4 +540,7 @@
     <string name="insight_historical_return_basis_crypto">Bitcoin அடிப்படையில்</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">மூடு</string>
+    <string name="insight_current_score_title_greed">%1$d-க்குப் பிறகு மாற்றம்</string>
+    <string name="insight_historical_return_title_greed">அதன் பிறகு என்ன நடந்தது?</string>
+    <string name="score_explorer_subtitle_greed">இந்த மதிப்பெண் பதிவான நாளுக்குப் பிறகு என்ன நடந்தது?</string>
 </resources>

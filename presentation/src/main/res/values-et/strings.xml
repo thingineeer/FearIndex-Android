@@ -537,4 +537,7 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="insight_historical_return_basis_crypto">Põhineb Bitcoinil</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Sulge</string>
+    <string name="insight_current_score_title_greed">Muutus pärast %1$d</string>
+    <string name="insight_historical_return_title_greed">Mis juhtus pärast?</string>
+    <string name="score_explorer_subtitle_greed">Mis järgnes päevale selle skooriga?</string>
 </resources>

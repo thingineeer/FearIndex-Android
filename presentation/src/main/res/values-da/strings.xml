@@ -537,4 +537,7 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="insight_historical_return_basis_crypto">Baseret på Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Luk</string>
+    <string name="insight_current_score_title_greed">Ændring efter %1$d</string>
+    <string name="insight_historical_return_title_greed">Hvad skete der bagefter?</string>
+    <string name="score_explorer_subtitle_greed">Hvad fulgte efter en dag med denne score?</string>
 </resources>

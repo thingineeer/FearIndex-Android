@@ -536,4 +536,7 @@
     <string name="insight_historical_return_basis_crypto">基於Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">關閉</string>
+    <string name="insight_current_score_title_greed">%1$d 之後的變動</string>
+    <string name="insight_historical_return_title_greed">之後走勢如何？</string>
+    <string name="score_explorer_subtitle_greed">記錄到該分數之後，市場怎麼走？</string>
 </resources>

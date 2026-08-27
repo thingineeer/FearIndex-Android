@@ -11,6 +11,9 @@
 2. **v1.6.1(vc27) 게시** — @docs/checkpoints/HANDOFF-v1.6.1.md 절차: (그 맥 최초면 `bash ~/thingineeer-env/android/fearindex/install.sh`) → `./gradlew test` → `bundle exec fastlane production`(관리형 게시 OFF, **사용자 게시 승인됨**) → 트랙 `[27]` 확인 → v1.6.1 태그 + release 머지 + deployment.md 행. versionCode 는 이미 27/1.6.1(머지에서 채택, changelog 27 존재).
 3. 게시 후 실기기: 10분 백그라운드 → 코스피 재진입 → 전면광고 노출 1회 확인.
 
+## 2026-08-27 세션 (이 맥, 상세 72번)
+- [x] 탐욕(≥70) 인앱 카피 과열 프레임 통일 — GreedFrame(TDD) + 3곳 문구 분기 + 3키×45 locale, dev 머지·push. 푸시 문구는 서버(메인 세션) 담당. **v1.6.1 미게시 상태 유지 → 이 변경도 v1.6.1 에 포함됨**
+
 ## 2026-08-25 세션 (이 맥, 상세 71번)
 - [x] 마케팅 급증 대비 점검 — FCM 등록 200=656/401=4, 신규 android 123건(1.6.0=117) **임계값 123/123 포함**(즉시체크 게이트 OK), 스토어 production=[26]. 메인 세션 회신 완료
 - [x] 서버 공유 레이트리밋 60→300/min(메인 세션 TDD 배포) **전후 대조 종결** — 공유 IP 리밋발 429 소멸·5xx 0·401 불변. 잔여 429 = getSimilarEvents per-device 리밋(설계 동작). ⚠️ 교훈: 공유 모듈 상수 변경은 **재배포한 함수만 반영** — 1차 배포 누락 3함수를 대조로 발견해 재배포 유도

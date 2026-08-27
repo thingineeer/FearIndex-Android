@@ -537,4 +537,7 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="insight_historical_return_basis_crypto">Com base no Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Fechar</string>
+    <string name="insight_current_score_title_greed">Variação após %1$d</string>
+    <string name="insight_historical_return_title_greed">O que aconteceu depois?</string>
+    <string name="score_explorer_subtitle_greed">O que se seguiu a um dia com esta pontuação?</string>
 </resources>

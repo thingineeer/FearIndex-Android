@@ -540,4 +540,7 @@
     <string name="insight_historical_return_basis_crypto">Bitcoin এর উপর ভিত্তি করে</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">বন্ধ করুন</string>
+    <string name="insight_current_score_title_greed">%1$d-এর পরে পরিবর্তন</string>
+    <string name="insight_historical_return_title_greed">তারপর কী হয়েছিল?</string>
+    <string name="score_explorer_subtitle_greed">এই স্কোরের দিনের পরে কী হয়েছিল?</string>
 </resources>

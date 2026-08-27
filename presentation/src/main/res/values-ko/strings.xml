@@ -554,4 +554,7 @@
     <string name="insight_historical_return_basis_crypto">Bitcoin 기준</string>
     <string name="a11y_gauge_value">%1$d점, %2$s</string>
     <string name="common_close">닫기</string>
+    <string name="insight_current_score_title_greed">%1$d점 이후 변동</string>
+    <string name="insight_historical_return_title_greed">그때 이후 변동은?</string>
+    <string name="score_explorer_subtitle_greed">그 점수를 기록한 날 이후 어땠을까요?</string>
 </resources>

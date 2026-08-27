@@ -8,6 +8,7 @@ import th1ngjin.fearindex.domain.entity.InsightType
 import th1ngjin.fearindex.domain.entity.MarketInsight
 import th1ngjin.fearindex.domain.entity.VelocityTrend
 import th1ngjin.fearindex.presentation.R
+import th1ngjin.fearindex.presentation.common.GreedFrame
 
 @Composable
 fun insightTitle(insight: MarketInsight): String {
@@ -18,7 +19,10 @@ fun insightTitle(insight: MarketInsight): String {
         } else {
             stringResource(R.string.insight_overheat_title)
         }
-        InsightType.HISTORICAL_RETURN -> stringResource(R.string.insight_historical_return_title)
+        InsightType.HISTORICAL_RETURN -> stringResource(
+            if (GreedFrame.isGreed(insight.score)) R.string.insight_historical_return_title_greed
+            else R.string.insight_historical_return_title,
+        )
         InsightType.RETURN_CHART -> when (insight.indexType) {
             FearIndexType.MARKET -> stringResource(R.string.insight_return_chart_title_market)
             FearIndexType.KOSPI -> stringResource(R.string.insight_return_chart_title_kospi)
