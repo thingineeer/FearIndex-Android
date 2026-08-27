@@ -542,4 +542,12 @@
     <string name="score_explorer_subtitle_greed">Vad hände efter en dag med detta värde?</string>
     <string name="widget_updated_at">kl. %1$s</string>
     <string name="widget_chart_description">30-dagars trend för Fear &amp; Greed-index</string>
+    <string name="widget_guide_section_widgets">Widgettyper</string>
+    <string name="widget_guide_type_single">Mätare för ett index — Globalt · KOSPI · Krypto</string>
+    <string name="widget_guide_section_howto">Så lägger du till</string>
+    <string name="widget_guide_section_tips">Tips</string>
+    <string name="widget_guide_tip_refresh">Tryck på ↻-knappen på en widget för att uppdatera den direkt.</string>
+    <string name="widget_guide_tip_resize">Håll in en widget för att flytta den eller ändra dess storlek.</string>
+    <string name="widget_guide_tip_auto">Widgetar uppdateras automatiskt med några timmars mellanrum och varje gång du öppnar appen.</string>
+    <string name="widget_guide_tip_launcher">Menynamn kan skilja sig något beroende på enhet och launcher.</string>
 </resources>

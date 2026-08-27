@@ -541,4 +541,12 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="score_explorer_subtitle_greed">Bu puanın görüldüğü günden sonra ne oldu?</string>
     <string name="widget_updated_at">%1$s itibarıyla</string>
     <string name="widget_chart_description">Korku ve Açgözlülük Endeksi 30 günlük grafik</string>
+    <string name="widget_guide_section_widgets">Widget türleri</string>
+    <string name="widget_guide_type_single">Tek endeks göstergesi — Küresel · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Nasıl eklenir</string>
+    <string name="widget_guide_section_tips">İpuçları</string>
+    <string name="widget_guide_tip_refresh">Bir widget\'taki ↻ düğmesine dokunarak hemen yenileyebilirsiniz.</string>
+    <string name="widget_guide_tip_resize">Bir widget\'ı basılı tutarak taşıyabilir veya yeniden boyutlandırabilirsiniz.</string>
+    <string name="widget_guide_tip_auto">Widget\'lar birkaç saatte bir ve uygulamayı her açtığınızda otomatik olarak güncellenir.</string>
+    <string name="widget_guide_tip_launcher">Menü adları cihaza ve başlatıcıya göre biraz farklılık gösterebilir.</string>
 </resources>

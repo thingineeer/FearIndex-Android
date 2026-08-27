@@ -541,4 +541,12 @@
     <string name="score_explorer_subtitle_greed">ماذا حدث بعد يوم سجّل هذه الدرجة؟</string>
     <string name="widget_updated_at">حتى %1$s</string>
     <string name="widget_chart_description">مخطط اتجاه مؤشر الخوف والجشع لمدة 30 يومًا</string>
+    <string name="widget_guide_section_widgets">أنواع الأدوات</string>
+    <string name="widget_guide_type_single">مقياس مؤشر واحد — عالمي · كوسبي · العملات الرقمية</string>
+    <string name="widget_guide_section_howto">طريقة الإضافة</string>
+    <string name="widget_guide_section_tips">نصائح</string>
+    <string name="widget_guide_tip_refresh">اضغط على زر ↻ في الأداة لتحديثها فورًا.</string>
+    <string name="widget_guide_tip_resize">اضغط مطولًا على الأداة لنقلها أو تغيير حجمها.</string>
+    <string name="widget_guide_tip_auto">يتم تحديث الأدوات تلقائيًا كل بضع ساعات وفي كل مرة تفتح فيها التطبيق.</string>
+    <string name="widget_guide_tip_launcher">قد تختلف أسماء القوائم قليلًا حسب الجهاز والمشغّل.</string>
 </resources>

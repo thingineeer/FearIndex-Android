@@ -545,4 +545,12 @@
     <string name="score_explorer_subtitle_greed">இந்த மதிப்பெண் பதிவான நாளுக்குப் பிறகு என்ன நடந்தது?</string>
     <string name="widget_updated_at">%1$s வரை</string>
     <string name="widget_chart_description">அச்ச-பேராசை குறியீட்டின் 30-நாள் வரைபடம்</string>
+    <string name="widget_guide_section_widgets">விட்ஜெட் வகைகள்</string>
+    <string name="widget_guide_type_single">ஒற்றை குறியீட்டு அளவி — உலகளாவிய · KOSPI · கிரிப்டோ</string>
+    <string name="widget_guide_section_howto">சேர்க்கும் முறை</string>
+    <string name="widget_guide_section_tips">குறிப்புகள்</string>
+    <string name="widget_guide_tip_refresh">விட்ஜெட்டில் உள்ள ↻ பொத்தானை தட்டினால் உடனே புதுப்பிக்கப்படும்.</string>
+    <string name="widget_guide_tip_resize">விட்ஜெட்டை நகர்த்த அல்லது அளவை மாற்ற அதை அழுத்திப் பிடிக்கவும்.</string>
+    <string name="widget_guide_tip_auto">விட்ஜெட்கள் சில மணிநேரத்திற்கு ஒருமுறை மற்றும் ஆப்ஸை திறக்கும் ஒவ்வொரு முறையும் தானாக புதுப்பிக்கப்படும்.</string>
+    <string name="widget_guide_tip_launcher">சாதனம் மற்றும் லாஞ்சரைப் பொறுத்து மெனு பெயர்கள் சற்று மாறுபடலாம்.</string>
 </resources>

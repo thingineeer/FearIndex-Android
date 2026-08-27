@@ -544,4 +544,12 @@
     <string name="score_explorer_subtitle_greed">Что происходило после дня с таким значением?</string>
     <string name="widget_updated_at">на %1$s</string>
     <string name="widget_chart_description">График индекса страха и жадности за 30 дней</string>
+    <string name="widget_guide_section_widgets">Типы виджетов</string>
+    <string name="widget_guide_type_single">Датчик одного индекса — Глобальный · KOSPI · Крипто</string>
+    <string name="widget_guide_section_howto">Как добавить</string>
+    <string name="widget_guide_section_tips">Советы</string>
+    <string name="widget_guide_tip_refresh">Нажмите кнопку ↻ на виджете, чтобы сразу обновить его.</string>
+    <string name="widget_guide_tip_resize">Удерживайте виджет, чтобы переместить его или изменить размер.</string>
+    <string name="widget_guide_tip_auto">Виджеты обновляются автоматически каждые несколько часов и при каждом открытии приложения.</string>
+    <string name="widget_guide_tip_launcher">Названия меню могут немного отличаться в зависимости от устройства и лаунчера.</string>
 </resources>

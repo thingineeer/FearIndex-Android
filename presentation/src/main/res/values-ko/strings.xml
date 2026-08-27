@@ -559,4 +559,12 @@
     <string name="score_explorer_subtitle_greed">그 점수를 기록한 날 이후 어땠을까요?</string>
     <string name="widget_updated_at">%1$s 기준</string>
     <string name="widget_chart_description">최근 30일 공포탐욕지수 추이 차트</string>
+    <string name="widget_guide_section_widgets">위젯 종류</string>
+    <string name="widget_guide_type_single">단일 지수 게이지 — 글로벌 · 코스피 · 암호화폐</string>
+    <string name="widget_guide_section_howto">추가 방법</string>
+    <string name="widget_guide_section_tips">팁</string>
+    <string name="widget_guide_tip_refresh">위젯의 ↻ 버튼을 누르면 바로 새로고침됩니다.</string>
+    <string name="widget_guide_tip_resize">위젯을 길게 누르면 이동하거나 크기를 조절할 수 있습니다.</string>
+    <string name="widget_guide_tip_auto">위젯은 몇 시간마다, 그리고 앱을 열 때마다 자동으로 갱신됩니다.</string>
+    <string name="widget_guide_tip_launcher">기기와 런처에 따라 메뉴 이름이 조금 다를 수 있습니다.</string>
 </resources>

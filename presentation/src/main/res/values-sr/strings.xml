@@ -544,4 +544,12 @@
     <string name="score_explorer_subtitle_greed">Шта је уследило после дана са овим резултатом?</string>
     <string name="widget_updated_at">у %1$s</string>
     <string name="widget_chart_description">30-дневни тренд индекса страха и похлепе</string>
+    <string name="widget_guide_section_widgets">Vrste vidžeta</string>
+    <string name="widget_guide_type_single">Merač jednog indeksa — Globalni · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Kako dodati</string>
+    <string name="widget_guide_section_tips">Saveti</string>
+    <string name="widget_guide_tip_refresh">Dodirnite dugme ↻ na vidžetu da biste ga odmah osvežili.</string>
+    <string name="widget_guide_tip_resize">Držite vidžet da biste ga premestili ili promenili veličinu.</string>
+    <string name="widget_guide_tip_auto">Vidžeti se automatski ažuriraju na svakih nekoliko sati i pri svakom otvaranju aplikacije.</string>
+    <string name="widget_guide_tip_launcher">Nazivi menija mogu se malo razlikovati u zavisnosti od uređaja i launchera.</string>
 </resources>

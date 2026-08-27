@@ -545,4 +545,12 @@
     <string name="score_explorer_subtitle_greed">इस स्कोर वाले दिन के बाद क्या हुआ?</string>
     <string name="widget_updated_at">%1$s तक</string>
     <string name="widget_chart_description">भय-लालच सूचकांक का 30-दिन का चार्ट</string>
+    <string name="widget_guide_section_widgets">विजेट के प्रकार</string>
+    <string name="widget_guide_type_single">एकल सूचकांक गेज — ग्लोबल · KOSPI · क्रिप्टो</string>
+    <string name="widget_guide_section_howto">जोड़ने का तरीका</string>
+    <string name="widget_guide_section_tips">सुझाव</string>
+    <string name="widget_guide_tip_refresh">विजेट पर ↻ बटन दबाकर उसे तुरंत रीफ़्रेश करें।</string>
+    <string name="widget_guide_tip_resize">विजेट को देर तक दबाकर उसे हिलाएँ या उसका आकार बदलें।</string>
+    <string name="widget_guide_tip_auto">विजेट हर कुछ घंटों में और हर बार ऐप खोलने पर अपने आप अपडेट होते हैं।</string>
+    <string name="widget_guide_tip_launcher">डिवाइस और लॉन्चर के अनुसार मेनू के नाम थोड़े अलग हो सकते हैं।</string>
 </resources>

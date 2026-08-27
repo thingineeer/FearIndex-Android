@@ -544,4 +544,12 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="score_explorer_subtitle_greed">Ce a urmat după o zi cu acest scor?</string>
     <string name="widget_updated_at">la %1$s</string>
     <string name="widget_chart_description">Tendința pe 30 de zile a indicelui Fear &amp; Greed</string>
+    <string name="widget_guide_section_widgets">Tipuri de widgeturi</string>
+    <string name="widget_guide_type_single">Indicator cu un singur indice — Global · KOSPI · Cripto</string>
+    <string name="widget_guide_section_howto">Cum adaugi</string>
+    <string name="widget_guide_section_tips">Sfaturi</string>
+    <string name="widget_guide_tip_refresh">Atinge butonul ↻ de pe un widget pentru a-l actualiza imediat.</string>
+    <string name="widget_guide_tip_resize">Ține apăsat un widget pentru a-l muta sau redimensiona.</string>
+    <string name="widget_guide_tip_auto">Widgeturile se actualizează automat la câteva ore și de fiecare dată când deschizi aplicația.</string>
+    <string name="widget_guide_tip_launcher">Numele meniurilor pot diferi ușor în funcție de dispozitiv și launcher.</string>
 </resources>

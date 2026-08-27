@@ -542,4 +542,12 @@
     <string name="score_explorer_subtitle_greed">Que s\'est-il passé après un jour à ce score ?</string>
     <string name="widget_updated_at">à %1$s</string>
     <string name="widget_chart_description">Tendance 30 jours de l’indice Fear &amp; Greed</string>
+    <string name="widget_guide_section_widgets">Types de widgets</string>
+    <string name="widget_guide_type_single">Jauge à indice unique — Mondial · KOSPI · Crypto</string>
+    <string name="widget_guide_section_howto">Comment ajouter</string>
+    <string name="widget_guide_section_tips">Astuces</string>
+    <string name="widget_guide_tip_refresh">Touchez le bouton ↻ d\'un widget pour l\'actualiser immédiatement.</string>
+    <string name="widget_guide_tip_resize">Maintenez un widget appuyé pour le déplacer ou le redimensionner.</string>
+    <string name="widget_guide_tip_auto">Les widgets se mettent à jour automatiquement toutes les quelques heures et à chaque ouverture de l\'appli.</string>
+    <string name="widget_guide_tip_launcher">Les noms de menus peuvent varier légèrement selon l\'appareil et le lanceur.</string>
 </resources>

@@ -542,4 +542,12 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="score_explorer_subtitle_greed">Wat het gevolg ná \'n dag met hierdie telling?</string>
     <string name="widget_updated_at">soos om %1$s</string>
     <string name="widget_chart_description">30-dae-tendens van die Fear &amp; Greed-indeks</string>
+    <string name="widget_guide_section_widgets">Legstuktipes</string>
+    <string name="widget_guide_type_single">Enkelindeksmeter — Globaal · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Hoe om by te voeg</string>
+    <string name="widget_guide_section_tips">Wenke</string>
+    <string name="widget_guide_tip_refresh">Tik op die ↻-knoppie op \'n legstuk om dit dadelik te verfris.</string>
+    <string name="widget_guide_tip_resize">Hou \'n legstuk in om dit te skuif of die grootte te verander.</string>
+    <string name="widget_guide_tip_auto">Legstukke word elke paar uur en elke keer as jy die app oopmaak outomaties opgedateer.</string>
+    <string name="widget_guide_tip_launcher">Kieslysname kan effens verskil na gelang van toestel en launcher.</string>
 </resources>

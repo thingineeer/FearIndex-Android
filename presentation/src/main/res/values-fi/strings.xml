@@ -542,4 +542,12 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="score_explorer_subtitle_greed">Mitä seurasi päivän jälkeen, jolloin arvo oli tämä?</string>
     <string name="widget_updated_at">klo %1$s</string>
     <string name="widget_chart_description">Fear &amp; Greed -indeksin 30 päivän kehitys</string>
+    <string name="widget_guide_section_widgets">Widgettityypit</string>
+    <string name="widget_guide_type_single">Yhden indeksin mittari — Globaali · KOSPI · Krypto</string>
+    <string name="widget_guide_section_howto">Näin lisäät</string>
+    <string name="widget_guide_section_tips">Vinkit</string>
+    <string name="widget_guide_tip_refresh">Napauta widgetin ↻-painiketta päivittääksesi sen heti.</string>
+    <string name="widget_guide_tip_resize">Paina widgetiä pitkään siirtääksesi sitä tai muuttaaksesi sen kokoa.</string>
+    <string name="widget_guide_tip_auto">Widgetit päivittyvät automaattisesti muutaman tunnin välein ja aina, kun avaat sovelluksen.</string>
+    <string name="widget_guide_tip_launcher">Valikkojen nimet voivat vaihdella hieman laitteen ja käynnistimen mukaan.</string>
 </resources>

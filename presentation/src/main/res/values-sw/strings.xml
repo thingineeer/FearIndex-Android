@@ -542,4 +542,12 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="score_explorer_subtitle_greed">Nini kilifuata baada ya siku yenye alama hii?</string>
     <string name="widget_updated_at">kufikia %1$s</string>
     <string name="widget_chart_description">Chati ya mwenendo wa siku 30 ya Fear &amp; Greed</string>
+    <string name="widget_guide_section_widgets">Aina za wijeti</string>
+    <string name="widget_guide_type_single">Kipimo cha faharasa moja — Kimataifa · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Jinsi ya kuongeza</string>
+    <string name="widget_guide_section_tips">Vidokezo</string>
+    <string name="widget_guide_tip_refresh">Gusa kitufe cha ↻ kwenye wijeti ili kuionyesha upya mara moja.</string>
+    <string name="widget_guide_tip_resize">Shikilia wijeti ili kuisogeza au kubadilisha ukubwa wake.</string>
+    <string name="widget_guide_tip_auto">Wijeti husasishwa kiotomatiki kila baada ya saa chache na kila unapofungua programu.</string>
+    <string name="widget_guide_tip_launcher">Majina ya menyu yanaweza kutofautiana kidogo kulingana na kifaa na kizindua.</string>
 </resources>

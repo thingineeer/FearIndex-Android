@@ -541,4 +541,12 @@
     <string name="score_explorer_subtitle_greed">このスコアを記録した日の後はどうなった？</string>
     <string name="widget_updated_at">%1$s 時点</string>
     <string name="widget_chart_description">過去30日の恐怖強欲指数チャート</string>
+    <string name="widget_guide_section_widgets">ウィジェットの種類</string>
+    <string name="widget_guide_type_single">単一指数ゲージ — グローバル · KOSPI · 暗号資産</string>
+    <string name="widget_guide_section_howto">追加方法</string>
+    <string name="widget_guide_section_tips">ヒント</string>
+    <string name="widget_guide_tip_refresh">ウィジェットの↻ボタンをタップすると、すぐに更新されます。</string>
+    <string name="widget_guide_tip_resize">ウィジェットを長押しすると、移動やサイズ変更ができます。</string>
+    <string name="widget_guide_tip_auto">ウィジェットは数時間ごと、およびアプリを開くたびに自動更新されます。</string>
+    <string name="widget_guide_tip_launcher">端末やランチャーによってメニュー名が多少異なる場合があります。</string>
 </resources>
