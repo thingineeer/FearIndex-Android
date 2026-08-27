@@ -128,79 +128,74 @@ fun CombinedWidgetContent(
         FearIndexType.CRYPTO to crypto,
     )
     when (WidgetLayoutMode.dashboardArrangement(size.width.value, size.height.value)) {
-        DashboardArrangement.ROW -> CombinedCellFlow(context, entries, horizontal = true, showTime = size.width.value >= 200f)
-        DashboardArrangement.COLUMN -> CombinedCellFlow(context, entries, horizontal = false, showTime = true)
-        DashboardArrangement.LIST -> CombinedListLayout(context, entries, size.height.value)
+        DashboardArrangement.ROW -> CombinedRowLayout(context, entries, size.width.value, size.height.value)
+        DashboardArrangement.LIST -> CombinedListLayout(context, entries, size.width.value, size.height.value)
     }
 }
 
-/** ROW/COLUMN 공용 — 셀(게이지 위, 이름·등급 아래 중앙)을 가로 또는 세로로 나열. */
+/** ROW(낮음): 게이지 3개 가로 — 각 게이지 아래 이름(+높이 되면 등급). */
 @Composable
-private fun CombinedCellFlow(
+private fun CombinedRowLayout(
     context: Context,
     entries: List<Pair<FearIndexType, WidgetIndexData?>>,
-    horizontal: Boolean,
-    showTime: Boolean,
+    widthDp: Float,
+    heightDp: Float,
 ) {
+    val showRating = WidgetLayoutMode.rowModeShowsRating(heightDp)
+    // ⚠️ Glance 는 weight 안에 또 weight 를 중첩하면 안쪽이 0 으로 붕괴한다(게이지 소실) → 고정 크기
+    // 헤더 실측: ↻(15sp≈20dp) + 상하 패딩 16dp ≈ 36dp — 과소 잡으면 하단 이름이 잘린다
+    val textBlockDp = if (showRating) 30f else 16f
+    val gaugeDp = minOf(heightDp - 36f - textBlockDp - 14f, widthDp / 3f - 14f).coerceIn(24f, 72f)
     Box(modifier = cardModifier(20)) {
         Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 8.dp, vertical = 4.dp)) {
-            RefreshHeader(context, showTime = showTime)
-            if (horizontal) {
-                Row(modifier = GlanceModifier.fillMaxWidth().defaultWeight(), verticalAlignment = Alignment.CenterVertically) {
-                    entries.forEach { (type, data) ->
-                        // Glance: Row 자식에 fillMaxSize 겹치면 weight 가 무시된다 → weight+fillMaxHeight 만
-                        CombinedCell(context, type, data, modifier = GlanceModifier.defaultWeight().fillMaxHeight())
-                    }
-                }
-            } else {
+            RefreshHeader(context, showTime = widthDp >= 200f)
+            Row(modifier = GlanceModifier.fillMaxWidth().defaultWeight(), verticalAlignment = Alignment.CenterVertically) {
                 entries.forEach { (type, data) ->
-                    CombinedCell(context, type, data, modifier = GlanceModifier.fillMaxWidth().defaultWeight())
+                    Column(
+                        // Row 자식: weight(폭) + fillMaxHeight — fillMaxSize 겹치면 weight 무시(73번 함정)
+                        modifier = GlanceModifier.defaultWeight().fillMaxHeight(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        GaugeWithScore(data, gaugePx = 200, scoreSp = (gaugeDp * 0.32f).toInt().coerceIn(10, 18), modifier = GlanceModifier.size(gaugeDp.dp))
+                        Text(
+                            text = WidgetGaugeSpec.indexName(type),
+                            maxLines = 1,
+                            style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = 10.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center),
+                        )
+                        if (showRating && data != null) {
+                            Text(
+                                text = ratingLabel(context, data.rating),
+                                maxLines = 1,
+                                style = TextStyle(color = ColorProvider(widgetFearScoreColor(data.rating)), fontSize = 9.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Center),
+                            )
+                        }
+                    }
                 }
             }
         }
     }
 }
 
-@Composable
-private fun CombinedCell(
-    context: Context,
-    type: FearIndexType,
-    data: WidgetIndexData?,
-    modifier: GlanceModifier,
-) {
-    Column(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        GaugeWithScore(data, gaugePx = 200, scoreSp = 14, modifier = GlanceModifier.defaultWeight().fillMaxWidth())
-        Text(
-            text = WidgetGaugeSpec.indexName(type),
-            maxLines = 1,
-            style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = 10.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center),
-        )
-        if (data != null) {
-            Text(
-                text = ratingLabel(context, data.rating),
-                maxLines = 1,
-                style = TextStyle(color = ColorProvider(widgetFearScoreColor(data.rating)), fontSize = 9.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Center),
-            )
-        }
-    }
-}
-
-/** 2×2+: 세로 리스트 — 행마다 [게이지+점수 | 이름/등급]. 등급은 잘리지 않게 2줄 허용. */
+/** LIST: 행마다 [게이지+점수 | 이름/등급]. 좁은 폭은 게이지·글씨를 축소해 잘림 없이 수용. */
 @Composable
 private fun CombinedListLayout(
     context: Context,
     entries: List<Pair<FearIndexType, WidgetIndexData?>>,
+    widthDp: Float,
     heightDp: Float,
 ) {
-    // 헤더(~22dp)·패딩 제외 후 3행 균등 — 게이지는 행 높이에 딱 맞는 정사각
-    val rowGaugeDp = ((heightDp - 38f) / 3f).coerceIn(30f, 64f)
+    val narrow = widthDp < 170f
+    // 행 높이(3행 균등)와 폭 양쪽에 맞춰 게이지 정사각 — 좁으면 텍스트 폭을 남기려 더 줄인다
+    val rowHeightDp = (heightDp - 42f) / 3f
+    val rowGaugeDp = minOf(rowHeightDp, widthDp * if (narrow) 0.26f else 0.40f).coerceIn(24f, 64f)
+    // 행이 낮으면 이름/등급 두 줄이 안 들어간다 → 등급을 이름 옆 한 줄로
+    val twoLine = rowHeightDp >= 34f
+    val nameSp = if (narrow) 11 else 13
+    val ratingSp = if (narrow) 9 else 11
     Box(modifier = cardModifier(20)) {
-        Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 12.dp, vertical = 6.dp)) {
-            RefreshHeader(context, showTime = true)
+        Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 12.dp, vertical = 8.dp)) {
+            RefreshHeader(context, showTime = true) // 헤더 행 공백 활용 — 좁아도 "HH:mm 기준"은 들어간다
             entries.forEach { (type, data) ->
                 Row(
                     modifier = GlanceModifier.fillMaxWidth().defaultWeight(),
@@ -209,22 +204,38 @@ private fun CombinedListLayout(
                     GaugeWithScore(
                         data,
                         gaugePx = 200,
-                        scoreSp = (rowGaugeDp * 0.30f).toInt().coerceAtLeast(11),
+                        scoreSp = (rowGaugeDp * 0.30f).toInt().coerceAtLeast(10),
                         modifier = GlanceModifier.size(rowGaugeDp.dp),
                     )
-                    Spacer(GlanceModifier.width(10.dp))
-                    Column(verticalAlignment = Alignment.CenterVertically) {
+                    Spacer(GlanceModifier.width(if (narrow) 6.dp else 10.dp))
+                    if (twoLine) {
+                        Column(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                text = WidgetGaugeSpec.indexName(type),
+                                maxLines = 1,
+                                style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = nameSp.sp, fontWeight = FontWeight.Bold),
+                            )
+                            if (data != null) {
+                                val ratingColor = widgetFearScoreColor(data.rating)
+                                Text(
+                                    text = ratingLabel(context, data.rating),
+                                    maxLines = 2, // l10n 긴 등급명("Extreme Greed" 등)도 말줄임 없이 줄바꿈
+                                    style = TextStyle(color = ColorProvider(ratingColor), fontSize = ratingSp.sp, fontWeight = FontWeight.Medium),
+                                )
+                            }
+                        }
+                    } else {
                         Text(
                             text = WidgetGaugeSpec.indexName(type),
                             maxLines = 1,
-                            style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = 13.sp, fontWeight = FontWeight.Bold),
+                            style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = nameSp.sp, fontWeight = FontWeight.Bold),
                         )
                         if (data != null) {
-                            val ratingColor = widgetFearScoreColor(data.rating)
+                            Spacer(GlanceModifier.width(8.dp))
                             Text(
                                 text = ratingLabel(context, data.rating),
-                                maxLines = 2, // l10n 긴 등급명("Extreme Greed" 등)도 말줄임 없이 줄바꿈
-                                style = TextStyle(color = ColorProvider(ratingColor), fontSize = 11.sp, fontWeight = FontWeight.Medium),
+                                maxLines = 1,
+                                style = TextStyle(color = ColorProvider(widgetFearScoreColor(data.rating)), fontSize = ratingSp.sp, fontWeight = FontWeight.Medium),
                             )
                         }
                     }

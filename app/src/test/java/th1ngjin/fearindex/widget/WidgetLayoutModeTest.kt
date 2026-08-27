@@ -40,20 +40,23 @@ class WidgetLayoutModeTest {
     // ── 통합 위젯 배치 3모드: 낮으면 가로 나열, 좁으면 세로 스택, 넓으면 리스트 ──
 
     @Test
-    fun `대시보드 - 높이 100dp 미만이면 가로 나열(ROW)`() {
+    fun `대시보드 - 넓고 낮으면(폭 ≥ 높이×1_6) 가로 나열이 공백 없이 채운다`() {
         assertEquals(DashboardArrangement.ROW, WidgetLayoutMode.dashboardArrangement(250f, 57f))
         assertEquals(DashboardArrangement.ROW, WidgetLayoutMode.dashboardArrangement(160f, 99.9f))
+        assertEquals(DashboardArrangement.ROW, WidgetLayoutMode.dashboardArrangement(250f, 124f))
     }
 
     @Test
-    fun `대시보드 - 높이는 충분한데 폭 170dp 미만이면 세로 스택(COLUMN)`() {
-        assertEquals(DashboardArrangement.COLUMN, WidgetLayoutMode.dashboardArrangement(110f, 300f))
-        assertEquals(DashboardArrangement.COLUMN, WidgetLayoutMode.dashboardArrangement(169.9f, 150f))
-    }
-
-    @Test
-    fun `대시보드 - 폭·높이 모두 충분하면 리스트(LIST)`() {
-        assertEquals(DashboardArrangement.LIST, WidgetLayoutMode.dashboardArrangement(170f, 100f))
+    fun `대시보드 - 세로가 상대적으로 길면 리스트(좁으면 축소 리스트)`() {
+        assertEquals(DashboardArrangement.LIST, WidgetLayoutMode.dashboardArrangement(110f, 300f))
+        assertEquals(DashboardArrangement.LIST, WidgetLayoutMode.dashboardArrangement(123f, 96f))
         assertEquals(DashboardArrangement.LIST, WidgetLayoutMode.dashboardArrangement(320f, 250f))
+    }
+
+    @Test
+    fun `가로 나열 모드 등급은 높이 85dp 이상에서만 (57dp 최소 크기에선 게이지+이름만)`() {
+        assertEquals(false, WidgetLayoutMode.rowModeShowsRating(57f))
+        assertEquals(false, WidgetLayoutMode.rowModeShowsRating(84.9f))
+        assertEquals(true, WidgetLayoutMode.rowModeShowsRating(85f))
     }
 }
