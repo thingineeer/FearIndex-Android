@@ -423,9 +423,9 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="widget_guide_step5">Jebkurā laikā pieskarieties logrīkam, lai atvērtu lietotni.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Rāda globālo (S&amp;P 500) baiļu un alkatības indeksu kā mērītāju.</string>
-    <string name="widget_kospi_description">Rāda KOSPI baiļu indeksu kā mērītāju.</string>
-    <string name="widget_crypto_description">Rāda kripto (BTC) baiļu un alkatības indeksu kā mērītāju.</string>
+    <string name="widget_market_description">Globālais (S&amp;P 500) baiļu un alkatības rādītājs.</string>
+    <string name="widget_kospi_description">KOSPI baiļu indeksa rādītājs.</string>
+    <string name="widget_crypto_description">Kripto (BTC) baiļu un alkatības rādītājs.</string>
     <string name="widget_dashboard_description">Rāda globālo, KOSPI un kripto indeksu vienā skatienā.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Noņemt reklāmas</string>
@@ -557,4 +557,5 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="widget_guide_tip_resize">Turiet logrīku nospiestu, lai to pārvietotu vai mainītu tā izmēru.</string>
     <string name="widget_guide_tip_auto">Logrīki tiek automātiski atjaunināti ik pēc dažām stundām un katru reizi, kad atverat lietotni.</string>
     <string name="widget_guide_tip_launcher">Izvēļņu nosaukumi var nedaudz atšķirties atkarībā no ierīces un palaidēja.</string>
+    <string name="widget_refreshing">Atsvaidzina…</string>
 </resources>

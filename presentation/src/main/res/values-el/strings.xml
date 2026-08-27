@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Πατήστε το widget οποιαδήποτε στιγμή για να ανοίξετε την εφαρμογή.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Εμφανίζει τον παγκόσμιο δείκτη φόβου και απληστίας (S&amp;P 500) ως μετρητή.</string>
-    <string name="widget_kospi_description">Εμφανίζει τον δείκτη φόβου KOSPI ως μετρητή.</string>
-    <string name="widget_crypto_description">Εμφανίζει τον δείκτη κρύπτο (BTC) φόβου και απληστίας ως μετρητή.</string>
+    <string name="widget_market_description">Μετρητής φόβου &amp; απληστίας (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Μετρητής δείκτη φόβου KOSPI.</string>
+    <string name="widget_crypto_description">Μετρητής φόβου &amp; απληστίας κρύπτο (BTC).</string>
     <string name="widget_dashboard_description">Εμφανίζει με μια ματιά τους δείκτες παγκόσμιο, KOSPI και κρύπτο.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Αφαίρεση διαφημίσεων</string>
@@ -557,4 +557,5 @@
     <string name="widget_guide_tip_resize">Κρατήστε πατημένο ένα widget για να το μετακινήσετε ή να αλλάξετε το μέγεθός του.</string>
     <string name="widget_guide_tip_auto">Τα widget ενημερώνονται αυτόματα κάθε λίγες ώρες και κάθε φορά που ανοίγετε την εφαρμογή.</string>
     <string name="widget_guide_tip_launcher">Τα ονόματα των μενού ενδέχεται να διαφέρουν ελαφρώς ανάλογα με τη συσκευή και τον launcher.</string>
+    <string name="widget_refreshing">Ανανέωση…</string>
 </resources>

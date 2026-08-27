@@ -110,8 +110,8 @@ fun FearIndexWidgetContent(
 }
 
 /**
- * 통합(대시보드) — 2×1 기본: 게이지 3개 가로. 2×2 이상으로 키우면 세로 리스트
- * [게이지 | 이름·등급] × 3 + 상단 우측 갱신시각·↻ (2026-08-27 사용자 시안).
+ * 통합(대시보드) — 리사이즈에 따라 3모드 (2026-08-27 사용자 요청: 어느 크기든 글자 안 잘리게).
+ * ROW(낮음): 게이지+이름+등급 3개 가로 / COLUMN(좁음): 같은 셀 세로 스택 / LIST(넉넉): [게이지|이름/등급] 행.
  */
 @Composable
 fun CombinedWidgetContent(
@@ -127,39 +127,65 @@ fun CombinedWidgetContent(
         FearIndexType.KOSPI to kospi,
         FearIndexType.CRYPTO to crypto,
     )
-    if (WidgetLayoutMode.showsDashboardDetails(size.height.value)) {
-        CombinedListLayout(context, entries, size.height.value)
-    } else {
-        CombinedCompactLayout(context, entries)
+    when (WidgetLayoutMode.dashboardArrangement(size.width.value, size.height.value)) {
+        DashboardArrangement.ROW -> CombinedCellFlow(context, entries, horizontal = true, showTime = size.width.value >= 200f)
+        DashboardArrangement.COLUMN -> CombinedCellFlow(context, entries, horizontal = false, showTime = true)
+        DashboardArrangement.LIST -> CombinedListLayout(context, entries, size.height.value)
     }
 }
 
-/** 2×1 컴팩트: 게이지 3개 + 이름만. */
+/** ROW/COLUMN 공용 — 셀(게이지 위, 이름·등급 아래 중앙)을 가로 또는 세로로 나열. */
 @Composable
-private fun CombinedCompactLayout(context: Context, entries: List<Pair<FearIndexType, WidgetIndexData?>>) {
+private fun CombinedCellFlow(
+    context: Context,
+    entries: List<Pair<FearIndexType, WidgetIndexData?>>,
+    horizontal: Boolean,
+    showTime: Boolean,
+) {
     Box(modifier = cardModifier(20)) {
-        Row(
-            modifier = GlanceModifier.fillMaxSize().padding(horizontal = 6.dp, vertical = 6.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            entries.forEach { (type, data) ->
-                Column(
-                    // Glance: Row 자식에 fillMaxSize 를 겹치면 width=fill 이 weight 를 덮어써
-                    // 첫 컬럼이 전체 폭을 차지한다 → weight(폭) + fillMaxHeight(높이)만.
-                    modifier = GlanceModifier.defaultWeight().fillMaxHeight(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    GaugeWithScore(data, gaugePx = 170, scoreSp = 15, modifier = GlanceModifier.defaultWeight().fillMaxWidth())
-                    Text(
-                        text = WidgetGaugeSpec.indexName(type),
-                        maxLines = 1,
-                        style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = 8.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Center),
-                    )
+        Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 8.dp, vertical = 4.dp)) {
+            RefreshHeader(context, showTime = showTime)
+            if (horizontal) {
+                Row(modifier = GlanceModifier.fillMaxWidth().defaultWeight(), verticalAlignment = Alignment.CenterVertically) {
+                    entries.forEach { (type, data) ->
+                        // Glance: Row 자식에 fillMaxSize 겹치면 weight 가 무시된다 → weight+fillMaxHeight 만
+                        CombinedCell(context, type, data, modifier = GlanceModifier.defaultWeight().fillMaxHeight())
+                    }
+                }
+            } else {
+                entries.forEach { (type, data) ->
+                    CombinedCell(context, type, data, modifier = GlanceModifier.fillMaxWidth().defaultWeight())
                 }
             }
         }
-        RefreshHeader(context, showTime = false)
+    }
+}
+
+@Composable
+private fun CombinedCell(
+    context: Context,
+    type: FearIndexType,
+    data: WidgetIndexData?,
+    modifier: GlanceModifier,
+) {
+    Column(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        GaugeWithScore(data, gaugePx = 200, scoreSp = 14, modifier = GlanceModifier.defaultWeight().fillMaxWidth())
+        Text(
+            text = WidgetGaugeSpec.indexName(type),
+            maxLines = 1,
+            style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = 10.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center),
+        )
+        if (data != null) {
+            Text(
+                text = ratingLabel(context, data.rating),
+                maxLines = 1,
+                style = TextStyle(color = ColorProvider(widgetFearScoreColor(data.rating)), fontSize = 9.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Center),
+            )
+        }
     }
 }
 

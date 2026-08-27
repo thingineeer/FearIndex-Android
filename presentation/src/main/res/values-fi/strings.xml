@@ -421,9 +421,9 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="widget_guide_step3">Valitse haluamasi indeksi — Globaali, KOSPI tai Krypto — tai kaikki yhdessä -widget.</string>
     <string name="widget_guide_step4">Vedä se aloitusnäytölle ja aseta se haluamaasi kohtaan.</string>
     <string name="widget_guide_step5">Napauta widgetiä milloin tahansa avataksesi sovelluksen.</string>
-    <string name="widget_market_description">Näyttää globaalin (S&amp;P 500) pelko ja ahneus -indeksin mittarina.</string>
-    <string name="widget_kospi_description">Näyttää KOSPI-pelkoindeksin mittarina.</string>
-    <string name="widget_crypto_description">Näyttää krypton (BTC) pelko ja ahneus -indeksin mittarina.</string>
+    <string name="widget_market_description">Globaali (S&amp;P 500) pelko &amp; ahneus -mittari.</string>
+    <string name="widget_kospi_description">KOSPI-pelkoindeksimittari.</string>
+    <string name="widget_crypto_description">Krypto (BTC) pelko &amp; ahneus -mittari.</string>
     <string name="widget_dashboard_description">Näyttää globaalin, KOSPI- ja kryptoindeksin yhdellä silmäyksellä.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Poista mainokset</string>
@@ -555,4 +555,5 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="widget_guide_tip_resize">Paina widgetiä pitkään siirtääksesi sitä tai muuttaaksesi sen kokoa.</string>
     <string name="widget_guide_tip_auto">Widgetit päivittyvät automaattisesti muutaman tunnin välein ja aina, kun avaat sovelluksen.</string>
     <string name="widget_guide_tip_launcher">Valikkojen nimet voivat vaihdella hieman laitteen ja käynnistimen mukaan.</string>
+    <string name="widget_refreshing">Päivitetään…</string>
 </resources>

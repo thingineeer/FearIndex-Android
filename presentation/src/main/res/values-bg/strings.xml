@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Докоснете уиджета по всяко време, за да отворите приложението.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Показва глобалния индекс на страха и алчността (S&amp;P 500) като датчик.</string>
-    <string name="widget_kospi_description">Показва индекса на страха KOSPI като датчик.</string>
-    <string name="widget_crypto_description">Показва крипто индекса на страха и алчността (BTC) като датчик.</string>
+    <string name="widget_market_description">Индикатор за страх и алчност (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Индикатор на индекса на страха KOSPI.</string>
+    <string name="widget_crypto_description">Индикатор за страх и алчност крипто (BTC).</string>
     <string name="widget_dashboard_description">Показва глобалния, KOSPI и крипто индекса с един поглед.</string>
     <string name="settings_premium_header">Премиум</string>
     <string name="settings_remove_ads_title">Премахване на рекламите</string>
@@ -557,4 +557,5 @@
     <string name="widget_guide_tip_resize">Задръжте уиджет, за да го преместите или преоразмерите.</string>
     <string name="widget_guide_tip_auto">Уиджетите се обновяват автоматично на всеки няколко часа и при всяко отваряне на приложението.</string>
     <string name="widget_guide_tip_launcher">Имената на менютата може леко да се различават според устройството и лаунчъра.</string>
+    <string name="widget_refreshing">Обновяване…</string>
 </resources>

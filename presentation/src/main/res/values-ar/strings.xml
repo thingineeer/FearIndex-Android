@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">اختر المؤشر الذي تريده — العالمي أو KOSPI أو العملات المشفّرة — أو الأداة الشاملة.</string>
     <string name="widget_guide_step4">اسحبها إلى شاشتك الرئيسية وضعها حيث تشاء.</string>
     <string name="widget_guide_step5">اضغط على الأداة في أي وقت لفتح التطبيق.</string>
-    <string name="widget_market_description">يعرض مؤشر الخوف والجشع العالمي (S&amp;P 500) كمقياس.</string>
-    <string name="widget_kospi_description">يعرض مؤشر الخوف الكوري (كوسبي) كمقياس.</string>
-    <string name="widget_crypto_description">يعرض مؤشر الخوف والجشع للعملات الرقمية (BTC) كمقياس.</string>
+    <string name="widget_market_description">مؤشر الخوف والجشع العالمي (S&amp;P 500).</string>
+    <string name="widget_kospi_description">مؤشر الخوف لبورصة كوسبي.</string>
+    <string name="widget_crypto_description">مؤشر الخوف والجشع للعملات الرقمية (BTC).</string>
     <string name="widget_dashboard_description">يعرض المؤشرات العالمية وكوسبي والعملات الرقمية في لمحة واحدة.</string>
     <string name="settings_premium_header">بريميوم</string>
     <string name="settings_remove_ads_title">إزالة الإعلانات</string>
@@ -554,4 +554,5 @@
     <string name="widget_guide_tip_resize">اضغط مطولًا على الأداة لنقلها أو تغيير حجمها.</string>
     <string name="widget_guide_tip_auto">يتم تحديث الأدوات تلقائيًا كل بضع ساعات وفي كل مرة تفتح فيها التطبيق.</string>
     <string name="widget_guide_tip_launcher">قد تختلف أسماء القوائم قليلًا حسب الجهاز والمشغّل.</string>
+    <string name="widget_refreshing">جارٍ التحديث…</string>
 </resources>

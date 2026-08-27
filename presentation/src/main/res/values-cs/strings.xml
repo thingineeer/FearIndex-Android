@@ -421,9 +421,9 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="widget_guide_step3">Vyberte požadovaný index — Globální, KOSPI nebo Krypto — nebo widget vše v jednom.</string>
     <string name="widget_guide_step4">Přetáhněte jej na plochu a umístěte, kam chcete.</string>
     <string name="widget_guide_step5">Kdykoli klepněte na widget a otevře se aplikace.</string>
-    <string name="widget_market_description">Zobrazuje globální index strachu a chamtivosti (S&amp;P 500) jako ukazatel.</string>
-    <string name="widget_kospi_description">Zobrazuje index strachu KOSPI jako ukazatel.</string>
-    <string name="widget_crypto_description">Zobrazuje krypto index strachu a chamtivosti (BTC) jako ukazatel.</string>
+    <string name="widget_market_description">Ukazatel strachu a chamtivosti (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Ukazatel indexu strachu KOSPI.</string>
+    <string name="widget_crypto_description">Ukazatel strachu a chamtivosti krypto (BTC).</string>
     <string name="widget_dashboard_description">Zobrazuje globální, KOSPI a krypto index na jeden pohled.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Odstranit reklamy</string>
@@ -555,4 +555,5 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="widget_guide_tip_resize">Podržením widgetu jej můžete přesunout nebo změnit jeho velikost.</string>
     <string name="widget_guide_tip_auto">Widgety se automaticky aktualizují každých pár hodin a při každém otevření aplikace.</string>
     <string name="widget_guide_tip_launcher">Názvy nabídek se mohou mírně lišit podle zařízení a launcheru.</string>
+    <string name="widget_refreshing">Aktualizace…</string>
 </resources>

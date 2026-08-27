@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">شاخص مورد نظر خود را انتخاب کنید — جهانی، KOSPI یا ارز دیجیتال — یا ویجت همه‌کاره.</string>
     <string name="widget_guide_step4">آن را به صفحه اصلی بکشید و هرجا که دوست دارید قرار دهید.</string>
     <string name="widget_guide_step5">هر زمان روی ویجت بزنید تا برنامه باز شود.</string>
-    <string name="widget_market_description">شاخص جهانی ترس و طمع (S&amp;P 500) را به‌صورت نمایشگر نشان می‌دهد.</string>
-    <string name="widget_kospi_description">شاخص ترس کوسپی را به‌صورت نمایشگر نشان می‌دهد.</string>
-    <string name="widget_crypto_description">شاخص ترس و طمع رمزارز (BTC) را به‌صورت نمایشگر نشان می‌دهد.</string>
+    <string name="widget_market_description">نشانگر ترس و طمع جهانی (S&amp;P 500).</string>
+    <string name="widget_kospi_description">نشانگر شاخص ترس کوسپی.</string>
+    <string name="widget_crypto_description">نشانگر ترس و طمع رمزارز (BTC).</string>
     <string name="widget_dashboard_description">شاخص‌های جهانی، کوسپی و رمزارز را در یک نگاه نشان می‌دهد.</string>
     <string name="settings_premium_header">پریمیوم</string>
     <string name="settings_remove_ads_title">حذف تبلیغات</string>
@@ -554,4 +554,5 @@
     <string name="widget_guide_tip_resize">ابزارک را نگه دارید تا جابه‌جا شود یا اندازه‌اش تغییر کند.</string>
     <string name="widget_guide_tip_auto">ابزارک‌ها هر چند ساعت یک‌بار و هر بار که برنامه را باز می‌کنید به‌طور خودکار به‌روز می‌شوند.</string>
     <string name="widget_guide_tip_launcher">نام منوها ممکن است بسته به دستگاه و لانچر کمی متفاوت باشد.</string>
+    <string name="widget_refreshing">در حال تازه‌سازی…</string>
 </resources>

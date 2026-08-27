@@ -421,9 +421,9 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="widget_guide_step3">Vælg det ønskede indeks — Global, KOSPI eller Krypto — eller den samlede widget.</string>
     <string name="widget_guide_step4">Træk den ind på din startskærm, og placer den, hvor du vil.</string>
     <string name="widget_guide_step5">Tryk på widgeten når som helst for at åbne appen.</string>
-    <string name="widget_market_description">Viser det globale (S&amp;P 500) frygt- og grådighedsindeks som måler.</string>
-    <string name="widget_kospi_description">Viser KOSPI-frygtindekset som måler.</string>
-    <string name="widget_crypto_description">Viser kryptoindekset (BTC) for frygt og grådighed som måler.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) Fear &amp; Greed-måler.</string>
+    <string name="widget_kospi_description">KOSPI-frygtindeksmåler.</string>
+    <string name="widget_crypto_description">Krypto (BTC) Fear &amp; Greed-måler.</string>
     <string name="widget_dashboard_description">Viser det globale, KOSPI- og kryptoindekset med ét blik.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Fjern reklamer</string>
@@ -555,4 +555,5 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="widget_guide_tip_resize">Hold en widget nede for at flytte den eller ændre dens størrelse.</string>
     <string name="widget_guide_tip_auto">Widgets opdateres automatisk med få timers mellemrum, og hver gang du åbner appen.</string>
     <string name="widget_guide_tip_launcher">Menunavne kan variere en smule afhængigt af enhed og launcher.</string>
+    <string name="widget_refreshing">Opdaterer…</string>
 </resources>

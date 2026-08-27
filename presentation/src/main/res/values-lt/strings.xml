@@ -423,9 +423,9 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="widget_guide_step5">Bakstelėkite valdiklį bet kada, kad atidarytumėte programėlę.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Rodo pasaulinį (S&amp;P 500) baimės ir godumo indeksą kaip matuoklį.</string>
-    <string name="widget_kospi_description">Rodo KOSPI baimės indeksą kaip matuoklį.</string>
-    <string name="widget_crypto_description">Rodo kripto (BTC) baimės ir godumo indeksą kaip matuoklį.</string>
+    <string name="widget_market_description">Pasaulinis (S&amp;P 500) baimės ir godumo matuoklis.</string>
+    <string name="widget_kospi_description">KOSPI baimės indekso matuoklis.</string>
+    <string name="widget_crypto_description">Kripto (BTC) baimės ir godumo matuoklis.</string>
     <string name="widget_dashboard_description">Rodo pasaulinį, KOSPI ir kripto indeksus iš karto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Pašalinti reklamas</string>
@@ -557,4 +557,5 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="widget_guide_tip_resize">Palaikykite valdiklį, kad jį perkeltumėte arba pakeistumėte dydį.</string>
     <string name="widget_guide_tip_auto">Valdikliai automatiškai atnaujinami kas kelias valandas ir kaskart atidarius programą.</string>
     <string name="widget_guide_tip_launcher">Meniu pavadinimai gali šiek tiek skirtis priklausomai nuo įrenginio ir paleidyklės.</string>
+    <string name="widget_refreshing">Atnaujinama…</string>
 </resources>

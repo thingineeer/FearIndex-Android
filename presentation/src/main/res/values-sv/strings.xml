@@ -421,9 +421,9 @@
     <string name="widget_guide_step3">Välj det index du vill ha — Global, KOSPI eller Krypto — eller allt-i-ett-widgeten.</string>
     <string name="widget_guide_step4">Dra den till startskärmen och placera den där du vill.</string>
     <string name="widget_guide_step5">Tryck på widgeten när som helst för att öppna appen.</string>
-    <string name="widget_market_description">Visar det globala (S&amp;P 500) rädsla- och girighetsindexet som mätare.</string>
-    <string name="widget_kospi_description">Visar KOSPI-rädsloindexet som mätare.</string>
-    <string name="widget_crypto_description">Visar kryptoindexet (BTC) för rädsla och girighet som mätare.</string>
+    <string name="widget_market_description">Global (S&amp;P 500) Fear &amp; Greed-mätare.</string>
+    <string name="widget_kospi_description">KOSPI-rädsloindexmätare.</string>
+    <string name="widget_crypto_description">Krypto (BTC) Fear &amp; Greed-mätare.</string>
     <string name="widget_dashboard_description">Visar de globala, KOSPI- och kryptoindexen med en blick.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Ta bort annonser</string>
@@ -555,4 +555,5 @@
     <string name="widget_guide_tip_resize">Håll in en widget för att flytta den eller ändra dess storlek.</string>
     <string name="widget_guide_tip_auto">Widgetar uppdateras automatiskt med några timmars mellanrum och varje gång du öppnar appen.</string>
     <string name="widget_guide_tip_launcher">Menynamn kan skilja sig något beroende på enhet och launcher.</string>
+    <string name="widget_refreshing">Uppdaterar…</string>
 </resources>

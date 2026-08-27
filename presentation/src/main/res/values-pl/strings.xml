@@ -421,9 +421,9 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="widget_guide_step3">Wybierz indeks, który chcesz — Globalny, KOSPI lub Krypto — albo widżet wszystko w jednym.</string>
     <string name="widget_guide_step4">Przeciągnij go na ekran główny i umieść w wybranym miejscu.</string>
     <string name="widget_guide_step5">Dotknij widżetu w dowolnej chwili, aby otworzyć aplikację.</string>
-    <string name="widget_market_description">Pokazuje globalny indeks strachu i chciwości (S&amp;P 500) jako wskaźnik.</string>
-    <string name="widget_kospi_description">Pokazuje indeks strachu KOSPI jako wskaźnik.</string>
-    <string name="widget_crypto_description">Pokazuje kryptoindeks strachu i chciwości (BTC) jako wskaźnik.</string>
+    <string name="widget_market_description">Wskaźnik strachu i chciwości (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Wskaźnik indeksu strachu KOSPI.</string>
+    <string name="widget_crypto_description">Wskaźnik strachu i chciwości krypto (BTC).</string>
     <string name="widget_dashboard_description">Pokazuje jednocześnie indeksy globalny, KOSPI i krypto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Usuń reklamy</string>
@@ -555,4 +555,5 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="widget_guide_tip_resize">Przytrzymaj widżet, aby go przenieść lub zmienić jego rozmiar.</string>
     <string name="widget_guide_tip_auto">Widżety aktualizują się automatycznie co kilka godzin i przy każdym otwarciu aplikacji.</string>
     <string name="widget_guide_tip_launcher">Nazwy menu mogą się nieco różnić w zależności od urządzenia i launchera.</string>
+    <string name="widget_refreshing">Odświeżanie…</string>
 </resources>

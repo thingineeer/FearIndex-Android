@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Додирните виџет у било ком тренутку да отворите апликацију.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Prikazuje globalni indeks straha i pohlepe (S&amp;P 500) kao merač.</string>
-    <string name="widget_kospi_description">Prikazuje KOSPI indeks straha kao merač.</string>
-    <string name="widget_crypto_description">Prikazuje kripto indeks straha i pohlepe (BTC) kao merač.</string>
+    <string name="widget_market_description">Мерач страха и похлепе (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Мерач индекса страха KOSPI.</string>
+    <string name="widget_crypto_description">Мерач страха и похлепе крипто (BTC).</string>
     <string name="widget_dashboard_description">Prikazuje globalni, KOSPI i kripto indeks na prvi pogled.</string>
     <string name="settings_premium_header">Премијум</string>
     <string name="settings_remove_ads_title">Уклони огласе</string>
@@ -557,4 +557,5 @@
     <string name="widget_guide_tip_resize">Držite vidžet da biste ga premestili ili promenili veličinu.</string>
     <string name="widget_guide_tip_auto">Vidžeti se automatski ažuriraju na svakih nekoliko sati i pri svakom otvaranju aplikacije.</string>
     <string name="widget_guide_tip_launcher">Nazivi menija mogu se malo razlikovati u zavisnosti od uređaja i launchera.</string>
+    <string name="widget_refreshing">Освежавање…</string>
 </resources>

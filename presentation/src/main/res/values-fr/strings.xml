@@ -421,9 +421,9 @@
     <string name="widget_guide_step3">Choisissez l\'indice voulu — Global, KOSPI ou Crypto — ou le widget tout-en-un.</string>
     <string name="widget_guide_step4">Faites-le glisser sur votre écran d\'accueil et placez-le où vous voulez.</string>
     <string name="widget_guide_step5">Appuyez sur le widget à tout moment pour ouvrir l\'application.</string>
-    <string name="widget_market_description">Affiche l\'indice mondial (S&amp;P 500) Fear &amp; Greed sous forme de jauge.</string>
-    <string name="widget_kospi_description">Affiche l\'indice de peur KOSPI sous forme de jauge.</string>
-    <string name="widget_crypto_description">Affiche l\'indice crypto (BTC) Fear &amp; Greed sous forme de jauge.</string>
+    <string name="widget_market_description">Jauge Fear &amp; Greed mondiale (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Jauge de l\'indice de peur KOSPI.</string>
+    <string name="widget_crypto_description">Jauge Fear &amp; Greed crypto (BTC).</string>
     <string name="widget_dashboard_description">Affiche d\'un coup d\'œil les indices mondial, KOSPI et crypto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Supprimer les publicités</string>
@@ -555,4 +555,5 @@
     <string name="widget_guide_tip_resize">Maintenez un widget appuyé pour le déplacer ou le redimensionner.</string>
     <string name="widget_guide_tip_auto">Les widgets se mettent à jour automatiquement toutes les quelques heures et à chaque ouverture de l\'appli.</string>
     <string name="widget_guide_tip_launcher">Les noms de menus peuvent varier légèrement selon l\'appareil et le lanceur.</string>
+    <string name="widget_refreshing">Actualisation…</string>
 </resources>

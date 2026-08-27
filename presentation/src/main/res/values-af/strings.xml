@@ -421,9 +421,9 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="widget_guide_step3">Kies die indeks wat jy wil hê — Globaal, KOSPI of Krypto — of die alles-in-een-legstuk.</string>
     <string name="widget_guide_step4">Sleep dit op jou tuisskerm en plaas dit waar jy wil.</string>
     <string name="widget_guide_step5">Tik enige tyd op die legstuk om die program oop te maak.</string>
-    <string name="widget_market_description">Wys die globale (S&amp;P 500) vrees-en-gierigheid-indeks as \'n meter.</string>
-    <string name="widget_kospi_description">Wys die KOSPI-vreesindeks as \'n meter.</string>
-    <string name="widget_crypto_description">Wys die kripto-indeks (BTC) vir vrees en gierigheid as \'n meter.</string>
+    <string name="widget_market_description">Globale (S&amp;P 500) vrees-en-gierigheid-meter.</string>
+    <string name="widget_kospi_description">KOSPI-vreesindeksmeter.</string>
+    <string name="widget_crypto_description">Kripto (BTC) vrees-en-gierigheid-meter.</string>
     <string name="widget_dashboard_description">Wys die globale, KOSPI- en kripto-indeks met een oogopslag.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Verwyder advertensies</string>
@@ -555,4 +555,5 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="widget_guide_tip_resize">Hou \'n legstuk in om dit te skuif of die grootte te verander.</string>
     <string name="widget_guide_tip_auto">Legstukke word elke paar uur en elke keer as jy die app oopmaak outomaties opgedateer.</string>
     <string name="widget_guide_tip_launcher">Kieslysname kan effens verskil na gelang van toestel en launcher.</string>
+    <string name="widget_refreshing">Verfris tans…</string>
 </resources>

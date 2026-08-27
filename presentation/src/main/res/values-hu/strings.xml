@@ -421,9 +421,9 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="widget_guide_step3">Válaszd ki a kívánt indexet — Globális, KOSPI vagy Kripto —, vagy a mindent egyben widgetet.</string>
     <string name="widget_guide_step4">Húzd a kezdőképernyőre, és tedd oda, ahová szeretnéd.</string>
     <string name="widget_guide_step5">Koppints a widgetre bármikor az alkalmazás megnyitásához.</string>
-    <string name="widget_market_description">A globális (S&amp;P 500) félelem-kapzsiság indexet mérőként jeleníti meg.</string>
-    <string name="widget_kospi_description">A KOSPI félelemindexet mérőként jeleníti meg.</string>
-    <string name="widget_crypto_description">A kripto (BTC) félelem-kapzsiság indexet mérőként jeleníti meg.</string>
+    <string name="widget_market_description">Globális (S&amp;P 500) félelem-kapzsiság mérő.</string>
+    <string name="widget_kospi_description">KOSPI félelemindex-mérő.</string>
+    <string name="widget_crypto_description">Kripto (BTC) félelem-kapzsiság mérő.</string>
     <string name="widget_dashboard_description">A globális, KOSPI és kriptoindexet egyszerre jeleníti meg.</string>
     <string name="settings_premium_header">Prémium</string>
     <string name="settings_remove_ads_title">Hirdetések eltávolítása</string>
@@ -555,4 +555,5 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="widget_guide_tip_resize">Tartsd nyomva a widgetet az áthelyezéshez vagy átméretezéshez.</string>
     <string name="widget_guide_tip_auto">A widgetek néhány óránként és az alkalmazás minden megnyitásakor automatikusan frissülnek.</string>
     <string name="widget_guide_tip_launcher">A menünevek készüléktől és indítótól függően kissé eltérhetnek.</string>
+    <string name="widget_refreshing">Frissítés…</string>
 </resources>

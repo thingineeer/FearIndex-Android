@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Нажмите на виджет в любой момент, чтобы открыть приложение.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Показывает глобальный индекс страха и жадности (S&amp;P 500) в виде датчика.</string>
-    <string name="widget_kospi_description">Показывает индекс страха KOSPI в виде датчика.</string>
-    <string name="widget_crypto_description">Показывает криптоиндекс страха и жадности (BTC) в виде датчика.</string>
+    <string name="widget_market_description">Датчик индекса страха и жадности (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Датчик индекса страха KOSPI.</string>
+    <string name="widget_crypto_description">Датчик страха и жадности крипто (BTC).</string>
     <string name="widget_dashboard_description">Показывает глобальный, KOSPI и криптоиндекс одним взглядом.</string>
     <string name="settings_premium_header">Премиум</string>
     <string name="settings_remove_ads_title">Убрать рекламу</string>
@@ -557,4 +557,5 @@
     <string name="widget_guide_tip_resize">Удерживайте виджет, чтобы переместить его или изменить размер.</string>
     <string name="widget_guide_tip_auto">Виджеты обновляются автоматически каждые несколько часов и при каждом открытии приложения.</string>
     <string name="widget_guide_tip_launcher">Названия меню могут немного отличаться в зависимости от устройства и лаунчера.</string>
+    <string name="widget_refreshing">Обновление…</string>
 </resources>

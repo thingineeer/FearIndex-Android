@@ -420,9 +420,9 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="widget_guide_step3">Pilih indeks yang Anda mau — Global, KOSPI, atau Kripto — atau widget lengkap semua-dalam-satu.</string>
     <string name="widget_guide_step4">Seret ke layar utama dan letakkan di tempat yang Anda suka.</string>
     <string name="widget_guide_step5">Ketuk widget kapan saja untuk membuka aplikasi.</string>
-    <string name="widget_market_description">Menampilkan indeks ketakutan &amp; keserakahan global (S&amp;P 500) sebagai pengukur.</string>
-    <string name="widget_kospi_description">Menampilkan indeks ketakutan KOSPI sebagai pengukur.</string>
-    <string name="widget_crypto_description">Menampilkan indeks ketakutan &amp; keserakahan kripto (BTC) sebagai pengukur.</string>
+    <string name="widget_market_description">Pengukur Fear &amp; Greed global (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Pengukur indeks ketakutan KOSPI.</string>
+    <string name="widget_crypto_description">Pengukur Fear &amp; Greed kripto (BTC).</string>
     <string name="widget_dashboard_description">Menampilkan indeks global, KOSPI, dan kripto sekaligus.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Hapus Iklan</string>
@@ -554,4 +554,5 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="widget_guide_tip_resize">Tekan lama widget untuk memindahkan atau mengubah ukurannya.</string>
     <string name="widget_guide_tip_auto">Widget diperbarui otomatis setiap beberapa jam dan setiap kali Anda membuka aplikasi.</string>
     <string name="widget_guide_tip_launcher">Nama menu mungkin sedikit berbeda tergantung perangkat dan launcher.</string>
+    <string name="widget_refreshing">Menyegarkan…</string>
 </resources>

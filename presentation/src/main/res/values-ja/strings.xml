@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">お好みの指数(グローバル・KOSPI・暗号資産)または統合ウィジェットを選びます。</string>
     <string name="widget_guide_step4">ホーム画面にドラッグして、好きな位置に置きます。</string>
     <string name="widget_guide_step5">ウィジェットをタップすれば、いつでもアプリが開きます。</string>
-    <string name="widget_market_description">グローバル（S&amp;P 500）の恐怖強欲指数をゲージで表示します。</string>
-    <string name="widget_kospi_description">韓国（KOSPI）の恐怖指数をゲージで表示します。</string>
-    <string name="widget_crypto_description">暗号資産（BTC）の恐怖強欲指数をゲージで表示します。</string>
+    <string name="widget_market_description">グローバル(S&amp;P 500)恐怖強欲指数ゲージ。</string>
+    <string name="widget_kospi_description">KOSPI恐怖指数ゲージ。</string>
+    <string name="widget_crypto_description">仮想通貨(BTC)恐怖強欲指数ゲージ。</string>
     <string name="widget_dashboard_description">グローバル・KOSPI・暗号資産の3指数を一目で表示します。</string>
     <string name="settings_premium_header">プレミアム</string>
     <string name="settings_remove_ads_title">広告を削除</string>
@@ -554,4 +554,5 @@
     <string name="widget_guide_tip_resize">ウィジェットを長押しすると、移動やサイズ変更ができます。</string>
     <string name="widget_guide_tip_auto">ウィジェットは数時間ごと、およびアプリを開くたびに自動更新されます。</string>
     <string name="widget_guide_tip_launcher">端末やランチャーによってメニュー名が多少異なる場合があります。</string>
+    <string name="widget_refreshing">更新中…</string>
 </resources>

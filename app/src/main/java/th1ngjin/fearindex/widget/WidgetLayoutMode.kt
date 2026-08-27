@@ -26,7 +26,20 @@ enum class WidgetLayoutMode {
          */
         fun squareCardSideDp(widthDp: Float, heightDp: Float): Float = minOf(widthDp, heightDp)
 
-        /** 대시보드 상세(등급·전일변화·갱신시각) 표시 여부 — 2×1 기본 크기에선 게이지+이름만. */
-        fun showsDashboardDetails(heightDp: Float): Boolean = heightDp >= COMPACT_THRESHOLD_DP
+        /** LIST 모드에 필요한 최소 폭 — 이보다 좁으면 이름/등급이 잘려 세로 스택으로 전환. */
+        const val DASHBOARD_LIST_MIN_WIDTH_DP = 170f
+
+        /**
+         * 통합 위젯 배치 — 리사이즈 어느 방향으로도 글자가 잘리지 않게 3모드.
+         * 낮으면 가로 나열, 좁으면 세로 스택, 둘 다 충분하면 [게이지|이름/등급] 리스트.
+         */
+        fun dashboardArrangement(widthDp: Float, heightDp: Float): DashboardArrangement = when {
+            heightDp < COMPACT_THRESHOLD_DP -> DashboardArrangement.ROW
+            widthDp < DASHBOARD_LIST_MIN_WIDTH_DP -> DashboardArrangement.COLUMN
+            else -> DashboardArrangement.LIST
+        }
     }
 }
+
+/** 통합 위젯 배치 모드. */
+enum class DashboardArrangement { ROW, COLUMN, LIST }

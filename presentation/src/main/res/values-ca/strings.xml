@@ -421,9 +421,9 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="widget_guide_step3">Tria l\'índex que vulguis (Global, KOSPI o Cripto) o el widget tot en un.</string>
     <string name="widget_guide_step4">Arrossega\'l a la pantalla d\'inici i col·loca\'l on vulguis.</string>
     <string name="widget_guide_step5">Toca el widget quan vulguis per obrir l\'app.</string>
-    <string name="widget_market_description">Mostra l\'índex global (S&amp;P 500) de por i cobdícia com a indicador.</string>
-    <string name="widget_kospi_description">Mostra l\'índex de por del KOSPI com a indicador.</string>
-    <string name="widget_crypto_description">Mostra l\'índex cripto (BTC) de por i cobdícia com a indicador.</string>
+    <string name="widget_market_description">Indicador Fear &amp; Greed global (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Indicador de l\'índex de por KOSPI.</string>
+    <string name="widget_crypto_description">Indicador Fear &amp; Greed cripto (BTC).</string>
     <string name="widget_dashboard_description">Mostra d\'un cop d\'ull els índexs global, KOSPI i cripto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Elimina els anuncis</string>
@@ -555,4 +555,5 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="widget_guide_tip_resize">Mantén premut un widget per moure\'l o canviar-ne la mida.</string>
     <string name="widget_guide_tip_auto">Els widgets s\'actualitzen automàticament cada poques hores i cada cop que obres l\'aplicació.</string>
     <string name="widget_guide_tip_launcher">Els noms dels menús poden variar lleugerament segons el dispositiu i el launcher.</string>
+    <string name="widget_refreshing">S\'està actualitzant…</string>
 </resources>

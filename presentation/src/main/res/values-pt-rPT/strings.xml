@@ -421,9 +421,9 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="widget_guide_step3">Escolha o índice que quiser — Global, KOSPI ou Cripto — ou o widget tudo-em-um.</string>
     <string name="widget_guide_step4">Arraste para o ecrã principal e coloque onde preferir.</string>
     <string name="widget_guide_step5">Toque no widget quando quiser para abrir a aplicação.</string>
-    <string name="widget_market_description">Mostra o índice global (S&amp;P 500) de medo e ganância como medidor.</string>
-    <string name="widget_kospi_description">Mostra o índice de medo do KOSPI como medidor.</string>
-    <string name="widget_crypto_description">Mostra o índice cripto (BTC) de medo e ganância como medidor.</string>
+    <string name="widget_market_description">Indicador Fear &amp; Greed global (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Indicador do índice de medo KOSPI.</string>
+    <string name="widget_crypto_description">Indicador Fear &amp; Greed cripto (BTC).</string>
     <string name="widget_dashboard_description">Mostra os índices global, KOSPI e cripto num relance.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Remover anúncios</string>
@@ -555,4 +555,5 @@ Considere juntamente com fundamentais, fluxo e macro.</string>
     <string name="widget_guide_tip_resize">Mantenha um widget premido para o mover ou redimensionar.</string>
     <string name="widget_guide_tip_auto">Os widgets atualizam-se automaticamente a cada poucas horas e sempre que abre a app.</string>
     <string name="widget_guide_tip_launcher">Os nomes dos menus podem variar ligeiramente consoante o dispositivo e o launcher.</string>
+    <string name="widget_refreshing">A atualizar…</string>
 </resources>

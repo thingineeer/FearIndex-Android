@@ -424,9 +424,9 @@
     <string name="widget_guide_step3">अपना मनचाहा सूचकांक चुनें — ग्लोबल, KOSPI या क्रिप्टो — या ऑल-इन-वन विजेट।</string>
     <string name="widget_guide_step4">इसे अपनी होम स्क्रीन पर खींचें और जहाँ चाहें वहाँ रखें।</string>
     <string name="widget_guide_step5">ऐप खोलने के लिए कभी भी विजेट पर टैप करें।</string>
-    <string name="widget_market_description">वैश्विक (S&amp;P 500) भय-लालच सूचकांक को गेज के रूप में दिखाता है।</string>
-    <string name="widget_kospi_description">KOSPI भय सूचकांक को गेज के रूप में दिखाता है।</string>
-    <string name="widget_crypto_description">क्रिप्टो (BTC) भय-लालच सूचकांक को गेज के रूप में दिखाता है।</string>
+    <string name="widget_market_description">वैश्विक (S&amp;P 500) फियर एंड ग्रीड गेज।</string>
+    <string name="widget_kospi_description">KOSPI फियर इंडेक्स गेज।</string>
+    <string name="widget_crypto_description">क्रिप्टो (BTC) फियर एंड ग्रीड गेज।</string>
     <string name="widget_dashboard_description">वैश्विक, KOSPI और क्रिप्टो सूचकांक एक नज़र में दिखाता है।</string>
     <string name="settings_premium_header">प्रीमियम</string>
     <string name="settings_remove_ads_title">विज्ञापन हटाएँ</string>
@@ -558,4 +558,5 @@
     <string name="widget_guide_tip_resize">विजेट को देर तक दबाकर उसे हिलाएँ या उसका आकार बदलें।</string>
     <string name="widget_guide_tip_auto">विजेट हर कुछ घंटों में और हर बार ऐप खोलने पर अपने आप अपडेट होते हैं।</string>
     <string name="widget_guide_tip_launcher">डिवाइस और लॉन्चर के अनुसार मेनू के नाम थोड़े अलग हो सकते हैं।</string>
+    <string name="widget_refreshing">रीफ़्रेश हो रहा है…</string>
 </resources>

@@ -424,9 +424,9 @@
     <string name="widget_guide_step3">เลือกดัชนีที่ต้องการ — ทั่วโลก, KOSPI หรือคริปโต — หรือวิดเจ็ตรวมทุกอย่างในหนึ่งเดียว</string>
     <string name="widget_guide_step4">ลากไปที่หน้าจอหลักและวางในตำแหน่งที่ต้องการ</string>
     <string name="widget_guide_step5">แตะวิดเจ็ตเมื่อใดก็ได้เพื่อเปิดแอป</string>
-    <string name="widget_market_description">แสดงดัชนีความกลัวและความโลภระดับโลก (S&amp;P 500) เป็นมาตรวัด</string>
-    <string name="widget_kospi_description">แสดงดัชนีความกลัว KOSPI เป็นมาตรวัด</string>
-    <string name="widget_crypto_description">แสดงดัชนีความกลัวและความโลภของคริปโต (BTC) เป็นมาตรวัด</string>
+    <string name="widget_market_description">มาตรวัดดัชนีความกลัวและความโลภ (S&amp;P 500)</string>
+    <string name="widget_kospi_description">มาตรวัดดัชนีความกลัว KOSPI</string>
+    <string name="widget_crypto_description">มาตรวัดความกลัวและความโลภคริปโต (BTC)</string>
     <string name="widget_dashboard_description">แสดงดัชนีโลก KOSPI และคริปโตในหน้าจอเดียว</string>
     <string name="settings_premium_header">พรีเมียม</string>
     <string name="settings_remove_ads_title">ลบโฆษณา</string>
@@ -558,4 +558,5 @@
     <string name="widget_guide_tip_resize">กดวิดเจ็ตค้างไว้เพื่อย้ายหรือปรับขนาด</string>
     <string name="widget_guide_tip_auto">วิดเจ็ตจะอัปเดตอัตโนมัติทุกสองสามชั่วโมงและทุกครั้งที่เปิดแอป</string>
     <string name="widget_guide_tip_launcher">ชื่อเมนูอาจแตกต่างกันเล็กน้อยตามอุปกรณ์และตัวเรียกใช้งาน</string>
+    <string name="widget_refreshing">กำลังรีเฟรช…</string>
 </resources>

@@ -424,9 +424,9 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="widget_guide_step3">Chọn chỉ số bạn muốn — Toàn cầu, KOSPI hoặc Crypto — hoặc widget tất cả trong một.</string>
     <string name="widget_guide_step4">Kéo vào màn hình chính và đặt ở vị trí bạn thích.</string>
     <string name="widget_guide_step5">Chạm vào widget bất cứ lúc nào để mở ứng dụng.</string>
-    <string name="widget_market_description">Hiển thị chỉ số sợ hãi và tham lam toàn cầu (S&amp;P 500) dưới dạng đồng hồ.</string>
-    <string name="widget_kospi_description">Hiển thị chỉ số sợ hãi KOSPI dưới dạng đồng hồ.</string>
-    <string name="widget_crypto_description">Hiển thị chỉ số sợ hãi và tham lam tiền mã hóa (BTC) dưới dạng đồng hồ.</string>
+    <string name="widget_market_description">Đồng hồ chỉ số sợ hãi &amp; tham lam (S&amp;P 500).</string>
+    <string name="widget_kospi_description">Đồng hồ chỉ số sợ hãi KOSPI.</string>
+    <string name="widget_crypto_description">Đồng hồ sợ hãi &amp; tham lam tiền mã hóa (BTC).</string>
     <string name="widget_dashboard_description">Hiển thị cùng lúc chỉ số toàn cầu, KOSPI và tiền mã hóa.</string>
     <string name="settings_premium_header">Cao cấp</string>
     <string name="settings_remove_ads_title">Xóa quảng cáo</string>
@@ -558,4 +558,5 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="widget_guide_tip_resize">Nhấn giữ tiện ích để di chuyển hoặc thay đổi kích thước.</string>
     <string name="widget_guide_tip_auto">Tiện ích tự động cập nhật vài giờ một lần và mỗi khi bạn mở ứng dụng.</string>
     <string name="widget_guide_tip_launcher">Tên menu có thể hơi khác tùy theo thiết bị và trình khởi chạy.</string>
+    <string name="widget_refreshing">Đang làm mới…</string>
 </resources>
