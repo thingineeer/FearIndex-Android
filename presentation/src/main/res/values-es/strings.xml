@@ -421,9 +421,9 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="widget_guide_step3">Elige el índice que quieras (Global, KOSPI o Cripto) o el widget todo en uno.</string>
     <string name="widget_guide_step4">Arrástralo a la pantalla de inicio y colócalo donde prefieras.</string>
     <string name="widget_guide_step5">Toca el widget cuando quieras para abrir la app.</string>
-    <string name="widget_market_description">Muestra el índice global (S&amp;P 500) de miedo y codicia como indicador.</string>
-    <string name="widget_kospi_description">Muestra el índice de miedo del KOSPI como indicador.</string>
-    <string name="widget_crypto_description">Muestra el índice cripto (BTC) de miedo y codicia como indicador.</string>
+    <string name="widget_market_description">Sigue el S&amp;P 500</string>
+    <string name="widget_kospi_description">Sigue el KOSPI</string>
+    <string name="widget_crypto_description">Sigue el BTC</string>
     <string name="widget_dashboard_description">Muestra de un vistazo los índices global, KOSPI y cripto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Eliminar anuncios</string>
@@ -541,12 +541,12 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="insight_historical_return_title_greed">¿Qué pasó después?</string>
     <string name="score_explorer_subtitle_greed">¿Qué vino después de un día con esta puntuación?</string>
     <string name="widget_updated_at">a las %1$s</string>
-    <string name="widget_chart_description">Muestra la evolución del índice global de los últimos 30 días en un gráfico.</string>
+    <string name="widget_chart_description">Evolución del índice. Toca para cambiar de período (3M–5Y).</string>
     <string name="widget_label_market">Índice global</string>
     <string name="widget_label_kospi">Índice KOSPI</string>
     <string name="widget_label_crypto">Índice cripto</string>
     <string name="widget_label_dashboard">Todos los índices</string>
-    <string name="widget_label_chart">Tendencia 30 días</string>
+    <string name="widget_label_chart">Global Gráfico de tendencia</string>
     <string name="widget_guide_section_widgets">Tipos de widgets</string>
     <string name="widget_guide_type_single">Indicador de un solo índice — Global · KOSPI · Cripto</string>
     <string name="widget_guide_section_howto">Cómo añadir</string>
@@ -555,4 +555,9 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="widget_guide_tip_resize">Mantén pulsado un widget para moverlo o cambiar su tamaño.</string>
     <string name="widget_guide_tip_auto">Los widgets se actualizan automáticamente cada pocas horas y cada vez que abres la app.</string>
     <string name="widget_guide_tip_launcher">Los nombres de los menús pueden variar ligeramente según el dispositivo y el launcher.</string>
+    <string name="widget_refreshing">Actualizando…</string>
+    <string name="widget_label_chart_kospi">KOSPI Gráfico de tendencia</string>
+    <string name="widget_label_chart_crypto">Crypto Gráfico de tendencia</string>
+    <string name="widget_chart_kospi_description">Evolución del índice. Toca para cambiar de período (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Evolución del índice. Toca para cambiar de período (3M–5Y).</string>
 </resources>

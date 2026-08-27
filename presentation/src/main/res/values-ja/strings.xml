@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">お好みの指数(グローバル・KOSPI・暗号資産)または統合ウィジェットを選びます。</string>
     <string name="widget_guide_step4">ホーム画面にドラッグして、好きな位置に置きます。</string>
     <string name="widget_guide_step5">ウィジェットをタップすれば、いつでもアプリが開きます。</string>
-    <string name="widget_market_description">グローバル（S&amp;P 500）の恐怖強欲指数をゲージで表示します。</string>
-    <string name="widget_kospi_description">韓国（KOSPI）の恐怖指数をゲージで表示します。</string>
-    <string name="widget_crypto_description">暗号資産（BTC）の恐怖強欲指数をゲージで表示します。</string>
+    <string name="widget_market_description">S&amp;P 500に連動</string>
+    <string name="widget_kospi_description">KOSPIに連動</string>
+    <string name="widget_crypto_description">BTCに連動</string>
     <string name="widget_dashboard_description">グローバル・KOSPI・暗号資産の3指数を一目で表示します。</string>
     <string name="settings_premium_header">プレミアム</string>
     <string name="settings_remove_ads_title">広告を削除</string>
@@ -540,12 +540,12 @@
     <string name="insight_historical_return_title_greed">その後の推移は？</string>
     <string name="score_explorer_subtitle_greed">このスコアを記録した日の後はどうなった？</string>
     <string name="widget_updated_at">%1$s 時点</string>
-    <string name="widget_chart_description">グローバル指数の直近30日間の推移をチャートで表示します。</string>
+    <string name="widget_chart_description">指数の推移チャート。タップで期間(3M~5Y)を切替。</string>
     <string name="widget_label_market">グローバル指数</string>
     <string name="widget_label_kospi">KOSPI指数</string>
     <string name="widget_label_crypto">暗号資産指数</string>
     <string name="widget_label_dashboard">3指数を一目で</string>
-    <string name="widget_label_chart">30日推移チャート</string>
+    <string name="widget_label_chart">Global 推移チャート</string>
     <string name="widget_guide_section_widgets">ウィジェットの種類</string>
     <string name="widget_guide_type_single">単一指数ゲージ — グローバル · KOSPI · 暗号資産</string>
     <string name="widget_guide_section_howto">追加方法</string>
@@ -554,4 +554,9 @@
     <string name="widget_guide_tip_resize">ウィジェットを長押しすると、移動やサイズ変更ができます。</string>
     <string name="widget_guide_tip_auto">ウィジェットは数時間ごと、およびアプリを開くたびに自動更新されます。</string>
     <string name="widget_guide_tip_launcher">端末やランチャーによってメニュー名が多少異なる場合があります。</string>
+    <string name="widget_refreshing">更新中…</string>
+    <string name="widget_label_chart_kospi">KOSPI 推移チャート</string>
+    <string name="widget_label_chart_crypto">Crypto 推移チャート</string>
+    <string name="widget_chart_kospi_description">指数の推移チャート。タップで期間(3M~5Y)を切替。</string>
+    <string name="widget_chart_crypto_description">指数の推移チャート。タップで期間(3M~5Y)を切替。</string>
 </resources>

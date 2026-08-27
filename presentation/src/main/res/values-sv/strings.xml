@@ -421,9 +421,9 @@
     <string name="widget_guide_step3">Välj det index du vill ha — Global, KOSPI eller Krypto — eller allt-i-ett-widgeten.</string>
     <string name="widget_guide_step4">Dra den till startskärmen och placera den där du vill.</string>
     <string name="widget_guide_step5">Tryck på widgeten när som helst för att öppna appen.</string>
-    <string name="widget_market_description">Visar det globala (S&amp;P 500) rädsla- och girighetsindexet som mätare.</string>
-    <string name="widget_kospi_description">Visar KOSPI-rädsloindexet som mätare.</string>
-    <string name="widget_crypto_description">Visar kryptoindexet (BTC) för rädsla och girighet som mätare.</string>
+    <string name="widget_market_description">Följer S&amp;P 500</string>
+    <string name="widget_kospi_description">Följer KOSPI</string>
+    <string name="widget_crypto_description">Följer BTC</string>
     <string name="widget_dashboard_description">Visar de globala, KOSPI- och kryptoindexen med en blick.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Ta bort annonser</string>
@@ -541,12 +541,12 @@
     <string name="insight_historical_return_title_greed">Vad hände sedan?</string>
     <string name="score_explorer_subtitle_greed">Vad hände efter en dag med detta värde?</string>
     <string name="widget_updated_at">kl. %1$s</string>
-    <string name="widget_chart_description">Visar det globala indexets utveckling de senaste 30 dagarna som diagram.</string>
+    <string name="widget_chart_description">Indexdiagram. Tryck för att byta period (3M–5Y).</string>
     <string name="widget_label_market">Globalt index</string>
     <string name="widget_label_kospi">KOSPI-index</string>
     <string name="widget_label_crypto">Kryptoindex</string>
     <string name="widget_label_dashboard">Alla index</string>
-    <string name="widget_label_chart">30-dagarstrend</string>
+    <string name="widget_label_chart">Global Trenddiagram</string>
     <string name="widget_guide_section_widgets">Widgettyper</string>
     <string name="widget_guide_type_single">Mätare för ett index — Globalt · KOSPI · Krypto</string>
     <string name="widget_guide_section_howto">Så lägger du till</string>
@@ -555,4 +555,9 @@
     <string name="widget_guide_tip_resize">Håll in en widget för att flytta den eller ändra dess storlek.</string>
     <string name="widget_guide_tip_auto">Widgetar uppdateras automatiskt med några timmars mellanrum och varje gång du öppnar appen.</string>
     <string name="widget_guide_tip_launcher">Menynamn kan skilja sig något beroende på enhet och launcher.</string>
+    <string name="widget_refreshing">Uppdaterar…</string>
+    <string name="widget_label_chart_kospi">KOSPI Trenddiagram</string>
+    <string name="widget_label_chart_crypto">Crypto Trenddiagram</string>
+    <string name="widget_chart_kospi_description">Indexdiagram. Tryck för att byta period (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Indexdiagram. Tryck för att byta period (3M–5Y).</string>
 </resources>

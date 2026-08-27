@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Πατήστε το widget οποιαδήποτε στιγμή για να ανοίξετε την εφαρμογή.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Εμφανίζει τον παγκόσμιο δείκτη φόβου και απληστίας (S&amp;P 500) ως μετρητή.</string>
-    <string name="widget_kospi_description">Εμφανίζει τον δείκτη φόβου KOSPI ως μετρητή.</string>
-    <string name="widget_crypto_description">Εμφανίζει τον δείκτη κρύπτο (BTC) φόβου και απληστίας ως μετρητή.</string>
+    <string name="widget_market_description">Ακολουθεί τον S&amp;P 500</string>
+    <string name="widget_kospi_description">Ακολουθεί τον KOSPI</string>
+    <string name="widget_crypto_description">Ακολουθεί το BTC</string>
     <string name="widget_dashboard_description">Εμφανίζει με μια ματιά τους δείκτες παγκόσμιο, KOSPI και κρύπτο.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Αφαίρεση διαφημίσεων</string>
@@ -543,12 +543,12 @@
     <string name="insight_historical_return_title_greed">Τι ακολούθησε;</string>
     <string name="score_explorer_subtitle_greed">Τι ακολούθησε μετά από μια μέρα με αυτό το σκορ;</string>
     <string name="widget_updated_at">στις %1$s</string>
-    <string name="widget_chart_description">Εμφανίζει την πορεία του παγκόσμιου δείκτη τις τελευταίες 30 ημέρες σε γράφημα.</string>
+    <string name="widget_chart_description">Γράφημα δείκτη. Πατήστε για αλλαγή περιόδου (3M–5Y).</string>
     <string name="widget_label_market">Παγκόσμιος δείκτης</string>
     <string name="widget_label_kospi">Δείκτης KOSPI</string>
     <string name="widget_label_crypto">Δείκτης κρύπτο</string>
     <string name="widget_label_dashboard">Όλοι οι δείκτες</string>
-    <string name="widget_label_chart">Τάση 30 ημερών</string>
+    <string name="widget_label_chart">Global Γράφημα τάσης</string>
     <string name="widget_guide_section_widgets">Τύποι widget</string>
     <string name="widget_guide_type_single">Μετρητής ενός δείκτη — Παγκόσμιος · KOSPI · Κρύπτο</string>
     <string name="widget_guide_section_howto">Πώς να προσθέσετε</string>
@@ -557,4 +557,9 @@
     <string name="widget_guide_tip_resize">Κρατήστε πατημένο ένα widget για να το μετακινήσετε ή να αλλάξετε το μέγεθός του.</string>
     <string name="widget_guide_tip_auto">Τα widget ενημερώνονται αυτόματα κάθε λίγες ώρες και κάθε φορά που ανοίγετε την εφαρμογή.</string>
     <string name="widget_guide_tip_launcher">Τα ονόματα των μενού ενδέχεται να διαφέρουν ελαφρώς ανάλογα με τη συσκευή και τον launcher.</string>
+    <string name="widget_refreshing">Ανανέωση…</string>
+    <string name="widget_label_chart_kospi">KOSPI Γράφημα τάσης</string>
+    <string name="widget_label_chart_crypto">Crypto Γράφημα τάσης</string>
+    <string name="widget_chart_kospi_description">Γράφημα δείκτη. Πατήστε για αλλαγή περιόδου (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Γράφημα δείκτη. Πατήστε για αλλαγή περιόδου (3M–5Y).</string>
 </resources>

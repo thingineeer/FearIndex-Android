@@ -161,7 +161,7 @@ fun SettingsScreen(
             SettingsItem(
                 icon = Icons.Default.Star,
                 title = stringResource(R.string.settings_menu_rate),
-                onClick = { openPlayStoreForReview(context) },
+                onClick = { launchInAppReview(context) },
             )
             HorizontalDivider()
 
@@ -458,7 +458,24 @@ private fun rememberAppVersion(context: Context): String = try {
 }
 
 /**
- * Play Store 앱 상세 페이지 → 리뷰 작성 시트를 여는 표준 Android 방식.
+ * 앱 평가하기 — Play In-App Review 다이얼로그를 앱 안에서 바로 띄운다.
+ * Play 는 리뷰 작성 화면 딥링크를 제공하지 않으므로 이게 유일한 "바로 평가" 경로.
+ * 실패(사이드로드/쿼터 소진 등) 시 스토어 상세 페이지로 fallback.
+ * 주의: Play 설치본에서만 다이얼로그가 뜨고, Google 쿼터 정책상 노출이 생략될 수 있다.
+ */
+private fun launchInAppReview(context: Context) {
+    val activity = context.findActivity() ?: return openPlayStoreForReview(context)
+    val manager = com.google.android.play.core.review.ReviewManagerFactory.create(context)
+    manager.requestReviewFlow()
+        .addOnSuccessListener { info ->
+            manager.launchReviewFlow(activity, info)
+                .addOnFailureListener { openPlayStoreForReview(context) }
+        }
+        .addOnFailureListener { openPlayStoreForReview(context) }
+}
+
+/**
+ * Play Store 앱 상세 페이지 fallback.
  * market:// URI를 Play Store 앱이 받으면 바로 열고, 없으면 웹 URL로 fallback.
  */
 private fun openPlayStoreForReview(context: Context) {

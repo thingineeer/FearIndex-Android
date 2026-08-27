@@ -424,9 +424,9 @@
     <string name="widget_guide_step3">আপনার পছন্দের সূচক বেছে নিন — গ্লোবাল, KOSPI বা ক্রিপ্টো — অথবা অল-ইন-ওয়ান উইজেট।</string>
     <string name="widget_guide_step4">এটি আপনার হোম স্ক্রিনে টেনে এনে পছন্দমতো জায়গায় রাখুন।</string>
     <string name="widget_guide_step5">অ্যাপ খুলতে যেকোনো সময় উইজেটে ট্যাপ করুন।</string>
-    <string name="widget_market_description">গ্লোবাল (S&amp;P 500) ভয়-লোভ সূচক গেজ আকারে দেখায়।</string>
-    <string name="widget_kospi_description">KOSPI ভয় সূচক গেজ আকারে দেখায়।</string>
-    <string name="widget_crypto_description">ক্রিপ্টো (BTC) ভয়-লোভ সূচক গেজ আকারে দেখায়।</string>
+    <string name="widget_market_description">S&amp;P 500 অনুসরণ করে</string>
+    <string name="widget_kospi_description">KOSPI অনুসরণ করে</string>
+    <string name="widget_crypto_description">BTC অনুসরণ করে</string>
     <string name="widget_dashboard_description">গ্লোবাল, KOSPI ও ক্রিপ্টো সূচক এক নজরে দেখায়।</string>
     <string name="settings_premium_header">প্রিমিয়াম</string>
     <string name="settings_remove_ads_title">বিজ্ঞাপন সরান</string>
@@ -544,12 +544,12 @@
     <string name="insight_historical_return_title_greed">তারপর কী হয়েছিল?</string>
     <string name="score_explorer_subtitle_greed">এই স্কোরের দিনের পরে কী হয়েছিল?</string>
     <string name="widget_updated_at">%1$s পর্যন্ত</string>
-    <string name="widget_chart_description">গত ৩০ দিনের গ্লোবাল সূচকের প্রবণতা চার্টে দেখায়।</string>
+    <string name="widget_chart_description">ইনডেক্স ট্রেন্ড চার্ট। সময়কাল (3M–5Y) বদলাতে ট্যাপ করুন।</string>
     <string name="widget_label_market">গ্লোবাল সূচক</string>
     <string name="widget_label_kospi">KOSPI সূচক</string>
     <string name="widget_label_crypto">ক্রিপ্টো সূচক</string>
     <string name="widget_label_dashboard">সব সূচক</string>
-    <string name="widget_label_chart">৩০ দিনের প্রবণতা</string>
+    <string name="widget_label_chart">Global ট্রেন্ড চার্ট</string>
     <string name="widget_guide_section_widgets">উইজেটের ধরন</string>
     <string name="widget_guide_type_single">একক সূচক গেজ — গ্লোবাল · KOSPI · ক্রিপ্টো</string>
     <string name="widget_guide_section_howto">যোগ করার পদ্ধতি</string>
@@ -558,4 +558,9 @@
     <string name="widget_guide_tip_resize">উইজেট সরাতে বা আকার বদলাতে সেটি চেপে ধরে রাখুন।</string>
     <string name="widget_guide_tip_auto">উইজেট প্রতি কয়েক ঘণ্টায় এবং অ্যাপ খোলার সময় স্বয়ংক্রিয়ভাবে আপডেট হয়।</string>
     <string name="widget_guide_tip_launcher">ডিভাইস ও লঞ্চার অনুযায়ী মেনুর নাম কিছুটা আলাদা হতে পারে।</string>
+    <string name="widget_refreshing">রিফ্রেশ হচ্ছে…</string>
+    <string name="widget_label_chart_kospi">KOSPI ট্রেন্ড চার্ট</string>
+    <string name="widget_label_chart_crypto">Crypto ট্রেন্ড চার্ট</string>
+    <string name="widget_chart_kospi_description">ইনডেক্স ট্রেন্ড চার্ট। সময়কাল (3M–5Y) বদলাতে ট্যাপ করুন।</string>
+    <string name="widget_chart_crypto_description">ইনডেক্স ট্রেন্ড চার্ট। সময়কাল (3M–5Y) বদলাতে ট্যাপ করুন।</string>
 </resources>

@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Додирните виџет у било ком тренутку да отворите апликацију.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Prikazuje globalni indeks straha i pohlepe (S&amp;P 500) kao merač.</string>
-    <string name="widget_kospi_description">Prikazuje KOSPI indeks straha kao merač.</string>
-    <string name="widget_crypto_description">Prikazuje kripto indeks straha i pohlepe (BTC) kao merač.</string>
+    <string name="widget_market_description">Прати S&amp;P 500</string>
+    <string name="widget_kospi_description">Прати KOSPI</string>
+    <string name="widget_crypto_description">Прати BTC</string>
     <string name="widget_dashboard_description">Prikazuje globalni, KOSPI i kripto indeks na prvi pogled.</string>
     <string name="settings_premium_header">Премијум</string>
     <string name="settings_remove_ads_title">Уклони огласе</string>
@@ -543,12 +543,12 @@
     <string name="insight_historical_return_title_greed">Шта се десило после?</string>
     <string name="score_explorer_subtitle_greed">Шта је уследило после дана са овим резултатом?</string>
     <string name="widget_updated_at">у %1$s</string>
-    <string name="widget_chart_description">Prikazuje kretanje globalnog indeksa u poslednjih 30 dana na grafikonu.</string>
+    <string name="widget_chart_description">Графикон индекса. Додиром мењате период (3M–5Y).</string>
     <string name="widget_label_market">Globalni indeks</string>
     <string name="widget_label_kospi">Indeks KOSPI</string>
     <string name="widget_label_crypto">Kripto indeks</string>
     <string name="widget_label_dashboard">Svi indeksi</string>
-    <string name="widget_label_chart">Trend 30 dana</string>
+    <string name="widget_label_chart">Global Графикон тренда</string>
     <string name="widget_guide_section_widgets">Vrste vidžeta</string>
     <string name="widget_guide_type_single">Merač jednog indeksa — Globalni · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Kako dodati</string>
@@ -557,4 +557,9 @@
     <string name="widget_guide_tip_resize">Držite vidžet da biste ga premestili ili promenili veličinu.</string>
     <string name="widget_guide_tip_auto">Vidžeti se automatski ažuriraju na svakih nekoliko sati i pri svakom otvaranju aplikacije.</string>
     <string name="widget_guide_tip_launcher">Nazivi menija mogu se malo razlikovati u zavisnosti od uređaja i launchera.</string>
+    <string name="widget_refreshing">Освежавање…</string>
+    <string name="widget_label_chart_kospi">KOSPI Графикон тренда</string>
+    <string name="widget_label_chart_crypto">Crypto Графикон тренда</string>
+    <string name="widget_chart_kospi_description">Графикон индекса. Додиром мењате период (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Графикон индекса. Додиром мењате период (3M–5Y).</string>
 </resources>

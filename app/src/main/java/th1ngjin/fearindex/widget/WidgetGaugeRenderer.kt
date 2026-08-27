@@ -16,14 +16,11 @@ import android.graphics.SweepGradient
 object WidgetGaugeRenderer {
 
     private val trackColor = Color.parseColor("#3A3A3C")
-    // 마지막에 빨강을 한 번 더 두는 이유: SweepGradient 는 원형으로 감기므로 시작점(135°)의
-    // 라운드 캡이 각도상 "직전"(pos≈1.0)을 샘플링한다 — 여기가 초록이면 시작 캡에 초록이 샌다.
     private val gradientColors = intArrayOf(
         Color.parseColor("#E53935"), // 빨강 (0, 극단적 공포)
         Color.parseColor("#F57C00"), // 주황
         Color.parseColor("#FDD835"), // 노랑
         Color.parseColor("#43A047"), // 초록 (270°, 극단적 탐욕)
-        Color.parseColor("#E53935"), // wrap 구간(270°~360°) → 시작 캡 색 보정
     )
 
     /** [sizePx] 정사각 비트맵에 score 게이지를 그린다. */
@@ -37,7 +34,8 @@ object WidgetGaugeRenderer {
         val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             style = Paint.Style.STROKE
             strokeWidth = stroke
-            strokeCap = Paint.Cap.ROUND
+            // BUTT: 라운드 캡은 아크 끝에 동그란 혹('o')처럼 보인다 — 2026-08-27 사용자 요청으로 제거
+            strokeCap = Paint.Cap.BUTT
         }
 
         // 트랙 (전체 270°)
@@ -47,7 +45,7 @@ object WidgetGaugeRenderer {
         // 진행 아크 — 시작각에 맞춰 회전시킨 SweepGradient 를 270° 범위에 매핑
         val sweep = WidgetGaugeSpec.sweepAngle(score)
         if (sweep > 0f) {
-            val positions = floatArrayOf(0f, 0.33f, 0.66f, WidgetGaugeSpec.TOTAL_SWEEP_DEG / 360f, 0.97f)
+            val positions = floatArrayOf(0f, 0.33f, 0.66f, WidgetGaugeSpec.TOTAL_SWEEP_DEG / 360f)
             val shader = SweepGradient(rect.centerX(), rect.centerY(), gradientColors, positions)
             val matrix = Matrix().apply { postRotate(WidgetGaugeSpec.START_ANGLE_DEG, rect.centerX(), rect.centerY()) }
             shader.setLocalMatrix(matrix)

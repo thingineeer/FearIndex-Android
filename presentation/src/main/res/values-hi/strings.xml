@@ -424,9 +424,9 @@
     <string name="widget_guide_step3">अपना मनचाहा सूचकांक चुनें — ग्लोबल, KOSPI या क्रिप्टो — या ऑल-इन-वन विजेट।</string>
     <string name="widget_guide_step4">इसे अपनी होम स्क्रीन पर खींचें और जहाँ चाहें वहाँ रखें।</string>
     <string name="widget_guide_step5">ऐप खोलने के लिए कभी भी विजेट पर टैप करें।</string>
-    <string name="widget_market_description">वैश्विक (S&amp;P 500) भय-लालच सूचकांक को गेज के रूप में दिखाता है।</string>
-    <string name="widget_kospi_description">KOSPI भय सूचकांक को गेज के रूप में दिखाता है।</string>
-    <string name="widget_crypto_description">क्रिप्टो (BTC) भय-लालच सूचकांक को गेज के रूप में दिखाता है।</string>
+    <string name="widget_market_description">S&amp;P 500 को ट्रैक करता है</string>
+    <string name="widget_kospi_description">KOSPI को ट्रैक करता है</string>
+    <string name="widget_crypto_description">BTC को ट्रैक करता है</string>
     <string name="widget_dashboard_description">वैश्विक, KOSPI और क्रिप्टो सूचकांक एक नज़र में दिखाता है।</string>
     <string name="settings_premium_header">प्रीमियम</string>
     <string name="settings_remove_ads_title">विज्ञापन हटाएँ</string>
@@ -544,12 +544,12 @@
     <string name="insight_historical_return_title_greed">उसके बाद क्या हुआ?</string>
     <string name="score_explorer_subtitle_greed">इस स्कोर वाले दिन के बाद क्या हुआ?</string>
     <string name="widget_updated_at">%1$s तक</string>
-    <string name="widget_chart_description">पिछले 30 दिनों के वैश्विक सूचकांक का रुझान चार्ट में दिखाता है।</string>
+    <string name="widget_chart_description">इंडेक्स ट्रेंड चार्ट। अवधि (3M–5Y) बदलने के लिए टैप करें।</string>
     <string name="widget_label_market">वैश्विक सूचकांक</string>
     <string name="widget_label_kospi">KOSPI सूचकांक</string>
     <string name="widget_label_crypto">क्रिप्टो सूचकांक</string>
     <string name="widget_label_dashboard">सभी सूचकांक</string>
-    <string name="widget_label_chart">30-दिन का रुझान</string>
+    <string name="widget_label_chart">Global ट्रेंड चार्ट</string>
     <string name="widget_guide_section_widgets">विजेट के प्रकार</string>
     <string name="widget_guide_type_single">एकल सूचकांक गेज — ग्लोबल · KOSPI · क्रिप्टो</string>
     <string name="widget_guide_section_howto">जोड़ने का तरीका</string>
@@ -558,4 +558,9 @@
     <string name="widget_guide_tip_resize">विजेट को देर तक दबाकर उसे हिलाएँ या उसका आकार बदलें।</string>
     <string name="widget_guide_tip_auto">विजेट हर कुछ घंटों में और हर बार ऐप खोलने पर अपने आप अपडेट होते हैं।</string>
     <string name="widget_guide_tip_launcher">डिवाइस और लॉन्चर के अनुसार मेनू के नाम थोड़े अलग हो सकते हैं।</string>
+    <string name="widget_refreshing">रीफ़्रेश हो रहा है…</string>
+    <string name="widget_label_chart_kospi">KOSPI ट्रेंड चार्ट</string>
+    <string name="widget_label_chart_crypto">Crypto ट्रेंड चार्ट</string>
+    <string name="widget_chart_kospi_description">इंडेक्स ट्रेंड चार्ट। अवधि (3M–5Y) बदलने के लिए टैप करें।</string>
+    <string name="widget_chart_crypto_description">इंडेक्स ट्रेंड चार्ट। अवधि (3M–5Y) बदलने के लिए टैप करें।</string>
 </resources>

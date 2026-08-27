@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -51,6 +53,7 @@ import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
@@ -80,22 +83,33 @@ fun OnboardingTourOverlay(
 
     val insetPx = with(density) { 6.dp.toPx() }
     val cornerPx = with(density) { 14.dp.toPx() }
+    val gapPx = with(density) { 16.dp.toPx() }
+    val minTopPx = with(density) { 72.dp.toPx() }
+    // 투어 중에는 탭바를 누를 수 없으니 카드가 탭바 위까지 내려가도 된다.
+    // 여백을 크게 두면 짧은 화면에서 카드가 위로 당겨져 하이라이트를 덮는다.
+    val bottomInsetPx = with(density) { 44.dp.toPx() }   // 하단 클램프 카드(4단계) 20dp 상향 — 2026-08-27 사용자 요청
     val cutout = anchor?.let {
         Rect(it.left - insetPx, it.top - insetPx, it.right + insetPx, it.bottom + insetPx)
     }
     val placement = onboardingCardPlacement(anchor, screenHeightPx)
+    var cardHeightPx by remember { mutableStateOf(0f) }
+    val cardTopPx = onboardingCardTopPx(
+        placement = placement,
+        anchor = cutout,
+        cardHeightPx = cardHeightPx,
+        screenHeightPx = screenHeightPx,
+        gapPx = gapPx,
+        minTopPx = minTopPx,
+        maxBottomPx = (screenHeightPx - bottomInsetPx).coerceAtLeast(minTopPx),
+    )
 
     Box(
         modifier = modifier
             .fillMaxSize()
             .onSizeChanged { screenHeightPx = it.height.toFloat() },
     ) {
-        // 1. 딤 + 컷아웃 (뒤 UI 오조작 방지 — 배경 탭 흡수)
-        Canvas(
-            modifier = Modifier
-                .fillMaxSize()
-                .pointerInput(Unit) { detectTapGestures { /* 흡수 */ } },
-        ) {
+        // 1. 딤 + 컷아웃 (그리기 전용 — 터치는 아래 흡수 레이어가 담당)
+        Canvas(modifier = Modifier.fillMaxSize()) {
             val path = Path().apply {
                 addRect(Rect(0f, 0f, size.width, size.height))
                 cutout?.let {
@@ -106,29 +120,58 @@ fun OnboardingTourOverlay(
             drawPath(path, Color.Black.copy(alpha = 0.45f))
         }
 
-        // 2. 마칭앤츠 링
+        // 2. 뒤 UI 오조작 방지. interactiveAnchor 단계는 컷아웃 안쪽만 터치를 통과시킨다.
+        if (step.interactiveAnchor && cutout != null) {
+            TapBlocker(Rect(0f, 0f, Float.MAX_VALUE, cutout.top)) // 위
+            TapBlocker(Rect(0f, cutout.bottom, Float.MAX_VALUE, Float.MAX_VALUE)) // 아래
+            TapBlocker(Rect(0f, cutout.top, cutout.left, cutout.bottom)) // 좌
+            TapBlocker(Rect(cutout.right, cutout.top, Float.MAX_VALUE, cutout.bottom)) // 우
+        } else {
+            TapBlocker(null)
+        }
+
+        // 3. 마칭앤츠 링
         cutout?.let { MarchingAntsRing(rect = it, cornerPx = cornerPx, color = accent, reduceMotion = reduceMotion) }
 
-        // 3. 단계 카드
-        Column(modifier = Modifier.fillMaxSize()) {
-            when (placement) {
-                OnboardingCardPlacement.TOP -> {
-                    StepCard(stepNumber, totalSteps, step, accent, onAdvance, onSkip, Modifier.padding(top = 72.dp))
-                    Spacer(Modifier.weight(1f))
-                }
-                OnboardingCardPlacement.BOTTOM -> {
-                    Spacer(Modifier.weight(1f))
-                    StepCard(stepNumber, totalSteps, step, accent, onAdvance, onSkip, Modifier.padding(bottom = 108.dp))
-                }
-                OnboardingCardPlacement.CENTER -> {
-                    Spacer(Modifier.weight(1f))
-                    StepCard(stepNumber, totalSteps, step, accent, onAdvance, onSkip)
-                    Spacer(Modifier.weight(1f))
-                }
-            }
-        }
+        // 4. 단계 카드 — 하이라이트에 밀착
+        StepCard(
+            stepNumber = stepNumber,
+            totalSteps = totalSteps,
+            step = step,
+            accent = accent,
+            onAdvance = onAdvance,
+            onSkip = onSkip,
+            modifier = Modifier
+                .offset { IntOffset(0, cardTopPx.toInt()) }
+                .onSizeChanged { cardHeightPx = it.height.toFloat() },
+        )
     }
 }
+
+/** 딤 영역 터치 흡수. [rect] 가 null 이면 화면 전체. */
+@Composable
+private fun BoxScope.TapBlocker(rect: Rect?) {
+    val density = LocalDensity.current
+    val base = Modifier.pointerInput(Unit) { detectTapGestures { /* 흡수 */ } }
+    if (rect == null) {
+        Box(Modifier.fillMaxSize().then(base))
+        return
+    }
+    if (rect.width <= 0f || rect.height <= 0f) return
+    val left = with(density) { rect.left.coerceAtLeast(0f).toDp() }
+    val top = with(density) { rect.top.coerceAtLeast(0f).toDp() }
+    val width = with(density) { rect.width.coerceAtMost(MAX_BLOCKER_PX).toDp() }
+    val height = with(density) { rect.height.coerceAtMost(MAX_BLOCKER_PX).toDp() }
+    Box(
+        Modifier
+            .offset(x = left, y = top)
+            .size(width = width, height = height)
+            .then(base),
+    )
+}
+
+/** Float.MAX_VALUE 를 dp 로 바꾸면 오버플로 — 화면보다 충분히 큰 값으로 자른다. */
+private const val MAX_BLOCKER_PX = 20_000f
 
 @Composable
 private fun StepCard(

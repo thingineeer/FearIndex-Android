@@ -420,9 +420,9 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="widget_guide_step3">Pilih indeks yang anda mahu — Global, KOSPI atau Kripto — atau widget semua-dalam-satu.</string>
     <string name="widget_guide_step4">Seret ke skrin utama dan letakkan di tempat yang anda suka.</string>
     <string name="widget_guide_step5">Ketik widget bila-bila masa untuk membuka aplikasi.</string>
-    <string name="widget_market_description">Memaparkan indeks ketakutan &amp; ketamakan global (S&amp;P 500) sebagai tolok.</string>
-    <string name="widget_kospi_description">Memaparkan indeks ketakutan KOSPI sebagai tolok.</string>
-    <string name="widget_crypto_description">Memaparkan indeks ketakutan &amp; ketamakan kripto (BTC) sebagai tolok.</string>
+    <string name="widget_market_description">Mengikuti S&amp;P 500</string>
+    <string name="widget_kospi_description">Mengikuti KOSPI</string>
+    <string name="widget_crypto_description">Mengikuti BTC</string>
     <string name="widget_dashboard_description">Memaparkan indeks global, KOSPI dan kripto sekali gus.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Buang Iklan</string>
@@ -540,12 +540,12 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="insight_historical_return_title_greed">Apa yang berlaku selepas itu?</string>
     <string name="score_explorer_subtitle_greed">Apa yang berlaku selepas hari dengan skor ini?</string>
     <string name="widget_updated_at">setakat %1$s</string>
-    <string name="widget_chart_description">Memaparkan trend indeks global 30 hari lepas dalam carta.</string>
+    <string name="widget_chart_description">Carta trend indeks. Ketik untuk menukar tempoh (3M–5Y).</string>
     <string name="widget_label_market">Indeks Global</string>
     <string name="widget_label_kospi">Indeks KOSPI</string>
     <string name="widget_label_crypto">Indeks Kripto</string>
     <string name="widget_label_dashboard">Semua Indeks</string>
-    <string name="widget_label_chart">Trend 30 Hari</string>
+    <string name="widget_label_chart">Global Carta Trend</string>
     <string name="widget_guide_section_widgets">Jenis widget</string>
     <string name="widget_guide_type_single">Tolok satu indeks — Global · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Cara menambah</string>
@@ -554,4 +554,9 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="widget_guide_tip_resize">Tekan lama widget untuk mengalihkannya atau mengubah saiznya.</string>
     <string name="widget_guide_tip_auto">Widget dikemas kini secara automatik setiap beberapa jam dan setiap kali anda membuka aplikasi.</string>
     <string name="widget_guide_tip_launcher">Nama menu mungkin sedikit berbeza bergantung pada peranti dan pelancar.</string>
+    <string name="widget_refreshing">Menyegar semula…</string>
+    <string name="widget_label_chart_kospi">KOSPI Carta Trend</string>
+    <string name="widget_label_chart_crypto">Crypto Carta Trend</string>
+    <string name="widget_chart_kospi_description">Carta trend indeks. Ketik untuk menukar tempoh (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Carta trend indeks. Ketik untuk menukar tempoh (3M–5Y).</string>
 </resources>

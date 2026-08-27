@@ -40,6 +40,8 @@ data class OnboardingStep(
     val destination: OnboardingDestination,
     @StringRes val titleRes: Int,
     @StringRes val detailRes: Int,
+    /** true 면 하이라이트 안쪽 탭이 딤을 통과해 실제 UI 에 전달된다 (투표 단계에서 바로 눌러보게). */
+    val interactiveAnchor: Boolean = false,
 )
 
 object OnboardingSteps {
@@ -53,7 +55,8 @@ object OnboardingSteps {
         OnboardingStep(OnboardingAnchor.INSIGHT, false, OnboardingDestination.HOME_INSIGHT,
             R.string.onboarding_step4_title, R.string.onboarding_step4_detail),
         OnboardingStep(OnboardingAnchor.VOTE, false, OnboardingDestination.VOTE,
-            R.string.onboarding_step5_title, R.string.onboarding_step5_detail),
+            R.string.onboarding_step5_title, R.string.onboarding_step5_detail,
+            interactiveAnchor = true),
         OnboardingStep(OnboardingAnchor.NOTIFICATION, false, OnboardingDestination.SETTINGS,
             R.string.onboarding_step6_title, R.string.onboarding_step6_detail),
         OnboardingStep(OnboardingAnchor.WIDGET, false, OnboardingDestination.SETTINGS_WIDGET,
@@ -84,3 +87,31 @@ fun onboardingCardPlacement(anchor: Rect?, screenHeight: Float): OnboardingCardP
         anchor.center.y > screenHeight * 0.5f -> OnboardingCardPlacement.TOP
         else -> OnboardingCardPlacement.BOTTOM
     }
+
+/**
+ * 카드 상단 y(px) — 하이라이트에 밀착시킨다. 화면 끝에 붙여두면 대상과 설명이 멀어지고,
+ * 짧은 화면에서는 카드가 올가미를 덮는다.
+ *
+ * @param gapPx 하이라이트와 카드 사이 간격
+ * @param minTopPx 카드가 올라갈 수 있는 최상단 (상태바 아래)
+ * @param maxBottomPx 카드가 내려갈 수 있는 최하단 (탭바 위)
+ */
+fun onboardingCardTopPx(
+    placement: OnboardingCardPlacement,
+    anchor: Rect?,
+    cardHeightPx: Float,
+    screenHeightPx: Float,
+    gapPx: Float,
+    minTopPx: Float,
+    maxBottomPx: Float,
+): Float {
+    val lowestTop = maxBottomPx - cardHeightPx
+    val desired = when {
+        anchor == null || placement == OnboardingCardPlacement.CENTER ->
+            (screenHeightPx - cardHeightPx) / 2f
+        placement == OnboardingCardPlacement.BOTTOM -> anchor.bottom + gapPx
+        else -> anchor.top - gapPx - cardHeightPx
+    }
+    // 카드가 가용 높이보다 크면 상단 한계에 고정한다.
+    return if (lowestTop <= minTopPx) minTopPx else desired.coerceIn(minTopPx, lowestTop)
+}

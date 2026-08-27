@@ -421,9 +421,9 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="widget_guide_step3">Wybierz indeks, który chcesz — Globalny, KOSPI lub Krypto — albo widżet wszystko w jednym.</string>
     <string name="widget_guide_step4">Przeciągnij go na ekran główny i umieść w wybranym miejscu.</string>
     <string name="widget_guide_step5">Dotknij widżetu w dowolnej chwili, aby otworzyć aplikację.</string>
-    <string name="widget_market_description">Pokazuje globalny indeks strachu i chciwości (S&amp;P 500) jako wskaźnik.</string>
-    <string name="widget_kospi_description">Pokazuje indeks strachu KOSPI jako wskaźnik.</string>
-    <string name="widget_crypto_description">Pokazuje kryptoindeks strachu i chciwości (BTC) jako wskaźnik.</string>
+    <string name="widget_market_description">Śledzi S&amp;P 500</string>
+    <string name="widget_kospi_description">Śledzi KOSPI</string>
+    <string name="widget_crypto_description">Śledzi BTC</string>
     <string name="widget_dashboard_description">Pokazuje jednocześnie indeksy globalny, KOSPI i krypto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Usuń reklamy</string>
@@ -541,12 +541,12 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="insight_historical_return_title_greed">Co działo się potem?</string>
     <string name="score_explorer_subtitle_greed">Co nastąpiło po dniu z tym wynikiem?</string>
     <string name="widget_updated_at">stan na %1$s</string>
-    <string name="widget_chart_description">Pokazuje przebieg indeksu globalnego z ostatnich 30 dni na wykresie.</string>
+    <string name="widget_chart_description">Wykres indeksu. Dotknij, aby zmienić okres (3M–5Y).</string>
     <string name="widget_label_market">Indeks globalny</string>
     <string name="widget_label_kospi">Indeks KOSPI</string>
     <string name="widget_label_crypto">Indeks krypto</string>
     <string name="widget_label_dashboard">Wszystkie indeksy</string>
-    <string name="widget_label_chart">Trend 30 dni</string>
+    <string name="widget_label_chart">Global Wykres trendu</string>
     <string name="widget_guide_section_widgets">Rodzaje widżetów</string>
     <string name="widget_guide_type_single">Wskaźnik jednego indeksu — Globalny · KOSPI · Krypto</string>
     <string name="widget_guide_section_howto">Jak dodać</string>
@@ -555,4 +555,9 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="widget_guide_tip_resize">Przytrzymaj widżet, aby go przenieść lub zmienić jego rozmiar.</string>
     <string name="widget_guide_tip_auto">Widżety aktualizują się automatycznie co kilka godzin i przy każdym otwarciu aplikacji.</string>
     <string name="widget_guide_tip_launcher">Nazwy menu mogą się nieco różnić w zależności od urządzenia i launchera.</string>
+    <string name="widget_refreshing">Odświeżanie…</string>
+    <string name="widget_label_chart_kospi">KOSPI Wykres trendu</string>
+    <string name="widget_label_chart_crypto">Crypto Wykres trendu</string>
+    <string name="widget_chart_kospi_description">Wykres indeksu. Dotknij, aby zmienić okres (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Wykres indeksu. Dotknij, aby zmienić okres (3M–5Y).</string>
 </resources>

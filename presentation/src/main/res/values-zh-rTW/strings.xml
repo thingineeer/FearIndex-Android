@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">選擇想要的指數（全球、KOSPI、加密貨幣）或整合小工具。</string>
     <string name="widget_guide_step4">將它拖到主畫面，放在喜歡的位置。</string>
     <string name="widget_guide_step5">隨時點選小工具即可開啟應用程式。</string>
-    <string name="widget_market_description">以儀表形式顯示全球（S&amp;P 500）恐懼與貪婪指數。</string>
-    <string name="widget_kospi_description">以儀表形式顯示韓國（KOSPI）恐懼指數。</string>
-    <string name="widget_crypto_description">以儀表形式顯示加密貨幣（BTC）恐懼與貪婪指數。</string>
+    <string name="widget_market_description">追蹤標普500</string>
+    <string name="widget_kospi_description">追蹤KOSPI</string>
+    <string name="widget_crypto_description">追蹤BTC</string>
     <string name="widget_dashboard_description">一覽顯示全球、KOSPI 與加密貨幣三大指數。</string>
     <string name="settings_premium_header">進階版</string>
     <string name="settings_remove_ads_title">移除廣告</string>
@@ -540,12 +540,12 @@
     <string name="insight_historical_return_title_greed">之後走勢如何？</string>
     <string name="score_explorer_subtitle_greed">記錄到該分數之後，市場怎麼走？</string>
     <string name="widget_updated_at">截至 %1$s</string>
-    <string name="widget_chart_description">以圖表顯示全球指數最近30天的走勢。</string>
+    <string name="widget_chart_description">指數走勢圖表。點按切換期間(3M~5Y)。</string>
     <string name="widget_label_market">全球指數</string>
     <string name="widget_label_kospi">KOSPI指數</string>
     <string name="widget_label_crypto">加密貨幣指數</string>
     <string name="widget_label_dashboard">三大指數一覽</string>
-    <string name="widget_label_chart">30日走勢圖</string>
+    <string name="widget_label_chart">Global 走勢圖表</string>
     <string name="widget_guide_section_widgets">小工具類型</string>
     <string name="widget_guide_type_single">單一指數儀表 — 全球 · KOSPI · 加密貨幣</string>
     <string name="widget_guide_section_howto">新增方法</string>
@@ -554,4 +554,9 @@
     <string name="widget_guide_tip_resize">長按小工具可移動或調整大小。</string>
     <string name="widget_guide_tip_auto">小工具每隔數小時以及每次開啟應用程式時會自動更新。</string>
     <string name="widget_guide_tip_launcher">選單名稱可能因裝置與啟動器而略有不同。</string>
+    <string name="widget_refreshing">重新整理中…</string>
+    <string name="widget_label_chart_kospi">KOSPI 走勢圖表</string>
+    <string name="widget_label_chart_crypto">Crypto 走勢圖表</string>
+    <string name="widget_chart_kospi_description">指數走勢圖表。點按切換期間(3M~5Y)。</string>
+    <string name="widget_chart_crypto_description">指數走勢圖表。點按切換期間(3M~5Y)。</string>
 </resources>

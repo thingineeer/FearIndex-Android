@@ -420,9 +420,9 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="widget_guide_step3">Pilih indeks yang Anda mau — Global, KOSPI, atau Kripto — atau widget lengkap semua-dalam-satu.</string>
     <string name="widget_guide_step4">Seret ke layar utama dan letakkan di tempat yang Anda suka.</string>
     <string name="widget_guide_step5">Ketuk widget kapan saja untuk membuka aplikasi.</string>
-    <string name="widget_market_description">Menampilkan indeks ketakutan &amp; keserakahan global (S&amp;P 500) sebagai pengukur.</string>
-    <string name="widget_kospi_description">Menampilkan indeks ketakutan KOSPI sebagai pengukur.</string>
-    <string name="widget_crypto_description">Menampilkan indeks ketakutan &amp; keserakahan kripto (BTC) sebagai pengukur.</string>
+    <string name="widget_market_description">Mengikuti S&amp;P 500</string>
+    <string name="widget_kospi_description">Mengikuti KOSPI</string>
+    <string name="widget_crypto_description">Mengikuti BTC</string>
     <string name="widget_dashboard_description">Menampilkan indeks global, KOSPI, dan kripto sekaligus.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Hapus Iklan</string>
@@ -540,12 +540,12 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="insight_historical_return_title_greed">Apa yang terjadi setelahnya?</string>
     <string name="score_explorer_subtitle_greed">Apa yang terjadi setelah hari dengan skor ini?</string>
     <string name="widget_updated_at">per %1$s</string>
-    <string name="widget_chart_description">Menampilkan tren indeks global 30 hari terakhir dalam grafik.</string>
+    <string name="widget_chart_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y).</string>
     <string name="widget_label_market">Indeks Global</string>
     <string name="widget_label_kospi">Indeks KOSPI</string>
     <string name="widget_label_crypto">Indeks Kripto</string>
     <string name="widget_label_dashboard">Semua Indeks</string>
-    <string name="widget_label_chart">Tren 30 Hari</string>
+    <string name="widget_label_chart">Global Grafik Tren</string>
     <string name="widget_guide_section_widgets">Jenis widget</string>
     <string name="widget_guide_type_single">Pengukur satu indeks — Global · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Cara menambahkan</string>
@@ -554,4 +554,9 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="widget_guide_tip_resize">Tekan lama widget untuk memindahkan atau mengubah ukurannya.</string>
     <string name="widget_guide_tip_auto">Widget diperbarui otomatis setiap beberapa jam dan setiap kali Anda membuka aplikasi.</string>
     <string name="widget_guide_tip_launcher">Nama menu mungkin sedikit berbeda tergantung perangkat dan launcher.</string>
+    <string name="widget_refreshing">Menyegarkan…</string>
+    <string name="widget_label_chart_kospi">KOSPI Grafik Tren</string>
+    <string name="widget_label_chart_crypto">Crypto Grafik Tren</string>
+    <string name="widget_chart_kospi_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y).</string>
 </resources>

@@ -27,8 +27,8 @@ object WidgetChartRenderer {
         val bitmap = Bitmap.createBitmap(widthPx, heightPx, Bitmap.Config.ARGB_8888)
         if (scores.size < 2) return bitmap
         val canvas = Canvas(bitmap)
-        val labelSize = heightPx * 0.085f
-        val stroke = heightPx * 0.035f
+        val labelSize = (heightPx * 0.07f).coerceAtMost(widthPx * 0.035f)
+        val stroke = (heightPx * 0.018f).coerceAtLeast(3f)
 
         val labelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = labelColor; textSize = labelSize }
         val yLabelWidth = labelPaint.measureText("100") + stroke * 2
@@ -76,7 +76,7 @@ object WidgetChartRenderer {
         }
         canvas.drawPath(path, paint)
         paint.style = Paint.Style.FILL
-        canvas.drawCircle(x(scores.size - 1), y(scores.last()), stroke * 1.7f, paint)
+        canvas.drawCircle(x(scores.size - 1), y(scores.last()), stroke * 1.4f, paint)
         return bitmap
     }
 }

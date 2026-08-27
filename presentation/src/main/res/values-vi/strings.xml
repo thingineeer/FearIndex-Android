@@ -424,9 +424,9 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="widget_guide_step3">Chọn chỉ số bạn muốn — Toàn cầu, KOSPI hoặc Crypto — hoặc widget tất cả trong một.</string>
     <string name="widget_guide_step4">Kéo vào màn hình chính và đặt ở vị trí bạn thích.</string>
     <string name="widget_guide_step5">Chạm vào widget bất cứ lúc nào để mở ứng dụng.</string>
-    <string name="widget_market_description">Hiển thị chỉ số sợ hãi và tham lam toàn cầu (S&amp;P 500) dưới dạng đồng hồ.</string>
-    <string name="widget_kospi_description">Hiển thị chỉ số sợ hãi KOSPI dưới dạng đồng hồ.</string>
-    <string name="widget_crypto_description">Hiển thị chỉ số sợ hãi và tham lam tiền mã hóa (BTC) dưới dạng đồng hồ.</string>
+    <string name="widget_market_description">Theo dõi S&amp;P 500</string>
+    <string name="widget_kospi_description">Theo dõi KOSPI</string>
+    <string name="widget_crypto_description">Theo dõi BTC</string>
     <string name="widget_dashboard_description">Hiển thị cùng lúc chỉ số toàn cầu, KOSPI và tiền mã hóa.</string>
     <string name="settings_premium_header">Cao cấp</string>
     <string name="settings_remove_ads_title">Xóa quảng cáo</string>
@@ -544,12 +544,12 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="insight_historical_return_title_greed">Sau đó thế nào?</string>
     <string name="score_explorer_subtitle_greed">Sau ngày đạt điểm này thì sao?</string>
     <string name="widget_updated_at">lúc %1$s</string>
-    <string name="widget_chart_description">Hiển thị xu hướng chỉ số toàn cầu trong 30 ngày qua dưới dạng biểu đồ.</string>
+    <string name="widget_chart_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y).</string>
     <string name="widget_label_market">Chỉ số toàn cầu</string>
     <string name="widget_label_kospi">Chỉ số KOSPI</string>
     <string name="widget_label_crypto">Chỉ số tiền mã hóa</string>
     <string name="widget_label_dashboard">Tất cả chỉ số</string>
-    <string name="widget_label_chart">Xu hướng 30 ngày</string>
+    <string name="widget_label_chart">Global Biểu đồ xu hướng</string>
     <string name="widget_guide_section_widgets">Các loại tiện ích</string>
     <string name="widget_guide_type_single">Đồng hồ một chỉ số — Toàn cầu · KOSPI · Tiền mã hóa</string>
     <string name="widget_guide_section_howto">Cách thêm</string>
@@ -558,4 +558,9 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="widget_guide_tip_resize">Nhấn giữ tiện ích để di chuyển hoặc thay đổi kích thước.</string>
     <string name="widget_guide_tip_auto">Tiện ích tự động cập nhật vài giờ một lần và mỗi khi bạn mở ứng dụng.</string>
     <string name="widget_guide_tip_launcher">Tên menu có thể hơi khác tùy theo thiết bị và trình khởi chạy.</string>
+    <string name="widget_refreshing">Đang làm mới…</string>
+    <string name="widget_label_chart_kospi">KOSPI Biểu đồ xu hướng</string>
+    <string name="widget_label_chart_crypto">Crypto Biểu đồ xu hướng</string>
+    <string name="widget_chart_kospi_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y).</string>
 </resources>

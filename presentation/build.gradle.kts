@@ -86,6 +86,9 @@ dependencies {
     // Accompanist
     implementation(libs.accompanist.permissions)
 
+    // Play In-App Review (설정 "앱 평가하기")
+    implementation(libs.play.review.ktx)
+
     // Images
     implementation(libs.coil.compose)
 

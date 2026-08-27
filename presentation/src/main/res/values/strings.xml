@@ -443,9 +443,9 @@
     <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
     <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
     <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
-    <string name="widget_market_description">Shows the global (S&amp;P 500) Fear &amp; Greed Index as a gauge.</string>
-    <string name="widget_kospi_description">Shows the KOSPI Fear Index as a gauge.</string>
-    <string name="widget_crypto_description">Shows the crypto (BTC) Fear &amp; Greed Index as a gauge.</string>
+    <string name="widget_market_description">Tracks the S&amp;P 500</string>
+    <string name="widget_kospi_description">Tracks the KOSPI</string>
+    <string name="widget_crypto_description">Tracks BTC</string>
     <string name="widget_dashboard_description">Shows the global, KOSPI, and crypto indices at a glance.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Remove Ads</string>
@@ -563,12 +563,12 @@
     <string name="insight_historical_return_title_greed">What happened after that?</string>
     <string name="score_explorer_subtitle_greed">What came next after a day with this score?</string>
     <string name="widget_updated_at">as of %1$s</string>
-    <string name="widget_chart_description">Shows the global index trend for the last 30 days as a chart.</string>
+    <string name="widget_chart_description">Index trend chart. Tap to switch the period (3M–5Y).</string>
     <string name="widget_label_market">Global Index</string>
     <string name="widget_label_kospi">KOSPI Index</string>
     <string name="widget_label_crypto">Crypto Index</string>
     <string name="widget_label_dashboard">All Indices</string>
-    <string name="widget_label_chart">30-Day Trend</string>
+    <string name="widget_label_chart">Global Trend Chart</string>
     <string name="widget_guide_section_widgets">Widget types</string>
     <string name="widget_guide_type_single">Single index gauge — Global · KOSPI · Crypto</string>
     <string name="widget_guide_section_howto">How to add</string>
@@ -577,4 +577,9 @@
     <string name="widget_guide_tip_resize">Touch and hold a widget to move or resize it.</string>
     <string name="widget_guide_tip_auto">Widgets update automatically every few hours and whenever you open the app.</string>
     <string name="widget_guide_tip_launcher">Menu names may differ slightly by device and launcher.</string>
+    <string name="widget_refreshing">Refreshing…</string>
+    <string name="widget_label_chart_kospi">KOSPI Trend Chart</string>
+    <string name="widget_label_chart_crypto">Crypto Trend Chart</string>
+    <string name="widget_chart_kospi_description">Index trend chart. Tap to switch the period (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Index trend chart. Tap to switch the period (3M–5Y).</string>
 </resources>

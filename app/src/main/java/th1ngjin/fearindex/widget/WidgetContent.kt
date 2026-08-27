@@ -7,11 +7,14 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceModifier
+import androidx.glance.LocalSize
 import androidx.glance.Image
+import androidx.glance.layout.ContentScale
 import androidx.glance.ImageProvider
 import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.action.actionRunCallback
+import androidx.glance.appwidget.CircularProgressIndicator
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.background
 import androidx.glance.layout.Alignment
@@ -49,15 +52,29 @@ private fun cardModifier(radius: Int) = GlanceModifier
     .background(ColorProvider(WidgetCardBackground))
     .clickable(actionStartActivity<MainActivity>())
 
-/** 단일 지수 — 1×1(기본): 게이지 + 점수 + 풀네임. */
+/** 단일 지수 — 1×1(기본): 게이지 + 점수 + 풀네임. One UI 셀은 세로가 길어 짧은 변 정사각으로 중앙 배치. */
 @Composable
 fun CompactFearIndexWidgetContent(
     context: Context,
     indexType: FearIndexType,
     data: WidgetIndexData?,
 ) {
+    val size = LocalSize.current
+    val side = WidgetLayoutMode.squareCardSideDp(size.width.value, size.height.value)
+    Box(modifier = GlanceModifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        SquareCompactCard(indexType, data, side)
+    }
+}
+
+@Composable
+private fun SquareCompactCard(indexType: FearIndexType, data: WidgetIndexData?, sideDp: Float) {
     Column(
-        modifier = cardModifier(16).padding(3.dp),
+        modifier = GlanceModifier
+            .size(sideDp.dp)
+            .cornerRadius(16.dp)
+            .background(ColorProvider(WidgetCardBackground))
+            .clickable(actionStartActivity<MainActivity>())
+            .padding(3.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -93,7 +110,10 @@ fun FearIndexWidgetContent(
     }
 }
 
-/** 통합(대시보드) — 2×2/4×2 responsive: 게이지 3개 + 이름/등급/변화 + ↻ + 갱신시각. */
+/**
+ * 통합(대시보드) — 리사이즈에 따라 3모드 (2026-08-27 사용자 요청: 어느 크기든 글자 안 잘리게).
+ * ROW(낮음): 게이지+이름+등급 3개 가로 / COLUMN(좁음): 같은 셀 세로 스택 / LIST(넉넉): [게이지|이름/등급] 행.
+ */
 @Composable
 fun CombinedWidgetContent(
     context: Context,
@@ -101,43 +121,167 @@ fun CombinedWidgetContent(
     kospi: WidgetIndexData?,
     crypto: WidgetIndexData?,
     large: Boolean,
+    refreshing: Boolean = false,
 ) {
-    val gaugePx = if (large) 280 else 170
-    val scoreSp = if (large) 24 else 15
-    val nameSp = if (large) 10 else 8
-    val ratingSp = if (large) 11 else 9
+    val size = LocalSize.current
+    val entries = listOf(
+        FearIndexType.MARKET to market,
+        FearIndexType.KOSPI to kospi,
+        FearIndexType.CRYPTO to crypto,
+    )
+    when (WidgetLayoutMode.dashboardArrangement(size.width.value, size.height.value)) {
+        DashboardArrangement.ROW -> CombinedRowLayout(context, entries, size.width.value, size.height.value, refreshing)
+        DashboardArrangement.LIST -> CombinedListLayout(context, entries, size.width.value, size.height.value, refreshing)
+    }
+}
+
+/** ROW(낮음): 게이지 3개 가로 — 각 게이지 아래 이름(+높이 되면 등급). */
+@Composable
+private fun CombinedRowLayout(
+    context: Context,
+    entries: List<Pair<FearIndexType, WidgetIndexData?>>,
+    widthDp: Float,
+    heightDp: Float,
+    refreshing: Boolean,
+) {
+    val showRating = WidgetLayoutMode.rowModeShowsRating(heightDp)
+    // ⚠️ Glance 는 weight 안에 또 weight 를 중첩하면 안쪽이 0 으로 붕괴한다(게이지 소실) → 고정 크기
+    // 헤더 실측: ↻(15sp≈20dp) + 상하 패딩 16dp ≈ 36dp — 과소 잡으면 하단 이름이 잘린다
+    val textBlockDp = if (showRating) 30f else 16f
+    val gaugeDp = minOf(heightDp - 36f - textBlockDp - 14f, widthDp / 3f - 14f).coerceIn(24f, 72f)
     Box(modifier = cardModifier(20)) {
-        Column(
-            modifier = GlanceModifier.fillMaxSize().padding(horizontal = 6.dp, vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
+        Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 8.dp, vertical = 4.dp)) {
+            RefreshHeader(context, showTime = widthDp >= 200f, refreshing = refreshing)
             Row(modifier = GlanceModifier.fillMaxWidth().defaultWeight(), verticalAlignment = Alignment.CenterVertically) {
-                listOf(
-                    Triple(FearIndexType.MARKET, market, Unit),
-                    Triple(FearIndexType.KOSPI, kospi, Unit),
-                    Triple(FearIndexType.CRYPTO, crypto, Unit),
-                ).forEach { (type, data, _) ->
+                entries.forEach { (type, data) ->
                     Column(
-                        // Glance: Row 자식에 fillMaxSize 를 겹치면 width=fill 이 weight 를 덮어써
-                        // 첫 컬럼이 전체 폭을 차지한다 → weight(폭) + fillMaxHeight(높이)만.
+                        // Row 자식: weight(폭) + fillMaxHeight — fillMaxSize 겹치면 weight 무시(73번 함정)
                         modifier = GlanceModifier.defaultWeight().fillMaxHeight(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        GaugeWithScore(data, gaugePx = gaugePx, scoreSp = scoreSp, modifier = GlanceModifier.defaultWeight().fillMaxWidth())
+                        GaugeWithScore(data, gaugePx = 200, scoreSp = (gaugeDp * 0.32f).toInt().coerceIn(10, 18), modifier = GlanceModifier.size(gaugeDp.dp))
                         Text(
                             text = WidgetGaugeSpec.indexName(type),
                             maxLines = 1,
-                            style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = nameSp.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Center),
+                            style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = 10.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center),
                         )
-                        RatingChangeRow(context, data, fontSp = ratingSp, dotDp = if (large) 7 else 5)
+                        if (showRating && data != null) {
+                            Text(
+                                text = ratingLabel(context, data.rating),
+                                maxLines = 1,
+                                style = TextStyle(color = ColorProvider(widgetFearScoreColor(data.rating)), fontSize = 9.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Center),
+                            )
+                        }
                     }
                 }
             }
         }
-        RefreshButton(modifier = GlanceModifier.padding(top = 4.dp, end = 6.dp), alignTopEnd = true)
-        UpdatedAt(context, large)
+    }
+}
+
+/** LIST: 행마다 [게이지+점수 | 이름/등급]. 좁은 폭은 게이지·글씨를 축소해 잘림 없이 수용. */
+@Composable
+private fun CombinedListLayout(
+    context: Context,
+    entries: List<Pair<FearIndexType, WidgetIndexData?>>,
+    widthDp: Float,
+    heightDp: Float,
+    refreshing: Boolean,
+) {
+    val narrow = widthDp < 170f
+    // 행 높이(3행 균등)와 폭 양쪽에 맞춰 게이지 정사각 — 좁으면 텍스트 폭을 남기려 더 줄인다
+    val rowHeightDp = (heightDp - 42f) / 3f
+    val rowGaugeDp = minOf(rowHeightDp, widthDp * if (narrow) 0.26f else 0.40f).coerceIn(24f, 64f)
+    // 행이 낮으면 이름/등급 두 줄이 안 들어간다 → 등급을 이름 옆 한 줄로
+    val twoLine = rowHeightDp >= 34f
+    val nameSp = if (narrow) 11 else 13
+    val ratingSp = if (narrow) 9 else 11
+    Box(modifier = cardModifier(20)) {
+        Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 12.dp, vertical = 8.dp)) {
+            RefreshHeader(context, showTime = true, refreshing = refreshing) // 헤더 행 공백 활용 — 좁아도 "HH:mm 기준"은 들어간다
+            entries.forEach { (type, data) ->
+                Row(
+                    modifier = GlanceModifier.fillMaxWidth().defaultWeight(),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    GaugeWithScore(
+                        data,
+                        gaugePx = 200,
+                        scoreSp = (rowGaugeDp * 0.30f).toInt().coerceAtLeast(10),
+                        modifier = GlanceModifier.size(rowGaugeDp.dp),
+                    )
+                    Spacer(GlanceModifier.width(if (narrow) 6.dp else 10.dp))
+                    if (twoLine) {
+                        Column(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                text = WidgetGaugeSpec.indexName(type),
+                                maxLines = 1,
+                                style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = nameSp.sp, fontWeight = FontWeight.Bold),
+                            )
+                            if (data != null) {
+                                val ratingColor = widgetFearScoreColor(data.rating)
+                                Text(
+                                    text = ratingLabel(context, data.rating),
+                                    maxLines = 2, // l10n 긴 등급명("Extreme Greed" 등)도 말줄임 없이 줄바꿈
+                                    style = TextStyle(color = ColorProvider(ratingColor), fontSize = ratingSp.sp, fontWeight = FontWeight.Medium),
+                                )
+                            }
+                        }
+                    } else {
+                        Text(
+                            text = WidgetGaugeSpec.indexName(type),
+                            maxLines = 1,
+                            style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = nameSp.sp, fontWeight = FontWeight.Bold),
+                        )
+                        if (data != null) {
+                            Spacer(GlanceModifier.width(8.dp))
+                            Text(
+                                text = ratingLabel(context, data.rating),
+                                maxLines = 1,
+                                style = TextStyle(color = ColorProvider(widgetFearScoreColor(data.rating)), fontSize = ratingSp.sp, fontWeight = FontWeight.Medium),
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** 상단 헤더 — 우측 정렬 [갱신시각] [↻]. 새로고침 중엔 ↻ 자리가 스피너로 바뀐다 (구글 위젯식). */
+@Composable
+private fun RefreshHeader(context: Context, showTime: Boolean, refreshing: Boolean) {
+    Box(modifier = GlanceModifier.fillMaxWidth(), contentAlignment = Alignment.TopEnd) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            if (showTime) {
+                Text(
+                    text = context.getString(th1ngjin.fearindex.presentation.R.string.widget_updated_at, LocalTime.now().format(timeFormat)),
+                    maxLines = 1,
+                    style = TextStyle(color = ColorProvider(WidgetChangeFlatColor), fontSize = 9.sp),
+                )
+            }
+            RefreshGlyph(refreshing, large = true)
+        }
+    }
+}
+
+/** ↻ 또는 진행 스피너. ↻ 는 패딩 포함 실터치 영역 ≈44dp. */
+@Composable
+private fun RefreshGlyph(refreshing: Boolean, large: Boolean) {
+    if (refreshing) {
+        Box(modifier = GlanceModifier.padding(horizontal = 10.dp, vertical = 8.dp)) {
+            CircularProgressIndicator(
+                modifier = GlanceModifier.size(if (large) 18.dp else 15.dp),
+                color = ColorProvider(WidgetTextColorDim),
+            )
+        }
+    } else {
+        Text(
+            text = "↻",
+            modifier = GlanceModifier.clickable(actionRunCallback<RefreshWidgetsAction>()).padding(horizontal = 10.dp, vertical = 8.dp),
+            style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = (if (large) 18 else 15).sp, fontWeight = FontWeight.Bold),
+        )
     }
 }
 
@@ -149,7 +293,9 @@ fun ChartWidgetContent(
     data: WidgetIndexData?,
     history: List<Int>,
     xLabels: List<String>,
+    period: WidgetChartPeriod,
     large: Boolean,
+    refreshing: Boolean = false,
 ) {
     val ratingColor = data?.let { widgetFearScoreColor(it.rating) } ?: WidgetPlaceholderColor
     Box(modifier = cardModifier(20)) {
@@ -158,29 +304,47 @@ fun ChartWidgetContent(
                 Text(
                     text = WidgetGaugeSpec.indexName(indexType),
                     maxLines = 1,
+                    modifier = GlanceModifier.padding(end = 6.dp),
                     style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = (if (large) 11 else 9).sp, fontWeight = FontWeight.Medium),
                 )
                 Spacer(GlanceModifier.width(6.dp))
                 Text(
                     text = data?.score?.toString() ?: "—",
                     maxLines = 1,
-                    style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = (if (large) 21 else 16).sp, fontWeight = FontWeight.Bold),
+                    style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = (if (large) 18 else 15).sp, fontWeight = FontWeight.Bold),
                 )
-                if (large) {
-                    Spacer(GlanceModifier.width(8.dp))
-                    RatingChangeRow(context, data, fontSp = 11, dotDp = 6)
-                } else {
-                    Spacer(GlanceModifier.width(6.dp))
-                    ChangeText(data, fontSp = 9)
+                Spacer(GlanceModifier.defaultWeight())
+                // 기간 세그먼트 — 탭하면 이 위젯만 해당 기간으로 재렌더 (2026-08-28, A안)
+                WidgetChartPeriod.entries.forEach { p ->
+                    val selected = p == period
+                    Text(
+                        text = p.label,
+                        maxLines = 1,
+                        modifier = GlanceModifier
+                            .clickable(actionRunCallback<SetChartPeriodAction>(SetChartPeriodAction.params(p)))
+                            .padding(horizontal = if (large) 6.dp else 4.dp, vertical = 12.dp),
+                        style = TextStyle(
+                            color = ColorProvider(if (selected) WidgetTextColor else WidgetChangeFlatColor),
+                            fontSize = (if (large) 14 else 11).sp,
+                            fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+                        ),
+                    )
                 }
+                RefreshGlyph(refreshing, large = large)
             }
             Spacer(GlanceModifier.height(4.dp))
             if (history.size >= 2) {
+                // 위젯 실측 크기(헤더·패딩 제외)에 맞춰 렌더 — Fit 스케일 letterbox 로 생기던 빈 공간 제거
+                val widgetSize = LocalSize.current
+                val density = context.resources.displayMetrics.density
+                val chartWidthPx = ((widgetSize.width.value - 24f) * density).toInt().coerceAtLeast(120)
+                val chartHeightPx = ((widgetSize.height.value - (if (large) 52f else 44f)) * density).toInt().coerceAtLeast(80)
                 Image(
                     provider = ImageProvider(
-                        WidgetChartRenderer.render(history, xLabels, if (large) 640 else 340, if (large) 200 else 150, ratingColor.toArgb()),
+                        WidgetChartRenderer.render(history, xLabels, chartWidthPx, chartHeightPx, ratingColor.toArgb()),
                     ),
                     contentDescription = null,
+                    contentScale = ContentScale.FillBounds,
                     modifier = GlanceModifier.defaultWeight().fillMaxWidth(),
                 )
             } else {
@@ -189,7 +353,6 @@ fun ChartWidgetContent(
                 }
             }
         }
-        RefreshButton(modifier = GlanceModifier.padding(top = 4.dp, end = 6.dp), alignTopEnd = true)
         UpdatedAt(context, large)
     }
 }
@@ -244,17 +407,6 @@ private fun ChangeText(data: WidgetIndexData?, fontSp: Int) {
         maxLines = 1,
         style = TextStyle(color = ColorProvider(color), fontSize = fontSp.sp, fontWeight = FontWeight.Bold),
     )
-}
-
-@Composable
-private fun RefreshButton(modifier: GlanceModifier, alignTopEnd: Boolean) {
-    Box(modifier = GlanceModifier.fillMaxSize(), contentAlignment = Alignment.TopEnd) {
-        Text(
-            text = "↻",
-            modifier = modifier.clickable(actionRunCallback<RefreshWidgetsAction>()).padding(4.dp),
-            style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = 13.sp, fontWeight = FontWeight.Bold),
-        )
-    }
 }
 
 @Composable

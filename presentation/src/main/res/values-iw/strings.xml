@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">בחר את המדד הרצוי — גלובלי, KOSPI או קריפטו — או את הווידג\'ט הכולל.</string>
     <string name="widget_guide_step4">גרור אותו אל מסך הבית ומקם אותו היכן שתרצה.</string>
     <string name="widget_guide_step5">הקש על הווידג\'ט בכל עת כדי לפתוח את האפליקציה.</string>
-    <string name="widget_market_description">מציג את מדד הפחד והחמדנות הגלובלי (S&amp;P 500) כמד.</string>
-    <string name="widget_kospi_description">מציג את מדד הפחד של KOSPI כמד.</string>
-    <string name="widget_crypto_description">מציג את מדד הפחד והחמדנות של הקריפטו (BTC) כמד.</string>
+    <string name="widget_market_description">עוקב אחר S&amp;P 500</string>
+    <string name="widget_kospi_description">עוקב אחר KOSPI</string>
+    <string name="widget_crypto_description">עוקב אחר BTC</string>
     <string name="widget_dashboard_description">מציג במבט אחד את המדדים הגלובלי, KOSPI והקריפטו.</string>
     <string name="settings_premium_header">פרימיום</string>
     <string name="settings_remove_ads_title">הסרת פרסומות</string>
@@ -540,12 +540,12 @@
     <string name="insight_historical_return_title_greed">מה קרה אחר כך?</string>
     <string name="score_explorer_subtitle_greed">מה קרה אחרי יום עם ציון כזה?</string>
     <string name="widget_updated_at">נכון ל-%1$s</string>
-    <string name="widget_chart_description">מציג את מהלך המדד הגלובלי ב-30 הימים האחרונים בגרף.</string>
+    <string name="widget_chart_description">תרשים מגמת המדד. הקישו להחלפת התקופה (3M–5Y).</string>
     <string name="widget_label_market">מדד גלובלי</string>
     <string name="widget_label_kospi">מדד KOSPI</string>
     <string name="widget_label_crypto">מדד קריפטו</string>
     <string name="widget_label_dashboard">כל המדדים</string>
-    <string name="widget_label_chart">מגמת 30 יום</string>
+    <string name="widget_label_chart">Global תרשים מגמה</string>
     <string name="widget_guide_section_widgets">סוגי ווידג\'טים</string>
     <string name="widget_guide_type_single">מד מדד יחיד — גלובלי · KOSPI · קריפטו</string>
     <string name="widget_guide_section_howto">איך מוסיפים</string>
@@ -554,4 +554,9 @@
     <string name="widget_guide_tip_resize">לחצו לחיצה ארוכה על ווידג\'ט כדי להזיז אותו או לשנות את גודלו.</string>
     <string name="widget_guide_tip_auto">הווידג\'טים מתעדכנים אוטומטית כל כמה שעות ובכל פעם שפותחים את האפליקציה.</string>
     <string name="widget_guide_tip_launcher">שמות התפריטים עשויים להשתנות מעט בהתאם למכשיר ולמשגר.</string>
+    <string name="widget_refreshing">מרענן…</string>
+    <string name="widget_label_chart_kospi">KOSPI תרשים מגמה</string>
+    <string name="widget_label_chart_crypto">Crypto תרשים מגמה</string>
+    <string name="widget_chart_kospi_description">תרשים מגמת המדד. הקישו להחלפת התקופה (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">תרשים מגמת המדד. הקישו להחלפת התקופה (3M–5Y).</string>
 </resources>
