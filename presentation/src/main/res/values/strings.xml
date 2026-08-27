@@ -559,4 +559,7 @@
     <string name="insight_historical_return_basis_crypto">Based on Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Close</string>
+    <string name="insight_current_score_title_greed">Change after %1$d</string>
+    <string name="insight_historical_return_title_greed">What happened after that?</string>
+    <string name="score_explorer_subtitle_greed">What came next after a day with this score?</string>
 </resources>

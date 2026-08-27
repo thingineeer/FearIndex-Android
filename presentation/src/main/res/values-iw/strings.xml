@@ -536,4 +536,7 @@
     <string name="insight_historical_return_basis_crypto">על בסיס Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">סגור</string>
+    <string name="insight_current_score_title_greed">שינוי אחרי %1$d</string>
+    <string name="insight_historical_return_title_greed">מה קרה אחר כך?</string>
+    <string name="score_explorer_subtitle_greed">מה קרה אחרי יום עם ציון כזה?</string>
 </resources>

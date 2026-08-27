@@ -536,4 +536,7 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="insight_historical_return_basis_crypto">Bitcoin\'e dayalı</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Kapat</string>
+    <string name="insight_current_score_title_greed">%1$d sonrası değişim</string>
+    <string name="insight_historical_return_title_greed">Sonrasında ne oldu?</string>
+    <string name="score_explorer_subtitle_greed">Bu puanın görüldüğü günden sonra ne oldu?</string>
 </resources>

@@ -539,4 +539,7 @@
     <string name="insight_historical_return_basis_crypto">На основу Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Затвори</string>
+    <string name="insight_current_score_title_greed">Промена после %1$d</string>
+    <string name="insight_historical_return_title_greed">Шта се десило после?</string>
+    <string name="score_explorer_subtitle_greed">Шта је уследило после дана са овим резултатом?</string>
 </resources>
