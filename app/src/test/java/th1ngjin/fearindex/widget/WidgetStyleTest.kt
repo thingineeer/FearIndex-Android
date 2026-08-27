@@ -17,10 +17,11 @@ class WidgetStyleTest {
     }
 
     @Test
-    fun `원점수 55_4 - 표시는 반올림 55여도 색은 탐욕(GREED)`() {
-        // 2026-08-27 사용자 결정: 등급/색은 원점수 기준 (반올림 재판정 금지)
-        val rating = FearIndex.Rating.from(55.4)
-        assertEquals(FearIndex.Rating.GREED, rating)
-        assertNotEquals(widgetFearScoreColor(55), widgetFearScoreColor(rating))
+    fun `경계 55 - 원점수 55_0은 GREED, 54_9는 NEUTRAL (iOS·서버 통일)`() {
+        // 2026-08-27 결정: 등급은 원점수 기준 + 경계값은 윗 밴드 귀속 (iOS ..<55 / 서버 <55)
+        assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(55.0))
+        assertEquals(FearIndex.Rating.NEUTRAL, FearIndex.Rating.from(54.9))
+        assertNotEquals(widgetFearScoreColor(54), widgetFearScoreColor(FearIndex.Rating.GREED))
+        assertEquals(widgetFearScoreColor(55), widgetFearScoreColor(FearIndex.Rating.GREED))
     }
 }

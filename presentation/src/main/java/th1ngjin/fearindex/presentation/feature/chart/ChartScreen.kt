@@ -1202,7 +1202,7 @@ private fun ratingLabelFromArray(score: Double, labels: Array<String>): String =
     // 원점수 기준 — FearIndex.Rating.from 과 동일 경계 (25/45/55/75)
     score < 25 -> labels[0]
     score < 45 -> labels[1]
-    score <= 55 -> labels[2]
-    score <= 75 -> labels[3]
+    score < 55 -> labels[2]
+    score < 75 -> labels[3]
     else -> labels[4]
 }

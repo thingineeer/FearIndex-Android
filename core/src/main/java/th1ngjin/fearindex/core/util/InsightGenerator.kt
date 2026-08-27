@@ -210,8 +210,8 @@ object InsightGenerator {
         val summary = when {
             score <= 24 -> "Extreme fear drawdown"
             score <= 44 -> "Fear drawdown"
-            score <= 55 -> "Neutral drawdown"
-            score <= 75 -> "Greed drawdown"
+            score <= 54 -> "Neutral drawdown"
+            score <= 74 -> "Greed drawdown"
             else -> "Extreme greed drawdown"
         }
 
@@ -306,8 +306,8 @@ object InsightGenerator {
     private fun nudgeMessage(score: Int): Pair<String, String> = when {
         score <= 24 -> "Nudge" to "Extreme fear — historically a good buying opportunity"
         score <= 44 -> "Nudge" to "Fear — be cautious but stay alert"
-        score <= 55 -> "Nudge" to "Neutral — market is searching for direction"
-        score <= 75 -> "Nudge" to "Greed — consider taking profits"
+        score <= 54 -> "Nudge" to "Neutral — market is searching for direction"
+        score <= 74 -> "Nudge" to "Greed — consider taking profits"
         else -> "Nudge" to "Extreme greed — manage risk"
     }
 }

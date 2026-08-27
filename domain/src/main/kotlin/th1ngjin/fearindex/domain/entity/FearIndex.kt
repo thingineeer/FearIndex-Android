@@ -25,8 +25,9 @@ data class FearIndex(
             fun from(score: Double): Rating = when {
                 score < 25 -> EXTREME_FEAR
                 score < 45 -> FEAR
-                score <= 55 -> NEUTRAL
-                score <= 75 -> GREED
+                // 경계값은 윗 밴드 귀속 — iOS(..<55)·서버(<55)와 동일 (55.0=GREED, 75.0=EXTREME_GREED)
+                score < 55 -> NEUTRAL
+                score < 75 -> GREED
                 else -> EXTREME_GREED
             }
         }
