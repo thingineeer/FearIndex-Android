@@ -11,6 +11,14 @@
 2. **v1.6.1(vc27) 게시** — @docs/checkpoints/HANDOFF-v1.6.1.md 절차: (그 맥 최초면 `bash ~/thingineeer-env/android/fearindex/install.sh`) → `./gradlew test` → `bundle exec fastlane production`(관리형 게시 OFF, **사용자 게시 승인됨**) → 트랙 `[27]` 확인 → v1.6.1 태그 + release 머지 + deployment.md 행. versionCode 는 이미 27/1.6.1(머지에서 채택, changelog 27 존재).
 3. 게시 후 실기기: 10분 백그라운드 → 코스피 재진입 → 전면광고 노출 1회 확인.
 
+## 2026-08-28 세션 (S22+에뮬, 위젯 개선 대공사 — push 완료, 이어서 검증 필요)
+- [x] 앱 이름 45 locale 현지화(ko=공포지수, iOS CFBundleDisplayName 이식) / 온보딩: 카드 하이라이트 밀착(TDD)+투표 단계 컷아웃 터치 통과+4단계 20dp 상향 — 에뮬 전 단계 검증
+- [x] 위젯: 게이지 끝 캡(o) 제거, 1×1 정사각 카드, 통합 위젯 ROW/LIST 비율 배치(TDD)+어느 리사이즈에도 안 잘림(S22 실기기 루프 검증), 피커 설명 "S&P 500 추종" 축약, 새로고침 스피너(구글식)
+- [x] 차트 위젯: 기간 3M/6M/1Y/3Y/5Y 탭 전환(TDD, 인스턴스별 저장)+peak 보존 다운샘플+렌더 우선 구조(provideContent 내 LaunchedEffect — 탭 즉시 반응) / **지수 스왑 폐기 → Global/KOSPI/Crypto 차트 3종 분리**(사용자 결정, 라벨·설명·프리뷰 ×45)
+- [x] ↻ 새로고침 브로드캐스트 ANR → WidgetRefreshWorker(expedited) 이관
+- [ ] **⚠️ 이어서: ANR 최종 판정** — 잔여 ANR 은 debug 콜드스타트 DEX 검증(트레이스 확보, 앱 코드 이전 단계)이 원인 추정. **release 빌드 실기기(S22)로 3시나리오(콜드 ↻/기간 연타/콜드 실행) 재검증** 필요. 에뮬은 부하 커서 판정 보류(release 콜드 7.6s 나옴)
+- [ ] 이어서: KOSPI/Crypto 차트 위젯 실배치 육안 1회, S22 위젯 전수 확인, 커밋 그래프 정리 후 v1.6.1 게시 여부 판단
+
 ## 2026-08-27 세션 (이 맥, 상세 72·73번)
 - [x] 탐욕(≥70) 인앱 카피 과열 프레임 통일 — GreedFrame(TDD) + 3곳 문구 분기 + 3키×45 locale, dev 머지·push. 푸시 문구는 서버(메인 세션) 담당. **v1.6.1 미게시 상태 유지 → 이 변경도 v1.6.1 에 포함됨**
 - [x] **위젯 전면 리디자인(73번, dev 28b0320e push)** — Play 리뷰 대응: 1×1 게이지 3종(targetCell 1×1 재등록) + 통합 2×2(게이지 3개) + **차트 4×2 신규**(30일 라인·y 3눈금·x 날짜·"HH:mm 기준") + 새로고침 버튼 + 로드 실패 10분 재시도. 에뮬 실배치 육안 검증(게이지 55/49/71 채움 정확성 포함), 1,096 tests/0, locale 대칭 500키. ⚠️ Glance 함정(Row weight/SweepGradient 캡/SessionWorker 45초)·30일 잘라내기는 73번 참조
