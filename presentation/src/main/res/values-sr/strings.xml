@@ -423,10 +423,10 @@
     <string name="widget_guide_step5">Додирните виџет у било ком тренутку да отворите апликацију.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Глобални (S&amp;P 500) индекс страха и похлепе</string>
-    <string name="widget_kospi_description">KOSPI индекс страха и похлепе</string>
-    <string name="widget_crypto_description">Крипто (BTC) индекс страха и похлепе</string>
-    <string name="widget_dashboard_description">Сва три индекса страха и похлепе</string>
+    <string name="widget_market_description">Prikazuje globalni indeks straha i pohlepe (S&amp;P 500) kao merač.</string>
+    <string name="widget_kospi_description">Prikazuje KOSPI indeks straha kao merač.</string>
+    <string name="widget_crypto_description">Prikazuje kripto indeks straha i pohlepe (BTC) kao merač.</string>
+    <string name="widget_dashboard_description">Prikazuje globalni, KOSPI i kripto indeks na prvi pogled.</string>
     <string name="settings_premium_header">Премијум</string>
     <string name="settings_remove_ads_title">Уклони огласе</string>
     <string name="settings_remove_ads_description">Једнократна куповина. Трајно уклања све огласе.</string>
@@ -543,7 +543,12 @@
     <string name="insight_historical_return_title_greed">Шта се десило после?</string>
     <string name="score_explorer_subtitle_greed">Шта је уследило после дана са овим резултатом?</string>
     <string name="widget_updated_at">у %1$s</string>
-    <string name="widget_chart_description">30-дневни тренд индекса страха и похлепе</string>
+    <string name="widget_chart_description">Prikazuje kretanje globalnog indeksa u poslednjih 30 dana na grafikonu.</string>
+    <string name="widget_label_market">Globalni indeks</string>
+    <string name="widget_label_kospi">Indeks KOSPI</string>
+    <string name="widget_label_crypto">Kripto indeks</string>
+    <string name="widget_label_dashboard">Svi indeksi</string>
+    <string name="widget_label_chart">Trend 30 dana</string>
     <string name="widget_guide_section_widgets">Vrste vidžeta</string>
     <string name="widget_guide_type_single">Merač jednog indeksa — Globalni · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Kako dodati</string>

@@ -90,6 +90,7 @@
         <!-- 홈 화면 App Widget (Glance) — 3개 단일 지수 + 1개 대시보드 -->
         <receiver
             android:name=".widget.MarketFearWidgetReceiver"
+            android:label="@string/widget_label_market"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -101,6 +102,7 @@
 
         <receiver
             android:name=".widget.KospiFearWidgetReceiver"
+            android:label="@string/widget_label_kospi"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -112,6 +114,7 @@
 
         <receiver
             android:name=".widget.CryptoFearWidgetReceiver"
+            android:label="@string/widget_label_crypto"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -123,6 +126,7 @@
 
         <receiver
             android:name=".widget.DashboardFearWidgetReceiver"
+            android:label="@string/widget_label_dashboard"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -134,6 +138,7 @@
 
         <receiver
             android:name=".widget.ChartFearWidgetReceiver"
+            android:label="@string/widget_label_chart"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

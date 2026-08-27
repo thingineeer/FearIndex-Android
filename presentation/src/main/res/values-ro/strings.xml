@@ -423,10 +423,10 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="widget_guide_step5">Atinge widgetul oricând pentru a deschide aplicația.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Indicele global (S&amp;P 500) al fricii și lăcomiei</string>
-    <string name="widget_kospi_description">Indicele KOSPI al fricii și lăcomiei</string>
-    <string name="widget_crypto_description">Indicele cripto (BTC) al fricii și lăcomiei</string>
-    <string name="widget_dashboard_description">Toți cei trei indici ai fricii și lăcomiei</string>
+    <string name="widget_market_description">Afișează indicele global (S&amp;P 500) de frică și lăcomie ca indicator.</string>
+    <string name="widget_kospi_description">Afișează indicele de frică KOSPI ca indicator.</string>
+    <string name="widget_crypto_description">Afișează indicele cripto (BTC) de frică și lăcomie ca indicator.</string>
+    <string name="widget_dashboard_description">Afișează dintr-o privire indicii global, KOSPI și cripto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Elimină reclamele</string>
     <string name="settings_remove_ads_description">Achiziție unică. Elimină definitiv toate reclamele.</string>
@@ -543,7 +543,12 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="insight_historical_return_title_greed">Ce a urmat?</string>
     <string name="score_explorer_subtitle_greed">Ce a urmat după o zi cu acest scor?</string>
     <string name="widget_updated_at">la %1$s</string>
-    <string name="widget_chart_description">Tendința pe 30 de zile a indicelui Fear &amp; Greed</string>
+    <string name="widget_chart_description">Afișează evoluția indicelui global din ultimele 30 de zile într-un grafic.</string>
+    <string name="widget_label_market">Indice global</string>
+    <string name="widget_label_kospi">Indice KOSPI</string>
+    <string name="widget_label_crypto">Indice cripto</string>
+    <string name="widget_label_dashboard">Toți indicii</string>
+    <string name="widget_label_chart">Tendință 30 de zile</string>
     <string name="widget_guide_section_widgets">Tipuri de widgeturi</string>
     <string name="widget_guide_type_single">Indicator cu un singur indice — Global · KOSPI · Cripto</string>
     <string name="widget_guide_section_howto">Cum adaugi</string>
