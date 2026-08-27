@@ -87,7 +87,7 @@ fun OnboardingTourOverlay(
     val minTopPx = with(density) { 72.dp.toPx() }
     // 투어 중에는 탭바를 누를 수 없으니 카드가 탭바 위까지 내려가도 된다.
     // 여백을 크게 두면 짧은 화면에서 카드가 위로 당겨져 하이라이트를 덮는다.
-    val bottomInsetPx = with(density) { 24.dp.toPx() }
+    val bottomInsetPx = with(density) { 44.dp.toPx() }   // 하단 클램프 카드(4단계) 20dp 상향 — 2026-08-27 사용자 요청
     val cutout = anchor?.let {
         Rect(it.left - insetPx, it.top - insetPx, it.right + insetPx, it.bottom + insetPx)
     }
