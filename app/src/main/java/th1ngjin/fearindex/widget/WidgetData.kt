@@ -12,6 +12,8 @@ import th1ngjin.fearindex.presentation.R
 data class WidgetIndexData(
     val score: Int,
     val rating: FearIndex.Rating,
+    /** 전일 대비 변화 (previousClose 없으면 null → 표시 생략) */
+    val dailyChange: Int? = null,
 )
 
 private fun entryPoint(context: Context): WidgetEntryPoint =
@@ -33,7 +35,11 @@ suspend fun loadWidgetIndex(context: Context, type: FearIndexType): WidgetIndexD
                 FearIndexType.KOSPI -> ep.getKospiFearIndex().invoke().fearIndex
                 FearIndexType.CRYPTO -> ep.getCryptoFearIndex().invoke()
             }
-            WidgetIndexData(score = fearIndex.roundedScore, rating = fearIndex.rating)
+            WidgetIndexData(
+                score = fearIndex.roundedScore,
+                rating = fearIndex.rating,
+                dailyChange = WidgetGaugeSpec.dailyChange(fearIndex.roundedScore, fearIndex.previousClose),
+            )
         }.getOrNull()
     }
 

@@ -4,6 +4,7 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import th1ngjin.fearindex.domain.usecase.GetCryptoFearIndexUseCase
+import th1ngjin.fearindex.domain.usecase.GetFearIndexHistoryUseCase
 import th1ngjin.fearindex.domain.usecase.GetFearIndexUseCase
 import th1ngjin.fearindex.domain.usecase.GetKospiFearIndexUseCase
 
@@ -17,4 +18,5 @@ interface WidgetEntryPoint {
     fun getFearIndex(): GetFearIndexUseCase
     fun getKospiFearIndex(): GetKospiFearIndexUseCase
     fun getCryptoFearIndex(): GetCryptoFearIndexUseCase
+    fun getFearIndexHistory(): GetFearIndexHistoryUseCase
 }

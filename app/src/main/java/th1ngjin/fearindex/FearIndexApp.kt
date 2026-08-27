@@ -50,6 +50,7 @@ import th1ngjin.fearindex.notification.NotificationChannels
 import th1ngjin.fearindex.notification.NotificationHistoryRecorder
 import th1ngjin.fearindex.widget.CryptoFearWidget
 import th1ngjin.fearindex.widget.DashboardFearWidget
+import th1ngjin.fearindex.widget.ChartFearWidget
 import th1ngjin.fearindex.widget.FearWidgetUpdateWorker
 import th1ngjin.fearindex.variant.VariantHooks
 import th1ngjin.fearindex.widget.KospiFearWidget
@@ -328,6 +329,7 @@ class FearIndexApp : Application() {
                 KospiFearWidget().updateAll(this@FearIndexApp)
                 CryptoFearWidget().updateAll(this@FearIndexApp)
                 DashboardFearWidget().updateAll(this@FearIndexApp)
+                ChartFearWidget().updateAll(this@FearIndexApp)
             } catch (e: Exception) {
                 Timber.w(e, "Widget foreground refresh failed")
             }
