@@ -78,24 +78,24 @@ fun insightSummary(insight: MarketInsight): String {
 private fun nudgeTitleRes(score: Int): Int = when {
     score <= 24 -> R.string.nudge_title_extreme_fear
     score <= 44 -> R.string.nudge_title_extreme_fear
-    score <= 55 -> R.string.nudge_title_stable
-    score <= 75 -> R.string.nudge_title_extreme_greed
+    score <= 54 -> R.string.nudge_title_stable
+    score <= 74 -> R.string.nudge_title_extreme_greed
     else -> R.string.nudge_title_extreme_greed
 }
 
 private fun nudgeBodyRes(score: Int): Int = when {
     score <= 24 -> R.string.nudge_body_extreme_fear
     score <= 44 -> R.string.nudge_body_extreme_fear
-    score <= 55 -> R.string.nudge_body_stable
-    score <= 75 -> R.string.nudge_body_extreme_greed
+    score <= 54 -> R.string.nudge_body_stable
+    score <= 74 -> R.string.nudge_body_extreme_greed
     else -> R.string.nudge_body_extreme_greed
 }
 
 private fun drawdownSummaryRes(score: Int): Int = when {
     score <= 24 -> R.string.insight_drawdown_summary_extreme_fear
     score <= 44 -> R.string.insight_drawdown_summary_fear
-    score <= 55 -> R.string.insight_drawdown_summary_neutral
-    score <= 75 -> R.string.insight_drawdown_summary_greed
+    score <= 54 -> R.string.insight_drawdown_summary_neutral
+    score <= 74 -> R.string.insight_drawdown_summary_greed
     else -> R.string.insight_drawdown_summary_extreme_greed
 }
 

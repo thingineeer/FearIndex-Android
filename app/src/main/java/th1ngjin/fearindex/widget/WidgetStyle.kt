@@ -37,8 +37,8 @@ val WidgetDashboardBackground = Color(0xFF1E1E1E)
 fun widgetFearScoreColor(score: Int): Color = when {
     score <= 24 -> WidgetExtremeFear
     score <= 44 -> WidgetFear
-    score <= 55 -> WidgetNeutral
-    score <= 75 -> WidgetGreed
+    score <= 54 -> WidgetNeutral
+    score <= 74 -> WidgetGreed
     else -> WidgetExtremeGreed
 }
 

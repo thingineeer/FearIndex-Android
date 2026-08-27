@@ -68,8 +68,8 @@ val CardShadow = Color(0x0D000000)                 // iOS black 5% opacity
 fun fearScoreColor(score: Int): Color = when {
     score <= 24 -> ExtremeFear
     score <= 44 -> Fear
-    score <= 55 -> Neutral
-    score <= 75 -> Greed
+    score <= 54 -> Neutral
+    score <= 74 -> Greed
     else -> ExtremeGreed
 }
 
