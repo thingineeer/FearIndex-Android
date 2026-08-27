@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.widget
 
 import androidx.compose.ui.graphics.Color
+import th1ngjin.fearindex.domain.entity.FearIndex
 
 /**
  * 위젯 전용 색상/스타일 상수.
@@ -39,4 +40,13 @@ fun widgetFearScoreColor(score: Int): Color = when {
     score <= 55 -> WidgetNeutral
     score <= 75 -> WidgetGreed
     else -> WidgetExtremeGreed
+}
+
+/** 원점수 기준 등급의 색 — 현재 지수 등급 표시는 이 오버로드 사용 (표시 점수는 반올림이어도 등급은 원점수). */
+fun widgetFearScoreColor(rating: FearIndex.Rating): Color = when (rating) {
+    FearIndex.Rating.EXTREME_FEAR -> WidgetExtremeFear
+    FearIndex.Rating.FEAR -> WidgetFear
+    FearIndex.Rating.NEUTRAL -> WidgetNeutral
+    FearIndex.Rating.GREED -> WidgetGreed
+    FearIndex.Rating.EXTREME_GREED -> WidgetExtremeGreed
 }
