@@ -473,7 +473,7 @@ private fun CurrentScoreCard(
     kospiIsFinal: Boolean? = null,
 ) {
     val score = fearIndex.roundedScore
-    val scoreColor = fearScoreColor(score)
+    val scoreColor = fearScoreColor(fearIndex.rating)
     val change = fearIndex.score - (fearIndex.previousClose ?: fearIndex.score)
     val changeColor = when {
         change > 0 -> Color(0xFF4CAF50)
@@ -543,7 +543,7 @@ private fun CurrentScoreCard(
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        text = ratingLabel(score),
+                        text = ratingLabel(fearIndex.rating),
                         fontSize = 17.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = scoreColor,
@@ -857,7 +857,7 @@ private fun DrawScope.drawSelectionIndicator(
     // 3. 툴팁 (점수 + 등급 + 날짜)
     val score = point.score.roundToInt()
     val scoreText = "$score"
-    val ratingText = ratingLabelFromArray(score, ratingLabels)
+    val ratingText = ratingLabelFromArray(point.score, ratingLabels)
     val days = if (isCrypto) cryptoPeriod.days else marketPeriod.days
     val dateFormatter = tooltipDateFormatter(days)
     val dateText = dateFormatter.format(point.timestamp)
@@ -1198,9 +1198,10 @@ private fun PeriodSelectorRow(
  * Canvas drawSelectionIndicator 내부용 — stringResource를 쓸 수 없으므로
  * 상위 Composable에서 미리 로드한 배열을 받아 등급 문자열 선택.
  */
-private fun ratingLabelFromArray(score: Int, labels: Array<String>): String = when {
-    score <= 24 -> labels[0]
-    score <= 44 -> labels[1]
+private fun ratingLabelFromArray(score: Double, labels: Array<String>): String = when {
+    // 원점수 기준 — FearIndex.Rating.from 과 동일 경계 (25/45/55/75)
+    score < 25 -> labels[0]
+    score < 45 -> labels[1]
     score <= 55 -> labels[2]
     score <= 75 -> labels[3]
     else -> labels[4]

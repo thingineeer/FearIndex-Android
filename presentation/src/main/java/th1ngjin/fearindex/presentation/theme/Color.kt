@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.presentation.theme
 
 import androidx.compose.ui.graphics.Color
+import th1ngjin.fearindex.domain.entity.FearIndex
 
 // =============================================================================
 // Fear Score Colors — iOS FearScoreColor 1:1 포팅
@@ -70,4 +71,13 @@ fun fearScoreColor(score: Int): Color = when {
     score <= 55 -> Neutral
     score <= 75 -> Greed
     else -> ExtremeGreed
+}
+
+/** 원점수 기준 등급([FearIndex.Rating.from])의 색 — 현재 지수 표시는 이 오버로드 사용. */
+fun fearScoreColor(rating: FearIndex.Rating): Color = when (rating) {
+    FearIndex.Rating.EXTREME_FEAR -> ExtremeFear
+    FearIndex.Rating.FEAR -> Fear
+    FearIndex.Rating.NEUTRAL -> Neutral
+    FearIndex.Rating.GREED -> Greed
+    FearIndex.Rating.EXTREME_GREED -> ExtremeGreed
 }

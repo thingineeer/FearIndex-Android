@@ -151,7 +151,7 @@ fun ChartWidgetContent(
     xLabels: List<String>,
     large: Boolean,
 ) {
-    val ratingColor = data?.let { widgetFearScoreColor(it.score) } ?: WidgetPlaceholderColor
+    val ratingColor = data?.let { widgetFearScoreColor(it.rating) } ?: WidgetPlaceholderColor
     Box(modifier = cardModifier(20)) {
         Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 12.dp, vertical = 10.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = GlanceModifier.fillMaxWidth()) {
@@ -215,7 +215,7 @@ private fun GaugeWithScore(data: WidgetIndexData?, gaugePx: Int, scoreSp: Int, m
 @Composable
 private fun RatingChangeRow(context: Context, data: WidgetIndexData?, fontSp: Int, dotDp: Int) {
     if (data == null) return
-    val ratingColor = widgetFearScoreColor(data.score)
+    val ratingColor = widgetFearScoreColor(data.rating)
     Row(verticalAlignment = Alignment.CenterVertically) {
         Box(
             modifier = GlanceModifier.size(dotDp.dp).cornerRadius((dotDp / 2).dp).background(ColorProvider(ratingColor)),

@@ -303,8 +303,9 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // 1. Title: "공포 탐욕 지수" (center) + share button (right)
-        val loadedScore = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore
-        val loadedRating = loadedScore?.let { ratingLabel(it) }
+        val loadedIndex = (currentState as? FearIndexState.Loaded)?.fearIndex
+        val loadedScore = loadedIndex?.roundedScore
+        val loadedRating = loadedIndex?.let { ratingLabel(it.rating) }
         TitleBar(
             currentScore = loadedScore,
             ratingLabel = loadedRating,
@@ -635,7 +636,7 @@ private fun LoadedContent(
 
     // 1. Fear Gauge (온보딩 1~3단계 하이라이트 앵커)
     Box(modifier = Modifier.tourAnchor(tour, OnboardingAnchor.GAUGE)) {
-        FearGaugeView(score = score)
+        FearGaugeView(score = score, rating = fearIndex.rating)
     }
 
     Spacer(modifier = Modifier.height(20.dp))

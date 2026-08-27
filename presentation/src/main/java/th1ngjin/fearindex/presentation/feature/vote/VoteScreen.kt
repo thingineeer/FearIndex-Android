@@ -38,6 +38,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.util.IndexTimestampFormatter
+import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.StuckStatus as DomainStuckStatus
 import th1ngjin.fearindex.presentation.BuildConfig
@@ -155,6 +156,7 @@ fun VoteScreen(
         if (currentState is FearIndexState.Loaded) {
             CurrentScoreHeader(
                 score = currentState.fearIndex.roundedScore,
+                rating = currentState.fearIndex.rating,
                 previousClose = currentState.fearIndex.previousClose,
                 indexType = selectedType,
                 timestamp = currentState.fearIndex.timestamp,
@@ -212,6 +214,7 @@ fun VoteScreen(
 private fun CurrentScoreHeader(
     score: Int,
     previousClose: Double?,
+    rating: FearIndex.Rating? = null,
     indexType: FearIndexType = FearIndexType.MARKET,
     timestamp: java.time.Instant? = null,
     kospiIsFinal: Boolean? = null,
@@ -253,12 +256,12 @@ private fun CurrentScoreHeader(
                     text = "$score",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    color = fearScoreColor(score),
+                    color = rating?.let { fearScoreColor(it) } ?: fearScoreColor(score),
                 )
                 Text(
-                    text = ratingLabel(score),
+                    text = rating?.let { ratingLabel(it) } ?: ratingLabel(score),
                     style = MaterialTheme.typography.labelMedium,
-                    color = fearScoreColor(score),
+                    color = rating?.let { fearScoreColor(it) } ?: fearScoreColor(score),
                 )
             }
 

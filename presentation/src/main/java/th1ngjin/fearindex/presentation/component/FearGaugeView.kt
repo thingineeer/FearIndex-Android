@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import th1ngjin.fearindex.domain.entity.FearIndex
 import th1ngjin.fearindex.presentation.common.ratingLabel
 import th1ngjin.fearindex.presentation.theme.ExtremeFear
 import th1ngjin.fearindex.presentation.theme.ExtremeGreed
@@ -67,6 +68,8 @@ private val arcSegments: List<ArcSegment> = listOf(
 fun FearGaugeView(
     score: Int,
     modifier: Modifier = Modifier,
+    // 원점수 기준 등급 — 주어지면 라벨/색을 이 등급으로 표시 (반올림 재판정 금지)
+    rating: FearIndex.Rating? = null,
 ) {
     val animatedScore = remember { Animatable(0f) }
     LaunchedEffect(score) {
@@ -78,7 +81,7 @@ fun FearGaugeView(
 
     val isDark = isSystemInDarkTheme()
     val needleColor = if (isDark) Color.White else Color.Black
-    val scoreColor = fearScoreColor(score)
+    val scoreColor = rating?.let { fearScoreColor(it) } ?: fearScoreColor(score)
     val tickColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
 
     // iOS: frame(280, 240). arcCenter=160dp, 바늘 tip 최저=213dp, 텍스트 시작=230dp → 총 300dp
@@ -171,7 +174,7 @@ fun FearGaugeView(
                 color = MaterialTheme.colorScheme.onBackground,
             )
             Text(
-                text = ratingLabel(score),
+                text = rating?.let { ratingLabel(it) } ?: ratingLabel(score),
                 color = scoreColor,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 17.sp,
