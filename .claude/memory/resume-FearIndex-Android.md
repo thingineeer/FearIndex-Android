@@ -1,18 +1,27 @@
 # Resume — FearIndex-Android
 
 ## Date / Branch
-2026-08-25 / `dev` (= origin/dev, 8/24 두 맥 통합 + 8/25 '줍줍' ASO 머지까지 push 완료)
+2026-08-27 / `dev` (= origin/dev 4d04e642 — 위젯 리디자인 + 가이드 + 피커 미리보기 + 등급 원점수 통일까지 push 완료)
 
 ## ⚡ 한 줄 상태
-**Play production = v1.6.0(vc26). v1.6.1(vc27: 인터스티셜 10분 리셋 + changelog 27 + ko '줍줍' 설명문) 준비 완료 — 다음: v1.6.1 게시.** 마케팅 급증 대비 점검 GREEN(FCM 등록 99.4%, 신규 123명 임계값 전부 포함), 서버 레이트리밋 60→300/min 전후 대조 종결(71번).
+**Play production = v1.6.0(vc26). v1.6.1(vc27: 인터스티셜 10분 리셋 + 위젯 전면 리디자인/피커 미리보기 + 등급 원점수 통일 + 탐욕 카피 + '줍줍' ASO) 준비 완료 — 다음: S22 최종 확인 → v1.6.1 게시.** 마케팅 급증 대비 점검 GREEN(FCM 등록 99.4%, 신규 123명 임계값 전부 포함), 서버 레이트리밋 60→300/min 전후 대조 종결(71번).
 
 ## 🚨 재개 시 첫 행동 (어느 맥이든)
 1. `git fetch origin && git pull` — dev 최신화(8/24 머지 커밋 포함 확인).
 2. **v1.6.1(vc27) 게시** — @docs/checkpoints/HANDOFF-v1.6.1.md 절차: (그 맥 최초면 `bash ~/thingineeer-env/android/fearindex/install.sh`) → `./gradlew test` → `bundle exec fastlane production`(관리형 게시 OFF, **사용자 게시 승인됨**) → 트랙 `[27]` 확인 → v1.6.1 태그 + release 머지 + deployment.md 행. versionCode 는 이미 27/1.6.1(머지에서 채택, changelog 27 존재).
 3. 게시 후 실기기: 10분 백그라운드 → 코스피 재진입 → 전면광고 노출 1회 확인.
 
-## 2026-08-27 세션 (이 맥, 상세 72번)
+## 2026-08-27 세션 (이 맥, 상세 72·73번)
 - [x] 탐욕(≥70) 인앱 카피 과열 프레임 통일 — GreedFrame(TDD) + 3곳 문구 분기 + 3키×45 locale, dev 머지·push. 푸시 문구는 서버(메인 세션) 담당. **v1.6.1 미게시 상태 유지 → 이 변경도 v1.6.1 에 포함됨**
+- [x] **위젯 전면 리디자인(73번, dev 28b0320e push)** — Play 리뷰 대응: 1×1 게이지 3종(targetCell 1×1 재등록) + 통합 2×2(게이지 3개) + **차트 4×2 신규**(30일 라인·y 3눈금·x 날짜·"HH:mm 기준") + 새로고침 버튼 + 로드 실패 10분 재시도. 에뮬 실배치 육안 검증(게이지 55/49/71 채움 정확성 포함), 1,096 tests/0, locale 대칭 500키. ⚠️ Glance 함정(Row weight/SweepGradient 캡/SessionWorker 45초)·30일 잘라내기는 73번 참조
+- [x] **위젯 피커 미리보기·이름·설명 정비(dev 68d0c48e push)** — previewImage 5장(PIL 실물 1:1) + receiver label 5종 + 설명 문장형 ×45 locale. 에뮬 피커 검증 완료
+- [x] **위젯 피커 지적(사용자) → previewImage 5장 + receiver label + 설명 문장형(dev 68d0c48e push)** — 에뮬 피커 검증 완료(미리보기/이름/설명 정상)
+- [x] **등급/색 원점수 기준 통일(dev 4d04e642 push, 사용자 결정)** — 상세 73번 후속 2. iOS parity 확인은 메인 세션에 전달됨
+- [ ] **S22 최종 확인(사용자가 직접)** — 마지막 설치본은 피커 미리보기 이전 빌드. S22 재연결 시 dev(4d04e642) `:app:assembleDebug` 재설치 필요(재연결 Monitor 대기 중이었음 — 새 세션이면 직접 설치). 항목: 피커 미리보기/이름/설명, 1×1 3종, 통합 2×2, 차트 4×2, ↻, 게이지 등급(원점수)
+- [x] **위젯 사용법 가이드 Android 전용 재작성(dev f95643e8 push)** — iOS식 페이저 → 세로 스크롤 3섹션(위젯 종류 배지 카드·번호 단계·팁 5개), 신규 8키×45 locale(대칭 508키), 에뮬 ko/en 육안 확인, 전체 테스트 GREEN
+- [ ] 토스 세션발 온보딩 코치마크 개선 이식 — ①카드=하이라이트 하단 5dp 밀착+게이지 단계 상단 정렬 ②투표 단계 interactive(컷아웃 터치 통과) (③알림 축소는 Android 행 단위 하이라이트라 해당 없음 판단)
+- [ ] Play 리뷰 답글 2건은 **사용자 직접**(행복회로/jjj)
+- [ ] **v1.6.1(vc27) 게시** — 위젯/등급 변경 전부 dev 에 포함됨. @docs/checkpoints/HANDOFF-v1.6.1.md 절차(테스트 → fastlane production → 태그/release 머지)
 
 ## 2026-08-25 세션 (이 맥, 상세 71번)
 - [x] 마케팅 급증 대비 점검 — FCM 등록 200=656/401=4, 신규 android 123건(1.6.0=117) **임계값 123/123 포함**(즉시체크 게이트 OK), 스토어 production=[26]. 메인 세션 회신 완료
