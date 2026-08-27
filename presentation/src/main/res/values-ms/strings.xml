@@ -420,9 +420,9 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="widget_guide_step3">Pilih indeks yang anda mahu — Global, KOSPI atau Kripto — atau widget semua-dalam-satu.</string>
     <string name="widget_guide_step4">Seret ke skrin utama dan letakkan di tempat yang anda suka.</string>
     <string name="widget_guide_step5">Ketik widget bila-bila masa untuk membuka aplikasi.</string>
-    <string name="widget_market_description">Mengikuti S&amp;P 500.</string>
-    <string name="widget_kospi_description">Mengikuti KOSPI.</string>
-    <string name="widget_crypto_description">Mengikuti BTC.</string>
+    <string name="widget_market_description">Mengikuti S&amp;P 500</string>
+    <string name="widget_kospi_description">Mengikuti KOSPI</string>
+    <string name="widget_crypto_description">Mengikuti BTC</string>
     <string name="widget_dashboard_description">Memaparkan indeks global, KOSPI dan kripto sekali gus.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Buang Iklan</string>

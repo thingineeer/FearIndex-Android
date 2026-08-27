@@ -421,9 +421,9 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="widget_guide_step3">Válaszd ki a kívánt indexet — Globális, KOSPI vagy Kripto —, vagy a mindent egyben widgetet.</string>
     <string name="widget_guide_step4">Húzd a kezdőképernyőre, és tedd oda, ahová szeretnéd.</string>
     <string name="widget_guide_step5">Koppints a widgetre bármikor az alkalmazás megnyitásához.</string>
-    <string name="widget_market_description">Az S&amp;P 500-at követi.</string>
-    <string name="widget_kospi_description">A KOSPI-t követi.</string>
-    <string name="widget_crypto_description">A BTC-t követi.</string>
+    <string name="widget_market_description">Az S&amp;P 500-at követi</string>
+    <string name="widget_kospi_description">A KOSPI-t követi</string>
+    <string name="widget_crypto_description">A BTC-t követi</string>
     <string name="widget_dashboard_description">A globális, KOSPI és kriptoindexet egyszerre jeleníti meg.</string>
     <string name="settings_premium_header">Prémium</string>
     <string name="settings_remove_ads_title">Hirdetések eltávolítása</string>

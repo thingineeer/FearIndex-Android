@@ -424,9 +424,9 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="widget_guide_step3">Chọn chỉ số bạn muốn — Toàn cầu, KOSPI hoặc Crypto — hoặc widget tất cả trong một.</string>
     <string name="widget_guide_step4">Kéo vào màn hình chính và đặt ở vị trí bạn thích.</string>
     <string name="widget_guide_step5">Chạm vào widget bất cứ lúc nào để mở ứng dụng.</string>
-    <string name="widget_market_description">Theo dõi S&amp;P 500.</string>
-    <string name="widget_kospi_description">Theo dõi KOSPI.</string>
-    <string name="widget_crypto_description">Theo dõi BTC.</string>
+    <string name="widget_market_description">Theo dõi S&amp;P 500</string>
+    <string name="widget_kospi_description">Theo dõi KOSPI</string>
+    <string name="widget_crypto_description">Theo dõi BTC</string>
     <string name="widget_dashboard_description">Hiển thị cùng lúc chỉ số toàn cầu, KOSPI và tiền mã hóa.</string>
     <string name="settings_premium_header">Cao cấp</string>
     <string name="settings_remove_ads_title">Xóa quảng cáo</string>

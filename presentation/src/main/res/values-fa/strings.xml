@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">شاخص مورد نظر خود را انتخاب کنید — جهانی، KOSPI یا ارز دیجیتال — یا ویجت همه‌کاره.</string>
     <string name="widget_guide_step4">آن را به صفحه اصلی بکشید و هرجا که دوست دارید قرار دهید.</string>
     <string name="widget_guide_step5">هر زمان روی ویجت بزنید تا برنامه باز شود.</string>
-    <string name="widget_market_description">دنبال‌کننده S&amp;P 500.</string>
-    <string name="widget_kospi_description">دنبال‌کننده KOSPI.</string>
-    <string name="widget_crypto_description">دنبال‌کننده BTC.</string>
+    <string name="widget_market_description">دنبال‌کننده S&amp;P 500</string>
+    <string name="widget_kospi_description">دنبال‌کننده KOSPI</string>
+    <string name="widget_crypto_description">دنبال‌کننده BTC</string>
     <string name="widget_dashboard_description">شاخص‌های جهانی، کوسپی و رمزارز را در یک نگاه نشان می‌دهد.</string>
     <string name="settings_premium_header">پریمیوم</string>
     <string name="settings_remove_ads_title">حذف تبلیغات</string>

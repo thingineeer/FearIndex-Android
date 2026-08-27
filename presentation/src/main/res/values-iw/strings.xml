@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">בחר את המדד הרצוי — גלובלי, KOSPI או קריפטו — או את הווידג\'ט הכולל.</string>
     <string name="widget_guide_step4">גרור אותו אל מסך הבית ומקם אותו היכן שתרצה.</string>
     <string name="widget_guide_step5">הקש על הווידג\'ט בכל עת כדי לפתוח את האפליקציה.</string>
-    <string name="widget_market_description">עוקב אחר S&amp;P 500.</string>
-    <string name="widget_kospi_description">עוקב אחר KOSPI.</string>
-    <string name="widget_crypto_description">עוקב אחר BTC.</string>
+    <string name="widget_market_description">עוקב אחר S&amp;P 500</string>
+    <string name="widget_kospi_description">עוקב אחר KOSPI</string>
+    <string name="widget_crypto_description">עוקב אחר BTC</string>
     <string name="widget_dashboard_description">מציג במבט אחד את המדדים הגלובלי, KOSPI והקריפטו.</string>
     <string name="settings_premium_header">פרימיום</string>
     <string name="settings_remove_ads_title">הסרת פרסומות</string>

@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Нажмите на виджет в любой момент, чтобы открыть приложение.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Отслеживает S&amp;P 500.</string>
-    <string name="widget_kospi_description">Отслеживает KOSPI.</string>
-    <string name="widget_crypto_description">Отслеживает BTC.</string>
+    <string name="widget_market_description">Отслеживает S&amp;P 500</string>
+    <string name="widget_kospi_description">Отслеживает KOSPI</string>
+    <string name="widget_crypto_description">Отслеживает BTC</string>
     <string name="widget_dashboard_description">Показывает глобальный, KOSPI и криптоиндекс одним взглядом.</string>
     <string name="settings_premium_header">Премиум</string>
     <string name="settings_remove_ads_title">Убрать рекламу</string>

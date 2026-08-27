@@ -421,9 +421,9 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="widget_guide_step3">Kies de gewenste index — Global, KOSPI of Crypto — of het alles-in-één-widget.</string>
     <string name="widget_guide_step4">Sleep het naar je startscherm en zet het waar je wilt.</string>
     <string name="widget_guide_step5">Tik wanneer je wilt op de widget om de app te openen.</string>
-    <string name="widget_market_description">Volgt de S&amp;P 500.</string>
-    <string name="widget_kospi_description">Volgt de KOSPI.</string>
-    <string name="widget_crypto_description">Volgt BTC.</string>
+    <string name="widget_market_description">Volgt de S&amp;P 500</string>
+    <string name="widget_kospi_description">Volgt de KOSPI</string>
+    <string name="widget_crypto_description">Volgt BTC</string>
     <string name="widget_dashboard_description">Toont de wereld-, KOSPI- en crypto-index in één oogopslag.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Advertenties verwijderen</string>

@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">اختر المؤشر الذي تريده — العالمي أو KOSPI أو العملات المشفّرة — أو الأداة الشاملة.</string>
     <string name="widget_guide_step4">اسحبها إلى شاشتك الرئيسية وضعها حيث تشاء.</string>
     <string name="widget_guide_step5">اضغط على الأداة في أي وقت لفتح التطبيق.</string>
-    <string name="widget_market_description">يتتبع مؤشر S&amp;P 500.</string>
-    <string name="widget_kospi_description">يتتبع مؤشر KOSPI.</string>
-    <string name="widget_crypto_description">يتتبع BTC.</string>
+    <string name="widget_market_description">يتتبع مؤشر S&amp;P 500</string>
+    <string name="widget_kospi_description">يتتبع مؤشر KOSPI</string>
+    <string name="widget_crypto_description">يتتبع BTC</string>
     <string name="widget_dashboard_description">يعرض المؤشرات العالمية وكوسبي والعملات الرقمية في لمحة واحدة.</string>
     <string name="settings_premium_header">بريميوم</string>
     <string name="settings_remove_ads_title">إزالة الإعلانات</string>

@@ -421,9 +421,9 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="widget_guide_step3">Valitse haluamasi indeksi — Globaali, KOSPI tai Krypto — tai kaikki yhdessä -widget.</string>
     <string name="widget_guide_step4">Vedä se aloitusnäytölle ja aseta se haluamaasi kohtaan.</string>
     <string name="widget_guide_step5">Napauta widgetiä milloin tahansa avataksesi sovelluksen.</string>
-    <string name="widget_market_description">Seuraa S&amp;P 500 -indeksiä.</string>
-    <string name="widget_kospi_description">Seuraa KOSPI-indeksiä.</string>
-    <string name="widget_crypto_description">Seuraa BTC:tä.</string>
+    <string name="widget_market_description">Seuraa S&amp;P 500 -indeksiä</string>
+    <string name="widget_kospi_description">Seuraa KOSPI-indeksiä</string>
+    <string name="widget_crypto_description">Seuraa BTC:tä</string>
     <string name="widget_dashboard_description">Näyttää globaalin, KOSPI- ja kryptoindeksin yhdellä silmäyksellä.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Poista mainokset</string>

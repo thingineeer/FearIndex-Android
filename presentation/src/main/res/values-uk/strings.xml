@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Торкніться віджета будь-коли, щоб відкрити застосунок.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Відстежує S&amp;P 500.</string>
-    <string name="widget_kospi_description">Відстежує KOSPI.</string>
-    <string name="widget_crypto_description">Відстежує BTC.</string>
+    <string name="widget_market_description">Відстежує S&amp;P 500</string>
+    <string name="widget_kospi_description">Відстежує KOSPI</string>
+    <string name="widget_crypto_description">Відстежує BTC</string>
     <string name="widget_dashboard_description">Показує глобальний, KOSPI та криптоіндекс з першого погляду.</string>
     <string name="settings_premium_header">Преміум</string>
     <string name="settings_remove_ads_title">Прибрати рекламу</string>

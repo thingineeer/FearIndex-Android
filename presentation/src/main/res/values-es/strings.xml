@@ -421,9 +421,9 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="widget_guide_step3">Elige el índice que quieras (Global, KOSPI o Cripto) o el widget todo en uno.</string>
     <string name="widget_guide_step4">Arrástralo a la pantalla de inicio y colócalo donde prefieras.</string>
     <string name="widget_guide_step5">Toca el widget cuando quieras para abrir la app.</string>
-    <string name="widget_market_description">Sigue el S&amp;P 500.</string>
-    <string name="widget_kospi_description">Sigue el KOSPI.</string>
-    <string name="widget_crypto_description">Sigue el BTC.</string>
+    <string name="widget_market_description">Sigue el S&amp;P 500</string>
+    <string name="widget_kospi_description">Sigue el KOSPI</string>
+    <string name="widget_crypto_description">Sigue el BTC</string>
     <string name="widget_dashboard_description">Muestra de un vistazo los índices global, KOSPI y cripto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Eliminar anuncios</string>

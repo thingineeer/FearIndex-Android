@@ -438,9 +438,9 @@
     <string name="widget_guide_step3">원하는 지수(글로벌·코스피·암호화폐) 또는 통합 위젯을 고르세요.</string>
     <string name="widget_guide_step4">홈 화면으로 끌어다 원하는 위치에 놓으세요.</string>
     <string name="widget_guide_step5">위젯을 탭하면 언제든 앱이 열려요.</string>
-    <string name="widget_market_description">S&amp;P 500 추종.</string>
-    <string name="widget_kospi_description">KOSPI 추종.</string>
-    <string name="widget_crypto_description">BTC 추종.</string>
+    <string name="widget_market_description">S&amp;P 500 추종</string>
+    <string name="widget_kospi_description">KOSPI 추종</string>
+    <string name="widget_crypto_description">BTC 추종</string>
     <string name="widget_dashboard_description">글로벌·코스피·암호화폐 세 지수를 한 번에 표시합니다.</string>
     <string name="settings_premium_header">프리미엄</string>
     <string name="settings_remove_ads_title">광고 제거</string>

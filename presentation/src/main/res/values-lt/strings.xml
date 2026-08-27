@@ -423,9 +423,9 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="widget_guide_step5">Bakstelėkite valdiklį bet kada, kad atidarytumėte programėlę.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Seka S&amp;P 500.</string>
-    <string name="widget_kospi_description">Seka KOSPI.</string>
-    <string name="widget_crypto_description">Seka BTC.</string>
+    <string name="widget_market_description">Seka S&amp;P 500</string>
+    <string name="widget_kospi_description">Seka KOSPI</string>
+    <string name="widget_crypto_description">Seka BTC</string>
     <string name="widget_dashboard_description">Rodo pasaulinį, KOSPI ir kripto indeksus iš karto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Pašalinti reklamas</string>

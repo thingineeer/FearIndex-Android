@@ -423,9 +423,9 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="widget_guide_step5">Dodirnite widget u bilo kojem trenutku da otvorite aplikaciju.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Prati S&amp;P 500.</string>
-    <string name="widget_kospi_description">Prati KOSPI.</string>
-    <string name="widget_crypto_description">Prati BTC.</string>
+    <string name="widget_market_description">Prati S&amp;P 500</string>
+    <string name="widget_kospi_description">Prati KOSPI</string>
+    <string name="widget_crypto_description">Prati BTC</string>
     <string name="widget_dashboard_description">Prikazuje globalni, KOSPI i kripto indeks na prvi pogled.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Ukloni oglase</string>

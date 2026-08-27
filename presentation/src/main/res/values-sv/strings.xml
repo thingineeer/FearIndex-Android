@@ -421,9 +421,9 @@
     <string name="widget_guide_step3">Välj det index du vill ha — Global, KOSPI eller Krypto — eller allt-i-ett-widgeten.</string>
     <string name="widget_guide_step4">Dra den till startskärmen och placera den där du vill.</string>
     <string name="widget_guide_step5">Tryck på widgeten när som helst för att öppna appen.</string>
-    <string name="widget_market_description">Följer S&amp;P 500.</string>
-    <string name="widget_kospi_description">Följer KOSPI.</string>
-    <string name="widget_crypto_description">Följer BTC.</string>
+    <string name="widget_market_description">Följer S&amp;P 500</string>
+    <string name="widget_kospi_description">Följer KOSPI</string>
+    <string name="widget_crypto_description">Följer BTC</string>
     <string name="widget_dashboard_description">Visar de globala, KOSPI- och kryptoindexen med en blick.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Ta bort annonser</string>

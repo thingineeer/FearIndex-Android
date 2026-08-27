@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Докоснете уиджета по всяко време, за да отворите приложението.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Следва S&amp;P 500.</string>
-    <string name="widget_kospi_description">Следва KOSPI.</string>
-    <string name="widget_crypto_description">Следва BTC.</string>
+    <string name="widget_market_description">Следва S&amp;P 500</string>
+    <string name="widget_kospi_description">Следва KOSPI</string>
+    <string name="widget_crypto_description">Следва BTC</string>
     <string name="widget_dashboard_description">Показва глобалния, KOSPI и крипто индекса с един поглед.</string>
     <string name="settings_premium_header">Премиум</string>
     <string name="settings_remove_ads_title">Премахване на рекламите</string>

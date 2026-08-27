@@ -423,9 +423,9 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="widget_guide_step5">Jebkurā laikā pieskarieties logrīkam, lai atvērtu lietotni.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Seko S&amp;P 500.</string>
-    <string name="widget_kospi_description">Seko KOSPI.</string>
-    <string name="widget_crypto_description">Seko BTC.</string>
+    <string name="widget_market_description">Seko S&amp;P 500</string>
+    <string name="widget_kospi_description">Seko KOSPI</string>
+    <string name="widget_crypto_description">Seko BTC</string>
     <string name="widget_dashboard_description">Rāda globālo, KOSPI un kripto indeksu vienā skatienā.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Noņemt reklāmas</string>

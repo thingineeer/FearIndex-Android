@@ -420,9 +420,9 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="widget_guide_step3">İstediğiniz endeksi seçin — Global, KOSPI veya Kripto — ya da hepsi bir arada widget\'ı.</string>
     <string name="widget_guide_step4">Ana ekranınıza sürükleyin ve istediğiniz yere yerleştirin.</string>
     <string name="widget_guide_step5">Uygulamayı açmak için istediğiniz zaman widget\'a dokunun.</string>
-    <string name="widget_market_description">S&amp;P 500\'ü takip eder.</string>
-    <string name="widget_kospi_description">KOSPI\'yi takip eder.</string>
-    <string name="widget_crypto_description">BTC\'yi takip eder.</string>
+    <string name="widget_market_description">S&amp;P 500\'ü takip eder</string>
+    <string name="widget_kospi_description">KOSPI\'yi takip eder</string>
+    <string name="widget_crypto_description">BTC\'yi takip eder</string>
     <string name="widget_dashboard_description">Küresel, KOSPI ve kripto endekslerini tek bakışta gösterir.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Reklamları Kaldır</string>

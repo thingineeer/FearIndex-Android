@@ -421,9 +421,9 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="widget_guide_step3">Scegli l\'indice che vuoi — Global, KOSPI o Crypto — oppure il widget tutto-in-uno.</string>
     <string name="widget_guide_step4">Trascinalo sulla schermata Home e posizionalo dove preferisci.</string>
     <string name="widget_guide_step5">Tocca il widget quando vuoi per aprire l\'app.</string>
-    <string name="widget_market_description">Segue l\'S&amp;P 500.</string>
-    <string name="widget_kospi_description">Segue il KOSPI.</string>
-    <string name="widget_crypto_description">Segue il BTC.</string>
+    <string name="widget_market_description">Segue l\'S&amp;P 500</string>
+    <string name="widget_kospi_description">Segue il KOSPI</string>
+    <string name="widget_crypto_description">Segue il BTC</string>
     <string name="widget_dashboard_description">Mostra a colpo d\'occhio gli indici globale, KOSPI e cripto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Rimuovi gli annunci</string>

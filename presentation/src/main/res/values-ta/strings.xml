@@ -424,9 +424,9 @@
     <string name="widget_guide_step3">நீங்கள் விரும்பும் குறியீட்டைத் தேர்ந்தெடுக்கவும் — குளோபல், KOSPI அல்லது கிரிப்டோ — அல்லது அனைத்தும் ஒன்றாக உள்ள விட்ஜெட்.</string>
     <string name="widget_guide_step4">அதை உங்கள் முகப்புத் திரைக்கு இழுத்து, விரும்பிய இடத்தில் வைக்கவும்.</string>
     <string name="widget_guide_step5">செயலியைத் திறக்க எந்த நேரத்திலும் விட்ஜெட்டைத் தட்டவும்.</string>
-    <string name="widget_market_description">S&amp;P 500-ஐப் பின்பற்றுகிறது.</string>
-    <string name="widget_kospi_description">KOSPI-ஐப் பின்பற்றுகிறது.</string>
-    <string name="widget_crypto_description">BTC-ஐப் பின்பற்றுகிறது.</string>
+    <string name="widget_market_description">S&amp;P 500-ஐப் பின்பற்றுகிறது</string>
+    <string name="widget_kospi_description">KOSPI-ஐப் பின்பற்றுகிறது</string>
+    <string name="widget_crypto_description">BTC-ஐப் பின்பற்றுகிறது</string>
     <string name="widget_dashboard_description">உலகளாவிய, KOSPI, கிரிப்டோ குறியீடுகளை ஒரே பார்வையில் காட்டுகிறது.</string>
     <string name="settings_premium_header">பிரீமியம்</string>
     <string name="settings_remove_ads_title">விளம்பரங்களை அகற்று</string>
