@@ -540,4 +540,6 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="insight_current_score_title_greed">Változás %1$d után</string>
     <string name="insight_historical_return_title_greed">Mi történt utána?</string>
     <string name="score_explorer_subtitle_greed">Mi következett egy ilyen pontszámú nap után?</string>
+    <string name="widget_updated_at">%1$s-kor</string>
+    <string name="widget_chart_description">A félelem–kapzsiság index 30 napos trendje</string>
 </resources>

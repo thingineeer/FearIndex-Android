@@ -540,4 +540,6 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="insight_current_score_title_greed">Změna po %1$d</string>
     <string name="insight_historical_return_title_greed">Co následovalo?</string>
     <string name="score_explorer_subtitle_greed">Co následovalo po dni s tímto skóre?</string>
+    <string name="widget_updated_at">k %1$s</string>
+    <string name="widget_chart_description">30denní graf indexu strachu a chamtivosti</string>
 </resources>

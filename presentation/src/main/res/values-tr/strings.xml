@@ -539,4 +539,6 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="insight_current_score_title_greed">%1$d sonrası değişim</string>
     <string name="insight_historical_return_title_greed">Sonrasında ne oldu?</string>
     <string name="score_explorer_subtitle_greed">Bu puanın görüldüğü günden sonra ne oldu?</string>
+    <string name="widget_updated_at">%1$s itibarıyla</string>
+    <string name="widget_chart_description">Korku ve Açgözlülük Endeksi 30 günlük grafik</string>
 </resources>

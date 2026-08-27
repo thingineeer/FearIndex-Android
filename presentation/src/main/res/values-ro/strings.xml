@@ -542,4 +542,6 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="insight_current_score_title_greed">Variație după %1$d</string>
     <string name="insight_historical_return_title_greed">Ce a urmat?</string>
     <string name="score_explorer_subtitle_greed">Ce a urmat după o zi cu acest scor?</string>
+    <string name="widget_updated_at">la %1$s</string>
+    <string name="widget_chart_description">Tendința pe 30 de zile a indicelui Fear &amp; Greed</string>
 </resources>

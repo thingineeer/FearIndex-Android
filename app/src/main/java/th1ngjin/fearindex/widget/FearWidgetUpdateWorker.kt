@@ -28,6 +28,7 @@ class FearWidgetUpdateWorker(
         KospiFearWidget().updateAll(applicationContext)
         CryptoFearWidget().updateAll(applicationContext)
         DashboardFearWidget().updateAll(applicationContext)
+        ChartFearWidget().updateAll(applicationContext)
         Result.success()
     } catch (e: Exception) {
         Timber.w(e, "Fear widget update failed")

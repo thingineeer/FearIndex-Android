@@ -543,4 +543,6 @@
     <string name="insight_current_score_title_greed">การเปลี่ยนแปลงหลังจาก %1$d</string>
     <string name="insight_historical_return_title_greed">หลังจากนั้นเป็นอย่างไร?</string>
     <string name="score_explorer_subtitle_greed">หลังจากวันที่ได้คะแนนนี้ ตลาดเป็นอย่างไร?</string>
+    <string name="widget_updated_at">ณ %1$s</string>
+    <string name="widget_chart_description">กราฟแนวโน้มดัชนีความกลัวและความโลภ 30 วัน</string>
 </resources>

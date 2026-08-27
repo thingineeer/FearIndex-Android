@@ -540,4 +540,6 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="insight_current_score_title_greed">Verandering ná %1$d</string>
     <string name="insight_historical_return_title_greed">Wat het daarna gebeur?</string>
     <string name="score_explorer_subtitle_greed">Wat het gevolg ná \'n dag met hierdie telling?</string>
+    <string name="widget_updated_at">soos om %1$s</string>
+    <string name="widget_chart_description">30-dae-tendens van die Fear &amp; Greed-indeks</string>
 </resources>

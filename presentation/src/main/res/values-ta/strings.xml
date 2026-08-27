@@ -543,4 +543,6 @@
     <string name="insight_current_score_title_greed">%1$d-க்குப் பிறகு மாற்றம்</string>
     <string name="insight_historical_return_title_greed">அதன் பிறகு என்ன நடந்தது?</string>
     <string name="score_explorer_subtitle_greed">இந்த மதிப்பெண் பதிவான நாளுக்குப் பிறகு என்ன நடந்தது?</string>
+    <string name="widget_updated_at">%1$s வரை</string>
+    <string name="widget_chart_description">அச்ச-பேராசை குறியீட்டின் 30-நாள் வரைபடம்</string>
 </resources>

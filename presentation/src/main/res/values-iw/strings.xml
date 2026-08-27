@@ -539,4 +539,6 @@
     <string name="insight_current_score_title_greed">שינוי אחרי %1$d</string>
     <string name="insight_historical_return_title_greed">מה קרה אחר כך?</string>
     <string name="score_explorer_subtitle_greed">מה קרה אחרי יום עם ציון כזה?</string>
+    <string name="widget_updated_at">נכון ל-%1$s</string>
+    <string name="widget_chart_description">מגמת 30 יום של מדד הפחד והחמדנות</string>
 </resources>

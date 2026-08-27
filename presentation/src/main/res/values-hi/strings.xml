@@ -543,4 +543,6 @@
     <string name="insight_current_score_title_greed">%1$d के बाद बदलाव</string>
     <string name="insight_historical_return_title_greed">उसके बाद क्या हुआ?</string>
     <string name="score_explorer_subtitle_greed">इस स्कोर वाले दिन के बाद क्या हुआ?</string>
+    <string name="widget_updated_at">%1$s तक</string>
+    <string name="widget_chart_description">भय-लालच सूचकांक का 30-दिन का चार्ट</string>
 </resources>

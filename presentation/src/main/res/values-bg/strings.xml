@@ -542,4 +542,6 @@
     <string name="insight_current_score_title_greed">Промяна след %1$d</string>
     <string name="insight_historical_return_title_greed">Какво последва?</string>
     <string name="score_explorer_subtitle_greed">Какво последва след ден с този резултат?</string>
+    <string name="widget_updated_at">към %1$s</string>
+    <string name="widget_chart_description">30-дневна графика на индекса на страха и алчността</string>
 </resources>

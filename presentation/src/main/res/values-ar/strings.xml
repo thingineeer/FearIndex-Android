@@ -539,4 +539,6 @@
     <string name="insight_current_score_title_greed">التغير بعد %1$d</string>
     <string name="insight_historical_return_title_greed">ماذا حدث بعد ذلك؟</string>
     <string name="score_explorer_subtitle_greed">ماذا حدث بعد يوم سجّل هذه الدرجة؟</string>
+    <string name="widget_updated_at">حتى %1$s</string>
+    <string name="widget_chart_description">مخطط اتجاه مؤشر الخوف والجشع لمدة 30 يومًا</string>
 </resources>

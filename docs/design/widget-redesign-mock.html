@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>FearIndex Android 위젯 리디자인 시안</title>
+<style>
+  :root { --card:#1C1C1E; --card2:#232325; --track:#3A3A3C; --txt:#FFFFFF; --dim:#9E9E9E;
+          --up:#4CAF50; --down:#E53935; --flat:#9E9E9E; }
+  body { margin:0; font-family:-apple-system,'SF Pro','Roboto','Noto Sans KR',sans-serif;
+         background:linear-gradient(160deg,#26364a,#0d1520 60%); min-height:100vh; color:#fff; padding:36px 28px 80px; }
+  h1 { font-size:22px; margin:0 0 6px; } .sub { color:#9fb2c8; font-size:13px; margin-bottom:34px; }
+  h2 { font-size:15px; color:#cfe0f5; margin:40px 0 14px; font-weight:600; }
+  .row { display:flex; gap:26px; flex-wrap:wrap; align-items:flex-start; }
+  .cellgrid { display:inline-grid; grid-template-columns:repeat(4,74px); grid-auto-rows:74px; gap:10px;
+              padding:14px; border-radius:22px; background:rgba(255,255,255,.04); }
+  .label { text-align:center; font-size:11px; color:#b7c6d9; margin-top:8px; }
+  .w { background:var(--card); border-radius:20px; box-shadow:0 8px 22px rgba(0,0,0,.45);
+       display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; }
+  .w1 { grid-column:span 1; grid-row:span 1; border-radius:16px; }
+  .w2 { grid-column:span 2; grid-row:span 2; }
+  .w4 { grid-column:span 4; grid-row:span 2; }
+  .gwrap { position:relative; display:flex; align-items:center; justify-content:center; }
+  .gcenter { position:absolute; text-align:center; line-height:1.05; }
+  .score { font-weight:800; letter-spacing:-.5px; }
+  .initial { color:#c9c9cf; font-weight:600; }
+  .ratingrow { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:600; margin-top:2px; }
+  .dot { width:8px; height:8px; border-radius:50%; }
+  .chg { font-weight:700; }
+  .listrow { display:flex; align-items:center; width:100%; padding:0 12px; box-sizing:border-box; gap:8px; }
+  .pill { border-radius:10px; font-weight:800; padding:2px 8px; font-size:15px; color:#111; min-width:30px; text-align:center; }
+  .name { font-size:12px; color:#d9dee6; font-weight:600; width:64px; }
+  .mini { font-size:11px; color:var(--dim); margin-left:auto; display:flex; gap:6px; align-items:center; font-weight:600;}
+  .note { font-size:12px; color:#8fa5bd; margin-top:10px; max-width:640px; line-height:1.6; }
+  .pick { border:1.5px dashed rgba(255,255,255,.25); padding:3px 8px; border-radius:8px; font-size:11px; color:#ffd479; margin-left:8px;}
+</style>
+</head>
+<body>
+<h1>FearIndex Android 위젯 리디자인 시안</h1>
+<div class="sub">다크 카드 고정 · 아크 게이지(270°) · 전일 변화(↑초록/↓빨강/→회색) · 데이터 예: G 55 중립 →0 / K 51 중립 ↓1 / C 71 탐욕 ↑6</div>
+
+<h2>① 1×1 전용 위젯 — 지수별 3종 (별도 위젯으로 제공, 리사이즈 불필요)</h2>
+<div class="row">
+  <div>
+    <div class="cellgrid" style="grid-template-columns:repeat(3,74px);">
+      <div class="w w1" id="w1g"></div>
+      <div class="w w1" id="w1k"></div>
+      <div class="w w1" id="w1c"></div>
+    </div>
+    <div class="label">1×1 · 글로벌 / 코스피 / 암호화폐 (탭하면 앱 열림)</div>
+  </div>
+</div>
+<div class="note">삼성 런처가 2×2 위젯의 1×1 축소를 막는 문제 대응 — 피커에 "글로벌 1×1" 등 3개를 따로 노출.</div>
+
+<h2>② 2×2 — 3개 지수 통합 (안 A: 트리플 게이지) <span class="pick">추천</span></h2>
+<div class="row">
+  <div>
+    <div class="cellgrid"><div class="w w2" id="w2a" style="padding:10px 6px;"></div></div>
+    <div class="label">A안 — 미니 게이지 3개 + 등급점·전일변화</div>
+  </div>
+  <div>
+    <div class="cellgrid"><div class="w w2" id="w2b" style="justify-content:space-evenly; padding:10px 0;"></div></div>
+    <div class="label">B안 — 리스트 3행 (점수 pill + 등급 + 변화)</div>
+  </div>
+  <div>
+    <div class="cellgrid"><div class="w w2" id="w2c" style="padding:8px;"></div></div>
+    <div class="label">C안 — 대표(글로벌) 큰 게이지 + 하단 K·C 미니</div>
+  </div>
+</div>
+
+<h2>③ 4×2 대시보드 — 기존 유지(리스트) 또는 A안 가로 확장</h2>
+<div class="row">
+  <div>
+    <div class="cellgrid"><div class="w w4" id="w4" style="flex-direction:row; justify-content:space-evenly;"></div></div>
+    <div class="label">4×2 — 게이지 3개 가로 배치(여유 크기)</div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  G:{score:55, rating:'중립', color:'#B8860B', chg:0},
+  K:{score:51, rating:'중립', color:'#B8860B', chg:-1},
+  C:{score:71, rating:'탐욕', color:'#43A047', chg:6},
+};
+function arcPath(cx,cy,r,startDeg,sweepDeg){
+  const s=(startDeg)*Math.PI/180, e=(startDeg+sweepDeg)*Math.PI/180;
+  const x1=cx+r*Math.cos(s), y1=cy+r*Math.sin(s), x2=cx+r*Math.cos(e), y2=cy+r*Math.sin(e);
+  return `M ${x1} ${y1} A ${r} ${r} 0 ${sweepDeg>180?1:0} 1 ${x2} ${y2}`;
+}
+function gauge(size, score, stroke){
+  const r=(size-stroke)/2 - 1, c=size/2, sweep=270*Math.min(100,Math.max(0,score))/100;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+    <defs><linearGradient id="gr${size}${score}" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#E53935"/><stop offset=".45" stop-color="#F57C00"/>
+      <stop offset=".75" stop-color="#FDD835"/><stop offset="1" stop-color="#43A047"/></linearGradient></defs>
+    <path d="${arcPath(c,c,r,135,270)}" stroke="#3A3A3C" stroke-width="${stroke}" fill="none" stroke-linecap="round"/>
+    <path d="${arcPath(c,c,r,135,sweep)}" stroke="url(#gr${size}${score})" stroke-width="${stroke}" fill="none" stroke-linecap="round"/>
+  </svg>`;
+}
+function chgHtml(chg, fs){
+  const col = chg>0? 'var(--up)': chg<0? 'var(--down)':'var(--flat)';
+  const g = chg>0?'↑':chg<0?'↓':'→';
+  return `<span class="chg" style="color:${col};font-size:${fs}px">${g} ${Math.abs(chg)}</span>`;
+}
+// ① 1×1
+for (const k of ['G','K','C']) {
+  const d=DATA[k];
+  document.getElementById('w1'+k.toLowerCase()).innerHTML = `
+    <div class="gwrap">${gauge(62,d.score,6)}
+      <div class="gcenter"><div class="score" style="font-size:19px">${d.score}</div>
+      <div class="initial" style="font-size:8px">${k}</div></div></div>`;
+}
+// ② A안: 미니 게이지 3개
+document.getElementById('w2a').innerHTML = `
+  <div style="display:flex; gap:6px; justify-content:space-evenly; width:100%;">
+    ${['G','K','C'].map(k=>{const d=DATA[k];return `
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1px;">
+        <div class="gwrap">${gauge(46,d.score,5)}
+          <div class="gcenter"><div class="score" style="font-size:14px">${d.score}</div></div></div>
+        <div class="initial" style="font-size:9px">${k}</div>
+        ${chgHtml(d.chg,9)}
+      </div>`}).join('')}
+  </div>
+  <div style="display:flex;gap:10px;margin-top:8px;">
+    ${['G','K','C'].map(k=>{const d=DATA[k];return `
+      <div class="ratingrow" style="font-size:9px;"><span class="dot" style="background:${d.color};width:6px;height:6px;"></span>${d.rating}</div>`}).join('')}
+  </div>`;
+// ② B안: 리스트 3행
+document.getElementById('w2b').innerHTML = ['G','K','C'].map(k=>{const d=DATA[k];return `
+  <div class="listrow">
+    <span class="name">${k==='G'?'글로벌':k==='K'?'코스피':'암호화폐'}</span>
+    <span class="pill" style="background:${d.color};color:#fff;">${d.score}</span>
+    <span class="mini"><span class="dot" style="background:${d.color}"></span>${d.rating} ${chgHtml(d.chg,11)}</span>
+  </div>`}).join('');
+// ② C안: 대표 게이지 + 미니 2개
+document.getElementById('w2c').innerHTML = `
+  <div class="gwrap">${gauge(74,DATA.G.score,7)}
+    <div class="gcenter"><div class="score" style="font-size:22px">${DATA.G.score}</div>
+    <div class="initial" style="font-size:9px">G</div></div></div>
+  <div style="display:flex; gap:14px; margin-top:4px;">
+    ${['K','C'].map(k=>{const d=DATA[k];return `
+      <div style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;">
+        <span class="initial" style="font-size:10px">${k}</span> ${d.score} ${chgHtml(d.chg,10)}</div>`}).join('')}
+  </div>`;
+// ③ 4×2
+document.getElementById('w4').innerHTML = ['G','K','C'].map(k=>{const d=DATA[k];return `
+  <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+    <div class="gwrap">${gauge(84,d.score,8)}
+      <div class="gcenter"><div class="score" style="font-size:24px">${d.score}</div>
+      <div class="initial" style="font-size:9px">${k}</div></div></div>
+    <div class="ratingrow" style="font-size:11px;"><span class="dot" style="background:${d.color}"></span>${d.rating} ${chgHtml(d.chg,11)}</div>
+  </div>`}).join('');
+</script>
+</body>
+</html>

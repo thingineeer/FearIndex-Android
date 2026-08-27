@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>FearIndex 위젯 시안 v2 (확정 방향)</title>
+<style>
+  body { margin:0; font-family:-apple-system,'SF Pro','Roboto','Noto Sans KR',sans-serif;
+         background:linear-gradient(160deg,#2a3b52,#0d1520 60%); min-height:100vh; color:#fff; padding:36px 28px 80px; }
+  h1{font-size:21px;margin:0 0 4px;} .sub{color:#9fb2c8;font-size:13px;margin-bottom:30px;}
+  h2{font-size:15px;color:#cfe0f5;margin:36px 0 12px;font-weight:600;}
+  .row{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;}
+  .cellgrid{display:inline-grid;grid-template-columns:repeat(4,76px);grid-auto-rows:76px;gap:10px;
+            padding:14px;border-radius:22px;background:rgba(255,255,255,.05);}
+  .label{text-align:center;font-size:11px;color:#b7c6d9;margin-top:8px;}
+  .w{background:#1C1C1E;border-radius:20px;box-shadow:0 8px 22px rgba(0,0,0,.45);
+     display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+  .w1{border-radius:18px;}
+  .w2{grid-column:span 2;grid-row:span 2;}
+  .w4{grid-column:span 4;grid-row:span 2;flex-direction:row;justify-content:space-evenly;}
+  .gwrap{position:relative;display:flex;align-items:center;justify-content:center;}
+  .gcenter{position:absolute;text-align:center;line-height:1;}
+  .score{font-weight:800;letter-spacing:-.5px;}
+  .name{color:#c4c9d2;font-weight:600;}
+  .ratingrow{display:flex;align-items:center;gap:4px;font-weight:600;}
+  .dot{border-radius:50%;}
+  .refresh{position:absolute;top:7px;right:9px;color:#8b8f98;font-size:12px;}
+  .updated{position:absolute;bottom:5px;right:10px;color:#6d727c;font-size:8px;}
+</style>
+</head>
+<body>
+<h1>FearIndex 위젯 시안 v2 — 확정 방향</h1>
+<div class="sub">iOS식 270° 아크 게이지 · 풀네임 표기(Global/KOSPI/Crypto) · 전일변화(↑초록/↓빨강/→회색) · ↻ 새로고침 버튼 · 데이터: G 55 중립 →0 / K 51 중립 ↓1 / C 71 탐욕 ↑6</div>
+
+<h2>① 1×1 — 지수별 3종 (별도 위젯 제공)</h2>
+<div class="row"><div>
+  <div class="cellgrid" style="grid-template-columns:repeat(3,76px);">
+    <div class="w w1" id="s1g"></div><div class="w w1" id="s1k"></div><div class="w w1" id="s1c"></div>
+  </div>
+  <div class="label">게이지+점수+풀네임. 탭=앱 열기</div>
+</div></div>
+
+<h2>② 2×2 — 3지수 통합 (게이지 3개 + 등급/변화 + ↻)</h2>
+<div class="row">
+  <div><div class="cellgrid"><div class="w w2" id="s2" style="padding:12px 4px 10px;"></div></div>
+  <div class="label">우상단 ↻ 새로고침 · 우하단 갱신시각</div></div>
+</div>
+
+<h2>③ 4×2 — 대시보드 (동일 구성, 여유 크기)</h2>
+<div class="row"><div><div class="cellgrid"><div class="w w4" id="s4"></div></div>
+<div class="label">4×2 — 게이지 大 + 등급/변화</div></div></div>
+
+<script>
+const DATA={G:{name:'Global',score:55,rating:'중립',color:'#B8860B',chg:0},
+            K:{name:'KOSPI',score:51,rating:'중립',color:'#B8860B',chg:-1},
+            C:{name:'Crypto',score:71,rating:'탐욕',color:'#43A047',chg:6}};
+function arc(cx,cy,r,a0,sw){const s=a0*Math.PI/180,e=(a0+sw)*Math.PI/180;
+  return `M ${cx+r*Math.cos(s)} ${cy+r*Math.sin(s)} A ${r} ${r} 0 ${sw>180?1:0} 1 ${cx+r*Math.cos(e)} ${cy+r*Math.sin(e)}`;}
+let uid=0;
+function gauge(size,score,stroke){const r=(size-stroke)/2-1,c=size/2,sw=270*score/100;uid++;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+  <defs><linearGradient id="g${uid}" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0" stop-color="#E53935"/><stop offset=".45" stop-color="#F57C00"/>
+    <stop offset=".75" stop-color="#FDD835"/><stop offset="1" stop-color="#43A047"/></linearGradient></defs>
+  <path d="${arc(c,c,r,135,270)}" stroke="#3A3A3C" stroke-width="${stroke}" fill="none" stroke-linecap="round"/>
+  <path d="${arc(c,c,r,135,sw)}" stroke="url(#g${uid})" stroke-width="${stroke}" fill="none" stroke-linecap="round"/></svg>`;}
+function chg(d,fs){const col=d>0?'#4CAF50':d<0?'#E53935':'#9E9E9E';const g=d>0?'↑':d<0?'↓':'→';
+  return `<span style="color:${col};font-size:${fs}px;font-weight:700">${g} ${Math.abs(d)}</span>`;}
+// 1×1
+for(const k of ['G','K','C']){const d=DATA[k];
+  document.getElementById('s1'+k.toLowerCase()).innerHTML=`
+  <div class="gwrap" style="margin-top:2px">${gauge(56,d.score,6)}
+    <div class="gcenter"><div class="score" style="font-size:18px">${d.score}</div></div></div>
+  <div class="name" style="font-size:8.5px;margin-top:-2px">${d.name}</div>`;}
+// 2×2
+document.getElementById('s2').innerHTML=`
+  <div class="refresh">↻</div>
+  <div style="display:flex;gap:5px;justify-content:space-evenly;width:100%;margin-top:4px;">
+  ${['G','K','C'].map(k=>{const d=DATA[k];return `
+    <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+      <div class="gwrap">${gauge(44,d.score,5)}
+        <div class="gcenter"><div class="score" style="font-size:13.5px">${d.score}</div></div></div>
+      <div class="name" style="font-size:8px">${d.name}</div>
+      <div class="ratingrow" style="font-size:8.5px;color:${d.color}">
+        <span class="dot" style="width:5px;height:5px;background:${d.color}"></span>${d.rating}</div>
+      ${chg(d.chg,8.5)}
+    </div>`}).join('')}</div>
+  <div class="updated">14:30 기준</div>`;
+// 4×2
+document.getElementById('s4').innerHTML=`
+  <div class="refresh">↻</div>
+  ${['G','K','C'].map(k=>{const d=DATA[k];return `
+  <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+    <div class="gwrap">${gauge(86,d.score,8)}
+      <div class="gcenter"><div class="score" style="font-size:24px">${d.score}</div></div></div>
+    <div class="name" style="font-size:10px">${d.name}</div>
+    <div class="ratingrow" style="font-size:10.5px;color:${d.color}">
+      <span class="dot" style="width:7px;height:7px;background:${d.color}"></span>${d.rating}&nbsp;${chg(d.chg,10.5)}</div>
+  </div>`}).join('')}
+  <div class="updated">14:30 기준</div>`;
+</script>
+
+<h2>④ 차트 위젯 (신규) — 최근 1개월 추이</h2>
+<div class="row">
+  <div><div class="cellgrid"><div class="w w4" id="s5" style="flex-direction:column;align-items:stretch;padding:10px 14px;"></div></div>
+  <div class="label">4×2 — Global 점수 + 30일 라인차트 (등급 색 강조, ↻ 지원)</div></div>
+  <div><div class="cellgrid"><div class="w w2" id="s6" style="align-items:stretch;padding:10px 12px;"></div></div>
+  <div class="label">2×2 — 컴팩트 차트</div></div>
+</div>
+<script>
+function spark(w,h,vals,color){
+  const min=Math.min(...vals)-4,max=Math.max(...vals)+4;
+  const pts=vals.map((v,i)=>`${(i/(vals.length-1))*w},${h-(v-min)/(max-min)*h}`).join(' ');
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+    <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${w}" cy="${h-(vals[vals.length-1]-min)/(max-min)*h}" r="3.5" fill="${color}"/></svg>`;
+}
+const hist=[48,50,47,52,55,53,58,60,57,62,64,61,66,63,59,61,58,56,54,57,55,53,51,54,56,58,55,54,53,55];
+document.getElementById('s5').innerHTML=`
+  <div class="refresh">↻</div>
+  <div style="display:flex;align-items:baseline;gap:8px;">
+    <span class="name" style="font-size:11px">Global</span>
+    <span class="score" style="font-size:22px">55</span>
+    <span style="color:#B8860B;font-size:11px;font-weight:600">● 중립</span>
+    <span style="color:#9E9E9E;font-size:11px;font-weight:700">→ 0</span>
+    <span style="margin-left:auto;color:#6d727c;font-size:9px">1M</span></div>
+  <div style="flex:1;display:flex;align-items:center;margin-top:6px;">${spark(268,64,hist,'#B8860B')}</div>`;
+document.getElementById('s6').innerHTML=`
+  <div class="refresh">↻</div>
+  <div style="display:flex;align-items:baseline;gap:6px;">
+    <span class="name" style="font-size:9px">Global</span>
+    <span class="score" style="font-size:17px">55</span>
+    <span style="color:#9E9E9E;font-size:9px;font-weight:700">→ 0</span></div>
+  <div style="flex:1;display:flex;align-items:center;margin-top:4px;">${spark(120,58,hist,'#B8860B')}</div>`;
+</script>
+
+</body>
+</html>

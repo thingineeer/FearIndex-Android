@@ -540,4 +540,6 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="insight_current_score_title_greed">Mabadiliko baada ya %1$d</string>
     <string name="insight_historical_return_title_greed">Nini kilitokea baadaye?</string>
     <string name="score_explorer_subtitle_greed">Nini kilifuata baada ya siku yenye alama hii?</string>
+    <string name="widget_updated_at">kufikia %1$s</string>
+    <string name="widget_chart_description">Chati ya mwenendo wa siku 30 ya Fear &amp; Greed</string>
 </resources>
