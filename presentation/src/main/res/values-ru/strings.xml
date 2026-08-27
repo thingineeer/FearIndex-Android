@@ -423,10 +423,10 @@
     <string name="widget_guide_step5">Нажмите на виджет в любой момент, чтобы открыть приложение.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Глобальный (S&amp;P 500) индекс страха и жадности</string>
-    <string name="widget_kospi_description">Индекс страха и жадности KOSPI</string>
-    <string name="widget_crypto_description">Криптовалютный (BTC) индекс страха и жадности</string>
-    <string name="widget_dashboard_description">Все три индекса страха и жадности</string>
+    <string name="widget_market_description">Показывает глобальный индекс страха и жадности (S&amp;P 500) в виде датчика.</string>
+    <string name="widget_kospi_description">Показывает индекс страха KOSPI в виде датчика.</string>
+    <string name="widget_crypto_description">Показывает криптоиндекс страха и жадности (BTC) в виде датчика.</string>
+    <string name="widget_dashboard_description">Показывает глобальный, KOSPI и криптоиндекс одним взглядом.</string>
     <string name="settings_premium_header">Премиум</string>
     <string name="settings_remove_ads_title">Убрать рекламу</string>
     <string name="settings_remove_ads_description">Разовая покупка. Навсегда убирает всю рекламу.</string>
@@ -543,7 +543,12 @@
     <string name="insight_historical_return_title_greed">Что было потом?</string>
     <string name="score_explorer_subtitle_greed">Что происходило после дня с таким значением?</string>
     <string name="widget_updated_at">на %1$s</string>
-    <string name="widget_chart_description">График индекса страха и жадности за 30 дней</string>
+    <string name="widget_chart_description">Показывает динамику глобального индекса за последние 30 дней на графике.</string>
+    <string name="widget_label_market">Глобальный индекс</string>
+    <string name="widget_label_kospi">Индекс KOSPI</string>
+    <string name="widget_label_crypto">Криптоиндекс</string>
+    <string name="widget_label_dashboard">Все индексы</string>
+    <string name="widget_label_chart">Тренд за 30 дней</string>
     <string name="widget_guide_section_widgets">Типы виджетов</string>
     <string name="widget_guide_type_single">Датчик одного индекса — Глобальный · KOSPI · Крипто</string>
     <string name="widget_guide_section_howto">Как добавить</string>

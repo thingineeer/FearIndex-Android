@@ -423,10 +423,10 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="widget_guide_step5">Jebkurā laikā pieskarieties logrīkam, lai atvērtu lietotni.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Globālais (S&amp;P 500) baiļu un alkatības indekss</string>
-    <string name="widget_kospi_description">KOSPI baiļu un alkatības indekss</string>
-    <string name="widget_crypto_description">Kripto (BTC) baiļu un alkatības indekss</string>
-    <string name="widget_dashboard_description">Visi trīs baiļu un alkatības indeksi</string>
+    <string name="widget_market_description">Rāda globālo (S&amp;P 500) baiļu un alkatības indeksu kā mērītāju.</string>
+    <string name="widget_kospi_description">Rāda KOSPI baiļu indeksu kā mērītāju.</string>
+    <string name="widget_crypto_description">Rāda kripto (BTC) baiļu un alkatības indeksu kā mērītāju.</string>
+    <string name="widget_dashboard_description">Rāda globālo, KOSPI un kripto indeksu vienā skatienā.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Noņemt reklāmas</string>
     <string name="settings_remove_ads_description">Vienreizējs pirkums. Uz visiem laikiem noņem visas reklāmas.</string>
@@ -543,7 +543,12 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="insight_historical_return_title_greed">Kas notika pēc tam?</string>
     <string name="score_explorer_subtitle_greed">Kas sekoja pēc dienas ar šo rezultātu?</string>
     <string name="widget_updated_at">uz %1$s</string>
-    <string name="widget_chart_description">Baiļu un alkatības indeksa 30 dienu grafiks</string>
+    <string name="widget_chart_description">Rāda globālā indeksa pēdējo 30 dienu dinamiku grafikā.</string>
+    <string name="widget_label_market">Globālais indekss</string>
+    <string name="widget_label_kospi">KOSPI indekss</string>
+    <string name="widget_label_crypto">Kripto indekss</string>
+    <string name="widget_label_dashboard">Visi indeksi</string>
+    <string name="widget_label_chart">30 dienu tendence</string>
     <string name="widget_guide_section_widgets">Logrīku veidi</string>
     <string name="widget_guide_type_single">Viena indeksa mērītājs — Globālais · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Kā pievienot</string>
