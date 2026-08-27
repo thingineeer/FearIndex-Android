@@ -57,6 +57,7 @@ import th1ngjin.fearindex.domain.entity.FearIndexType
 import th1ngjin.fearindex.domain.entity.ReturnHorizon
 import th1ngjin.fearindex.domain.util.ScoreExplorerPoint
 import th1ngjin.fearindex.presentation.R
+import th1ngjin.fearindex.presentation.common.GreedFrame
 import th1ngjin.fearindex.presentation.common.LowSampleWarningBadge
 import th1ngjin.fearindex.presentation.common.PremiumBadge
 import th1ngjin.fearindex.presentation.common.PremiumLockRow
@@ -77,7 +78,6 @@ const val SCORE_EXPLORER_SLIDER_TAG = "score-explorer-slider"
 const val SCORE_EXPLORER_RESET_TAG = "score-explorer-reset"
 
 /** 탐욕 구간(≥75)은 셀 라벨을 ".greed" 변형으로 (iOS statLabel 동일). */
-private const val GREED_LABEL_THRESHOLD = 75
 
 /**
  * "점수별 과거 수익률" 프리미엄 슬라이더 카드 — iOS `ScoreExplorerCardView` 1:1 (v1.9.4, 스펙 §3.3).
@@ -103,7 +103,7 @@ fun ScoreExplorerCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
     ) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-            ExplorerHeader(onInfo = onInfo)
+            ExplorerHeader(onInfo = onInfo, selectedScore = state.selectedScore)
             if (state.isPremium) {
                 UnlockedContent(state, onMove, onMoveEnded, onReset)
             } else {
@@ -116,7 +116,7 @@ fun ScoreExplorerCard(
 // MARK: - Header
 
 @Composable
-private fun ExplorerHeader(onInfo: () -> Unit) {
+private fun ExplorerHeader(onInfo: () -> Unit, selectedScore: Int) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(
@@ -136,7 +136,9 @@ private fun ExplorerHeader(onInfo: () -> Unit) {
             }
         }
         Text(
-            text = stringResource(R.string.score_explorer_subtitle),
+            text = stringResource(
+                if (GreedFrame.isGreed(selectedScore)) R.string.score_explorer_subtitle_greed else R.string.score_explorer_subtitle,
+            ),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -304,7 +306,7 @@ private fun horizonLabel(horizon: ReturnHorizon): String = stringResource(
 @Composable
 private fun StatsRow(point: ScoreExplorerPoint, horizon: ReturnHorizon, selectedScore: Int) {
     val hasSample = point.hasSample(horizon)
-    val greed = selectedScore >= GREED_LABEL_THRESHOLD
+    val greed = GreedFrame.isGreed(selectedScore)
     Row(modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp), verticalAlignment = Alignment.CenterVertically) {
         StatCell(
             label = stringResource(if (greed) R.string.insight_current_score_avg_return_greed else R.string.insight_current_score_avg_return),
