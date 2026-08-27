@@ -7,6 +7,22 @@
 - **유지(의도)**: 온보딩 4단계 "그 점수에 샀다면"(첫 실행 튜토리얼, 점수 무관 설명), 스플래시 면책 "extreme ranges may signal contrarian opportunities", 저점 고정 카드 "주요 저점에서 매수했다면"(저점 한정).
 - **⚠️ iOS parity**: iOS 점수 탐색기 통계 라벨 임계가 75 라면 Android 는 70 으로 divergence — iOS 세션이 같은 지시로 수정 시 70 으로 맞추길 권고(메인 세션에 전달).
 
+## 2026-08-27 세션 (위젯 UI 리디자인 — Play 리뷰 대응)
+
+### 73. 위젯 전면 리디자인 — 1×1 게이지 3종 + 통합 2×2 + 차트 4×2 + 새로고침 (dev 28b0320e)
+- **발단**: Play 리뷰 2건("위젯 안 됨" / "1×1 필요"). One UI는 targetCell(2×2)보다 작은 리사이즈를 막아 minResize만으론 1×1 불가 → **targetCell 1×1로 재등록**이 정답.
+- **구성**: ① 1×1(Global/KOSPI/Crypto) = 270° 게이지+점수+풀네임(G/K/C 약어 대신 풀네임, 사용자 결정) ② 통합 2×2 = 게이지 3개 나란히 + 등급/전일 대비 ③ **차트 4×2 신규**(ChartFearWidget) = Global 30일 라인 + y 3눈금 + x 날짜 라벨 + "HH:mm 기준" ④ 새로고침 버튼(`actionRunCallback<RefreshWidgetsAction>` → 5위젯 updateAll) ⑤ 로드 실패 시 10분 지연 재시도(WorkManager KEEP).
+- **⚠️ Glance 함정 3개 (재발 방지)**:
+  1. **Row 자식에 `defaultWeight()`+`fillMaxSize()` 겹치면 width=fill이 weight를 덮어써 첫 컬럼이 전체 차지** → `defaultWeight().fillMaxHeight()`로. 통합 2×2가 첫 지수만 렌더되던 원인.
+  2. SweepGradient 원형 게이지는 시작각 라운드캡이 pos≈1.0을 샘플링 → **gradient 끝(0.97)에 시작색(빨강) stop 추가**해 캡 색 번짐 방지.
+  3. Glance SessionWorker가 갱신 완료까지 ~45초 — 완료 전 스크린샷 찍으면 옛 UI로 오진. `adb shell am broadcast APPWIDget_UPDATE`는 SecurityException — 앱 실행(포그라운드 updateAll)으로 갱신.
+- **⚠️ 데이터 함정**: `GetFearIndexHistoryUseCase(days=30)`을 넘겨도 CNN 데이터소스가 캐시된 전체(1년)를 반환 → 차트 x축이 1년이 됨. **위젯 레이어에서 최근 30일 클라이언트 잘라내기**로 방어(공유 repo 무수정, ChartFearWidget.kt).
+- **검증**: 에뮬(API 36) 실배치 — 1×1 게이지 3종, 통합 2×2(55/49/71 채움 상이 = 게이지 정확성 확인, 사용자 요청 검증), 차트 4×2(7.29→8.13→8.27 / 70·51·32 / 15:27 기준) 전부 육안 확인. 유닛 **1,096 tests / 0 fail** + locale 대칭 500키. i18n `widget_updated_at`·`widget_chart_description` 45 locale.
+- **Git**: worktree `feature/v1.6.1-widget-redesign` 4커밋 → dev `--no-ff` 머지(28b0320e) + push. 시안 `docs/design/widget-redesign-mock-v2.html`(확정), Pinterest 레퍼런스 캡처는 public 레포라 미커밋.
+- **후속 2 — 등급 원점수 통일(dev 4d04e642 push, 사용자 결정 "원점수로 하자")**: 표시 점수는 반올림, 등급/색은 **원점수(raw) 기준 `FearIndex.Rating.from`** 으로 통일(55.4 → 표시 55·탐욕). 위젯은 원래 raw, 앱 화면들이 반올림 재판정이라 어긋났던 것. `ratingLabel(Rating)`/`fearScoreColor(Rating)`/`widgetFearScoreColor(Rating)` 오버로드 신설 후 홈 게이지·타이틀 공유·차트 현재점수 카드·차트 툴팁(`ratingLabelFromArray` Double)·투표 헤더·위젯 색 적용. WidgetStyleTest 회귀 2건, 전체 테스트 GREEN, 에뮬 육안(앱 게이지 "55 Greed" = 위젯 일치). ⚠️ iOS 도 같은 기준인지 메인 세션에 확인 요청함.
+- **남은 것**: S22 실기기 설치 후 사용자 검증("검증은 내가 할게"), 리뷰 답글(사용자 직접). 가이드 재작성은 dev f95643e8 로 완료.
+- **후속(같은 날, dev 68d0c48e push)**: 피커에서 앱 아이콘만 보이던 문제(사용자 지적) = ① info XML 에 `android:previewImage` 부재 ② receiver `android:label` 부재(전부 앱 이름 폴백). **PIL 로 실제 위젯 디자인 1:1 미리보기 PNG 5장 생성**(drawable-nodpi, ↻ 글리프는 폰트 tofu 라 제외) + 라벨 5키 신규·설명 5키 문장형 개정 ×45 locale(대칭 513키). 에뮬 피커 실검증(미리보기·이름·설명 정상). ⚠️ 위젯이 55를 "Greed"로 표시하는 케이스 관찰 — 표시는 반올림 55, 등급은 원점수(55.x) 기준으로 추정, 미조사.
+
 ## 2026-08-25 세션 (마케팅 급증 대비 점검 + 서버 레이트리밋 협업 + ASO)
 
 ### 71. 마케팅 급증 대비 Android 점검 GREEN + 공유 레이트리밋 60→300/min 협업 검증 + '줍줍' ASO

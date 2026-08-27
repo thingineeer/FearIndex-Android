@@ -14,6 +14,12 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-08-27, 위젯 전면 리디자인 + 등급 원점수 통일) ← 최신 진입점: @memory/resume-FearIndex-Android.md
+
+- **위젯 리디자인 완료(73번, dev push)**: Play 리뷰 대응 — 1×1 게이지 3종(targetCell 1×1) + 통합 2×2 + 차트 4×2(30일) + 새로고침 ↻ + **피커 previewImage/label/설명 정비**(앱 아이콘만 보이던 문제 해소) + 위젯 사용법 가이드 Android 전용 재작성. 1,096+ tests GREEN, locale 대칭 513키.
+- **등급/색 원점수 기준 통일(사용자 결정, dev 4d04e642)**: 표시 점수는 반올림, 등급은 raw(55.4→표시 55·탐욕). iOS parity 확인은 메인 세션 전달.
+- **다음 = v1.6.1(vc27) 게시**(@docs/checkpoints/HANDOFF-v1.6.1.md) + S22 최종 확인(사용자).
+
 ## 최신 상태 (2026-08-25, 마케팅 급증 대비 점검 + 레이트리밋 협업 + '줍줍' ASO) ← 최신 진입점: @memory/resume-FearIndex-Android.md
 
 - **점검 GREEN(71번)**: FCM 등록 24h 200=656/401=4, 신규 android 123건(8/23~) **임계값 123/123 포함**(즉시체크 게이트 OK), crypto 임계치 발송 실적 확인. 스토어 production=[26]=1.6.0 — **다음 작업 = v1.6.1(vc27) 게시**(@docs/checkpoints/HANDOFF-v1.6.1.md, ASO '줍줍' 포함됨).
