@@ -24,11 +24,7 @@ class FearWidgetUpdateWorker(
 ) : CoroutineWorker(appContext, params) {
 
     override suspend fun doWork(): Result = try {
-        MarketFearWidget().updateAll(applicationContext)
-        KospiFearWidget().updateAll(applicationContext)
-        CryptoFearWidget().updateAll(applicationContext)
-        DashboardFearWidget().updateAll(applicationContext)
-        ChartFearWidget().updateAll(applicationContext)
+        updateAllFearWidgets(applicationContext)
         Result.success()
     } catch (e: Exception) {
         Timber.w(e, "Fear widget update failed")
@@ -72,4 +68,26 @@ class FearWidgetUpdateWorker(
             )
         }
     }
+}
+
+/** 전 위젯 클래스 목록 — 새 위젯 추가 시 여기만 갱신. */
+internal val ALL_WIDGET_CLASSES = listOf(
+    MarketFearWidget::class.java,
+    KospiFearWidget::class.java,
+    CryptoFearWidget::class.java,
+    DashboardFearWidget::class.java,
+    ChartFearWidget::class.java,
+    KospiChartWidget::class.java,
+    CryptoChartWidget::class.java,
+)
+
+/** 전 위젯 재렌더. */
+internal suspend fun updateAllFearWidgets(context: Context) {
+    MarketFearWidget().updateAll(context)
+    KospiFearWidget().updateAll(context)
+    CryptoFearWidget().updateAll(context)
+    DashboardFearWidget().updateAll(context)
+    ChartFearWidget().updateAll(context)
+    KospiChartWidget().updateAll(context)
+    CryptoChartWidget().updateAll(context)
 }
