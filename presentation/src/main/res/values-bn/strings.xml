@@ -544,12 +544,12 @@
     <string name="insight_historical_return_title_greed">তারপর কী হয়েছিল?</string>
     <string name="score_explorer_subtitle_greed">এই স্কোরের দিনের পরে কী হয়েছিল?</string>
     <string name="widget_updated_at">%1$s পর্যন্ত</string>
-    <string name="widget_chart_description">গত ৩০ দিনের গ্লোবাল সূচকের প্রবণতা চার্টে দেখায়।</string>
+    <string name="widget_chart_description">ইনডেক্স ট্রেন্ড চার্ট। সময়কাল (3M–5Y) ও ইনডেক্স বদলাতে ট্যাপ করুন।</string>
     <string name="widget_label_market">গ্লোবাল সূচক</string>
     <string name="widget_label_kospi">KOSPI সূচক</string>
     <string name="widget_label_crypto">ক্রিপ্টো সূচক</string>
     <string name="widget_label_dashboard">সব সূচক</string>
-    <string name="widget_label_chart">৩০ দিনের প্রবণতা</string>
+    <string name="widget_label_chart">ট্রেন্ড চার্ট</string>
     <string name="widget_guide_section_widgets">উইজেটের ধরন</string>
     <string name="widget_guide_type_single">একক সূচক গেজ — গ্লোবাল · KOSPI · ক্রিপ্টো</string>
     <string name="widget_guide_section_howto">যোগ করার পদ্ধতি</string>

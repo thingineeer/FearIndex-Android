@@ -541,12 +541,12 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="insight_historical_return_title_greed">Co działo się potem?</string>
     <string name="score_explorer_subtitle_greed">Co nastąpiło po dniu z tym wynikiem?</string>
     <string name="widget_updated_at">stan na %1$s</string>
-    <string name="widget_chart_description">Pokazuje przebieg indeksu globalnego z ostatnich 30 dni na wykresie.</string>
+    <string name="widget_chart_description">Wykres indeksu. Dotknij, aby zmienić okres (3M–5Y) i indeks.</string>
     <string name="widget_label_market">Indeks globalny</string>
     <string name="widget_label_kospi">Indeks KOSPI</string>
     <string name="widget_label_crypto">Indeks krypto</string>
     <string name="widget_label_dashboard">Wszystkie indeksy</string>
-    <string name="widget_label_chart">Trend 30 dni</string>
+    <string name="widget_label_chart">Wykres trendu</string>
     <string name="widget_guide_section_widgets">Rodzaje widżetów</string>
     <string name="widget_guide_type_single">Wskaźnik jednego indeksu — Globalny · KOSPI · Krypto</string>
     <string name="widget_guide_section_howto">Jak dodać</string>

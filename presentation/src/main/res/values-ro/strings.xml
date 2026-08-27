@@ -543,12 +543,12 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="insight_historical_return_title_greed">Ce a urmat?</string>
     <string name="score_explorer_subtitle_greed">Ce a urmat după o zi cu acest scor?</string>
     <string name="widget_updated_at">la %1$s</string>
-    <string name="widget_chart_description">Afișează evoluția indicelui global din ultimele 30 de zile într-un grafic.</string>
+    <string name="widget_chart_description">Evoluția indicelui. Atingeți pentru a schimba perioada (3M–5Y) și indicele.</string>
     <string name="widget_label_market">Indice global</string>
     <string name="widget_label_kospi">Indice KOSPI</string>
     <string name="widget_label_crypto">Indice cripto</string>
     <string name="widget_label_dashboard">Toți indicii</string>
-    <string name="widget_label_chart">Tendință 30 de zile</string>
+    <string name="widget_label_chart">Grafic de tendință</string>
     <string name="widget_guide_section_widgets">Tipuri de widgeturi</string>
     <string name="widget_guide_type_single">Indicator cu un singur indice — Global · KOSPI · Cripto</string>
     <string name="widget_guide_section_howto">Cum adaugi</string>

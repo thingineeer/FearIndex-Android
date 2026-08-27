@@ -541,12 +541,12 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="insight_historical_return_title_greed">Què va passar després?</string>
     <string name="score_explorer_subtitle_greed">Què va venir després d\'un dia amb aquesta puntuació?</string>
     <string name="widget_updated_at">a les %1$s</string>
-    <string name="widget_chart_description">Mostra l\'evolució de l\'índex global dels últims 30 dies en un gràfic.</string>
+    <string name="widget_chart_description">Evolució de l\'índex. Toca per canviar el període (3M–5Y) i l\'índex.</string>
     <string name="widget_label_market">Índex global</string>
     <string name="widget_label_kospi">Índex KOSPI</string>
     <string name="widget_label_crypto">Índex cripto</string>
     <string name="widget_label_dashboard">Tots els índexs</string>
-    <string name="widget_label_chart">Tendència 30 dies</string>
+    <string name="widget_label_chart">Gràfic de tendència</string>
     <string name="widget_guide_section_widgets">Tipus de widgets</string>
     <string name="widget_guide_type_single">Indicador d\'un sol índex — Global · KOSPI · Cripto</string>
     <string name="widget_guide_section_howto">Com afegir-los</string>

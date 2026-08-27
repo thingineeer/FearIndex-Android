@@ -541,12 +541,12 @@
     <string name="insight_historical_return_title_greed">Que s\'est-il passé ensuite ?</string>
     <string name="score_explorer_subtitle_greed">Que s\'est-il passé après un jour à ce score ?</string>
     <string name="widget_updated_at">à %1$s</string>
-    <string name="widget_chart_description">Affiche l\'évolution de l\'indice mondial sur 30 jours sous forme de graphique.</string>
+    <string name="widget_chart_description">Évolution de l\'indice. Touchez pour changer de période (3M–5Y) et d\'indice.</string>
     <string name="widget_label_market">Indice mondial</string>
     <string name="widget_label_kospi">Indice KOSPI</string>
     <string name="widget_label_crypto">Indice crypto</string>
     <string name="widget_label_dashboard">Tous les indices</string>
-    <string name="widget_label_chart">Tendance 30 jours</string>
+    <string name="widget_label_chart">Graphique de tendance</string>
     <string name="widget_guide_section_widgets">Types de widgets</string>
     <string name="widget_guide_type_single">Jauge à indice unique — Mondial · KOSPI · Crypto</string>
     <string name="widget_guide_section_howto">Comment ajouter</string>

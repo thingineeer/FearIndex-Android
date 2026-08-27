@@ -541,12 +541,12 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="insight_historical_return_title_greed">Nini kilitokea baadaye?</string>
     <string name="score_explorer_subtitle_greed">Nini kilifuata baada ya siku yenye alama hii?</string>
     <string name="widget_updated_at">kufikia %1$s</string>
-    <string name="widget_chart_description">Huonyesha mwenendo wa fahirisi ya kimataifa wa siku 30 zilizopita kwenye chati.</string>
+    <string name="widget_chart_description">Chati ya mwenendo wa fahirisi. Gusa kubadilisha kipindi (3M–5Y) na fahirisi.</string>
     <string name="widget_label_market">Fahirisi ya Kimataifa</string>
     <string name="widget_label_kospi">Fahirisi ya KOSPI</string>
     <string name="widget_label_crypto">Fahirisi ya Kripto</string>
     <string name="widget_label_dashboard">Fahirisi Zote</string>
-    <string name="widget_label_chart">Mwenendo wa Siku 30</string>
+    <string name="widget_label_chart">Chati ya Mwenendo</string>
     <string name="widget_guide_section_widgets">Aina za wijeti</string>
     <string name="widget_guide_type_single">Kipimo cha faharasa moja — Kimataifa · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Jinsi ya kuongeza</string>

@@ -540,12 +540,12 @@
     <string name="insight_historical_return_title_greed">之后走势如何？</string>
     <string name="score_explorer_subtitle_greed">记录到该分数之后，市场怎么走？</string>
     <string name="widget_updated_at">截至 %1$s</string>
-    <string name="widget_chart_description">以图表显示全球指数最近30天的走势。</string>
+    <string name="widget_chart_description">指数走势图表。点按切换周期(3M~5Y)与指数。</string>
     <string name="widget_label_market">全球指数</string>
     <string name="widget_label_kospi">KOSPI指数</string>
     <string name="widget_label_crypto">加密货币指数</string>
     <string name="widget_label_dashboard">三大指数一览</string>
-    <string name="widget_label_chart">30日走势图</string>
+    <string name="widget_label_chart">走势图表</string>
     <string name="widget_guide_section_widgets">小组件类型</string>
     <string name="widget_guide_type_single">单一指数仪表 — 全球 · KOSPI · 加密货币</string>
     <string name="widget_guide_section_howto">添加方法</string>

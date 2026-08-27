@@ -543,12 +543,12 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="insight_historical_return_title_greed">Što se dogodilo poslije?</string>
     <string name="score_explorer_subtitle_greed">Što je uslijedilo nakon dana s ovim rezultatom?</string>
     <string name="widget_updated_at">u %1$s</string>
-    <string name="widget_chart_description">Prikazuje kretanje globalnog indeksa u zadnjih 30 dana na grafikonu.</string>
+    <string name="widget_chart_description">Grafikon indeksa. Dodirom mijenjate razdoblje (3M–5Y) i indeks.</string>
     <string name="widget_label_market">Globalni indeks</string>
     <string name="widget_label_kospi">Indeks KOSPI</string>
     <string name="widget_label_crypto">Kripto indeks</string>
     <string name="widget_label_dashboard">Svi indeksi</string>
-    <string name="widget_label_chart">Trend 30 dana</string>
+    <string name="widget_label_chart">Grafikon trenda</string>
     <string name="widget_guide_section_widgets">Vrste widgeta</string>
     <string name="widget_guide_type_single">Mjerač jednog indeksa — Globalni · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Kako dodati</string>

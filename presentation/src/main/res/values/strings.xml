@@ -563,12 +563,12 @@
     <string name="insight_historical_return_title_greed">What happened after that?</string>
     <string name="score_explorer_subtitle_greed">What came next after a day with this score?</string>
     <string name="widget_updated_at">as of %1$s</string>
-    <string name="widget_chart_description">Shows the global index trend for the last 30 days as a chart.</string>
+    <string name="widget_chart_description">Index trend chart. Tap to switch period (3M–5Y) and index.</string>
     <string name="widget_label_market">Global Index</string>
     <string name="widget_label_kospi">KOSPI Index</string>
     <string name="widget_label_crypto">Crypto Index</string>
     <string name="widget_label_dashboard">All Indices</string>
-    <string name="widget_label_chart">30-Day Trend</string>
+    <string name="widget_label_chart">Trend Chart</string>
     <string name="widget_guide_section_widgets">Widget types</string>
     <string name="widget_guide_type_single">Single index gauge — Global · KOSPI · Crypto</string>
     <string name="widget_guide_section_howto">How to add</string>

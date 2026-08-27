@@ -541,12 +541,12 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="insight_historical_return_title_greed">Hva skjedde etterpå?</string>
     <string name="score_explorer_subtitle_greed">Hva fulgte etter en dag med denne verdien?</string>
     <string name="widget_updated_at">kl. %1$s</string>
-    <string name="widget_chart_description">Viser den globale indeksens utvikling siste 30 dager som diagram.</string>
+    <string name="widget_chart_description">Indeksdiagram. Trykk for å bytte periode (3M–5Y) og indeks.</string>
     <string name="widget_label_market">Globalt indeks</string>
     <string name="widget_label_kospi">KOSPI-indeks</string>
     <string name="widget_label_crypto">Kryptoindeks</string>
     <string name="widget_label_dashboard">Alle indekser</string>
-    <string name="widget_label_chart">30-dagers trend</string>
+    <string name="widget_label_chart">Trenddiagram</string>
     <string name="widget_guide_section_widgets">Widgettyper</string>
     <string name="widget_guide_type_single">Måler for én indeks — Global · KOSPI · Krypto</string>
     <string name="widget_guide_section_howto">Slik legger du til</string>

@@ -544,12 +544,12 @@
     <string name="insight_historical_return_title_greed">அதன் பிறகு என்ன நடந்தது?</string>
     <string name="score_explorer_subtitle_greed">இந்த மதிப்பெண் பதிவான நாளுக்குப் பிறகு என்ன நடந்தது?</string>
     <string name="widget_updated_at">%1$s வரை</string>
-    <string name="widget_chart_description">கடந்த 30 நாட்களின் உலகளாவிய குறியீட்டுப் போக்கை விளக்கப்படமாகக் காட்டுகிறது.</string>
+    <string name="widget_chart_description">குறியீட்டு போக்கு. காலம் (3M–5Y) மற்றும் குறியீட்டை மாற்ற தட்டவும்.</string>
     <string name="widget_label_market">உலகளாவிய குறியீடு</string>
     <string name="widget_label_kospi">KOSPI குறியீடு</string>
     <string name="widget_label_crypto">கிரிப்டோ குறியீடு</string>
     <string name="widget_label_dashboard">அனைத்து குறியீடுகள்</string>
-    <string name="widget_label_chart">30 நாள் போக்கு</string>
+    <string name="widget_label_chart">போக்கு விளக்கப்படம்</string>
     <string name="widget_guide_section_widgets">விட்ஜெட் வகைகள்</string>
     <string name="widget_guide_type_single">ஒற்றை குறியீட்டு அளவி — உலகளாவிய · KOSPI · கிரிப்டோ</string>
     <string name="widget_guide_section_howto">சேர்க்கும் முறை</string>

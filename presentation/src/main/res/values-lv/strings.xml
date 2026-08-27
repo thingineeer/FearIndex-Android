@@ -543,12 +543,12 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="insight_historical_return_title_greed">Kas notika pēc tam?</string>
     <string name="score_explorer_subtitle_greed">Kas sekoja pēc dienas ar šo rezultātu?</string>
     <string name="widget_updated_at">uz %1$s</string>
-    <string name="widget_chart_description">Rāda globālā indeksa pēdējo 30 dienu dinamiku grafikā.</string>
+    <string name="widget_chart_description">Indeksa grafiks. Pieskarieties, lai mainītu periodu (3M–5Y) un indeksu.</string>
     <string name="widget_label_market">Globālais indekss</string>
     <string name="widget_label_kospi">KOSPI indekss</string>
     <string name="widget_label_crypto">Kripto indekss</string>
     <string name="widget_label_dashboard">Visi indeksi</string>
-    <string name="widget_label_chart">30 dienu tendence</string>
+    <string name="widget_label_chart">Tendenču grafiks</string>
     <string name="widget_guide_section_widgets">Logrīku veidi</string>
     <string name="widget_guide_type_single">Viena indeksa mērītājs — Globālais · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Kā pievienot</string>

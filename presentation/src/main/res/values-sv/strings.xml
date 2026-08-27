@@ -541,12 +541,12 @@
     <string name="insight_historical_return_title_greed">Vad hände sedan?</string>
     <string name="score_explorer_subtitle_greed">Vad hände efter en dag med detta värde?</string>
     <string name="widget_updated_at">kl. %1$s</string>
-    <string name="widget_chart_description">Visar det globala indexets utveckling de senaste 30 dagarna som diagram.</string>
+    <string name="widget_chart_description">Indexdiagram. Tryck för att byta period (3M–5Y) och index.</string>
     <string name="widget_label_market">Globalt index</string>
     <string name="widget_label_kospi">KOSPI-index</string>
     <string name="widget_label_crypto">Kryptoindex</string>
     <string name="widget_label_dashboard">Alla index</string>
-    <string name="widget_label_chart">30-dagarstrend</string>
+    <string name="widget_label_chart">Trenddiagram</string>
     <string name="widget_guide_section_widgets">Widgettyper</string>
     <string name="widget_guide_type_single">Mätare för ett index — Globalt · KOSPI · Krypto</string>
     <string name="widget_guide_section_howto">Så lägger du till</string>

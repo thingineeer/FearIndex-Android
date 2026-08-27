@@ -544,12 +544,12 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="insight_historical_return_title_greed">Sau đó thế nào?</string>
     <string name="score_explorer_subtitle_greed">Sau ngày đạt điểm này thì sao?</string>
     <string name="widget_updated_at">lúc %1$s</string>
-    <string name="widget_chart_description">Hiển thị xu hướng chỉ số toàn cầu trong 30 ngày qua dưới dạng biểu đồ.</string>
+    <string name="widget_chart_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y) và chỉ số.</string>
     <string name="widget_label_market">Chỉ số toàn cầu</string>
     <string name="widget_label_kospi">Chỉ số KOSPI</string>
     <string name="widget_label_crypto">Chỉ số tiền mã hóa</string>
     <string name="widget_label_dashboard">Tất cả chỉ số</string>
-    <string name="widget_label_chart">Xu hướng 30 ngày</string>
+    <string name="widget_label_chart">Biểu đồ xu hướng</string>
     <string name="widget_guide_section_widgets">Các loại tiện ích</string>
     <string name="widget_guide_type_single">Đồng hồ một chỉ số — Toàn cầu · KOSPI · Tiền mã hóa</string>
     <string name="widget_guide_section_howto">Cách thêm</string>

@@ -541,12 +541,12 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="insight_historical_return_title_greed">Mis juhtus pärast?</string>
     <string name="score_explorer_subtitle_greed">Mis järgnes päevale selle skooriga?</string>
     <string name="widget_updated_at">seisuga %1$s</string>
-    <string name="widget_chart_description">Näitab globaalse indeksi viimase 30 päeva liikumist graafikul.</string>
+    <string name="widget_chart_description">Indeksi graafik. Puuduta perioodi (3M–5Y) ja indeksi vahetamiseks.</string>
     <string name="widget_label_market">Globaalne indeks</string>
     <string name="widget_label_kospi">KOSPI indeks</string>
     <string name="widget_label_crypto">Krüptoindeks</string>
     <string name="widget_label_dashboard">Kõik indeksid</string>
-    <string name="widget_label_chart">30 päeva trend</string>
+    <string name="widget_label_chart">Trendigraafik</string>
     <string name="widget_guide_section_widgets">Vidinate tüübid</string>
     <string name="widget_guide_type_single">Ühe indeksi näidik — Globaalne · KOSPI · Krüpto</string>
     <string name="widget_guide_section_howto">Kuidas lisada</string>

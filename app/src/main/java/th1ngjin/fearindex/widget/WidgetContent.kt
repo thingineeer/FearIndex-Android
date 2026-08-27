@@ -14,6 +14,7 @@ import androidx.glance.ImageProvider
 import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.action.actionRunCallback
+import androidx.glance.appwidget.CircularProgressIndicator
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.background
 import androidx.glance.layout.Alignment
@@ -120,6 +121,7 @@ fun CombinedWidgetContent(
     kospi: WidgetIndexData?,
     crypto: WidgetIndexData?,
     large: Boolean,
+    refreshing: Boolean = false,
 ) {
     val size = LocalSize.current
     val entries = listOf(
@@ -128,8 +130,8 @@ fun CombinedWidgetContent(
         FearIndexType.CRYPTO to crypto,
     )
     when (WidgetLayoutMode.dashboardArrangement(size.width.value, size.height.value)) {
-        DashboardArrangement.ROW -> CombinedRowLayout(context, entries, size.width.value, size.height.value)
-        DashboardArrangement.LIST -> CombinedListLayout(context, entries, size.width.value, size.height.value)
+        DashboardArrangement.ROW -> CombinedRowLayout(context, entries, size.width.value, size.height.value, refreshing)
+        DashboardArrangement.LIST -> CombinedListLayout(context, entries, size.width.value, size.height.value, refreshing)
     }
 }
 
@@ -140,6 +142,7 @@ private fun CombinedRowLayout(
     entries: List<Pair<FearIndexType, WidgetIndexData?>>,
     widthDp: Float,
     heightDp: Float,
+    refreshing: Boolean,
 ) {
     val showRating = WidgetLayoutMode.rowModeShowsRating(heightDp)
     // ⚠️ Glance 는 weight 안에 또 weight 를 중첩하면 안쪽이 0 으로 붕괴한다(게이지 소실) → 고정 크기
@@ -148,7 +151,7 @@ private fun CombinedRowLayout(
     val gaugeDp = minOf(heightDp - 36f - textBlockDp - 14f, widthDp / 3f - 14f).coerceIn(24f, 72f)
     Box(modifier = cardModifier(20)) {
         Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 8.dp, vertical = 4.dp)) {
-            RefreshHeader(context, showTime = widthDp >= 200f)
+            RefreshHeader(context, showTime = widthDp >= 200f, refreshing = refreshing)
             Row(modifier = GlanceModifier.fillMaxWidth().defaultWeight(), verticalAlignment = Alignment.CenterVertically) {
                 entries.forEach { (type, data) ->
                     Column(
@@ -184,6 +187,7 @@ private fun CombinedListLayout(
     entries: List<Pair<FearIndexType, WidgetIndexData?>>,
     widthDp: Float,
     heightDp: Float,
+    refreshing: Boolean,
 ) {
     val narrow = widthDp < 170f
     // 행 높이(3행 균등)와 폭 양쪽에 맞춰 게이지 정사각 — 좁으면 텍스트 폭을 남기려 더 줄인다
@@ -195,7 +199,7 @@ private fun CombinedListLayout(
     val ratingSp = if (narrow) 9 else 11
     Box(modifier = cardModifier(20)) {
         Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 12.dp, vertical = 8.dp)) {
-            RefreshHeader(context, showTime = true) // 헤더 행 공백 활용 — 좁아도 "HH:mm 기준"은 들어간다
+            RefreshHeader(context, showTime = true, refreshing = refreshing) // 헤더 행 공백 활용 — 좁아도 "HH:mm 기준"은 들어간다
             entries.forEach { (type, data) ->
                 Row(
                     modifier = GlanceModifier.fillMaxWidth().defaultWeight(),
@@ -245,9 +249,9 @@ private fun CombinedListLayout(
     }
 }
 
-/** 상단 헤더 — 우측 정렬 [갱신시각] [↻]. ↻ 는 패딩을 키워 실터치 영역 ≈40dp. */
+/** 상단 헤더 — 우측 정렬 [갱신시각] [↻]. 새로고침 중엔 ↻ 자리가 스피너로 바뀐다 (구글 위젯식). */
 @Composable
-private fun RefreshHeader(context: Context, showTime: Boolean) {
+private fun RefreshHeader(context: Context, showTime: Boolean, refreshing: Boolean) {
     Box(modifier = GlanceModifier.fillMaxWidth(), contentAlignment = Alignment.TopEnd) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             if (showTime) {
@@ -257,12 +261,27 @@ private fun RefreshHeader(context: Context, showTime: Boolean) {
                     style = TextStyle(color = ColorProvider(WidgetChangeFlatColor), fontSize = 9.sp),
                 )
             }
-            Text(
-                text = "↻",
-                modifier = GlanceModifier.clickable(actionRunCallback<RefreshWidgetsAction>()).padding(horizontal = 10.dp, vertical = 8.dp),
-                style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = 15.sp, fontWeight = FontWeight.Bold),
+            RefreshGlyph(refreshing, large = true)
+        }
+    }
+}
+
+/** ↻ 또는 진행 스피너. ↻ 는 패딩 포함 실터치 영역 ≈44dp. */
+@Composable
+private fun RefreshGlyph(refreshing: Boolean, large: Boolean) {
+    if (refreshing) {
+        Box(modifier = GlanceModifier.padding(horizontal = 10.dp, vertical = 8.dp)) {
+            CircularProgressIndicator(
+                modifier = GlanceModifier.size(if (large) 18.dp else 15.dp),
+                color = ColorProvider(WidgetTextColorDim),
             )
         }
+    } else {
+        Text(
+            text = "↻",
+            modifier = GlanceModifier.clickable(actionRunCallback<RefreshWidgetsAction>()).padding(horizontal = 10.dp, vertical = 8.dp),
+            style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = (if (large) 18 else 15).sp, fontWeight = FontWeight.Bold),
+        )
     }
 }
 
@@ -274,15 +293,21 @@ fun ChartWidgetContent(
     data: WidgetIndexData?,
     history: List<Int>,
     xLabels: List<String>,
+    period: WidgetChartPeriod,
     large: Boolean,
+    refreshing: Boolean = false,
 ) {
     val ratingColor = data?.let { widgetFearScoreColor(it.rating) } ?: WidgetPlaceholderColor
     Box(modifier = cardModifier(20)) {
         Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 12.dp, vertical = 10.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = GlanceModifier.fillMaxWidth()) {
+                // 이름 탭 = 지수 순환 전환 (Global → KOSPI → Crypto), ▾ 로 탭 가능함을 표시
                 Text(
-                    text = WidgetGaugeSpec.indexName(indexType),
+                    text = WidgetGaugeSpec.indexName(indexType) + " ▾",
                     maxLines = 1,
+                    modifier = GlanceModifier
+                        .clickable(actionRunCallback<CycleChartIndexAction>())
+                        .padding(top = 4.dp, bottom = 4.dp, end = 4.dp),
                     style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = (if (large) 11 else 9).sp, fontWeight = FontWeight.Medium),
                 )
                 Spacer(GlanceModifier.width(6.dp))
@@ -291,13 +316,24 @@ fun ChartWidgetContent(
                     maxLines = 1,
                     style = TextStyle(color = ColorProvider(WidgetTextColor), fontSize = (if (large) 21 else 16).sp, fontWeight = FontWeight.Bold),
                 )
-                if (large) {
-                    Spacer(GlanceModifier.width(8.dp))
-                    RatingChangeRow(context, data, fontSp = 11, dotDp = 6)
-                } else {
-                    Spacer(GlanceModifier.width(6.dp))
-                    ChangeText(data, fontSp = 9)
+                Spacer(GlanceModifier.defaultWeight())
+                // 기간 세그먼트 — 탭하면 이 위젯만 해당 기간으로 재렌더 (2026-08-28, A안)
+                WidgetChartPeriod.entries.forEach { p ->
+                    val selected = p == period
+                    Text(
+                        text = p.label,
+                        maxLines = 1,
+                        modifier = GlanceModifier
+                            .clickable(actionRunCallback<SetChartPeriodAction>(SetChartPeriodAction.params(p)))
+                            .padding(horizontal = if (large) 5.dp else 3.dp, vertical = 6.dp),
+                        style = TextStyle(
+                            color = ColorProvider(if (selected) WidgetTextColor else WidgetChangeFlatColor),
+                            fontSize = (if (large) 11 else 9).sp,
+                            fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+                        ),
+                    )
                 }
+                RefreshGlyph(refreshing, large = large)
             }
             Spacer(GlanceModifier.height(4.dp))
             if (history.size >= 2) {
@@ -320,7 +356,6 @@ fun ChartWidgetContent(
                 }
             }
         }
-        RefreshButton(modifier = GlanceModifier.padding(top = 4.dp, end = 6.dp), alignTopEnd = true)
         UpdatedAt(context, large)
     }
 }
@@ -375,17 +410,6 @@ private fun ChangeText(data: WidgetIndexData?, fontSp: Int) {
         maxLines = 1,
         style = TextStyle(color = ColorProvider(color), fontSize = fontSp.sp, fontWeight = FontWeight.Bold),
     )
-}
-
-@Composable
-private fun RefreshButton(modifier: GlanceModifier, alignTopEnd: Boolean) {
-    Box(modifier = GlanceModifier.fillMaxSize(), contentAlignment = Alignment.TopEnd) {
-        Text(
-            text = "↻",
-            modifier = modifier.clickable(actionRunCallback<RefreshWidgetsAction>()).padding(horizontal = 10.dp, vertical = 8.dp),
-            style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = 15.sp, fontWeight = FontWeight.Bold),
-        )
-    }
 }
 
 @Composable

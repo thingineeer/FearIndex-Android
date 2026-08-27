@@ -540,12 +540,12 @@
     <string name="insight_historical_return_title_greed">מה קרה אחר כך?</string>
     <string name="score_explorer_subtitle_greed">מה קרה אחרי יום עם ציון כזה?</string>
     <string name="widget_updated_at">נכון ל-%1$s</string>
-    <string name="widget_chart_description">מציג את מהלך המדד הגלובלי ב-30 הימים האחרונים בגרף.</string>
+    <string name="widget_chart_description">תרשים מגמת המדד. הקישו להחלפת תקופה (3M–5Y) ומדד.</string>
     <string name="widget_label_market">מדד גלובלי</string>
     <string name="widget_label_kospi">מדד KOSPI</string>
     <string name="widget_label_crypto">מדד קריפטו</string>
     <string name="widget_label_dashboard">כל המדדים</string>
-    <string name="widget_label_chart">מגמת 30 יום</string>
+    <string name="widget_label_chart">תרשים מגמה</string>
     <string name="widget_guide_section_widgets">סוגי ווידג\'טים</string>
     <string name="widget_guide_type_single">מד מדד יחיד — גלובלי · KOSPI · קריפטו</string>
     <string name="widget_guide_section_howto">איך מוסיפים</string>

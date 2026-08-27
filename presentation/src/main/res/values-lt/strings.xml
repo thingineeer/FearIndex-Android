@@ -543,12 +543,12 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="insight_historical_return_title_greed">Kas nutiko po to?</string>
     <string name="score_explorer_subtitle_greed">Kas sekė po dienos su šiuo balu?</string>
     <string name="widget_updated_at">%1$s duomenimis</string>
-    <string name="widget_chart_description">Rodo pasaulinio indekso pastarųjų 30 dienų kitimą grafike.</string>
+    <string name="widget_chart_description">Indekso grafikas. Palieskite, kad pakeistumėte laikotarpį (3M–5Y) ir indeksą.</string>
     <string name="widget_label_market">Pasaulinis indeksas</string>
     <string name="widget_label_kospi">KOSPI indeksas</string>
     <string name="widget_label_crypto">Kripto indeksas</string>
     <string name="widget_label_dashboard">Visi indeksai</string>
-    <string name="widget_label_chart">30 dienų tendencija</string>
+    <string name="widget_label_chart">Tendencijų grafikas</string>
     <string name="widget_guide_section_widgets">Valdiklių tipai</string>
     <string name="widget_guide_type_single">Vieno indekso matuoklis — Pasaulinis · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Kaip pridėti</string>

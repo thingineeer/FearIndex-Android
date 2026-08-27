@@ -558,12 +558,12 @@
     <string name="insight_historical_return_title_greed">그때 이후 변동은?</string>
     <string name="score_explorer_subtitle_greed">그 점수를 기록한 날 이후 어땠을까요?</string>
     <string name="widget_updated_at">%1$s 기준</string>
-    <string name="widget_chart_description">글로벌 지수의 최근 30일 추이를 차트로 표시합니다.</string>
+    <string name="widget_chart_description">지수 추이 차트. 탭으로 기간(3M~5Y)과 지수를 전환합니다.</string>
     <string name="widget_label_market">글로벌 지수</string>
     <string name="widget_label_kospi">코스피 지수</string>
     <string name="widget_label_crypto">암호화폐 지수</string>
     <string name="widget_label_dashboard">3대 지수 한눈에</string>
-    <string name="widget_label_chart">30일 추이 차트</string>
+    <string name="widget_label_chart">추이 차트</string>
     <string name="widget_guide_section_widgets">위젯 종류</string>
     <string name="widget_guide_type_single">단일 지수 게이지 — 글로벌 · 코스피 · 암호화폐</string>
     <string name="widget_guide_section_howto">추가 방법</string>

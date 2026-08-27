@@ -540,12 +540,12 @@
     <string name="insight_historical_return_title_greed">ماذا حدث بعد ذلك؟</string>
     <string name="score_explorer_subtitle_greed">ماذا حدث بعد يوم سجّل هذه الدرجة؟</string>
     <string name="widget_updated_at">حتى %1$s</string>
-    <string name="widget_chart_description">يعرض حركة المؤشر العالمي خلال آخر 30 يومًا في رسم بياني.</string>
+    <string name="widget_chart_description">مخطط اتجاه المؤشر. انقر لتبديل الفترة (3M–5Y) والمؤشر.</string>
     <string name="widget_label_market">المؤشر العالمي</string>
     <string name="widget_label_kospi">مؤشر كوسبي</string>
     <string name="widget_label_crypto">مؤشر العملات الرقمية</string>
     <string name="widget_label_dashboard">جميع المؤشرات</string>
-    <string name="widget_label_chart">اتجاه 30 يومًا</string>
+    <string name="widget_label_chart">مخطط الاتجاه</string>
     <string name="widget_guide_section_widgets">أنواع الأدوات</string>
     <string name="widget_guide_type_single">مقياس مؤشر واحد — عالمي · كوسبي · العملات الرقمية</string>
     <string name="widget_guide_section_howto">طريقة الإضافة</string>

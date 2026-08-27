@@ -541,12 +541,12 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="insight_historical_return_title_greed">Was geschah danach?</string>
     <string name="score_explorer_subtitle_greed">Was folgte nach einem Tag mit diesem Wert?</string>
     <string name="widget_updated_at">Stand %1$s</string>
-    <string name="widget_chart_description">Zeigt den Verlauf des globalen Index der letzten 30 Tage als Diagramm.</string>
+    <string name="widget_chart_description">Indexverlauf als Chart. Zeitraum (3M–5Y) und Index per Tipp wechselbar.</string>
     <string name="widget_label_market">Globaler Index</string>
     <string name="widget_label_kospi">KOSPI-Index</string>
     <string name="widget_label_crypto">Krypto-Index</string>
     <string name="widget_label_dashboard">Alle Indizes</string>
-    <string name="widget_label_chart">30-Tage-Trend</string>
+    <string name="widget_label_chart">Trend-Chart</string>
     <string name="widget_guide_section_widgets">Widget-Typen</string>
     <string name="widget_guide_type_single">Einzelindex-Anzeige — Global · KOSPI · Krypto</string>
     <string name="widget_guide_section_howto">So fügst du Widgets hinzu</string>

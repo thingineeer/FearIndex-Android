@@ -540,12 +540,12 @@
     <string name="insight_historical_return_title_greed">بعد از آن چه شد؟</string>
     <string name="score_explorer_subtitle_greed">پس از روزی با این امتیاز چه رخ داد؟</string>
     <string name="widget_updated_at">تا %1$s</string>
-    <string name="widget_chart_description">روند شاخص جهانی در ۳۰ روز گذشته را در نمودار نشان می‌دهد.</string>
+    <string name="widget_chart_description">نمودار روند شاخص. با لمس، دوره (3M–5Y) و شاخص را عوض کنید.</string>
     <string name="widget_label_market">شاخص جهانی</string>
     <string name="widget_label_kospi">شاخص کوسپی</string>
     <string name="widget_label_crypto">شاخص رمزارز</string>
     <string name="widget_label_dashboard">همه شاخص‌ها</string>
-    <string name="widget_label_chart">روند ۳۰ روزه</string>
+    <string name="widget_label_chart">نمودار روند</string>
     <string name="widget_guide_section_widgets">انواع ابزارک</string>
     <string name="widget_guide_type_single">نمایشگر تک‌شاخص — جهانی · کوسپی · رمزارز</string>
     <string name="widget_guide_section_howto">نحوه افزودن</string>

@@ -540,12 +540,12 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="insight_historical_return_title_greed">Apa yang terjadi setelahnya?</string>
     <string name="score_explorer_subtitle_greed">Apa yang terjadi setelah hari dengan skor ini?</string>
     <string name="widget_updated_at">per %1$s</string>
-    <string name="widget_chart_description">Menampilkan tren indeks global 30 hari terakhir dalam grafik.</string>
+    <string name="widget_chart_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y) dan indeks.</string>
     <string name="widget_label_market">Indeks Global</string>
     <string name="widget_label_kospi">Indeks KOSPI</string>
     <string name="widget_label_crypto">Indeks Kripto</string>
     <string name="widget_label_dashboard">Semua Indeks</string>
-    <string name="widget_label_chart">Tren 30 Hari</string>
+    <string name="widget_label_chart">Grafik Tren</string>
     <string name="widget_guide_section_widgets">Jenis widget</string>
     <string name="widget_guide_type_single">Pengukur satu indeks — Global · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Cara menambahkan</string>

@@ -541,12 +541,12 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="insight_historical_return_title_greed">Mitä sen jälkeen tapahtui?</string>
     <string name="score_explorer_subtitle_greed">Mitä seurasi päivän jälkeen, jolloin arvo oli tämä?</string>
     <string name="widget_updated_at">klo %1$s</string>
-    <string name="widget_chart_description">Näyttää globaalin indeksin viimeisten 30 päivän kehityksen kaaviona.</string>
+    <string name="widget_chart_description">Indeksin kehityskaavio. Vaihda jakso (3M–5Y) ja indeksi napauttamalla.</string>
     <string name="widget_label_market">Globaali indeksi</string>
     <string name="widget_label_kospi">KOSPI-indeksi</string>
     <string name="widget_label_crypto">Kryptoindeksi</string>
     <string name="widget_label_dashboard">Kaikki indeksit</string>
-    <string name="widget_label_chart">30 päivän trendi</string>
+    <string name="widget_label_chart">Trendikaavio</string>
     <string name="widget_guide_section_widgets">Widgettityypit</string>
     <string name="widget_guide_type_single">Yhden indeksin mittari — Globaali · KOSPI · Krypto</string>
     <string name="widget_guide_section_howto">Näin lisäät</string>

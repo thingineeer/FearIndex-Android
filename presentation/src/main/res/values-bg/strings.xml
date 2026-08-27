@@ -543,12 +543,12 @@
     <string name="insight_historical_return_title_greed">Какво последва?</string>
     <string name="score_explorer_subtitle_greed">Какво последва след ден с този резултат?</string>
     <string name="widget_updated_at">към %1$s</string>
-    <string name="widget_chart_description">Показва движението на глобалния индекс за последните 30 дни в графика.</string>
+    <string name="widget_chart_description">Графика на индекса. Докоснете за смяна на период (3M–5Y) и индекс.</string>
     <string name="widget_label_market">Глобален индекс</string>
     <string name="widget_label_kospi">Индекс KOSPI</string>
     <string name="widget_label_crypto">Крипто индекс</string>
     <string name="widget_label_dashboard">Всички индекси</string>
-    <string name="widget_label_chart">30-дневен тренд</string>
+    <string name="widget_label_chart">Графика на тренда</string>
     <string name="widget_guide_section_widgets">Видове уиджети</string>
     <string name="widget_guide_type_single">Датчик за един индекс — Глобален · KOSPI · Крипто</string>
     <string name="widget_guide_section_howto">Как да добавите</string>

@@ -22,9 +22,16 @@ class DashboardFearWidget : GlanceAppWidget() {
         val kospi = loadWidgetIndex(context, FearIndexType.KOSPI)
         val crypto = loadWidgetIndex(context, FearIndexType.CRYPTO)
         if (market == null || kospi == null || crypto == null) FearWidgetUpdateWorker.enqueueRetry(context)
+        val refreshing = runCatching {
+            androidx.glance.appwidget.state.getAppWidgetState(
+                context,
+                androidx.glance.state.PreferencesGlanceStateDefinition,
+                id,
+            )[RefreshWidgetsAction.REFRESHING_KEY]
+        }.getOrNull() ?: false
         provideContent {
             val size = LocalSize.current
-            CombinedWidgetContent(context, market, kospi, crypto, large = size.width.value >= 250f)
+            CombinedWidgetContent(context, market, kospi, crypto, large = size.width.value >= 250f, refreshing = refreshing)
         }
     }
 }

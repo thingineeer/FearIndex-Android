@@ -543,12 +543,12 @@
     <string name="insight_historical_return_title_greed">Τι ακολούθησε;</string>
     <string name="score_explorer_subtitle_greed">Τι ακολούθησε μετά από μια μέρα με αυτό το σκορ;</string>
     <string name="widget_updated_at">στις %1$s</string>
-    <string name="widget_chart_description">Εμφανίζει την πορεία του παγκόσμιου δείκτη τις τελευταίες 30 ημέρες σε γράφημα.</string>
+    <string name="widget_chart_description">Γράφημα δείκτη. Πατήστε για αλλαγή περιόδου (3M–5Y) και δείκτη.</string>
     <string name="widget_label_market">Παγκόσμιος δείκτης</string>
     <string name="widget_label_kospi">Δείκτης KOSPI</string>
     <string name="widget_label_crypto">Δείκτης κρύπτο</string>
     <string name="widget_label_dashboard">Όλοι οι δείκτες</string>
-    <string name="widget_label_chart">Τάση 30 ημερών</string>
+    <string name="widget_label_chart">Γράφημα τάσης</string>
     <string name="widget_guide_section_widgets">Τύποι widget</string>
     <string name="widget_guide_type_single">Μετρητής ενός δείκτη — Παγκόσμιος · KOSPI · Κρύπτο</string>
     <string name="widget_guide_section_howto">Πώς να προσθέσετε</string>
