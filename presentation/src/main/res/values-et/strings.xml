@@ -421,9 +421,9 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="widget_guide_step3">Vali soovitud indeks — Globaalne, KOSPI või Krüpto — või kõik ühes vidin.</string>
     <string name="widget_guide_step4">Lohista see avakuvale ja aseta sinna, kuhu soovid.</string>
     <string name="widget_guide_step5">Puuduta vidinat igal ajal, et rakendus avada.</string>
-    <string name="widget_market_description">Globaalne (S&amp;P 500) hirmu-ahnuse näidik.</string>
-    <string name="widget_kospi_description">KOSPI hirmuindeksi näidik.</string>
-    <string name="widget_crypto_description">Krüpto (BTC) hirmu-ahnuse näidik.</string>
+    <string name="widget_market_description">Jälgib S&amp;P 500 indeksit.</string>
+    <string name="widget_kospi_description">Jälgib KOSPI indeksit.</string>
+    <string name="widget_crypto_description">Jälgib BTC-d.</string>
     <string name="widget_dashboard_description">Näitab globaalset, KOSPI ja krüptoindeksit ühe pilguga.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Eemalda reklaamid</string>

@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Πατήστε το widget οποιαδήποτε στιγμή για να ανοίξετε την εφαρμογή.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Μετρητής φόβου &amp; απληστίας (S&amp;P 500).</string>
-    <string name="widget_kospi_description">Μετρητής δείκτη φόβου KOSPI.</string>
-    <string name="widget_crypto_description">Μετρητής φόβου &amp; απληστίας κρύπτο (BTC).</string>
+    <string name="widget_market_description">Ακολουθεί τον S&amp;P 500.</string>
+    <string name="widget_kospi_description">Ακολουθεί τον KOSPI.</string>
+    <string name="widget_crypto_description">Ακολουθεί το BTC.</string>
     <string name="widget_dashboard_description">Εμφανίζει με μια ματιά τους δείκτες παγκόσμιο, KOSPI και κρύπτο.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Αφαίρεση διαφημίσεων</string>

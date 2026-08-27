@@ -443,9 +443,9 @@
     <string name="widget_guide_step3">Pick the index you want — Global, KOSPI, or Crypto — or the all-in-one widget.</string>
     <string name="widget_guide_step4">Drag it onto your home screen and place it where you like.</string>
     <string name="widget_guide_step5">Tap the widget anytime to open the app.</string>
-    <string name="widget_market_description">Global (S&amp;P 500) Fear &amp; Greed gauge.</string>
-    <string name="widget_kospi_description">KOSPI Fear Index gauge.</string>
-    <string name="widget_crypto_description">Crypto (BTC) Fear &amp; Greed gauge.</string>
+    <string name="widget_market_description">Tracks the S&amp;P 500.</string>
+    <string name="widget_kospi_description">Tracks the KOSPI.</string>
+    <string name="widget_crypto_description">Tracks BTC.</string>
     <string name="widget_dashboard_description">Shows the global, KOSPI, and crypto indices at a glance.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Remove Ads</string>

@@ -423,9 +423,9 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="widget_guide_step5">Kadar koli tapnite pripomoček, da odprete aplikacijo.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Merilnik strahu in pohlepa (S&amp;P 500).</string>
-    <string name="widget_kospi_description">Merilnik indeksa strahu KOSPI.</string>
-    <string name="widget_crypto_description">Merilnik strahu in pohlepa kripto (BTC).</string>
+    <string name="widget_market_description">Sledi S&amp;P 500.</string>
+    <string name="widget_kospi_description">Sledi KOSPI.</string>
+    <string name="widget_crypto_description">Sledi BTC.</string>
     <string name="widget_dashboard_description">Prikazuje globalni, KOSPI in kripto indeks na en pogled.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Odstrani oglase</string>

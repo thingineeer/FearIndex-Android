@@ -421,9 +421,9 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="widget_guide_step3">Wählen Sie den gewünschten Index – Global, KOSPI oder Krypto – oder das Kombi-Widget.</string>
     <string name="widget_guide_step4">Ziehen Sie es auf den Startbildschirm und platzieren Sie es nach Belieben.</string>
     <string name="widget_guide_step5">Tippen Sie jederzeit auf das Widget, um die App zu öffnen.</string>
-    <string name="widget_market_description">Globales (S&amp;P 500) Fear-&amp;-Greed-Barometer.</string>
-    <string name="widget_kospi_description">KOSPI-Angstindex-Barometer.</string>
-    <string name="widget_crypto_description">Krypto-(BTC)-Fear-&amp;-Greed-Barometer.</string>
+    <string name="widget_market_description">Folgt dem S&amp;P 500.</string>
+    <string name="widget_kospi_description">Folgt dem KOSPI.</string>
+    <string name="widget_crypto_description">Folgt BTC.</string>
     <string name="widget_dashboard_description">Zeigt die Indizes Global, KOSPI und Krypto auf einen Blick.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Werbung entfernen</string>

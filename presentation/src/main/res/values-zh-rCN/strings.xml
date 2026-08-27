@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">选择想要的指数（全球、KOSPI、加密货币）或一体化小部件。</string>
     <string name="widget_guide_step4">将它拖到主屏幕，放在喜欢的位置。</string>
     <string name="widget_guide_step5">随时点按小部件即可打开应用。</string>
-    <string name="widget_market_description">全球(标普500)恐惧贪婪指数仪表。</string>
-    <string name="widget_kospi_description">KOSPI恐惧指数仪表。</string>
-    <string name="widget_crypto_description">加密货币(BTC)恐惧贪婪指数仪表。</string>
+    <string name="widget_market_description">跟踪标普500。</string>
+    <string name="widget_kospi_description">跟踪KOSPI。</string>
+    <string name="widget_crypto_description">跟踪BTC。</string>
     <string name="widget_dashboard_description">一览显示全球、KOSPI 和加密货币三大指数。</string>
     <string name="settings_premium_header">高级版</string>
     <string name="settings_remove_ads_title">移除广告</string>

@@ -421,9 +421,9 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="widget_guide_step3">Vælg det ønskede indeks — Global, KOSPI eller Krypto — eller den samlede widget.</string>
     <string name="widget_guide_step4">Træk den ind på din startskærm, og placer den, hvor du vil.</string>
     <string name="widget_guide_step5">Tryk på widgeten når som helst for at åbne appen.</string>
-    <string name="widget_market_description">Global (S&amp;P 500) Fear &amp; Greed-måler.</string>
-    <string name="widget_kospi_description">KOSPI-frygtindeksmåler.</string>
-    <string name="widget_crypto_description">Krypto (BTC) Fear &amp; Greed-måler.</string>
+    <string name="widget_market_description">Følger S&amp;P 500.</string>
+    <string name="widget_kospi_description">Følger KOSPI.</string>
+    <string name="widget_crypto_description">Følger BTC.</string>
     <string name="widget_dashboard_description">Viser det globale, KOSPI- og kryptoindekset med ét blik.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Fjern reklamer</string>

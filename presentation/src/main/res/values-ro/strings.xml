@@ -423,9 +423,9 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="widget_guide_step5">Atinge widgetul oricând pentru a deschide aplicația.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Indicator Fear &amp; Greed global (S&amp;P 500).</string>
-    <string name="widget_kospi_description">Indicator al indicelui de frică KOSPI.</string>
-    <string name="widget_crypto_description">Indicator Fear &amp; Greed cripto (BTC).</string>
+    <string name="widget_market_description">Urmărește S&amp;P 500.</string>
+    <string name="widget_kospi_description">Urmărește KOSPI.</string>
+    <string name="widget_crypto_description">Urmărește BTC.</string>
     <string name="widget_dashboard_description">Afișează dintr-o privire indicii global, KOSPI și cripto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Elimină reclamele</string>

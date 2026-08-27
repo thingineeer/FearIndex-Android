@@ -420,9 +420,9 @@
     <string name="widget_guide_step3">選擇想要的指數（全球、KOSPI、加密貨幣）或整合小工具。</string>
     <string name="widget_guide_step4">將它拖到主畫面，放在喜歡的位置。</string>
     <string name="widget_guide_step5">隨時點選小工具即可開啟應用程式。</string>
-    <string name="widget_market_description">全球(標普500)恐懼貪婪指數儀表。</string>
-    <string name="widget_kospi_description">KOSPI恐懼指數儀表。</string>
-    <string name="widget_crypto_description">加密貨幣(BTC)恐懼貪婪指數儀表。</string>
+    <string name="widget_market_description">追蹤標普500。</string>
+    <string name="widget_kospi_description">追蹤KOSPI。</string>
+    <string name="widget_crypto_description">追蹤BTC。</string>
     <string name="widget_dashboard_description">一覽顯示全球、KOSPI 與加密貨幣三大指數。</string>
     <string name="settings_premium_header">進階版</string>
     <string name="settings_remove_ads_title">移除廣告</string>

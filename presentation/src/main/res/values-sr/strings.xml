@@ -423,9 +423,9 @@
     <string name="widget_guide_step5">Додирните виџет у било ком тренутку да отворите апликацију.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Мерач страха и похлепе (S&amp;P 500).</string>
-    <string name="widget_kospi_description">Мерач индекса страха KOSPI.</string>
-    <string name="widget_crypto_description">Мерач страха и похлепе крипто (BTC).</string>
+    <string name="widget_market_description">Прати S&amp;P 500.</string>
+    <string name="widget_kospi_description">Прати KOSPI.</string>
+    <string name="widget_crypto_description">Прати BTC.</string>
     <string name="widget_dashboard_description">Prikazuje globalni, KOSPI i kripto indeks na prvi pogled.</string>
     <string name="settings_premium_header">Премијум</string>
     <string name="settings_remove_ads_title">Уклони огласе</string>

@@ -424,9 +424,9 @@
     <string name="widget_guide_step3">আপনার পছন্দের সূচক বেছে নিন — গ্লোবাল, KOSPI বা ক্রিপ্টো — অথবা অল-ইন-ওয়ান উইজেট।</string>
     <string name="widget_guide_step4">এটি আপনার হোম স্ক্রিনে টেনে এনে পছন্দমতো জায়গায় রাখুন।</string>
     <string name="widget_guide_step5">অ্যাপ খুলতে যেকোনো সময় উইজেটে ট্যাপ করুন।</string>
-    <string name="widget_market_description">গ্লোবাল (S&amp;P 500) ফিয়ার ও গ্রিড গেজ।</string>
-    <string name="widget_kospi_description">KOSPI ফিয়ার ইনডেক্স গেজ।</string>
-    <string name="widget_crypto_description">ক্রিপ্টো (BTC) ফিয়ার ও গ্রিড গেজ।</string>
+    <string name="widget_market_description">S&amp;P 500 অনুসরণ করে।</string>
+    <string name="widget_kospi_description">KOSPI অনুসরণ করে।</string>
+    <string name="widget_crypto_description">BTC অনুসরণ করে।</string>
     <string name="widget_dashboard_description">গ্লোবাল, KOSPI ও ক্রিপ্টো সূচক এক নজরে দেখায়।</string>
     <string name="settings_premium_header">প্রিমিয়াম</string>
     <string name="settings_remove_ads_title">বিজ্ঞাপন সরান</string>

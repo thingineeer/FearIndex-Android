@@ -421,9 +421,9 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="widget_guide_step3">Chagua kipimo unachotaka — Global, KOSPI au Crypto — au wijeti ya yote kwa pamoja.</string>
     <string name="widget_guide_step4">Iburute hadi kwenye skrini yako ya mwanzo na uiweke mahali unapopenda.</string>
     <string name="widget_guide_step5">Gonga wijeti wakati wowote ili kufungua programu.</string>
-    <string name="widget_market_description">Kipimo cha hofu na tamaa duniani (S&amp;P 500).</string>
-    <string name="widget_kospi_description">Kipimo cha fahirisi ya hofu ya KOSPI.</string>
-    <string name="widget_crypto_description">Kipimo cha hofu na tamaa cha kripto (BTC).</string>
+    <string name="widget_market_description">Hufuatilia S&amp;P 500.</string>
+    <string name="widget_kospi_description">Hufuatilia KOSPI.</string>
+    <string name="widget_crypto_description">Hufuatilia BTC.</string>
     <string name="widget_dashboard_description">Huonyesha fahirisi za kimataifa, KOSPI na kripto kwa mtazamo mmoja.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Ondoa matangazo</string>

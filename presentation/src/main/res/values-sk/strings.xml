@@ -421,9 +421,9 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="widget_guide_step3">Vyberte požadovaný index — Globálny, KOSPI alebo Krypto — alebo widget všetko v jednom.</string>
     <string name="widget_guide_step4">Presuňte ho na plochu a umiestnite, kam chcete.</string>
     <string name="widget_guide_step5">Kedykoľvek klepnite na widget a aplikácia sa otvorí.</string>
-    <string name="widget_market_description">Ukazovateľ strachu a chamtivosti (S&amp;P 500).</string>
-    <string name="widget_kospi_description">Ukazovateľ indexu strachu KOSPI.</string>
-    <string name="widget_crypto_description">Ukazovateľ strachu a chamtivosti krypto (BTC).</string>
+    <string name="widget_market_description">Sleduje S&amp;P 500.</string>
+    <string name="widget_kospi_description">Sleduje KOSPI.</string>
+    <string name="widget_crypto_description">Sleduje BTC.</string>
     <string name="widget_dashboard_description">Zobrazuje globálny, KOSPI a krypto index na jeden pohľad.</string>
     <string name="settings_premium_header">Prémium</string>
     <string name="settings_remove_ads_title">Odstrániť reklamy</string>

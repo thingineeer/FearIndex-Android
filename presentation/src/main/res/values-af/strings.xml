@@ -421,9 +421,9 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="widget_guide_step3">Kies die indeks wat jy wil hê — Globaal, KOSPI of Krypto — of die alles-in-een-legstuk.</string>
     <string name="widget_guide_step4">Sleep dit op jou tuisskerm en plaas dit waar jy wil.</string>
     <string name="widget_guide_step5">Tik enige tyd op die legstuk om die program oop te maak.</string>
-    <string name="widget_market_description">Globale (S&amp;P 500) vrees-en-gierigheid-meter.</string>
-    <string name="widget_kospi_description">KOSPI-vreesindeksmeter.</string>
-    <string name="widget_crypto_description">Kripto (BTC) vrees-en-gierigheid-meter.</string>
+    <string name="widget_market_description">Volg die S&amp;P 500.</string>
+    <string name="widget_kospi_description">Volg die KOSPI.</string>
+    <string name="widget_crypto_description">Volg BTC.</string>
     <string name="widget_dashboard_description">Wys die globale, KOSPI- en kripto-indeks met een oogopslag.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Verwyder advertensies</string>
