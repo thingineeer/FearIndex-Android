@@ -544,12 +544,12 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="insight_historical_return_title_greed">Sau đó thế nào?</string>
     <string name="score_explorer_subtitle_greed">Sau ngày đạt điểm này thì sao?</string>
     <string name="widget_updated_at">lúc %1$s</string>
-    <string name="widget_chart_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y) và chỉ số.</string>
+    <string name="widget_chart_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y).</string>
     <string name="widget_label_market">Chỉ số toàn cầu</string>
     <string name="widget_label_kospi">Chỉ số KOSPI</string>
     <string name="widget_label_crypto">Chỉ số tiền mã hóa</string>
     <string name="widget_label_dashboard">Tất cả chỉ số</string>
-    <string name="widget_label_chart">Biểu đồ xu hướng</string>
+    <string name="widget_label_chart">Global Biểu đồ xu hướng</string>
     <string name="widget_guide_section_widgets">Các loại tiện ích</string>
     <string name="widget_guide_type_single">Đồng hồ một chỉ số — Toàn cầu · KOSPI · Tiền mã hóa</string>
     <string name="widget_guide_section_howto">Cách thêm</string>
@@ -559,4 +559,8 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="widget_guide_tip_auto">Tiện ích tự động cập nhật vài giờ một lần và mỗi khi bạn mở ứng dụng.</string>
     <string name="widget_guide_tip_launcher">Tên menu có thể hơi khác tùy theo thiết bị và trình khởi chạy.</string>
     <string name="widget_refreshing">Đang làm mới…</string>
+    <string name="widget_label_chart_kospi">KOSPI Biểu đồ xu hướng</string>
+    <string name="widget_label_chart_crypto">Crypto Biểu đồ xu hướng</string>
+    <string name="widget_chart_kospi_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y).</string>
 </resources>

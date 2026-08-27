@@ -147,6 +147,28 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_chart_info" />
         </receiver>
+        <receiver
+            android:name=".widget.KospiChartWidgetReceiver"
+            android:label="@string/widget_label_chart_kospi"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_chart_kospi_info" />
+        </receiver>
+        <receiver
+            android:name=".widget.CryptoChartWidgetReceiver"
+            android:label="@string/widget_label_chart_crypto"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_chart_crypto_info" />
+        </receiver>
 
     </application>
 

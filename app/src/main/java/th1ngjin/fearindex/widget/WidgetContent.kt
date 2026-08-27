@@ -301,13 +301,10 @@ fun ChartWidgetContent(
     Box(modifier = cardModifier(20)) {
         Column(modifier = GlanceModifier.fillMaxSize().padding(horizontal = 12.dp, vertical = 10.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = GlanceModifier.fillMaxWidth()) {
-                // 이름 탭 = 지수 순환 전환 (Global → KOSPI → Crypto), ▾ 로 탭 가능함을 표시
                 Text(
-                    text = WidgetGaugeSpec.indexName(indexType) + " ▾",
+                    text = WidgetGaugeSpec.indexName(indexType),
                     maxLines = 1,
-                    modifier = GlanceModifier
-                        .clickable(actionRunCallback<CycleChartIndexAction>())
-                        .padding(top = 12.dp, bottom = 12.dp, end = 6.dp),
+                    modifier = GlanceModifier.padding(end = 6.dp),
                     style = TextStyle(color = ColorProvider(WidgetTextColorDim), fontSize = (if (large) 11 else 9).sp, fontWeight = FontWeight.Medium),
                 )
                 Spacer(GlanceModifier.width(6.dp))

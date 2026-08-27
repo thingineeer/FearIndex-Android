@@ -544,12 +544,12 @@
     <string name="insight_historical_return_title_greed">หลังจากนั้นเป็นอย่างไร?</string>
     <string name="score_explorer_subtitle_greed">หลังจากวันที่ได้คะแนนนี้ ตลาดเป็นอย่างไร?</string>
     <string name="widget_updated_at">ณ %1$s</string>
-    <string name="widget_chart_description">กราฟแนวโน้มดัชนี แตะเพื่อสลับช่วงเวลา (3M–5Y) และดัชนี</string>
+    <string name="widget_chart_description">กราฟแนวโน้มดัชนี แตะเพื่อสลับช่วงเวลา (3M–5Y)</string>
     <string name="widget_label_market">ดัชนีโลก</string>
     <string name="widget_label_kospi">ดัชนี KOSPI</string>
     <string name="widget_label_crypto">ดัชนีคริปโต</string>
     <string name="widget_label_dashboard">ดัชนีทั้งหมด</string>
-    <string name="widget_label_chart">กราฟแนวโน้ม</string>
+    <string name="widget_label_chart">Global กราฟแนวโน้ม</string>
     <string name="widget_guide_section_widgets">ประเภทวิดเจ็ต</string>
     <string name="widget_guide_type_single">มาตรวัดดัชนีเดียว — ทั่วโลก · KOSPI · คริปโต</string>
     <string name="widget_guide_section_howto">วิธีเพิ่ม</string>
@@ -559,4 +559,8 @@
     <string name="widget_guide_tip_auto">วิดเจ็ตจะอัปเดตอัตโนมัติทุกสองสามชั่วโมงและทุกครั้งที่เปิดแอป</string>
     <string name="widget_guide_tip_launcher">ชื่อเมนูอาจแตกต่างกันเล็กน้อยตามอุปกรณ์และตัวเรียกใช้งาน</string>
     <string name="widget_refreshing">กำลังรีเฟรช…</string>
+    <string name="widget_label_chart_kospi">KOSPI กราฟแนวโน้ม</string>
+    <string name="widget_label_chart_crypto">Crypto กราฟแนวโน้ม</string>
+    <string name="widget_chart_kospi_description">กราฟแนวโน้มดัชนี แตะเพื่อสลับช่วงเวลา (3M–5Y)</string>
+    <string name="widget_chart_crypto_description">กราฟแนวโน้มดัชนี แตะเพื่อสลับช่วงเวลา (3M–5Y)</string>
 </resources>

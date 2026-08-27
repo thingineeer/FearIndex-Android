@@ -541,12 +541,12 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="insight_historical_return_title_greed">Wat gebeurde er daarna?</string>
     <string name="score_explorer_subtitle_greed">Wat volgde na een dag met deze score?</string>
     <string name="widget_updated_at">per %1$s</string>
-    <string name="widget_chart_description">Indexverloop als grafiek. Tik om periode (3M–5Y) en index te wisselen.</string>
+    <string name="widget_chart_description">Indexverloop als grafiek. Tik om de periode (3M–5Y) te wisselen.</string>
     <string name="widget_label_market">Wereldindex</string>
     <string name="widget_label_kospi">KOSPI-index</string>
     <string name="widget_label_crypto">Crypto-index</string>
     <string name="widget_label_dashboard">Alle indexen</string>
-    <string name="widget_label_chart">Trendgrafiek</string>
+    <string name="widget_label_chart">Global Trendgrafiek</string>
     <string name="widget_guide_section_widgets">Widgettypen</string>
     <string name="widget_guide_type_single">Meter met één index — Wereldwijd · KOSPI · Crypto</string>
     <string name="widget_guide_section_howto">Zo voeg je widgets toe</string>
@@ -556,4 +556,8 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="widget_guide_tip_auto">Widgets worden elke paar uur en telkens wanneer je de app opent automatisch bijgewerkt.</string>
     <string name="widget_guide_tip_launcher">Menunamen kunnen per apparaat en launcher iets verschillen.</string>
     <string name="widget_refreshing">Vernieuwen…</string>
+    <string name="widget_label_chart_kospi">KOSPI Trendgrafiek</string>
+    <string name="widget_label_chart_crypto">Crypto Trendgrafiek</string>
+    <string name="widget_chart_kospi_description">Indexverloop als grafiek. Tik om de periode (3M–5Y) te wisselen.</string>
+    <string name="widget_chart_crypto_description">Indexverloop als grafiek. Tik om de periode (3M–5Y) te wisselen.</string>
 </resources>

@@ -543,12 +543,12 @@
     <string name="insight_historical_return_title_greed">Що було далі?</string>
     <string name="score_explorer_subtitle_greed">Що відбувалося після дня з таким значенням?</string>
     <string name="widget_updated_at">станом на %1$s</string>
-    <string name="widget_chart_description">Графік індексу. Торкніться, щоб змінити період (3M–5Y) та індекс.</string>
+    <string name="widget_chart_description">Графік індексу. Торкніться, щоб змінити період (3M–5Y).</string>
     <string name="widget_label_market">Глобальний індекс</string>
     <string name="widget_label_kospi">Індекс KOSPI</string>
     <string name="widget_label_crypto">Криптоіндекс</string>
     <string name="widget_label_dashboard">Усі індекси</string>
-    <string name="widget_label_chart">Графік тренду</string>
+    <string name="widget_label_chart">Global Графік тренду</string>
     <string name="widget_guide_section_widgets">Типи віджетів</string>
     <string name="widget_guide_type_single">Датчик одного індексу — Глобальний · KOSPI · Крипто</string>
     <string name="widget_guide_section_howto">Як додати</string>
@@ -558,4 +558,8 @@
     <string name="widget_guide_tip_auto">Віджети оновлюються автоматично кожні кілька годин і щоразу, коли ви відкриваєте застосунок.</string>
     <string name="widget_guide_tip_launcher">Назви меню можуть дещо відрізнятися залежно від пристрою та лаунчера.</string>
     <string name="widget_refreshing">Оновлення…</string>
+    <string name="widget_label_chart_kospi">KOSPI Графік тренду</string>
+    <string name="widget_label_chart_crypto">Crypto Графік тренду</string>
+    <string name="widget_chart_kospi_description">Графік індексу. Торкніться, щоб змінити період (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Графік індексу. Торкніться, щоб змінити період (3M–5Y).</string>
 </resources>

@@ -541,12 +541,12 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="insight_historical_return_title_greed">Mis juhtus pärast?</string>
     <string name="score_explorer_subtitle_greed">Mis järgnes päevale selle skooriga?</string>
     <string name="widget_updated_at">seisuga %1$s</string>
-    <string name="widget_chart_description">Indeksi graafik. Puuduta perioodi (3M–5Y) ja indeksi vahetamiseks.</string>
+    <string name="widget_chart_description">Indeksi graafik. Puuduta perioodi (3M–5Y) vahetamiseks.</string>
     <string name="widget_label_market">Globaalne indeks</string>
     <string name="widget_label_kospi">KOSPI indeks</string>
     <string name="widget_label_crypto">Krüptoindeks</string>
     <string name="widget_label_dashboard">Kõik indeksid</string>
-    <string name="widget_label_chart">Trendigraafik</string>
+    <string name="widget_label_chart">Global Trendigraafik</string>
     <string name="widget_guide_section_widgets">Vidinate tüübid</string>
     <string name="widget_guide_type_single">Ühe indeksi näidik — Globaalne · KOSPI · Krüpto</string>
     <string name="widget_guide_section_howto">Kuidas lisada</string>
@@ -556,4 +556,8 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="widget_guide_tip_auto">Vidinad uuenevad automaatselt iga paari tunni tagant ja iga kord, kui rakenduse avad.</string>
     <string name="widget_guide_tip_launcher">Menüünimed võivad seadme ja käivitaja järgi veidi erineda.</string>
     <string name="widget_refreshing">Värskendamine…</string>
+    <string name="widget_label_chart_kospi">KOSPI Trendigraafik</string>
+    <string name="widget_label_chart_crypto">Crypto Trendigraafik</string>
+    <string name="widget_chart_kospi_description">Indeksi graafik. Puuduta perioodi (3M–5Y) vahetamiseks.</string>
+    <string name="widget_chart_crypto_description">Indeksi graafik. Puuduta perioodi (3M–5Y) vahetamiseks.</string>
 </resources>

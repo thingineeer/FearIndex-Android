@@ -541,12 +541,12 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="insight_historical_return_title_greed">Mi történt utána?</string>
     <string name="score_explorer_subtitle_greed">Mi következett egy ilyen pontszámú nap után?</string>
     <string name="widget_updated_at">%1$s-kor</string>
-    <string name="widget_chart_description">Indexgrafikon. Koppintással váltható az időszak (3M–5Y) és az index.</string>
+    <string name="widget_chart_description">Indexgrafikon. Koppintással váltható az időszak (3M–5Y).</string>
     <string name="widget_label_market">Globális index</string>
     <string name="widget_label_kospi">KOSPI index</string>
     <string name="widget_label_crypto">Kriptoindex</string>
     <string name="widget_label_dashboard">Összes index</string>
-    <string name="widget_label_chart">Trendgrafikon</string>
+    <string name="widget_label_chart">Global Trendgrafikon</string>
     <string name="widget_guide_section_widgets">Widgettípusok</string>
     <string name="widget_guide_type_single">Egyindexes mérő — Globális · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Hozzáadás módja</string>
@@ -556,4 +556,8 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="widget_guide_tip_auto">A widgetek néhány óránként és az alkalmazás minden megnyitásakor automatikusan frissülnek.</string>
     <string name="widget_guide_tip_launcher">A menünevek készüléktől és indítótól függően kissé eltérhetnek.</string>
     <string name="widget_refreshing">Frissítés…</string>
+    <string name="widget_label_chart_kospi">KOSPI Trendgrafikon</string>
+    <string name="widget_label_chart_crypto">Crypto Trendgrafikon</string>
+    <string name="widget_chart_kospi_description">Indexgrafikon. Koppintással váltható az időszak (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Indexgrafikon. Koppintással váltható az időszak (3M–5Y).</string>
 </resources>

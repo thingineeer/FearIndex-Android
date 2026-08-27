@@ -541,12 +541,12 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="insight_historical_return_title_greed">Wat het daarna gebeur?</string>
     <string name="score_explorer_subtitle_greed">Wat het gevolg ná \'n dag met hierdie telling?</string>
     <string name="widget_updated_at">soos om %1$s</string>
-    <string name="widget_chart_description">Indekstendensgrafiek. Tik om tydperk (3M–5Y) en indeks te wissel.</string>
+    <string name="widget_chart_description">Indekstendensgrafiek. Tik om die tydperk (3M–5Y) te wissel.</string>
     <string name="widget_label_market">Globale indeks</string>
     <string name="widget_label_kospi">KOSPI-indeks</string>
     <string name="widget_label_crypto">Kripto-indeks</string>
     <string name="widget_label_dashboard">Alle indekse</string>
-    <string name="widget_label_chart">Tendensgrafiek</string>
+    <string name="widget_label_chart">Global Tendensgrafiek</string>
     <string name="widget_guide_section_widgets">Legstuktipes</string>
     <string name="widget_guide_type_single">Enkelindeksmeter — Globaal · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Hoe om by te voeg</string>
@@ -556,4 +556,8 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="widget_guide_tip_auto">Legstukke word elke paar uur en elke keer as jy die app oopmaak outomaties opgedateer.</string>
     <string name="widget_guide_tip_launcher">Kieslysname kan effens verskil na gelang van toestel en launcher.</string>
     <string name="widget_refreshing">Verfris tans…</string>
+    <string name="widget_label_chart_kospi">KOSPI Tendensgrafiek</string>
+    <string name="widget_label_chart_crypto">Crypto Tendensgrafiek</string>
+    <string name="widget_chart_kospi_description">Indekstendensgrafiek. Tik om die tydperk (3M–5Y) te wissel.</string>
+    <string name="widget_chart_crypto_description">Indekstendensgrafiek. Tik om die tydperk (3M–5Y) te wissel.</string>
 </resources>

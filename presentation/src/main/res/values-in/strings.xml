@@ -540,12 +540,12 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="insight_historical_return_title_greed">Apa yang terjadi setelahnya?</string>
     <string name="score_explorer_subtitle_greed">Apa yang terjadi setelah hari dengan skor ini?</string>
     <string name="widget_updated_at">per %1$s</string>
-    <string name="widget_chart_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y) dan indeks.</string>
+    <string name="widget_chart_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y).</string>
     <string name="widget_label_market">Indeks Global</string>
     <string name="widget_label_kospi">Indeks KOSPI</string>
     <string name="widget_label_crypto">Indeks Kripto</string>
     <string name="widget_label_dashboard">Semua Indeks</string>
-    <string name="widget_label_chart">Grafik Tren</string>
+    <string name="widget_label_chart">Global Grafik Tren</string>
     <string name="widget_guide_section_widgets">Jenis widget</string>
     <string name="widget_guide_type_single">Pengukur satu indeks — Global · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Cara menambahkan</string>
@@ -555,4 +555,8 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="widget_guide_tip_auto">Widget diperbarui otomatis setiap beberapa jam dan setiap kali Anda membuka aplikasi.</string>
     <string name="widget_guide_tip_launcher">Nama menu mungkin sedikit berbeda tergantung perangkat dan launcher.</string>
     <string name="widget_refreshing">Menyegarkan…</string>
+    <string name="widget_label_chart_kospi">KOSPI Grafik Tren</string>
+    <string name="widget_label_chart_crypto">Crypto Grafik Tren</string>
+    <string name="widget_chart_kospi_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y).</string>
 </resources>

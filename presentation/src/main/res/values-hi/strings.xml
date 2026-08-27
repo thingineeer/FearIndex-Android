@@ -544,12 +544,12 @@
     <string name="insight_historical_return_title_greed">उसके बाद क्या हुआ?</string>
     <string name="score_explorer_subtitle_greed">इस स्कोर वाले दिन के बाद क्या हुआ?</string>
     <string name="widget_updated_at">%1$s तक</string>
-    <string name="widget_chart_description">इंडेक्स ट्रेंड चार्ट। अवधि (3M–5Y) और इंडेक्स बदलने के लिए टैप करें।</string>
+    <string name="widget_chart_description">इंडेक्स ट्रेंड चार्ट। अवधि (3M–5Y) बदलने के लिए टैप करें।</string>
     <string name="widget_label_market">वैश्विक सूचकांक</string>
     <string name="widget_label_kospi">KOSPI सूचकांक</string>
     <string name="widget_label_crypto">क्रिप्टो सूचकांक</string>
     <string name="widget_label_dashboard">सभी सूचकांक</string>
-    <string name="widget_label_chart">ट्रेंड चार्ट</string>
+    <string name="widget_label_chart">Global ट्रेंड चार्ट</string>
     <string name="widget_guide_section_widgets">विजेट के प्रकार</string>
     <string name="widget_guide_type_single">एकल सूचकांक गेज — ग्लोबल · KOSPI · क्रिप्टो</string>
     <string name="widget_guide_section_howto">जोड़ने का तरीका</string>
@@ -559,4 +559,8 @@
     <string name="widget_guide_tip_auto">विजेट हर कुछ घंटों में और हर बार ऐप खोलने पर अपने आप अपडेट होते हैं।</string>
     <string name="widget_guide_tip_launcher">डिवाइस और लॉन्चर के अनुसार मेनू के नाम थोड़े अलग हो सकते हैं।</string>
     <string name="widget_refreshing">रीफ़्रेश हो रहा है…</string>
+    <string name="widget_label_chart_kospi">KOSPI ट्रेंड चार्ट</string>
+    <string name="widget_label_chart_crypto">Crypto ट्रेंड चार्ट</string>
+    <string name="widget_chart_kospi_description">इंडेक्स ट्रेंड चार्ट। अवधि (3M–5Y) बदलने के लिए टैप करें।</string>
+    <string name="widget_chart_crypto_description">इंडेक्स ट्रेंड चार्ट। अवधि (3M–5Y) बदलने के लिए टैप करें।</string>
 </resources>

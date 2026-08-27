@@ -41,6 +41,8 @@ class RefreshWidgetsAction : ActionCallback {
             CryptoFearWidget::class.java,
             DashboardFearWidget::class.java,
             ChartFearWidget::class.java,
+            KospiChartWidget::class.java,
+            CryptoChartWidget::class.java,
         ).forEach { cls ->
             runCatching {
                 manager.getGlanceIds(cls).forEach { id ->
@@ -56,6 +58,8 @@ class RefreshWidgetsAction : ActionCallback {
         CryptoFearWidget().updateAll(context)
         DashboardFearWidget().updateAll(context)
         ChartFearWidget().updateAll(context)
+        KospiChartWidget().updateAll(context)
+        CryptoChartWidget().updateAll(context)
     }
 
     companion object {

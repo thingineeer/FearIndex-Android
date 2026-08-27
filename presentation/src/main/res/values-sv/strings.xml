@@ -541,12 +541,12 @@
     <string name="insight_historical_return_title_greed">Vad hände sedan?</string>
     <string name="score_explorer_subtitle_greed">Vad hände efter en dag med detta värde?</string>
     <string name="widget_updated_at">kl. %1$s</string>
-    <string name="widget_chart_description">Indexdiagram. Tryck för att byta period (3M–5Y) och index.</string>
+    <string name="widget_chart_description">Indexdiagram. Tryck för att byta period (3M–5Y).</string>
     <string name="widget_label_market">Globalt index</string>
     <string name="widget_label_kospi">KOSPI-index</string>
     <string name="widget_label_crypto">Kryptoindex</string>
     <string name="widget_label_dashboard">Alla index</string>
-    <string name="widget_label_chart">Trenddiagram</string>
+    <string name="widget_label_chart">Global Trenddiagram</string>
     <string name="widget_guide_section_widgets">Widgettyper</string>
     <string name="widget_guide_type_single">Mätare för ett index — Globalt · KOSPI · Krypto</string>
     <string name="widget_guide_section_howto">Så lägger du till</string>
@@ -556,4 +556,8 @@
     <string name="widget_guide_tip_auto">Widgetar uppdateras automatiskt med några timmars mellanrum och varje gång du öppnar appen.</string>
     <string name="widget_guide_tip_launcher">Menynamn kan skilja sig något beroende på enhet och launcher.</string>
     <string name="widget_refreshing">Uppdaterar…</string>
+    <string name="widget_label_chart_kospi">KOSPI Trenddiagram</string>
+    <string name="widget_label_chart_crypto">Crypto Trenddiagram</string>
+    <string name="widget_chart_kospi_description">Indexdiagram. Tryck för att byta period (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Indexdiagram. Tryck för att byta period (3M–5Y).</string>
 </resources>

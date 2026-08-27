@@ -541,12 +541,12 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="insight_historical_return_title_greed">Cosa è successo dopo?</string>
     <string name="score_explorer_subtitle_greed">Cosa è venuto dopo un giorno con questo punteggio?</string>
     <string name="widget_updated_at">alle %1$s</string>
-    <string name="widget_chart_description">Andamento dell\'indice. Tocca per cambiare periodo (3M–5Y) e indice.</string>
+    <string name="widget_chart_description">Andamento dell\'indice. Tocca per cambiare periodo (3M–5Y).</string>
     <string name="widget_label_market">Indice globale</string>
     <string name="widget_label_kospi">Indice KOSPI</string>
     <string name="widget_label_crypto">Indice cripto</string>
     <string name="widget_label_dashboard">Tutti gli indici</string>
-    <string name="widget_label_chart">Grafico di tendenza</string>
+    <string name="widget_label_chart">Global Grafico di tendenza</string>
     <string name="widget_guide_section_widgets">Tipi di widget</string>
     <string name="widget_guide_type_single">Indicatore a indice singolo — Globale · KOSPI · Cripto</string>
     <string name="widget_guide_section_howto">Come aggiungere</string>
@@ -556,4 +556,8 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="widget_guide_tip_auto">I widget si aggiornano automaticamente ogni poche ore e a ogni apertura dell\'app.</string>
     <string name="widget_guide_tip_launcher">I nomi dei menu possono variare leggermente in base al dispositivo e al launcher.</string>
     <string name="widget_refreshing">Aggiornamento…</string>
+    <string name="widget_label_chart_kospi">KOSPI Grafico di tendenza</string>
+    <string name="widget_label_chart_crypto">Crypto Grafico di tendenza</string>
+    <string name="widget_chart_kospi_description">Andamento dell\'indice. Tocca per cambiare periodo (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Andamento dell\'indice. Tocca per cambiare periodo (3M–5Y).</string>
 </resources>

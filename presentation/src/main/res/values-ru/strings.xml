@@ -543,12 +543,12 @@
     <string name="insight_historical_return_title_greed">Что было потом?</string>
     <string name="score_explorer_subtitle_greed">Что происходило после дня с таким значением?</string>
     <string name="widget_updated_at">на %1$s</string>
-    <string name="widget_chart_description">График индекса. Касание меняет период (3M–5Y) и индекс.</string>
+    <string name="widget_chart_description">График индекса. Касание меняет период (3M–5Y).</string>
     <string name="widget_label_market">Глобальный индекс</string>
     <string name="widget_label_kospi">Индекс KOSPI</string>
     <string name="widget_label_crypto">Криптоиндекс</string>
     <string name="widget_label_dashboard">Все индексы</string>
-    <string name="widget_label_chart">График тренда</string>
+    <string name="widget_label_chart">Global График тренда</string>
     <string name="widget_guide_section_widgets">Типы виджетов</string>
     <string name="widget_guide_type_single">Датчик одного индекса — Глобальный · KOSPI · Крипто</string>
     <string name="widget_guide_section_howto">Как добавить</string>
@@ -558,4 +558,8 @@
     <string name="widget_guide_tip_auto">Виджеты обновляются автоматически каждые несколько часов и при каждом открытии приложения.</string>
     <string name="widget_guide_tip_launcher">Названия меню могут немного отличаться в зависимости от устройства и лаунчера.</string>
     <string name="widget_refreshing">Обновление…</string>
+    <string name="widget_label_chart_kospi">KOSPI График тренда</string>
+    <string name="widget_label_chart_crypto">Crypto График тренда</string>
+    <string name="widget_chart_kospi_description">График индекса. Касание меняет период (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">График индекса. Касание меняет период (3M–5Y).</string>
 </resources>

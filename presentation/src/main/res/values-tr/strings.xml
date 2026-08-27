@@ -540,12 +540,12 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="insight_historical_return_title_greed">Sonrasında ne oldu?</string>
     <string name="score_explorer_subtitle_greed">Bu puanın görüldüğü günden sonra ne oldu?</string>
     <string name="widget_updated_at">%1$s itibarıyla</string>
-    <string name="widget_chart_description">Endeks trend grafiği. Dokunarak dönem (3M–5Y) ve endeks değiştirilebilir.</string>
+    <string name="widget_chart_description">Endeks trend grafiği. Dokunarak dönem (3M–5Y) değiştirilebilir.</string>
     <string name="widget_label_market">Küresel Endeks</string>
     <string name="widget_label_kospi">KOSPI Endeksi</string>
     <string name="widget_label_crypto">Kripto Endeksi</string>
     <string name="widget_label_dashboard">Tüm Endeksler</string>
-    <string name="widget_label_chart">Trend Grafiği</string>
+    <string name="widget_label_chart">Global Trend Grafiği</string>
     <string name="widget_guide_section_widgets">Widget türleri</string>
     <string name="widget_guide_type_single">Tek endeks göstergesi — Küresel · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Nasıl eklenir</string>
@@ -555,4 +555,8 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="widget_guide_tip_auto">Widget\'lar birkaç saatte bir ve uygulamayı her açtığınızda otomatik olarak güncellenir.</string>
     <string name="widget_guide_tip_launcher">Menü adları cihaza ve başlatıcıya göre biraz farklılık gösterebilir.</string>
     <string name="widget_refreshing">Yenileniyor…</string>
+    <string name="widget_label_chart_kospi">KOSPI Trend Grafiği</string>
+    <string name="widget_label_chart_crypto">Crypto Trend Grafiği</string>
+    <string name="widget_chart_kospi_description">Endeks trend grafiği. Dokunarak dönem (3M–5Y) değiştirilebilir.</string>
+    <string name="widget_chart_crypto_description">Endeks trend grafiği. Dokunarak dönem (3M–5Y) değiştirilebilir.</string>
 </resources>

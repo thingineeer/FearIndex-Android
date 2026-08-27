@@ -543,12 +543,12 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="insight_historical_return_title_greed">Što se dogodilo poslije?</string>
     <string name="score_explorer_subtitle_greed">Što je uslijedilo nakon dana s ovim rezultatom?</string>
     <string name="widget_updated_at">u %1$s</string>
-    <string name="widget_chart_description">Grafikon indeksa. Dodirom mijenjate razdoblje (3M–5Y) i indeks.</string>
+    <string name="widget_chart_description">Grafikon indeksa. Dodirom mijenjate razdoblje (3M–5Y).</string>
     <string name="widget_label_market">Globalni indeks</string>
     <string name="widget_label_kospi">Indeks KOSPI</string>
     <string name="widget_label_crypto">Kripto indeks</string>
     <string name="widget_label_dashboard">Svi indeksi</string>
-    <string name="widget_label_chart">Grafikon trenda</string>
+    <string name="widget_label_chart">Global Grafikon trenda</string>
     <string name="widget_guide_section_widgets">Vrste widgeta</string>
     <string name="widget_guide_type_single">Mjerač jednog indeksa — Globalni · KOSPI · Kripto</string>
     <string name="widget_guide_section_howto">Kako dodati</string>
@@ -558,4 +558,8 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="widget_guide_tip_auto">Widgeti se automatski ažuriraju svakih nekoliko sati i pri svakom otvaranju aplikacije.</string>
     <string name="widget_guide_tip_launcher">Nazivi izbornika mogu se malo razlikovati ovisno o uređaju i launcheru.</string>
     <string name="widget_refreshing">Osvježavanje…</string>
+    <string name="widget_label_chart_kospi">KOSPI Grafikon trenda</string>
+    <string name="widget_label_chart_crypto">Crypto Grafikon trenda</string>
+    <string name="widget_chart_kospi_description">Grafikon indeksa. Dodirom mijenjate razdoblje (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Grafikon indeksa. Dodirom mijenjate razdoblje (3M–5Y).</string>
 </resources>

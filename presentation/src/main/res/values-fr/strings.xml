@@ -541,12 +541,12 @@
     <string name="insight_historical_return_title_greed">Que s\'est-il passé ensuite ?</string>
     <string name="score_explorer_subtitle_greed">Que s\'est-il passé après un jour à ce score ?</string>
     <string name="widget_updated_at">à %1$s</string>
-    <string name="widget_chart_description">Évolution de l\'indice. Touchez pour changer de période (3M–5Y) et d\'indice.</string>
+    <string name="widget_chart_description">Évolution de l\'indice. Touchez pour changer de période (3M–5Y).</string>
     <string name="widget_label_market">Indice mondial</string>
     <string name="widget_label_kospi">Indice KOSPI</string>
     <string name="widget_label_crypto">Indice crypto</string>
     <string name="widget_label_dashboard">Tous les indices</string>
-    <string name="widget_label_chart">Graphique de tendance</string>
+    <string name="widget_label_chart">Global Graphique de tendance</string>
     <string name="widget_guide_section_widgets">Types de widgets</string>
     <string name="widget_guide_type_single">Jauge à indice unique — Mondial · KOSPI · Crypto</string>
     <string name="widget_guide_section_howto">Comment ajouter</string>
@@ -556,4 +556,8 @@
     <string name="widget_guide_tip_auto">Les widgets se mettent à jour automatiquement toutes les quelques heures et à chaque ouverture de l\'appli.</string>
     <string name="widget_guide_tip_launcher">Les noms de menus peuvent varier légèrement selon l\'appareil et le lanceur.</string>
     <string name="widget_refreshing">Actualisation…</string>
+    <string name="widget_label_chart_kospi">KOSPI Graphique de tendance</string>
+    <string name="widget_label_chart_crypto">Crypto Graphique de tendance</string>
+    <string name="widget_chart_kospi_description">Évolution de l\'indice. Touchez pour changer de période (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Évolution de l\'indice. Touchez pour changer de période (3M–5Y).</string>
 </resources>

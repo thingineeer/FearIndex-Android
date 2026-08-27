@@ -541,12 +541,12 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="insight_historical_return_title_greed">Co následovalo?</string>
     <string name="score_explorer_subtitle_greed">Co následovalo po dni s tímto skóre?</string>
     <string name="widget_updated_at">k %1$s</string>
-    <string name="widget_chart_description">Graf indexu. Klepnutím změníte období (3M–5Y) a index.</string>
+    <string name="widget_chart_description">Graf indexu. Klepnutím změníte období (3M–5Y).</string>
     <string name="widget_label_market">Globální index</string>
     <string name="widget_label_kospi">Index KOSPI</string>
     <string name="widget_label_crypto">Krypto index</string>
     <string name="widget_label_dashboard">Všechny indexy</string>
-    <string name="widget_label_chart">Graf trendu</string>
+    <string name="widget_label_chart">Global Graf trendu</string>
     <string name="widget_guide_section_widgets">Typy widgetů</string>
     <string name="widget_guide_type_single">Ukazatel jednoho indexu — Globální · KOSPI · Krypto</string>
     <string name="widget_guide_section_howto">Jak přidat</string>
@@ -556,4 +556,8 @@ Zvažte spolu se základy, tokem a makro faktory.</string>
     <string name="widget_guide_tip_auto">Widgety se automaticky aktualizují každých pár hodin a při každém otevření aplikace.</string>
     <string name="widget_guide_tip_launcher">Názvy nabídek se mohou mírně lišit podle zařízení a launcheru.</string>
     <string name="widget_refreshing">Aktualizace…</string>
+    <string name="widget_label_chart_kospi">KOSPI Graf trendu</string>
+    <string name="widget_label_chart_crypto">Crypto Graf trendu</string>
+    <string name="widget_chart_kospi_description">Graf indexu. Klepnutím změníte období (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Graf indexu. Klepnutím změníte období (3M–5Y).</string>
 </resources>

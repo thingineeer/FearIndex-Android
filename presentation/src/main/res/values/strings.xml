@@ -563,12 +563,12 @@
     <string name="insight_historical_return_title_greed">What happened after that?</string>
     <string name="score_explorer_subtitle_greed">What came next after a day with this score?</string>
     <string name="widget_updated_at">as of %1$s</string>
-    <string name="widget_chart_description">Index trend chart. Tap to switch period (3M–5Y) and index.</string>
+    <string name="widget_chart_description">Index trend chart. Tap to switch the period (3M–5Y).</string>
     <string name="widget_label_market">Global Index</string>
     <string name="widget_label_kospi">KOSPI Index</string>
     <string name="widget_label_crypto">Crypto Index</string>
     <string name="widget_label_dashboard">All Indices</string>
-    <string name="widget_label_chart">Trend Chart</string>
+    <string name="widget_label_chart">Global Trend Chart</string>
     <string name="widget_guide_section_widgets">Widget types</string>
     <string name="widget_guide_type_single">Single index gauge — Global · KOSPI · Crypto</string>
     <string name="widget_guide_section_howto">How to add</string>
@@ -578,4 +578,8 @@
     <string name="widget_guide_tip_auto">Widgets update automatically every few hours and whenever you open the app.</string>
     <string name="widget_guide_tip_launcher">Menu names may differ slightly by device and launcher.</string>
     <string name="widget_refreshing">Refreshing…</string>
+    <string name="widget_label_chart_kospi">KOSPI Trend Chart</string>
+    <string name="widget_label_chart_crypto">Crypto Trend Chart</string>
+    <string name="widget_chart_kospi_description">Index trend chart. Tap to switch the period (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Index trend chart. Tap to switch the period (3M–5Y).</string>
 </resources>

@@ -89,12 +89,12 @@ def dashboard():
     # ↻ 는 폰트 tofu 위험이라 프리뷰에선 생략 (기존 결정 유지)
     save(img, 'widget_preview_dashboard.png')
 
-def chart():
+def chart(name='Global', score='55', line=(0xFD, 0xD8, 0x35, 255), fname='widget_preview_chart.png'):
     W, H = 640, 320
     img, d = rounded_card((W, H), 40)
     f_name = font(22 * SS, bold=False); f_score = font(34 * SS); f_axis = font(15 * SS, bold=False)
-    d.text((28 * SS, 22 * SS), 'Global', font=f_name, fill=DIM)
-    d.text((115 * SS, 12 * SS), '55', font=f_score, fill=TEXT)
+    d.text((28 * SS, 22 * SS), name, font=f_name, fill=DIM)
+    d.text(((30 + 13 * len(name)) * SS, 12 * SS), score, font=f_score, fill=TEXT)
     pts = [32, 35, 41, 47, 52, 58, 57, 61, 64, 62, 66, 70, 67, 63, 60, 57, 55, 52, 54, 51, 49, 52, 55, 53, 55]
     left, right, top, bottom = 64 * SS, (W - 24) * SS, 80 * SS, (H - 48) * SS
     lo, hi = 30, 72
@@ -108,14 +108,16 @@ def chart():
         x = left + (right - left) * i / (len(pts) - 1)
         y = top + (bottom - top) * (1 - (v - lo) / (hi - lo))
         xy.append((x, y))
-    d.line(xy, fill=(0xFD, 0xD8, 0x35, 255), width=int(4.5 * SS), joint='curve')
-    d.ellipse([xy[-1][0] - 7 * SS, xy[-1][1] - 7 * SS, xy[-1][0] + 7 * SS, xy[-1][1] + 7 * SS], fill=(0xFD, 0xD8, 0x35, 255))
+    d.line(xy, fill=line, width=int(4.5 * SS), joint='curve')
+    d.ellipse([xy[-1][0] - 7 * SS, xy[-1][1] - 7 * SS, xy[-1][0] + 7 * SS, xy[-1][1] + 7 * SS], fill=line)
     for i, s in ((0, '7.29'), (len(pts) // 2, '8.13'), (len(pts) - 1, '8.27')):
         d.text((xy[i][0] - 14 * SS, (H - 34) * SS), s, font=f_axis, fill=axis)
-    save(img, 'widget_preview_chart.png')
+    save(img, fname)
 
 single('widget_preview_market.png', 55, 'Global')
 single('widget_preview_kospi.png', 49, 'KOSPI')
 single('widget_preview_crypto.png', 71, 'Crypto')
 dashboard()
 chart()
+chart('KOSPI', '49', (0xB5, 0x90, 0x00, 255), 'widget_preview_chart_kospi.png')
+chart('Crypto', '71', (0x4C, 0xAF, 0x50, 255), 'widget_preview_chart_crypto.png')
