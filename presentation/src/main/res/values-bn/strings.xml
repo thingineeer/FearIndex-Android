@@ -543,4 +543,6 @@
     <string name="insight_current_score_title_greed">%1$d-এর পরে পরিবর্তন</string>
     <string name="insight_historical_return_title_greed">তারপর কী হয়েছিল?</string>
     <string name="score_explorer_subtitle_greed">এই স্কোরের দিনের পরে কী হয়েছিল?</string>
+    <string name="widget_updated_at">%1$s পর্যন্ত</string>
+    <string name="widget_chart_description">ভয়-লোভ সূচকের ৩০ দিনের চার্ট</string>
 </resources>

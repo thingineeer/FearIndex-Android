@@ -542,4 +542,6 @@ Razmatraje zajedno s fundamentalima, tokom i makro.</string>
     <string name="insight_current_score_title_greed">Promjena nakon %1$d</string>
     <string name="insight_historical_return_title_greed">Što se dogodilo poslije?</string>
     <string name="score_explorer_subtitle_greed">Što je uslijedilo nakon dana s ovim rezultatom?</string>
+    <string name="widget_updated_at">u %1$s</string>
+    <string name="widget_chart_description">30-dnevni trend indeksa straha i pohlepe</string>
 </resources>

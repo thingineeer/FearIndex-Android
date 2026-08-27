@@ -542,4 +542,6 @@
     <string name="insight_current_score_title_greed">Изменение после %1$d</string>
     <string name="insight_historical_return_title_greed">Что было потом?</string>
     <string name="score_explorer_subtitle_greed">Что происходило после дня с таким значением?</string>
+    <string name="widget_updated_at">на %1$s</string>
+    <string name="widget_chart_description">График индекса страха и жадности за 30 дней</string>
 </resources>

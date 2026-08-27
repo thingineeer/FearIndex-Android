@@ -540,4 +540,6 @@ Interprete junto con fundamentales, flujos y macro.</string>
     <string name="insight_current_score_title_greed">Variación tras %1$d</string>
     <string name="insight_historical_return_title_greed">¿Qué pasó después?</string>
     <string name="score_explorer_subtitle_greed">¿Qué vino después de un día con esta puntuación?</string>
+    <string name="widget_updated_at">a las %1$s</string>
+    <string name="widget_chart_description">Tendencia de 30 días del índice Fear &amp; Greed</string>
 </resources>

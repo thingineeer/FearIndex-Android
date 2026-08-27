@@ -540,4 +540,6 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="insight_current_score_title_greed">Variació després de %1$d</string>
     <string name="insight_historical_return_title_greed">Què va passar després?</string>
     <string name="score_explorer_subtitle_greed">Què va venir després d\'un dia amb aquesta puntuació?</string>
+    <string name="widget_updated_at">a les %1$s</string>
+    <string name="widget_chart_description">Tendència de 30 dies de l’índex Fear &amp; Greed</string>
 </resources>

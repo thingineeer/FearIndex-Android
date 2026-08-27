@@ -539,4 +539,6 @@
     <string name="insight_current_score_title_greed">%1$d以降の変動</string>
     <string name="insight_historical_return_title_greed">その後の推移は？</string>
     <string name="score_explorer_subtitle_greed">このスコアを記録した日の後はどうなった？</string>
+    <string name="widget_updated_at">%1$s 時点</string>
+    <string name="widget_chart_description">過去30日の恐怖強欲指数チャート</string>
 </resources>

@@ -539,4 +539,6 @@
     <string name="insight_current_score_title_greed">%1$d 之后的变动</string>
     <string name="insight_historical_return_title_greed">之后走势如何？</string>
     <string name="score_explorer_subtitle_greed">记录到该分数之后，市场怎么走？</string>
+    <string name="widget_updated_at">截至 %1$s</string>
+    <string name="widget_chart_description">近30天恐惧贪婪指数走势图</string>
 </resources>

@@ -540,4 +540,6 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="insight_current_score_title_greed">Zmiana po %1$d</string>
     <string name="insight_historical_return_title_greed">Co działo się potem?</string>
     <string name="score_explorer_subtitle_greed">Co nastąpiło po dniu z tym wynikiem?</string>
+    <string name="widget_updated_at">stan na %1$s</string>
+    <string name="widget_chart_description">30-dniowy wykres indeksu strachu i chciwości</string>
 </resources>

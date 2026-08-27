@@ -557,4 +557,6 @@
     <string name="insight_current_score_title_greed">%1$d점 이후 변동</string>
     <string name="insight_historical_return_title_greed">그때 이후 변동은?</string>
     <string name="score_explorer_subtitle_greed">그 점수를 기록한 날 이후 어땠을까요?</string>
+    <string name="widget_updated_at">%1$s 기준</string>
+    <string name="widget_chart_description">최근 30일 공포탐욕지수 추이 차트</string>
 </resources>

@@ -540,4 +540,6 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="insight_current_score_title_greed">Veränderung nach %1$d</string>
     <string name="insight_historical_return_title_greed">Was geschah danach?</string>
     <string name="score_explorer_subtitle_greed">Was folgte nach einem Tag mit diesem Wert?</string>
+    <string name="widget_updated_at">Stand %1$s</string>
+    <string name="widget_chart_description">30-Tage-Trend des Fear-&amp;-Greed-Index</string>
 </resources>

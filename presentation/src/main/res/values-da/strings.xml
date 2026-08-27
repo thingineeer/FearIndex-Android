@@ -540,4 +540,6 @@ Overvej sammen med fundamentals, flow og makro.</string>
     <string name="insight_current_score_title_greed">Ændring efter %1$d</string>
     <string name="insight_historical_return_title_greed">Hvad skete der bagefter?</string>
     <string name="score_explorer_subtitle_greed">Hvad fulgte efter en dag med denne score?</string>
+    <string name="widget_updated_at">kl. %1$s</string>
+    <string name="widget_chart_description">30-dages trend for Fear &amp; Greed-indekset</string>
 </resources>

@@ -540,4 +540,6 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="insight_current_score_title_greed">Verandering na %1$d</string>
     <string name="insight_historical_return_title_greed">Wat gebeurde er daarna?</string>
     <string name="score_explorer_subtitle_greed">Wat volgde na een dag met deze score?</string>
+    <string name="widget_updated_at">per %1$s</string>
+    <string name="widget_chart_description">30-daagse trend van de Fear &amp; Greed-index</string>
 </resources>

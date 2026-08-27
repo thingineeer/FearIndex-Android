@@ -539,4 +539,6 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="insight_current_score_title_greed">Perubahan setelah %1$d</string>
     <string name="insight_historical_return_title_greed">Apa yang terjadi setelahnya?</string>
     <string name="score_explorer_subtitle_greed">Apa yang terjadi setelah hari dengan skor ini?</string>
+    <string name="widget_updated_at">per %1$s</string>
+    <string name="widget_chart_description">Grafik tren 30 hari indeks Fear &amp; Greed</string>
 </resources>

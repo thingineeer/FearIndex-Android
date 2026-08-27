@@ -539,4 +539,6 @@ Pertimbangkan bersama asas, aliran, dan makro.</string>
     <string name="insight_current_score_title_greed">Perubahan selepas %1$d</string>
     <string name="insight_historical_return_title_greed">Apa yang berlaku selepas itu?</string>
     <string name="score_explorer_subtitle_greed">Apa yang berlaku selepas hari dengan skor ini?</string>
+    <string name="widget_updated_at">setakat %1$s</string>
+    <string name="widget_chart_description">Carta arah aliran 30 hari indeks Fear &amp; Greed</string>
 </resources>

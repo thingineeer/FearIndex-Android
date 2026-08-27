@@ -562,4 +562,6 @@
     <string name="insight_current_score_title_greed">Change after %1$d</string>
     <string name="insight_historical_return_title_greed">What happened after that?</string>
     <string name="score_explorer_subtitle_greed">What came next after a day with this score?</string>
+    <string name="widget_updated_at">as of %1$s</string>
+    <string name="widget_chart_description">30-day Fear &amp; Greed trend chart</string>
 </resources>

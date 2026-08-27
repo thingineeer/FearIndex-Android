@@ -540,4 +540,6 @@
     <string name="insight_current_score_title_greed">Variation après %1$d</string>
     <string name="insight_historical_return_title_greed">Que s\'est-il passé ensuite ?</string>
     <string name="score_explorer_subtitle_greed">Que s\'est-il passé après un jour à ce score ?</string>
+    <string name="widget_updated_at">à %1$s</string>
+    <string name="widget_chart_description">Tendance 30 jours de l’indice Fear &amp; Greed</string>
 </resources>

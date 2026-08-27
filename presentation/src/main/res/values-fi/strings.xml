@@ -540,4 +540,6 @@ Harkitse yhdessä perustekijöiden, virtauksen ja makron kanssa.</string>
     <string name="insight_current_score_title_greed">Muutos arvon %1$d jälkeen</string>
     <string name="insight_historical_return_title_greed">Mitä sen jälkeen tapahtui?</string>
     <string name="score_explorer_subtitle_greed">Mitä seurasi päivän jälkeen, jolloin arvo oli tämä?</string>
+    <string name="widget_updated_at">klo %1$s</string>
+    <string name="widget_chart_description">Fear &amp; Greed -indeksin 30 päivän kehitys</string>
 </resources>

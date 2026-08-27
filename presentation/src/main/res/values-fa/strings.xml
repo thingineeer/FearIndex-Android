@@ -539,4 +539,6 @@
     <string name="insight_current_score_title_greed">تغییر پس از %1$d</string>
     <string name="insight_historical_return_title_greed">بعد از آن چه شد؟</string>
     <string name="score_explorer_subtitle_greed">پس از روزی با این امتیاز چه رخ داد؟</string>
+    <string name="widget_updated_at">تا %1$s</string>
+    <string name="widget_chart_description">نمودار روند ۳۰ روزه شاخص ترس و طمع</string>
 </resources>
