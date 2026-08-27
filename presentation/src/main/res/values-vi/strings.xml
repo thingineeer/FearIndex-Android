@@ -545,4 +545,12 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="score_explorer_subtitle_greed">Sau ngày đạt điểm này thì sao?</string>
     <string name="widget_updated_at">lúc %1$s</string>
     <string name="widget_chart_description">Biểu đồ 30 ngày của chỉ số Sợ hãi &amp; Tham lam</string>
+    <string name="widget_guide_section_widgets">Các loại tiện ích</string>
+    <string name="widget_guide_type_single">Đồng hồ một chỉ số — Toàn cầu · KOSPI · Tiền mã hóa</string>
+    <string name="widget_guide_section_howto">Cách thêm</string>
+    <string name="widget_guide_section_tips">Mẹo</string>
+    <string name="widget_guide_tip_refresh">Nhấn nút ↻ trên tiện ích để làm mới ngay lập tức.</string>
+    <string name="widget_guide_tip_resize">Nhấn giữ tiện ích để di chuyển hoặc thay đổi kích thước.</string>
+    <string name="widget_guide_tip_auto">Tiện ích tự động cập nhật vài giờ một lần và mỗi khi bạn mở ứng dụng.</string>
+    <string name="widget_guide_tip_launcher">Tên menu có thể hơi khác tùy theo thiết bị và trình khởi chạy.</string>
 </resources>

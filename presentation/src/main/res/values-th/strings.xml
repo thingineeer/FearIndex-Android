@@ -545,4 +545,12 @@
     <string name="score_explorer_subtitle_greed">หลังจากวันที่ได้คะแนนนี้ ตลาดเป็นอย่างไร?</string>
     <string name="widget_updated_at">ณ %1$s</string>
     <string name="widget_chart_description">กราฟแนวโน้มดัชนีความกลัวและความโลภ 30 วัน</string>
+    <string name="widget_guide_section_widgets">ประเภทวิดเจ็ต</string>
+    <string name="widget_guide_type_single">มาตรวัดดัชนีเดียว — ทั่วโลก · KOSPI · คริปโต</string>
+    <string name="widget_guide_section_howto">วิธีเพิ่ม</string>
+    <string name="widget_guide_section_tips">เคล็ดลับ</string>
+    <string name="widget_guide_tip_refresh">แตะปุ่ม ↻ บนวิดเจ็ตเพื่อรีเฟรชทันที</string>
+    <string name="widget_guide_tip_resize">กดวิดเจ็ตค้างไว้เพื่อย้ายหรือปรับขนาด</string>
+    <string name="widget_guide_tip_auto">วิดเจ็ตจะอัปเดตอัตโนมัติทุกสองสามชั่วโมงและทุกครั้งที่เปิดแอป</string>
+    <string name="widget_guide_tip_launcher">ชื่อเมนูอาจแตกต่างกันเล็กน้อยตามอุปกรณ์และตัวเรียกใช้งาน</string>
 </resources>

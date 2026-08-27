@@ -544,4 +544,12 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="score_explorer_subtitle_greed">Kaj je sledilo dnevu s tem rezultatom?</string>
     <string name="widget_updated_at">ob %1$s</string>
     <string name="widget_chart_description">30-dnevni trend indeksa strahu in pohlepa</string>
+    <string name="widget_guide_section_widgets">Vrste pripomočkov</string>
+    <string name="widget_guide_type_single">Merilnik enega indeksa — Globalni · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Kako dodati</string>
+    <string name="widget_guide_section_tips">Nasveti</string>
+    <string name="widget_guide_tip_refresh">Tapnite gumb ↻ na pripomočku, da ga takoj osvežite.</string>
+    <string name="widget_guide_tip_resize">Pridržite pripomoček, da ga premaknete ali spremenite njegovo velikost.</string>
+    <string name="widget_guide_tip_auto">Pripomočki se samodejno posodobijo vsakih nekaj ur in ob vsakem odprtju aplikacije.</string>
+    <string name="widget_guide_tip_launcher">Imena menijev se lahko nekoliko razlikujejo glede na napravo in zaganjalnik.</string>
 </resources>

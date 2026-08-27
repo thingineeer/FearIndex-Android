@@ -541,4 +541,12 @@
     <string name="score_explorer_subtitle_greed">记录到该分数之后，市场怎么走？</string>
     <string name="widget_updated_at">截至 %1$s</string>
     <string name="widget_chart_description">近30天恐惧贪婪指数走势图</string>
+    <string name="widget_guide_section_widgets">小组件类型</string>
+    <string name="widget_guide_type_single">单一指数仪表 — 全球 · KOSPI · 加密货币</string>
+    <string name="widget_guide_section_howto">添加方法</string>
+    <string name="widget_guide_section_tips">提示</string>
+    <string name="widget_guide_tip_refresh">点按小组件上的↻按钮即可立即刷新。</string>
+    <string name="widget_guide_tip_resize">长按小组件可移动或调整大小。</string>
+    <string name="widget_guide_tip_auto">小组件每隔几小时以及每次打开应用时会自动更新。</string>
+    <string name="widget_guide_tip_launcher">菜单名称可能因设备和启动器而略有不同。</string>
 </resources>

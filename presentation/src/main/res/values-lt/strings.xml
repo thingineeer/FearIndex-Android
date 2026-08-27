@@ -544,4 +544,12 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="score_explorer_subtitle_greed">Kas sekė po dienos su šiuo balu?</string>
     <string name="widget_updated_at">%1$s duomenimis</string>
     <string name="widget_chart_description">30 dienų baimės ir godumo indekso grafikas</string>
+    <string name="widget_guide_section_widgets">Valdiklių tipai</string>
+    <string name="widget_guide_type_single">Vieno indekso matuoklis — Pasaulinis · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Kaip pridėti</string>
+    <string name="widget_guide_section_tips">Patarimai</string>
+    <string name="widget_guide_tip_refresh">Palieskite valdiklio mygtuką ↻, kad iš karto jį atnaujintumėte.</string>
+    <string name="widget_guide_tip_resize">Palaikykite valdiklį, kad jį perkeltumėte arba pakeistumėte dydį.</string>
+    <string name="widget_guide_tip_auto">Valdikliai automatiškai atnaujinami kas kelias valandas ir kaskart atidarius programą.</string>
+    <string name="widget_guide_tip_launcher">Meniu pavadinimai gali šiek tiek skirtis priklausomai nuo įrenginio ir paleidyklės.</string>
 </resources>

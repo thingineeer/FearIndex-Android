@@ -542,4 +542,12 @@ Rozważ razem z fundamentami, przepływem i makro.</string>
     <string name="score_explorer_subtitle_greed">Co nastąpiło po dniu z tym wynikiem?</string>
     <string name="widget_updated_at">stan na %1$s</string>
     <string name="widget_chart_description">30-dniowy wykres indeksu strachu i chciwości</string>
+    <string name="widget_guide_section_widgets">Rodzaje widżetów</string>
+    <string name="widget_guide_type_single">Wskaźnik jednego indeksu — Globalny · KOSPI · Krypto</string>
+    <string name="widget_guide_section_howto">Jak dodać</string>
+    <string name="widget_guide_section_tips">Wskazówki</string>
+    <string name="widget_guide_tip_refresh">Dotknij przycisku ↻ na widżecie, aby od razu go odświeżyć.</string>
+    <string name="widget_guide_tip_resize">Przytrzymaj widżet, aby go przenieść lub zmienić jego rozmiar.</string>
+    <string name="widget_guide_tip_auto">Widżety aktualizują się automatycznie co kilka godzin i przy każdym otwarciu aplikacji.</string>
+    <string name="widget_guide_tip_launcher">Nazwy menu mogą się nieco różnić w zależności od urządzenia i launchera.</string>
 </resources>

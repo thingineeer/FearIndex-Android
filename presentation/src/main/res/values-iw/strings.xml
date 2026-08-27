@@ -541,4 +541,12 @@
     <string name="score_explorer_subtitle_greed">מה קרה אחרי יום עם ציון כזה?</string>
     <string name="widget_updated_at">נכון ל-%1$s</string>
     <string name="widget_chart_description">מגמת 30 יום של מדד הפחד והחמדנות</string>
+    <string name="widget_guide_section_widgets">סוגי ווידג\'טים</string>
+    <string name="widget_guide_type_single">מד מדד יחיד — גלובלי · KOSPI · קריפטו</string>
+    <string name="widget_guide_section_howto">איך מוסיפים</string>
+    <string name="widget_guide_section_tips">טיפים</string>
+    <string name="widget_guide_tip_refresh">הקישו על כפתור ה-↻ בווידג\'ט כדי לרענן אותו מיד.</string>
+    <string name="widget_guide_tip_resize">לחצו לחיצה ארוכה על ווידג\'ט כדי להזיז אותו או לשנות את גודלו.</string>
+    <string name="widget_guide_tip_auto">הווידג\'טים מתעדכנים אוטומטית כל כמה שעות ובכל פעם שפותחים את האפליקציה.</string>
+    <string name="widget_guide_tip_launcher">שמות התפריטים עשויים להשתנות מעט בהתאם למכשיר ולמשגר.</string>
 </resources>

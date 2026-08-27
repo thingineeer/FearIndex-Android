@@ -542,4 +542,12 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="score_explorer_subtitle_greed">Was folgte nach einem Tag mit diesem Wert?</string>
     <string name="widget_updated_at">Stand %1$s</string>
     <string name="widget_chart_description">30-Tage-Trend des Fear-&amp;-Greed-Index</string>
+    <string name="widget_guide_section_widgets">Widget-Typen</string>
+    <string name="widget_guide_type_single">Einzelindex-Anzeige — Global · KOSPI · Krypto</string>
+    <string name="widget_guide_section_howto">So fügst du Widgets hinzu</string>
+    <string name="widget_guide_section_tips">Tipps</string>
+    <string name="widget_guide_tip_refresh">Tippe auf die ↻-Taste eines Widgets, um es sofort zu aktualisieren.</string>
+    <string name="widget_guide_tip_resize">Halte ein Widget gedrückt, um es zu verschieben oder die Größe zu ändern.</string>
+    <string name="widget_guide_tip_auto">Widgets werden alle paar Stunden und bei jedem Öffnen der App automatisch aktualisiert.</string>
+    <string name="widget_guide_tip_launcher">Menünamen können je nach Gerät und Launcher leicht abweichen.</string>
 </resources>

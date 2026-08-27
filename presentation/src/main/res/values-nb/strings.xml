@@ -542,4 +542,12 @@ Vurder i sammenheng med fundamentale, flyt og makro.</string>
     <string name="score_explorer_subtitle_greed">Hva fulgte etter en dag med denne verdien?</string>
     <string name="widget_updated_at">kl. %1$s</string>
     <string name="widget_chart_description">30-dagers trend for Fear &amp; Greed-indeksen</string>
+    <string name="widget_guide_section_widgets">Widgettyper</string>
+    <string name="widget_guide_type_single">Måler for én indeks — Global · KOSPI · Krypto</string>
+    <string name="widget_guide_section_howto">Slik legger du til</string>
+    <string name="widget_guide_section_tips">Tips</string>
+    <string name="widget_guide_tip_refresh">Trykk på ↻-knappen på en widget for å oppdatere den med en gang.</string>
+    <string name="widget_guide_tip_resize">Hold inne en widget for å flytte den eller endre størrelsen.</string>
+    <string name="widget_guide_tip_auto">Widgeter oppdateres automatisk med noen timers mellomrom og hver gang du åpner appen.</string>
+    <string name="widget_guide_tip_launcher">Menynavn kan variere litt avhengig av enhet og launcher.</string>
 </resources>

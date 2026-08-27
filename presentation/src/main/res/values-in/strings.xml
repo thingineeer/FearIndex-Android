@@ -541,4 +541,12 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="score_explorer_subtitle_greed">Apa yang terjadi setelah hari dengan skor ini?</string>
     <string name="widget_updated_at">per %1$s</string>
     <string name="widget_chart_description">Grafik tren 30 hari indeks Fear &amp; Greed</string>
+    <string name="widget_guide_section_widgets">Jenis widget</string>
+    <string name="widget_guide_type_single">Pengukur satu indeks — Global · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Cara menambahkan</string>
+    <string name="widget_guide_section_tips">Tips</string>
+    <string name="widget_guide_tip_refresh">Ketuk tombol ↻ pada widget untuk langsung menyegarkannya.</string>
+    <string name="widget_guide_tip_resize">Tekan lama widget untuk memindahkan atau mengubah ukurannya.</string>
+    <string name="widget_guide_tip_auto">Widget diperbarui otomatis setiap beberapa jam dan setiap kali Anda membuka aplikasi.</string>
+    <string name="widget_guide_tip_launcher">Nama menu mungkin sedikit berbeda tergantung perangkat dan launcher.</string>
 </resources>

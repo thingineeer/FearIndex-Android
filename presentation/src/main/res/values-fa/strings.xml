@@ -541,4 +541,12 @@
     <string name="score_explorer_subtitle_greed">پس از روزی با این امتیاز چه رخ داد؟</string>
     <string name="widget_updated_at">تا %1$s</string>
     <string name="widget_chart_description">نمودار روند ۳۰ روزه شاخص ترس و طمع</string>
+    <string name="widget_guide_section_widgets">انواع ابزارک</string>
+    <string name="widget_guide_type_single">نمایشگر تک‌شاخص — جهانی · کوسپی · رمزارز</string>
+    <string name="widget_guide_section_howto">نحوه افزودن</string>
+    <string name="widget_guide_section_tips">نکته‌ها</string>
+    <string name="widget_guide_tip_refresh">برای تازه‌سازی فوری، روی دکمه ↻ ابزارک ضربه بزنید.</string>
+    <string name="widget_guide_tip_resize">ابزارک را نگه دارید تا جابه‌جا شود یا اندازه‌اش تغییر کند.</string>
+    <string name="widget_guide_tip_auto">ابزارک‌ها هر چند ساعت یک‌بار و هر بار که برنامه را باز می‌کنید به‌طور خودکار به‌روز می‌شوند.</string>
+    <string name="widget_guide_tip_launcher">نام منوها ممکن است بسته به دستگاه و لانچر کمی متفاوت باشد.</string>
 </resources>

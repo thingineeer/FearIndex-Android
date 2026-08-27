@@ -564,4 +564,12 @@
     <string name="score_explorer_subtitle_greed">What came next after a day with this score?</string>
     <string name="widget_updated_at">as of %1$s</string>
     <string name="widget_chart_description">30-day Fear &amp; Greed trend chart</string>
+    <string name="widget_guide_section_widgets">Widget types</string>
+    <string name="widget_guide_type_single">Single index gauge — Global · KOSPI · Crypto</string>
+    <string name="widget_guide_section_howto">How to add</string>
+    <string name="widget_guide_section_tips">Tips</string>
+    <string name="widget_guide_tip_refresh">Tap the ↻ button on a widget to refresh it right away.</string>
+    <string name="widget_guide_tip_resize">Touch and hold a widget to move or resize it.</string>
+    <string name="widget_guide_tip_auto">Widgets update automatically every few hours and whenever you open the app.</string>
+    <string name="widget_guide_tip_launcher">Menu names may differ slightly by device and launcher.</string>
 </resources>

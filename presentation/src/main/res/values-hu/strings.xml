@@ -542,4 +542,12 @@ Vegye figyelembe az alapokat, a tőkeáramlást és a makrogazdasági tényezők
     <string name="score_explorer_subtitle_greed">Mi következett egy ilyen pontszámú nap után?</string>
     <string name="widget_updated_at">%1$s-kor</string>
     <string name="widget_chart_description">A félelem–kapzsiság index 30 napos trendje</string>
+    <string name="widget_guide_section_widgets">Widgettípusok</string>
+    <string name="widget_guide_type_single">Egyindexes mérő — Globális · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Hozzáadás módja</string>
+    <string name="widget_guide_section_tips">Tippek</string>
+    <string name="widget_guide_tip_refresh">Koppints a widget ↻ gombjára az azonnali frissítéshez.</string>
+    <string name="widget_guide_tip_resize">Tartsd nyomva a widgetet az áthelyezéshez vagy átméretezéshez.</string>
+    <string name="widget_guide_tip_auto">A widgetek néhány óránként és az alkalmazás minden megnyitásakor automatikusan frissülnek.</string>
+    <string name="widget_guide_tip_launcher">A menünevek készüléktől és indítótól függően kissé eltérhetnek.</string>
 </resources>

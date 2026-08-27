@@ -542,4 +542,12 @@ Arvestage koos põhialuste, voo ja makrofaktoritega.</string>
     <string name="score_explorer_subtitle_greed">Mis järgnes päevale selle skooriga?</string>
     <string name="widget_updated_at">seisuga %1$s</string>
     <string name="widget_chart_description">Fear &amp; Greed indeksi 30 päeva trend</string>
+    <string name="widget_guide_section_widgets">Vidinate tüübid</string>
+    <string name="widget_guide_type_single">Ühe indeksi näidik — Globaalne · KOSPI · Krüpto</string>
+    <string name="widget_guide_section_howto">Kuidas lisada</string>
+    <string name="widget_guide_section_tips">Nõuanded</string>
+    <string name="widget_guide_tip_refresh">Puuduta vidina nuppu ↻, et seda kohe värskendada.</string>
+    <string name="widget_guide_tip_resize">Hoia vidinat all, et seda liigutada või suurust muuta.</string>
+    <string name="widget_guide_tip_auto">Vidinad uuenevad automaatselt iga paari tunni tagant ja iga kord, kui rakenduse avad.</string>
+    <string name="widget_guide_tip_launcher">Menüünimed võivad seadme ja käivitaja järgi veidi erineda.</string>
 </resources>

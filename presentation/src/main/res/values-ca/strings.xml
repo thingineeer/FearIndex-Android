@@ -542,4 +542,12 @@ Considereu-ho juntament amb fonamentals, flux i macroeconomia.</string>
     <string name="score_explorer_subtitle_greed">Què va venir després d\'un dia amb aquesta puntuació?</string>
     <string name="widget_updated_at">a les %1$s</string>
     <string name="widget_chart_description">Tendència de 30 dies de l’índex Fear &amp; Greed</string>
+    <string name="widget_guide_section_widgets">Tipus de widgets</string>
+    <string name="widget_guide_type_single">Indicador d\'un sol índex — Global · KOSPI · Cripto</string>
+    <string name="widget_guide_section_howto">Com afegir-los</string>
+    <string name="widget_guide_section_tips">Consells</string>
+    <string name="widget_guide_tip_refresh">Toca el botó ↻ d\'un widget per actualitzar-lo a l\'instant.</string>
+    <string name="widget_guide_tip_resize">Mantén premut un widget per moure\'l o canviar-ne la mida.</string>
+    <string name="widget_guide_tip_auto">Els widgets s\'actualitzen automàticament cada poques hores i cada cop que obres l\'aplicació.</string>
+    <string name="widget_guide_tip_launcher">Els noms dels menús poden variar lleugerament segons el dispositiu i el launcher.</string>
 </resources>

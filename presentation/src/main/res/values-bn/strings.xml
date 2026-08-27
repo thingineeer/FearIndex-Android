@@ -545,4 +545,12 @@
     <string name="score_explorer_subtitle_greed">এই স্কোরের দিনের পরে কী হয়েছিল?</string>
     <string name="widget_updated_at">%1$s পর্যন্ত</string>
     <string name="widget_chart_description">ভয়-লোভ সূচকের ৩০ দিনের চার্ট</string>
+    <string name="widget_guide_section_widgets">উইজেটের ধরন</string>
+    <string name="widget_guide_type_single">একক সূচক গেজ — গ্লোবাল · KOSPI · ক্রিপ্টো</string>
+    <string name="widget_guide_section_howto">যোগ করার পদ্ধতি</string>
+    <string name="widget_guide_section_tips">টিপস</string>
+    <string name="widget_guide_tip_refresh">উইজেটের ↻ বোতামে ট্যাপ করলে সঙ্গে সঙ্গে রিফ্রেশ হবে।</string>
+    <string name="widget_guide_tip_resize">উইজেট সরাতে বা আকার বদলাতে সেটি চেপে ধরে রাখুন।</string>
+    <string name="widget_guide_tip_auto">উইজেট প্রতি কয়েক ঘণ্টায় এবং অ্যাপ খোলার সময় স্বয়ংক্রিয়ভাবে আপডেট হয়।</string>
+    <string name="widget_guide_tip_launcher">ডিভাইস ও লঞ্চার অনুযায়ী মেনুর নাম কিছুটা আলাদা হতে পারে।</string>
 </resources>

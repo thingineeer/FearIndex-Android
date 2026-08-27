@@ -542,4 +542,12 @@ Zvážte spolu so základmi, tokom a makro.</string>
     <string name="score_explorer_subtitle_greed">Čo nasledovalo po dni s týmto skóre?</string>
     <string name="widget_updated_at">k %1$s</string>
     <string name="widget_chart_description">30-dňový graf indexu strachu a chamtivosti</string>
+    <string name="widget_guide_section_widgets">Typy widgetov</string>
+    <string name="widget_guide_type_single">Ukazovateľ jedného indexu — Globálny · KOSPI · Krypto</string>
+    <string name="widget_guide_section_howto">Ako pridať</string>
+    <string name="widget_guide_section_tips">Tipy</string>
+    <string name="widget_guide_tip_refresh">Ťuknutím na tlačidlo ↻ na widgete ho ihneď aktualizujete.</string>
+    <string name="widget_guide_tip_resize">Podržaním widgetu ho môžete presunúť alebo zmeniť jeho veľkosť.</string>
+    <string name="widget_guide_tip_auto">Widgety sa automaticky aktualizujú každých pár hodín a pri každom otvorení aplikácie.</string>
+    <string name="widget_guide_tip_launcher">Názvy ponúk sa môžu mierne líšiť podľa zariadenia a launchera.</string>
 </resources>

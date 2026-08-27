@@ -544,4 +544,12 @@
     <string name="score_explorer_subtitle_greed">Τι ακολούθησε μετά από μια μέρα με αυτό το σκορ;</string>
     <string name="widget_updated_at">στις %1$s</string>
     <string name="widget_chart_description">Τάση 30 ημερών του δείκτη φόβου και απληστίας</string>
+    <string name="widget_guide_section_widgets">Τύποι widget</string>
+    <string name="widget_guide_type_single">Μετρητής ενός δείκτη — Παγκόσμιος · KOSPI · Κρύπτο</string>
+    <string name="widget_guide_section_howto">Πώς να προσθέσετε</string>
+    <string name="widget_guide_section_tips">Συμβουλές</string>
+    <string name="widget_guide_tip_refresh">Πατήστε το κουμπί ↻ σε ένα widget για άμεση ανανέωση.</string>
+    <string name="widget_guide_tip_resize">Κρατήστε πατημένο ένα widget για να το μετακινήσετε ή να αλλάξετε το μέγεθός του.</string>
+    <string name="widget_guide_tip_auto">Τα widget ενημερώνονται αυτόματα κάθε λίγες ώρες και κάθε φορά που ανοίγετε την εφαρμογή.</string>
+    <string name="widget_guide_tip_launcher">Τα ονόματα των μενού ενδέχεται να διαφέρουν ελαφρώς ανάλογα με τη συσκευή και τον launcher.</string>
 </resources>

@@ -544,4 +544,12 @@ Nem vērā kopā ar pamatelementiem, plūsmu un makro.</string>
     <string name="score_explorer_subtitle_greed">Kas sekoja pēc dienas ar šo rezultātu?</string>
     <string name="widget_updated_at">uz %1$s</string>
     <string name="widget_chart_description">Baiļu un alkatības indeksa 30 dienu grafiks</string>
+    <string name="widget_guide_section_widgets">Logrīku veidi</string>
+    <string name="widget_guide_type_single">Viena indeksa mērītājs — Globālais · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Kā pievienot</string>
+    <string name="widget_guide_section_tips">Padomi</string>
+    <string name="widget_guide_tip_refresh">Pieskarieties logrīka pogai ↻, lai to uzreiz atsvaidzinātu.</string>
+    <string name="widget_guide_tip_resize">Turiet logrīku nospiestu, lai to pārvietotu vai mainītu tā izmēru.</string>
+    <string name="widget_guide_tip_auto">Logrīki tiek automātiski atjaunināti ik pēc dažām stundām un katru reizi, kad atverat lietotni.</string>
+    <string name="widget_guide_tip_launcher">Izvēļņu nosaukumi var nedaudz atšķirties atkarībā no ierīces un palaidēja.</string>
 </resources>

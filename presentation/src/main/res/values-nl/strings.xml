@@ -542,4 +542,12 @@ Overweeg samen met fundamentals, stroom en macro.</string>
     <string name="score_explorer_subtitle_greed">Wat volgde na een dag met deze score?</string>
     <string name="widget_updated_at">per %1$s</string>
     <string name="widget_chart_description">30-daagse trend van de Fear &amp; Greed-index</string>
+    <string name="widget_guide_section_widgets">Widgettypen</string>
+    <string name="widget_guide_type_single">Meter met één index — Wereldwijd · KOSPI · Crypto</string>
+    <string name="widget_guide_section_howto">Zo voeg je widgets toe</string>
+    <string name="widget_guide_section_tips">Tips</string>
+    <string name="widget_guide_tip_refresh">Tik op de ↻-knop van een widget om deze direct te vernieuwen.</string>
+    <string name="widget_guide_tip_resize">Houd een widget ingedrukt om deze te verplaatsen of het formaat te wijzigen.</string>
+    <string name="widget_guide_tip_auto">Widgets worden elke paar uur en telkens wanneer je de app opent automatisch bijgewerkt.</string>
+    <string name="widget_guide_tip_launcher">Menunamen kunnen per apparaat en launcher iets verschillen.</string>
 </resources>

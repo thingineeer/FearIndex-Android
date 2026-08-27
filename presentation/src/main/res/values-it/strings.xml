@@ -542,4 +542,12 @@ Considera insieme ai fondamentali, flussi e macro.</string>
     <string name="score_explorer_subtitle_greed">Cosa è venuto dopo un giorno con questo punteggio?</string>
     <string name="widget_updated_at">alle %1$s</string>
     <string name="widget_chart_description">Andamento a 30 giorni dell’indice Fear &amp; Greed</string>
+    <string name="widget_guide_section_widgets">Tipi di widget</string>
+    <string name="widget_guide_type_single">Indicatore a indice singolo — Globale · KOSPI · Cripto</string>
+    <string name="widget_guide_section_howto">Come aggiungere</string>
+    <string name="widget_guide_section_tips">Suggerimenti</string>
+    <string name="widget_guide_tip_refresh">Tocca il pulsante ↻ di un widget per aggiornarlo subito.</string>
+    <string name="widget_guide_tip_resize">Tieni premuto un widget per spostarlo o ridimensionarlo.</string>
+    <string name="widget_guide_tip_auto">I widget si aggiornano automaticamente ogni poche ore e a ogni apertura dell\'app.</string>
+    <string name="widget_guide_tip_launcher">I nomi dei menu possono variare leggermente in base al dispositivo e al launcher.</string>
 </resources>
