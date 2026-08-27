@@ -22,6 +22,12 @@ val WidgetPlaceholderColor = Color(0xFF5A5A5A)
 
 /** 컬러 배경 위 텍스트 — 대비를 위해 흰색/근접 흰색. */
 val WidgetTextColor = Color(0xFFFFFFFF)
+
+/** iOS 위젯 룩 — 다크 카드 배경 / 전일 변화 색 */
+val WidgetCardBackground = Color(0xFF1C1C1E)
+val WidgetChangeUpColor = Color(0xFF4CAF50)
+val WidgetChangeDownColor = Color(0xFFE53935)
+val WidgetChangeFlatColor = Color(0xFF9E9E9E)
 val WidgetTextColorDim = Color(0xFFF2F2F2)
 
 /** 대시보드 위젯의 바깥 배경. */
