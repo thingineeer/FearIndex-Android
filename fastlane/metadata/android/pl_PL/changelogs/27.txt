@@ -1,1 +1,1 @@
-v1.6.1: Ulepszono wyświetlanie reklam na ekranie KOSPI i stabilność aplikacji.
+v1.6.1: Przeprojektowane widżety ekranu głównego — nowe widżety wskaźnika 1×1, wszystkich indeksów i wykresu trendu. Ulepszono wyświetlanie reklam i stabilność aplikacji.

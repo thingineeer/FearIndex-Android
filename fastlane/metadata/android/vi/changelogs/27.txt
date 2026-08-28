@@ -1,1 +1,1 @@
-v1.6.1: Cải thiện hiển thị quảng cáo trên màn hình KOSPI và độ ổn định của ứng dụng.
+v1.6.1: Thiết kế lại tiện ích màn hình chính — thêm tiện ích đồng hồ 1×1, tất cả chỉ số và biểu đồ xu hướng. Cải thiện hiển thị quảng cáo và độ ổn định của ứng dụng.

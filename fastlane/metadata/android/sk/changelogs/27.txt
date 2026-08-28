@@ -1,1 +1,1 @@
-v1.6.1: Vylepšené zobrazovanie reklám na obrazovke KOSPI a stabilita aplikácie.
+v1.6.1: Prepracované widgety domovskej obrazovky – nové widgety ukazovateľa 1×1, všetkých indexov a grafu trendu. Vylepšené zobrazenie reklám a stabilita aplikácie.

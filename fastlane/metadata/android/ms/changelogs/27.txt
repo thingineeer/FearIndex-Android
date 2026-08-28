@@ -1,1 +1,1 @@
-v1.6.1: Paparan iklan pada skrin KOSPI dan kestabilan aplikasi dipertingkatkan.
+v1.6.1: Widget skrin utama direka semula — widget tolok 1×1, semua indeks dan carta trend baharu. Paparan iklan dan kestabilan aplikasi dipertingkat.

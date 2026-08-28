@@ -1,1 +1,1 @@
-v1.6.1: Advertentieweergave op het KOSPI-scherm en app-stabiliteit verbeterd.
+v1.6.1: Startschermwidgets opnieuw ontworpen — nieuwe 1×1-meter, alle-indexen- en trendgrafiekwidgets. Advertentieweergave en app-stabiliteit verbeterd.
