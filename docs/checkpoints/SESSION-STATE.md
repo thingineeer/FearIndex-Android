@@ -3,41 +3,34 @@
 > 최신 진입점: @../../.claude/memory/resume-FearIndex-Android.md (이 파일과 동기, resume 스킬용)
 
 ## Date
-2026-08-23 (광고 미노출 제보 분석 + 요금 점검 세션)
+2026-08-28 (v1.6.1 배포 세션)
 
 ## Branch
-`dev`(ab1e31a = origin/dev, 전 브랜치·태그 동기화 완료). worktree 없음. **⚠️ Play production 은 v1.6.0(vc26)인데 이 레포엔 없음 — 다른 맥에서 push 필요.**
+`dev` = origin/dev (clean). 브랜치는 `dev`/`main`/`release` 3개뿐(머지 완료 feature 브랜치 local·remote 전부 삭제). worktree 없음.
+
+## 배포 상태
+- **Play production = v1.6.1 / versionCode 27** — 2026-08-28 12:08 KST `fastlane production` 업로드 → 관리형 게시 OFF, 자동 검토 통과 → **12:49 KST 공개 리스팅 1.6.1 전파 확인**(릴리즈노트 "Redesigned home screen widgets…"). 트랙 production=[27], internal=[23,22].
+- `release` = dev 머지(b654a7dc), 태그 **v1.6.1** push 완료. 다음 배포는 vc28.
+- 서명: 업로드 키 SHA-1 `CE:08:B4…`(SSOT `~/thingineeer-env/android/fearindex/`, 로컬 `~/fearindex-secrets/` 동일 확인).
+- RC `force_update_minimum_version`[Android] = `1.6` 유지 — **1.6.1 상향 여부 사용자 결정 대기**.
 
 ## ⚡ 한 줄 요약
+v1.6.1 = 위젯 전면 리디자인(1×1 게이지 3종·통합·차트 Global/KOSPI/Crypto·↻ WorkManager·피커 previewImage/label) + 위젯 가이드 Android 재작성 + 앱명 45 locale + 온보딩 코치마크 개선 + 등급 원점수 기준·경계 윗 밴드(55.0=탐욕) 3플랫폼 통일 + 탐욕 카피 통일 + 인터스티셜 10분 세션 리셋·KOSPI 진입 즉시 노출 + ko '줍줍' ASO. 1,132 tests/0, S22 release ANR 3시나리오 통과.
 
-**광고 "안 뜬다"는 GA/Crashlytics/서버 실측으로 재현 안 됨(배너 실패 481→80 급감).** 진짜 문제는 v1.6.0 소스 부재(✅ 8/24 두 맥 dev 머지로 해소). 4계정 요금 8월 ≈₩8.4k 정상. 제보 원인 = 인터스티셜 세션 미리셋(iOS v1.9.2 미포팅) → **A안 TDD 수정 완료(dev ba21b53, 유닛 1,037/0)**. 배너 결함 2건(320dp 하한, AndroidView stale)은 별건. 상세 @../../.claude/memory/bugs-fixed.md 70번(재번호).
+## Completed (이번 세션, 2026-08-27~28)
+- [x] 위젯 리디자인·피커 미리보기·가이드 재작성(73번) / 등급 원점수·경계 통일(73번 후속 2·3) / release S22 ANR 판정 통과(후속 4)
+- [x] KOSPI 인터스티셜 5초 지연 제거 → 즉시 노출(TDD + S22 E2E 300ms)
+- [x] changelog 27 위젯 문구로 45 locale 갱신 → v1.6.1 업로드·전파·release 머지·태그
+- [x] AdMob 정책센터 실측: 제한 1%(965요청) = 1.0.1 구버전 잔여, 조치 불필요
+- [x] 3세션(메인/토스/안드로이드) save-session + push 완료
 
-## 이전 세션 요약 (2026-08-19)
-
-v1.5.3(vc25) production 업로드 → 게시 완료(이후 1.6.0 으로 대체됨). API health·푸시 임계치·결제 시트·광고 전수 검증 GREEN.
-
-## Completed (이번 세션)
-
-- [x] v1.5.2(vc24) → v1.5.3(vc25) 연속 배포. vc23은 fastlane internal draft로 소모(60번 함정)
-- [x] 홈 배너 콜드스타트 미노출 규명·수정 — Next-Gen 동일 AdView 재-loadAd 무산(CANCELLED+NO_FILL 쌍) → 재시도마다 새 AdView + ON_RESUME 복귀 재시도 + `FearIndexAds` 진단 로그(66번)
-- [x] 알림 내역 prune 표시/영속 분리 — 프리미엄 구매 즉시 복원 보장 + 시계 스큐 손실 해소, 회귀 7건(65번)
-- [x] 푸시 임계치 E2E — KOSPI 이상/Crypto 이하 실수신 + 내역 기록 + 서버 즉시체크 16초(67번)
-- [x] 결제 — Play 결제 시트 실진입까지 검증(사이드로드 거부는 환경 제약), TDD green(67번)
-- [x] AdMob 테스트 기기(S22) 등록 + 앱오픈 정책 실기기 검증 + RC app_open 4키 게시(61·66번)
-- [x] Unity/AdMob/Firebase 콘솔 실측 — Pangle 출처=딸깍, iOS Unity 매핑 정상(61·63번)
-
-## Next (다음 세션) — 상세는 resume 파일
-
-0. **다른 맥에서 1.6.0 빌드 커밋 `7ca2711` push**(사용자) → v1.6.0 태그 → dev 머지 → `fastlane production` 게시(승인됨) → v1.6.1 태그. 상세 절차 resume 파일 '재개 시 첫 행동'
-0-1. 1.6.0 위에 인터스티셜 fix 합쳐 1.6.1 빌드 → 실기기 30분 시나리오 확인 / 배너 결함 2건(70번 ①) 별건 수정
-1. ~~1.5.3 게시 확인~~ 완료(1.6.0 으로 대체)
-2. 게시 후 Play 설치본 실결제 완주(사용자)
-3. 배포 후 감시: #96 MotionEvent·프리미엄 non-fatal·배너 match rate
-4. 사용자 결정 2건(알림내역 전용 유닛·IAP 표시명) + 1.5.4 후보(@docs/checkpoints/RELEASE-1.5.3-CHECKLIST.md A~H)
+## Next
+1. RC force `1.6`→`1.6.1` 상향 여부(사용자) → 상향 시 32번 절차(get→한 줄→deploy→라이브 재조회)
+2. Crashlytics 1.6.1 FATAL 0·위젯 ANR·`AppCheckTokenProbe` 추이 감시(배포 +1일)
+3. Play 리뷰 2건 답글(사용자 직접), 푸시 트레이 표시 최종 1회 확인(메인 세션 요청)
+4. 백로그: 배너 320dp 하한·AndroidView stale(70번), Fastfile internal `release_status`, Firebase 폐기 지문 AD:48 제거
 
 ## 참조
-
-- @../../.claude/memory/bugs-fixed.md 59~67번 — 세션 상세
-- @../../.claude/memory/deployment.md — 출시 이력·상수
-- @RELEASE-1.5.3-CHECKLIST.md — 잔여 이슈·게이트
-- @../QA-PREMIUM.md — 결제 QA 시나리오·주의
+- @../../.claude/memory/bugs-fixed.md 72~73번 — 세션 상세
+- @../../.claude/memory/deployment.md — 출시 이력(v1.6.1 행)·상수
+- @HANDOFF-v1.6.1.md — (완료) 게시 절차
