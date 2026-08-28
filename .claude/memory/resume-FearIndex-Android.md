@@ -16,8 +16,10 @@
 - [x] 위젯: 게이지 끝 캡(o) 제거, 1×1 정사각 카드, 통합 위젯 ROW/LIST 비율 배치(TDD)+어느 리사이즈에도 안 잘림(S22 실기기 루프 검증), 피커 설명 "S&P 500 추종" 축약, 새로고침 스피너(구글식)
 - [x] 차트 위젯: 기간 3M/6M/1Y/3Y/5Y 탭 전환(TDD, 인스턴스별 저장)+peak 보존 다운샘플+렌더 우선 구조(provideContent 내 LaunchedEffect — 탭 즉시 반응) / **지수 스왑 폐기 → Global/KOSPI/Crypto 차트 3종 분리**(사용자 결정, 라벨·설명·프리뷰 ×45)
 - [x] ↻ 새로고침 브로드캐스트 ANR → WidgetRefreshWorker(expedited) 이관
-- [ ] **⚠️ 이어서: ANR 최종 판정** — 잔여 ANR 은 debug 콜드스타트 DEX 검증(트레이스 확보, 앱 코드 이전 단계)이 원인 추정. **release 빌드 실기기(S22)로 3시나리오(콜드 ↻/기간 연타/콜드 실행) 재검증** 필요. 에뮬은 부하 커서 판정 보류(release 콜드 7.6s 나옴)
-- [ ] 이어서: KOSPI/Crypto 차트 위젯 실배치 육안 1회, S22 위젯 전수 확인, 커밋 그래프 정리 후 v1.6.1 게시 여부 판단
+- [x] **ANR 최종 판정 = 통과(2026-08-28, release 1.6.1 S22 실기기, dev 51082e0f)** — 3시나리오 전부 ANR 0: ① 콜드 실행(MainActivity 포커스 정상) ② 콜드 ↻(통합·차트 각각 force-stop 후 탭 → WidgetRefreshWorker 1.1s SUCCESS) ③ 콜드 기간 연타 15회(재렌더 정상, `/data/anr` 최신 파일 6/22 그대로). 잔여 ANR 은 debug DEX 검증 원인으로 확정 — release 무관.
+- [x] KOSPI/Crypto 차트 위젯: Crypto 차트 release 실배치 육안 OK(73·3M·y 77/41/5·x 5.31→8.28·기준시각), 통합(2×2 리스트)·Global 차트도 release 배치 OK. ⚠️ S22 의 debug 앱은 검증 위해 **제거함**(사용자 승인) — S22 에는 release(vc27 사이드로드)만 존재, 위젯 3개(통합·Global 차트·Crypto 차트) 배치 상태
+- [x] 머지 완료 feature 브랜치 5개 로컬+origin 삭제(사용자 지시) → 브랜치 dev/main/release 만 남음. dev 51082e0f 전체 테스트 1,132/0
+- [ ] **v1.6.1(vc27) 게시** — 검증 전부 통과, 사용자 최종 go 대기
 
 ## 2026-08-27 세션 (이 맥, 상세 72·73번)
 - [x] 탐욕(≥70) 인앱 카피 과열 프레임 통일 — GreedFrame(TDD) + 3곳 문구 분기 + 3키×45 locale, dev 머지·push. 푸시 문구는 서버(메인 세션) 담당. **v1.6.1 미게시 상태 유지 → 이 변경도 v1.6.1 에 포함됨**
