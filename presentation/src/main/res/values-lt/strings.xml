@@ -423,10 +423,10 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="widget_guide_step5">Bakstelėkite valdiklį bet kada, kad atidarytumėte programėlę.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Pasaulinis (S&amp;P 500) baimės ir godumo indeksas</string>
-    <string name="widget_kospi_description">KOSPI baimės ir godumo indeksas</string>
-    <string name="widget_crypto_description">Kripto (BTC) baimės ir godumo indeksas</string>
-    <string name="widget_dashboard_description">Visi trys baimės ir godumo indeksai</string>
+    <string name="widget_market_description">Seka S&amp;P 500</string>
+    <string name="widget_kospi_description">Seka KOSPI</string>
+    <string name="widget_crypto_description">Seka BTC</string>
+    <string name="widget_dashboard_description">Rodo pasaulinį, KOSPI ir kripto indeksus iš karto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Pašalinti reklamas</string>
     <string name="settings_remove_ads_description">Vienkartinis pirkinys. Visam laikui pašalina visas reklamas.</string>
@@ -539,4 +539,27 @@ Verkite kartu su fundamentalais, srautais ir makroekonomika.</string>
     <string name="insight_historical_return_basis_crypto">Remiantis Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Uždaryti</string>
+    <string name="insight_current_score_title_greed">Pokytis po %1$d</string>
+    <string name="insight_historical_return_title_greed">Kas nutiko po to?</string>
+    <string name="score_explorer_subtitle_greed">Kas sekė po dienos su šiuo balu?</string>
+    <string name="widget_updated_at">%1$s duomenimis</string>
+    <string name="widget_chart_description">Indekso grafikas. Palieskite, kad pakeistumėte laikotarpį (3M–5Y).</string>
+    <string name="widget_label_market">Pasaulinis indeksas</string>
+    <string name="widget_label_kospi">KOSPI indeksas</string>
+    <string name="widget_label_crypto">Kripto indeksas</string>
+    <string name="widget_label_dashboard">Visi indeksai</string>
+    <string name="widget_label_chart">Global Tendencijų grafikas</string>
+    <string name="widget_guide_section_widgets">Valdiklių tipai</string>
+    <string name="widget_guide_type_single">Vieno indekso matuoklis — Pasaulinis · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Kaip pridėti</string>
+    <string name="widget_guide_section_tips">Patarimai</string>
+    <string name="widget_guide_tip_refresh">Palieskite valdiklio mygtuką ↻, kad iš karto jį atnaujintumėte.</string>
+    <string name="widget_guide_tip_resize">Palaikykite valdiklį, kad jį perkeltumėte arba pakeistumėte dydį.</string>
+    <string name="widget_guide_tip_auto">Valdikliai automatiškai atnaujinami kas kelias valandas ir kaskart atidarius programą.</string>
+    <string name="widget_guide_tip_launcher">Meniu pavadinimai gali šiek tiek skirtis priklausomai nuo įrenginio ir paleidyklės.</string>
+    <string name="widget_refreshing">Atnaujinama…</string>
+    <string name="widget_label_chart_kospi">KOSPI Tendencijų grafikas</string>
+    <string name="widget_label_chart_crypto">Crypto Tendencijų grafikas</string>
+    <string name="widget_chart_kospi_description">Indekso grafikas. Palieskite, kad pakeistumėte laikotarpį (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Indekso grafikas. Palieskite, kad pakeistumėte laikotarpį (3M–5Y).</string>
 </resources>

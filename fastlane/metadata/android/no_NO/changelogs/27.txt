@@ -1,0 +1,1 @@
+v1.6.1: Nydesignede startskjerm-widgeter – nye widgeter for 1×1-måler, alle indekser og trenddiagram. Forbedret annonsevisning og appstabilitet.

@@ -31,8 +31,10 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 KOTLIN_PATH = os.path.join(
     ROOT, "domain/src/main/kotlin/th1ngjin/fearindex/domain/defaults/DefaultReturnData.kt"
 )
-DEFAULT_OUTPUT_DIR = (
-    "/Users/imyeongjin/Desktop/worktrees/fi-v194-design/firebase-functions/src/data-aggregation/output"
+# iOS 집계 출력 폴더. 기본은 형제 worktree(../worktrees/FearIndex-iOS/fi-v194-design), 다른 위치면 IOS_RETURN_DATA_DIR 로 지정
+DEFAULT_OUTPUT_DIR = os.environ.get(
+    "IOS_RETURN_DATA_DIR",
+    os.path.join(ROOT, "..", "worktrees/FearIndex-iOS/fi-v194-design/firebase-functions/src/data-aggregation/output"),
 )
 HORIZON_KEYS = ("oneMonth", "threeMonth", "sixMonth", "oneYear")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")

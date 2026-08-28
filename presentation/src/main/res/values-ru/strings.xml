@@ -423,10 +423,10 @@
     <string name="widget_guide_step5">Нажмите на виджет в любой момент, чтобы открыть приложение.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Глобальный (S&amp;P 500) индекс страха и жадности</string>
-    <string name="widget_kospi_description">Индекс страха и жадности KOSPI</string>
-    <string name="widget_crypto_description">Криптовалютный (BTC) индекс страха и жадности</string>
-    <string name="widget_dashboard_description">Все три индекса страха и жадности</string>
+    <string name="widget_market_description">Отслеживает S&amp;P 500</string>
+    <string name="widget_kospi_description">Отслеживает KOSPI</string>
+    <string name="widget_crypto_description">Отслеживает BTC</string>
+    <string name="widget_dashboard_description">Показывает глобальный, KOSPI и криптоиндекс одним взглядом.</string>
     <string name="settings_premium_header">Премиум</string>
     <string name="settings_remove_ads_title">Убрать рекламу</string>
     <string name="settings_remove_ads_description">Разовая покупка. Навсегда убирает всю рекламу.</string>
@@ -539,4 +539,27 @@
     <string name="insight_historical_return_basis_crypto">На основе Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Закрыть</string>
+    <string name="insight_current_score_title_greed">Изменение после %1$d</string>
+    <string name="insight_historical_return_title_greed">Что было потом?</string>
+    <string name="score_explorer_subtitle_greed">Что происходило после дня с таким значением?</string>
+    <string name="widget_updated_at">на %1$s</string>
+    <string name="widget_chart_description">График индекса. Касание меняет период (3M–5Y).</string>
+    <string name="widget_label_market">Глобальный индекс</string>
+    <string name="widget_label_kospi">Индекс KOSPI</string>
+    <string name="widget_label_crypto">Криптоиндекс</string>
+    <string name="widget_label_dashboard">Все индексы</string>
+    <string name="widget_label_chart">Global График тренда</string>
+    <string name="widget_guide_section_widgets">Типы виджетов</string>
+    <string name="widget_guide_type_single">Датчик одного индекса — Глобальный · KOSPI · Крипто</string>
+    <string name="widget_guide_section_howto">Как добавить</string>
+    <string name="widget_guide_section_tips">Советы</string>
+    <string name="widget_guide_tip_refresh">Нажмите кнопку ↻ на виджете, чтобы сразу обновить его.</string>
+    <string name="widget_guide_tip_resize">Удерживайте виджет, чтобы переместить его или изменить размер.</string>
+    <string name="widget_guide_tip_auto">Виджеты обновляются автоматически каждые несколько часов и при каждом открытии приложения.</string>
+    <string name="widget_guide_tip_launcher">Названия меню могут немного отличаться в зависимости от устройства и лаунчера.</string>
+    <string name="widget_refreshing">Обновление…</string>
+    <string name="widget_label_chart_kospi">KOSPI График тренда</string>
+    <string name="widget_label_chart_crypto">Crypto График тренда</string>
+    <string name="widget_chart_kospi_description">График индекса. Касание меняет период (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">График индекса. Касание меняет период (3M–5Y).</string>
 </resources>

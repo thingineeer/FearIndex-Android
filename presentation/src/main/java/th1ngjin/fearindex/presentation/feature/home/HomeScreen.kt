@@ -62,7 +62,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.EntryPointAccessors
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.ads.AdRequestAvailability
-import th1ngjin.fearindex.core.remoteconfig.AdsRemoteConfig
 import th1ngjin.fearindex.core.util.ShareUrlBuilder
 import th1ngjin.fearindex.domain.entity.ExchangeRateQuote
 import th1ngjin.fearindex.domain.entity.FearIndex
@@ -95,6 +94,7 @@ import th1ngjin.fearindex.presentation.component.InsightTeaserCard
 import th1ngjin.fearindex.presentation.component.InterstitialAdCoordinator
 import th1ngjin.fearindex.presentation.component.InterstitialAdPolicyConfig
 import th1ngjin.fearindex.presentation.component.InterstitialAdSessionState
+import th1ngjin.fearindex.presentation.component.interstitialAdPolicyConfig
 import th1ngjin.fearindex.presentation.component.KospiMethodInfoSheet
 import th1ngjin.fearindex.presentation.component.KospiSignalBreakdownCard
 import th1ngjin.fearindex.presentation.component.SimilarEventsCard
@@ -303,8 +303,9 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // 1. Title: "공포 탐욕 지수" (center) + share button (right)
-        val loadedScore = (currentState as? FearIndexState.Loaded)?.fearIndex?.roundedScore
-        val loadedRating = loadedScore?.let { ratingLabel(it) }
+        val loadedIndex = (currentState as? FearIndexState.Loaded)?.fearIndex
+        val loadedScore = loadedIndex?.roundedScore
+        val loadedRating = loadedIndex?.let { ratingLabel(it.rating) }
         TitleBar(
             currentScore = loadedScore,
             ratingLabel = loadedRating,
@@ -635,7 +636,7 @@ private fun LoadedContent(
 
     // 1. Fear Gauge (온보딩 1~3단계 하이라이트 앵커)
     Box(modifier = Modifier.tourAnchor(tour, OnboardingAnchor.GAUGE)) {
-        FearGaugeView(score = score)
+        FearGaugeView(score = score, rating = fearIndex.rating)
     }
 
     Spacer(modifier = Modifier.height(20.dp))
@@ -783,15 +784,6 @@ private fun FearIndexType.assetTickerLabel(): String = when (this) {
     FearIndexType.CRYPTO -> "BTC"
 }
 
-private fun AdsRemoteConfig.interstitialAdPolicyConfig(canRequestAds: Boolean): InterstitialAdPolicyConfig =
-    InterstitialAdPolicyConfig(
-        canRequestAds = canRequestAds,
-        adsEnabled = adsEnabled,
-        interstitialEnabled = interstitialAdsEnabled,
-        kospiEntryEnabled = kospiInterstitialEnabled,
-        sessionCap = interstitialSessionCap,
-        cooldownMillis = interstitialCooldownMillis,
-    )
 
 private tailrec fun Context.findActivity(): Activity? = when (this) {
     is Activity -> this

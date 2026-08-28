@@ -423,10 +423,10 @@
     <string name="widget_guide_step5">Докоснете уиджета по всяко време, за да отворите приложението.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Глобален (S&amp;P 500) индекс на страха и алчността</string>
-    <string name="widget_kospi_description">Индекс на страха и алчността KOSPI</string>
-    <string name="widget_crypto_description">Крипто (BTC) индекс на страха и алчността</string>
-    <string name="widget_dashboard_description">И трите индекса на страха и алчността</string>
+    <string name="widget_market_description">Следва S&amp;P 500</string>
+    <string name="widget_kospi_description">Следва KOSPI</string>
+    <string name="widget_crypto_description">Следва BTC</string>
+    <string name="widget_dashboard_description">Показва глобалния, KOSPI и крипто индекса с един поглед.</string>
     <string name="settings_premium_header">Премиум</string>
     <string name="settings_remove_ads_title">Премахване на рекламите</string>
     <string name="settings_remove_ads_description">Еднократна покупка. Премахва всички реклами завинаги.</string>
@@ -539,4 +539,27 @@
     <string name="insight_historical_return_basis_crypto">Въз основа на Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Затвори</string>
+    <string name="insight_current_score_title_greed">Промяна след %1$d</string>
+    <string name="insight_historical_return_title_greed">Какво последва?</string>
+    <string name="score_explorer_subtitle_greed">Какво последва след ден с този резултат?</string>
+    <string name="widget_updated_at">към %1$s</string>
+    <string name="widget_chart_description">Графика на индекса. Докоснете за смяна на периода (3M–5Y).</string>
+    <string name="widget_label_market">Глобален индекс</string>
+    <string name="widget_label_kospi">Индекс KOSPI</string>
+    <string name="widget_label_crypto">Крипто индекс</string>
+    <string name="widget_label_dashboard">Всички индекси</string>
+    <string name="widget_label_chart">Global Графика на тренда</string>
+    <string name="widget_guide_section_widgets">Видове уиджети</string>
+    <string name="widget_guide_type_single">Датчик за един индекс — Глобален · KOSPI · Крипто</string>
+    <string name="widget_guide_section_howto">Как да добавите</string>
+    <string name="widget_guide_section_tips">Съвети</string>
+    <string name="widget_guide_tip_refresh">Докоснете бутона ↻ на уиджет, за да го обновите веднага.</string>
+    <string name="widget_guide_tip_resize">Задръжте уиджет, за да го преместите или преоразмерите.</string>
+    <string name="widget_guide_tip_auto">Уиджетите се обновяват автоматично на всеки няколко часа и при всяко отваряне на приложението.</string>
+    <string name="widget_guide_tip_launcher">Имената на менютата може леко да се различават според устройството и лаунчъра.</string>
+    <string name="widget_refreshing">Обновяване…</string>
+    <string name="widget_label_chart_kospi">KOSPI Графика на тренда</string>
+    <string name="widget_label_chart_crypto">Crypto Графика на тренда</string>
+    <string name="widget_chart_kospi_description">Графика на индекса. Докоснете за смяна на периода (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Графика на индекса. Докоснете за смяна на периода (3M–5Y).</string>
 </resources>

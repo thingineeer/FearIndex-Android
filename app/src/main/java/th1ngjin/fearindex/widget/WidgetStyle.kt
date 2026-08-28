@@ -1,6 +1,7 @@
 package th1ngjin.fearindex.widget
 
 import androidx.compose.ui.graphics.Color
+import th1ngjin.fearindex.domain.entity.FearIndex
 
 /**
  * 위젯 전용 색상/스타일 상수.
@@ -22,6 +23,12 @@ val WidgetPlaceholderColor = Color(0xFF5A5A5A)
 
 /** 컬러 배경 위 텍스트 — 대비를 위해 흰색/근접 흰색. */
 val WidgetTextColor = Color(0xFFFFFFFF)
+
+/** iOS 위젯 룩 — 다크 카드 배경 / 전일 변화 색 */
+val WidgetCardBackground = Color(0xFF1C1C1E)
+val WidgetChangeUpColor = Color(0xFF4CAF50)
+val WidgetChangeDownColor = Color(0xFFE53935)
+val WidgetChangeFlatColor = Color(0xFF9E9E9E)
 val WidgetTextColorDim = Color(0xFFF2F2F2)
 
 /** 대시보드 위젯의 바깥 배경. */
@@ -30,7 +37,16 @@ val WidgetDashboardBackground = Color(0xFF1E1E1E)
 fun widgetFearScoreColor(score: Int): Color = when {
     score <= 24 -> WidgetExtremeFear
     score <= 44 -> WidgetFear
-    score <= 55 -> WidgetNeutral
-    score <= 75 -> WidgetGreed
+    score <= 54 -> WidgetNeutral
+    score <= 74 -> WidgetGreed
     else -> WidgetExtremeGreed
+}
+
+/** 원점수 기준 등급의 색 — 현재 지수 등급 표시는 이 오버로드 사용 (표시 점수는 반올림이어도 등급은 원점수). */
+fun widgetFearScoreColor(rating: FearIndex.Rating): Color = when (rating) {
+    FearIndex.Rating.EXTREME_FEAR -> WidgetExtremeFear
+    FearIndex.Rating.FEAR -> WidgetFear
+    FearIndex.Rating.NEUTRAL -> WidgetNeutral
+    FearIndex.Rating.GREED -> WidgetGreed
+    FearIndex.Rating.EXTREME_GREED -> WidgetExtremeGreed
 }

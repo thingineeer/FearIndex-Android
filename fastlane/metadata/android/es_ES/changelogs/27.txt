@@ -1,0 +1,1 @@
+v1.6.1: Widgets de pantalla de inicio rediseñados: nuevos widgets de indicador 1×1, todos los índices y gráfico de tendencia. Mejoras en la visualización de anuncios y la estabilidad.

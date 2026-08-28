@@ -1,0 +1,1 @@
+v1.6.1: Widgets do ecrã inicial redesenhados — novos widgets de medidor 1×1, todos os índices e gráfico de tendência. Apresentação de anúncios e estabilidade da app melhoradas.

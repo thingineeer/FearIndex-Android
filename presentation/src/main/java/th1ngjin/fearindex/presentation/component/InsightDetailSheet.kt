@@ -937,9 +937,11 @@ private fun CurrentScoreStatsCard(insight: MarketInsight) {
             .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
             .padding(12.dp),
     ) {
+        val greed = th1ngjin.fearindex.presentation.common.GreedFrame.isGreed(insight.score)
         Text(
             text = stringResource(
-                th1ngjin.fearindex.presentation.R.string.insight_current_score_title,
+                if (greed) th1ngjin.fearindex.presentation.R.string.insight_current_score_title_greed
+                else th1ngjin.fearindex.presentation.R.string.insight_current_score_title,
                 insight.score,
             ),
             style = MaterialTheme.typography.labelMedium,
@@ -951,20 +953,20 @@ private fun CurrentScoreStatsCard(insight: MarketInsight) {
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
             StatItem(
-                label = stringResource(th1ngjin.fearindex.presentation.R.string.insight_current_score_avg_return),
+                label = stringResource(if (greed) th1ngjin.fearindex.presentation.R.string.insight_current_score_avg_return_greed else th1ngjin.fearindex.presentation.R.string.insight_current_score_avg_return),
                 value = formatPercent(returns.oneYear),
                 color = if (returns.oneYear >= 0) Color(0xFF4CAF50) else Color(0xFFE53935),
             )
             worstCase?.let {
                 StatItem(
-                    label = stringResource(th1ngjin.fearindex.presentation.R.string.insight_current_score_max_drawdown),
+                    label = stringResource(if (greed) th1ngjin.fearindex.presentation.R.string.insight_current_score_max_drawdown_greed else th1ngjin.fearindex.presentation.R.string.insight_current_score_max_drawdown),
                     value = formatPercent(it.oneYear),
                     color = Color(0xFFE53935),
                 )
             }
             bestCase?.let {
                 StatItem(
-                    label = stringResource(th1ngjin.fearindex.presentation.R.string.insight_current_score_best_return),
+                    label = stringResource(if (greed) th1ngjin.fearindex.presentation.R.string.insight_current_score_best_return_greed else th1ngjin.fearindex.presentation.R.string.insight_current_score_best_return),
                     value = formatPercent(it.oneYear),
                     color = Color(0xFF4CAF50),
                 )

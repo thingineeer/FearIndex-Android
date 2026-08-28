@@ -1,0 +1,1 @@
+v1.6.1: Ana ekran widget'ları yeniden tasarlandı — yeni 1×1 gösterge, tüm endeksler ve trend grafiği widget'ları. Reklam gösterimi ve uygulama kararlılığı iyileştirildi.

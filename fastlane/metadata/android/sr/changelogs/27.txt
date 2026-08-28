@@ -1,0 +1,1 @@
+v1.6.1: Redizajnirani vidžeti početnog ekrana – novi vidžeti merača 1×1, svih indeksa i grafikona trenda. Poboljšan prikaz oglasa i stabilnost aplikacije.

@@ -8,6 +8,7 @@ import th1ngjin.fearindex.domain.entity.InsightType
 import th1ngjin.fearindex.domain.entity.MarketInsight
 import th1ngjin.fearindex.domain.entity.VelocityTrend
 import th1ngjin.fearindex.presentation.R
+import th1ngjin.fearindex.presentation.common.GreedFrame
 
 @Composable
 fun insightTitle(insight: MarketInsight): String {
@@ -18,7 +19,10 @@ fun insightTitle(insight: MarketInsight): String {
         } else {
             stringResource(R.string.insight_overheat_title)
         }
-        InsightType.HISTORICAL_RETURN -> stringResource(R.string.insight_historical_return_title)
+        InsightType.HISTORICAL_RETURN -> stringResource(
+            if (GreedFrame.isGreed(insight.score)) R.string.insight_historical_return_title_greed
+            else R.string.insight_historical_return_title,
+        )
         InsightType.RETURN_CHART -> when (insight.indexType) {
             FearIndexType.MARKET -> stringResource(R.string.insight_return_chart_title_market)
             FearIndexType.KOSPI -> stringResource(R.string.insight_return_chart_title_kospi)
@@ -74,24 +78,24 @@ fun insightSummary(insight: MarketInsight): String {
 private fun nudgeTitleRes(score: Int): Int = when {
     score <= 24 -> R.string.nudge_title_extreme_fear
     score <= 44 -> R.string.nudge_title_extreme_fear
-    score <= 55 -> R.string.nudge_title_stable
-    score <= 75 -> R.string.nudge_title_extreme_greed
+    score <= 54 -> R.string.nudge_title_stable
+    score <= 74 -> R.string.nudge_title_extreme_greed
     else -> R.string.nudge_title_extreme_greed
 }
 
 private fun nudgeBodyRes(score: Int): Int = when {
     score <= 24 -> R.string.nudge_body_extreme_fear
     score <= 44 -> R.string.nudge_body_extreme_fear
-    score <= 55 -> R.string.nudge_body_stable
-    score <= 75 -> R.string.nudge_body_extreme_greed
+    score <= 54 -> R.string.nudge_body_stable
+    score <= 74 -> R.string.nudge_body_extreme_greed
     else -> R.string.nudge_body_extreme_greed
 }
 
 private fun drawdownSummaryRes(score: Int): Int = when {
     score <= 24 -> R.string.insight_drawdown_summary_extreme_fear
     score <= 44 -> R.string.insight_drawdown_summary_fear
-    score <= 55 -> R.string.insight_drawdown_summary_neutral
-    score <= 75 -> R.string.insight_drawdown_summary_greed
+    score <= 54 -> R.string.insight_drawdown_summary_neutral
+    score <= 74 -> R.string.insight_drawdown_summary_greed
     else -> R.string.insight_drawdown_summary_extreme_greed
 }
 

@@ -1,0 +1,1 @@
+v1.6.1: Tuisskerm-legstukke herontwerp – nuwe 1×1-meter-, alle-indekse- en tendensgrafiek-legstukke. Advertensievertoning en app-stabiliteit verbeter.

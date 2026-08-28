@@ -1,0 +1,1 @@
+v1.6.1: Prenovljeni pripomočki domačega zaslona – novi pripomočki merilnika 1×1, vseh indeksov in grafa trenda. Izboljšan prikaz oglasov in stabilnost aplikacije.

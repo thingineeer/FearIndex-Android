@@ -33,17 +33,17 @@ class FearIndexTest {
     }
 
     @Test
-    fun `Rating from - 45~55는 NEUTRAL`() {
+    fun `Rating from - 45~54는 NEUTRAL`() {
         assertEquals(FearIndex.Rating.NEUTRAL, FearIndex.Rating.from(45.0))
         assertEquals(FearIndex.Rating.NEUTRAL, FearIndex.Rating.from(50.0))
-        assertEquals(FearIndex.Rating.NEUTRAL, FearIndex.Rating.from(55.0))
+        assertEquals(FearIndex.Rating.NEUTRAL, FearIndex.Rating.from(54.999))
     }
 
     @Test
-    fun `Rating from - 56~75는 GREED`() {
-        assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(55.1))
+    fun `Rating from - 55~74는 GREED`() {
+        assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(55.0))
         assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(60.0))
-        assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(75.0))
+        assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(74.999))
     }
 
     @Test
@@ -63,13 +63,13 @@ class FearIndexTest {
         assertEquals(FearIndex.Rating.FEAR, FearIndex.Rating.from(44.999))
         assertEquals(FearIndex.Rating.NEUTRAL, FearIndex.Rating.from(45.0))
 
-        // 55 이하 → NEUTRAL, 55 초과 → GREED
-        assertEquals(FearIndex.Rating.NEUTRAL, FearIndex.Rating.from(55.0))
-        assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(55.001))
+        // 55 미만 → NEUTRAL, 55.0 = 경계값 윗 밴드 → GREED (iOS/서버 통일, 2026-08-27)
+        assertEquals(FearIndex.Rating.NEUTRAL, FearIndex.Rating.from(54.999))
+        assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(55.0))
 
-        // 75 이하 → GREED, 75 초과 → EXTREME_GREED
-        assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(75.0))
-        assertEquals(FearIndex.Rating.EXTREME_GREED, FearIndex.Rating.from(75.001))
+        // 75 미만 → GREED, 75.0 → EXTREME_GREED
+        assertEquals(FearIndex.Rating.GREED, FearIndex.Rating.from(74.999))
+        assertEquals(FearIndex.Rating.EXTREME_GREED, FearIndex.Rating.from(75.0))
     }
 
     private fun createFearIndex(score: Double) = FearIndex(

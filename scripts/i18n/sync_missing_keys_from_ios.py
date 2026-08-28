@@ -15,7 +15,10 @@ iOS dot.notation -> Android snake_case 매핑 규칙:
 import os, re, sys, glob
 
 ANDROID_RES = "presentation/src/main/res"
-IOS_RESOURCES = "/Users/imyeongjin/Desktop/side/FearIndex-iOS/FearIndex-iOS/Resources"
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+# iOS 레포는 형제 폴더(../FearIndex-iOS). 다른 위치면 FEARINDEX_IOS_ROOT 로 지정
+IOS_ROOT = os.environ.get("FEARINDEX_IOS_ROOT", os.path.join(ROOT, "..", "FearIndex-iOS"))
+IOS_RESOURCES = os.path.join(IOS_ROOT, "FearIndex-iOS", "Resources")
 
 # Android(snake_case) → 가능한 iOS(dotNotation) 후보 모두 생성
 # 토큰을 어디까지 dot로 분리하고 어디서부터 camelCase로 합칠지 모든 조합 시도

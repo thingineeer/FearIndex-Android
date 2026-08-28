@@ -423,10 +423,10 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="widget_guide_step5">Atinge widgetul oricând pentru a deschide aplicația.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Indicele global (S&amp;P 500) al fricii și lăcomiei</string>
-    <string name="widget_kospi_description">Indicele KOSPI al fricii și lăcomiei</string>
-    <string name="widget_crypto_description">Indicele cripto (BTC) al fricii și lăcomiei</string>
-    <string name="widget_dashboard_description">Toți cei trei indici ai fricii și lăcomiei</string>
+    <string name="widget_market_description">Urmărește S&amp;P 500</string>
+    <string name="widget_kospi_description">Urmărește KOSPI</string>
+    <string name="widget_crypto_description">Urmărește BTC</string>
+    <string name="widget_dashboard_description">Afișează dintr-o privire indicii global, KOSPI și cripto.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Elimină reclamele</string>
     <string name="settings_remove_ads_description">Achiziție unică. Elimină definitiv toate reclamele.</string>
@@ -539,4 +539,27 @@ Luați în considerare și fundamentele, fluxul și macro.</string>
     <string name="insight_historical_return_basis_crypto">Bazat pe Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Închidere</string>
+    <string name="insight_current_score_title_greed">Variație după %1$d</string>
+    <string name="insight_historical_return_title_greed">Ce a urmat?</string>
+    <string name="score_explorer_subtitle_greed">Ce a urmat după o zi cu acest scor?</string>
+    <string name="widget_updated_at">la %1$s</string>
+    <string name="widget_chart_description">Evoluția indicelui. Atingeți pentru a schimba perioada (3M–5Y).</string>
+    <string name="widget_label_market">Indice global</string>
+    <string name="widget_label_kospi">Indice KOSPI</string>
+    <string name="widget_label_crypto">Indice cripto</string>
+    <string name="widget_label_dashboard">Toți indicii</string>
+    <string name="widget_label_chart">Global Grafic de tendință</string>
+    <string name="widget_guide_section_widgets">Tipuri de widgeturi</string>
+    <string name="widget_guide_type_single">Indicator cu un singur indice — Global · KOSPI · Cripto</string>
+    <string name="widget_guide_section_howto">Cum adaugi</string>
+    <string name="widget_guide_section_tips">Sfaturi</string>
+    <string name="widget_guide_tip_refresh">Atinge butonul ↻ de pe un widget pentru a-l actualiza imediat.</string>
+    <string name="widget_guide_tip_resize">Ține apăsat un widget pentru a-l muta sau redimensiona.</string>
+    <string name="widget_guide_tip_auto">Widgeturile se actualizează automat la câteva ore și de fiecare dată când deschizi aplicația.</string>
+    <string name="widget_guide_tip_launcher">Numele meniurilor pot diferi ușor în funcție de dispozitiv și launcher.</string>
+    <string name="widget_refreshing">Se actualizează…</string>
+    <string name="widget_label_chart_kospi">KOSPI Grafic de tendință</string>
+    <string name="widget_label_chart_crypto">Crypto Grafic de tendință</string>
+    <string name="widget_chart_kospi_description">Evoluția indicelui. Atingeți pentru a schimba perioada (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Evoluția indicelui. Atingeți pentru a schimba perioada (3M–5Y).</string>
 </resources>

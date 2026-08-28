@@ -1,0 +1,1 @@
+v1.6.1: Atnaujinti pagrindinio ekrano valdikliai – nauji 1×1 matuoklio, visų indeksų ir tendencijos grafiko valdikliai. Patobulintas reklamų rodymas ir programos stabilumas.

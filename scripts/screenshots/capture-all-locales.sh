@@ -1,7 +1,7 @@
 #!/bin/bash
 # v4 — ANR 발생 시 uiautomator로 Wait 버튼 클릭
 set -e
-ROOT=/Users/imyeongjin/Desktop/side/FearIndex-Android
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 META=$ROOT/fastlane/metadata/android
 PKG=th1ngjin.fearindex.debug
 ACTIVITY=th1ngjin.fearindex.MainActivity

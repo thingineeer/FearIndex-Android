@@ -1,0 +1,1 @@
+v1.6.1: Redizajnirani widgeti početnog zaslona – novi widgeti mjerača 1×1, svih indeksa i grafikona trenda. Poboljšan prikaz oglasa i stabilnost aplikacije.

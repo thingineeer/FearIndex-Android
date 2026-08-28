@@ -1,0 +1,1 @@
+v1.6.1: Pārveidoti sākuma ekrāna logrīki – jauni 1×1 mērītāja, visu indeksu un tendences grafika logrīki. Uzlabota reklāmu rādīšana un lietotnes stabilitāte.

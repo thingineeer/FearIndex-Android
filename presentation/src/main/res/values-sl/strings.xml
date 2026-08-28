@@ -423,10 +423,10 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="widget_guide_step5">Kadar koli tapnite pripomoček, da odprete aplikacijo.</string>
 
     <!-- 위젯 설명 (widget picker description) -->
-    <string name="widget_market_description">Globalni (S&amp;P 500) indeks strahu in pohlepa</string>
-    <string name="widget_kospi_description">KOSPI indeks strahu in pohlepa</string>
-    <string name="widget_crypto_description">Kripto (BTC) indeks strahu in pohlepa</string>
-    <string name="widget_dashboard_description">Vsi trije indeksi strahu in pohlepa</string>
+    <string name="widget_market_description">Sledi S&amp;P 500</string>
+    <string name="widget_kospi_description">Sledi KOSPI</string>
+    <string name="widget_crypto_description">Sledi BTC</string>
+    <string name="widget_dashboard_description">Prikazuje globalni, KOSPI in kripto indeks na en pogled.</string>
     <string name="settings_premium_header">Premium</string>
     <string name="settings_remove_ads_title">Odstrani oglase</string>
     <string name="settings_remove_ads_description">Enkratni nakup. Za vedno odstrani vse oglase.</string>
@@ -539,4 +539,27 @@ Upoštevajte skupaj z osnove, tokom in makro.</string>
     <string name="insight_historical_return_basis_crypto">Na podlagi Bitcoin</string>
     <string name="a11y_gauge_value">%1$d points, %2$s</string>
     <string name="common_close">Zapri</string>
+    <string name="insight_current_score_title_greed">Sprememba po %1$d</string>
+    <string name="insight_historical_return_title_greed">Kaj se je zgodilo potem?</string>
+    <string name="score_explorer_subtitle_greed">Kaj je sledilo dnevu s tem rezultatom?</string>
+    <string name="widget_updated_at">ob %1$s</string>
+    <string name="widget_chart_description">Grafikon indeksa. Z dotikom zamenjate obdobje (3M–5Y).</string>
+    <string name="widget_label_market">Globalni indeks</string>
+    <string name="widget_label_kospi">Indeks KOSPI</string>
+    <string name="widget_label_crypto">Kripto indeks</string>
+    <string name="widget_label_dashboard">Vsi indeksi</string>
+    <string name="widget_label_chart">Global Grafikon trenda</string>
+    <string name="widget_guide_section_widgets">Vrste pripomočkov</string>
+    <string name="widget_guide_type_single">Merilnik enega indeksa — Globalni · KOSPI · Kripto</string>
+    <string name="widget_guide_section_howto">Kako dodati</string>
+    <string name="widget_guide_section_tips">Nasveti</string>
+    <string name="widget_guide_tip_refresh">Tapnite gumb ↻ na pripomočku, da ga takoj osvežite.</string>
+    <string name="widget_guide_tip_resize">Pridržite pripomoček, da ga premaknete ali spremenite njegovo velikost.</string>
+    <string name="widget_guide_tip_auto">Pripomočki se samodejno posodobijo vsakih nekaj ur in ob vsakem odprtju aplikacije.</string>
+    <string name="widget_guide_tip_launcher">Imena menijev se lahko nekoliko razlikujejo glede na napravo in zaganjalnik.</string>
+    <string name="widget_refreshing">Osveževanje…</string>
+    <string name="widget_label_chart_kospi">KOSPI Grafikon trenda</string>
+    <string name="widget_label_chart_crypto">Crypto Grafikon trenda</string>
+    <string name="widget_chart_kospi_description">Grafikon indeksa. Z dotikom zamenjate obdobje (3M–5Y).</string>
+    <string name="widget_chart_crypto_description">Grafikon indeksa. Z dotikom zamenjate obdobje (3M–5Y).</string>
 </resources>

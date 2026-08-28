@@ -1,0 +1,1 @@
+v1.6.1: Újratervezett kezdőképernyő-widgetek – új 1×1 mérő, összes index és trenddiagram widget. Javított hirdetésmegjelenítés és alkalmazás-stabilitás.

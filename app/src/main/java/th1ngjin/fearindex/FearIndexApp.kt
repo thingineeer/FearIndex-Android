@@ -37,6 +37,8 @@ import th1ngjin.fearindex.core.ads.AdSdkState
 import th1ngjin.fearindex.core.purchases.PurchaseManager
 import th1ngjin.fearindex.core.remoteconfig.RemoteConfigManager
 import th1ngjin.fearindex.presentation.component.AppOpenAdManager
+import th1ngjin.fearindex.presentation.component.InterstitialAdSessionState
+import th1ngjin.fearindex.presentation.component.interstitialAdPolicyConfig
 import th1ngjin.fearindex.domain.repository.NotificationRepository
 import th1ngjin.fearindex.domain.entity.NotificationPermissionSyncPolicy
 import th1ngjin.fearindex.domain.entity.NotificationSettings
@@ -48,6 +50,7 @@ import th1ngjin.fearindex.notification.NotificationChannels
 import th1ngjin.fearindex.notification.NotificationHistoryRecorder
 import th1ngjin.fearindex.widget.CryptoFearWidget
 import th1ngjin.fearindex.widget.DashboardFearWidget
+import th1ngjin.fearindex.widget.ChartFearWidget
 import th1ngjin.fearindex.widget.FearWidgetUpdateWorker
 import th1ngjin.fearindex.variant.VariantHooks
 import th1ngjin.fearindex.widget.KospiFearWidget
@@ -276,6 +279,7 @@ class FearIndexApp : Application() {
                     syncNotificationPermissionState()
                     historyRecorder.syncActiveNotifications(this@FearIndexApp)
                     showAppOpenAdIfEligible()
+                    handleInterstitialForegroundEntry()
                     refreshWidgets()
                 }
 
@@ -284,6 +288,7 @@ class FearIndexApp : Application() {
                     analytics.log(AnalyticsEvent.앱백그라운드)
                     // 백그라운드 진입 기록 — 이후 복귀가 콜드스타트가 아님을 표시(콜드스타트 노출 방지).
                     appOpenAdManager.recordBackgroundEntry()
+                    InterstitialAdSessionState.lifecycleCoordinator.recordBackgroundEntry()
                 }
             },
         )
@@ -303,6 +308,19 @@ class FearIndexApp : Application() {
         )
     }
 
+    /**
+     * 포그라운드 복귀 시 인터스티셜 세션 처리 — 30분+ 백그라운드면 새 세션(cap/KOSPI 진입 플래그 리셋) + preload 재시도.
+     * 세션 리셋 호출처가 없어 KOSPI 진입 인터스티셜이 프로세스당 1회로 고착되던 결함 해소(iOS v1.9.2 parity).
+     */
+    private fun handleInterstitialForegroundEntry() {
+        val canRequestAds = AdRequestAvailability.canRequestAds.value && !purchaseManager.isAdFree.value
+        InterstitialAdSessionState.lifecycleCoordinator.handleForegroundEntry(
+            context = this,
+            adUnitId = BuildConfig.ADMOB_INTERSTITIAL,
+            config = remoteConfig.adsConfig.value.interstitialAdPolicyConfig(canRequestAds),
+        )
+    }
+
     /** 앱 포그라운드 진입 시 홈 화면 위젯을 즉시 최신 지수로 갱신. */
     private fun refreshWidgets() {
         appScope.launch {
@@ -311,6 +329,7 @@ class FearIndexApp : Application() {
                 KospiFearWidget().updateAll(this@FearIndexApp)
                 CryptoFearWidget().updateAll(this@FearIndexApp)
                 DashboardFearWidget().updateAll(this@FearIndexApp)
+                ChartFearWidget().updateAll(this@FearIndexApp)
             } catch (e: Exception) {
                 Timber.w(e, "Widget foreground refresh failed")
             }

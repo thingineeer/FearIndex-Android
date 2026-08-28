@@ -1,0 +1,1 @@
+v1.6.1: Widgeturi de ecran principal reproiectate — noi widgeturi indicator 1×1, toți indicii și grafic de tendință. Afișarea reclamelor și stabilitatea aplicației îmbunătățite.

@@ -1,0 +1,1 @@
+v1.6.1: Přepracované widgety domovské obrazovky – nové widgety ukazatele 1×1, všech indexů a grafu trendu. Vylepšeno zobrazení reklam a stabilita aplikace.

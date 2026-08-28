@@ -1,3 +1,78 @@
+## 2026-08-27 세션 (탐욕 구간 카피 통일)
+
+### 72. 탐욕(≥70) 인앱 카피 "매수/샀다면" → "이후 변동" 프레임 (전 플랫폼 통일, 토스 세션 경유 회장님 지시)
+- **원칙**: 공포 = 매수 기회 가능(문구 유지) / 탐욕 = 과열, 추가 매수 비권장(문구 변경). 서버 푸시 문구는 메인 세션, 토스는 토스 세션("그때(N점) 이후 변동"), Android 는 이 항목.
+- **Android 푸시 표시 문구**: 앱은 FCM title/body 를 가공 없이 표시(`FearIndexMessagingService`) → 서버 문구 수정으로 자동 반영, 클라 변경 없음. 알림 설정 화면 상한 헤더는 원래 "과열 경고 알림"(OK).
+- **인앱 수정 3곳(feature/v1.6.1-greed-copy)**: `GreedFrame.isGreed(score)`(임계 70 = 알림 상한 기본값, TDD 3) 로 ① 인사이트 상세 "N점에서 매수한다면" → "N점 이후 변동" + 통계 라벨 탐욕 변형 ② 과거 수익률 카드 "그때 매수했다면?" → "그때 이후 변동은?" ③ 점수 탐색기 부제 탐욕 변형 + 통계 라벨 임계 75→70 통일. 신규 3키 × 45 locale(대칭 498키 OK). presentation 129 tests/0, release 컴파일 OK.
+- **유지(의도)**: 온보딩 4단계 "그 점수에 샀다면"(첫 실행 튜토리얼, 점수 무관 설명), 스플래시 면책 "extreme ranges may signal contrarian opportunities", 저점 고정 카드 "주요 저점에서 매수했다면"(저점 한정).
+- **⚠️ iOS parity**: iOS 점수 탐색기 통계 라벨 임계가 75 라면 Android 는 70 으로 divergence — iOS 세션이 같은 지시로 수정 시 70 으로 맞추길 권고(메인 세션에 전달).
+
+## 2026-08-27 세션 (위젯 UI 리디자인 — Play 리뷰 대응)
+
+### 73. 위젯 전면 리디자인 — 1×1 게이지 3종 + 통합 2×2 + 차트 4×2 + 새로고침 (dev 28b0320e)
+- **발단**: Play 리뷰 2건("위젯 안 됨" / "1×1 필요"). One UI는 targetCell(2×2)보다 작은 리사이즈를 막아 minResize만으론 1×1 불가 → **targetCell 1×1로 재등록**이 정답.
+- **구성**: ① 1×1(Global/KOSPI/Crypto) = 270° 게이지+점수+풀네임(G/K/C 약어 대신 풀네임, 사용자 결정) ② 통합 2×2 = 게이지 3개 나란히 + 등급/전일 대비 ③ **차트 4×2 신규**(ChartFearWidget) = Global 30일 라인 + y 3눈금 + x 날짜 라벨 + "HH:mm 기준" ④ 새로고침 버튼(`actionRunCallback<RefreshWidgetsAction>` → 5위젯 updateAll) ⑤ 로드 실패 시 10분 지연 재시도(WorkManager KEEP).
+- **⚠️ Glance 함정 3개 (재발 방지)**:
+  1. **Row 자식에 `defaultWeight()`+`fillMaxSize()` 겹치면 width=fill이 weight를 덮어써 첫 컬럼이 전체 차지** → `defaultWeight().fillMaxHeight()`로. 통합 2×2가 첫 지수만 렌더되던 원인.
+  2. SweepGradient 원형 게이지는 시작각 라운드캡이 pos≈1.0을 샘플링 → **gradient 끝(0.97)에 시작색(빨강) stop 추가**해 캡 색 번짐 방지.
+  3. Glance SessionWorker가 갱신 완료까지 ~45초 — 완료 전 스크린샷 찍으면 옛 UI로 오진. `adb shell am broadcast APPWIDget_UPDATE`는 SecurityException — 앱 실행(포그라운드 updateAll)으로 갱신.
+- **⚠️ 데이터 함정**: `GetFearIndexHistoryUseCase(days=30)`을 넘겨도 CNN 데이터소스가 캐시된 전체(1년)를 반환 → 차트 x축이 1년이 됨. **위젯 레이어에서 최근 30일 클라이언트 잘라내기**로 방어(공유 repo 무수정, ChartFearWidget.kt).
+- **검증**: 에뮬(API 36) 실배치 — 1×1 게이지 3종, 통합 2×2(55/49/71 채움 상이 = 게이지 정확성 확인, 사용자 요청 검증), 차트 4×2(7.29→8.13→8.27 / 70·51·32 / 15:27 기준) 전부 육안 확인. 유닛 **1,096 tests / 0 fail** + locale 대칭 500키. i18n `widget_updated_at`·`widget_chart_description` 45 locale.
+- **Git**: worktree `feature/v1.6.1-widget-redesign` 4커밋 → dev `--no-ff` 머지(28b0320e) + push. 시안 `docs/design/widget-redesign-mock-v2.html`(확정), Pinterest 레퍼런스 캡처는 public 레포라 미커밋.
+- **후속 2 — 등급 원점수 통일(dev 4d04e642 push, 사용자 결정 "원점수로 하자")**: 표시 점수는 반올림, 등급/색은 **원점수(raw) 기준 `FearIndex.Rating.from`** 으로 통일(55.4 → 표시 55·탐욕). 위젯은 원래 raw, 앱 화면들이 반올림 재판정이라 어긋났던 것. `ratingLabel(Rating)`/`fearScoreColor(Rating)`/`widgetFearScoreColor(Rating)` 오버로드 신설 후 홈 게이지·타이틀 공유·차트 현재점수 카드·차트 툴팁(`ratingLabelFromArray` Double)·투표 헤더·위젯 색 적용. WidgetStyleTest 회귀 2건, 전체 테스트 GREEN, 에뮬 육안(앱 게이지 "55 Greed" = 위젯 일치). ⚠️ iOS 도 같은 기준인지 메인 세션에 확인 요청함.
+- **후속 3 — 경계값 윗 밴드 통일(dev 43ee54d7 push)**: 메인 세션 정밀 확인 결과 iOS(`..<55`)·서버(`<55`) 모두 **경계값=윗 밴드**(55.0=탐욕, 75.0=극탐)인데 Android 만 `<=55/<=75` 로 이탈 — 크립토는 정수 점수라 raw 55.0 실발생. `Rating.from` `<` 비교로 변경 + Int 함수들(`<=54/<=74`) 정렬(ratingLabel/fearScoreColor/widgetFearScoreColor/InsightText/InsightGenerator/차트 툴팁), 경계 테스트 고정(55.0=GREED/75.0=EXTREME_GREED). 전체 테스트 GREEN.
+- **후속 4 — release 실기기 ANR 판정 통과(2026-08-28, S22, dev 51082e0f)**: 8/28 다른 맥 세션이 남긴 "잔여 ANR" 은 debug 빌드 콜드스타트 DEX 검증 단계가 원인 — release 1.6.1 로 콜드 실행/콜드 ↻(WidgetRefreshWorker 1.1s)/기간 연타 15회 전부 ANR 0. 배포 차단 없음. **One UI 위젯 배치 자동화 요령**: `input touchscreen swipe x y x+2 y+2 1500`(빈 곳 롱프레스) → 하단 "위젯" 탭 → 앱 그룹 펼침 → 미리보기 **탭하면 "추가" 버튼**이 뜬다(드래그 불필요) → dumpsys appwidget 으로 패키지 확인. debug/release 가 같이 깔려 있으면 피커에 같은 이름으로 둘 다 떠서 구분 불가 — 검증 전 debug 제거가 정답.
+- **✅ v1.6.1(vc27) production 업로드(2026-08-28 12:08 KST)**: API health 9종 200 → 1,132 tests/0 → changelog 27 45 locale 위젯 반영으로 갱신 → clean bundleRelease(SHA-1 CE:08:B4 일치, manifest 1.6.1) → `fastlane production` 성공 → 트랙 production=[27]. KOSPI 인터스티셜 5초 지연 제거(즉시 노출, S22 debug E2E 300ms)도 포함. release 머지 + v1.6.1 태그. **게시 후 할 일**: 공개 리스팅 1.6.1 전파 확인 → RC `force_update_minimum_version`[Android] `1.6`→`1.6.1` 상향 판단(1.6.0 은 patch 비교 가능) → Crashlytics 1.6.1 FATAL/위젯 ANR 감시 → Play 리뷰 2건 답글(사용자).
+- **남은 것**: S22 실기기 설치 후 사용자 검증("검증은 내가 할게"), 리뷰 답글(사용자 직접). 가이드 재작성은 dev f95643e8 로 완료.
+- **후속(같은 날, dev 68d0c48e push)**: 피커에서 앱 아이콘만 보이던 문제(사용자 지적) = ① info XML 에 `android:previewImage` 부재 ② receiver `android:label` 부재(전부 앱 이름 폴백). **PIL 로 실제 위젯 디자인 1:1 미리보기 PNG 5장 생성**(drawable-nodpi, ↻ 글리프는 폰트 tofu 라 제외) + 라벨 5키 신규·설명 5키 문장형 개정 ×45 locale(대칭 513키). 에뮬 피커 실검증(미리보기·이름·설명 정상). ⚠️ 위젯이 55를 "Greed"로 표시하는 케이스 관찰 — 표시는 반올림 55, 등급은 원점수(55.x) 기준으로 추정, 미조사.
+
+## 2026-08-25 세션 (마케팅 급증 대비 점검 + 서버 레이트리밋 협업 + ASO)
+
+### 71. 마케팅 급증 대비 Android 점검 GREEN + 공유 레이트리밋 60→300/min 협업 검증 + '줍줍' ASO
+- **맥락**: 메인 세션(iOS) 요청 "오늘 마케팅으로 신규 유저 급증 예정 — Android 점검". 서버 변경은 메인 세션 담당(회장님 지시: 3플랫폼 무장애·무부수효과·TDD 검증 1순위 — 메인 세션에 전달).
+- **✅ 점검 결과(전부 정상)**: ① FCM 등록 — 24h Android registerFCMToken **200=656/401=4**(99.4%, 8/21 App Check 복구 유지) ② 신규 android 등록 8/23~ **123건**, 버전 1.6.0=117, **임계값 포함 123/123**(registerFCMToken payload 에 항상 실림 → hasExplicitThresholdSettings 게이트 충족·즉시체크 정상) + 8/24~ crypto 임계치 서버 발송 android 6건(최신 8/25 00:00Z score 74) ③ 스토어 = production **[26]=1.6.0**(v1.6.1 은 준비만, 미게시).
+- **429 발견 → 서버(메인 세션) 조정 협업**: 6h 429=35건 = callable-security 공유 per-IP 60/min — 마케팅 피크 시 CGNAT(같은 IP 다수 유저) 리스크 전달. 메인 세션이 TDD(red→green, 921/921)로 **SHARED_RATE_LIMIT_MAX_PER_IP 60→300/min** 배포(1차 4함수 06:5xZ, 2차 stuck/similar 3함수 08:1xZ — **1차 배포 목록에 없던 함수는 구 코드로 남는다**는 것을 전후 대조로 발견해 재배포 유도).
+- **전후 대조(Android 담당)**: 배포 전 12h Android 429=51 → 재배포 후 **공유 IP 리밋발 429 소멸**, 5xx 0, 401 노이즈 불변(App Check 회귀 없음). **잔여 429 는 전부 getsimilarevents 의 자체 per-device `checkRateLimit(deviceId)`**(한 기기 22초 8연타 패턴) — 공유 IP 리밋과 별개의 설계된 어뷰즈 보호, 클라는 카드 숨김/캐시로 우아 처리 → 조치 불필요, 종결.
+- **⚠️ 교훈**: ① Functions 는 공유 모듈 상수를 바꿔도 **재배포한 함수만 새 값** — 한도류 변경 시 대상 함수 전수 재배포 확인 ② 429 원인은 공유 IP 리밋 vs 함수별 per-device 리밋을 로그의 IP/연타 패턴으로 구분 ③ 플랫폼별 대조는 UA 필터(okhttp=Android, FearIndex-iOS=iOS/macOS)로.
+- **✅ ASO '줍줍'(회장님 요청, dev 3bbd530b push)**: Play 는 키워드 필드가 없어 ko_KR 설명문에 자연 삽입 — short(44자) "하락장 줍줍 타이밍" + full 도입부·푸시 알림 불릿, 총 3회. **스토어 실반영은 다음 fastlane production(v1.6.1) 업로드 시**. iOS/macOS 는 keywords.txt 반영됨(iOS main 4c0cdf336).
+- **기타**: 장시간 `sleep` 백그라운드 태스크가 2회 kill 됨 — 지연 재측정은 대기 없이 경과 후 즉시 실행이 안전. 레포에 untracked `.claude/settings.json` 생김(이 세션 산출물 아님, 미커밋).
+
+## 2026-08-23 세션 (광고 미노출 제보 분석 + 4계정 요금 점검)
+
+### 70. "광고 안 뜬다" 제보 — 실측 재현 불가 + 배포본(v1.6.0) 소스 부재 발견 + 배너 잠재 결함 2건
+> (다른 맥 8/22~23 세션 기록. 당시엔 이 항목이 68번이었으나 8/24 두 맥 dev 머지에서 68=App Check 와 중복되어 **70번으로 재번호** — 그 세션의 커밋 메시지·일부 문서에 "68번"으로 남은 참조는 이 항목을 가리킨다. "v1.6.0 소스 부재"는 8/24 머지(7ca2711 합류)로 해소됨.)
+- **발단**: 사용자 "ea09ed7(1.5.3)까지 배포돼 있는데 광고가 안 뜬다" → 코드·RC·GA·Crashlytics·서버·Play 트랙 전수 점검.
+- **🚨 최대 발견 — 저장소 ≠ 배포본**: Play Developer API(`edits/tracks/production`) 직접 조회 = **name 1.6.0 / vc26 / status completed / userFraction 없음(100%)**, 공개 리스팅 "Updated Aug 21, 2026", 릴리즈노트 "Improved notification registration reliability and security verification". 이 레포(origin 포함)는 v1.5.3(vc25)이 끝. Crashlytics 에도 `1.6.0 (26)` 이벤트 128건 존재. → **다른 맥에서 1.6.0 을 빌드·업로드하고 push 를 안 한 상태.** 핫픽스·롤백 불가. 이 맥 reflog 마지막 작업은 v1.5.1 시절(7/31).
+- **RC 오판 주의(반증 과정 기록)**: RC v49(8/21 REST_API) 에서 `force_update_minimum_version`[Android] `1.2`→`1.6`, `minimum_app_version` `1.2.0`→`1.6.0`. 처음엔 "1.5.3 유저 전원 강제업데이트 화면 락아웃 → 광고 안 보임"으로 추정했으나 **Play 라이브가 1.6.0 이라 정합** — 락아웃 아님. 교훈: RC 게이트 의심 시 **Play 라이브 버전을 먼저 대조**.
+- **✅ 광고 실측(GA Events, Android)**: 28일 배너광고노출 58,529/2,001명(전체 2,514명의 79.6%). 단일일 비교 8/18(1.5.x) vs 8/22(1.6.0): 사용자당 배너 8.18→**8.43**, 배너광고실패 481/25명→**80/9명**(66번 새-AdView 재시도 fix 실효 증거), 배너 노출 사용자 비율 91.9%→87.9%. **인터스티셜 fill 약함**: 8/22 노출 27 vs 실패 136(≈17%, 8/18 은 32%) — 인벤토리/no-fill 문제(코드 무관). AdMob 콘솔 수익/일치율은 **미실측**(Chrome 확장 `apps.admob.com` 권한 거부 + `/login` 계정 교체로 확장 연결 끊김).
+- **Crashlytics 1.6.0(8/21~)**: FATAL 0. ① 신규 `AppCheckTokenProbe.ensureToken` → `PLAY_INTEGRITY_UNAVAILABLE(-9)` 42건/12명(1.6.0 신규 코드, firstSeen 1.6.0) — 구형 Play 스토어 기기, Callable 거부로 이어질 수 있어 관찰 ② RC fetch DNS(EAI_NODATA)/소켓 실패 41건 — 사용자 네트워크. **첫 실행이 오프라인이면 RC 캐시가 없어 `ads_enabled` 코드 default(false) → 배너 fail-safe OFF**(이후 fetch 성공 시 복구).
+- **서버**: Cloud Functions 3일 ERROR 1건(8/19 crypto FNG API 502, 일시). 크론 30분 정상, failed=0, total_users 2,359→2,365.
+- **💰 요금(8/1~8/21 MTD, gcloud billing + 콘솔 reports)**: 공포지수푸시알림(fear-index·runnect-ios·pumpwater) ₩2,009(App Engine=Firestore Read Seoul ₩1,179, Scheduler ₩801, Functions 절감 후 ₩25) / 비트코인매매 ₩4,360(**7월 ₩43,572 → -100%**: ddalggak Cloud Run min-instance CPU 제거. App Engine ₩3,811 +1197% 신규 증가) / Firebase결제 ₩2,005(Hosting ₩1,512 +171%, **Vertex AI ₩986 신규**) / 세번째 ₩0. 합 ≈₩8.4k, 예상 월 ≈₩10.7k — **과다 아님**. 결제 목록의 "최근 30일 ₩49,334"는 7월 말 ddalggak 잔여분. `gcloud billing budgets` 는 Budget API 미활성으로 조회 불가.
+- **코드 잠재 결함(1.5.3 기준 정적 분석 — 1.6.0 소스 미확보라 적용 여부 미확인)**:
+  1. `AdBannerLayout.bannerAdWidthDp` 가 **320dp 미만이면 null → 배너 컴포저블 자체가 렌더 안 됨**. 홈은 좌우 16dp 패딩이라 **화면 폭 352dp 미만 기기(소형/분할화면)는 배너 영구 0** — "내 폰에서 안 뜬다"의 유력 후보. 재시도/로그 없음.
+  2. `AndroidView(factory = { slot.container })` — factory 는 최초 1회만 호출. 회전/폴더블/분할화면으로 `maxWidth` 변경 → `adSize`→`slot` 재생성 시 **화면엔 옛 컨테이너 잔류, 새 AdView 는 미장착 컨테이너에 들어감 → 영구 빈 배너**. `update` 람다 또는 `key(slot)` 로 해소 필요.
+  3. 컴포지션 중 `lastLoggedGate` state write(경미, 수렴함).
+- **도구 함정**: ① Chrome MCP 도메인 권한은 사이트별 — AdMob 은 `apps.admob.com` 허용 필요 ② 확장은 Claude Code 와 **같은 claude.ai 계정**이어야 연결됨(`/login` 교체 후 끊김) ③ GCP 결제 리포트는 `console.cloud.google.com/billing/<ACCOUNT_ID>/reports?authuser=0` + `get_page_text` 로 표까지 읽힘 ④ Play 트랙 상태는 `~/fearindex-secrets/play-store-service-account.json` 으로 JWT 발급 → androidpublisher v3 `edits.insert` + `tracks.get` 직접 호출이 fastlane(`google_play_track_version_codes`)보다 status/userFraction 까지 보여 정확 ⑤ `firebaseremoteconfig.googleapis.com` 은 ADC 로 치면 quota project 오류 → `x-goog-user-project: fear-index-a4f4b` 헤더 필요.
+- **✅ AdMob 콘솔 실측(같은 세션 후속, 공포지수 Android 7일 8/16~22 vs 이전 7일)**: 예상수입 **US$5.74(+80%)**, 노출 **1.42천(+40%)**, 요청 7.02천(+186%), 일치율 **84.72%(+5%p)**, eCPM US$4.05(+28%). 이번 달 US$13.54 / 지난달 US$28.30. 네트워크별: AdMob 배너 1.24천(eCPM 2.26)/전면 66(eCPM 33.24)/**앱오픈 13(eCPM 28.55, 신규 가동)**/Pangle 배너 86(신규)/Unity 배너 10. 광고 단위별: KospiInterstitial $2.41 > HomeBanner $1.96(+344%) > InsightBanner $0.74 > AppOpen $0.37(신규) > ChartBanner $0.14. 사용자 측정(GA): AU 198(+26%), 세션당 광고 노출 58%. → **광고 정상 가동, 전주 대비 전 지표 상승.** 정책 센터: 앱 "광고 게재 제한됨 — 이전 버전만 해당(1.0.1 프레임 크기, 6/9)" 1건 잔존, 최근 7일 제한 요청 284회(0%) vs 일반 게재 6.59만회(100%) — 실질 영향 없음(23번 항목, 구버전 트래픽 소멸 대기).
+- **도구 함정 추가**: `apps.admob.com` 으로 navigate 하면 `admob.google.com` 으로 리다이렉트되는데 **그 직후 첫 액션만 "Permission denied"** 가 난다(도메인 전환 타이밍). 확장 권한은 "모든 사이트"로 이미 충분 — 몇 초 뒤 재시도하면 된다. 권한 문제로 오진하지 말 것.
+- **제보자 기기 실측(사용자 아버지 = Galaxy A35 5G, SM-A356N, 1080×2340, Android 16)**: Crashlytics 에 A356N 2대 기록. ① **앱 실행마다 `registerFCMToken` → `FirebaseFunctionsException: Unauthenticated`**(1.5.2·1.5.3, 8/18~8/21 14건) = App Check(Play Integrity) 토큰 실패로 Callable 거부 — 1.6.0 릴리즈노트("notification registration reliability and security verification")가 이걸 겨냥한 것으로 보이며 8/21 이후 이 기기 재발 기록 없음. 광고와는 무관(배너 게이트에 App Check 없음). ② Billing `연결 Error: 5`(already connecting) 연속 8건 — 가격 조회 재진입, 비치명. ③ **홈 배너 320dp 하한 결함(위 1번)은 이 기기에서 "화면 확대" 설정에 따라 발현**: 1080px 폭 기준 480dpi(360dp)까지는 홈 배너 폭 328dp 로 OK, **540dpi(320dp) 이상이면 홈·차트·투표 배너(좌우 16dp 패딩) 전부 0, 설정 탭 배너만 남음** → "광고 주기가 줄었다" 체감과 정확히 일치하는 시나리오. 확인 방법: 설정→디스플레이→화면 확대에서 큰 단계면 해당. 기본 dpi 는 웹 검색으로 미확정(Samsung 스펙 페이지에 없음).
+- **✅ 제보 증상 확정 — 배너가 아니라 인터스티셜**: 아버지 A35 화면 크기 = **기본(3/5 단계)** → 360~384dp 라 배너 320dp 결함 비해당. 증상은 "홈/차트에서 코스피 눌렀을 때 전면광고 안 뜸". 코드 규명:
+  - **결함 ② 인터스티셜 세션 미리셋**: `InterstitialAdSessionState.policy` 는 프로세스 전역 싱글턴인데 `InterstitialAdPolicy.resetSession()` **호출처 0곳**. `didShowKospiEntry` 가 한 번 true 되면 프로세스가 죽을 때까지 KOSPI 진입 인터스티셜 재노출 불가, `impressionCount`(cap 2)도 프로세스 수명 누적. → 앱을 메모리에 며칠 살려두는 기기에선 "처음 한 번 뜨고 영원히 안 뜸".
+  - **결함 ③ 로드 실패 후 재로드 없음**: preload 실패 → AdRetryPolicy 4회 소진 후 중단. 이후 KOSPI 진입 시 `showKospiEntryIfAvailable` → `canShowKospiEntry(isReady=false)` false 반환하며 **`adController.show()` 를 안 타서 재로드 트리거도 없음** → 프로세스 수명 동안 인터스티셜 0. fill 17~32% 라 자주 진입.
+  - 차트 탭의 코스피 세그먼트엔 원래 트리거 없음(1번에서 제거, 홈 `selectedHomeType` 변경만 트리거) — 설계.
+  - **iOS 는 v1.9.2(7/13, 커밋 1795d9e84)에서 동일 결함 수정**: `InterstitialForegroundGate.shouldResetSession(backgroundDuration ≥ 30분)` → `resetSession()`, `handleForegroundEntry` 에서 `preloadIfNeeded()`, `showIfAvailable` 에서 `isReady` false 면 `preloadIfNeeded()`. **Android 미포팅.** ios-parity 누락.
+  - 수정안 A(권장, iOS parity): 30분+ 백그라운드 후 복귀 시 세션 리셋 + 복귀 preload + show 시 미준비면 재로드. B: 세션 개념 없이 쿨다운만(iOS 와 갈라짐, 방해성 광고 리스크). **사용자 선택 대기.**
+- **✅ 결함 ②③ 수정 완료(A안 = iOS v1.9.2 parity, TDD, dev ba21b53)** — `feature/v1.6.1-interstitial-session-reset` 3커밋 --no-ff:
+  - `InterstitialForegroundGate`(신규, 순수): 백그라운드 ≥30분이면 새 세션. `InterstitialAdPolicy.recordBackgroundEntry/handleForegroundEntry`: 기록 1회 소비 → `resetSession()`(cap·쿨다운·KOSPI 플래그). 콜드스타트(기록 없음)는 리셋 없음.
+  - `InterstitialAdCoordinator`: ① `showKospiEntryIfAvailable` 에서 광고 미준비면 `preloadIfNeeded` 로 재장전(재시도 소진 후 영구 0 해소) ② `recordBackgroundEntry/handleForegroundEntry(context, unit, config)` ③ `preloadIfNeeded` 는 cap 도달 시 생략(iOS 동일). `InterstitialAdSessionState.lifecycleCoordinator`(reporter 없음, policy 공유) 신설.
+  - `FearIndexApp` ProcessLifecycle onStop→recordBackgroundEntry / onStart→handleForegroundEntry(RC·UMP·광고제거 반영). `interstitialAdPolicyConfig` 확장은 HomeScreen private → 공용 이동.
+  - **검증**: RED(새 API 3개 Unresolved) → GREEN 19/19 → 전체 유닛 **1,037/0** + 서명 release APK 빌드 OK. `:data` StuckStatusDebouncerImplTest 1회 flaky(65번 기록된 실 delay 기반) → 단독 재실행 통과.
+  - **⚠️ 배포 전제**: dev 는 아직 1.5.3 베이스 — **1.6.0 소스 push 후 그 위에 이 머지를 올려 1.6.1 로**. 이 맥에는 `~/.gradle/gradle.properties` 가 없어 release 서명은 `-PFEARINDEX_*`(`~/fearindex-secrets/gradle.properties` 값) 주입으로 빌드했음 → 배포 전 `install.sh` 재실행 권장.
+  - 실기기 E2E(30분 백그라운드 후 KOSPI 재진입 노출)는 **미검증** — 에뮬/실기기에서 `adb shell am set-inactive` 또는 시계 조작 없이 30분 대기 필요. 유닛으로 정책 경계(29:59/30:00)는 고정됨.
+- **후속(같은 날 저녁)**: ① 세션 리셋 기준 **30분 → 10분**(사용자 결정, iOS 와 divergence — `InterstitialForegroundGate` 주석에 명시) TDD dev 8442f5b ② **v1.6.1(vc27) bump + changelog 27 45 locale**(첫머리 `v1.6.1:` 버전 명시, 사용자 요청) dev ab1e31a ③ **1.6.0 빌드 커밋 = `7ca2711`** 확정(Crashlytics 1.6.0 이벤트 buildStamp.revision) — 로컬·GitHub 모두 부재(gh API 422) → 다른 맥에서 push 대기. 사용자 A 선택: **1.6.0 소스 합친 뒤 게시**(이 맥 코드로 바로 1.6.1 내면 1.6.0 의 AppCheckTokenProbe 등 수정이 퇴보). ④ 스테이징의 `docs/play-reports-backup-20260804/` 는 앱 이전 전 Play 보고서 **유일본**이라 삭제 금지 → 레포 PUBLIC 이므로 `thingineeer-env` 로 이관.
+- **도구 함정**: Crashlytics 이벤트의 `buildStamp.repositories.revision` 이 빌드 커밋 SHA — "배포본이 어느 커밋인가"는 이걸로 확정한다(Play 콘솔엔 없음).
+- **다음**: (1) 다른 맥에서 `7ca2711` push → v1.6.0 태그 → dev 머지 → `fastlane production`(게시 승인 완료) (2) 게시 후 실기기 10분 시나리오 1회 확인 (3) ① 320dp 하한 완화(별건) (4) AppCheck PLAY_INTEGRITY_UNAVAILABLE 추이 감시.
+
 ---
 name: Bugs Fixed
 description: 세션별로 해결된 버그 이력. 같은 문제 재발 방지용.
@@ -109,7 +184,7 @@ type: project
 - **게시 개요 실측**: "관리형 게시가 사용 중지됨" + "검토 중인 변경사항 · 빠른 검사 실행 중(최대 13분)" → 검사 통과 시 자동 검토 전송·승인 즉시 게시. production=[24].
 
 ### 59. 프리미엄 parity 4종 (iOS v1.9.4 → Android) — 점수 탐색기·알림 내역·프리미엄 게이트·DEBUG 결제 토글
-- **goal 문서**: `/Users/imyeongjin/Desktop/worktrees/fi-v194-design/docs/handoff/premium-parity-android.md` (iOS SSOT). 브랜치 `feature/v1.5.2-premium-parity`(통합) ← 4 sub-worktree(returndata/history/explorer-ui/history-ui) 전부 `--no-ff` → **dev 머지 완료(beebbe8)**. push 미실행.
+- **goal 문서**: `worktrees/FearIndex-iOS/fi-v194-design/docs/handoff/premium-parity-android.md` (iOS SSOT). 브랜치 `feature/v1.5.2-premium-parity`(통합) ← 4 sub-worktree(returndata/history/explorer-ui/history-ui) 전부 `--no-ff` → **dev 머지 완료(beebbe8)**. push 미실행.
 - **프리미엄 게이트**: 새 SKU 없음. `PurchaseManager.isPremium` = `isAdFree` 별칭. 게시값 = `entitlementOverride ?: realAdFree` — `setEntitlementOverride(Boolean?)`(QA/디버그 seam). `PremiumFeature{SCORE_EXPLORER, NOTIFICATION_HISTORY_UNLIMITED}` + `PremiumFeaturePolicy.canUse`(domain 순수). 공용 `PremiumLockRow`(잠금 제목/본문·"해제 CTA · 가격"·복원, testTag premium-lock-row/-cta) + `PremiumBadge`/`LowSampleWarningBadge`. 구매 이벤트 `source`(settings|score_explorer|notification_history) + GA `premium_lock_tapped{feature}`/`score_explorer_moved{index_type,score,period}`/`notification_history_viewed{count}` (iOS 이름 1:1).
 - **점수 탐색기(차트 탭, AdBanner↔InsightFeed 사이)**: domain `ReturnHorizon`/`HistoricalSampleCounts`/`ReturnDataPoint.horizonSampleCounts`/`ReturnDataTable.sourceRange`/`ScoreExplorerStats`(정확 버킷만·보간 금지, LOW_SAMPLE_THRESHOLD=5). `DefaultReturnData` market/crypto 를 iOS 2026-08-18 집계에서 재생성(`scripts/gen-default-return-data.py`, 점수 20/48/75 iOS 값 일치 확인). UI `ScoreExplorerCard`/`InfoSheet`/`ScoreExplorerViewModel` + 순수 `ScoreExplorerSelection`(자산별 선택 보존·클램프·앵커 복귀=리셋, iOS Interactor 1:1).
 - **알림 내역(홈 🔔)**: `NotificationRecord/Kind/Mapper` + `NotificationHistoryPolicy`(무료 30일/프리미엄 무제한, HARD_CAP 5000, upsert: fallback id→±120s 동일 title/body message-id 승격) + UseCase. data `JsonlFileStore`(Mutex, temp→ATOMIC_MOVE) + Codec + RepositoryImpl(filesDir/notification_history/*.jsonl). 기록 3경로(onMessageReceived/알림 탭 인텐트/activeNotifications 동기화). **서버 변경 0, Firestore 0**. 무료 리스트 배너는 홈 유닛 fallback(전용 유닛 미발급 — 사용자 결정 대기).

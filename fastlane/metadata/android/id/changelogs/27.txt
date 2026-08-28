@@ -1,0 +1,1 @@
+v1.6.1: Widget layar utama didesain ulang — widget pengukur 1×1, semua indeks, dan grafik tren baru. Tampilan iklan dan stabilitas aplikasi ditingkatkan.

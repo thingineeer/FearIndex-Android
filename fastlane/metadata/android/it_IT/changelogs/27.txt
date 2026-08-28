@@ -1,0 +1,1 @@
+v1.6.1: Widget della schermata Home ridisegnati: nuovi widget indicatore 1×1, tutti gli indici e grafico di tendenza. Migliorate la visualizzazione degli annunci e la stabilità.
