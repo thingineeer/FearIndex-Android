@@ -1,1 +1,1 @@
-v1.6.1: Anzeigenanzeige auf dem KOSPI-Bildschirm und App-Stabilität verbessert.
+v1.6.1: Startbildschirm-Widgets neu gestaltet – neue 1×1-Anzeige, Alle-Indizes- und Trenddiagramm-Widgets. Anzeigenanzeige und App-Stabilität verbessert.

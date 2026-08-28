@@ -1,1 +1,1 @@
-v1.6.1: Melhoria na exibição de anúncios na tela KOSPI e na estabilidade do app.
+v1.6.1: Widgets da tela inicial redesenhados — novos widgets de medidor 1×1, todos os índices e gráfico de tendência. Exibição de anúncios e estabilidade do app aprimoradas.

@@ -1,1 +1,1 @@
-v1.6.1: S'ha millorat la visualització d'anuncis a la pantalla KOSPI i l'estabilitat de l'aplicació.
+v1.6.1: Widgets de la pantalla d'inici redissenyats: nous widgets d'indicador 1×1, tots els índexs i gràfic de tendència. Millores en la visualització d'anuncis i l'estabilitat.

@@ -1,1 +1,1 @@
-v1.6.1: Forbedret annoncevisning på KOSPI-skærmen og appstabilitet.
+v1.6.1: Nydesignede widgets til startskærmen – nye widgets med 1×1-måler, alle indeks og trenddiagram. Forbedret annoncevisning og appstabilitet.

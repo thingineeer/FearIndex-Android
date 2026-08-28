@@ -1,1 +1,1 @@
-v1.6.1: Parandatud reklaamide kuvamist KOSPI ekraanil ja rakenduse stabiilsust.
+v1.6.1: Uuendatud avakuva vidinad – uued 1×1 näidiku, kõigi indeksite ja trendigraafiku vidinad. Parandatud reklaamide kuvamine ja rakenduse stabiilsus.

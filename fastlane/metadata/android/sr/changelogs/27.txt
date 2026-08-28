@@ -1,1 +1,1 @@
-v1.6.1: Poboljšan prikaz oglasa na KOSPI ekranu i stabilnost aplikacije.
+v1.6.1: Redizajnirani vidžeti početnog ekrana – novi vidžeti merača 1×1, svih indeksa i grafikona trenda. Poboljšan prikaz oglasa i stabilnost aplikacije.
