@@ -1,15 +1,15 @@
 # Resume — FearIndex-Android
 
 ## Date / Branch
-2026-08-27 / `dev` (= origin/dev 43ee54d7 — 위젯 리디자인 + 가이드 + 피커 미리보기 + 등급 원점수·경계 통일까지 push 완료)
+2026-08-28 / `dev` (= origin/dev, v1.6.1 production 업로드 완료·release 머지·v1.6.1 태그)
 
 ## ⚡ 한 줄 상태
-**Play production = v1.6.0(vc26). v1.6.1(vc27: 인터스티셜 10분 리셋 + 위젯 전면 리디자인/피커 미리보기 + 등급 원점수 통일 + 탐욕 카피 + '줍줍' ASO) 준비 완료 — 다음: S22 최종 확인 → v1.6.1 게시.** 마케팅 급증 대비 점검 GREEN(FCM 등록 99.4%, 신규 123명 임계값 전부 포함), 서버 레이트리밋 60→300/min 전후 대조 종결(71번).
+**v1.6.1(vc27) production 업로드 완료(2026-08-28 12:08 KST, 트랙 [27], 관리형 게시 OFF → 자동 게시 대기). 다음: 게시·전파 확인 → RC force 1.6.1 상향 판단 → Crashlytics 감시.** 마케팅 급증 대비 점검 GREEN(FCM 등록 99.4%, 신규 123명 임계값 전부 포함), 서버 레이트리밋 60→300/min 전후 대조 종결(71번).
 
 ## 🚨 재개 시 첫 행동 (어느 맥이든)
-1. `git fetch origin && git pull` — dev 최신화(8/24 머지 커밋 포함 확인).
-2. **v1.6.1(vc27) 게시** — @docs/checkpoints/HANDOFF-v1.6.1.md 절차: (그 맥 최초면 `bash ~/thingineeer-env/android/fearindex/install.sh`) → `./gradlew test` → `bundle exec fastlane production`(관리형 게시 OFF, **사용자 게시 승인됨**) → 트랙 `[27]` 확인 → v1.6.1 태그 + release 머지 + deployment.md 행. versionCode 는 이미 27/1.6.1(머지에서 채택, changelog 27 존재).
-3. 게시 후 실기기: 10분 백그라운드 → 코스피 재진입 → 전면광고 노출 1회 확인.
+1. `git fetch origin && git pull` — dev 최신화.
+2. **v1.6.1 게시·전파 확인**: `bundle exec fastlane run google_play_track_version_codes track:production` → [27] + 공개 리스팅(`play.google.com/store/apps/details?id=th1ngjin.fearindex&hl=en&gl=US`)에 "1.6.1" 등장 확인. 전파 전엔 RC 상향 금지(23·31번 원칙).
+3. 전파 후: RC `force_update_minimum_version`[Android] `1.6`→`1.6.1` 상향 판단(get→한 줄 수정→deploy, 32번 절차). 위젯 리뷰 답글은 사용자 직접. Crashlytics 1.6.1 FATAL 0·위젯 ANR·`AppCheckTokenProbe` 추이 감시. 다음 배포는 vc28.
 
 ## 2026-08-28 세션 (S22+에뮬, 위젯 개선 대공사 — push 완료, 이어서 검증 필요)
 - [x] 앱 이름 45 locale 현지화(ko=공포지수, iOS CFBundleDisplayName 이식) / 온보딩: 카드 하이라이트 밀착(TDD)+투표 단계 컷아웃 터치 통과+4단계 20dp 상향 — 에뮬 전 단계 검증
@@ -19,7 +19,8 @@
 - [x] **ANR 최종 판정 = 통과(2026-08-28, release 1.6.1 S22 실기기, dev 51082e0f)** — 3시나리오 전부 ANR 0: ① 콜드 실행(MainActivity 포커스 정상) ② 콜드 ↻(통합·차트 각각 force-stop 후 탭 → WidgetRefreshWorker 1.1s SUCCESS) ③ 콜드 기간 연타 15회(재렌더 정상, `/data/anr` 최신 파일 6/22 그대로). 잔여 ANR 은 debug DEX 검증 원인으로 확정 — release 무관.
 - [x] KOSPI/Crypto 차트 위젯: Crypto 차트 release 실배치 육안 OK(73·3M·y 77/41/5·x 5.31→8.28·기준시각), 통합(2×2 리스트)·Global 차트도 release 배치 OK. ⚠️ S22 의 debug 앱은 검증 위해 **제거함**(사용자 승인) — S22 에는 release(vc27 사이드로드)만 존재, 위젯 3개(통합·Global 차트·Crypto 차트) 배치 상태
 - [x] 머지 완료 feature 브랜치 5개 로컬+origin 삭제(사용자 지시) → 브랜치 dev/main/release 만 남음. dev 51082e0f 전체 테스트 1,132/0
-- [ ] **v1.6.1(vc27) 게시** — 검증 전부 통과, 사용자 최종 go 대기
+- [x] **KOSPI 진입 인터스티셜 5초 지연 제거 → 즉시 노출(dev 80962a97 push, 사용자 결정, iOS 동일)** — TDD(`DEFAULT_KOSPI_ENTRY_DELAY_MILLIS` 0), S22 debug E2E: 코스피 탭 → 300ms 내 AdActivity + GA 인터스티셜광고노출. release 는 Timber 가 logcat 에 안 남아 로드 결과를 못 봄(60번) — 광고 E2E 는 debug(테스트 유닛)로. S22 는 검증 후 debug 재제거, release(vc27 사이드로드)만 유지
+- [x] **v1.6.1(vc27) production 업로드(2026-08-28 12:08 KST)** — API 9종 200, 1,132 tests/0, changelog 27 위젯 문구로 갱신(45 locale), SHA-1 일치, fastlane 성공, 트랙 [27]. release 머지 + v1.6.1 태그. 상세 deployment.md 행 + bugs-fixed 73번
 
 ## 2026-08-27 세션 (이 맥, 상세 72·73번)
 - [x] 탐욕(≥70) 인앱 카피 과열 프레임 통일 — GreedFrame(TDD) + 3곳 문구 분기 + 3키×45 locale, dev 머지·push. 푸시 문구는 서버(메인 세션) 담당. **v1.6.1 미게시 상태 유지 → 이 변경도 v1.6.1 에 포함됨**
