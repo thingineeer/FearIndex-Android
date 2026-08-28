@@ -18,7 +18,7 @@
 
 - **위젯 리디자인 완료(73번, dev push)**: Play 리뷰 대응 — 1×1 게이지 3종(targetCell 1×1) + 통합 2×2 + 차트 4×2(30일) + 새로고침 ↻ + **피커 previewImage/label/설명 정비**(앱 아이콘만 보이던 문제 해소) + 위젯 사용법 가이드 Android 전용 재작성. 1,096+ tests GREEN, locale 대칭 513키.
 - **등급/색 원점수 기준 통일(사용자 결정, dev 4d04e642)**: 표시 점수는 반올림, 등급은 raw(55.4→표시 55·탐욕). iOS parity 확인은 메인 세션 전달.
-- **다음 = v1.6.1(vc27) 게시**(@docs/checkpoints/HANDOFF-v1.6.1.md) + S22 최종 확인(사용자).
+- **✅ v1.6.1(vc27) production 업로드 완료(2026-08-28 12:08 KST, 트랙 [27])** — 위젯 리디자인+피커 미리보기+등급 통일+KOSPI 인터스티셜 즉시 노출+changelog 27 위젯 반영. release 머지·v1.6.1 태그. **다음 = 게시·전파 확인 → RC force 1.6.1 상향 판단 → Crashlytics 감시.**
 
 ## 최신 상태 (2026-08-25, 마케팅 급증 대비 점검 + 레이트리밋 협업 + '줍줍' ASO) ← 최신 진입점: @memory/resume-FearIndex-Android.md
 
