@@ -95,7 +95,7 @@ bundle exec fastlane internal
 **Production 배포 전 필수**:
 - `app/build.gradle.kts`와 `presentation/build.gradle.kts`의 release 빌드 `buildConfigField`가 위 프로덕션 광고 단위 ID로 세팅되어 있는지 재확인.
 - Remote Config에서 광고를 켤 때 `ads_enabled=true`, `interstitial_ads_enabled=true`, `interstitial_session_cap=2`, `interstitial_cooldown_sec=180`, `kospi_interstitial_enabled=true`를 Android 조건에 맞게 설정.
-- 코스피 홈 진입 인터스티셜은 사용자가 KOSPI 탭으로 전환한 뒤 5초 후에만 노출. 앱 시작/종료/백그라운드 전환 시 노출 금지.
+- 코스피 홈 진입 인터스티셜은 사용자가 홈에서 KOSPI 탭으로 전환하는 즉시 노출(2026-08-28 5초 지연 제거, iOS 동일). 앱 시작/종료/백그라운드 전환 시 노출 금지.
 - 광고 사이에 Insight/SimilarEvents 카드가 자연스럽게 배치되는지 확인.
 - 광고 로딩 실패 시 크래시 없이 빈 공간으로 처리되는지 확인.
 

@@ -15,7 +15,7 @@ data class InterstitialAdPolicyConfig(
     companion object {
         const val DEFAULT_SESSION_CAP = 2
         const val DEFAULT_COOLDOWN_MILLIS = 180_000L
-        const val DEFAULT_KOSPI_ENTRY_DELAY_MILLIS = 5_000L
+        const val DEFAULT_KOSPI_ENTRY_DELAY_MILLIS = 0L // KOSPI 진입 즉시 노출 (iOS 동일, 2026-08-28 사용자 결정 — 이전 5초 지연 제거)
     }
 }
 

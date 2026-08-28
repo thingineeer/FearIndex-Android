@@ -9,12 +9,12 @@ import th1ngjin.fearindex.domain.entity.FearIndexType
 class InterstitialAdPolicyTest {
 
     @Test
-    fun `기본 정책은 iOS와 동일한 세션 cap 쿨다운과 Android 5초 진입 지연을 가진다`() {
+    fun `기본 정책은 iOS와 동일한 세션 cap 쿨다운을 가지며 KOSPI 진입 광고는 즉시 노출된다`() {
         val config = InterstitialAdPolicyConfig()
 
         assertEquals(2, config.sessionCap)
         assertEquals(180_000L, config.cooldownMillis)
-        assertEquals(5_000L, config.kospiEntryDelayMillis)
+        assertEquals(0L, config.kospiEntryDelayMillis) // 2026-08-28 사용자 결정: 5초 지연 제거, iOS 와 동일하게 즉시
     }
 
     @Test
