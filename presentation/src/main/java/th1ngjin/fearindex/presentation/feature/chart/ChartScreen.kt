@@ -37,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -599,19 +600,9 @@ private fun ChartCard(
     val textMeasurer = rememberTextMeasurer()
     val labelColor = MaterialTheme.colorScheme.onSurfaceVariant
     val surfaceColor = MaterialTheme.colorScheme.surface
-    val onSurfaceColor = MaterialTheme.colorScheme.onSurface
     val outlineColor = MaterialTheme.colorScheme.outline
-    val tooltipBgColor = MaterialTheme.colorScheme.surfaceVariant
     val haptic = LocalHapticFeedback.current
 
-    // 다국어 rating 문자열 (Canvas draw에서 stringResource 호출 불가하므로 미리 로드)
-    val ratingLabels = arrayOf(
-        stringResource(R.string.rating_extreme_fear),
-        stringResource(R.string.rating_fear),
-        stringResource(R.string.rating_neutral),
-        stringResource(R.string.rating_greed),
-        stringResource(R.string.rating_extreme_greed),
-    )
 
     // 선택된 포인트 인덱스 (null이면 선택 없음)
     var selectedIndex by remember(data) { mutableStateOf<Int?>(null) }
@@ -632,11 +623,13 @@ private fun ChartCard(
         colors = CardDefaults.cardColors(containerColor = surfaceColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
     ) {
+        // 선택값은 차트 밖 헤더에 — 드래그 중 툴팁이 라인을 가리던 문제 해소 (iOS 대칭)
+        ChartSelectionHeader(summary = selectedIndex?.let { data.getOrNull(it) }?.let(ChartSelectionSummary::of))
         Canvas(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
-                .padding(top = 16.dp, bottom = 24.dp, start = 8.dp, end = 40.dp)
+                .padding(top = 8.dp, bottom = 24.dp, start = 8.dp, end = 40.dp)
                 .pointerInput(data) {
                     if (data.isEmpty()) return@pointerInput
                     awaitEachGesture {
@@ -678,7 +671,7 @@ private fun ChartCard(
             )
 
             // 고점/저점 peak 마커 (빨간 점 + 점수 라벨). 선택 인디케이터보다 먼저 그려
-            // 드래그 툴팁이 항상 위에 오도록 한다.
+            // 선택 세로선·점이 항상 위에 오도록 한다.
             if (peaks != null) {
                 drawPeakMarkers(
                     data = data,
@@ -688,20 +681,13 @@ private fun ChartCard(
                 )
             }
 
-            // 선택 인디케이터 (수직선 + 점 + 툴팁)
+            // 선택 인디케이터 (수직선 + 점). 점수·등급·날짜는 차트 밖 헤더에 표시.
             val sel = selectedIndex
             if (sel != null && sel in data.indices) {
                 drawSelectionIndicator(
                     data = data,
                     selectedIndex = sel,
-                    isCrypto = isCrypto,
-                    ratingLabels = ratingLabels,
-                    marketPeriod = selectedMarketPeriod,
-                    cryptoPeriod = selectedCryptoPeriod,
-                    textMeasurer = textMeasurer,
                     lineColor = outlineColor,
-                    textColor = onSurfaceColor,
-                    tooltipBg = tooltipBgColor,
                 )
             }
         }
@@ -817,14 +803,7 @@ private fun peakScoreText(score: Double): String {
 private fun DrawScope.drawSelectionIndicator(
     data: List<FearIndex>,
     selectedIndex: Int,
-    isCrypto: Boolean,
-    ratingLabels: Array<String>,
-    marketPeriod: ChartPeriod,
-    cryptoPeriod: CryptoChartPeriod,
-    textMeasurer: TextMeasurer,
     lineColor: Color,
-    textColor: Color,
-    tooltipBg: Color,
 ) {
     val chartWidth = size.width
     val chartHeight = size.height
@@ -853,72 +832,41 @@ private fun DrawScope.drawSelectionIndicator(
         radius = 2.5.dp.toPx(),
         center = Offset(x, y),
     )
-
-    // 3. 툴팁 (점수 + 등급 + 날짜)
-    val score = point.score.roundToInt()
-    val scoreText = "$score"
-    val ratingText = ratingLabelFromArray(point.score, ratingLabels)
-    val days = if (isCrypto) cryptoPeriod.days else marketPeriod.days
-    val dateFormatter = tooltipDateFormatter(days)
-    val dateText = dateFormatter.format(point.timestamp)
-
-    val scoreLayout = textMeasurer.measure(
-        text = scoreText,
-        style = TextStyle(fontSize = 14.sp, color = fearScoreColor(score), fontWeight = FontWeight.Bold),
-    )
-    val ratingLayout = textMeasurer.measure(
-        text = ratingText,
-        style = TextStyle(fontSize = 10.sp, color = textColor.copy(alpha = 0.75f)),
-    )
-    val dateLayout = textMeasurer.measure(
-        text = dateText,
-        style = TextStyle(fontSize = 9.sp, color = textColor.copy(alpha = 0.5f)),
-    )
-
-    val padding = 8.dp.toPx()
-    val tooltipWidth = maxOf(scoreLayout.size.width, ratingLayout.size.width, dateLayout.size.width) + padding * 2
-    val tooltipHeight = scoreLayout.size.height + ratingLayout.size.height + dateLayout.size.height + padding * 2 + 4.dp.toPx()
-
-    // 툴팁 X 위치 (가장자리 클램프)
-    val tooltipX = (x - tooltipWidth / 2f).coerceIn(0f, chartWidth - tooltipWidth)
-    val tooltipY = 0f.coerceAtMost(y - tooltipHeight - 8.dp.toPx()).let {
-        // 위로 표시하되, 상단 벗어나면 아래로
-        if (y - tooltipHeight - 8.dp.toPx() < 0f) y + 16.dp.toPx() else y - tooltipHeight - 8.dp.toPx()
-    }.coerceAtMost(chartHeight - tooltipHeight)
-
-    // 툴팁 배경
-    drawRoundRect(
-        color = tooltipBg,
-        topLeft = Offset(tooltipX, tooltipY),
-        size = Size(tooltipWidth, tooltipHeight),
-        cornerRadius = androidx.compose.ui.geometry.CornerRadius(8.dp.toPx()),
-    )
-
-    // 텍스트 그리기 (중앙 정렬)
-    var textY = tooltipY + padding
-    drawText(
-        textLayoutResult = scoreLayout,
-        topLeft = Offset(tooltipX + (tooltipWidth - scoreLayout.size.width) / 2f, textY),
-    )
-    textY += scoreLayout.size.height + 2.dp.toPx()
-    drawText(
-        textLayoutResult = ratingLayout,
-        topLeft = Offset(tooltipX + (tooltipWidth - ratingLayout.size.width) / 2f, textY),
-    )
-    textY += ratingLayout.size.height + 2.dp.toPx()
-    drawText(
-        textLayoutResult = dateLayout,
-        topLeft = Offset(tooltipX + (tooltipWidth - dateLayout.size.width) / 2f, textY),
-    )
 }
 
-private fun tooltipDateFormatter(days: Int): DateTimeFormatter {
-    val pattern = when {
-        days <= 90 -> "yyyy/M/d"
-        else -> "yyyy/M/d"
+/**
+ * 선택값 헤더 (iOS selectedValueHeader 대칭) — 좌: 점수(등급색)+등급, 우: 날짜.
+ * 미선택 시에도 높이를 유지(투명)해 드래그 시작 때 차트가 밀리지 않게 한다.
+ */
+@Composable
+private fun ChartSelectionHeader(summary: ChartSelectionSummary?) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp, top = 12.dp)
+            .alpha(if (summary != null) 1f else 0f),
+        verticalAlignment = Alignment.Bottom,
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Column {
+            Text(
+                text = summary?.score?.toString() ?: " ",
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                color = summary?.let { fearScoreColor(it.rating) } ?: Color.Transparent,
+            )
+            Text(
+                text = summary?.let { ratingLabel(it.rating) } ?: " ",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        Text(
+            text = summary?.dateText ?: " ",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
-    return DateTimeFormatter.ofPattern(pattern)
-        .withZone(ZoneId.of("America/New_York"))
 }
 
 // MARK: - Canvas Drawing
@@ -1194,15 +1142,3 @@ private fun PeriodSelectorRow(
 
 // MARK: - Rating Label
 
-/**
- * Canvas drawSelectionIndicator 내부용 — stringResource를 쓸 수 없으므로
- * 상위 Composable에서 미리 로드한 배열을 받아 등급 문자열 선택.
- */
-private fun ratingLabelFromArray(score: Double, labels: Array<String>): String = when {
-    // 원점수 기준 — FearIndex.Rating.from 과 동일 경계 (25/45/55/75)
-    score < 25 -> labels[0]
-    score < 45 -> labels[1]
-    score < 55 -> labels[2]
-    score < 75 -> labels[3]
-    else -> labels[4]
-}
