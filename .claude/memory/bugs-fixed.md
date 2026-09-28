@@ -1,3 +1,11 @@
+## 2026-09-28 세션 (유저 제보 2건 — 메인 세션 경유)
+
+### 74. 히스토리 차트 드래그 툴팁이 라인을 가림 → 선택값을 차트 밖 헤더로 (dev 206ff778, 미배포) + 주간리포트 OFF 알림은 Android 무관 확인
+- **툴팁(수정)**: `ChartScreen.drawSelectionIndicator` 가 Canvas 안에 점수·등급·날짜 카드를 그려 드래그 중 선을 덮음(iOS 동일 제보). iOS `FearHistoryChartView.selectedValueHeader` 대칭으로 ChartCard 상단에 `ChartSelectionHeader`(좌 점수[등급색]+등급 / 우 날짜) 추가 — **미선택 시 높이 유지·alpha 0** 이라 드래그 시작 때 차트가 밀리지 않음. 차트 안엔 세로선·선택 점만. `ChartSelectionSummary`(점수 반올림·등급 원점수·뉴욕 기준 `yyyy/M/d`) TDD 3건, 미사용 `ratingLabelFromArray`/툴팁 로컬 제거. 1,138 tests/0, S22 debug 드래그 육안(64 탐욕 8/13 → 손 뗀 뒤 45 중립 9/3 유지).
+- **주간리포트 OFF인데 알림 옴(수정 불필요)**: 원인은 서버 온보딩 drip D5/D7 이 `weeklyReportNotificationEnabled` 를 안 본 것(메인 세션이 `shouldSendDripDay` 로 서버 수정). Android 확인: 토글 → `saveSettingsLocal`+즉시 `updateNotificationSettings`(weekly=false), `registerFCMToken`·등록 직후 `updateSettings` 모두 `storage.load()` 값 전송, 권한 동기화 경로는 `copy(notificationEnabled=…)` 만 → weekly 보존, 재설치는 deviceId 도 새로 발급. 로컬 알림 경로 없음(전부 FCM). 기존 테스트가 weekly=false 페이로드 고정.
+- **⚠️ 실기기 자동화 함정**: S22 에 딸깍(같은 AdMob 계정) 설치돼 있으면 테스트 광고가 딸깍 앱 광고로 떠 스와이프가 광고를 눌러 딸깍이 열림 — 캡처 전 `mCurrentFocus` 확인.
+- **참고(서버, Android 무관)**: 메인 세션이 코스피 지수 9/10~ 외국인 수급 누락 계산 + 휴장일(5/25·6/3·8/17·9/24·9/25) 가짜 마감 점수 문제 발견, 서버 수정 예정.
+
 ## 2026-08-27 세션 (탐욕 구간 카피 통일)
 
 ### 72. 탐욕(≥70) 인앱 카피 "매수/샀다면" → "이후 변동" 프레임 (전 플랫폼 통일, 토스 세션 경유 회장님 지시)

@@ -14,6 +14,10 @@
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
 
+## 최신 상태 (2026-09-28, 유저 제보 2건 처리) ← 최신 진입점: @memory/resume-FearIndex-Android.md
+
+- **Play production = v1.6.1(vc27)**, RC 강제 업데이트 Android `1.6.1`(8/28). dev 에 미배포 fix 1건: 히스토리 차트 드래그 툴팁 → 차트 밖 헤더(74번, dev 206ff778). 주간리포트 OFF 알림 제보는 서버 drip 원인(Android 정상 확인). 다음 배포 = v1.6.2(vc28).
+
 ## 최신 상태 (2026-08-27, 위젯 전면 리디자인 + 등급 원점수 통일) ← 최신 진입점: @memory/resume-FearIndex-Android.md
 
 - **위젯 리디자인 완료(73번, dev push)**: Play 리뷰 대응 — 1×1 게이지 3종(targetCell 1×1) + 통합 2×2 + 차트 4×2(30일) + 새로고침 ↻ + **피커 previewImage/label/설명 정비**(앱 아이콘만 보이던 문제 해소) + 위젯 사용법 가이드 Android 전용 재작성. 1,096+ tests GREEN, locale 대칭 513키.
