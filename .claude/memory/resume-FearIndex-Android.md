@@ -1,15 +1,22 @@
 # Resume — FearIndex-Android
 
 ## Date / Branch
-2026-08-28 / `dev` (= origin/dev, v1.6.1 production 업로드 완료·release 머지·v1.6.1 태그)
+2026-09-28 / `dev` (= origin/dev, 로컬 전용 브랜치·커밋 없음)
 
 ## ⚡ 한 줄 상태
-**v1.6.1(vc27) 게시·전파 완료(12:49 KST) + RC 상향 완료: `force_update_minimum_version`[Android] `1.6`→`1.6.1`, `minimum_app_version`[Android] `1.6.0`→`1.6.1`(diff 2줄만, iOS default 1.9.0/1.9.2 불변, 14 params, 라이브 재조회 확인) → 1.6.0(vc26) 전원 강제 업데이트 발동(patch 비교, 69번 로직). 다음: Crashlytics 1.6.1 감시 + Play 권장 조치 5개는 전부 라이브러리 내부/기준선 항목으로 판정(우리 코드 무관, 43번 참고 항목과 동일 — manifest 방향/리사이즈 제한 0, R8 minify+shrink ON, >200KB 비트맵 0, deprecated display API 0). 1.6.2 후보: Google 메모리 최적화 정책(2027-02, R8 커버리지 25%+·백그라운드 비트맵 해제) + Restore Credentials API(2027-04, 로그인 없는 앱이라 해당 없음 추정).** 마케팅 급증 대비 점검 GREEN(FCM 등록 99.4%, 신규 123명 임계값 전부 포함), 서버 레이트리밋 60→300/min 전후 대조 종결(71번).
+**Play production = v1.6.1(vc27) 게시 완료 + RC 강제 업데이트 Android `1.6.1`. dev 에는 미배포 fix 1건(히스토리 차트 툴팁 → 헤더, 74번) — 다음 배포 v1.6.2(vc28) 후보.**
+
+## 2026-09-28 세션 (메인 세션 경유 유저 제보 2건, 상세 74번)
+- [x] 히스토리 차트 드래그 툴팁이 선을 가림 → 선택값 차트 밖 헤더로(iOS selectedValueHeader 대칭, TDD, S22 확인) — dev 206ff778 push, **미배포**
+- [x] 주간리포트 OFF 인데 알림 옴 → Android 코드 정상(토글·재등록 모두 weekly=false 전송), 원인은 서버 drip D5/D7(메인 세션 수정)
+- [x] resume 스킬 v2.4.0(session-saver 갱신분) 커밋
+- 참고: 코스피 외국인 수급 누락(9/10~)·휴장일 가짜 마감 점수는 서버(메인 세션) 수정 예정 — Android 수정 불필요
 
 ## 🚨 재개 시 첫 행동 (어느 맥이든)
 1. `git fetch origin && git pull` — dev 최신화.
-2. **v1.6.1 게시·전파 확인**: `bundle exec fastlane run google_play_track_version_codes track:production` → [27] + 공개 리스팅(`play.google.com/store/apps/details?id=th1ngjin.fearindex&hl=en&gl=US`)에 "1.6.1" 등장 확인. 전파 전엔 RC 상향 금지(23·31번 원칙).
-3. 전파 후: RC `force_update_minimum_version`[Android] `1.6`→`1.6.1` 상향 판단(get→한 줄 수정→deploy, 32번 절차). 위젯 리뷰 답글은 사용자 직접. Crashlytics 1.6.1 FATAL 0·위젯 ANR·`AppCheckTokenProbe` 추이 감시. 다음 배포는 vc28.
+2. v1.6.1 게시·전파·RC 1.6.1 상향은 **완료**(8/28). Crashlytics 1.6.1 FATAL·위젯 ANR·`AppCheckTokenProbe` 추이 확인.
+3. **v1.6.2(vc28) 준비**: dev 의 툴팁 fix 포함 + 1.6.2 후보(Google 메모리 정책 2027-02: 백그라운드 비트맵 해제·R8 커버리지 25%+, 위젯 비트맵 렌더러 점검). 배포 절차는 v1.6.1 과 동일(테스트 → changelog 28 45 locale → bundleRelease SHA-1 → `fastlane production` → release 머지·태그 → 전파 후 RC).
+4. 사용자 결정 대기: 브랜치 축소(`main` 은 4월 초기 커밋에 멈춘 죽은 브랜치인데 GitHub default — dev 로 default 변경 후 main 삭제 제안).
 
 ## 2026-08-28 세션 (S22+에뮬, 위젯 개선 대공사 — push 완료, 이어서 검증 필요)
 - [x] 앱 이름 45 locale 현지화(ko=공포지수, iOS CFBundleDisplayName 이식) / 온보딩: 카드 하이라이트 밀착(TDD)+투표 단계 컷아웃 터치 통과+4단계 20dp 상향 — 에뮬 전 단계 검증
