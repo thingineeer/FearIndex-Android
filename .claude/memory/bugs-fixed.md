@@ -7,7 +7,7 @@
 - **검증**: 1,144 tests/0. 백그라운드 잡 시작 시 SDK·WebView·앱오픈 로드 0. 36초 백그라운드 후 복귀 앱오픈 표시. 광고 제거 시 미리 로드 0. release(R8) 어댑터 Unity·Pangle·GMA COMPLETE, release dex 에 디버그 훅 문자열 0.
 - **UMP 현황**: 이 앱 대상 동의 메시지가 없어 모든 사용자에서 `requestConsentInfoUpdate` 가 "no form(s) configured" 로 실패하고, 실패 뒤 `canRequestAds()` 는 true(EEA 디버그 지역도 동일) → EEA 가 동의 없이 제한적인 광고로 나간 원인. 실패 후 다음 실행의 캐시 값도 true 라 SDK 초기화 지연 없음(첫 실행·초기화 직후만 UMP 왕복 대기).
 - **AdMob 콘솔**: 앱 수준 개인정보처리방침 URL `https://thingineeer.github.io/privacy/` 저장(공포지수 iOS·딸깍과 동일). 메시지 `fearindex-android-gdpr` 는 확인 단계가 권한 분류기에서 계정 설정 변경으로 막혀 사용자가 마무리해야 한다.
-- **⚠️ 빌드 환경**: 레포 `gradle.properties` 의 `org.gradle.java.home` 이 없는 Android Studio JBR 경로를 가리킨다. domain 모듈이 JDK 21(class 65)이라 JDK 17 로는 kapt/javac 가 실패 → `./gradlew -Dorg.gradle.java.home=~/.gradle/jdks/eclipse_adoptium-21-aarch64-os_x.2/jdk-21.0.7+6/Contents/Home ...` 로 우회.
+- **⚠️ 빌드 환경**: 레포 `gradle.properties` 의 `org.gradle.java.home` 이 없는 Android Studio JBR 경로를 가리킨다. domain 모듈이 JDK 21(class 65)이라 JDK 17 로는 Hilt 생성 Java 코드 컴파일(javac)이 실패 → `./gradlew -Dorg.gradle.java.home=~/.gradle/jdks/eclipse_adoptium-21-aarch64-os_x.2/jdk-21.0.7+6/Contents/Home ...` 로 우회.
 - **⚠️ 실측 요령**: WorkManager 잡 강제 실행은 네임스페이스 필요 `cmd jobscheduler run -f -n androidx.work.systemjobscheduler <pkg> <jobId>`. `am force-stop` 은 WorkManager 잡 ID 를 재발급시킨다(ForceStopRunnable) — 백그라운드 실측은 `am kill`.
 
 ## 2026-08-27 세션 (탐욕 구간 카피 통일)
