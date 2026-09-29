@@ -8,11 +8,18 @@
 - **iOS 대칭성**: 모든 기능은 iOS/macOS 프로젝트(`th1ngjin.FearIndex-iOS`, `th1ngjin.FearIndex-macOS`)와 **대시보드/Analytics/Crashlytics에서 일관**되어야 함. 상세: @memory/ios-parity.md
 - **메모리 경로**: `.claude/memory/` 안에만. 글로벌 `~/.claude/projects/...` 절대 사용 금지.
 - **Git**: 피처 브랜치 → 버전 브랜치 → main 머지. cherry-pick/force push 금지. 상세: @rules/git-workflow.md
+- **PR 만들지 않음 (2026-09-30 사용자 지시)**: 피처 브랜치 → 로컬 `git merge --no-ff` 로 dev 합류 → push. GitHub PR 생성 금지.
 - **Secrets**: 두 저장소 분리 보관
   - 파일(keystore/gradle/google-services): `~/fearindex-secrets/` + install.sh
   - 텍스트 토큰(Firebase/AdMob/AppCheck): `~/thingineeer-env/projects/fearindex-android/.env` (GitHub private repo, 다른 머신 공유)
   - 상세: @rules/secrets.md + @memory/secrets-env.md
 - **DUNS / 사업자 (2026-06-26 발급)**: D-U-N-S Number = **`696610806`**, 사업자 상호(Legal Business Name) = **`ImaJine`(이매진)**. 조직 계정(Apple/Google Play) 전환용. 상세 + 전환 절차: @memory/org-account.md
+
+## 최신 상태 (2026-09-30, AdMob 일치율 하락 대응 — app-92 세션 요청)
+
+- **dev 36df82e (미배포, v1.6.2 대기)**: 앱오프닝을 백그라운드 프로세스에서 불러오던 문제 수정 + 광고 SDK 는 UMP 동의 확인 뒤 초기화 + 설정 '개인정보 선택'(EEA 등 필요 지역만). 상세 @memory/bugs-fixed.md 75번.
+- **AdMob GDPR 메시지 `fearindex-android-gdpr` 게시 완료**(공포지수 Android 단독, 동의하지 않음 전 지역 켬). EEA 실측: 알림 권한 → 동의 폼 → 온보딩 투어 순서로 겹침 없음, 동의/거부 모두 광고 정상.
+- **러시아**: Google 수요·입찰 소스는 정책상 러시아 게재 중단, 폭포식 소스(myTarget 등)만 가능 — 사용자 결정 대기(현재 그대로 둠).
 
 ## 최신 상태 (2026-09-28, 유저 제보 2건 처리) ← 최신 진입점: @memory/resume-FearIndex-Android.md
 
