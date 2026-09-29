@@ -157,4 +157,54 @@ class AppOpenAdPolicyTest {
             p.canShowOnForeground(40_000L, isReady = true, isAdFree = false, canRequestAds = true, config = config.copy(cooldownMillis = 0L)),
         )
     }
+
+    // 미리 로드 자격 — 위젯 워커·FCM 으로 백그라운드에서 뜬 프로세스는 노출 기회가 없어 요청이 그대로 버려진다
+    // (2026-09 앱오프닝 요청 24.4만 대비 노출 774, 게재율 0.3%).
+
+    @Test
+    fun `백그라운드 프로세스 시작에서는 미리 로드하지 않음`() {
+        assertFalse(
+            policy().canPreload(isForeground = false, canRequestAds = true, isAdFree = false, config = config),
+        )
+    }
+
+    @Test
+    fun `화면이 떠 있고 광고 요청이 허용되면 미리 로드`() {
+        assertTrue(
+            policy().canPreload(isForeground = true, canRequestAds = true, isAdFree = false, config = config),
+        )
+    }
+
+    @Test
+    fun `동의 확인 전(canRequestAds false)에는 미리 로드하지 않음`() {
+        assertFalse(
+            policy().canPreload(isForeground = true, canRequestAds = false, isAdFree = false, config = config),
+        )
+    }
+
+    @Test
+    fun `광고 제거 구매자는 미리 로드하지 않음`() {
+        assertFalse(
+            policy().canPreload(isForeground = true, canRequestAds = true, isAdFree = true, config = config),
+        )
+    }
+
+    @Test
+    fun `원격 설정으로 꺼져 있으면 미리 로드하지 않음`() {
+        assertFalse(
+            policy().canPreload(isForeground = true, canRequestAds = true, isAdFree = false, config = config.copy(enabled = false)),
+        )
+    }
+
+    @Test
+    fun `세션 노출 한도에 도달하면 미리 로드하지 않음`() {
+        val p = policy()
+        p.recordBackgroundEntry(0L)
+        p.recordImpression(30_000L)
+        p.recordBackgroundEntry(700_000L)
+        p.recordImpression(730_000L)
+        assertFalse(
+            p.canPreload(isForeground = true, canRequestAds = true, isAdFree = false, config = config),
+        )
+    }
 }

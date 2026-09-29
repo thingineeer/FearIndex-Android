@@ -560,4 +560,7 @@ Zingatia pamoja na misingi, mtiririko, na makro.</string>
     <string name="widget_label_chart_crypto">Crypto Chati ya Mwenendo</string>
     <string name="widget_chart_kospi_description">Chati ya mwenendo wa fahirisi. Gusa kubadilisha kipindi (3M–5Y).</string>
     <string name="widget_chart_crypto_description">Chati ya mwenendo wa fahirisi. Gusa kubadilisha kipindi (3M–5Y).</string>
+
+    <!-- 광고 개인정보 선택 (iOS settings.privacyOptions 이식) -->
+    <string name="settings_menu_ad_privacy">Chaguo za faragha</string>
 </resources>

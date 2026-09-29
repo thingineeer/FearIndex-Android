@@ -2,6 +2,9 @@ package th1ngjin.fearindex.variant
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import com.google.android.ump.ConsentDebugSettings
+import com.google.android.ump.ConsentInformation
+import com.google.android.ump.ConsentRequestParameters
 import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.purchases.DebugPremiumOverrideStore
 import th1ngjin.fearindex.core.purchases.PurchaseManager
@@ -28,5 +31,32 @@ object VariantHooks {
     fun settingsDebugSection(purchaseManager: PurchaseManager): (@Composable () -> Unit)? {
         val store = overrideStore ?: return null
         return { DebugPurchaseTestCard(store = store, purchaseManager = purchaseManager) }
+    }
+
+    /**
+     * UMP 동의 요청 파라미터 — `adb shell setprop` 으로 EEA 동의 폼을 실측한다.
+     *   debug.fearindex.ump_geo    eea | other          (비우면 실제 지역)
+     *   debug.fearindex.ump_device <해시 ID>            (logcat "addTestDeviceHashedId(...)" 값)
+     *   debug.fearindex.ump_reset  1                    (실행마다 동의 상태 초기화 — 끝나면 0)
+     */
+    fun consentRequestParameters(context: Context, consentInformation: ConsentInformation): ConsentRequestParameters {
+        if (systemProperty("debug.fearindex.ump_reset") == "1") consentInformation.reset()
+        val geography = when (systemProperty("debug.fearindex.ump_geo")) {
+            "eea" -> ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA
+            "other" -> ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER
+            else -> return ConsentRequestParameters.Builder().build()
+        }
+        val debugSettings = ConsentDebugSettings.Builder(context)
+            .setDebugGeography(geography)
+            .apply { systemProperty("debug.fearindex.ump_device").takeIf { it.isNotBlank() }?.let(::addTestDeviceHashedId) }
+            .build()
+        return ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings).build()
+    }
+
+    private fun systemProperty(key: String): String = try {
+        val systemProperties = Class.forName("android.os.SystemProperties")
+        systemProperties.getMethod("get", String::class.java, String::class.java).invoke(null, key, "") as? String ?: ""
+    } catch (e: Throwable) {
+        ""
     }
 }

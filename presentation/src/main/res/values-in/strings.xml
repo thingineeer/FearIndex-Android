@@ -559,4 +559,7 @@ Pertimbangkan bersama fundamental, aliran dana, dan makro.</string>
     <string name="widget_label_chart_crypto">Crypto Grafik Tren</string>
     <string name="widget_chart_kospi_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y).</string>
     <string name="widget_chart_crypto_description">Grafik tren indeks. Ketuk untuk mengganti periode (3M–5Y).</string>
+
+    <!-- 광고 개인정보 선택 (iOS settings.privacyOptions 이식) -->
+    <string name="settings_menu_ad_privacy">Pilihan privasi</string>
 </resources>

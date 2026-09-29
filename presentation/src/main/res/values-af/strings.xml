@@ -560,4 +560,7 @@ Oorweeg saam met grondbeginsels, vloei en makro.</string>
     <string name="widget_label_chart_crypto">Crypto Tendensgrafiek</string>
     <string name="widget_chart_kospi_description">Indekstendensgrafiek. Tik om die tydperk (3M–5Y) te wissel.</string>
     <string name="widget_chart_crypto_description">Indekstendensgrafiek. Tik om die tydperk (3M–5Y) te wissel.</string>
+
+    <!-- 광고 개인정보 선택 (iOS settings.privacyOptions 이식) -->
+    <string name="settings_menu_ad_privacy">Privaatheidkeuses</string>
 </resources>
