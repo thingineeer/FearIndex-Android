@@ -563,4 +563,7 @@ Hãy xem xét cùng với các yếu tố cơ bản, dòng chảy và vĩ mô.</
     <string name="widget_label_chart_crypto">Crypto Biểu đồ xu hướng</string>
     <string name="widget_chart_kospi_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y).</string>
     <string name="widget_chart_crypto_description">Biểu đồ xu hướng chỉ số. Chạm để đổi kỳ hạn (3M–5Y).</string>
+
+    <!-- 광고 개인정보 선택 (iOS settings.privacyOptions 이식) -->
+    <string name="settings_menu_ad_privacy">Lựa chọn quyền riêng tư</string>
 </resources>

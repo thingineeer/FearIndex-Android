@@ -560,4 +560,7 @@ Considere junto com fundamentos, fluxo e macro.</string>
     <string name="widget_label_chart_crypto">Crypto Gráfico de tendência</string>
     <string name="widget_chart_kospi_description">Evolução do índice. Toque para mudar o período (3M–5Y).</string>
     <string name="widget_chart_crypto_description">Evolução do índice. Toque para mudar o período (3M–5Y).</string>
+
+    <!-- 광고 개인정보 선택 (iOS settings.privacyOptions 이식) -->
+    <string name="settings_menu_ad_privacy">Opções de privacidade</string>
 </resources>

@@ -2,6 +2,8 @@ package th1ngjin.fearindex.variant
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import com.google.android.ump.ConsentInformation
+import com.google.android.ump.ConsentRequestParameters
 import th1ngjin.fearindex.core.crash.CrashReporter
 import th1ngjin.fearindex.core.purchases.PurchaseManager
 import timber.log.Timber
@@ -20,4 +22,8 @@ object VariantHooks {
 
     /** 설정 화면 하단 debug 섹션 — release 없음. */
     fun settingsDebugSection(purchaseManager: PurchaseManager): (@Composable () -> Unit)? = null
+
+    /** UMP 동의 요청 파라미터 — release 는 디버그 지역 없이 기본값. */
+    fun consentRequestParameters(context: Context, consentInformation: ConsentInformation): ConsentRequestParameters =
+        ConsentRequestParameters.Builder().build()
 }

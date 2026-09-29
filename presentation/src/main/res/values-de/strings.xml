@@ -560,4 +560,7 @@ Mit Fundamentaldaten, Kapitalfluss und Makro interpretieren.</string>
     <string name="widget_label_chart_crypto">Crypto Trend-Chart</string>
     <string name="widget_chart_kospi_description">Indexverlauf als Chart. Zeitraum (3M–5Y) per Tipp wechselbar.</string>
     <string name="widget_chart_crypto_description">Indexverlauf als Chart. Zeitraum (3M–5Y) per Tipp wechselbar.</string>
+
+    <!-- 광고 개인정보 선택 (iOS settings.privacyOptions 이식) -->
+    <string name="settings_menu_ad_privacy">Datenschutzauswahl</string>
 </resources>

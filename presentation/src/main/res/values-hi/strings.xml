@@ -563,4 +563,7 @@
     <string name="widget_label_chart_crypto">Crypto ट्रेंड चार्ट</string>
     <string name="widget_chart_kospi_description">इंडेक्स ट्रेंड चार्ट। अवधि (3M–5Y) बदलने के लिए टैप करें।</string>
     <string name="widget_chart_crypto_description">इंडेक्स ट्रेंड चार्ट। अवधि (3M–5Y) बदलने के लिए टैप करें।</string>
+
+    <!-- 광고 개인정보 선택 (iOS settings.privacyOptions 이식) -->
+    <string name="settings_menu_ad_privacy">गोपनीयता विकल्प</string>
 </resources>

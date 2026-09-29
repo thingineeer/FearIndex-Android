@@ -25,7 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.ConsentInformation
 import com.google.android.ump.UserMessagingPlatform
 import dagger.Lazy
 import dagger.hilt.android.AndroidEntryPoint
@@ -247,25 +247,34 @@ class MainActivity : ComponentActivity() {
         if (ScreenshotMode.isEnabled()) return
 
         val consentInformation = UserMessagingPlatform.getConsentInformation(this)
-        val params = ConsentRequestParameters.Builder().build()
+        // debug 빌드: EEA 디버그 지역·테스트 기기 설정(adb setprop). release 는 기본 파라미터.
+        val params = VariantHooks.consentRequestParameters(this, consentInformation)
         consentInformation.requestConsentInfoUpdate(
             this,
             params,
             {
-                AdRequestAvailability.update(consentInformation.canRequestAds())
+                updateAdConsentState(consentInformation)
                 UserMessagingPlatform.loadAndShowConsentFormIfRequired(this) { formError ->
                     formError?.let { Timber.w("UMP consent form failed: ${it.message}") }
-                    AdRequestAvailability.update(consentInformation.canRequestAds())
+                    updateAdConsentState(consentInformation)
                 }
             },
             { requestError ->
                 Timber.w("UMP consent info update failed: ${requestError.message}")
-                AdRequestAvailability.update(consentInformation.canRequestAds())
+                updateAdConsentState(consentInformation)
             },
         )
         // 이전 세션에서 받은 동의로, 새 동의 정보 확인과 병렬로 광고 SDK 초기화를 시작한다(구글 UMP 가이드).
         val cachedCanRequestAds = consentInformation.canRequestAds()
         Timber.d("UMP cached canRequestAds=$cachedCanRequestAds")
         if (cachedCanRequestAds) AdRequestAvailability.update(true)
+    }
+
+    private fun updateAdConsentState(consentInformation: ConsentInformation) {
+        AdRequestAvailability.update(consentInformation.canRequestAds())
+        AdRequestAvailability.updatePrivacyOptionsRequired(
+            consentInformation.privacyOptionsRequirementStatus ==
+                ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED,
+        )
     }
 }

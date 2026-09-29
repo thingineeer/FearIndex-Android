@@ -65,12 +65,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.google.android.ump.UserMessagingPlatform
+import th1ngjin.fearindex.core.ads.AdRequestAvailability
 import th1ngjin.fearindex.presentation.BuildConfig
 import th1ngjin.fearindex.presentation.R
 import th1ngjin.fearindex.presentation.component.AdBanner
 import th1ngjin.fearindex.presentation.feature.onboarding.LocalOnboardingTour
 import th1ngjin.fearindex.presentation.feature.onboarding.OnboardingAnchor
 import th1ngjin.fearindex.presentation.feature.onboarding.tourAnchor
+import timber.log.Timber
 
 /** 광고 제거 구매 완료 체크 아이콘 색상 (iOS SF Symbol `.green`). */
 private val PremiumCheckColor = Color(0xFF34C759)
@@ -110,6 +113,7 @@ fun SettingsScreen(
     val isPurchasing by viewModel.isPurchasing.collectAsStateWithLifecycle()
     val isRestoring by viewModel.isRestoring.collectAsStateWithLifecycle()
     val dialog by viewModel.dialog.collectAsStateWithLifecycle()
+    val privacyOptionsRequired by AdRequestAvailability.privacyOptionsRequired.collectAsStateWithLifecycle()
 
     dialog?.let {
         SettingsResultDialog(dialog = it, onDismiss = viewModel::dismissDialog)
@@ -210,6 +214,16 @@ fun SettingsScreen(
                 title = stringResource(R.string.settings_menu_privacy),
                 onClick = onPrivacyPolicyClick,
             )
+
+            // 광고 개인정보 선택 — UMP 가 진입점을 요구할 때(EEA 등)만 표시. iOS SettingsView 대칭.
+            if (privacyOptionsRequired) {
+                HorizontalDivider()
+                SettingsItem(
+                    icon = Icons.Default.PrivacyTip,
+                    title = stringResource(R.string.settings_menu_ad_privacy),
+                    onClick = { openAdPrivacyOptions(context) },
+                )
+            }
 
             debugSection?.let { section ->
                 Spacer(modifier = Modifier.height(24.dp))
@@ -492,6 +506,15 @@ private fun openPlayStoreForReview(context: Context) {
             Uri.parse("https://play.google.com/store/apps/details?id=$packageName"),
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(webIntent)
+    }
+}
+
+/** UMP 개인정보 옵션 폼 — 사용자가 광고 동의 선택을 다시 바꿀 수 있는 진입점(GDPR 필수). */
+private fun openAdPrivacyOptions(context: Context) {
+    val activity = context.findActivity() ?: return
+    UserMessagingPlatform.showPrivacyOptionsForm(activity) { error ->
+        error?.let { Timber.w("UMP privacy options Error: ${it.message}") }
+        AdRequestAvailability.update(UserMessagingPlatform.getConsentInformation(activity).canRequestAds())
     }
 }
 

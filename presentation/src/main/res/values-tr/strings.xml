@@ -559,4 +559,7 @@ Temel analiz, fon akışları ve makro verilerle birlikte değerlendirin.</strin
     <string name="widget_label_chart_crypto">Crypto Trend Grafiği</string>
     <string name="widget_chart_kospi_description">Endeks trend grafiği. Dokunarak dönem (3M–5Y) değiştirilebilir.</string>
     <string name="widget_chart_crypto_description">Endeks trend grafiği. Dokunarak dönem (3M–5Y) değiştirilebilir.</string>
+
+    <!-- 광고 개인정보 선택 (iOS settings.privacyOptions 이식) -->
+    <string name="settings_menu_ad_privacy">Gizlilik tercihleri</string>
 </resources>
