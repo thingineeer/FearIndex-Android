@@ -1,3 +1,15 @@
+## 2026-09-30 세션 (AdMob 일치율 하락 — 앱오프닝 백그라운드 요청 + GDPR)
+
+### 74. 앱오프닝 요청이 백그라운드 프로세스에서 버려짐 + 광고 SDK 동의 전 초기화 + 개인정보 선택 진입점 부재 (PR #1, feature/v1.6.2-ads-consent-foreground)
+- **발단**: app-92 세션(AdMob 계정 분석) 전달. 9월 AppOpen(6583206280) 요청 244,445 / 노출 774(게재율 0.3%, iOS 4.0%). 계정 일치율 하락분의 20%가 공포지수 Android.
+- **원인(logcat 실측)**: `Application.onCreate` → `initAdMob()` → 초기화 콜백에서 `preloadIfNeeded`. 앱을 백그라운드로 보내고 `am kill` 뒤 WorkManager 잡(SystemJobService)으로 프로세스가 뜨자 런처가 맨 위인 상태에서 WebView 샌드박스 프로세스 기동 + `AppOpenAd loaded`. `FearWidgetUpdateWorker.schedule()` 은 위젯 유무와 무관하게 전 설치 기기에서 180분마다 돈다(하루 약 8회). FCM·Firebase 전송 잡도 같은 경로. RC 기본값 false 는 막아주지 못함 — `setDefaultsAsync` 완료 시 직전 활성화 값(Android 조건 true)을 읽는다. 미리 로드는 `canRequestAds`·광고 제거도 보지 않았다.
+- **수정**: `AppOpenAdPolicy.canPreload`(포그라운드·canRequestAds·광고 제거·RC·세션 한도, TDD 6) + 광고 SDK 는 `canRequestAds` true 뒤에만 초기화(MainActivity 에서만 갱신 → 백그라운드 프로세스는 SDK 미초기화). `requestConsentInfoUpdate` 직후 캐시 `canRequestAds()` 가 true 면 병렬 초기화(Next-Gen 가이드). 설정 '개인정보 선택' 행을 `privacyOptionsRequirementStatus == REQUIRED` 일 때만 표시(iOS 대칭, 45 locale). debug 전용 EEA 실측 훅 `adb shell setprop debug.fearindex.ump_geo eea` / `ump_device <해시>` / `ump_reset 1`.
+- **검증**: 1,144 tests/0. 백그라운드 잡 시작 시 SDK·WebView·앱오픈 로드 0. 36초 백그라운드 후 복귀 앱오픈 표시. 광고 제거 시 미리 로드 0. release(R8) 어댑터 Unity·Pangle·GMA COMPLETE, release dex 에 디버그 훅 문자열 0.
+- **UMP 현황**: 이 앱 대상 동의 메시지가 없어 모든 사용자에서 `requestConsentInfoUpdate` 가 "no form(s) configured" 로 실패하고, 실패 뒤 `canRequestAds()` 는 true(EEA 디버그 지역도 동일) → EEA 가 동의 없이 제한적인 광고로 나간 원인. 실패 후 다음 실행의 캐시 값도 true 라 SDK 초기화 지연 없음(첫 실행·초기화 직후만 UMP 왕복 대기).
+- **AdMob 콘솔**: 앱 수준 개인정보처리방침 URL `https://thingineeer.github.io/privacy/` 저장(공포지수 iOS·딸깍과 동일). 메시지 `fearindex-android-gdpr` 는 확인 단계가 권한 분류기에서 계정 설정 변경으로 막혀 사용자가 마무리해야 한다.
+- **⚠️ 빌드 환경**: 레포 `gradle.properties` 의 `org.gradle.java.home` 이 없는 Android Studio JBR 경로를 가리킨다. domain 모듈이 JDK 21(class 65)이라 JDK 17 로는 kapt/javac 가 실패 → `./gradlew -Dorg.gradle.java.home=~/.gradle/jdks/eclipse_adoptium-21-aarch64-os_x.2/jdk-21.0.7+6/Contents/Home ...` 로 우회.
+- **⚠️ 실측 요령**: WorkManager 잡 강제 실행은 네임스페이스 필요 `cmd jobscheduler run -f -n androidx.work.systemjobscheduler <pkg> <jobId>`. `am force-stop` 은 WorkManager 잡 ID 를 재발급시킨다(ForceStopRunnable) — 백그라운드 실측은 `am kill`.
+
 ## 2026-08-27 세션 (탐욕 구간 카피 통일)
 
 ### 72. 탐욕(≥70) 인앱 카피 "매수/샀다면" → "이후 변동" 프레임 (전 플랫폼 통일, 토스 세션 경유 회장님 지시)
