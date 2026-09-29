@@ -52,15 +52,21 @@ class AppOpenAdManager(
     }
 
     /**
-     * 정책 게이트 통과 시 광고를 미리 로드. cap 도달/미허용 시 폐기될 요청을 던지지 않는다.
+     * 정책 게이트 통과 시 광고를 미리 로드. 백그라운드·동의 전·광고 제거·cap 도달 시 폐기될 요청을 던지지 않는다.
      */
-    fun preloadIfNeeded(context: Context, adUnitId: String, config: AppOpenAdConfig) {
+    fun preloadIfNeeded(
+        context: Context,
+        adUnitId: String,
+        config: AppOpenAdConfig,
+        isForeground: Boolean,
+        canRequestAds: Boolean,
+        isAdFree: Boolean,
+    ) {
         if (adUnitId.isBlank() || isAdScreenshotMode()) return
         // Next-Gen SDK: initialize 완료 전 load 금지(UninitializedPropertyAccessException 위험).
         if (!AdSdkState.isInitialized.value) return
-        if (!config.enabled) return
+        if (!policy.canPreload(isForeground, canRequestAds, isAdFree, config)) return
         if (isLoading || isReady) return
-        if (policy.impressionCount >= config.sessionCap) return
         isLoading = true
         AppOpenAd.load(
             AdRequest.Builder(adUnitId).build(),
@@ -97,6 +103,8 @@ class AppOpenAdManager(
         canRequestAds: Boolean,
     ) {
         if (isForegroundBlocked || isShowingAd) return
+        // 포그라운드 진입(ON_START)에서만 호출되므로 여기서의 재로드는 화면이 떠 있을 때다.
+        val reload = { preloadIfNeeded(activity, adUnitId, config, isForeground = true, canRequestAds, isAdFree) }
         val eligible = policy.canShowOnForeground(
             nowMillis = nowMillis(),
             isReady = isReady,
@@ -105,11 +113,11 @@ class AppOpenAdManager(
             config = config,
         )
         if (!eligible) {
-            preloadIfNeeded(activity, adUnitId, config)
+            reload()
             return
         }
         val ad = appOpenAd ?: run {
-            preloadIfNeeded(activity, adUnitId, config)
+            reload()
             return
         }
         // show() 직후 콜백이 오기 전에 중복 show 를 막기 위해 메인에서 선제 표시.
@@ -127,7 +135,7 @@ class AppOpenAdManager(
                 mainHandler.post {
                     appOpenAd = null
                     isShowingAd = false
-                    preloadIfNeeded(activity, adUnitId, config)
+                    reload()
                 }
             }
 
@@ -136,7 +144,7 @@ class AppOpenAdManager(
                     appOpenAd = null
                     isShowingAd = false
                     Timber.w("AppOpenAd show Error: ${fullScreenContentError.message}")
-                    preloadIfNeeded(activity, adUnitId, config)
+                    reload()
                 }
             }
         }

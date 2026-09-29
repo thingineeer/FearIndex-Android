@@ -53,6 +53,22 @@ class AppOpenAdPolicy {
         return nowMillis - enteredAt >= config.minBackgroundMillis
     }
 
+    /**
+     * 미리 로드 자격 — 화면이 떠 있고(포그라운드) 광고 요청이 허용될 때만.
+     * 위젯 워커·FCM 으로 백그라운드에서 뜬 프로세스는 노출 기회 없이 요청만 버려진다
+     * (2026-09 앱오프닝 요청 24.4만 대비 노출 774).
+     */
+    fun canPreload(
+        isForeground: Boolean,
+        canRequestAds: Boolean,
+        isAdFree: Boolean,
+        config: AppOpenAdConfig,
+    ): Boolean {
+        if (!isForeground || !canRequestAds || isAdFree) return false
+        if (!config.enabled) return false
+        return impressionCount < config.sessionCap
+    }
+
     /** 노출 성공 기록 — count++, 마지막 노출 시각 갱신, backgroundEnteredAt 소비(리셋). */
     fun recordImpression(nowMillis: Long) {
         impressionCount += 1

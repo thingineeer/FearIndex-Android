@@ -263,5 +263,9 @@ class MainActivity : ComponentActivity() {
                 AdRequestAvailability.update(consentInformation.canRequestAds())
             },
         )
+        // 이전 세션에서 받은 동의로, 새 동의 정보 확인과 병렬로 광고 SDK 초기화를 시작한다(구글 UMP 가이드).
+        val cachedCanRequestAds = consentInformation.canRequestAds()
+        Timber.d("UMP cached canRequestAds=$cachedCanRequestAds")
+        if (cachedCanRequestAds) AdRequestAvailability.update(true)
     }
 }

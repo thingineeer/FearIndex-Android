@@ -10,6 +10,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.glance.appwidget.updateAll
@@ -26,6 +27,7 @@ import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import th1ngjin.fearindex.core.analytics.AnalyticsEvent
 import th1ngjin.fearindex.core.analytics.AnalyticsManager
@@ -107,7 +109,7 @@ class FearIndexApp : Application() {
             // release: WARN+ Timber → Crashlytics (프리미엄 경로 실패를 Firebase 에서 확인 가능하게)
             VariantHooks.plantLogging(crashReporter)
             registerFCMToken()
-            initAdMob()
+            initAdMobWhenAdsAllowed()
             purchaseManager.start()
             // debug 빌드: 저장된 결제 테스트 오버라이드 재적용 (release 는 no-op)
             VariantHooks.onApplicationCreate(this, purchaseManager)
@@ -192,6 +194,18 @@ class FearIndexApp : Application() {
         }
     }
 
+    /**
+     * 광고 SDK 는 UMP 동의 확인(canRequestAds) 뒤에만 초기화한다 — SDK·미디에이션 파트너가 초기화 시점에
+     * 광고를 미리 불러올 수 있어서다(Next-Gen 공식 가이드). canRequestAds 는 MainActivity 에서만 갱신되므로
+     * 위젯 워커·FCM 으로 백그라운드에서 뜬 프로세스는 SDK 를 초기화하지 않는다.
+     */
+    private fun initAdMobWhenAdsAllowed() {
+        appScope.launch {
+            AdRequestAvailability.canRequestAds.first { it }
+            initAdMob()
+        }
+    }
+
     private fun initAdMob() {
         // GMA Next-Gen SDK: initialize 는 반드시 background thread 에서(메인 호출 시 ANR 위험, 공식 가이드).
         // App ID 는 Manifest meta-data(com.google.android.gms.ads.APPLICATION_ID)를 단일 출처로 읽는다 —
@@ -208,9 +222,13 @@ class FearIndexApp : Application() {
                     AdSdkState.markInitialized()
                     mainHandler.post {
                         appOpenAdManager.preloadIfNeeded(
-                            this@FearIndexApp,
-                            BuildConfig.ADMOB_APP_OPEN,
-                            remoteConfig.adsConfig.value.appOpenAdConfig(),
+                            context = this@FearIndexApp,
+                            adUnitId = BuildConfig.ADMOB_APP_OPEN,
+                            config = remoteConfig.adsConfig.value.appOpenAdConfig(),
+                            isForeground = ProcessLifecycleOwner.get().lifecycle.currentState
+                                .isAtLeast(Lifecycle.State.STARTED),
+                            canRequestAds = AdRequestAvailability.canRequestAds.value,
+                            isAdFree = purchaseManager.isAdFree.value,
                         )
                     }
                 }
